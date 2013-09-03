@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bloggure - Wicket 1.4.x - TinyMCE</title>
+  <meta name="author" content="Bloggure" />
+  <meta name="description" content="The blog of Bloggure" />
+  <link rel="canonical" href="http://bloggure.info/.wicket/2010/10/24/wicket-1-4-9-tinymce.html" />
+
+  <link href="//fonts.googleapis.com/css?family=Open+Sans:600,800" rel="stylesheet" type="text/css">
+  <link rel="shortcut icon" href="/favicon.png">
+  <link rel="alternate" type="application/rss+xml" title="Bloggure" href="http://bloggure.info/atom.xml" />
+
+  <link rel="stylesheet" href="/assets/css/all.css">
+<!--[if IE 7]>
+  <link rel="stylesheet" href="/assets/css/font-awesome-ie7.min.css">
+<![endif]-->
+</head>
+<body>
+  <div class="container">
+    <div class="four columns sidebar">
+      <nav>
+  <a href="/">
+    <img src="/logo.png" id="logo" alt="Blog logo"/>
+  </a>
+  <h2><a href="/">Bloggure</a></h2>
+  <hr/>
+  <ul>
+  <p>localhosting since 2005</p>
+  <hr/>
+  <div>
+    <div id="social">
+      Follow us:
+<div id="stalker">
+  
+  <a title="bloggure on Github" href="http://github.com/bloggure">
+    <i class="icon-github-sign"></i>
+  </a>
+  
+
+  
+  <a title="bloggure on Hacker News" href="http://news.ycombinator.com/user?id=bloggure">
+    <i class="icon-sign-blank"></i>
+    <span class="icon-overlay icon-hn">Y</span>
+  </a>
+  
+
+  
+  <a title="bloggure on Twitter" href="http://twitter.com/bloggure">
+    <i class="icon-twitter-sign"></i>
+  </a>
+  
+
+  <a title="RSS feed" id="rss" href="/atom.xml">
+    <i class="icon-rss-sign"></i>
+  </a>
+</div>
+    </div>
+  </div>
+  </ul>
+</nav>
+    </div>
+
+    <div class="eleven columns content">
+      <p class="meta">
+  October 24, 2010 
+  <a href="/">
+    <i class="home icon-home"></i>
+  </a>
+</p>
+
+<h1 class="title">Wicket 1.4.x - TinyMCE</h1>
+
+<div id="post">
+  <!--:en--><img class="alignleft size-full wp-image-90" title="Wicket" src="http://www.bloggure.info/wp-content/uploads/2010/10/logo-wicket1.png" alt="" width="120" height="119" />Heya all,
+
+I am trying to revive this blog from a long period of sleep. Let's start today with a little Java trick I made to have a working TinyMCE implementation using Wicket (tested over 1.4.9 and 1.4.13 in my case but I think it should work for any 1.4.x at least, please report successful attempts under other releases).
+
+For newcomers, <a href="http://tinymce.moxiecode.com/" target="_blank">TinyMCE</a> is a really powerful WYSIWYG editor written entirely in Javascript, it features plugin and theme ability in order to be THE editor to use in your projects. <a href="http://wicket.apache.org/" target="_blank">Apache Wicket</a> is a really powerful web framework based on Java EE specs (I think I'll talk a lot about Wicket in here...).
+
+An implementation of TinyMCE for Wicket exists, it'll be the first result you get when you ask your old pal G***** a hand. But, this implementation is a bit tricky to find (outdated links everywhere) and not feature complete (or not fully complete), as I explain in the read more part...
+
+<!--:--><!--:fr--><em>Cet article n'a pas été traduit, veuillez trouver ci-dessous sa version anglaise</em>
+
+<img class="alignleft size-full wp-image-90" title="Wicket" src="http://www.bloggure.info/wp-content/uploads/2010/10/logo-wicket1.png" alt="" width="120" height="119" />Heya all,
+
+I am trying to revive this blog from a long period of sleep. Let's start today with a little Java trick I made to have a working TinyMCE implementation using Wicket (tested over 1.4.9 and 1.4.13 in my case but I think it should work for any 1.4.x at least, please report successful attempts under other releases).
+
+For newcomers, <a href="http://tinymce.moxiecode.com/" target="_blank">TinyMCE</a> is a really powerful WYSIWYG editor written entirely in Javascript, it features plugin and theme ability in order to be THE editor to use in your projects. <a href="http://wicket.apache.org/" target="_blank">Apache Wicket</a> is a really powerful web framework based on Java EE specs (I think I'll talk a lot about Wicket in here...).
+
+An implementation of TinyMCE for Wicket exists, it'll be the first result you get when you ask your old pal G***** a hand. But, this implementation is a bit tricky to find (outdated links everywhere) and not feature complete (or not fully complete), as I explain in the read more part...
+
+<!--:--><!--more--><!--:en-->
+
+You can checkout latest almost working release from <a href="https://wicket-stuff.svn.sourceforge.net/svnroot/wicket-stuff/releases/wicketstuff-core-1.4-rc7/tinymce-parent" target="_blank">there</a> by using the following command line :
+
+[code lang="bash" light="true"] svn co https://wicket-stuff.svn.sourceforge.net/svnroot/wicket-stuff/releases/wicketstuff-core-1.4-rc7/tinymce-parent[/code]
+
+Let me explain what problem I encountered, it happens only on isolated cases (ajax pushing the whole WYSIWYG shebang on a page without that mess). TinyMCE is then lost, and the only output you get when you try to call init() is <code>tinyMCE is undefined</code> on your Javascript console. My first thought was to replace the outdated version bundled (3.1.0.1), so I headed to TinyMCE's website , downloaded latest version so far (3.3.9.2) and replaced it in my workspace. A try later and no luck, the problem is still here.
+
+What's happening, why on hell this working component don't want to work anymore ? By digging into TinyMCE's code, you'll find that it looks for its baseURL, for lazy loading stuffs (depending on what you use), but Wicket responds to Ajax  headers contribution in a special way : instead of appending regular
+<code>&lt;script type='text/javascript' src='myurltomyfile.js'&gt;&lt;/script&gt;</code>
+it appends
+<code>&lt;script type='text/javascript' src_='myurltomyfile.js'&gt;[content of myurltomyfile.js]&lt;/script&gt;</code>
+to the body of the document.
+
+This particular way of answering to browser is not well handled by TinyMCE, which looks up its baseURL by parsing script tags present in the DOM. The hack to circumvent this is really simple, make TinyMCE find its baseURL by reacting on src_ attributes. The following listing shows the patch in <code>tiny_mce_src.js</code> on the <code>getBase(n)</code>method :
+
+[code lang="js" highlight="2,3,4,5"]function getBase(n) {
+    var src_ = n.getAttribute(&quot;src_&quot;);
+    if (src_) {
+        n.src = src_;
+    }
+   if (n.src &amp;&amp; /tiny_mce(|_gzip|_jquery|_prototype|_full)(_dev|_src)?.js/.test(n.src)) {
+        if (/_(src|dev)\.js/g.test(n.src)) {
+            t.suffix = '_src';
+        }
+        if ((p = n.src.indexOf('?')) != -1) {
+            t.query = n.src.substring(p + 1);
+        }
+
+        t.baseURL = n.src.substring(0, n.src.lastIndexOf('/'));
+
+        // If path to script is relative and a base href was found add that one infront
+        // the src property will always be an absolute one on non IE browsers and IE 8
+        // so this logic will basically only be executed on older IE versions
+        if (base &amp;&amp; t.baseURL.indexOf('://') == -1 &amp;&amp; t.baseURL.indexOf('/') !== 0) {
+            t.baseURL = base + t.baseURL;
+        }
+        return t.baseURL;
+  }
+  return null;
+}[/code]
+
+With this hack, console error yelling <code>tinyMCE is undefined</code> is gone. No more error but the editor still does not work, TinyMCE waits for the document to be ready before calling its render phase. Let's fake it by flagging when we're coming from a Wicket Ajax request. We simply add an attribute to tinyMCE object : in the <code>_init()</code> method
+
+[code lang="js"]
+t.isAjax = false;
+[/code]
+
+We flag in the <code>getBase(n)</code> when we come from Wicket Ajax (when we get something like <code>&lt;script src_=""&gt;&lt;/script&gt;</code>)
+
+[code lang="js" highlight="2"]if (src_) {
+    t.isAjax = true;
+    n.src = src_;
+}[/code]
+
+and we set the <code>domLoaded</code> flag to the newly introduced attribute at the end of the JavaScript file :
+
+[code lang="js"]
+tinymce.dom.Event.domLoaded = tinymce.isAjax;
+[/code]
+
+This way, TinyMCE calls its render phase directly when we call <code>init()</code> on tinyMCE object. This call is done by Wicket when the dom is ready and then we finally got TinyMCE working even when coming from an ajax javascript inclusion. The only thing you need to do in order for this to work in deployment mode is to compress tiny_mce_src.js to tiny_mce.js with this patch.
+
+You can find the resulting  <code>tiny_mce_src.js</code> <a href="http://gist.github.com/643272">here</a>.<!--:--><!--:fr-->
+
+You can checkout latest almost working release from <a href="https://wicket-stuff.svn.sourceforge.net/svnroot/wicket-stuff/releases/wicketstuff-core-1.4-rc7/tinymce-parent" target="_blank">there</a> by using the following command line :
+
+[code lang="bash" light="true"] svn co https://wicket-stuff.svn.sourceforge.net/svnroot/wicket-stuff/releases/wicketstuff-core-1.4-rc7/tinymce-parent[/code]
+
+Let me explain what problem I encountered, it happens only on isolated cases (ajax pushing the whole WYSIWYG shebang on a page without that mess). TinyMCE is then lost, and the only output you get when you try to call init() is <code>tinyMCE is undefined</code> on your Javascript console. My first thought was to replace the outdated version bundled (3.1.0.1), so I headed to TinyMCE's website , downloaded latest version so far (3.3.9.2) and replaced it in my workspace. A try later and no luck, the problem is still here.
+
+What's happening, why on hell this working component don't want to work anymore ? By digging into TinyMCE's code, you'll find that it looks for its baseURL, for lazy loading stuffs (depending on what you use), but Wicket responds to Ajax  headers contribution in a special way : instead of appending regular
+<code>&lt;script type='text/javascript' src='myurltomyfile.js'&gt;&lt;/script&gt;</code>
+it appends
+<code>&lt;script type='text/javascript' src_='myurltomyfile.js'&gt;[content of myurltomyfile.js]&lt;/script&gt;</code>
+to the body of the document.
+
+This particular way of answering to browser is not well handled by TinyMCE, which looks up its baseURL by parsing script tags present in the DOM. The hack to circumvent this is really simple, make TinyMCE find its baseURL by reacting on src_ attributes. The following listing shows the patch in <code>tiny_mce_src.js</code> on the <code>getBase(n)</code>method :
+
+[code lang="js" highlight="2,3,4,5"]function getBase(n) {
+    var src_ = n.getAttribute(&quot;src_&quot;);
+    if (src_) {
+        n.src = src_;
+    }
+   if (n.src &amp;&amp; /tiny_mce(|_gzip|_jquery|_prototype|_full)(_dev|_src)?.js/.test(n.src)) {
+        if (/_(src|dev)\.js/g.test(n.src)) {
+            t.suffix = '_src';
+        }
+        if ((p = n.src.indexOf('?')) != -1) {
+            t.query = n.src.substring(p + 1);
+        }
+
+        t.baseURL = n.src.substring(0, n.src.lastIndexOf('/'));
+
+        // If path to script is relative and a base href was found add that one infront
+        // the src property will always be an absolute one on non IE browsers and IE 8
+        // so this logic will basically only be executed on older IE versions
+        if (base &amp;&amp; t.baseURL.indexOf('://') == -1 &amp;&amp; t.baseURL.indexOf('/') !== 0) {
+            t.baseURL = base + t.baseURL;
+        }
+        return t.baseURL;
+  }
+  return null;
+}[/code]
+
+With this hack, console error yelling <code>tinyMCE is undefined</code> is gone. No more error but the editor still does not work, TinyMCE waits for the document to be ready before calling its render phase. Let's fake it by flagging when we're coming from a Wicket Ajax request. We simply add an attribute to tinyMCE object : in the <code>_init()</code> method
+
+[code lang="js"]
+t.isAjax = false;
+[/code]
+
+We flag in the <code>getBase(n)</code> when we come from Wicket Ajax (when we get something like <code>&lt;script src_=""&gt;&lt;/script&gt;</code>)
+
+[code lang="js" highlight="2"]if (src_) {
+    t.isAjax = true;
+    n.src = src_;
+}[/code]
+
+and we set the <code>domLoaded</code> flag to the newly introduced attribute at the end of the JavaScript file :
+
+[code lang="js"]
+tinymce.dom.Event.domLoaded = tinymce.isAjax;
+[/code]
+
+This way, TinyMCE calls its render phase directly when we call <code>init()</code> on tinyMCE object. This call is done by Wicket when the dom is ready and then we finally got TinyMCE working even when coming from an ajax javascript inclusion. The only thing you need to do in order for this to work in deployment mode is to compress tiny_mce_src.js to tiny_mce.js with this patch.
+
+You can find the resulting  <code>tiny_mce_src.js</code> <a href="http://gist.github.com/643272">here</a>.<!--:-->
+
+</div>
+
+<!-- <div id="related">
+  <h3>Related Posts</h3>
+  <ul class="posts">
+    
+    <li>
+      <span>29 Oct 2010 &raquo;</span> <a href="/.android/2010/10/29/android-switcher-widget.html">Android Switcher Widget</a>
+    </li>
+    
+    <li>
+      <span>01 Nov 2010 &raquo;</span> <a href="/.java/.maven/work/2010/11/01/getting-source-revision-for-a-deployed-app-using-maven-and-a-servlet.html">Getting source revision for a deployed app using Maven and a Servlet</a>
+    </li>
+    
+    <li>
+      <span>02 Nov 2010 &raquo;</span> <a href="/.java/work/2010/11/02/glassfish-v3-custom-log-levels.html">Glassfish v3.x - custom log levels</a>
+    </li>
+    
+  </ul>
+</div> -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'thereisnoplacelike1'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    
+    
+      <div class="footer">
+        <div class="disclaimer">
+  
+  <p>
+    The postings on this site are my own and don't necessarily represent my 
+    employer’s positions, strategies or opinions.
+  </p>
+  
+
+  <p>
+    © Bloggure, 2013 &mdash; built with Jekyll using Lagom theme
+  </p>
+</div>
+      </div>
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-xxxx-x']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>

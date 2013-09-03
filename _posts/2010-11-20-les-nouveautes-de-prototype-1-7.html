@@ -1,0 +1,131 @@
+---
+layout: post
+title: Prototype 1.7 new features
+categories:
+- .js
+- work
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  xLanguage_Available: ',en,fr,'
+  _edit_last: '1'
+  _wp_old_slug: ''
+  dsq_thread_id: '672374746'
+---
+<!--:en--><em>This blog post has not been translated, please find below the french version</em>
+
+<strong>Màj : </strong>Voici <a href="http://prototypejs.org/2010/11/22/prototype-1-7">l'annonce officielle</a><br />
+<h2>Introduction</h2>
+Alors que la version 1.7 de <a href="http://prototypejs.org">Prototype</a>, le fameux framework JS, s'apprête à voir le jour. Nous allons, dans cet article, lister trois nouveautés majeures de cette version.
+<h1>Element.Layout</h1>
+Cette classe permet de fournir, avec un maximum de précision, tout un tas de mesures sur un élement. Il existe deux manières d'utiliser cette classe, voici la méthode du fainéant :
+<pre class="brush: js"> $('elt').measure('margin-top'); // -&gt; retourne la marge haute en pixel de elt
+ $('elt').measure('height'); // -&gt; retourne la hauteur en pixel de elt</pre>
+Le fonctionnement de la deuxième ligne est similaire à l'utilisation de la méthode <a href="http://api.prototypejs.org/dom/Element/prototype/getHeight/">Element#getHeight()</a>. Une utilisation plus minutieuse pourrait ressembler à ça ;
+<pre class="brush: js">var layout = $('elt').getLayout(true);
+layout.get('margin-top'); // retourne la même hauteur que précédemment.
+layout.get('height'); // retourne la même hauteur que précédemment.</pre>
+L'avantage de la seconde méthode est que les valeurs de base nécessaire au calcul des dimensions sont mises en cache dans la variable layout et donc un seul appel est fait au DOM (gourmand en ressource).
+
+Le paramètre "<em>true</em>" de <a href="http://api.prototypejs.org/dom/Element/prototype/getLayout/">Element#getLayout()</a> permet de forcer la récupération de toutes les valeurs d'un seul coup. Si ce paramètre est homis, les valeurs seront récupérées une par une et conservées en cache.
+
+Pour des raisons d'optimisation, les anciennes méthodes <a href="http://api.prototypejs.org/dom/Element/prototype/getWidth/">Element#getWidth()</a> et <a href="http://api.prototypejs.org/dom/Element/prototype/getHeight/">Element#getHeight()</a> n'utilisent malheureusement pas cette méthode, mais utilisent l'ancienne méthode <a href="http://api.prototypejs.org/dom/Element/prototype/getDimensions/">Element#getDimensions()</a>.
+
+La liste des propriétés mesurables est disponible à <a href="http://api.prototypejs.org/dom/Element/Layout/">cette adresse</a>.
+
+Note 1 : Il faut bien garder à l'esprit que si les dimensions de l'élément, auquel votre layout fais référence, change, vous devrez créer un nouvelle instance de <a href="http://api.prototypejs.org/dom/Element/Layout/">Element.Layout</a>.
+
+Note 2 : Si votre élément est masqué avec style "<em>diplay:none</em>" il vous sera possible d'effectuer des mesures uniquement si l'élément parent est visible. Par ailleurs les mesures <em>width</em>, <em>height</em>, <em>top</em>, <em>left</em>, <em>bottom</em> et <em>right</em> auront toujours pour valeur 0.
+<h1>Event.Handler</h1>
+L'un des problèmes de la délégation d'évènement avec les anciennes méthodes d'observation d'évènement est le ciblage de l'élement qui nous intéresse. Considérons pour les exemples suivant l'arbre HTML ci-dessous :
+<pre class="brush: html">&lt;ul id="elt"&gt;
+  &lt;li class="foo" data-code="un"&gt;&lt;a href="javascript:void(0);"&gt;un&lt;/a&gt;&lt;/li&gt;
+  &lt;li class="foo" data-code="deux"&gt;&lt;a href="javascript:void(0);"&gt;deux&lt;/a&gt;&lt;/li&gt;
+  &lt;li class="foo" data-code="trois"&gt;&lt;a href="javascript:void(0);"&gt;trois&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</pre>
+Lorsque qu'un évènement est levé sur un élément il est levé sur tous ses parents récursivement, tant qu'il n'est pas arrêté explicitement ou qu'il a atteind la racine de l'arbre. On devait précédemment faire ce genre de chose :
+<pre class="brush: js">var listener = function (evt) {
+  var target = evt.findElement('.foo');
+  if (!Object.isElement(target)) {
+    return;
+  }
+  ... // traitement avec target, élement qui nous intéresse
+}
+$('elt').observe('click', listener);
+... // et au besoin :
+$('elt').stopObserving('click', listener);</pre>
+Quand nous devions arrêter l'observation d'un évènement particulier il était fastidieux de devoir stocker la fonction assignée dans une variable bien précise afin de pouvoir la re-passer en paramètre à la méthode <a href="http://api.prototypejs.org/dom/Element/prototype/stopObserving/">Element#stopObserving()</a>.
+
+Heureusement les développeurs de Prototype nous ont simplifié la tache avec la méthode <a href="http://api.prototypejs.org/dom/Element/prototype/on/">Element#on()</a>. Cette nouvelle méthode prend en paramètre un nouveau paramètre (un selecteur CSS) permettant de cibler exactement la cible qui nous intéresse. De plus elle renvoie une instance de <a href="http://api.prototypejs.org/dom/Event/Handler/">Element.Handler</a> qui possède des méthodes <a href="http://api.prototypejs.org/dom/Event/Handler/prototype/stop/">stop()</a> et <a href="http://api.prototypejs.org/dom/Event/Handler/prototype/start/">start()</a> qui permettent respectivement d'arrêter et de reprendre l'observation d'un évènement particulier. En voici un exemple d'utilisation :
+<pre class="brush: js">var handler = $('elt').on('click', '.foo', function (evt, target) {
+  ... // traitement avec target, élement qui nous intéresse
+});
+... // et au besoin :
+handler.stop();
+... // et de nouveau :
+handler.start();</pre>
+Pour compléter ces améliorations, une nouvelle méthode a été ajouté : <a href="http://api.prototypejs.org/dom/Element/prototype/purge/">Element#purge()</a> permettant de nettoyer un élément de tous les listeners d'évenement qui lui sont attachés.
+<h1>Sizzle</h1>
+<a href="http://sizzlejs.com/">Sizzle</a> est le nom du sélecteur CSS utilisé dans <a href="http://jquery.com/">jQuery</a>. Afin de pouvoir utiliser ce middleware partagé entre plusieurs frameworks, l'équipe de développement a fait un gros travail de modularité pour laisser le choix du moteur du traitement CSS. En effet, si vous souhaitez par exemple utiliser l'ancien moteur (présent depuis la version 1.5.1), il vous suffit de rapatrier le code source (via <a href="https://github.com/sstephenson/prototype">github</a> par exemple) et compiler prototype de la manière suivante :
+<pre class="brush: shell;">rake dist SELECTOR_ENGINE=legacy_selector</pre>
+De la même manière vous pouvez écrire votre propre moteur en le plaçant dans le répertoire vendor/ du package.
+<h2>Conclusion</h2>
+Les trois améliorations de la nouvelle mouture énoncées ci-dessus peuvent-être complétées par une ribambelle d'ajustements (notamment lié à IE9). Cette nouvelle version confirme les prétentions de la librairie visant à palier les manquements de compatibilités inter-navigateurs et simplifier considérablement le développement d'applications javascript, tout en restant le plus léger possible.<!--:--><!--:fr--><strong>Màj : </strong>Voici <a href="http://prototypejs.org/2010/11/22/prototype-1-7">l'annonce officielle</a><br />
+<h2>Introduction</h2>
+Alors que la version 1.7 de <a href="http://prototypejs.org">Prototype</a>, le fameux framework JS, s'apprête à voir le jour. Nous allons, dans cet article, lister trois nouveautés majeures de cette version.
+<h1>Element.Layout</h1>
+Cette classe permet de fournir, avec un maximum de précision, tout un tas de mesures sur un élement. Il existe deux manières d'utiliser cette classe, voici la méthode du fainéant :
+<pre class="brush: js"> $('elt').measure('margin-top'); // -&gt; retourne la marge haute en pixel de elt
+ $('elt').measure('height'); // -&gt; retourne la hauteur en pixel de elt</pre>
+Le fonctionnement de la deuxième ligne est similaire à l'utilisation de la méthode <a href="http://api.prototypejs.org/dom/Element/prototype/getHeight/">Element#getHeight()</a>. Une utilisation plus minutieuse pourrait ressembler à ça ;
+<pre class="brush: js">var layout = $('elt').getLayout(true);
+layout.get('margin-top'); // retourne la même hauteur que précédemment.
+layout.get('height'); // retourne la même hauteur que précédemment.</pre>
+L'avantage de la seconde méthode est que les valeurs de base nécessaire au calcul des dimensions sont mises en cache dans la variable layout et donc un seul appel est fait au DOM (gourmand en ressource).
+
+Le paramètre "<em>true</em>" de <a href="http://api.prototypejs.org/dom/Element/prototype/getLayout/">Element#getLayout()</a> permet de forcer la récupération de toutes les valeurs d'un seul coup. Si ce paramètre est homis, les valeurs seront récupérées une par une et conservées en cache.
+
+Pour des raisons d'optimisation, les anciennes méthodes <a href="http://api.prototypejs.org/dom/Element/prototype/getWidth/">Element#getWidth()</a> et <a href="http://api.prototypejs.org/dom/Element/prototype/getHeight/">Element#getHeight()</a> n'utilisent malheureusement pas cette méthode, mais utilisent l'ancienne méthode <a href="http://api.prototypejs.org/dom/Element/prototype/getDimensions/">Element#getDimensions()</a>.
+
+La liste des propriétés mesurables est disponible à <a href="http://api.prototypejs.org/dom/Element/Layout/">cette adresse</a>.
+
+Note 1 : Il faut bien garder à l'esprit que si les dimensions de l'élément, auquel votre layout fais référence, change, vous devrez créer un nouvelle instance de <a href="http://api.prototypejs.org/dom/Element/Layout/">Element.Layout</a>.
+
+Note 2 : Si votre élément est masqué avec style "<em>diplay:none</em>" il vous sera possible d'effectuer des mesures uniquement si l'élément parent est visible. Par ailleurs les mesures <em>width</em>, <em>height</em>, <em>top</em>, <em>left</em>, <em>bottom</em> et <em>right</em> auront toujours pour valeur 0.
+<h1>Event.Handler</h1>
+L'un des problèmes de la délégation d'évènement avec les anciennes méthodes d'observation d'évènement est le ciblage de l'élement qui nous intéresse. Considérons pour les exemples suivant l'arbre HTML ci-dessous :
+<pre class="brush: html">&lt;ul id="elt"&gt;
+  &lt;li class="foo" data-code="un"&gt;&lt;a href="javascript:void(0);"&gt;un&lt;/a&gt;&lt;/li&gt;
+  &lt;li class="foo" data-code="deux"&gt;&lt;a href="javascript:void(0);"&gt;deux&lt;/a&gt;&lt;/li&gt;
+  &lt;li class="foo" data-code="trois"&gt;&lt;a href="javascript:void(0);"&gt;trois&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</pre>
+Lorsque qu'un évènement est levé sur un élément il est levé sur tous ses parents récursivement, tant qu'il n'est pas arrêté explicitement ou qu'il a atteind la racine de l'arbre. On devait précédemment faire ce genre de chose :
+<pre class="brush: js">var listener = function (evt) {
+  var target = evt.findElement('.foo');
+  if (!Object.isElement(target)) {
+    return;
+  }
+  ... // traitement avec target, élement qui nous intéresse
+}
+$('elt').observe('click', listener);
+... // et au besoin :
+$('elt').stopObserving('click', listener);</pre>
+Quand nous devions arrêter l'observation d'un évènement particulier il était fastidieux de devoir stocker la fonction assignée dans une variable bien précise afin de pouvoir la re-passer en paramètre à la méthode <a href="http://api.prototypejs.org/dom/Element/prototype/stopObserving/">Element#stopObserving()</a>.
+
+Heureusement les développeurs de Prototype nous ont simplifié la tache avec la méthode <a href="http://api.prototypejs.org/dom/Element/prototype/on/">Element#on()</a>. Cette nouvelle méthode prend en paramètre un nouveau paramètre (un selecteur CSS) permettant de cibler exactement la cible qui nous intéresse. De plus elle renvoie une instance de <a href="http://api.prototypejs.org/dom/Event/Handler/">Element.Handler</a> qui possède des méthodes <a href="http://api.prototypejs.org/dom/Event/Handler/prototype/stop/">stop()</a> et <a href="http://api.prototypejs.org/dom/Event/Handler/prototype/start/">start()</a> qui permettent respectivement d'arrêter et de reprendre l'observation d'un évènement particulier. En voici un exemple d'utilisation :
+<pre class="brush: js">var handler = $('elt').on('click', '.foo', function (evt, target) {
+  ... // traitement avec target, élement qui nous intéresse
+});
+... // et au besoin :
+handler.stop();
+... // et de nouveau :
+handler.start();</pre>
+Pour compléter ces améliorations, une nouvelle méthode a été ajouté : <a href="http://api.prototypejs.org/dom/Element/prototype/purge/">Element#purge()</a> permettant de nettoyer un élément de tous les listeners d'évenement qui lui sont attachés.
+<h1>Sizzle</h1>
+<a href="http://sizzlejs.com/">Sizzle</a> est le nom du sélecteur CSS utilisé dans <a href="http://jquery.com/">jQuery</a>. Afin de pouvoir utiliser ce middleware partagé entre plusieurs frameworks, l'équipe de développement a fait un gros travail de modularité pour laisser le choix du moteur du traitement CSS. En effet, si vous souhaitez par exemple utiliser l'ancien moteur (présent depuis la version 1.5.1), il vous suffit de rapatrier le code source (via <a href="https://github.com/sstephenson/prototype">github</a> par exemple) et compiler prototype de la manière suivante :
+<pre class="brush: shell;">rake dist SELECTOR_ENGINE=legacy_selector</pre>
+De la même manière vous pouvez écrire votre propre moteur en le plaçant dans le répertoire vendor/ du package.
+<h2>Conclusion</h2>
+Les trois améliorations de la nouvelle mouture énoncées ci-dessus peuvent-être complétées par une ribambelle d'ajustements (notamment lié à IE9). Cette nouvelle version confirme les prétentions de la librairie visant à palier les manquements de compatibilités inter-navigateurs et simplifier considérablement le développement d'applications javascript, tout en restant le plus léger possible.<!--:-->

@@ -1,0 +1,26 @@
+---
+layout: post
+title: git bisect saved my day !
+categories:
+- .git
+- .maven
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+  dsq_thread_id: '670574937'
+---
+This morning one of the Jenkins job went red, 5 tests were failing, and it was very difficult to find out which commit caused the break (69 commits were concerned), I used git bisect to run maven tests to find the guilty one. Here is a quick howto:
+<ul>
+	<li>find a stable commit (in my case it was <strong>2ea34cf09cc83804cdcc445476bfb597c617a034</strong>)</li>
+	<li>write a short script (myScript.sh) allowing you to run the tests:</li>
+</ul>
+<pre class="brush: shell">#!/bin/sh
+ mvn -f path/to/my/pom.xml -Dtest=MyTestClass test</pre>
+<ul>
+	<li>git bisect start <strong>HEAD</strong> <strong>2ea34cf09cc83804cdcc445476bfb597c617a034</strong></li>
+	<li>git bisect run ./myScript.sh</li>
+</ul>
+That's all, in a few runs (6 in my cases), git found out the commit causing the test failure, a simple git revert and tests were back to green !

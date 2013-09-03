@@ -1,0 +1,31 @@
+---
+layout: post
+title: Adding hot reloading to Apache Wicket
+categories:
+- shelf
+tags: []
+status: draft
+type: post
+published: false
+meta:
+  _edit_last: '1'
+  _yoast_wpseo_linkdex: '0'
+  _yoast_wpseo_focuskw: ''
+  _yoast_wpseo_title: ''
+  _yoast_wpseo_metadesc: ''
+  _yoast_wpseo_meta-robots-noindex: '0'
+  _yoast_wpseo_meta-robots-nofollow: '0'
+  _yoast_wpseo_meta-robots-adv: none
+  _yoast_wpseo_sitemap-include: '-'
+  _yoast_wpseo_sitemap-prio: '-'
+  _yoast_wpseo_sitemap-html-include: '-'
+  _yoast_wpseo_canonical: ''
+  _yoast_wpseo_redirect: ''
+  _yoast_wpseo_opengraph-description: ''
+  _yoast_wpseo_google-plus-description: ''
+---
+<!--:en-->Recently, I did a small experiment for Apache Wicket : adding auto compile and hot reloading of changes.
+
+In this short blog post I will try to describe how I added it. First of all, the basics of auto compile and hot reloading is heavily inspired by the work made by Xavier Hanin for Rest.x (this is a great framework I urge you to try if you've not already did).
+<h2>Integrating Auto-compile</h2>
+I've started from the sources of Rest.x and picked up the classes related to auto compile when Xavier implemented it. I made a copy/paste of the files to allow its modification without needing any Rest.x dependency.<!--:-->

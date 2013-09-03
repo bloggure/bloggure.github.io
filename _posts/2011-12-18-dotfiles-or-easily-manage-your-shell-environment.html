@@ -1,0 +1,41 @@
+---
+layout: post
+title: dotfiles or easily manage your shell environment
+categories:
+- .shell
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  xLanguage_Available: ',en,fr,'
+  _edit_last: '1'
+  dsq_thread_id: '667932666'
+---
+<!--:en--><img src="http://www.bloggure.info/wp-content/uploads/2011/12/Capture-d’écran-2011-12-18-à-18.55.51.png" alt="" title="dotfiles" width="87" height="68" class="alignright size-full wp-image-483" />
+<p>Like many terminal geek, I have a bunch of dot rc files allowing me to configure my environment. While this is a very powerful way to setup an environment, it is painful to log in a machine and set it up like you are used to, you often discover too late your favorite alias is missing.</p>
+<p>
+I found a nice way to manage this thing by browsing the <a href="https://github.com/tomsquest/dotfiles">github account</a> of one of a man coming frequently to the <a href="http://www.toursjug.org/">Tours Java User Group</a> meetings. It is commonly called dotfiles and can not be better named I found.</p>
+<p>
+I <a href="https://github.com/CedricGatay/dotfiles">forked the repository</a> to customize it to my needs, it is now possible to define aliases and to configure the shell on a per machine basis. 
+To install, you will only need ruby and rake (manual install is also possible by symlinking the files) :
+<ul>
+	<li>cd; git clone git://github.com/CedricGatay/dotfiles.git .dotfiles</li>
+	<li>cd .dotfiles; rake install</li>
+        <li>logout and login, or source your .zshrc / .bashrc</li>
+</lu>
+Please notice that I am a zsh user, the bashrc file provided should work but it will surely need some fixes. There is no better way than digging into the source to understand and adjust it.
+</p><!--:--><!--:fr--><img src="http://www.bloggure.info/wp-content/uploads/2011/12/Capture-d’écran-2011-12-18-à-18.55.51.png" alt="" title="dotfiles" width="87" height="68" class="alignright size-full wp-image-483" />
+<p>Comme beaucoup de geek, j'affectionne tout particulièrement la ligne de commande. J'ai tout un lot de fichier de configuration à la racine de mon dossier personnel. Bien que ce soit une façon très puissante de configurer son environnement de travail, c'est perturbant de se connecter sur une machine et de ne pas retrouver ses habitudes.</p>
+<p>
+J'ai trouvé un moyen simple et élégant de de gérer ce cas de figure en naviguant sur un<a href="https://github.com/tomsquest/dotfiles">dépôt github</a> d'un des membre régulier du <a href="http://www.toursjug.org/">Tours Java User Group</a>. Le nom courant de ce genre de dépôt est "dotfiles" et je trouve qu'il ne pourrait pas avoir de meilleur nom.</p>
+<p>
+J'ai donc<a href="https://github.com/CedricGatay/dotfiles">forké le dépôt</a> pour le faire correspondre à mes besoins. J'ai rajouté une fonctionnalité qui était nécessaire pour moi : la possibilité d'avoir des configurations et des alias sensiblement différents en fonction de la machine sur laquelle le fichier est déployé (j'utilise plusieurs OS, les chemins sont donc parfois différents).
+Pour l'installer, il suffit de disposer de ruby et rake (une installation manuelle est aussi possible en créant les liens symboliques que rake crée) :
+<ul>
+	<li>cd; git clone git://github.com/CedricGatay/dotfiles.git .dotfiles</li>
+	<li>cd .dotfiles; rake install</li>
+        <li>logout and login, or source your .zshrc / .bashrc</li>
+</lu>
+Notez que je suis un utilisateur de zsh, le fichier bashrc devrait marcher mais il présente certainement des bugs puisqu'il date de quelques années. Dans tous les cas, je vous encourage à vous plonger dans le source pour comprendre ce qui se passe et adapter le tout à vos besoins.
+</p><!--:-->

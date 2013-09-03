@@ -1,0 +1,38 @@
+---
+layout: post
+title: PostgreSQL under OS X Mountain Lion
+categories:
+- work
+tags:
+- heroku
+- postgresql
+- tip
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+  _wpas_done_all: '1'
+  dsq_thread_id: '1005094034'
+  _wpas_skip_2479654: '1'
+  _yoast_wpseo_linkdex: '0'
+---
+<img src="http://www.bloggure.info/wp-content/uploads/2013/01/netsuke-150x150.png" alt="postgresql" width="150" height="150" class="alignright size-thumbnail wp-image-798" /><p>I am actually doing a side project which you will heard of very soon. For this project I am using <a href="http://www.playframework.org/">Play! Framework</a> v2 with the server side being developed in <a href="http://www.scala-lang.org/">Scala</a>. To efficiently push this new application to production, I am using the <a href="http://www.heroku.com/">Heroku platform</a></p>
+<p>While my initial thoughts were using MySQL as my relational backend, the default stack provided by Heroku made me switch to postgresql that I have barely used in the past. I attempted to set it up on my machine, but with no luck, Mountain Lion is bundling an old version (8.4) whereas I wanted the same as on the Heroku platform. My first attempt with Homebrew was quite a disaster, I never managed to correctly connect my newly created user.</p>
+
+<p>
+After a few hours mumbling, I looked for an alternative to the Homebrew version. Luckily, the guys at Heroku provide a neat application <a href="http://postgresapp.com/">Postgres.app</a> to drop that allows to quickly start/stop a postgresql server. My problem was I didn't had enough connections to allow my application to start, I was always getting this message : <code>remaining connection slots are reserved for non-replication superuser connections</code>.
+</p>
+<p>
+I edited the configuration file 
+<pre class="brush: bash">vim "~/Library/Application Support/Postgres/var/postgresql.conf"</pre>
+to bump the number of connections to a lot more (20 instead of 10) but it prevented my server to start. With a lot of file editing and restarts, I found that the limit for my machine was 11 connections.
+</p>
+<p>
+The solution to this problem resides in a special setup of the mac os kernel which defines the amount of shared memory a process can allocate. To get rid of this, you can edit your <code>/etc/sysctl.conf</code> file (root required) and put the following lines (it will persist across reboots)
+<pre class="brush: bash">
+kern.sysv.shmall=65536
+kern.sysv.shmmax=16777216
+</pre>
+</p>
+<em>Credits for this tip comes from <a href="http://ruby.zigzo.com/2012/07/07/postgresql-postgres-app-and-a-gotcha-on-mac-osx-lion">http://ruby.zigzo.com/2012/07/07/postgresql-postgres-app-and-a-gotcha-on-mac-osx-lion</a>/</em>

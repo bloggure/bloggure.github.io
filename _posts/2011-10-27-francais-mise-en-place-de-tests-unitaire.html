@@ -1,0 +1,115 @@
+---
+layout: post
+title: (Français) Mise en place de tests unitaire
+categories:
+- ci
+tags:
+- java
+- javascript
+- php
+- test unitaire
+- unit testing
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+  dsq_thread_id: '669592115'
+---
+<!--:fr--><h2>A qui est destiné ce document</h2>
+Ce document est à l'attention des développeurs ayant de bonnes connaissances techniques. En revanche il est intéressant pour un chef de projet de connaître les généralités énoncées dans la première partie du document.
+<h2>Généralité</h2>
+<h3>Qu'est ce qu'un test unitaire</h3>
+D'après Wikipédia :
+<blockquote>En programmation informatique, le test unitaire est un procédé permettant de s'assurer du fonctionnement correct d'une partie déterminée d'un logiciel ou d'une portion d'un programme (appelée « unité » ou « module »).
+On écrit un test pour confronter une réalisation à sa spécification.</blockquote>
+Ils consistent en liste de tests à valider afin d'être conforme à la documentation fonctionnelle. Ces tests doivent être exécutés le plus souvent possible au cours de la réalisation, en effet ils permettent en autre de mettre en évidence toutes régression dans le processus de développement.<!--:--><!--more--><!--:fr-->
+<h3>Pré-requis à l'écriture des tests</h3>
+Pour écrire les tests unitaires, nous avons besoin dans un premier temps de lister les fonctionnalités : chaque tests doit refléter une fonctionnalité (la plus précise possible). Si les fonctionnalités évolue dans le temps, les tests doivent refléter ces changements.
+
+Dans le monde idéal du <a title="Test Driven Development" href="http://en.wikipedia.org/wiki/Test-driven_development">TDD</a>, chaque test doit être écrit avant le code permettant de répondre à sa fonctionnalité : de cette manière on peux vérifier que le test failli bien si la fonctionnalité n'existe pas.
+<h2>Mise en œuvre</h2>
+<h3>Quoi tester ?</h3>
+Il y a certains éléments qui peuvent difficilement (mais pas impossible !) être testé : envoie d'email, interfaces graphiques, l'interfaçage avec des outils externes, etc... C'est pour cela qu'il est important d'écrire des méthodes répondant à une fonction précise du cahier des charges, mais il sera impossible de tout tester.
+<h3>L'assertion</h3>
+L'assertion est la plus petite unité de test, elle doit-être le plus simple possible. Toutes complexités doivent-être prohibé dans les tests et doivent chacun mettre en avant qu'une fonction précise du cahier des charges.
+<h3>Cas pratique</h3>
+Voici un cas de mise en oeuvre avec JUnit :
+<pre class="brush: java">import org.junit.*;
+import static org.junit.Assert.*;
+
+public class SampleTest {
+
+    @Before
+    public void setUp() {
+        // exécuté avant chaque test
+    }
+
+    @After
+    public void tearDown() {
+        // exécuté après chaque test
+    }
+
+    @Test
+    public void testCondition1() {
+        assertIsTrue(condition1);
+    }
+
+    @Test
+    public void testCondition2() {
+        assertIsFalse(condition2);
+    }
+
+}</pre>
+Dans l'ordre seront exécutés :
+<pre class="brush: java">SampleTest::setUp();
+SampleTest::testCondition1();
+SampleTest::tearDown();
+SampleTest::setUp();
+SampleTest::testCondition2();
+SampleTest::tearDown();</pre>
+Vous remarquerez que dans cet exemple tous les tests sont exécutés les uns après les autres. Si un test échoue les autres sont tout de même exécuté. Dans d'autres environnement ils pourraient être tous exécuté en parallèle. Voici un exemple en Javascript en utilisant <code>expresso</code> pour tester une application web (complexe) :
+<pre class="brush: js">var assert = require('assert');
+ , server = require('express').createServer();
+
+assert.response(server, {
+    url: '/', timeout: 500
+}, {
+    body: 'foobar' // vérifie que le corps de la requête HTTP contient 'foobar'
+});
+
+assert.response(server, {
+    url: '/',
+    method: 'GET'
+}, {body: '{"name":"tj"}', // vérifie le contenu du corps de la requête HTTP, son statusCode et ses headers
+    status: 200,
+    headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+        'X-Foo': 'bar'
+    }
+});
+
+assert.response(server, {
+    url: '/foo',
+    method: 'POST',
+    data: 'bar baz'
+}, {
+    body: '/foo bar baz', // vérifie les données renvoyées par le serveur quand on poste un formulaire
+    status: 200
+}, 'Test POST');</pre>
+<h2>Bonnes pratiques</h2>
+<h3>Des tests simples</h3>
+Plus les tests sont simples et leur description explicite, plus ils sont efficaces car ils mettent facilement en évidence les problèmes de réalisation face aux spécifications.
+<h3>Un test == une fonctionnalité</h3>
+Il ne faut surtout oublier aucune fonctionnalité dans les tests mis en œuvre : il est en effet très dangereux de penser être en sécurité si ils manquent des tests.
+<h3>Ne pas mettre en doute l'interpréteur</h3>
+Il existe des tests inutiles, par exemple le test ci-dessous :
+
+<code> Assert::areEquals(1 + 2, 3);
+</code>
+
+Dans le cas présent il est inutile de tester cette assertion. Il s'agit d'un test qui pourrait faire partie des tests unitaires de l'interpréteur (compilateur, VM, etc...), mais pas de votre projet.
+<h3>Pas de (bon) tests inutiles</h3>
+Mieux vaut écrire trop de (bon) test que pas assez. En effet, même si chaque tests doivent refléter la fonctionnalité la plus précise il faut écrire un maximum de test.
+<h2>Annexes</h2>
+<a href="http://junit.sourceforge.net/doc/faq/faq.htm">Junit FAQ</a> - <a href="http://www.onpk.net/php/simpletest/index.php">SimpleTest</a> - <a href="http://visionmedia.github.com/expresso/">Expresso</a><!--:-->

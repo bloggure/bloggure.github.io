@@ -1,0 +1,92 @@
+---
+layout: post
+title: OS X Lion - Remove an app from Launchpad
+categories:
+- .shell
+tags:
+- apple
+- hack
+- lion
+- shell
+- sqlite
+- tip
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+  xLanguage_Available: ',en,fr,'
+  dsq_thread_id: '667874711'
+---
+<!--:en--><h2>General Launchpad thoughts</h2>
+<a href="http://www.bloggure.info/shell/os-x-lion-remove-an-app-from-launchpad.html/attachment/launchpad" rel="attachment wp-att-257"><img src="http://www.bloggure.info/wp-content/uploads/2011/07/Launchpad.png" alt="" title="Launchpad" width="128" height="128" class="alignleft size-full wp-image-257" /></a>
+<p>I continue my tips regarding OS X Lion. As I said in my <a title="First thoughts on OS X Lion" href="http://www.bloggure.info/?p=181">OS X Lion walkthrough</a>, Lion come with a very iOS-ish application launcher : <a href="http://www.apple.com/macosx/whats-new/launchpad.html" target="_blank">Launchpad</a>. Out of the box, it is automatically populated with every application you have and application you download from the Mac App Store are added there too.<br/>
+
+Although I keep on thinking it is a useless feature for power users, newcomers will surely find this useful, and it will help switchers to find their applications. As I was cleaning my machine I tried to rearrange Launchpad by making folders and then I discovered that you can't easily remove a shortcut to an application (except the ones coming from the Mac App Store which are uninstalled when you remove their icons).</p>
+<h2>Let me remove things !</h2>
+<p>By digging around, I found that Launchpad stores its preferences in a SQLite database, that you can explore and manipulate using the sqlite3 command line program.<br/>
+
+Please notice that the steps described here might make your Launchpad unusable, so please backup every file you change in case something goes wrong !</p>
+<p><strong>Update ! </strong>Easy technique, use <a href="http://chaosspace.de/dev/launchpad-control-hide-apps-from-launchpad/" title="Launchpad-Control" target="_blank">Launchpad-Control</a> which is a preference pane allowing to visually hide / show icons on Launchpad. I detail here the step involved for the records.</p>
+<!--:--><!--:fr--><h2>Impressions générale sur Launchpad</h2>
+<a href="http://www.bloggure.info/shell/os-x-lion-remove-an-app-from-launchpad.html/attachment/launchpad" rel="attachment wp-att-257"><img src="http://www.bloggure.info/wp-content/uploads/2011/07/Launchpad.png" alt="" title="Launchpad" width="128" height="128" class="alignleft size-full wp-image-257" /></a>
+<p>
+Je continue mes astuces concernant OS X Lion. Comme je l'ai décrit dans mon précédent billet concernant le <a title="First thoughts on OS X Lion" href="http://www.bloggure.info/?p=181">tour d'horizon de OS X Lion</a>, Lion vient avec un lanceur d'application très semblable au célèbre Springboard d'iOS : <a href="http://www.apple.com/macosx/whats-new/launchpad.html" target="_blank">Launchpad</a>. Fraîchement installé (enfin après un upgrade depuis Snow Leopard tout particulièrement), il est automatiquement rempli avec toutes les applications installées. Les applications provenant du Mac App Store sont également ajoutées à cet endroit.<br/>
+
+Bien que je continue de penser que c'est un programme inutile pour les utilisateurs avancés, les nouveaux arrivants y trouveront certainement un outil utile et les switchers y verront un semblant de menu démarrer (avec le look de leur iBidule en bonus).
+Durant une phase de ménage sur ma machine, j'ai essayé de ranger Launchpad tout de même en faisant des dossiers et j'ai découvert qu'il n'était pas possible de retirer simplement une icône d'application (sauf celles provenant du Mac App Store qui sont désinstallées au passage).</p>
+<h2>Laissez moi ôter des icônes !</h2>
+<p>En fouinant un peu, j'ai découvert que Launchpad stocke ses préférences dans une base de données SQLite, qu'il est facile d'étudier et manipuler en utiliser la commande sqlite3.<br/>
+
+Veuillez faire attention en essayant ma procédure, Launchpad pourrait devenir inutilisable, sauvegardez les fichiers que vous manipulez au cas où les choses tournent mal !</p>
+<p><strong>Mise à jour ! </strong>Encore plus facile, utilisez <a href="http://chaosspace.de/dev/launchpad-control-hide-apps-from-launchpad/" title="Launchpad-Control" target="_blank">Launchpad-Control</a> qui est un panneau de préférence permettant de masquer / montrer facilement une icône. Je laisse les étapes manuelles ici pour les curieux.</p>
+<!--:--><!--more--><!--:en-->
+<p>Launch a terminal, and execute the following command, you'll get a list of the icons Launchpad shows you. Read or use grep to find the one you want to remove (in my case it was akamai uninstaller shortcut)</p>
+<pre class="brush: shell">sqlite3 ~/Library/Application\ Support/Dock/*.db 'select * from apps;'    
+[...]
+48|uninstall|com.akamai.euc_uninstall_mac|||298505501.0|book?
+49|Livre des polices|com.apple.FontBook||4|328036648.0|bookt
+50|Fraise|org.fraise.Fraise|||332837534.0|bookp
+[...]</pre>
+
+<p>
+Please notice the number at the beginning of the line you are interested in, by executing the following command, you will remove the line and the icon you want from Launchpad (changes are visible after a Dock relaunch...). In my case, the number was 48, so the command looks like :
+</p>
+<pre class="brush: shell">sqlite3 ~/Library/Application\ Support/Dock/*.db 'delete from apps where item_id=48;'    
+killall Dock</pre>
+
+<p>
+After Dock.app is finally back, if you enter Launchpad you will notice that the ugly icon is gone ! 
+</p>
+
+<h2>Technical notice</h2>
+For the geeky there, the table structure is the following :
+<pre class="brush:sql">
+CREATE TABLE apps (item_id INTEGER PRIMARY KEY, title VARCHAR, bundleid VARCHAR, 
+                   storeid VARCHAR,category_id INTEGER, moddate REAL, bookmark BLOB);
+</pre><!--:--><!--:fr-->
+
+<p>Démarrez un terminal, et exécutez la commande suivante, vous allez avoir la liste des icônes que Launchpad vous présente. Lisez ou utilisez un outil comme grep pour repérer l'icône dont vous désirez vous débarrasser (dans mon cas il s'agissait de l'uninstall d'akamai)</p>
+<pre class="brush: shell">sqlite3 ~/Library/Application\ Support/Dock/*.db 'select * from apps;'    
+[...]
+48|uninstall|com.akamai.euc_uninstall_mac|||298505501.0|book?
+49|Livre des polices|com.apple.FontBook||4|328036648.0|bookt
+50|Fraise|org.fraise.Fraise|||332837534.0|bookp
+[...]</pre>
+
+<p>
+Prêtez attention au nombre présent au début de la ligne qui concerne l'icône à enlever. En exécutant la commande suivante, vous allez ôter la ligne dans la base de donnée et par conséquent l'icône de Launchpad (les changements prennent effets après un redémarrage de Dock.app). Dans mon cas, le nombre était 48, la commande ressemble donc à ceci : 
+</p>
+<pre class="brush: shell">sqlite3 ~/Library/Application\ Support/Dock/*.db 'delete from apps where item_id=48;'    
+killall Dock</pre>
+
+<p>
+Une fois que Dock.app a redémarré, si vous lancez Launchpad, vous vous rendrez compte que l'icône à disparu !
+</p>
+
+<h2>Petite note technique</h2>
+Pour les geeks ici, la structure de la table que l'on manipule est la suivante :
+<pre class="brush:sql">
+CREATE TABLE apps (item_id INTEGER PRIMARY KEY, title VARCHAR, bundleid VARCHAR, 
+                   storeid VARCHAR,category_id INTEGER, moddate REAL, bookmark BLOB);
+</pre><!--:-->

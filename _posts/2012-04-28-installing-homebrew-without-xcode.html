@@ -1,0 +1,32 @@
+---
+layout: post
+title: Installing HomeBrew without XCode
+categories:
+- work
+tags:
+- homebrew
+- mac
+- tip
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+  dsq_thread_id: '667872489'
+---
+<!--:en--><p><img class="alignright  wp-image-568" title="Logo XCode" src="http://www.bloggure.info/wp-content/uploads/2012/04/250px-Logo_xcode.png" alt="" width="150" height="150" /></p><p>Since I have a SSD in my laptop, I am always looking after things that waste the precious space of my main drive. Although I have a 120Gb drive, I have to say it is rapidly filled at 80% (maven downloading the internet syndrome). On of the good thing owning a Mac is the Unix subsystem allowing to use almost every software written for the Unix world.</p><p>There is some package systems for Mac OS X, <a href="http://www.macports.org/">MacPorts</a>, <a href="http://www.finkproject.org/">Fink</a>, <a href="http://mxcl.github.com/homebrew/">HomeBrew</a> being the last one and the most convenient one. When I last switched to a Core i7 MacBook Pro, I migrated to HomeBrew and I have to say it is way lighter than MacPort. The only thing I find cumbersome is the need for a complete XCode install on drive, even though I do not develop using XCode. XCode is a heavy tool suite, weighting about 5Gb on your drive, only to get the tools needed for HomeBrew.</p><p>The nightmare is now over, Apple released Command Line Tools for XCode, that you can download on the official <a href="https://developer.apple.com/downloads/index.action">Apple Developer Site</a> (you will need to log in with a valid developer id account, this is free don't worry).</p><p>Here is a simple step by step guide to uninstall XCode and replace it by Command Line Tools :</p><ul><li>Go to the Apple Developer site and download the dmg image of Command Line Tools</li><li>Open Terminal.app and run</li><pre class="brush: bash">sudo /Developer/Library/uninstall-devtools</pre><li>Open the dmg image and install the tools</li></ul><p>That's all folks ! You can now install HomeBrew and enjoy your favorites open source software without the whole XCode suite.</p><!--:--><!--:fr--><img class="alignright  wp-image-568" title="Logo XCode" src="http://www.bloggure.info/wp-content/uploads/2012/04/250px-Logo_xcode.png" alt="" width="150" height="150" />
+
+Depuis que j'ai un SSD dans mon ordinateur, je suis toujours à la recherche des éléments qui gaspillent le spacieux espace de mon disque. Bien que j'ai un disque de 120Go, celui-ci se remplit très rapidement à 80% (certainement grace à Maven qui télécharge internet). L'un des points fort lorsqu'on possède un Mac est le système Unix permettant l'utilisation de quasiment tous les logiciels écrit dans le monde Unix.
+
+Il y a quelques gestionnaires de paquets pour Mac OS X, <a href="http://www.macports.org/">MacPorts</a>, <a href="http://www.finkproject.org/">Fink</a>, <a href="http://mxcl.github.com/homebrew/">HomeBrew</a> étant le plus récent et le plus pratique selon moi. La dernière fois que j'ai changé de machine pour un MacBook Pro Core i7, j'ai migré vers HomeBrew et je dois reconnaître que ce système est bien plus léger que MacPorts. La seule chose que je trouve rébarbative est la nécessité d'installer la suite XCode complète sur le disque, même si je ne développe pas en utilisant cet IDE. XCode est une suite assez lourde, pesant environ 5Go sur le disque, uniquement pour permettre l'utilisation de HomeBrew.
+
+Le cauchemard est maintenant terminé, Apple a rendu disponible Command Line Tools for XCode, librement <a href="https://developer.apple.com/downloads/index.action">téléchargeable sur le site développeur d'Apple</a> (vous aurez besoin d'un compte développeur pour accéder au téléchargement, qui est gratuit ne vous inquiétez pas).
+
+Enfin voilà un rapide guide étape par étape permettant de désinstaller XCode et de le remplacer par les outils ligne de commande :
+<ul>
+	<li>Allez sur le site développeur d'Apple et téléchargez l'image dmg des outils lignes de commande.</li>
+	<li>Ouvrez Terminal.app et lancez</li>
+<pre class="brush: bash">sudo /Developer/Library/uninstall-devtools</pre>
+	<li>Ouvrez l'image dmg et installez les outils</li>
+</ul>
+C'est terminé ! Vous pouvez maintenant installer HomeBrew et installer / utiliser vos outils favoris sans l'intégralité de la suite XCode.<!--:-->

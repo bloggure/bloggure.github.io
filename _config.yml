@@ -1,0 +1,27 @@
+# General Jekyll Config
+pygments: true
+url: http://bloggure.info
+lsi: false
+exclude: [LICENSE, CNAME, README.md, .gitignore]
+comments: true
+# Theme customization - please change from the defaults!
+theme:
+  # Color for top bar, links, etc
+  highlight_color: '#3498db'
+
+  # Profile links on the left sidebar, leave blank to ignore
+  social:
+    github: bloggure
+    twitter: bloggure
+    hacker_news: bloggure
+
+  # "Hi, I'm _______"
+  name: Bloggure
+  email: contact@bloggure.info
+  tagline: There is no place like ::1
+
+  # Google Analytics key, leave blank to ignore
+  google_analytics_key: UA-xxxx-x
+
+  # Toggle "Postings are my own" disclaimer in footer
+  show_disclaimer: true

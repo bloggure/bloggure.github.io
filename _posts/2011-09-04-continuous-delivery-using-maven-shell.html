@@ -1,0 +1,64 @@
+---
+layout: post
+title: Continuous delivery using Maven / Shell
+categories:
+- .java
+- .maven
+tags:
+- deploy
+- github
+- glassfish
+- maven
+- shell
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+  dsq_thread_id: '667908408'
+---
+<!--:en--><h2>Continuous delivery</h2>
+<a href="http://www.bloggure.info/work/getting-source-revision-for-a-deployed-app-using-maven-and-a-servlet.html/attachment/maven_logo-2" rel="attachment wp-att-74"><img src="http://www.bloggure.info/wp-content/uploads/2010/11/Maven_logo1.gif" alt="" title="Maven" width="304" height="78" class="alignright size-full wp-image-74" /></a>
+After Continuous Integration, this is the word we see on the web these days. Its meaning is really simple, it consists in reducing steps in application deployment. In order to do so a set of tools actually exists, you can use the same PaaS images (thanks to the newcomer <a href="http://blogs.vmware.com/console/2011/08/micro-cloud-foundry-open-paas-on-your-laptop-available-today.html">Micro Cloud Foundry by VMWare</a> or  use a special amazon ec2 instance) to have a development environment similar to production one. And you can use <a href="http://wiki.opscode.com/display/chef/Home">Chef</a> to manage and automate your configuration. While these alternatives are really interesting, I think they are way too powerful and difficult to setup in simple cases.
+I will explain my "simple" solution based on maven, shell scripts and hostname detection.
+
+<h2>Example release archive</h2>
+An example is better than a thousand words, you will find an example of my solution in a github repository <a href="https://github.com/CedricGatay/easy-release-archive">Easy Release Archive</a>. It is a maven project building a zip artifact containing everything to be deployed, and an example script to setup the Glassfish server.
+<h3>What is inside ?</h3>
+To understand how it works, the best thing is to look what's inside.
+<ul>
+<li>an <a href="https://github.com/CedricGatay/easy-release-archive/blob/master/src/main/assembly/assembly.xml">assembly.xml file</a> describing the files to include and their output name and location.</li>
+<li>a few scripts in /src/main/resources
+<ul>
+<li><a href="https://github.com/CedricGatay/easy-release-archive/blob/master/src/main/resources/sanityCheck.sh">sanityCheck.sh</a> : helper script sourcing the correct variables depending on the hostname of the machine and ensuring variables are correctly setup</li>
+<li><a href="https://github.com/CedricGatay/easy-release-archive/blob/master/src/main/resources/setupGlassfish.sh">setupGlassfish.sh</a> : a sample script used to setup a Glassfish server with its required datasources and other parameters</li>
+<li>a <a href="https://github.com/CedricGatay/easy-release-archive/tree/master/src/main/resources/global">global</a> folder containing global configuration files</li>
+<li>a per hostname folder (in my case <a href="https://github.com/CedricGatay/easy-release-archive/tree/master/src/main/resources/samva-mbp">samva-mbp</a>) containing a <a href="https://github.com/CedricGatay/easy-release-archive/blob/master/src/main/resources/samva-mbp/shell/envSetup.sh">shell/envSetup.sh</a> shell script to setup necessary variables and a <a href="https://github.com/CedricGatay/easy-release-archive/tree/master/src/main/resources/samva-mbp/config">config</a> folder for special environment configuration files.
+</ul>
+</li>
+<li>the <a href="https://github.com/CedricGatay/easy-release-archive/blob/master/pom.xml">pom.xml</a> file describing artifact versions to use in the assembly and the lifecycle to use.</li>
+</ul>
+
+A simple mvn package will build the zip archive with everything described in the assembly.xml file. You will just have to unzip and run the script(s) corresponding to the application deployment for it to be done. You can add this command line to your build server and you will have a simple but powerful continuous delivery system !<!--:--><!--:fr--><h2>Livraison continue</h2>
+<a href="http://www.bloggure.info/work/getting-source-revision-for-a-deployed-app-using-maven-and-a-servlet.html/attachment/maven_logo-2" rel="attachment wp-att-74"><img src="http://www.bloggure.info/wp-content/uploads/2010/11/Maven_logo1.gif" alt="" title="Maven" width="304" height="78" class="alignright size-full wp-image-74" /></a>
+Après l'intégration continue, c'est le mot à la mode sur le web ces derniers temps. Le concept est très simple, ceci consiste à réduire le nomrbe d'étapes nécessaires au déploiement d'une application. Pour le mettre en pratique il y a plusieurs solutions, utiliser un environnement PaaS similaire pour vos développements et la production (en utilisant la nouveauté <a href="http://blogs.vmware.com/console/2011/08/micro-cloud-foundry-open-paas-on-your-laptop-available-today.html">Micro Cloud Foundry de VMWare</a>, utiliser une instance EC2 spéciale). Et vous pouvez utiliser <a href="http://wiki.opscode.com/display/chef/Home">Chef</a> pour gérer et automatiser votre configuration. Bien que ces solutions soient très interessantes, je trouve qu'elles sont finalement trop puissante et difficile à mettre en oeuvre dans des cas simples.
+Je vais expliquer ici ma solution "simple" utilisant maven, des scripts shell et la détection du nom de la machine.
+
+<h2>Exemple d'archive de livraison</h2>
+Comme un exemple est mieux que des milliers de mots, vous trouverez un exemple de ma solution dans un dépot github <a href="https://github.com/CedricGatay/easy-release-archive">Easy Release Archive</a>. C'est un projet maven construisant un fichier zip contenant tout ce qui doit être déployé, et un script d'exemple pour configurer le serveur Glassfish.
+<h3>Quel contenu ?</h3>
+Pour comprendre comment il fonctionne, la meilleure chose à faire est de regarder son contenu
+<ul>
+<li>un <a href="https://github.com/CedricGatay/easy-release-archive/blob/master/src/main/assembly/assembly.xml">fichier assembly.xml</a> décrivant les fichiers à inclure, leurs noms finaux et leurs localisations.</li>
+<li>quelques scripts dans /src/main/resources
+<ul>
+<li><a href="https://github.com/CedricGatay/easy-release-archive/blob/master/src/main/resources/sanityCheck.sh">sanityCheck.sh</a> : un script permettant de charger les variables en fonction du nom d'hôte de la machine et de s'assurer que les variables nécessaires sont correctement configurées</li>
+<li><a href="https://github.com/CedricGatay/easy-release-archive/blob/master/src/main/resources/setupGlassfish.sh">setupGlassfish.sh</a> : un script simple permettant de configurer un serveur Glassfish avec les datasources et d'autres paramètres</li>
+<li>un dossier <a href="https://github.com/CedricGatay/easy-release-archive/tree/master/src/main/resources/global">global</a> contenant les ficheirs de configuration globaux</li>
+<li>un dossier par nom d'hôte (dans mon cas <a href="https://github.com/CedricGatay/easy-release-archive/tree/master/src/main/resources/samva-mbp">samva-mbp</a>) contenant un script shell <a href="https://github.com/CedricGatay/easy-release-archive/blob/master/src/main/resources/samva-mbp/shell/envSetup.sh">shell/envSetup.sh</a> permettant de configurer les variables nécessaires et un dossier <a href="https://github.com/CedricGatay/easy-release-archive/tree/master/src/main/resources/samva-mbp/config">config</a> pour les fichiers de configuration propres à l'environnement.
+</ul>
+</li>
+<li>un fichier <a href="https://github.com/CedricGatay/easy-release-archive/blob/master/pom.xml">pom.xml</a> file décrivant les versions des artefacts à utiliser dans la construction du fichier zip et le cycle de vie maven à adopter.</li>
+</ul>
+
+Un simple mvn package permettra de construire l'archive zip contenant tout ce qui est décrit dans le fichier assembly.xml. Il suffira ensuite de décompresser le zip et d'exécuter le ou les scripts correspondant au déploiement pour que celui-ci se fasse simplement, on peut même demander à son serveur d'intégration continue de le faire pour avoir un système simple mais puissant de livraison continue.<!--:-->

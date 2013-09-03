@@ -1,0 +1,38 @@
+---
+layout: post
+title: Convert a mySQL Database from latin1 to UTF-8
+categories:
+- .shell
+tags:
+- latin1
+- mysql
+- tip
+- utf-8
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+  dsq_thread_id: '670302439'
+---
+<!--:en-->A frequent problem when it comes to internationalisation is proper handling of different charset. When you're using Java and Maven it is relatively easy to set up source encoding to UTF-8, but the frequent point of failure is in the SQL database.
+<br/>
+If you use mySQL, and you have latin1 tables, but you should have UTF-8 instead, use this little script to convert from latin1 to UTF-8 : 
+<pre class="brush: shell">
+mysqldump --user=${USER} --password=${PASS} --default-character-set=latin1 --skip-set-charset ${DATABASE} > dump.sql;
+sed -r ‘s/latin1/utf8/g’ dump.sql > dump_utf.sql
+mysql --user=${USER} --password=${PASS} --execute=”DROP DATABASE ${DATABASE}; CREATE DATABASE ${DATABASE} CHARACTER SET utf8 COLLATE utf8_general_ci;”
+mysql --user=${USER} --password=${PASS} --default-character-set=utf8 dbname < dump_utf.sql
+</pre>
+Generally speaking, don't hesitate to always put the <code>--default-character-set=utf8</code> on all the mySQL commands you execute.
+Don't forget to add at the end of your jdbc connection url the following parameters : <code>"useUnicode=true&characterEncoding=UTF-8"</code> to ensure you connect using UTF-8.<!--:--><!--:fr-->Un problème fréquent quand on doit aborder l'internationalisation est la bonne gestion des différents charset. Quand vous utilisez du Java avec Maven, il est relativement simple de définir l'encoding des fichiers sources en UTF-8 mais le point courant d'échec et la base SQL.
+<br/>
+Si vous utilisez mySQL et que vous avez des tables en latin1, mais que vous devriez avoir de l'UTF-8, utilisez ce petit script pour convertir du latin1 vers l'UTF-8 :
+<pre class="brush: shell">
+mysqldump --user=${USER} --password=${PASS} --default-character-set=latin1 --skip-set-charset ${DATABASE} > dump.sql;
+sed -r ‘s/latin1/utf8/g’ dump.sql > dump_utf.sql
+mysql --user=${USER} --password=${PASS} --execute=”DROP DATABASE ${DATABASE}; CREATE DATABASE ${DATABASE} CHARACTER SET utf8 COLLATE utf8_general_ci;”
+mysql --user=${USER} --password=${PASS} --default-character-set=utf8 dbname < dump_utf.sql
+</pre>
+Globalement, n'hésitez pas à toujours placer <code>--default-character-set=utf8</code> dans toutes les commandes mySQL que vous exécutez.
+N'oubliez pas non plus d'ajouter les paramètres <code>"useUnicode=true&characterEncoding=UTF-8"</code> à la fin de votre url de connexion jdbc pour vous assurez que vous vous connectez en UTF-8.<!--:-->

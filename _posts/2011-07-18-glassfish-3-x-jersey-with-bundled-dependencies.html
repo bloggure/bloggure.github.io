@@ -1,0 +1,57 @@
+---
+layout: post
+title: Glassfish 3.x - Jersey with bundled dependencies
+categories:
+- .java
+- work
+tags:
+- classnotfoundexception
+- glassfish
+- java
+- jax-rs
+- Jersey
+- Rest
+- sun-web
+status: publish
+type: post
+published: true
+meta:
+  xLanguage_Available: ',en,fr,'
+  _edit_last: '1'
+  _wp_old_slug: ''
+  dsq_thread_id: '668468672'
+---
+<!--:en--><a rel="attachment wp-att-71" href="http://www.bloggure.info/work/glassfish-v3-custom-log-levels.html/attachment/glassfish"><img class="size-full wp-image-71 alignright" title="glassfish" src="http://www.bloggure.info/wp-content/uploads/2010/11/glassfish.png" alt="" width="92" height="50" /></a>
+
+I just wanted to make a small post regarding an issue I spent almost a day getting rid off. I have a quite typical web architecture :
+<ul>
+	<li>jar module encapsulating business logic (EJBs)</li>
+	<li>war module providing front end web access</li>
+	<li>war module for web service access (using JAX-RS)</li>
+</ul>
+<h2>The headache</h2>
+Each war module depends on the ejb-client counterpart present in WEB-INF/lib. The problem I faced is that my @EJB injections was raising ClassNotFoundExceptions. I tried bypassing automatic injection with manual JNDI lookups but the same errors occurred. Playing with the debugger I found that the jars present in lib folder were not added into the web application's classloader.
+<h2>The workaround</h2>
+I spent a lot of time trying many things to fix this and found out the trick by downloading Jersey's sample. You simply have to have a sun-web.xml with the following content :
+<pre class="brush: xml"><sun-web-app>
+  <class-loader delegate="true"></class-loader>
+</sun-web-app>
+</pre>
+I hope it will help someone else!<!--:--><!--:fr--><a rel="attachment wp-att-71" href="http://www.bloggure.info/work/glassfish-v3-custom-log-levels.html/attachment/glassfish"><img class="size-full wp-image-71 alignright" title="glassfish" src="http://www.bloggure.info/wp-content/uploads/2010/11/glassfish.png" alt="" width="92" height="50" /></a>
+Je voulais juste faire un petit billet concernant un soucis que j'ai mis quasiment une journée à résoudre. J'ai une application web avec une architecture assez commune : 
+<ul>
+	<li>un module métier (packagé dans un jar composé d'EJBs)</li>
+	<li>un module web frontal (packagé dans un war)</li>
+	<li>un module web pour les web services (utilisant exclusivement JAX-RS, packagé dans un war)</li>
+</ul>
+<h2>Le casse tête!</h2>
+Chaque module war a une dépendance sur la partie ejb cliente du module métier (présents dans le WEB-INF/lib donc). Le problème que j'ai rencontré est que l'injection de dépendances dans mon module web-service (@EJB) lève des ClassNotFoundExceptions. J'ai essayé de passer outre l'injection automatique par le conteneur en faisant une recherche manuelle dans l'annuaire JNDI mais ceci s'est soldé par un échec avec la même erreur à la clef.
+En jouant avec le débuggueur, je me suis rendu compte que les jars présents dans le dossier lib n'étaient pas ajoutés au classloader de l'application web.
+<h2>La solution</h2>
+J'ai passé longtemps à essayer beaucoup de choses pour corriger ce problème et j'ai trouvé l'astuce dans les exemples d'utilisation de Jersey.<br/>
+Il suffit simplement d'avoir un fichier sun-web.xml avec le contenu suivant :
+<pre class="brush: xml"><sun-web-app>
+  <class-loader delegate="true"></class-loader>
+</sun-web-app>
+</pre>
+J'espère aider quelqu'un d'autre avec cette astuce !<!--:-->

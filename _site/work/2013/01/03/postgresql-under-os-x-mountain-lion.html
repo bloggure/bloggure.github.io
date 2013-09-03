@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bloggure - PostgreSQL under OS X Mountain Lion</title>
+  <meta name="author" content="Bloggure" />
+  <meta name="description" content="The blog of Bloggure" />
+  <link rel="canonical" href="http://bloggure.info/work/2013/01/03/postgresql-under-os-x-mountain-lion.html" />
+
+  <link href="//fonts.googleapis.com/css?family=Open+Sans:600,800" rel="stylesheet" type="text/css">
+  <link rel="shortcut icon" href="/favicon.png">
+  <link rel="alternate" type="application/rss+xml" title="Bloggure" href="http://bloggure.info/atom.xml" />
+
+  <link rel="stylesheet" href="/assets/css/all.css">
+<!--[if IE 7]>
+  <link rel="stylesheet" href="/assets/css/font-awesome-ie7.min.css">
+<![endif]-->
+</head>
+<body>
+  <div class="container">
+    <div class="four columns sidebar">
+      <nav>
+  <a href="/">
+    <img src="/logo.png" id="logo" alt="Blog logo"/>
+  </a>
+  <h2><a href="/">Bloggure</a></h2>
+  <hr/>
+  <ul>
+  <p>localhosting since 2005</p>
+  <hr/>
+  <div>
+    <div id="social">
+      Follow us:
+<div id="stalker">
+  
+  <a title="bloggure on Github" href="http://github.com/bloggure">
+    <i class="icon-github-sign"></i>
+  </a>
+  
+
+  
+  <a title="bloggure on Hacker News" href="http://news.ycombinator.com/user?id=bloggure">
+    <i class="icon-sign-blank"></i>
+    <span class="icon-overlay icon-hn">Y</span>
+  </a>
+  
+
+  
+  <a title="bloggure on Twitter" href="http://twitter.com/bloggure">
+    <i class="icon-twitter-sign"></i>
+  </a>
+  
+
+  <a title="RSS feed" id="rss" href="/atom.xml">
+    <i class="icon-rss-sign"></i>
+  </a>
+</div>
+    </div>
+  </div>
+  </ul>
+</nav>
+    </div>
+
+    <div class="eleven columns content">
+      <p class="meta">
+  January 03, 2013 
+  <a href="/">
+    <i class="home icon-home"></i>
+  </a>
+</p>
+
+<h1 class="title">PostgreSQL under OS X Mountain Lion</h1>
+
+<div id="post">
+  <img src="http://www.bloggure.info/wp-content/uploads/2013/01/netsuke-150x150.png" alt="postgresql" width="150" height="150" class="alignright size-thumbnail wp-image-798" /><p>I am actually doing a side project which you will heard of very soon. For this project I am using <a href="http://www.playframework.org/">Play! Framework</a> v2 with the server side being developed in <a href="http://www.scala-lang.org/">Scala</a>. To efficiently push this new application to production, I am using the <a href="http://www.heroku.com/">Heroku platform</a></p>
+<p>While my initial thoughts were using MySQL as my relational backend, the default stack provided by Heroku made me switch to postgresql that I have barely used in the past. I attempted to set it up on my machine, but with no luck, Mountain Lion is bundling an old version (8.4) whereas I wanted the same as on the Heroku platform. My first attempt with Homebrew was quite a disaster, I never managed to correctly connect my newly created user.</p>
+
+<p>
+After a few hours mumbling, I looked for an alternative to the Homebrew version. Luckily, the guys at Heroku provide a neat application <a href="http://postgresapp.com/">Postgres.app</a> to drop that allows to quickly start/stop a postgresql server. My problem was I didn't had enough connections to allow my application to start, I was always getting this message : <code>remaining connection slots are reserved for non-replication superuser connections</code>.
+</p>
+<p>
+I edited the configuration file 
+<pre class="brush: bash">vim "~/Library/Application Support/Postgres/var/postgresql.conf"</pre>
+to bump the number of connections to a lot more (20 instead of 10) but it prevented my server to start. With a lot of file editing and restarts, I found that the limit for my machine was 11 connections.
+</p>
+<p>
+The solution to this problem resides in a special setup of the mac os kernel which defines the amount of shared memory a process can allocate. To get rid of this, you can edit your <code>/etc/sysctl.conf</code> file (root required) and put the following lines (it will persist across reboots)
+<pre class="brush: bash">
+kern.sysv.shmall=65536
+kern.sysv.shmmax=16777216
+</pre>
+</p>
+<em>Credits for this tip comes from <a href="http://ruby.zigzo.com/2012/07/07/postgresql-postgres-app-and-a-gotcha-on-mac-osx-lion">http://ruby.zigzo.com/2012/07/07/postgresql-postgres-app-and-a-gotcha-on-mac-osx-lion</a>/</em>
+
+</div>
+
+<!-- <div id="related">
+  <h3>Related Posts</h3>
+  <ul class="posts">
+    
+    <li>
+      <span>24 Oct 2010 &raquo;</span> <a href="/.wicket/2010/10/24/wicket-1-4-9-tinymce.html">Wicket 1.4.x - TinyMCE</a>
+    </li>
+    
+    <li>
+      <span>29 Oct 2010 &raquo;</span> <a href="/.android/2010/10/29/android-switcher-widget.html">Android Switcher Widget</a>
+    </li>
+    
+    <li>
+      <span>01 Nov 2010 &raquo;</span> <a href="/.java/.maven/work/2010/11/01/getting-source-revision-for-a-deployed-app-using-maven-and-a-servlet.html">Getting source revision for a deployed app using Maven and a Servlet</a>
+    </li>
+    
+  </ul>
+</div> -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'thereisnoplacelike1'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    
+    
+      <div class="footer">
+        <div class="disclaimer">
+  
+  <p>
+    The postings on this site are my own and don't necessarily represent my 
+    employer’s positions, strategies or opinions.
+  </p>
+  
+
+  <p>
+    © Bloggure, 2013 &mdash; built with Jekyll using Lagom theme
+  </p>
+</div>
+      </div>
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-xxxx-x']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+---
+layout: post
+title: Glassfish v3.x - custom log levels
+categories:
+- .java
+- work
+tags:
+- glassfish
+- java
+- level
+- log
+status: publish
+type: post
+published: true
+meta:
+  xLanguage_Available: ',en,fr,'
+  _edit_last: '1'
+  _syntaxhighlighter_encoded: '1'
+  _wp_old_slug: ''
+  dsq_thread_id: '670131216'
+---
+<!--:en--><img class="alignright size-full wp-image-71" src="http://www.bloggure.info/wp-content/uploads/2010/11/glassfish.png" alt="" width="92" height="50" />In Glassfish v2, you can easily set log levels using the admin console by going into <em>Application Server &gt; Logging &gt; Log Levels</em>. There you can add custom filter and change levels only by using the console.
+
+In the new stable release of Glassfish, this option has disappeared, you can edit levels but there is no easy way to add custom filters. The trick is to alter manually the logging.properties file located in <em>&lt;yourdomain&gt;</em><em>/config</em> directory.
+For example, if you want to filter out logs from Sun's Portlet Container, you have to set the following in the logging.properties file :
+
+[code light="true"]
+debug.com.sun.portlet.portletcontainer.impl.level=FINEST
+[/code]
+
+Please notice the <code>.level</code> at the end of the fully qualified name of the class hierarchy to filter. After adding the new entry, you will be able to alter level via the admin console of Glassfish, or even simpler, simply edit the file : the changes are taken on the fly (in certain conditions, you might need to restart the server) !
+
+Hope it'll help...<!--:--><!--:fr--><img class="alignright size-full wp-image-71" src="http://www.bloggure.info/wp-content/uploads/2010/11/glassfish.png" alt="" width="92" height="50" />Dans Glassfish v2, il est facile de configurer les niveaux de log en utilisant la console d'administration en allant dans les catégories <em>Application Server &gt; Logging &gt; Log Levels</em>. D'ici vous pouvez rajouter des niveaux personnalisés et changer les niveaux de façon graphique.
+
+Dans la nouvelle version stable de Glassfish, cette option a disparu, vous pouvez éditer les niveaux mais il n'y a pas de système simple permettant d'ajouter des niveaux personnalisés. L'astuce est de modifier le fichier logging.properties présent dans le répertoire  <em>&lt;yourdomain&gt;</em><em>/config</em>.
+Par exemple, si vous voulez filtrer les logs du container de portlets de Sun vous devez ajouter la ligne suivante dans votre fichier  logging.properties :
+
+[code light="true"]
+debug.com.sun.portlet.portletcontainer.impl.level=FINEST
+[/code]
+
+Prêtez attention a l'ajout de <code>.level</code> à la fin du nom complet de la class à filtrer. Après avoir ajouté de nouvelles entrées, vous pourrez changer le niveau via l'administration de Glassfish, ou, encore plus simple, éditer de nouveau le fichier, les changements sont pris à la volée (dans certaines conditions, un redémarrage du serveur peut être requis) ! 
+
+En espérant que ça aide quelques personnes...<!--:-->

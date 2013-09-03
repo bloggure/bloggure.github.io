@@ -1,0 +1,42 @@
+---
+layout: post
+title: Play application on Centos/RedHat in production mode
+categories:
+- .java
+- .scala
+- .shell
+- ci
+- shelf
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  _yoast_wpseo_linkdex: '61'
+  _edit_last: '2'
+  _yoast_wpseo_focuskw: play framework centos application nginx
+  _yoast_wpseo_title: Une application Play sur Centos/RedHat en production
+  _yoast_wpseo_metadesc: Comment configurer correctement une application Play framework
+    derrière un reverse-proxy nginx sur une Centos (RedHat)
+  _yoast_wpseo_meta-robots-noindex: '0'
+  _yoast_wpseo_meta-robots-nofollow: '0'
+  _yoast_wpseo_meta-robots-adv: none
+  _yoast_wpseo_sitemap-include: '-'
+  _yoast_wpseo_sitemap-prio: '-'
+  _yoast_wpseo_sitemap-html-include: '-'
+  _yoast_wpseo_canonical: ''
+  _yoast_wpseo_redirect: ''
+  _yoast_wpseo_opengraph-description: ''
+  _yoast_wpseo_google-plus-description: ''
+  _wpas_done_all: '1'
+  dsq_thread_id: '1531918185'
+  dsq_needs_sync: '1'
+---
+<!--:fr--><p><strong>tl;dr </strong>: application <a title="play" href="http://www.playframework.com/">Play</a> (java ou <a href="http://www.scala-lang.org/">scala</a>) sur un serveur <a href="http://www.centos.org/">Centos</a> (ou <a href="http://fr.wikipedia.org/wiki/Red_Hat_Linux">Red Hat</a>) derrière un serveur <a title="nginx" href="http://nginx.org/">nginx</a>.</p><h2>Script de démarrage/arrêt du daemon.</h2><p>Lancer une application Play en dev est assez aisé : <code>$ play run</code>.</p><p>Maintenant, si vous avez besoin de déployer votre application en production, il est plus confortable de considérer votre application comme un service à part entière du système. Il se peut aussi que vous ayez besoin de spécifier un port et une interface particulière pour pouvoir utiliser nginx comme front-end (en <a href="http://fr.wikipedia.org/wiki/Proxy_inverse">reverse proxy</a>). Et évidement, à l'instar d'un environnement de développement, vous pourriez avoir besoin de compresser le JS et le CSS, et également de régler finement les en-têtes HTTP pour gérer correctement le cache.</p><p>Tout d'abord le script de lancement du daemon :</p>
+<script src="https://gist.github.com/tdebarochez/6082933.js"></script>
+<p>Je me suis inspiré des deux gists ci-dessous. Le premier, pour RedHat, utilise le binaire de play pour lancer le processus principal. Cette méthode facile à utiliser en développement semble assez limité en paramètre (tout du moins, très peu documentée). La seconde méthode, pour <a href="http://www.debian.org/">Debian</a>, donne un bonne exemple d'une configuration un peu plus élaborée de l'exécution du daemon. Les paramètres en début de fichier parlent d'eux-mêmes, je vous laisse les découvrir et reste à votre disposition pour toute question.</p><p>Source :</p><ul><li><a href="https://gist.github.com/THemming/2173037">https://gist.github.com/THemming/2173037</a> (script pour redhat)</li><li><a href="https://gist.github.com/leon/2204773">https://gist.github.com/leon/2204773</a> (script pour debian)</li></ul><h2>Configuration de nginx</h2><p>Sur un serveur web, il est souvent pratique de pouvoir faire tourner plusieurs applications utilisant des langages, des librairies, des frameworks, etc... hétérogènes (sur mon serveur, il y a l'application Play en scala, une application <a href="http://nodejs.org/">Nodejs</a> en <a href="http://coffeescript.org/">Coffescript</a> et une application <a href="http://php.net">PHP</a>/<a href="http://www.mysql.fr/">MySQL</a> utilisant <a href="http://httpd.apache.org/">Apache</a>). C'est là que nginx intervient. Configuré en reverse-proxy, c'est lui qui écoutera sur le port 80 de votre serveur et en fonction du nom de domaine relayera les requêtes HTTP à l'application que vous avez choisis. Il vous suffit de configurer votre application en écoute sur un port libre en localhost et d'indiquer à nginx qu'en fonction du nom de domaine (à la manière des VirtualHost d'Apache), il doit transmettre ses requêtes sur ce port.</p><p>Vous noterez une section fournissant un traitement particulier pour les fichiers statiques (js, css, png, jpg, etc...). En effet, je ne trouvais pas la configuration par défaut de play très satisfaisante pour diffuser ces fichiers. Il conviendra donc de copier tous les fichiers dans un dossier particulier au lancement de l'application (il faut également pensé à y placer les fichiers "compilé" des scripts utilisant un pre-processeurs : coffeescript, <a href="http://sass-lang.com">SASS/SCSS</a>, <a href="http://lesscss.org/">LESS</a>, etc...). Tous les fichiers dans ce dossier auront une durée de cache maximale afin de minimiser le nombre de requêtes au serveur (la requête la plus rapide est celle qui n'est pas faite). Cette technique a aussi l'avantage de décharger la JVM du traitement de ses fichiers, ils sont directement retourné par nginx.</p>
+<script src="https://gist.github.com/tdebarochez/6083089.js"></script>
+<h2>Compilation des fichiers statiques</h2><p>Les pré-processeurs (Coffeescript, SASS, LESS, etc...) sont d'un grand confort pour le développement de la partie front-end d'une application web. Toutefois, il y a quelques détails qui ne faut pas négliger afin d'optimiser au maximum la distribution en HTTP de ces fichiers.</p><p>Prenons comme exemple un fichier .coffee (Coffeescript). Lorsqu'en développement vous lancer votre serveur, play se charge de re-compiler automatiquement le fichier afin de desservir un fichier javascript au navigateur qui a demandé le fichier. Dans notre environnement, les fichiers statiques se trouvent tous dans un dossier <code>static/</code>. Il faut donc "traduire" ce fichier en javascript et le placer dans ce dossier (en respectant l'arborescence utilisée en développement) : <code>coffee -o static/javascripts/ -c app/assets/javascripts/*.coffee</code>.</p><p>Ensuite, comme optimisation souvent préconnisée, il convient de "minifier" ces fichiers afin qu'ils soient le plus léger possible pendant le transport sur le réseau (qui peut-être une faible connexion 3g). Dans mon cas, j'ai utilisé <a href="https://github.com/yui/yuicompressor"><code>yuicompressor</code></a> qui fonctionne bien. Il en existe certainement des mieux, je n'ai pas testé, mais celui-là fonctionne comme je veux.</p>
+<script src="https://gist.github.com/tdebarochez/6083307.js"></script>
+<p>Note : comme amélioration possible, il faudrait dans cette partie là renommer les fichiers par un nom de fichier contenant un hash représentant le contenu de ce fichier afin de palier à tout problème d'invalidation du cache.</p><h2>Dans le futur</h2><p>Pour parfaire le déploiement de l'application, sur un VCS <a href="http://git-scm.com/">git</a> par exemple, il serait pratique d'automatiser le redémarrage du serveur sur un hook post-commit. Pour éviter également une coupure de service, il faudrait également, lancer la nouvelle application sur un autre port et switcher sur la nouvelle instance uniquement avec un reload de nginx. Mais bon tout ça peut faire l'objet d'un autre article. :)</p>
+<p><strong>Mise à jour du 29 juillet 2013</strong> : correction du script de lancement du daemon.</p><!--:-->

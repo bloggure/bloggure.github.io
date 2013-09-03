@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bloggure - Getting source revision for a deployed app using Maven and a Servlet</title>
+  <meta name="author" content="Bloggure" />
+  <meta name="description" content="The blog of Bloggure" />
+  <link rel="canonical" href="http://bloggure.info/.java/.maven/work/2010/11/01/getting-source-revision-for-a-deployed-app-using-maven-and-a-servlet.html" />
+
+  <link href="//fonts.googleapis.com/css?family=Open+Sans:600,800" rel="stylesheet" type="text/css">
+  <link rel="shortcut icon" href="/favicon.png">
+  <link rel="alternate" type="application/rss+xml" title="Bloggure" href="http://bloggure.info/atom.xml" />
+
+  <link rel="stylesheet" href="/assets/css/all.css">
+<!--[if IE 7]>
+  <link rel="stylesheet" href="/assets/css/font-awesome-ie7.min.css">
+<![endif]-->
+</head>
+<body>
+  <div class="container">
+    <div class="four columns sidebar">
+      <nav>
+  <a href="/">
+    <img src="/logo.png" id="logo" alt="Blog logo"/>
+  </a>
+  <h2><a href="/">Bloggure</a></h2>
+  <hr/>
+  <ul>
+  <p>localhosting since 2005</p>
+  <hr/>
+  <div>
+    <div id="social">
+      Follow us:
+<div id="stalker">
+  
+  <a title="bloggure on Github" href="http://github.com/bloggure">
+    <i class="icon-github-sign"></i>
+  </a>
+  
+
+  
+  <a title="bloggure on Hacker News" href="http://news.ycombinator.com/user?id=bloggure">
+    <i class="icon-sign-blank"></i>
+    <span class="icon-overlay icon-hn">Y</span>
+  </a>
+  
+
+  
+  <a title="bloggure on Twitter" href="http://twitter.com/bloggure">
+    <i class="icon-twitter-sign"></i>
+  </a>
+  
+
+  <a title="RSS feed" id="rss" href="/atom.xml">
+    <i class="icon-rss-sign"></i>
+  </a>
+</div>
+    </div>
+  </div>
+  </ul>
+</nav>
+    </div>
+
+    <div class="eleven columns content">
+      <p class="meta">
+  November 01, 2010 
+  <a href="/">
+    <i class="home icon-home"></i>
+  </a>
+</p>
+
+<h1 class="title">Getting source revision for a deployed app using Maven and a Servlet</h1>
+
+<div id="post">
+  <!--:en--><img class="alignright size-full wp-image-74" src="http://www.bloggure.info/wp-content/uploads/2010/11/Maven_logo1.gif" alt="" width="274" height="70" />With our modern version control systems, we could assume we know for every single release we make the exact source code revision that corresponds. But, in the hurry of a bug found by your dear clients (or your product owner),  you can't find the corresponding tag in your VCS, it will make the whole patch process really difficult. You will have to find the exact revision, extract it and debug to patch (or backport an existing patch).
+
+I will explain a little trick to make the find the revision thing a lot easier (I am assuming you're using maven to build your projects) : <a title="maven-buildnumber-plugin" href="http://mojo.codehaus.org/buildnumber-maven-plugin/">maven-buildnumber-plugin</a>
+
+<!--:--><!--:fr--><em>Cet article n'a pas été traduit, veuillez trouver ci-dessous sa version anglaise</em>
+
+<img class="alignright size-full wp-image-74" src="http://www.bloggure.info/wp-content/uploads/2010/11/Maven_logo1.gif" alt="" width="274" height="70" />With our modern version control systems, we could assume we know for every single release we make the exact source code revision that corresponds. But, in the hurry of a bug found by your dear clients (or your product owner),  you can't find the corresponding tag in your VCS, it will make the whole patch process really difficult. You will have to find the exact revision, extract it and debug to patch (or backport an existing patch).
+
+I will explain a little trick to make the find the revision thing a lot easier (I am assuming you're using maven to build your projects) : <a title="maven-buildnumber-plugin" href="http://mojo.codehaus.org/buildnumber-maven-plugin/">maven-buildnumber-plugin</a>
+
+<!--:--><!--more--><!--:en-->
+<h2>Embed revision into artifacts</h2>
+By using this plugin you can easily embbed revision informations into your artifacts, the configuration is, as always with maven, as easy as A-B-C, just add the following to your projects' pom :
+
+[code lang="xml"]
+&lt;profile&gt;
+    &lt;id&gt;buildnumbering&lt;/id&gt;
+    &lt;build&gt;
+       &lt;plugins&gt;
+           &lt;plugin&gt;
+               &lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;
+               &lt;artifactId&gt;buildnumber-maven-plugin&lt;/artifactId&gt;
+               &lt;version&gt;1.0-beta-4&lt;/version&gt;
+               &lt;executions&gt;
+                  &lt;execution&gt;
+                     &lt;phase&gt;validate&lt;/phase&gt;
+                     &lt;goals&gt;
+                         &lt;goal&gt;create&lt;/goal&gt;
+                     &lt;/goals&gt;
+                 &lt;/execution&gt;
+               &lt;/executions&gt;
+            &lt;/plugin&gt;
+            &lt;plugin&gt;
+                &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+                &lt;artifactId&gt;maven-war-plugin&lt;/artifactId&gt;
+                &lt;executions&gt;
+                    &lt;execution&gt;
+                       &lt;id&gt;buildNumber&lt;/id&gt;
+                       &lt;configuration&gt;
+                          &lt;archive&gt;
+                             &lt;manifestEntries&gt;
+                                &lt;Implementation-Build&gt;
+                                      ${buildNumber}
+                                &lt;/Implementation-Build&gt;
+                             &lt;/manifestEntries&gt;
+                          &lt;/archive&gt;
+                      &lt;/configuration&gt;
+                   &lt;/execution&gt;
+               &lt;/executions&gt;
+            &lt;/plugin&gt;
+            &lt;plugin&gt;
+                &lt;artifactId&gt;maven-ear-plugin&lt;/artifactId&gt;
+                &lt;configuration&gt;
+                   &lt;archive&gt;
+                      &lt;manifestEntries&gt;
+                         &lt;Implementation-Build&gt;
+                               ${buildNumber}
+                         &lt;/Implementation-Build&gt;
+                      &lt;/manifestEntries&gt;
+                   &lt;/archive&gt;
+                &lt;/configuration&gt;
+             &lt;/plugin&gt;
+         &lt;/plugins&gt;
+     &lt;/build&gt;
+&lt;/profile&gt;
+[/code]
+
+We tell maven to use the maven-build-number plugin during the validate phase and we add the property <em>buildNumber </em>to the manifest entries of the ear and war we can produce (useful if we are in a multimodule pom). This setup is performed under a specific profile and can be triggered by executing maven this way :
+
+[code lang="bash"]mvn clean install -Pbuildnumbering[/code]
+
+If you look at resulting artifacts, the META-INF/MANIFEST.MF files contain Implementation-Build: #### (where #### is the current revision on your SCM).
+<h2>Get revision number at runtime</h2>
+Now that the revision is stored in our artifacts, we need a way to figure out, at runtime, which revision is deployed, the basic idea is to have a servlet get this info for us, and dump it on your web browser. For confidentiality purpose, it might be useful to put an authorization filter on top of this servlet, but it won't be covered in this post.
+
+The code for the servlet follows :
+
+[code lang="java"]
+/**
+  * Package and import are ommited on purpose
+  * User: cgatay Date: 17 oct. 2010 Time: 13:34:59
+  */
+public class VersionServlet extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        try {
+            String appServerHome = getServletContext().getContext(&quot;/&quot;).getRealPath(&quot;/&quot;);
+            final int lastSlash = appServerHome.lastIndexOf(File.separator);
+            final int beforeLastSlash = appServerHome.lastIndexOf(File.separator, lastSlash-1);
+            appServerHome = appServerHome.substring(0, beforeLastSlash);
+
+            final File file = new File(appServerHome);
+            if (file.exists() &amp;&amp; file.canRead() &amp;&amp; file.isDirectory()) {
+                List&lt;String&gt; listFiles = new ArrayList&lt;String&gt;(Arrays.asList(file.list()));
+                listFiles.add(0, &quot;&quot;);
+                for (String s : listFiles) {
+                    File manifestFile = new File(appServerHome + File.separator + s, &quot;META-INF/MANIFEST.MF&quot;);
+                    if (manifestFile.exists()) {
+                        dumpManifestInfo(resp, manifestFile, s);
+                    }
+                }
+            }
+            resp.setStatus(200);
+        } catch (IOException e) {
+            e.printStackTrace();
+            resp.setStatus(500);
+            resp.getOutputStream().print(&quot;Cannot retrieve version data !&quot;);
+        }
+    }
+
+    private void dumpManifestInfo(HttpServletResponse resp, File manifestFile, String module) throws IOException {
+        Manifest mf = new Manifest();
+        mf.read(new FileInputStream(manifestFile));
+
+        Attributes atts = mf.getMainAttributes();
+        resp.getOutputStream().println(&quot; ============================ &quot;);
+        resp.getOutputStream().println(&quot;Module : &quot; + (module.isEmpty() ? &quot;EAR&quot; : module));
+        resp.getOutputStream().println(&quot;Build: &quot; + atts.getValue(&quot;Implementation-Build&quot;));
+    }
+}
+
+[/code]
+
+Just mount this Servlet via your web.xml, add a filter on top and you're gone.
+
+We assume that if the module is empty, we are at the root of an EAR file.
+
+This is confirmed to work under Glassfish application server, it might work with other application servers (path might need to be corrected), anyway, I'd love to get feedback on this.<!--:--><!--:fr-->
+<h2>Embed revision into artifacts</h2>
+By using this plugin you can easily embbed revision informations into your artifacts, the configuration is, as always with maven, as easy as A-B-C, just add the following to your projects' pom :
+
+[code lang="xml"]
+&lt;profile&gt;
+    &lt;id&gt;buildnumbering&lt;/id&gt;
+    &lt;build&gt;
+       &lt;plugins&gt;
+           &lt;plugin&gt;
+               &lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;
+               &lt;artifactId&gt;buildnumber-maven-plugin&lt;/artifactId&gt;
+               &lt;version&gt;1.0-beta-4&lt;/version&gt;
+               &lt;executions&gt;
+                  &lt;execution&gt;
+                     &lt;phase&gt;validate&lt;/phase&gt;
+                     &lt;goals&gt;
+                         &lt;goal&gt;create&lt;/goal&gt;
+                     &lt;/goals&gt;
+                 &lt;/execution&gt;
+               &lt;/executions&gt;
+            &lt;/plugin&gt;
+            &lt;plugin&gt;
+                &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+                &lt;artifactId&gt;maven-war-plugin&lt;/artifactId&gt;
+                &lt;executions&gt;
+                    &lt;execution&gt;
+                       &lt;id&gt;buildNumber&lt;/id&gt;
+                       &lt;configuration&gt;
+                          &lt;archive&gt;
+                             &lt;manifestEntries&gt;
+                                &lt;Implementation-Build&gt;
+                                      ${buildNumber}
+                                &lt;/Implementation-Build&gt;
+                             &lt;/manifestEntries&gt;
+                          &lt;/archive&gt;
+                      &lt;/configuration&gt;
+                   &lt;/execution&gt;
+               &lt;/executions&gt;
+            &lt;/plugin&gt;
+            &lt;plugin&gt;
+                &lt;artifactId&gt;maven-ear-plugin&lt;/artifactId&gt;
+                &lt;configuration&gt;
+                   &lt;archive&gt;
+                      &lt;manifestEntries&gt;
+                         &lt;Implementation-Build&gt;
+                               ${buildNumber}
+                         &lt;/Implementation-Build&gt;
+                      &lt;/manifestEntries&gt;
+                   &lt;/archive&gt;
+                &lt;/configuration&gt;
+             &lt;/plugin&gt;
+         &lt;/plugins&gt;
+     &lt;/build&gt;
+&lt;/profile&gt;
+[/code]
+
+We tell maven to use the maven-build-number plugin during the validate phase and we add the property <em>buildNumber </em>to the manifest entries of the ear and war we can produce (useful if we are in a multimodule pom). This setup is performed under a specific profile and can be triggered by executing maven this way :
+
+[code lang="bash"]mvn clean install -Pbuildnumbering[/code]
+
+If you look at resulting artifacts, the META-INF/MANIFEST.MF files contain Implementation-Build: #### (where #### is the current revision on your SCM).
+<h2>Get revision number at runtime</h2>
+Now that the revision is stored in our artifacts, we need a way to figure out, at runtime, which revision is deployed, the basic idea is to have a servlet get this info for us, and dump it on your web browser. For confidentiality purpose, it might be useful to put an authorization filter on top of this servlet, but it won't be covered in this post.
+
+The code for the servlet follows :
+
+[code lang="java"]
+/**
+  * Package and import are ommited on purpose
+  * User: cgatay Date: 17 oct. 2010 Time: 13:34:59
+  */
+public class VersionServlet extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        try {
+            String appServerHome = getServletContext().getContext(&quot;/&quot;).getRealPath(&quot;/&quot;);
+            final int lastSlash = appServerHome.lastIndexOf(File.separator);
+            final int beforeLastSlash = appServerHome.lastIndexOf(File.separator, lastSlash-1);
+            appServerHome = appServerHome.substring(0, beforeLastSlash);
+
+            final File file = new File(appServerHome);
+            if (file.exists() &amp;&amp; file.canRead() &amp;&amp; file.isDirectory()) {
+                List&lt;String&gt; listFiles = new ArrayList&lt;String&gt;(Arrays.asList(file.list()));
+                listFiles.add(0, &quot;&quot;);
+                for (String s : listFiles) {
+                    File manifestFile = new File(appServerHome + File.separator + s, &quot;META-INF/MANIFEST.MF&quot;);
+                    if (manifestFile.exists()) {
+                        dumpManifestInfo(resp, manifestFile, s);
+                    }
+                }
+            }
+            resp.setStatus(200);
+        } catch (IOException e) {
+            e.printStackTrace();
+            resp.setStatus(500);
+            resp.getOutputStream().print(&quot;Cannot retrieve version data !&quot;);
+        }
+    }
+
+    private void dumpManifestInfo(HttpServletResponse resp, File manifestFile, String module) throws IOException {
+        Manifest mf = new Manifest();
+        mf.read(new FileInputStream(manifestFile));
+
+        Attributes atts = mf.getMainAttributes();
+        resp.getOutputStream().println(&quot; ============================ &quot;);
+        resp.getOutputStream().println(&quot;Module : &quot; + (module.isEmpty() ? &quot;EAR&quot; : module));
+        resp.getOutputStream().println(&quot;Build: &quot; + atts.getValue(&quot;Implementation-Build&quot;));
+    }
+}
+
+[/code]
+
+Just mount this Servlet via your web.xml, add a filter on top and you're gone.
+
+We assume that if the module is empty, we are at the root of an EAR file.
+
+This is confirmed to work under Glassfish application server, it might work with other application servers (path might need to be corrected), anyway, I'd love to get feedback on this.<!--:-->
+
+</div>
+
+<!-- <div id="related">
+  <h3>Related Posts</h3>
+  <ul class="posts">
+    
+    <li>
+      <span>24 Oct 2010 &raquo;</span> <a href="/.wicket/2010/10/24/wicket-1-4-9-tinymce.html">Wicket 1.4.x - TinyMCE</a>
+    </li>
+    
+    <li>
+      <span>29 Oct 2010 &raquo;</span> <a href="/.android/2010/10/29/android-switcher-widget.html">Android Switcher Widget</a>
+    </li>
+    
+    <li>
+      <span>02 Nov 2010 &raquo;</span> <a href="/.java/work/2010/11/02/glassfish-v3-custom-log-levels.html">Glassfish v3.x - custom log levels</a>
+    </li>
+    
+  </ul>
+</div> -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'thereisnoplacelike1'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    
+    
+      <div class="footer">
+        <div class="disclaimer">
+  
+  <p>
+    The postings on this site are my own and don't necessarily represent my 
+    employer’s positions, strategies or opinions.
+  </p>
+  
+
+  <p>
+    © Bloggure, 2013 &mdash; built with Jekyll using Lagom theme
+  </p>
+</div>
+      </div>
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-xxxx-x']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>

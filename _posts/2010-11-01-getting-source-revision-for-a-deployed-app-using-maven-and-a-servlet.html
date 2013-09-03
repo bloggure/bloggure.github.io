@@ -1,0 +1,267 @@
+---
+layout: post
+title: Getting source revision for a deployed app using Maven and a Servlet
+categories:
+- .java
+- .maven
+- work
+tags:
+- java
+- maven
+- scm
+- servlet
+status: publish
+type: post
+published: true
+meta:
+  xLanguage_Available: ',en,fr,'
+  _edit_last: '1'
+  _syntaxhighlighter_encoded: '1'
+  _wp_old_slug: ''
+  dsq_thread_id: '670746473'
+---
+<!--:en--><img class="alignright size-full wp-image-74" src="http://www.bloggure.info/wp-content/uploads/2010/11/Maven_logo1.gif" alt="" width="274" height="70" />With our modern version control systems, we could assume we know for every single release we make the exact source code revision that corresponds. But, in the hurry of a bug found by your dear clients (or your product owner),  you can't find the corresponding tag in your VCS, it will make the whole patch process really difficult. You will have to find the exact revision, extract it and debug to patch (or backport an existing patch).
+
+I will explain a little trick to make the find the revision thing a lot easier (I am assuming you're using maven to build your projects) : <a title="maven-buildnumber-plugin" href="http://mojo.codehaus.org/buildnumber-maven-plugin/">maven-buildnumber-plugin</a>
+
+<!--:--><!--:fr--><em>Cet article n'a pas été traduit, veuillez trouver ci-dessous sa version anglaise</em>
+
+<img class="alignright size-full wp-image-74" src="http://www.bloggure.info/wp-content/uploads/2010/11/Maven_logo1.gif" alt="" width="274" height="70" />With our modern version control systems, we could assume we know for every single release we make the exact source code revision that corresponds. But, in the hurry of a bug found by your dear clients (or your product owner),  you can't find the corresponding tag in your VCS, it will make the whole patch process really difficult. You will have to find the exact revision, extract it and debug to patch (or backport an existing patch).
+
+I will explain a little trick to make the find the revision thing a lot easier (I am assuming you're using maven to build your projects) : <a title="maven-buildnumber-plugin" href="http://mojo.codehaus.org/buildnumber-maven-plugin/">maven-buildnumber-plugin</a>
+
+<!--:--><!--more--><!--:en-->
+<h2>Embed revision into artifacts</h2>
+By using this plugin you can easily embbed revision informations into your artifacts, the configuration is, as always with maven, as easy as A-B-C, just add the following to your projects' pom :
+
+[code lang="xml"]
+&lt;profile&gt;
+    &lt;id&gt;buildnumbering&lt;/id&gt;
+    &lt;build&gt;
+       &lt;plugins&gt;
+           &lt;plugin&gt;
+               &lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;
+               &lt;artifactId&gt;buildnumber-maven-plugin&lt;/artifactId&gt;
+               &lt;version&gt;1.0-beta-4&lt;/version&gt;
+               &lt;executions&gt;
+                  &lt;execution&gt;
+                     &lt;phase&gt;validate&lt;/phase&gt;
+                     &lt;goals&gt;
+                         &lt;goal&gt;create&lt;/goal&gt;
+                     &lt;/goals&gt;
+                 &lt;/execution&gt;
+               &lt;/executions&gt;
+            &lt;/plugin&gt;
+            &lt;plugin&gt;
+                &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+                &lt;artifactId&gt;maven-war-plugin&lt;/artifactId&gt;
+                &lt;executions&gt;
+                    &lt;execution&gt;
+                       &lt;id&gt;buildNumber&lt;/id&gt;
+                       &lt;configuration&gt;
+                          &lt;archive&gt;
+                             &lt;manifestEntries&gt;
+                                &lt;Implementation-Build&gt;
+                                      ${buildNumber}
+                                &lt;/Implementation-Build&gt;
+                             &lt;/manifestEntries&gt;
+                          &lt;/archive&gt;
+                      &lt;/configuration&gt;
+                   &lt;/execution&gt;
+               &lt;/executions&gt;
+            &lt;/plugin&gt;
+            &lt;plugin&gt;
+                &lt;artifactId&gt;maven-ear-plugin&lt;/artifactId&gt;
+                &lt;configuration&gt;
+                   &lt;archive&gt;
+                      &lt;manifestEntries&gt;
+                         &lt;Implementation-Build&gt;
+                               ${buildNumber}
+                         &lt;/Implementation-Build&gt;
+                      &lt;/manifestEntries&gt;
+                   &lt;/archive&gt;
+                &lt;/configuration&gt;
+             &lt;/plugin&gt;
+         &lt;/plugins&gt;
+     &lt;/build&gt;
+&lt;/profile&gt;
+[/code]
+
+We tell maven to use the maven-build-number plugin during the validate phase and we add the property <em>buildNumber </em>to the manifest entries of the ear and war we can produce (useful if we are in a multimodule pom). This setup is performed under a specific profile and can be triggered by executing maven this way :
+
+[code lang="bash"]mvn clean install -Pbuildnumbering[/code]
+
+If you look at resulting artifacts, the META-INF/MANIFEST.MF files contain Implementation-Build: #### (where #### is the current revision on your SCM).
+<h2>Get revision number at runtime</h2>
+Now that the revision is stored in our artifacts, we need a way to figure out, at runtime, which revision is deployed, the basic idea is to have a servlet get this info for us, and dump it on your web browser. For confidentiality purpose, it might be useful to put an authorization filter on top of this servlet, but it won't be covered in this post.
+
+The code for the servlet follows :
+
+[code lang="java"]
+/**
+  * Package and import are ommited on purpose
+  * User: cgatay Date: 17 oct. 2010 Time: 13:34:59
+  */
+public class VersionServlet extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        try {
+            String appServerHome = getServletContext().getContext(&quot;/&quot;).getRealPath(&quot;/&quot;);
+            final int lastSlash = appServerHome.lastIndexOf(File.separator);
+            final int beforeLastSlash = appServerHome.lastIndexOf(File.separator, lastSlash-1);
+            appServerHome = appServerHome.substring(0, beforeLastSlash);
+
+            final File file = new File(appServerHome);
+            if (file.exists() &amp;&amp; file.canRead() &amp;&amp; file.isDirectory()) {
+                List&lt;String&gt; listFiles = new ArrayList&lt;String&gt;(Arrays.asList(file.list()));
+                listFiles.add(0, &quot;&quot;);
+                for (String s : listFiles) {
+                    File manifestFile = new File(appServerHome + File.separator + s, &quot;META-INF/MANIFEST.MF&quot;);
+                    if (manifestFile.exists()) {
+                        dumpManifestInfo(resp, manifestFile, s);
+                    }
+                }
+            }
+            resp.setStatus(200);
+        } catch (IOException e) {
+            e.printStackTrace();
+            resp.setStatus(500);
+            resp.getOutputStream().print(&quot;Cannot retrieve version data !&quot;);
+        }
+    }
+
+    private void dumpManifestInfo(HttpServletResponse resp, File manifestFile, String module) throws IOException {
+        Manifest mf = new Manifest();
+        mf.read(new FileInputStream(manifestFile));
+
+        Attributes atts = mf.getMainAttributes();
+        resp.getOutputStream().println(&quot; ============================ &quot;);
+        resp.getOutputStream().println(&quot;Module : &quot; + (module.isEmpty() ? &quot;EAR&quot; : module));
+        resp.getOutputStream().println(&quot;Build: &quot; + atts.getValue(&quot;Implementation-Build&quot;));
+    }
+}
+
+[/code]
+
+Just mount this Servlet via your web.xml, add a filter on top and you're gone.
+
+We assume that if the module is empty, we are at the root of an EAR file.
+
+This is confirmed to work under Glassfish application server, it might work with other application servers (path might need to be corrected), anyway, I'd love to get feedback on this.<!--:--><!--:fr-->
+<h2>Embed revision into artifacts</h2>
+By using this plugin you can easily embbed revision informations into your artifacts, the configuration is, as always with maven, as easy as A-B-C, just add the following to your projects' pom :
+
+[code lang="xml"]
+&lt;profile&gt;
+    &lt;id&gt;buildnumbering&lt;/id&gt;
+    &lt;build&gt;
+       &lt;plugins&gt;
+           &lt;plugin&gt;
+               &lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;
+               &lt;artifactId&gt;buildnumber-maven-plugin&lt;/artifactId&gt;
+               &lt;version&gt;1.0-beta-4&lt;/version&gt;
+               &lt;executions&gt;
+                  &lt;execution&gt;
+                     &lt;phase&gt;validate&lt;/phase&gt;
+                     &lt;goals&gt;
+                         &lt;goal&gt;create&lt;/goal&gt;
+                     &lt;/goals&gt;
+                 &lt;/execution&gt;
+               &lt;/executions&gt;
+            &lt;/plugin&gt;
+            &lt;plugin&gt;
+                &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+                &lt;artifactId&gt;maven-war-plugin&lt;/artifactId&gt;
+                &lt;executions&gt;
+                    &lt;execution&gt;
+                       &lt;id&gt;buildNumber&lt;/id&gt;
+                       &lt;configuration&gt;
+                          &lt;archive&gt;
+                             &lt;manifestEntries&gt;
+                                &lt;Implementation-Build&gt;
+                                      ${buildNumber}
+                                &lt;/Implementation-Build&gt;
+                             &lt;/manifestEntries&gt;
+                          &lt;/archive&gt;
+                      &lt;/configuration&gt;
+                   &lt;/execution&gt;
+               &lt;/executions&gt;
+            &lt;/plugin&gt;
+            &lt;plugin&gt;
+                &lt;artifactId&gt;maven-ear-plugin&lt;/artifactId&gt;
+                &lt;configuration&gt;
+                   &lt;archive&gt;
+                      &lt;manifestEntries&gt;
+                         &lt;Implementation-Build&gt;
+                               ${buildNumber}
+                         &lt;/Implementation-Build&gt;
+                      &lt;/manifestEntries&gt;
+                   &lt;/archive&gt;
+                &lt;/configuration&gt;
+             &lt;/plugin&gt;
+         &lt;/plugins&gt;
+     &lt;/build&gt;
+&lt;/profile&gt;
+[/code]
+
+We tell maven to use the maven-build-number plugin during the validate phase and we add the property <em>buildNumber </em>to the manifest entries of the ear and war we can produce (useful if we are in a multimodule pom). This setup is performed under a specific profile and can be triggered by executing maven this way :
+
+[code lang="bash"]mvn clean install -Pbuildnumbering[/code]
+
+If you look at resulting artifacts, the META-INF/MANIFEST.MF files contain Implementation-Build: #### (where #### is the current revision on your SCM).
+<h2>Get revision number at runtime</h2>
+Now that the revision is stored in our artifacts, we need a way to figure out, at runtime, which revision is deployed, the basic idea is to have a servlet get this info for us, and dump it on your web browser. For confidentiality purpose, it might be useful to put an authorization filter on top of this servlet, but it won't be covered in this post.
+
+The code for the servlet follows :
+
+[code lang="java"]
+/**
+  * Package and import are ommited on purpose
+  * User: cgatay Date: 17 oct. 2010 Time: 13:34:59
+  */
+public class VersionServlet extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        try {
+            String appServerHome = getServletContext().getContext(&quot;/&quot;).getRealPath(&quot;/&quot;);
+            final int lastSlash = appServerHome.lastIndexOf(File.separator);
+            final int beforeLastSlash = appServerHome.lastIndexOf(File.separator, lastSlash-1);
+            appServerHome = appServerHome.substring(0, beforeLastSlash);
+
+            final File file = new File(appServerHome);
+            if (file.exists() &amp;&amp; file.canRead() &amp;&amp; file.isDirectory()) {
+                List&lt;String&gt; listFiles = new ArrayList&lt;String&gt;(Arrays.asList(file.list()));
+                listFiles.add(0, &quot;&quot;);
+                for (String s : listFiles) {
+                    File manifestFile = new File(appServerHome + File.separator + s, &quot;META-INF/MANIFEST.MF&quot;);
+                    if (manifestFile.exists()) {
+                        dumpManifestInfo(resp, manifestFile, s);
+                    }
+                }
+            }
+            resp.setStatus(200);
+        } catch (IOException e) {
+            e.printStackTrace();
+            resp.setStatus(500);
+            resp.getOutputStream().print(&quot;Cannot retrieve version data !&quot;);
+        }
+    }
+
+    private void dumpManifestInfo(HttpServletResponse resp, File manifestFile, String module) throws IOException {
+        Manifest mf = new Manifest();
+        mf.read(new FileInputStream(manifestFile));
+
+        Attributes atts = mf.getMainAttributes();
+        resp.getOutputStream().println(&quot; ============================ &quot;);
+        resp.getOutputStream().println(&quot;Module : &quot; + (module.isEmpty() ? &quot;EAR&quot; : module));
+        resp.getOutputStream().println(&quot;Build: &quot; + atts.getValue(&quot;Implementation-Build&quot;));
+    }
+}
+
+[/code]
+
+Just mount this Servlet via your web.xml, add a filter on top and you're gone.
+
+We assume that if the module is empty, we are at the root of an EAR file.
+
+This is confirmed to work under Glassfish application server, it might work with other application servers (path might need to be corrected), anyway, I'd love to get feedback on this.<!--:-->

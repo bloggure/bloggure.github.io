@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bloggure - iTunes media sharing over the Internet from a NAS</title>
+  <meta name="author" content="Bloggure" />
+  <meta name="description" content="The blog of Bloggure" />
+  <link rel="canonical" href="http://bloggure.info/.shell/shelf/2010/11/14/itunes-media-sharing-over-the-internet-from-a-nas.html" />
+
+  <link href="//fonts.googleapis.com/css?family=Open+Sans:600,800" rel="stylesheet" type="text/css">
+  <link rel="shortcut icon" href="/favicon.png">
+  <link rel="alternate" type="application/rss+xml" title="Bloggure" href="http://bloggure.info/atom.xml" />
+
+  <link rel="stylesheet" href="/assets/css/all.css">
+<!--[if IE 7]>
+  <link rel="stylesheet" href="/assets/css/font-awesome-ie7.min.css">
+<![endif]-->
+</head>
+<body>
+  <div class="container">
+    <div class="four columns sidebar">
+      <nav>
+  <a href="/">
+    <img src="/logo.png" id="logo" alt="Blog logo"/>
+  </a>
+  <h2><a href="/">Bloggure</a></h2>
+  <hr/>
+  <ul>
+  <p>localhosting since 2005</p>
+  <hr/>
+  <div>
+    <div id="social">
+      Follow us:
+<div id="stalker">
+  
+  <a title="bloggure on Github" href="http://github.com/bloggure">
+    <i class="icon-github-sign"></i>
+  </a>
+  
+
+  
+  <a title="bloggure on Hacker News" href="http://news.ycombinator.com/user?id=bloggure">
+    <i class="icon-sign-blank"></i>
+    <span class="icon-overlay icon-hn">Y</span>
+  </a>
+  
+
+  
+  <a title="bloggure on Twitter" href="http://twitter.com/bloggure">
+    <i class="icon-twitter-sign"></i>
+  </a>
+  
+
+  <a title="RSS feed" id="rss" href="/atom.xml">
+    <i class="icon-rss-sign"></i>
+  </a>
+</div>
+    </div>
+  </div>
+  </ul>
+</nav>
+    </div>
+
+    <div class="eleven columns content">
+      <p class="meta">
+  November 14, 2010 
+  <a href="/">
+    <i class="home icon-home"></i>
+  </a>
+</p>
+
+<h1 class="title">iTunes media sharing over the Internet from a NAS</h1>
+
+<div id="post">
+  <!--:en--><a href="http://www.bloggure.info/wp-content/uploads/2010/11/free-music-head.png"><img class="alignright size-full wp-image-99" title="Music" src="http://www.bloggure.info/wp-content/uploads/2010/11/free-music-head.png" alt="" width="200" height="124" /></a>I am a big fan of music, and I like to listen to all my music wherever I am and whatever I do (specially when coding).
+
+All my medias are stored on a NAS drive that features a little embedded linux distribution as operating system. One of the service is called iTunes media sharing (mt-daapd is the real name of the daemon).
+
+It is really a cool feature as I can listen media stored on my NAS from whatever device on my LAN. The magic behind is called Bonjour which is a protocol that allows device to register themselves on the network and being discovered by others.
+
+My problem is I want to be able to listen to my home music at work, and Bonjour service does not go out of my LAN. The additional thing is I want to listen to my music using iTunes (I am fond of <a title="Bowtie" href="http://bowtieapp.com" target="_blank">Bowtie</a>) on my MacBook Pro.
+
+<!--:--><!--:fr--><em>Cet article n'a pas été traduit, veuillez trouver ci-dessous sa version anglaise</em>
+
+<a href="http://www.bloggure.info/wp-content/uploads/2010/11/free-music-head.png"><img class="alignright size-full wp-image-99" title="Music" src="http://www.bloggure.info/wp-content/uploads/2010/11/free-music-head.png" alt="" width="200" height="124" /></a>I am a big fan of music, and I like to listen to all my music wherever I am and whatever I do (specially when coding).
+
+All my medias are stored on a NAS drive that features a little embedded linux distribution as operating system. One of the service is called iTunes media sharing (mt-daapd is the real name of the daemon).
+
+It is really a cool feature as I can listen media stored on my NAS from whatever device on my LAN. The magic behind is called Bonjour which is a protocol that allows device to register themselves on the network and being discovered by others.
+
+My problem is I want to be able to listen to my home music at work, and Bonjour service does not go out of my LAN. The additional thing is I want to listen to my music using iTunes (I am fond of <a title="Bowtie" href="http://bowtieapp.com" target="_blank">Bowtie</a>) on my MacBook Pro.
+
+<!--:--><!--more--><!--:en-->
+<h1>Simulating Bonjour presence</h1>
+The trick is to use a little software called <em>dns-sd </em>to register your distant IP-address as a Bonjour source, by executing the following command (replacing YOURIP with your public IP), you should see a shared library (named MYNAME) in iTunes :
+
+[bash light="true"]
+dns-sd -P MYNAME _daap._tcp. &quot;my details&quot; 3689 homemusic.local YOURIP&amp;amp;
+[/bash]
+
+If it does not work, I think you've forgotten to open the 3689 TCP port of your firewall and / or to forward it to your box running mt-daapd.
+<h1>Modifying iTunes to launch dns-sd</h1>
+The thing is that it is not very convenient to launch the command line with iTunes, it would be better if all was automatic.
+
+There is a simple way of doing it that you'll have to do each times iTunes is updated, moving the actual iTunes binary to another file and trigger its launch from a small shell script.
+
+First step is to move iTunes binary, launch a Terminal.app and type the following :
+
+[bash light="true"]
+mv /Applications/iTunes.app/Contents/MacOS/iTunes /Applications/iTunes.app/Contents/MacOS/iTunes.bin
+[/bash]
+
+Then, create the following shell script and record it under /Applications/iTunes.app/Contents/MacOS/iTunes
+
+[bash]
+#!/bin/sh
+dns-sd -P MYNAME _daap._tcp. &quot;my details&quot; 3689 homemusic.local YOURIP&amp;amp;
+/Applications/iTunes.app/Contents/MacOS/iTunes.bin
+[/bash]
+
+Finally, make the script executable by <em>chmod</em>ding it :
+
+[bash light="true"]
+chmod +x /Applications/iTunes.app/Contents/MacOS/iTunes
+[/bash]
+
+The next time you'll launch iTunes, the <em>dns-sd </em>service will be automatically launched, your shared media library will appear and your ears will love this !
+
+WARNING : you actually expose your media library to everyone on the internet, I suggest you to set a password / change port number / use a SSH tunnel to circumvent this...<!--:--><!--:fr-->
+<h1>Simulating Bonjour presence</h1>
+The trick is to use a little software called <em>dns-sd </em>to register your distant IP-address as a Bonjour source, by executing the following command (replacing YOURIP with your public IP), you should see a shared library (named MYNAME) in iTunes :
+
+[bash light="true"]
+dns-sd -P MYNAME _daap._tcp. &quot;my details&quot; 3689 homemusic.local YOURIP&amp;amp;
+[/bash]
+
+If it does not work, I think you've forgotten to open the 3689 TCP port of your firewall and / or to forward it to your box running mt-daapd.
+<h1>Modifying iTunes to launch dns-sd</h1>
+The thing is that it is not very convenient to launch the command line with iTunes, it would be better if all was automatic.
+
+There is a simple way of doing it that you'll have to do each times iTunes is updated, moving the actual iTunes binary to another file and trigger its launch from a small shell script.
+
+First step is to move iTunes binary, launch a Terminal.app and type the following :
+
+[bash light="true"]
+mv /Applications/iTunes.app/Contents/MacOS/iTunes /Applications/iTunes.app/Contents/MacOS/iTunes.bin
+[/bash]
+
+Then, create the following shell script and record it under /Applications/iTunes.app/Contents/MacOS/iTunes
+
+[bash]
+#!/bin/sh
+dns-sd -P MYNAME _daap._tcp. &quot;my details&quot; 3689 homemusic.local YOURIP&amp;amp;
+/Applications/iTunes.app/Contents/MacOS/iTunes.bin
+[/bash]
+
+Finally, make the script executable by <em>chmod</em>ding it :
+
+[bash light="true"]
+chmod +x /Applications/iTunes.app/Contents/MacOS/iTunes
+[/bash]
+
+The next time you'll launch iTunes, the <em>dns-sd </em>service will be automatically launched, your shared media library will appear and your ears will love this !
+
+WARNING : you actually expose your media library to everyone on the internet, I suggest you to set a password / change port number / use a SSH tunnel to circumvent this...<!--:-->
+
+</div>
+
+<!-- <div id="related">
+  <h3>Related Posts</h3>
+  <ul class="posts">
+    
+    <li>
+      <span>24 Oct 2010 &raquo;</span> <a href="/.wicket/2010/10/24/wicket-1-4-9-tinymce.html">Wicket 1.4.x - TinyMCE</a>
+    </li>
+    
+    <li>
+      <span>29 Oct 2010 &raquo;</span> <a href="/.android/2010/10/29/android-switcher-widget.html">Android Switcher Widget</a>
+    </li>
+    
+    <li>
+      <span>01 Nov 2010 &raquo;</span> <a href="/.java/.maven/work/2010/11/01/getting-source-revision-for-a-deployed-app-using-maven-and-a-servlet.html">Getting source revision for a deployed app using Maven and a Servlet</a>
+    </li>
+    
+  </ul>
+</div> -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'thereisnoplacelike1'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    
+    
+      <div class="footer">
+        <div class="disclaimer">
+  
+  <p>
+    The postings on this site are my own and don't necessarily represent my 
+    employer’s positions, strategies or opinions.
+  </p>
+  
+
+  <p>
+    © Bloggure, 2013 &mdash; built with Jekyll using Lagom theme
+  </p>
+</div>
+      </div>
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-xxxx-x']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>

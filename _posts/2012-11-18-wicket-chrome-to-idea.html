@@ -1,0 +1,58 @@
+---
+layout: post
+title: Wicket Chrome to IDEA
+categories:
+- .wicket
+tags:
+- chrome
+- debug
+- intellij
+- wicket
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+  dsq_thread_id: '933539693'
+  _yoast_wpseo_linkdex: '0'
+---
+<!--:en--><img class="alignright size-full wp-image-90" title="Wicket" src="http://www.bloggure.info/wp-content/uploads/2010/10/logo-wicket1.png" alt="" width="200" height="199" />It is not a secret that the <a href="http://www.srmvision.com">SRMvision</a> platform is developped using the <a href="http://wicket.apache.org/">Apache Wicket</a> framework.
+
+As our application became bigger and so our team, it's getting harder to find the correct Wicket class beneath the view of the page we get in our browsers.
+
+To help the team in this process, I made a simple Chrome extension and a IntelliJ IDEA plugin allowing to send class names to the IDE from the web browser (at the cost of a very simple class in your project, disabled in deployment mode).
+<h2>Getting your project ready</h2>
+In the <a href="https://github.com/CedricGatay/chrome-wicket-idea-example">chrome-wicket-idea-example</a> github repository, you have a very simple example of what needs to be done to enable navigation between your browser and your project opened in your IDE. Have a look at the <a href="https://github.com/CedricGatay/chrome-wicket-idea-example/blob/master/src/main/java/fr/gatay/WicketApplication.java">WicketApplication</a> class (specifically in the the <a href="https://github.com/CedricGatay/chrome-wicket-idea-example/blob/master/src/main/java/fr/gatay/WicketApplication.java#L28">init()</a> method) and at the <a href="https://github.com/CedricGatay/chrome-wicket-idea-example/blob/master/src/main/java/fr/gatay/DebugComponentBeforeRenderListener.java">DebugComponentBeforeRenderListener</a> class (it is where the 'simple' magic happen). The good thing is you only need to use this class in your project (confirmed working with Wicket 1.4, 1.5, and 6), and to mimic the initializer logic to get started.
+
+Please notice that you can specify which classes you want to track in your markup (by restricting on package names) at the listener's instanciation.
+To test the sample project, you can run the embedded jetty server by running :
+<pre class="brush: shell">mvn jetty:run</pre>
+<h2>Wicket Open In IDEA</h2>
+<h3>IDEA part</h3>
+The IntelliJ plugin listens for classnames to open on a http socket (10462, overridable in plugin settings).
+
+[caption id="attachment_719" align="aligncenter" width="941"]<img class="size-full wp-image-719" title="Plugin settings" src="http://www.bloggure.info/wp-content/uploads/2012/11/Capture-d’écran-2012-11-18-à-19.25.17.png" alt="" width="941" height="419" /> Plugin settings[/caption]
+
+You can get the IDEA plugin in its <a href="https://github.com/srmvision/wicket-open-in-idea-plugin/downloads">github repository</a>, to install it, you have to select "Install plugin from disk" from the "Plugins" category in your IDE settings.
+<h3>Chrome part</h3>
+The Chrome extension is really simple, like my TrelloScrum fork, it is not (yet) available on the Chrome Web Store, thus, you have to <a href="https://github.com/CedricGatay/chrome-wicket-open-to-idea/downloads">download the release here</a> and drag and drop it on your <a href="chrome://extensions">chrome://extensions</a> page.
+If you want, you can tweak its settings, via the "Options" page :
+<ul>
+	<li>IDE Host : if you change the setup of the plugin in your IDE (or run your IDE on another machine than your browser), you might need to change the host and port to reflect this.</li>
+	<li>Context menu presence host : if you want the context menu icon to appear only on sites where it should, you can narrow the domains here.</li>
+</ul>
+To use it, you only have to right click on an item in your "enhanced" web application and select "Wicket debug this".
+
+[caption id="attachment_709" align="aligncenter" width="315"]<img class="size-full wp-image-709 " title="Wicket debug this" src="http://www.bloggure.info/wp-content/uploads/2012/11/Capture-d’écran-2012-11-18-à-18.56.11.png" alt="" width="315" height="270" /> Context menu item[/caption]
+
+From there you'll get a modal window listing the matching classes names (sorted by parent order, the first is the closer to the element you pointed to, the next one is the parent class and so on). If there is not any opened modal when you try to use it, it means the extension did not detect any classname in the markup.
+
+[caption id="attachment_711" align="aligncenter" width="584"]<img class=" wp-image-711 " title="Send to IDEA Modal" src="http://www.bloggure.info/wp-content/uploads/2012/11/Capture-d’écran-2012-11-18-à-19.07.40-1024x740.png" alt="" width="584" height="422" /> Class modal selection[/caption]
+
+Each classname, when clicked, is sent to your IDE which will in turn opens the class matching the classname so you can edit it.
+The lower part of the modal window will inform you about the status of your last action :
+<ul>
+	<li>If the plugin is not enabled, or the IDE not running : it will display an error message</li>
+	<li>If all went like expected : it will display a confirmation message</li>
+</ul>
+I hope it will help other teams using this great framework, or it will give ideas to user of others frameworks.<!--:--><!--:fr--><p><em>Cet article n'a pas été traduit, veuillez trouver ci-dessous sa version anglaise</em></p><p><img class="alignright size-full wp-image-90" title="Wicket" src="http://www.bloggure.info/wp-content/uploads/2010/10/logo-wicket1.png" alt="" width="200" height="199" />It is not a secret that the <a href="http://www.srmvision.com">SRMvision</a> platform is developped using the <a href="http://wicket.apache.org/">Apache Wicket</a> framework.</p><p>As our application became bigger and so our team, it's getting harder to find the correct Wicket class beneath the view of the page we get in our browsers.</p><p>To help the team in this process, I made a simple Chrome extension and a IntelliJ IDEA plugin allowing to send class names to the IDE from the web browser (at the cost of a very simple class in your project, disabled in deployment mode).</p><h2>Getting your project ready</h2><p>In the <a href="https://github.com/CedricGatay/chrome-wicket-idea-example">chrome-wicket-idea-example</a> github repository, you have a very simple example of what needs to be done to enable navigation between your browser and your project opened in your IDE. Have a look at the <a href="https://github.com/CedricGatay/chrome-wicket-idea-example/blob/master/src/main/java/fr/gatay/WicketApplication.java">WicketApplication</a> class (specifically in the the <a href="https://github.com/CedricGatay/chrome-wicket-idea-example/blob/master/src/main/java/fr/gatay/WicketApplication.java#L28">init()</a> method) and at the <a href="https://github.com/CedricGatay/chrome-wicket-idea-example/blob/master/src/main/java/fr/gatay/DebugComponentBeforeRenderListener.java">DebugComponentBeforeRenderListener</a> class (it is where the 'simple' magic happen). The good thing is you only need to use this class in your project (confirmed working with Wicket 1.4, 1.5, and 6), and to mimic the initializer logic to get started.</p><p>Please notice that you can specify which classes you want to track in your markup (by restricting on package names) at the listener's instanciation.<br /><br /> To test the sample project, you can run the embedded jetty server by running :</p><pre class="brush: shell">mvn jetty:run</pre><h2>Wicket Open In IDEA</h2><h3>IDEA part</h3><p>The IntelliJ plugin listens for classnames to open on a http socket (10462, overridable in plugin settings).</p>[caption id="attachment_719" align="aligncenter" width="941"]<img class="size-full wp-image-719" title="Plugin settings" src="http://www.bloggure.info/wp-content/uploads/2012/11/Capture-d’écran-2012-11-18-à-19.25.17.png" alt="" width="941" height="419" /> Plugin settings[/caption]<p>You can get the IDEA plugin in its <a href="https://github.com/srmvision/wicket-open-in-idea-plugin/downloads">github repository</a>, to install it, you have to select "Install plugin from disk" from the "Plugins" category in your IDE settings.</p><h3>Chrome part</h3><p>The Chrome extension is really simple, like my TrelloScrum fork, it is not (yet) available on the Chrome Web Store, thus, you have to <a href="https://github.com/CedricGatay/chrome-wicket-open-to-idea/downloads">download the release here</a> and drag and drop it on your <a href="chrome://extensions">chrome://extensions</a> page.<br /><br /> If you want, you can tweak its settings, via the "Options" page :</p><ul><li>IDE Host : if you change the setup of the plugin in your IDE (or run your IDE on another machine than your browser), you might need to change the host and port to reflect this.</li><li>Context menu presence host : if you want the context menu icon to appear only on sites where it should, you can narrow the domains here.</li></ul><p>To use it, you only have to right click on an item in your "enhanced" web application and select "Wicket debug this".</p>[caption id="attachment_709" align="aligncenter" width="315"]<img class="size-full wp-image-709 " title="Wicket debug this" src="http://www.bloggure.info/wp-content/uploads/2012/11/Capture-d’écran-2012-11-18-à-18.56.11.png" alt="" width="315" height="270" /> Context menu item[/caption]<p>From there you'll get a modal window listing the matching classes names (sorted by parent order, the first is the closer to the element you pointed to, the next one is the parent class and so on). If there is not any opened modal when you try to use it, it means the extension did not detect any classname in the markup.</p>[caption id="attachment_711" align="aligncenter" width="584"]<img class=" wp-image-711 " title="Send to IDEA Modal" src="http://www.bloggure.info/wp-content/uploads/2012/11/Capture-d’écran-2012-11-18-à-19.07.40-1024x740.png" alt="" width="584" height="422" /> Class modal selection[/caption]<p>Each classname, when clicked, is sent to your IDE which will in turn opens the class matching the classname so you can edit it.<br /><br /> The lower part of the modal window will inform you about the status of your last action :</p><ul><li>If the plugin is not enabled, or the IDE not running : it will display an error message</li><li>If all went like expected : it will display a confirmation message</li></ul><p>I hope it will help other teams using this great framework, or it will give ideas to user of others frameworks.</p><!--:-->
