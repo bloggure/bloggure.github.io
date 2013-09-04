@@ -15,94 +15,49 @@ meta:
   _wp_old_slug: ''
   dsq_thread_id: '667875444'
 ---
-<!--:en--><a href="http://www.bloggure.info/wp-content/uploads/2010/11/free-music-head.png"><img class="alignright size-full wp-image-99" title="Music" src="http://www.bloggure.info/wp-content/uploads/2010/11/free-music-head.png" alt="" width="200" height="124" /></a>I am a big fan of music, and I like to listen to all my music wherever I am and whatever I do (specially when coding).
+<!--:en--><img class="alignright size-full wp-image-99" title="Music" src="http://www.bloggure.info/wp-content/uploads/2010/11/free-music-head.png" alt="" width="200" height="124" /><p>I am a big fan of music, and I like to listen to all my music wherever I am and whatever I do (specially when coding).</p>
 
-All my medias are stored on a NAS drive that features a little embedded linux distribution as operating system. One of the service is called iTunes media sharing (mt-daapd is the real name of the daemon).
+<p>All my medias are stored on a NAS drive that features a little embedded linux distribution as operating system. One of the service is called iTunes media sharing (mt-daapd is the real name of the daemon).</p>
 
-It is really a cool feature as I can listen media stored on my NAS from whatever device on my LAN. The magic behind is called Bonjour which is a protocol that allows device to register themselves on the network and being discovered by others.
+<p>It is really a cool feature as I can listen media stored on my NAS from whatever device on my LAN. The magic behind is called Bonjour which is a protocol that allows device to register themselves on the network and being discovered by others.</p>
 
-My problem is I want to be able to listen to my home music at work, and Bonjour service does not go out of my LAN. The additional thing is I want to listen to my music using iTunes (I am fond of <a title="Bowtie" href="http://bowtieapp.com" target="_blank">Bowtie</a>) on my MacBook Pro.
-
-<!--:--><!--:fr--><em>Cet article n'a pas été traduit, veuillez trouver ci-dessous sa version anglaise</em>
-
-<a href="http://www.bloggure.info/wp-content/uploads/2010/11/free-music-head.png"><img class="alignright size-full wp-image-99" title="Music" src="http://www.bloggure.info/wp-content/uploads/2010/11/free-music-head.png" alt="" width="200" height="124" /></a>I am a big fan of music, and I like to listen to all my music wherever I am and whatever I do (specially when coding).
-
-All my medias are stored on a NAS drive that features a little embedded linux distribution as operating system. One of the service is called iTunes media sharing (mt-daapd is the real name of the daemon).
-
-It is really a cool feature as I can listen media stored on my NAS from whatever device on my LAN. The magic behind is called Bonjour which is a protocol that allows device to register themselves on the network and being discovered by others.
-
-My problem is I want to be able to listen to my home music at work, and Bonjour service does not go out of my LAN. The additional thing is I want to listen to my music using iTunes (I am fond of <a title="Bowtie" href="http://bowtieapp.com" target="_blank">Bowtie</a>) on my MacBook Pro.
+<p>My problem is I want to be able to listen to my home music at work, and Bonjour service does not go out of my LAN. The additional thing is I want to listen to my music using iTunes (I am fond of <a title="Bowtie" href="http://bowtieapp.com" target="_blank">Bowtie</a>) on my MacBook Pro.</p>
 
 <!--:--><!--more--><!--:en-->
 <h1>Simulating Bonjour presence</h1>
-The trick is to use a little software called <em>dns-sd </em>to register your distant IP-address as a Bonjour source, by executing the following command (replacing YOURIP with your public IP), you should see a shared library (named MYNAME) in iTunes :
+<p>The trick is to use a little software called <em>dns-sd </em>to register your distant IP-address as a Bonjour source, by executing the following command (replacing YOURIP with your public IP), you should see a shared library (named MYNAME) in iTunes :</p>
 
-[bash light="true"]
-dns-sd -P MYNAME _daap._tcp. &quot;my details&quot; 3689 homemusic.local YOURIP&amp;amp;
-[/bash]
+{% highlight bash %}
+dns-sd -P MYNAME _daap._tcp. "my details" 3689 homemusic.local YOURIP&
+{% endhighlight %}
 
-If it does not work, I think you've forgotten to open the 3689 TCP port of your firewall and / or to forward it to your box running mt-daapd.
+<p>
+If it does not work, I think you've forgotten to open the 3689 TCP port of your firewall and / or to forward it to your box running mt-daapd.</p>
 <h1>Modifying iTunes to launch dns-sd</h1>
-The thing is that it is not very convenient to launch the command line with iTunes, it would be better if all was automatic.
+<p>The thing is that it is not very convenient to launch the command line with iTunes, it would be better if all was automatic.</p>
 
-There is a simple way of doing it that you'll have to do each times iTunes is updated, moving the actual iTunes binary to another file and trigger its launch from a small shell script.
+<p>There is a simple way of doing it that you'll have to do each times iTunes is updated, moving the actual iTunes binary to another file and trigger its launch from a small shell script.</p>
 
-First step is to move iTunes binary, launch a Terminal.app and type the following :
+<p>First step is to move iTunes binary, launch a Terminal.app and type the following :</p>
 
-[bash light="true"]
+{% highlight bash %}
 mv /Applications/iTunes.app/Contents/MacOS/iTunes /Applications/iTunes.app/Contents/MacOS/iTunes.bin
-[/bash]
+{% endhighlight %}
 
-Then, create the following shell script and record it under /Applications/iTunes.app/Contents/MacOS/iTunes
+<p>Then, create the following shell script and record it under /Applications/iTunes.app/Contents/MacOS/iTunes</p>
 
-[bash]
+{% highlight bash %}
 #!/bin/sh
-dns-sd -P MYNAME _daap._tcp. &quot;my details&quot; 3689 homemusic.local YOURIP&amp;amp;
+dns-sd -P MYNAME _daap._tcp. "my details" 3689 homemusic.local YOURIP &
 /Applications/iTunes.app/Contents/MacOS/iTunes.bin
-[/bash]
+{% endhighlight %}
 
-Finally, make the script executable by <em>chmod</em>ding it :
+<p>Finally, make the script executable by <em>chmod</em>ding it :</p>
 
-[bash light="true"]
+{% highlight bash %}
 chmod +x /Applications/iTunes.app/Contents/MacOS/iTunes
-[/bash]
+{% endhighlight %}
 
-The next time you'll launch iTunes, the <em>dns-sd </em>service will be automatically launched, your shared media library will appear and your ears will love this !
+<p>The next time you'll launch iTunes, the <em>dns-sd </em>service will be automatically launched, your shared media library will appear and your ears will love this !</p>
 
-WARNING : you actually expose your media library to everyone on the internet, I suggest you to set a password / change port number / use a SSH tunnel to circumvent this...<!--:--><!--:fr-->
-<h1>Simulating Bonjour presence</h1>
-The trick is to use a little software called <em>dns-sd </em>to register your distant IP-address as a Bonjour source, by executing the following command (replacing YOURIP with your public IP), you should see a shared library (named MYNAME) in iTunes :
-
-[bash light="true"]
-dns-sd -P MYNAME _daap._tcp. &quot;my details&quot; 3689 homemusic.local YOURIP&amp;amp;
-[/bash]
-
-If it does not work, I think you've forgotten to open the 3689 TCP port of your firewall and / or to forward it to your box running mt-daapd.
-<h1>Modifying iTunes to launch dns-sd</h1>
-The thing is that it is not very convenient to launch the command line with iTunes, it would be better if all was automatic.
-
-There is a simple way of doing it that you'll have to do each times iTunes is updated, moving the actual iTunes binary to another file and trigger its launch from a small shell script.
-
-First step is to move iTunes binary, launch a Terminal.app and type the following :
-
-[bash light="true"]
-mv /Applications/iTunes.app/Contents/MacOS/iTunes /Applications/iTunes.app/Contents/MacOS/iTunes.bin
-[/bash]
-
-Then, create the following shell script and record it under /Applications/iTunes.app/Contents/MacOS/iTunes
-
-[bash]
-#!/bin/sh
-dns-sd -P MYNAME _daap._tcp. &quot;my details&quot; 3689 homemusic.local YOURIP&amp;amp;
-/Applications/iTunes.app/Contents/MacOS/iTunes.bin
-[/bash]
-
-Finally, make the script executable by <em>chmod</em>ding it :
-
-[bash light="true"]
-chmod +x /Applications/iTunes.app/Contents/MacOS/iTunes
-[/bash]
-
-The next time you'll launch iTunes, the <em>dns-sd </em>service will be automatically launched, your shared media library will appear and your ears will love this !
-
-WARNING : you actually expose your media library to everyone on the internet, I suggest you to set a password / change port number / use a SSH tunnel to circumvent this...<!--:-->
+<p>WARNING : you actually expose your media library to everyone on the internet, I suggest you to set a password / change port number / use a SSH tunnel to circumvent this...</p><!--:-->
