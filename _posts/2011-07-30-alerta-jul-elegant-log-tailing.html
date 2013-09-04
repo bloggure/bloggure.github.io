@@ -20,19 +20,19 @@ meta:
 ---
 <!--:en--><a href="http://www.bloggure.info/work/alerta-jul-elegant-log-tailing.html/attachment/terminal128" rel="attachment wp-att-275"><img class="alignright size-full wp-image-275" title="Terminal" src="http://www.bloggure.info/wp-content/uploads/2011/07/Terminal128.png" alt="" width="128" height="128" /></a>
 <h2>Classic tailing</h2>
-In my day to day activities, there is one thing I do everytime and I think every developer does : I tail the logs. The problem with logs checking is that you are rapidly facing a huge file, and the classic <code>tail -f</code> is not enough. The sad part of log tailing is that you only have monochrome logs, without any colouring of any kind helping you identify critical lines against more common ones.
-<!--:--><!--:fr--><a href="http://www.bloggure.info/work/alerta-jul-elegant-log-tailing.html/attachment/terminal128" rel="attachment wp-att-275"><img class="alignright size-full wp-image-275" title="Terminal" src="http://www.bloggure.info/wp-content/uploads/2011/07/Terminal128.png" alt="" width="128" height="128" /></a>
+<p>In my day to day activities, there is one thing I do everytime and I think every developer does : I tail the logs. The problem with logs checking is that you are rapidly facing a huge file, and the classic <code>tail -f</code> is not enough. The sad part of log tailing is that you only have monochrome logs, without any colouring of any kind helping you identify critical lines against more common ones.</p>
+<!--:--><!--:fr<a href="http://www.bloggure.info/work/alerta-jul-elegant-log-tailing.html/attachment/terminal128" rel="attachment wp-att-275"><img class="alignright size-full wp-image-275" title="Terminal" src="http://www.bloggure.info/wp-content/uploads/2011/07/Terminal128.png" alt="" width="128" height="128" /></a>
 <h2>La visualisation des <em>logs</em></h2>
 Dans mes activités quotidiennes, il y a une chose que je fais énormément et que je pense tout développeur fait : je "tail" les logs (je les visualise de façon interactive pour ceux qui ne comprendraient pas). Le soucis avec la consultation des logs est qu'un fichier de logs devient très rapidement énorme, et que le classique <code>tail -f</code> ne suffit plus. La partie la plus triste de la consultation des logs est qu'on ne dispose que de logs monochromes, sans aucune coloration aidant à identifier les parties les plus critiques par rapport au plus communes.
-<!--:--><!--more--><!--:en-->
+<--><!--more--><!--:en-->
 <h2>Colored logs</h2>
-A good thing would be to have colorized logs. I used <code><a title="CCZE on Freshmeat" href="http://freshmeat.net/projects/ccze/">ccze</a></code> a few years ago, which combined with the command you want provide a great output. But, as I am a Mac user, I can't use <code>ccze</code> anymore as it does not work on my platform.<br/>
+<p>A good thing would be to have colorized logs. I used <code><a title="CCZE on Freshmeat" href="http://freshmeat.net/projects/ccze/">ccze</a></code> a few years ago, which combined with the command you want provide a great output. But, as I am a Mac user, I can't use <code>ccze</code> anymore as it does not work on my platform.<br/>
 
 I looked for another existing alternative and I found <a title="log4tailer on Google Code" href="http://code.google.com/p/log4tailer/">log4tailer</a>, now <a title="Alerta on bitbucket" href="https://bitbucket.org/jordilin/alerta/wiki/Home">Alerta</a> which is a nice ccze equivalent.<br/>
 
-By testing it, I discovered a few problems, but as it is an open-source software, I forked it (on <a title="Alerta-JUL on github" href="https://github.com/CedricGatay/alerta-jul">github</a>, don't have a bitbucket account and was lazy having another DVCS to learn).
+By testing it, I discovered a few problems, but as it is an open-source software, I forked it (on <a title="Alerta-JUL on github" href="https://github.com/CedricGatay/alerta-jul">github</a>, don't have a bitbucket account and was lazy having another DVCS to learn).</p>
 <h2>Log4tailer / Alerta features</h2>
-This is the list of features from the original author's page
+<p>This is the list of features from the original author's page</p>
 <blockquote>
 <ul>
 	<li>Multitailing capability. It can tail multiple logs at a time</li>
@@ -50,20 +50,20 @@ This is the list of features from the original author's page
 	<li>Tailing logs over SSH</li>
 </ul>
 </blockquote>
-The key features for me are the SSH mode (it requires python-paramiko module) and the inactivity log monitoring (it handles log-rotate automagically). The good part is that everything can be customized by the user in a file, provided in the command line or taken from ~/.log4tailer (you can check mine <a title="log4tailer file" href="https://github.com/CedricGatay/dotfiles/blob/master/log4tailer">here</a>).<br/>
+<p>The key features for me are the SSH mode (it requires python-paramiko module) and the inactivity log monitoring (it handles log-rotate automagically). The good part is that everything can be customized by the user in a file, provided in the command line or taken from ~/.log4tailer (you can check mine <a title="log4tailer file" href="https://github.com/CedricGatay/dotfiles/blob/master/log4tailer">here</a>).<br/>
 
-This way, when I want to check the log from my second computer, I just have to launch Alerta, it autoconnects via SSH to my remote machine and tails the log I want, magic inside !
+This way, when I want to check the log from my second computer, I just have to launch Alerta, it autoconnects via SSH to my remote machine and tails the log I want, magic inside !</p>
 <h2>Improvements ?</h2>
 <h3>Phase 1 : Bug fixing</h3>
-The main thing that bothered me was that color matching was done against log4j's log levels and I am using Java Util Logging, so my first modification was made to add JUL logging levels matching.<br/>
+<p>The main thing that bothered me was that color matching was done against log4j's log levels and I am using Java Util Logging, so my first modification was made to add JUL logging levels matching.<br/>
 
-The second problem I had to face was another incompatibility with my Mac environment (readline in python does not behave the same as on other systems). The bug made the log tailer not follow the logs (embarrassing isn't it ?).
+The second problem I had to face was another incompatibility with my Mac environment (readline in python does not behave the same as on other systems). The bug made the log tailer not follow the logs (embarrassing isn't it ?).</p>
 <h3>Phase 2 : Improvements</h3>
-When I fixed the things that annoyed me, I realized I could go a little further by implementing a really flexible coloring system. I inspected the code and found it was a little messy, at least for a Java developer looking at python code. I refactored it first to make it more readable to me.<br/>
+<p>When I fixed the things that annoyed me, I realized I could go a little further by implementing a really flexible coloring system. I inspected the code and found it was a little messy, at least for a Java developer looking at python code. I refactored it first to make it more readable to me.<br/>
 
-I then started to add this flexible log coloring, and a little extra feature, the ability to skip line matching a certain pattern. In my case I have a useless log message showing once every page hit, but I don't want to turn off the log, I just wanted to strip out a line including a specified pattern.
+I then started to add this flexible log coloring, and a little extra feature, the ability to skip line matching a certain pattern. In my case I have a useless log message showing once every page hit, but I don't want to turn off the log, I just wanted to strip out a line including a specified pattern.</p>
 <h2>New configuration options</h2>
-Here is an extract from the README file describing new configuration options :
+<p>Here is an extract from the README file describing new configuration options :</p>
 <blockquote>You can add specific logging levels by using the following syntax
 color.${level} = ${color}
 where ${level} is the level pattern you want to match (or any other pattern...)
@@ -82,7 +82,7 @@ Valid colors are, their background counterparts are prefixed with 'on_' :
 Levels with the skip color will not be printed out in your console
 (fast and easy way to disable an annoying message)</blockquote>
 <h2>Sounds nice ? Download it !</h2>
-<p>If you're interested in this project, don't hesitate to <a title="Alerta-JUL download link" href="https://github.com/downloads/CedricGatay/alerta-jul/log4tailer-3.0.4-JUL.tar.gz">download the package on github</a> and install it, a simple untar and you're ready to go (assuming you've got a python set-up). If you need a full manual, read the <a title="Alerta Manual" href="http://code.google.com/p/log4tailer/downloads/detail?name=UserGuide-3.0.pdf">great manual available here</a> !</p><!--:--><!--:fr-->
+<p>If you're interested in this project, don't hesitate to <a title="Alerta-JUL download link" href="https://github.com/downloads/CedricGatay/alerta-jul/log4tailer-3.0.4-JUL.tar.gz">download the package on github</a> and install it, a simple untar and you're ready to go (assuming you've got a python set-up). If you need a full manual, read the <a title="Alerta Manual" href="http://code.google.com/p/log4tailer/downloads/detail?name=UserGuide-3.0.pdf">great manual available here</a> !</p><!--:--><!--:fr
 <h2>Des logs en couleurs !</h2>
 Une bonne chose serait d'avoir des logs en couleurs, j'ai utilisé <code><a title="CCZE on Freshmeat" href="http://freshmeat.net/projects/ccze/">ccze</a></code> il y a quelques années, qui, combiné avec la commande désirée donne de bons résultats. Mais, maintenant que je suis un utilisateur de Mac, je ne peux plus utiliser <code>ccze</code> du tout puisqu'il ne marche pas sur ma plateforme.<br/>
 
@@ -142,4 +142,4 @@ Les couleurs valides sont, leurs équivalents pour l'arrière-plan sont préfix�
 * skip
 Les niveaux avec la couleurs "skip" ne seront pas imprimés dans votre console (moyen simple et rapide d'ôter un message ennuyeux)</blockquote>
 <h2>Intéressant ? Téléchargez le !</h2>
-<p>Si vous êtes interessé par ce projet, n'hésitez pas à <a title="Alerta-JUL download link" href="https://github.com/downloads/CedricGatay/alerta-jul/log4tailer-3.0.4-JUL.tar.gz">télécharger l'archive sur github</a>, il ne vous reste qu'à l'installer, décompresser l'archive et vous êtes prêt (sous reserve d'avoir un environnement python valide). Si vous avez besoin d'un manuel complet, lisez le <a title="Alerta Manual" href="http://code.google.com/p/log4tailer/downloads/detail?name=UserGuide-3.0.pdf">super manuel disponible (en anglais par contre)</a> !</p><!--:-->
+<p>Si vous êtes interessé par ce projet, n'hésitez pas à <a title="Alerta-JUL download link" href="https://github.com/downloads/CedricGatay/alerta-jul/log4tailer-3.0.4-JUL.tar.gz">télécharger l'archive sur github</a>, il ne vous reste qu'à l'installer, décompresser l'archive et vous êtes prêt (sous reserve d'avoir un environnement python valide). Si vous avez besoin d'un manuel complet, lisez le <a title="Alerta Manual" href="http://code.google.com/p/log4tailer/downloads/detail?name=UserGuide-3.0.pdf">super manuel disponible (en anglais par contre)</a> !</p><-->

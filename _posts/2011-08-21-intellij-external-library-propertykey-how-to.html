@@ -20,20 +20,20 @@ meta:
   dsq_thread_id: '673549173'
   _yoast_wpseo_linkdex: '0'
 ---
-<!--:en--><a href="http://www.bloggure.info/work/intellij-external-library-propertykey-how-to.html/attachment/idea_icon" rel="attachment wp-att-365"><img src="http://www.bloggure.info/wp-content/uploads/2011/08/idea_icon.png" alt="" title="IntelliJ IDEA Icon" width="64" height="64" class="alignright size-full wp-image-365" /></a>I am a daily user of <a href="http://www.jetbrains.com/idea/">IntelliJ IDEA</a> to edit my Java code and <a href="http://wicket.apache.org">Apache Wicket</a> to write my web application. I decided recently to use IntelliJ's annotations to make my code a little more robust by using <code>@Nullable</code>, <code>@NotNull</code>, <code>@NonNls</code> and <code>@PropertyKey</code>.<br/>In this blog post I explain how to manually add annotation to an external library. 
-<!--:--><!--:fr--><a href="http://www.bloggure.info/work/intellij-external-library-propertykey-how-to.html/attachment/idea_icon" rel="attachment wp-att-365"><img src="http://www.bloggure.info/wp-content/uploads/2011/08/idea_icon.png" alt="" title="IntelliJ IDEA Icon" width="64" height="64" class="alignright size-full wp-image-365" /></a>J'utilise quotidiennement <a href="http://www.jetbrains.com/idea/">IntelliJ IDEA</a> pour développer en  Java et <a href="http://wicket.apache.org">Apache Wicket</a> pour écrire mes applications web. J'ai récemment entrepris d'utiliser les annotations d'IntelliJ pour rendre mon code un peu plus robuste grace à <code>@Nullable</code>, <code>@NotNull</code>, <code>@NonNls</code> and <code>@PropertyKey</code>.<br/>Dans ce billet, j'explique comment ajouter manuellement ces annotations à une librairies externe au projet.
-<!--:--><!--more--><!--:en-->
+<!--:en--><a href="http://www.bloggure.info/work/intellij-external-library-propertykey-how-to.html/attachment/idea_icon" rel="attachment wp-att-365"><img src="http://www.bloggure.info/wp-content/uploads/2011/08/idea_icon.png" alt="" title="IntelliJ IDEA Icon" width="64" height="64" class="alignright size-full wp-image-365" /></a><p>I am a daily user of <a href="http://www.jetbrains.com/idea/">IntelliJ IDEA</a> to edit my Java code and <a href="http://wicket.apache.org">Apache Wicket</a> to write my web application. I decided recently to use IntelliJ's annotations to make my code a little more robust by using <code>@Nullable</code>, <code>@NotNull</code>, <code>@NonNls</code> and <code>@PropertyKey</code>.<br/>In this blog post I explain how to manually add annotation to an external library. </p>
+<!--:--><!--:fr<a href="http://www.bloggure.info/work/intellij-external-library-propertykey-how-to.html/attachment/idea_icon" rel="attachment wp-att-365"><img src="http://www.bloggure.info/wp-content/uploads/2011/08/idea_icon.png" alt="" title="IntelliJ IDEA Icon" width="64" height="64" class="alignright size-full wp-image-365" /></a>J'utilise quotidiennement <a href="http://www.jetbrains.com/idea/">IntelliJ IDEA</a> pour développer en  Java et <a href="http://wicket.apache.org">Apache Wicket</a> pour écrire mes applications web. J'ai récemment entrepris d'utiliser les annotations d'IntelliJ pour rendre mon code un peu plus robuste grace à <code>@Nullable</code>, <code>@NotNull</code>, <code>@NonNls</code> and <code>@PropertyKey</code>.<br/>Dans ce billet, j'explique comment ajouter manuellement ces annotations à une librairies externe au projet.
+<--><!--more--><!--:en-->
 <h2>IntelliJ annotations</h2>
-Let's explain quickly how you can use these annotations and the problem I faced with the latter.<br/>
+<p>Let's explain quickly how you can use these annotations and the problem I faced with the latter.<br/>
 <ul>
 	<li><code>@Nullable</code> : tells the editor that the field, parameter, return type may be <code>null</code>. This way, IDEA will highlight you if you forget to check nullity.</li>
 	<li><code>@NotNull</code> : tells the editor that the field, parameter, return type will never be <code>null</code>. This way, IDEA will highlight you if you do unnecessary null checking. It even can throw <code>RuntimeException</code> if a method is invoked with a <code>null</code> parameter although it shouldn't. The exception tells exactly what parameter of what method, it can help a lot debbugging a <code>NullPointerException</code> coming out from nowhere !</li>
 	<li><code>@NonNls</code> : tells the editor that the string you entered is not involved in internationalization of any kind so it will not bother you with duplicate string literals.</li>
 	<li><code>@PropertyKey(resourceBundle)</code> : tells the editor that the following string have to be present in a specific resource bundle. This way, IDEA is able to notice you missing translations in your application.</li>
-</ul>
+</ul></p>
 <h2>How to use it...</h2>
-The first thing to do to use it is simply to annotate your source code like this:
-<pre class="brush: java">
+<p>The first thing to do to use it is simply to annotate your source code like this:
+{% highlight java %}
 @NotNull
 public String doSomething(@NotNull Object myObject,
                    @PropertyKey(resourceBundle="fr.gatay.cedric.bloggure.language") 
@@ -42,32 +42,34 @@ public String doSomething(@NotNull Object myObject,
 	 @NonNls String s =  "Return Value";
      return s;
 }
-</pre>
-This method is completely useless, but it can ease explaining how annotations work. By looking at the prototype we can now see that the method never returns <code>null</code> value, doesn't accept a first parameter with a <code>null</code> value, takes its second parameter from the "<code>fr.gatay.cedric.bloggure.language</code>" resource bundle and accepts a potentially <code>null</code> third parameter.<br/>
-Last but not least, if we look at the implementation, we see that we tell IDEA not to verify the "Return Value" string against i18n rules.
+{% endhighlight %}
+</p>
+<p>This method is completely useless, but it can ease explaining how annotations work. By looking at the prototype we can now see that the method never returns <code>null</code> value, doesn't accept a first parameter with a <code>null</code> value, takes its second parameter from the "<code>fr.gatay.cedric.bloggure.language</code>" resource bundle and accepts a potentially <code>null</code> third parameter.<br/>
+Last but not least, if we look at the implementation, we see that we tell IDEA not to verify the "Return Value" string against i18n rules.</p>
 <h2>How to use it, in libraries...</h2>
-If in your project, you want to use this feature in included libraries you might be glad the guys at Jetbrains included a feature called "External annotations". It allows you to specify a location where to save these annotations.<br/>
-Here is a quick example on how to add <code>@NotNull</code> on <code>org.apache.wicket.extensions.Initializer</code> :
+<p>If in your project, you want to use this feature in included libraries you might be glad the guys at Jetbrains included a feature called "External annotations". It allows you to specify a location where to save these annotations.<br/>
+Here is a quick example on how to add <code>@NotNull</code> on <code>org.apache.wicket.extensions.Initializer</code> : <br/>
 First, invoke intention action, and select the annotation you want to put
-<a href="http://www.bloggure.info/wp-content/uploads/2011/08/annotate.png"><img src="http://www.bloggure.info/wp-content/uploads/2011/08/annotate.png" alt="" title="IDEA annotate" width="527" height="79" class="aligncenter size-full wp-image-362" /></a>
+<a href="http://www.bloggure.info/wp-content/uploads/2011/08/annotate.png"><img src="http://www.bloggure.info/wp-content/uploads/2011/08/annotate.png" alt="" title="IDEA annotate" width="527" height="79" class="aligncenter size-full wp-image-362" /></a><br/>
 Then, configure external annotation root, I tend to use a folder named annotation at the root of my workspace.
-<a href="http://www.bloggure.info/work/intellij-external-library-propertykey-how-to.html/attachment/externalroot" rel="attachment wp-att-363"><img src="http://www.bloggure.info/wp-content/uploads/2011/08/externalroot.png" alt="" title="IDEA external root selection" width="723" height="342" class="aligncenter size-full wp-image-363" /></a>
+<a href="http://www.bloggure.info/work/intellij-external-library-propertykey-how-to.html/attachment/externalroot" rel="attachment wp-att-363"><img src="http://www.bloggure.info/wp-content/uploads/2011/08/externalroot.png" alt="" title="IDEA external root selection" width="723" height="342" class="aligncenter size-full wp-image-363" /></a><br/>
 That's all, if you look at the folder you specified, you will have the following structure:
-<a href="http://www.bloggure.info/work/intellij-external-library-propertykey-how-to.html/attachment/folder" rel="attachment wp-att-364"><img src="http://www.bloggure.info/wp-content/uploads/2011/08/folder.png" alt="" title="Annotations.xml folder" width="582" height="117" class="aligncenter size-full wp-image-364" /></a>
+<a href="http://www.bloggure.info/work/intellij-external-library-propertykey-how-to.html/attachment/folder" rel="attachment wp-att-364"><img src="http://www.bloggure.info/wp-content/uploads/2011/08/folder.png" alt="" title="Annotations.xml folder" width="582" height="117" class="aligncenter size-full wp-image-364" /></a><br/>
 In the folder corresponding to the package of the class you wanted to annotate you will find an <code>annotations.xml</code> file like the following:
-<pre class="brush: xml">
+{% highlight xml %}
 <root>
     <item name='org.apache.wicket.extensions.Initializer void init(org.apache.wicket.Application) 0'>
         <annotation name='org.jetbrains.annotations.NotNull'>
         </annotation>
     </item>
 </root>
-</pre>
-The problem is that it is not easily possible to add <code>@PropertyKey</code> or <code>@NotNls</code> annotation in external libraries.
+{% endhighlight %}
+</p>
+<p>The problem is that it is not easily possible to add <code>@PropertyKey</code> or <code>@NotNls</code> annotation in external libraries.</p>
 <h2>How to manually add an annotation</h2>
-In my case, I wanted to add <code>@PropertyKey</code> on Apache Wicket feedback messages methods. My Wicket Application have a converter for string that handles internationalization, so I want to add <code>@PropertyKey(resourceBundle="fr.gatay.cedric.bloggure.language")</code> to the String parameter of <code>org.apache.wicket.Component</code> info and error methods.<br/>
-By digging into the generated <code>annotations.xml</code> file for <code>@NotNull</code> annotation, I found out how to manually add my annotation. In my case, I end up with an <code>annotations.xml</code> file like this in the folder <code>${annotationsRoot}/org/apache/wicket/</code> :
-<pre class="brush: xml">
+<p>In my case, I wanted to add <code>@PropertyKey</code> on Apache Wicket feedback messages methods. My Wicket Application have a converter for string that handles internationalization, so I want to add <code>@PropertyKey(resourceBundle="fr.gatay.cedric.bloggure.language")</code> to the String parameter of <code>org.apache.wicket.Component</code> info and error methods.<br/>
+By digging into the generated <code>annotations.xml</code> file for <code>@NotNull</code> annotation, I found out how to manually add my annotation. In my case, I end up with an <code>annotations.xml</code> file like this in the folder <code>${annotationsRoot}/org/apache/wicket/</code> :</p>
+{% highlight xml %}
 <root>
  <item name="org.apache.wicket.Component void error(java.io.Serializable) 0">
 	 <annotation name="org.jetbrains.annotations.PropertyKey">
@@ -80,11 +82,11 @@ By digging into the generated <code>annotations.xml</code> file for <code>@NotNu
 	 </annotation>
  </item>
 </root>
-</pre>
-If you look closely at this sample, you will quickly understand how things work. First, the <code>item</code> element specify the method on which you want to put the annotation, please notice the number at the end specifying the parameter on which the annotation will be applied (starting at 0). 
+{% endhighlight %}
+<p>If you look closely at this sample, you will quickly understand how things work. First, the <code>item</code> element specify the method on which you want to put the annotation, please notice the number at the end specifying the parameter on which the annotation will be applied (starting at 0).
 <br/>
 Inside the <code>item</code> element, you find the <code>annotation</code> element specifying the fully qualified class name of the annotation to apply. In the case of an annotation with parameters (like <code>@PropertyKey</code>), you can set these parameters using the <code>val</code> element, <code>name</code> xml attribute refers to the attribute's name and <code>val</code> xml attribute to the attribute's value.<br/>
-You might need to restart IntelliJ for the new values to be read.<!--:--><!--:fr-->
+You might need to restart IntelliJ for the new values to be read.</p><!--:--><!--:fr
 <h2>Annotations d'IntelliJ</h2>
 Expliquons rapidement comment utiliser ces annotations et le problème que j'ai rencontré avec la dernière d'entre elle.<br/>
 <ul>
@@ -147,4 +149,4 @@ En analysant le fichier <code>annotations.xml</code> généré pour l'annotation
 Si vous regardez de plus près cet exemple, vous allez rapidement comprendre comment les choses fonctionnent. Premièrement l'élement <code>item</code> spécifie la méthode où vous voulez placer l'annotation, veuillez remarquer le nombre à la fin qui précise le paramètre sur lequel l'annotation prendra place (démarrant à 0). 
 <br/>
 Dans l'élément <code>item</code>, vous trouvez l'élément <code>annotation</code> précisant le nom complet de l'annotation à appliquer. Dans le cas d'une annotation avec des paramètres (comme <code>@PropertyKey</code>), vous pouvez définir ces paramètres en utilisant l'élément <code>val</code>, l'attribut XML <code>name</code> référence le nom de l'attribut et l'élément XML <code>val</code> référence la valeur de l'attribut.<br/>
-Il peut être nécessaire de redémarrer IntelliJ pour que les nouvelles valeurs soient prises en compte.<!--:-->
+Il peut être nécessaire de redémarrer IntelliJ pour que les nouvelles valeurs soient prises en compte.<-->

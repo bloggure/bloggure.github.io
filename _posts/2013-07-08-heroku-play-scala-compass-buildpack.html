@@ -34,12 +34,14 @@ meta:
   _wpas_skip_2479654: '1'
   dsq_thread_id: '1477637446'
 ---
-<!--:en--><img class="size-thumbnail wp-image-758 alignright" alt="MBP Keyboard" src="http://www.bloggure.info/wp-content/uploads/2012/12/IMG_20121222_000541-150x150.jpg" width="150" height="150" />I am actually working on a little side project with my friend <a href="http://www.bloggure.info/author/tdebarochez">Thomas Debarochez</a>. We are using <a href="http://www.playframework.com/">Play!Framework</a> and <a href="http://compass-style.org/">Compass</a> and we deploy it to <a href="https://www.heroku.com/">Heroku</a>.
+<!--:en--><img class="size-thumbnail wp-image-758 alignright" alt="MBP Keyboard" src="http://www.bloggure.info/wp-content/uploads/2012/12/IMG_20121222_000541-150x150.jpg" width="150" height="150" /><p>I am actually working on a little side project with my friend <a href="http://www.bloggure.info/author/tdebarochez">Thomas Debarochez</a>. We are using <a href="http://www.playframework.com/">Play!Framework</a> and <a href="http://compass-style.org/">Compass</a> and we deploy it to <a href="https://www.heroku.com/">Heroku</a>.</p>
 
-One issue that came when we first deployed the application with Compass to Heroku was that the default scala buildpack does not include sass and compass binaries.
+<p>One issue that came when we first deployed the application with Compass to Heroku was that the default scala buildpack does not include sass and compass binaries.</p>
 
-Following <a href="https://groups.google.com/forum/#!topic/play-framework/fzGj5RqW-l8">this post</a> on the Play!Framework mailing list, I forked and patched the <a href="https://github.com/heroku/heroku-buildpack-scala">buildpack</a> to install sass and compass on the environment.
+<p>Following <a href="https://groups.google.com/forum/#!topic/play-framework/fzGj5RqW-l8">this post</a> on the Play!Framework mailing list, I forked and patched the <a href="https://github.com/heroku/heroku-buildpack-scala">buildpack</a> to install sass and compass on the environment.</p>
 
-You can find it here and use it with the following command :
-<pre class="brush:bash">heroku config:set BUILDPACK_URL=https://github.com/CedricGatay/heroku-buildpack-scala</pre>
-I hope someone will find this useful !<!--:-->
+<p>You can find it here and use it with the following command :
+{% highlight bash %}
+heroku config:set BUILDPACK_URL=https://github.com/CedricGatay/heroku-buildpack-scala
+{% endhighlight %}
+<p>I hope someone will find this useful !</p><!--:-->

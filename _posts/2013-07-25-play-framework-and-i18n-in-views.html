@@ -34,18 +34,20 @@ meta:
 ---
 <!--:en--><img class="alignright size-full wp-image-916" alt="playlogo" src="http://www.bloggure.info/wp-content/uploads/2013/07/playlogo.png" width="150" height="50" />
 
+<p>I was having a strange issue with localization in a Play Framework application. I followed the <a href="http://www.playframework.com/documentation/2.0/ScalaI18N">simple steps</a> detailed on the official documentation but with no luck.</p>
+
+<p>When experimenting, I figured out that the locale used is the default locale of the JVM. In my case, my default locale is French so I only had French in my application. But on Heroku, the default locale is English and thus the application was only working in English.</p>
+
+<p>The trick consists in adding an implicit lang to your template views. In fact, Scala import an implicit lang with the lowest priority being the one coming from the JVM, if you want to get the language parsed from the Accept-Languages http header, you need to add an implicit as below :</p>
+{% highlight scala %}
+@(title: String)(content: Html)(implicit lang: Lang)
+{% endhighlight %}
+<p>With this little trick, your calls to localization will use the locale extracted from the http request as expected.</p><!--:--><!--:fr<img class="alignright size-full wp-image-916" alt="playlogo" src="http://www.bloggure.info/wp-content/uploads/2013/07/playlogo.png" width="150" height="50" />
+
 I was having a strange issue with localization in a Play Framework application. I followed the <a href="http://www.playframework.com/documentation/2.0/ScalaI18N">simple steps</a> detailed on the official documentation but with no luck.
 
 When experimenting, I figured out that the locale used is the default locale of the JVM. In my case, my default locale is French so I only had French in my application. But on Heroku, the default locale is English and thus the application was only working in English.
 
 The trick consists in adding an implicit lang to your template views. In fact, Scala import an implicit lang with the lowest priority being the one coming from the JVM, if you want to get the language parsed from the Accept-Languages http header, you need to add an implicit as below :
 <pre class="brush: scala">@(title: String)(content: Html)(implicit lang: Lang)</pre>
-With this little trick, your calls to localization will use the locale extracted from the http request as expected.<!--:--><!--:fr--><img class="alignright size-full wp-image-916" alt="playlogo" src="http://www.bloggure.info/wp-content/uploads/2013/07/playlogo.png" width="150" height="50" />
-
-I was having a strange issue with localization in a Play Framework application. I followed the <a href="http://www.playframework.com/documentation/2.0/ScalaI18N">simple steps</a> detailed on the official documentation but with no luck.
-
-When experimenting, I figured out that the locale used is the default locale of the JVM. In my case, my default locale is French so I only had French in my application. But on Heroku, the default locale is English and thus the application was only working in English.
-
-The trick consists in adding an implicit lang to your template views. In fact, Scala import an implicit lang with the lowest priority being the one coming from the JVM, if you want to get the language parsed from the Accept-Languages http header, you need to add an implicit as below :
-<pre class="brush: scala">@(title: String)(content: Html)(implicit lang: Lang)</pre>
-With this little trick, your calls to localization will use the locale extracted from the http request as expected.<!--:-->
+With this little trick, your calls to localization will use the locale extracted from the http request as expected.<-->

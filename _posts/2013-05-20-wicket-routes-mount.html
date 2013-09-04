@@ -33,29 +33,32 @@ meta:
 ---
 <!--:en--><img class="alignright size-thumbnail wp-image-90" alt="Wicket" src="http://www.bloggure.info/wp-content/uploads/2010/10/logo-wicket1-150x150.png" width="150" height="150" />
 
-At <a href="http://code-troopers.com">Code-Troopers</a>, we like to work with the frameworks we love. One of them is <a href="http://wicket.apache.org">Apache Wicket</a>, and it happens to some of us doing some <a href="http://www.playframework.com/">Play! Framework</a> or <a href="http://rubyonrails.org/">Ruby on Rails</a> (either for a client project, a side project or giving back OSS love).
+<p>At <a href="http://code-troopers.com">Code-Troopers</a>, we like to work with the frameworks we love. One of them is <a href="http://wicket.apache.org">Apache Wicket</a>, and it happens to some of us doing some <a href="http://www.playframework.com/">Play! Framework</a> or <a href="http://rubyonrails.org/">Ruby on Rails</a> (either for a client project, a side project or giving back OSS love).</p>
 
-One thing really great is this two frameworks is the central route system, one file allows to group all the routes handled by your application. Wicket does not provide such way of grouping routes, you can manually mount routes into your application or annotate your page classes.
+<p>One thing really great is this two frameworks is the central route system, one file allows to group all the routes handled by your application. Wicket does not provide such way of grouping routes, you can manually mount routes into your application or annotate your page classes.</p>
 <h2>Wicket routes mount library</h2>
-<a href="https://github.com/code-troopers/wicket-routes-mount">This small library project available on Github</a> allows to group mounts into a central file. To use it, simply add its dependency to your <code>pom.xml</code> (artifact is available on Maven central):
-<pre class="&quot;brush:xml">&lt;dependency&gt;
-    &lt;groupId&gt;com.code-troopers&lt;/groupId&gt;
-    &lt;artifactId&gt;wicket-route-mount&lt;/artifactId&gt;
-    &lt;version&gt;0.1&lt;/version&gt;
-&lt;/dependency&gt;</pre>
+<p><a href="https://github.com/code-troopers/wicket-routes-mount">This small library project available on Github</a> allows to group mounts into a central file. To use it, simply add its dependency to your <code>pom.xml</code> (artifact is available on Maven central):</p>
+{% highlight xml %}
+<dependency>
+    <groupId>com.code-troopers</groupId>
+    <artifactId>wicket-route-mount</artifactId>
+    <version>0.1</version>
+</dependency>
+{% endhighlight %}
 <em>
 This dependency will transitively gets <code>wicket-auth-roles</code> (if there is a special need for a version without this dependency, it could be done easily).
 </em>
 <h2>Usage</h2>
-To use it, simply create a <code>routes.conf</code> file at the root of the sources in your project (typically <code>src/main/resources/</code>) respecting the following format :
+<p>To use it, simply create a <code>routes.conf</code> file at the root of the sources in your project (typically <code>src/main/resources/</code>) respecting the following format :</p>
 <pre># mountPoint        class                           roles
 /home               codetroopers.HomePage           
 /secured            codetroopers.SecuredPage        USER
 /user/${mode}/#{id} codetroopers.UserPage           ADMIN,USER</pre>
-The files content is the following :
+<p>The files content is the following :
 <ul>
 	<li>Mount path : using standard Wicket syntax (<code>${requiredParam}</code> and <code>#{optionalParam}</code> are available)</li>
 	<li>Page class : fully qualified name of the page class to mount</li>
 	<li>Roles (optional) : comma separated list of roles required to access the page</li>
 </ul>
+</p>
 <em>IntelliJ IDEA can do completion for class names in this file (you just need to hit the <code>ctrl+space</code> shortcut twice)</em><!--:-->

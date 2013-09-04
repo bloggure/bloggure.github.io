@@ -36,27 +36,27 @@ meta:
   dsq_thread_id: '1679903873'
   dsq_needs_sync: '1'
 ---
-<!--:en--><img class="alignright size-medium wp-image-74" alt="Maven" src="http://www.bloggure.info/wp-content/uploads/2010/11/Maven_logo1-300x76.gif" width="300" height="76" />At <a href="http://www.srmvision.com">SRMvision</a>, we develop with localization in mind. We don't have any user visible text that is not in fact tied to a java property file. Quickly, the problem that we faced was the difficulty to keep every language file in sync (and to tidy things up). We developed a small Maven plugin allowing us to ensure that our two main problems are now gone : <a href="https://github.com/code-troopers/merge-properties-maven-plugin">merge-properties-maven-plugin</a>.
+<!--:en--><img class="alignright size-medium wp-image-74" alt="Maven" src="http://www.bloggure.info/wp-content/uploads/2010/11/Maven_logo1-300x76.gif" width="300" height="76" /><p>At <a href="http://www.srmvision.com">SRMvision</a>, we develop with localization in mind. We don't have any user visible text that is not in fact tied to a java property file. Quickly, the problem that we faced was the difficulty to keep every language file in sync (and to tidy things up). We developed a small Maven plugin allowing us to ensure that our two main problems are now gone : <a href="https://github.com/code-troopers/merge-properties-maven-plugin">merge-properties-maven-plugin</a>.</p>
 <h2>Quick example</h2>
-I think the easiest way to understand how it works is to explain it with a real use case. Let's say we have a module named <em>Zones</em> in our application, it will lead to create four files (if we are localized in two different languages) :
+<p>I think the easiest way to understand how it works is to explain it with a real use case. Let's say we have a module named <em>Zones</em> in our application, it will lead to create four files (if we are localized in two different languages) :</p>
 <ul>
-	<li><span style="line-height: 15px;">l10n/Zones_en.properties</span></li>
+	<li>l10n/Zones_en.properties</li>
 	<li>l10n/Zones_fr.properties</li>
 	<li>help/Zones_en.properties</li>
 	<li>help/Zones_fr.properties</li>
 </ul>
-As you might have guessed, we have got two different categories of target files, one for the application's localization, and the other one for the application's help. There is only one rule when it comes to filling these files, the property keys must begin with the name of the file, otherwise the build would fail. In this example, every key must begin with the prefix "<tt>Zones.".</tt>
+<p>As you might have guessed, we have got two different categories of target files, one for the application's localization, and the other one for the application's help. There is only one rule when it comes to filling these files, the property keys must begin with the name of the file, otherwise the build would fail. In this example, every key must begin with the prefix "<tt>Zones.".</tt></p>
 
-At the end, we want to get two resource bundles, so we set up the build to do so :
+<p>At the end, we want to get two resource bundles, so we set up the build to do so :</p>
 
 {% gist 6397201 pom.xml %}
 
-By reading this configuration section you can view almost every single option available in the plugin. You can exclude files from automatic key checking : in the example the files Global_*.properties will not be checked. It allows us to group commonly used keys without needing them to begin with the correct prefix (it also eases migration for legacy code, breaking the build would be too intrusive).
+<p>By reading this configuration section you can view almost every single option available in the plugin. You can exclude files from automatic key checking : in the example the files Global_*.properties will not be checked. It allows us to group commonly used keys without needing them to begin with the correct prefix (it also eases migration for legacy code, breaking the build would be too intrusive).</p>
 
-You can also notice that we use a Maven property to enable the fail on count mismatch functionality of the plugin, with the help of Maven profiles, we can set it to false for development and to true for continuous integration and translation team. When this configuration is used you will get an output like the following in your Maven build :
+<p>You can also notice that we use a Maven property to enable the fail on count mismatch functionality of the plugin, with the help of Maven profiles, we can set it to false for development and to true for continuous integration and translation team. When this configuration is used you will get an output like the following in your Maven build :</p>
 
 {% gist 6397201 maven.log %}
 
-If the build should check consistency in merged files and if it does not match, it will output blank keys as well as lonely keys in order for your translator to fix it easily.
+<p>If the build should check consistency in merged files and if it does not match, it will output blank keys as well as lonely keys in order for your translator to fix it easily.</p>
 <h2>Bonus feature</h2>
-We use Java's MessageFormat to format our translated string, one of the thing we tend to forget is to escape the single quotes in our translations. The plugin does this magic for us, it automatically adds the missing single quotes in every messages.<!--:-->
+<p>We use Java's MessageFormat to format our translated string, one of the thing we tend to forget is to escape the single quotes in our translations. The plugin does this magic for us, it automatically adds the missing single quotes in every messages.</p><!--:-->

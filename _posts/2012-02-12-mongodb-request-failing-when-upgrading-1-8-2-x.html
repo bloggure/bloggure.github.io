@@ -16,16 +16,16 @@ meta:
   _edit_last: '1'
   dsq_thread_id: '668927182'
 ---
-<!--:en-->At work we faced a strange issue with mongoDB 2.x. Whereas our requests were working perfectly with mongoDB 1.8 we always got errors. The message mongoDB was firing at us was of the form : 
+<!--:en--><p>At work we faced a strange issue with mongoDB 2.x. Whereas our requests were working perfectly with mongoDB 1.8 we always got errors. The message mongoDB was firing at us was of the form : </p>
 
-<pre class="brush: java">
+{% highlight java %}
 Caused by: com.mongodb.MongoException: assertion db/../bson/bsonobjbuilder.h:127
        at com.mongodb.MongoException.parse(MongoException.java:82)
-</pre>
+{% endhighlight %}
 <img src="http://www.bloggure.info/wp-content/uploads/2012/02/mongo.png" alt="" title="mongoDB leaf" width="128" height="128" class="alignright size-full wp-image-507" />
-I found the following issue in <a href="https://jira.mongodb.org/browse/SERVER-3846">mongoDB's Jira</a> but apparently nothing to do with our requests (we are not using empty properties indexes), it takes me a lot of time to figure out that, at times, our request were sorted on empty properties (<a href="https://jira.mongodb.org/browse/SERVER-3874">as stated here</a>). The fix is really simple, <strong>do not sort on empty properties</strong> !
+<p>I found the following issue in <a href="https://jira.mongodb.org/browse/SERVER-3846">mongoDB's Jira</a> but apparently nothing to do with our requests (we are not using empty properties indexes), it takes me a lot of time to figure out that, at times, our request were sorted on empty properties (<a href="https://jira.mongodb.org/browse/SERVER-3874">as stated here</a>). The fix is really simple, <strong>do not sort on empty properties</strong> !</p>
 
-As it takes me times to find this and I did not find any blog post explaining this, I hope it will help another developer.<!--:--><!--:fr-->Nous avons rencontré un problème assez étrange avec mongoDB 2.x. Alors que nos requêtes existantes marchaient sans aucun soucis avec mongoDB 1.8. mongoDB répondait invariablement avec l'erreur suivante :
+<p>As it takes me times to find this and I did not find any blog post explaining this, I hope it will help another developer.</p><!--:--><!--:frNous avons rencontré un problème assez étrange avec mongoDB 2.x. Alors que nos requêtes existantes marchaient sans aucun soucis avec mongoDB 1.8. mongoDB répondait invariablement avec l'erreur suivante :
 
 <pre class="brush: java">
 Caused by: com.mongodb.MongoException: assertion db/../bson/bsonobjbuilder.h:127
@@ -35,4 +35,4 @@ Caused by: com.mongodb.MongoException: assertion db/../bson/bsonobjbuilder.h:127
 J'ai bien sur trouvé le bug suivant sur <a href="https://jira.mongodb.org/browse/SERVER-3846">le Jira du projet mongoDB</a> mais apparement rien à voir avec nos requêtes (nous n'avons pas d'index sur des propriétés vides). Cela m'a pris pas mal de temps avant de comprendre que, parfois, nos requêtes étaient parfois triées sur des propriétés vides (<a href="https://jira.mongodb.org/browse/SERVER-3874">comme précisé ici</a>).
 Le correctif est vraiment simple, <strong>ne triez pas sur des propriétés vides</strong> !
 
-Puisque j'ai mis pas mal de temps à comprendre ce qui se passait et que je n'ai trouvé aucun billet relatif, j'espère que ça aidera un autre développeur.<!--:-->
+Puisque j'ai mis pas mal de temps à comprendre ce qui se passait et que je n'ai trouvé aucun billet relatif, j'espère que ça aidera un autre développeur.<-->

@@ -23,7 +23,7 @@ meta:
 <img src="http://www.bloggure.info/wp-content/uploads/2013/01/html-icon.png" alt="html-icon" width="128" height="128" class="alignright size-full wp-image-844" /><a href="http://wicket.apache.org">Apache Wicket</a> is a great web framework, its clear separation between logic and markup allows to focus on what's need to be done. <br/> 
 As we use Wicket at <a href="https://www.srmvision.com">SRMvision</a>, we needed to send mails with rather rich templates to our users. The first implementation we used was relying on Wicket to generate these templates using Html. We finally don't use it (our mailing tasks are done by a background job, thus we don't have access to our webapp), but I though the code used in our fast proof of concept could help someone else.
 </p>
-<pre class="brush: java">
+{% highlight java %}
 import org.apache.wicket.markup.MarkupType;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
@@ -90,7 +90,7 @@ public class HtmlTemplaterPanel extends Panel {
         return MarkupType.HTML_MARKUP_TYPE;
     }
 }
-</pre>
+{% endhighlight %}
 <p>
 If you want to generate a template using Apache Wicket, you only need to create a Panel and its associated markup which inherits this simple class. Then, when you want to get the Html for your component, call <code>getHtml()</code>.<br/>
 The only drawback of this is that you need a RequestCycle to generate the markup (you'll find out why reading the code).

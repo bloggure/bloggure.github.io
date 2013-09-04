@@ -22,7 +22,7 @@ Groovy is a great tool to do this, and its out of the box Sql handling is really
 
 
 <p>While we can do it easily, it can become a mess rapidly when there is a lot of columns to handle. With this little snippet, you can leverage Groovy's maps to get a solid insertIntoTable</p>
-<pre class="brush: groovy">
+{% highlight groovy %}
 static def insertIntoTable(String tableName, 
                            Map paramMap, 
                            final Sql sql) {
@@ -33,14 +33,14 @@ static def insertIntoTable(String tableName,
                     (${paramMap.keySet().collect { key -> ":" + key }.join(',')})
         """, paramMap)
 }
-</pre>
+{% endhighlight %}
 
 <p>To use it, one can simply call it this way (with the sql object correctly bound to a connection)</p>
-<pre class="brush: groovy">
+{% highlight groovy %}
 def paramMap = [ 
     id : 1, 
     myFirstColumn : "My first value", 
     mySecondColumn : "Second" 
 ]
 insertIntoTable("MyTable", paramMap, sql)
-</pre>
+{% endhighlight %}
