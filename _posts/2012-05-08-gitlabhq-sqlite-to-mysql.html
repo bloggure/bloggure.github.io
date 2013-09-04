@@ -16,19 +16,26 @@ meta:
   _yoast_wpseo_linkdex: '0'
 ---
 <!--:en--><img src="http://www.bloggure.info/wp-content/uploads/2012/02/gitlabhq-logo.png" alt="" title="gitlabhq-logo" width="175" height="60" class="alignright size-full wp-image-528" /><p>As our <a href="http://gitlabhq.com/">GitlabHQ</a> setup at <a href="http://www.srmvision.com">SRMvision</a> is mean to stay, we wanted to migrate from the standard SQLite database to an easier to manage for us : mySQL.<br /> The steps are quite straighforward, first, setup mySQL :</p>
-<pre class="brush: sql">
+
+{% highlight sql %}
 create database gitlab; 
 grant all privileges on gitlab.* to "gitlab" identified by "gitlab"; 
-flush privileges;</pre>
+flush privileges;
+{% endhighlight %}
 Then prepare to dump the data out of GitlabHQ, stop your webserver, then, from your GitlabHQ folder : 
-<pre class="brush: bash">bundle exec rake db:data:dump RAILS_ENV=production</pre>
+
+{% highlight bash %}
+bundle exec rake db:data:dump RAILS_ENV=production
+{% endhighlight %}
 this will create a db/data.yml file. All you have to do now is reconfigure GitlabHQ to connect to mySQL and reimport the data. The database configuration takes place in the config/database.yml file, backup your existing file and rename the database.yml.example :
-<pre class="brush: bash">
+
+{% highlight bash %}
 mv config/database.yml config/database.yml.old
 cp config/database.yml.example config/database.yml
-</pre>
+{% endhighlight %}
 Then edit the file to reflect your new configuration, only the production section is relevant in our case :
-<pre class="brush: bash" highlight="27,28,30,31,32" title="database.yml">
+
+{% highlight yaml %}
 development:
   adapter: mysql2
   encoding: utf8
@@ -61,13 +68,15 @@ production:
   username: gitlab # to replace with your credentials
   password: "gitlab" # to replace with your credentials
   socket: /var/run/mysqld/mysqld.sock # mysql socket location on debian
-</pre>
+{% endhighlight %}
 Once this is done, you have to create the schema and restore your data :
-<pre class="brush: bash">
+
+{% highlight bash %}
 bundle exec rake db:setup RAILS_ENV=production
 bundle exec rake db:data:load RAILS_ENV=production
-</pre>
-Job's done, you just need to restart the GitlabHQ server now (nginx, apache...). If you encounter a problem and this does not work as expected, you just have to restore the database.yml.old file to go back to SQLite.<!--:--><!--:fr--><img src="http://www.bloggure.info/wp-content/uploads/2012/02/gitlabhq-logo.png" alt="" title="gitlabhq-logo" width="175" height="60" class="alignright size-full wp-image-528" /><p>Comme notre installation de <a href="http://gitlabhq.com/">GitlabHQ</a> à <a href="http://www.srmvision.com">SRMvision</a> est faite pour rester, nous avons décidé de migrer de la base SQLite vers un système plus simple à gérer pour nous : mySQL.<br /> Les étapes sont assez simple, premièrement, configurons mySQL :</p>
+{% endhighlight %}
+
+Job's done, you just need to restart the GitlabHQ server now (nginx, apache...). If you encounter a problem and this does not work as expected, you just have to restore the database.yml.old file to go back to SQLite.<!--:--><!--:fr<img src="http://www.bloggure.info/wp-content/uploads/2012/02/gitlabhq-logo.png" alt="" title="gitlabhq-logo" width="175" height="60" class="alignright size-full wp-image-528" /><p>Comme notre installation de <a href="http://gitlabhq.com/">GitlabHQ</a> à <a href="http://www.srmvision.com">SRMvision</a> est faite pour rester, nous avons décidé de migrer de la base SQLite vers un système plus simple à gérer pour nous : mySQL.<br /> Les étapes sont assez simple, premièrement, configurons mySQL :</p>
 <pre class="brush: sql">
 create database gitlab; 
 grant all privileges on gitlab.* to "gitlab" identified by "gitlab"; 
@@ -81,7 +90,7 @@ mv config/database.yml config/database.yml.old
 cp config/database.yml.example config/database.yml
 </pre>
 Il ne vous reste qu'à éditer le fichier pour refléter votre configuration, seule la partie production du fichier est utile dans notre cas :
-<pre class="brush: bash" highlight="27,28,30,31,32" title="database.yml">
+<pre class="brush: bash" ighlight="27,28,30,31,32" title="database.yml">
 development:
   adapter: mysql2
   encoding: utf8
@@ -120,4 +129,4 @@ Une fois ceci fait, il vous reste à créer le schéma et à importer vos donné
 bundle exec rake db:setup RAILS_ENV=production
 bundle exec rake db:data:load RAILS_ENV=production
 </pre>
-C'est tout, il ne reste plus qu'à redémarrer le serveur de GitlabHQ. Si toutefois ça ne fonctionnait pas, vous n'avez qu'à restaurer le fichier database.yml.old pour retourner à la configuration par défaut utilisant SQLite.<!--:-->
+C'est tout, il ne reste plus qu'à redémarrer le serveur de GitlabHQ. Si toutefois ça ne fonctionnait pas, vous n'avez qu'à restaurer le fichier database.yml.old pour retourner à la configuration par défaut utilisant SQLite.<-->

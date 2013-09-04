@@ -19,13 +19,13 @@ meta:
 ---
 <!--:en--><h2>Migrating to Git</h2>
 <img src="http://www.bloggure.info/wp-content/uploads/2011/12/GitLogo.jpg" alt="" title="GitLogo" width="97" height="202" class="alignright size-full wp-image-491" />
-At work, we made the move from subversion to git as our version control tool. I used git for a few times before we migrate the whole project thanks to the git-svn bridge, and, apart from the usual headache when it comes to merging branches, I was rather convinced we would make the migration to git. To explain what branching model I was expecting to use, I dig the Internet for a good tool, hoping to migrate our so "1.0" Trac version control and issue management to a more github like one.
+<p>At work, we made the move from subversion to git as our version control tool. I used git for a few times before we migrate the whole project thanks to the git-svn bridge, and, apart from the usual headache when it comes to merging branches, I was rather convinced we would make the migration to git. To explain what branching model I was expecting to use, I dig the Internet for a good tool, hoping to migrate our so "1.0" Trac version control and issue management to a more github like one.</p>
 
 <h2>Founds</h2>
-There is not as much tools as I first thought, I found <a href="https://gitorious.org/gitorious">gitorious</a>, which seems to be a good tool, but it looks complicated to setup and lacks (or I didn't find it) a good graphical representation of the branches in the repository. 
+<p>There is not as much tools as I first thought, I found <a href="https://gitorious.org/gitorious">gitorious</a>, which seems to be a good tool, but it looks complicated to setup and lacks (or I didn't find it) a good graphical representation of the branches in the repository. <br/>
 
-I came across <a href="http://gitlabhq.com/">gitlabhq</a>, which is a starting project, but promising as it aims to mimic github in many ways. I've tried it and I must say I am very impressed, it is now one of the tool we use internally, it is not yet a perfect tool but it does its jobs very well. We still use our old Trac environment with git integration to hunt down our bugs and control ticket workflow with commit messages (blog post to come). We also use Trac's wiki to write our internal documentation toward developpers.
-<!--:--><!--:fr--><h2>Migration vers Git</h2>
+I came across <a href="http://gitlabhq.com/">gitlabhq</a>, which is a starting project, but promising as it aims to mimic github in many ways. I've tried it and I must say I am very impressed, it is now one of the tool we use internally, it is not yet a perfect tool but it does its jobs very well. We still use our old Trac environment with git integration to hunt down our bugs and control ticket workflow with commit messages (blog post to come). We also use Trac's wiki to write our internal documentation toward developpers.</p>
+<!--:--><!--:fr<h2>Migration vers Git</h2>
 <img src="http://www.bloggure.info/wp-content/uploads/2011/12/GitLogo.jpg" alt="" title="GitLogo" width="97" height="202" class="alignright size-full wp-image-491" />
 Au travail, nous avons pris la décision de passer de Subversion à Git comme outil de gestion de sources. J'ai utilisé git quelques mois avant de migrer l'intégralité du projet pour tout le monde grace à l'outil git-svn. Et, mis à part les problèmes habituels de merge entre branches svn, j'étais plutôt enthousiaste concernant la migration vers git. L'idée était de disposer d'un outil plus puissant pour pouvoir séparer plus efficacement les développements en utilisant des branches. Pour expliquer quelle technique j'avais envie de mettre en place pour gérer nos branches de développement, j'ai cherché l'outil qu'il nous fallait, tout en espérant pouvoir migrer notre outil de gestion d'incident actuel (Trac) vers un se rapprochant plus de github.
 
@@ -34,11 +34,11 @@ Il n'y a pas tant d'outils que je le pensais au préalable. J'ai trouvé <a href
 
 Je suis tombé sur <a href="http://gitlabhq.com/">GitLabHQ</a>, qui est un projet naissant, mais prometteur puisque l'objectif est de fournir une alternative similaire à github. Je l'ai essayé et je dois dire que je suis réellement très impressionné, à tel point que c'est maintenant un des outils que nous utilisons en complèment de Trac.
 Nous utilisons toujours Trac pour gérer nos tickets de bugs et pour contrôler leur workflow à l'aide de messages de commit (il y aura un post ici à ce sujet dans quelques temps). Nous utilisons aussi le wiki de Trac pour la documentation développeur (nous n'avons pas encore pris le temps de la migrer vers GitLabHQ, ce qui arrivera certainement).
-<!--:--><!--more--><!--:en-->
+<--><!--more--><!--:en-->
 <h2>GitLabHQ</h2>
 <h3>Repository management</h3>
 <img src="http://www.bloggure.info/wp-content/uploads/2012/02/gitlabhq-logo.png" alt="" title="gitlabhq-logo" width="175" height="60" class="alignright size-full wp-image-528" />
-Our SVN setup was hooked to our internal LDAP for central authentication across our servers (with pam-ldap), making the move to git made this part rubbish because everything is now handled by ssh key exchange. If you've played a bit with gitosis or gitolite, you have probably seen it's not as straightforward as it seems granting a new user access to a repository. You have to clone the special administrative repository and copy public keys, edit configuration file and push this back to the server. This is a  simple but potentially time-consuming  operation. GitLabHQ provides a GUI allowing to add projects, users, keys.
+<p>Our SVN setup was hooked to our internal LDAP for central authentication across our servers (with pam-ldap), making the move to git made this part rubbish because everything is now handled by ssh key exchange. If you've played a bit with gitosis or gitolite, you have probably seen it's not as straightforward as it seems granting a new user access to a repository. You have to clone the special administrative repository and copy public keys, edit configuration file and push this back to the server. This is a  simple but potentially time-consuming  operation. GitLabHQ provides a GUI allowing to add projects, users, keys.</p>
 
 <h3>User management</h3>
 It handles granting permissions in the underlying gitolite server by using the keys the user configure. The workflow of adding a new user is simple, you go to the administrative interface of gitlab, select the "add user" link, fill in basic informations for that user (login/password/mail) and the user, until he sets up its key, has a nag message on the top inviting him to add a key. There is only a simple form to fill with the key "nickname" and the key itself and it is done. If a user changes computer or got multiple ones, he can easily add another key to its profile, there is no need to ask the git administrator to add it.
@@ -62,15 +62,15 @@ Sometimes GitLabHQ does not seems to work, it gives a 500 error, if it happens, 
 
 <h3>Upgrading GitLabHQ</h3>
 GitLabHQ's team wants to release every month, to upgrade, simply follow these steps : 
-<pre class='brush: shell'>
+{% highlight bash %}
 #stop your server
 git pull origin stable
 bundle install --without development test
 bundle exec rake db:migrate RAILS_ENV=production
 #start your server
-</pre>
-This should make the move to the new version, please check version notice if there is some special steps to take.<br/>
-You might want to create a local branch containing your configuration (config/gitlab.yml), and to upgrade, simply rebase your local config branch against the tag corresponding to the release (please notice that with 2.2 release, this is not necessary anymore)
+{% endhighlight %}
+<p>This should make the move to the new version, please check version notice if there is some special steps to take.<br/>
+You might want to create a local branch containing your configuration (config/gitlab.yml), and to upgrade, simply rebase your local config branch against the tag corresponding to the release (please notice that with 2.2 release, this is not necessary anymore)</p>
 
 
 <h2>Migrating from Subversion to git</h2>
@@ -79,7 +79,7 @@ Once your svn repository is imported as a git one, you can push it to GitLabHQ. 
 
 
 <h2>Branching model</h2>
-We migrate to git hoping to find and setup a good and easy branching model. I think we now have something really nice :
+<p>We migrate to git hoping to find and setup a good and easy branching model. I think we now have something really nice :</p>
 <ul>
 <li>master : branch we merge our feature branches into, the next release branch, the one being actively tested,</li>
 <li>stable : branch corresponding to the production code, from which we branch when bugfixing,</li>
@@ -88,11 +88,11 @@ We migrate to git hoping to find and setup a good and easy branching model. I th
 <li>refactor/$refactor_topic : short lived branch, coming from master, merged to master</li>
 </ul>
 <h3>Merging changes</h3>
-Once a feature / fix / refactor is considered complete and stable by the developer(s), we use the <strong>merge request</strong> feature of GitLabHQ to trigger a manual code review, and once it satisfies our quality standard we merge it into the destination branch.
+<p>Once a feature / fix / refactor is considered complete and stable by the developer(s), we use the <strong>merge request</strong> feature of GitLabHQ to trigger a manual code review, and once it satisfies our quality standard we merge it into the destination branch.</p>
 
 <h2>Results</h2>
-In the end, you got something like this :
-<img src="http://www.bloggure.info/wp-content/uploads/2012/02/gitlabhq-branches.png" alt="" title="gitlabhq-branches" width="838" height="540" class="aligncenter size-full wp-image-524" /><!--:--><!--:fr-->
+<p>In the end, you got something like this :</p>
+<img src="http://www.bloggure.info/wp-content/uploads/2012/02/gitlabhq-branches.png" alt="" title="gitlabhq-branches" width="838" height="540" class="aligncenter size-full wp-image-524" /><!--:--><!--:fr>
 <h2>GitLabHQ</h2>
 <h3>Gestion de dépôts</h3>
 <img src="http://www.bloggure.info/wp-content/uploads/2012/02/gitlabhq-logo.png" alt="" title="gitlabhq-logo" width="175" height="60" class="alignright size-full wp-image-528" />
@@ -157,4 +157,4 @@ Une fois qu'une fonctionnalité, un correctif ou un refactor est considéré ter
 
 <h2>Résultats</h2>
 Au final, nous obtenons quelque chose comme ceci  :
-<img src="http://www.bloggure.info/wp-content/uploads/2012/02/gitlabhq-branches.png" alt="" title="gitlabhq-branches" width="838" height="540" class="aligncenter size-full wp-image-524" /><!--:-->
+<img src="http://www.bloggure.info/wp-content/uploads/2012/02/gitlabhq-branches.png" alt="" title="gitlabhq-branches" width="838" height="540" class="aligncenter size-full wp-image-524" /><-->

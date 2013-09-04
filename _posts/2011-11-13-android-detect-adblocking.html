@@ -16,23 +16,23 @@ meta:
 ---
 <!--:en--><a href="http://www.bloggure.info/wp-content/uploads/2011/11/home-bugdroid.png"><img src="http://www.bloggure.info/wp-content/uploads/2011/11/home-bugdroid.png" alt="" title="Bugdroid" width="150" height="174" class="alignright size-full wp-image-464" /></a>
 <p>Developing for Android is really fun, as you have probably noticed if you want to have a wide user base you will have to give your application for free on the Android Market. From there, you have different way to monetize your application, you can limit features and unlock them in a payed version, display ads in free version and provide a way to disable ads (in-app purchase for example). In this article I will explain how to detect ad blocking in your applications.</p>
-<!--:--><!--:fr--><a href="http://www.bloggure.info/wp-content/uploads/2011/11/home-bugdroid.png"><img src="http://www.bloggure.info/wp-content/uploads/2011/11/home-bugdroid.png" alt="" title="Bugdroid" width="150" height="174" class="alignright size-full wp-image-464" /></a>
+<!--:--><!--:fr<a href="http://www.bloggure.info/wp-content/uploads/2011/11/home-bugdroid.png"><img src="http://www.bloggure.info/wp-content/uploads/2011/11/home-bugdroid.png" alt="" title="Bugdroid" width="150" height="174" class="alignright size-full wp-image-464" /></a>
 <p>Développer pour Android est vraiment amusant, mais si vous voulez que votre application touche un grand nombre d'utilisateurs vous devrez la rendre gratuite. Parti de ce constat, il existe quelques solutions pour monnayer votre application, vous pouvez débloquer quelques fonctionnalités dans une version payante, afficher des publicités dans la version gratuite et permettre de les débloquer via une version complète (avec un achat intégré à l'application par exemple). Dans cet article, je vais expliquer comment détecter le blocage des publicités par votre application.</p>
-<!--:--><!--more--><!--:en-->
+<--><!--more--><!--:en-->
 
 <h2>Ad blocking ?</h2>
 <p>The way you try to monetize app will not be well accepted by everyone. Often, people use an Ad-Blocker (the same we know in web browsers) and will use the application for free as if they bought your ad free version. A rapid search on the Android market will point you to free application allowing to block ads on rooted devices.</p>
 
 <p>The system is quite simple, it consists in blocking ads by preventing DNS resolution process to work properly. Ads are loaded from a certain website on the internet. The system does a DNS query to resolve the IP adress of the remote site, the DNS resolution process can be accelerated by setting entries in the hosts file (<code>/etc/hosts</code> under *nix and so Android). If the system found a corresponding entry in the file, it does not waste time in querying DNS servers and use the specified address.</p>
-<pre class="brush: shell">
+{% highlight bash %}
 127.0.0.1 localhost
 127.0.0.1 my.ad.server.tld
-</pre>
+{% endhighlight %}
 <p>You can find an example above, <code>my.ad.server.tld</code> is blocked by making the system think the IP is the one corresponding to the device.</p>
 
 <h2>Workaround</h2>
 <p>I will explain by a few code snippets how to detect ad blocking using the AdMob SDK. The first thing to do is not bound to the use of AdMob, we will simply read and detect if your ad provider server is in the hosts file.</p>
-<pre class="brush: java">
+{% highlight java %}
 public static boolean isAdBlockerPresent(boolean showAd) {
         if (showAd){
            BufferedReader in = null;
@@ -58,11 +58,11 @@ public static boolean isAdBlockerPresent(boolean showAd) {
         }
         return false;
     }
-</pre>
+{% endhighlight %}
 <p>The code is pretty straightforward, the method takes a boolean parameter allowing to bypass checking, and checks if the keyword "admob" is present in the hosts file. The good thing is that it does not require any specific permission to read the hosts file where you have to request root to write to it.</p>
 
 <p>To be efficient, you may want to check if ad blocking is enabled only when there is an error in ad download. The Admob SDK provides a convenient way to know when the download fail by implementing a listener. You can find a simple implementation below, you will only have to implements the behavior you want to adopt when ad blocking is detected (<code>onAdBlocked()</code>) and the logic to bypass adblocker checking (<code>shouldCheckAdBlock()</code>)</p>.
-<pre class="brush: java">
+{% highlight java %}
 import com.google.ads.AdListener;
 public abstract class AdBlockerListener implements AdListener{
 
@@ -95,9 +95,9 @@ public abstract class AdBlockerListener implements AdListener{
     public void onLeaveApplication(final Ad ad) {
     }
 }
-</pre>
+{% endhighlight %}
 <p>In your activity displaying ads, you just have to register the listener in your <code>AdView</code> and you're gone. The code sample below shows how to do, feel free to nag your users and pointing them to the in-app purchase or force them to quit (do it every n-ad blocking).</p>
-<pre class="brush: java">
+{% highlight java %}
     void initView(){
         adView = (AdView) findViewById(R.id.adView);
         adView.setAdListener(new AdBlockerListener(){
@@ -111,8 +111,8 @@ public abstract class AdBlockerListener implements AdListener{
 
         });
     }
-</pre>
-<p>That's all, you now have a simple way of detecting users using your applications without ads.</p><!--:--><!--:fr-->
+{% endhighlight %}
+<p>That's all, you now have a simple way of detecting users using your applications without ads.</p><!--:--><!--:fr
 
 <h2>Blocage des publicités ?</h2>
 <p>La façon dont vous allez essayer de monnayer votre application ne sera pas bien acceptée par tous vos utilisateurs. Souvent, les utilisateurs utilisent un bloqueur de publicité (de la même nature que ceux présents dans les navigateurs web) et utiliseront donc l'application comme s'ils avaient acheté la version sans publicité. Une recherche rapide sur l'Android market vous permettra de trouver de telles applications (la seule contrainte est d'avoir un système "rooté").</p>
@@ -207,4 +207,4 @@ L'exemple suivant montre comment le faire, n'hésitez pas à alerter vos utilisa
         });
     }
 </pre>
-<p>C'est fini, vous avez maintenant un moyen simple de détecter et de réagir aux utilisateurs utilisant un bloqueur de publicité.</p><!--:-->
+<p>C'est fini, vous avez maintenant un moyen simple de détecter et de réagir aux utilisateurs utilisant un bloqueur de publicité.</p><-->

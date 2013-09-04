@@ -17,14 +17,15 @@ meta:
 ---
 <!--:en--><p>One thing annoying in Lion is the popup appearing when you long press a key (similar to the one present in iOS showing special characters).<br/>
 I found a way to disable this by issuing a simple Terminal command : </p>
-<pre class="brush:shell">
+{% highlight bash %}
 defaults write -g ApplePressAndHoldEnabled -bool false
-</pre>
+{% endhighlight %}
 <p>Replace false with true in this command if you want to bring it back, you might need to exit and relaunch an app for the parameter to take effect.<br />
 If you want to discover more parameters, don't hesitate to dig into built-in properties, that's the way I found this tip (the -g flag tells to lookup in the <em>globaldomain</em>)</p>
-<pre class="brush:shell">
+{% highlight bash %}
 defaults read [-g]
-</pre><!--:--><!--:fr--><p>Une chose que je trouve ennuyeuse sous Lion est la popup qui apparaît lorsqu'on effectue une pression longue sur une touche du clavier (similaire à la version présentée sur iOS présentant les caractères spéciaux).<br/>
+{% endhighlight %}
+<!--:--><!--:fr<p>Une chose que je trouve ennuyeuse sous Lion est la popup qui apparaît lorsqu'on effectue une pression longue sur une touche du clavier (similaire à la version présentée sur iOS présentant les caractères spéciaux).<br/>
 J'ai trouvé une astuce qui permet de désactiver simplement cette fonctionnalité avec une simple commande dans le terminal : </p>
 <pre class="brush:shell">
 defaults write -g ApplePressAndHoldEnabled -bool false
@@ -33,4 +34,4 @@ defaults write -g ApplePressAndHoldEnabled -bool false
 Si vous voulez découvrir plus de paramètres, n'hésitez pas à fouiller dans les propriétés prédéfinies, c'est de cette façon que je suis tombé sur cette astuce (le -g permet de rechercher dans les paramètres globaux).</p>
 <pre class="brush:shell">
 defaults read [-g]
-</pre><!--:-->
+</pre>:-->

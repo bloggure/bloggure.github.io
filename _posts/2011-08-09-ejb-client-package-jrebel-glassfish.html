@@ -20,19 +20,19 @@ meta:
 ---
 <!--:en--><a href="http://www.bloggure.info/java-work/ejb-client-package-jrebel-glassfish.html/attachment/logo_jrebel" rel="attachment wp-att-340"><img src="http://www.bloggure.info/wp-content/uploads/2011/08/logo_jrebel.png" alt="" title="JRebel" width="146" height="40" class="alignright size-full wp-image-340" /></a>
 <h2>JRebel ?</h2>
-I use <a href="http://www.zeroturnaround.com/jrebel/" title="JRebel">JRebel</a> to speed up my development. It is a really impressive tool allowing to develop full blended Java EE application as you would develop in PHP. No redeploy, at the cost of a little slow-down in development mode. The tool does what it says, and it's worth the price ! The JRebel plugin for maven does the job very well by generating the <code>rebel.xml</code> file that does the magic.
+<p>I use <a href="http://www.zeroturnaround.com/jrebel/" title="JRebel">JRebel</a> to speed up my development. It is a really impressive tool allowing to develop full blended Java EE application as you would develop in PHP. No redeploy, at the cost of a little slow-down in development mode. The tool does what it says, and it's worth the price ! The JRebel plugin for maven does the job very well by generating the <code>rebel.xml</code> file that does the magic.</p>
 
 <h2>What's the deal ?</h2>
-Although JRebel is an awesome tool, there is some magic within, and, in special corner cases it might not work as expected. In my case I have a quite typical web application split in multiple parts:
+<p>Although JRebel is an awesome tool, there is some magic within, and, in special corner cases it might not work as expected. In my case I have a quite typical web application split in multiple parts:
 <ul>
    <li>a web application (war)</li>
    <li>an ejb module (jar)</li>
    <li>other modules not involved in my problem</li>
 </ul>
-The web application includes, in its <code>WEB-INF/lib</code> folder, the <em>ejb-client</em> artifact of my ejb module. To make it clear, <em>ejb-client</em> artifact is typically the jar containing the interfaces to be used by the client module(s).
+The web application includes, in its <code>WEB-INF/lib</code> folder, the <em>ejb-client</em> artifact of my ejb module. To make it clear, <em>ejb-client</em> artifact is typically the jar containing the interfaces to be used by the client module(s).</p>
 
-The problem I had was that JRebel magic was reloading too much things : in fact, it reloaded classes even if they were not in the <em>ejb-client</em>. My application container (Glassfish 3.x) was not very keen on this thing. I opened <a href="http://www.zeroturnaround.com/forum/topic.php?id=1315" title="JRebel + Glassfish 3.1 + ejb-client + Wicket">a thread on ZeroTurnAround's forum</a> and the answer I got is that I have to find a way to ignore files in my <em>ejb-client</em> module. By digging in <em>maven-ejb-plugin</em>, I didn't find anything to rename a file in the <em>ejb-client</em> module, and I didn't find a parameter to pass to JRebel to specify which filenames can contain its configuration.
-<!--:--><!--:fr--><a href="http://www.bloggure.info/java-work/ejb-client-package-jrebel-glassfish.html/attachment/logo_jrebel" rel="attachment wp-att-340"><img src="http://www.bloggure.info/wp-content/uploads/2011/08/logo_jrebel.png" alt="" title="JRebel" width="146" height="40" class="alignright size-full wp-image-340" /></a>
+<p>The problem I had was that JRebel magic was reloading too much things : in fact, it reloaded classes even if they were not in the <em>ejb-client</em>. My application container (Glassfish 3.x) was not very keen on this thing. I opened <a href="http://www.zeroturnaround.com/forum/topic.php?id=1315" title="JRebel + Glassfish 3.1 + ejb-client + Wicket">a thread on ZeroTurnAround's forum</a> and the answer I got is that I have to find a way to ignore files in my <em>ejb-client</em> module. By digging in <em>maven-ejb-plugin</em>, I didn't find anything to rename a file in the <em>ejb-client</em> module, and I didn't find a parameter to pass to JRebel to specify which filenames can contain its configuration.</p>
+<!--:--><!--:fr<a href="http://www.bloggure.info/java-work/ejb-client-package-jrebel-glassfish.html/attachment/logo_jrebel" rel="attachment wp-att-340"><img src="http://www.bloggure.info/wp-content/uploads/2011/08/logo_jrebel.png" alt="" title="JRebel" width="146" height="40" class="alignright size-full wp-image-340" /></a>
 <h2>JRebel ?</h2>
 J'utilise <a href="http://www.zeroturnaround.com/jrebel/" title="JRebel">JRebel</a> pour accélerer mon cycle de développement. C'est un outil impressionnant qui permet de développer une application Java EE comme du PHP. Pas de redéploiement, tout ça au prix d'une petite perte de performances en mode développement. L'outil fait ce qu'il promet, et vaut réellement son prix ! Le plugin JRebel pour maven fait exactement ce qu'on attend de lui en générant automatiquement le fichier <code>rebel.xml</code> qui s'occupe de la magie.
 
@@ -48,11 +48,11 @@ La web application inclut, dans son dossier <code>WEB-INF/lib</code>, l'artifact
 Le problème que j'ai eu était que la magie de JRebel entraînait le rechargemenet de trop de classes. En fait, JRebel rechargeait des classes qui n'étaient même pas dans mon artifact <em>ejb-client</em>. Mon container d'application (Glassfish 3.x) n'aimait pas trop ce comportement. J'ai donc ouvert <a href="http://www.zeroturnaround.com/forum/topic.php?id=1315" title="JRebel + Glassfish 3.1 + ejb-client + Wicket">un sujet sur le forum de ZeroTurnAround</a> où j'ai eu une réponse me disant de trouver un moyen d'exclure les fichiers que je ne voulais pas voir rechargés dans mon module <em>ejb-client</em>.
 
 J'ai donc fouiné dans <em>maven-ejb-plugin</em>, mais je n'ai rien trouvé permettant de renommer un fichier dans l'artifact <em>ejb-client</em>. Je n'ai pas non plus trouvé de paramètre spécifique à passer à JRebel pour lui spécifier quels noms de fichier il doit monitorer pour trouver sa configuration.
-<!--:--><!--more--><!--:en-->
+--><!--more--><!--:en-->
 <h2>The solution</h2>
-I patched the <em>maven-ejb-plugin</em> to fulfill my needs. It is done in a very simple and probably not optimal way. The trick is to create a file named <code>client.rebel.xml</code> containing the JRebel configuration to be used by the <em>ejb-client</em> module. At compile time, when building the <em>ejb-client</em> artifact, Maven will automatically replace the auto-generated <code>rebel.xml</code> by the <code>client.rebel.xml</code>.
-The piece of code corresponding to the patch is the following:
-<pre class="brush: java">
+<p>I patched the <em>maven-ejb-plugin</em> to fulfill my needs. It is done in a very simple and probably not optimal way. The trick is to create a file named <code>client.rebel.xml</code> containing the JRebel configuration to be used by the <em>ejb-client</em> module. At compile time, when building the <em>ejb-client</em> artifact, Maven will automatically replace the auto-generated <code>rebel.xml</code> by the <code>client.rebel.xml</code>.</p>
+<p>The piece of code corresponding to the patch is the following:</p>
+{% highlight java %}
 File file = new File(outputDirectory, "client.rebel.xml");
 if (file.exists()){
    getLog().info("Found a client.rebel.xml, renaming it to rebel.xml and put it into destination ejb-client archive");
@@ -62,13 +62,13 @@ if (file.exists()){
    list.add("**/rebel.xml");
    excludes = (String[]) list.toArray(EMPTY_STRING_ARRAY);
 }
-</pre>
-This is the only modification done to the original <em>maven-ejb-plugin</em> (aside the modified version number in <code>pom.xml</code> to clearly identify my fork) so it will surely be easy to port to the another version.<br/>
+{% endhighlight %}
+<p>This is the only modification done to the original <em>maven-ejb-plugin</em> (aside the modified version number in <code>pom.xml</code> to clearly identify my fork) so it will surely be easy to port to the another version.</p>
 
 <h2>How to use ?</h2>
-I imported my little fork of <a href="https://github.com/CedricGatay/maven-ejb-plugin-jrebel" title="maven-ejb-plugin-jrebel">maven-ejb-plugin on my github account</a>. You can freely use it, fork it, improve it if you need to. If I find the time I could make it better by providing a much more flexible system (<code>client.rebel.xml</code> to <code>rebel.xml</code> hard coded hurts me while reading this code...).
-To use this, if you need to, you simply need to clone the sources, build this project and set the <em>maven-ejb-plugin</em> version to your pom like the following :
-<pre class="brush:xml">
+<p>I imported my little fork of <a href="https://github.com/CedricGatay/maven-ejb-plugin-jrebel" title="maven-ejb-plugin-jrebel">maven-ejb-plugin on my github account</a>. You can freely use it, fork it, improve it if you need to. If I find the time I could make it better by providing a much more flexible system (<code>client.rebel.xml</code> to <code>rebel.xml</code> hard coded hurts me while reading this code...).</p>
+<p>To use this, if you need to, you simply need to clone the sources, build this project and set the <em>maven-ejb-plugin</em> version to your pom like the following :</p>
+{% highlight xml %}
 <build>
  <plugins>
    <plugin>
@@ -78,10 +78,10 @@ To use this, if you need to, you simply need to clone the sources, build this pr
   </plugin>
  </plugins>
 </build>
-</pre>
-If it works, you will see in your build log a line telling "<code>Found a client.rebel.xml, renaming it to rebel.xml and put it into destination ejb-client archive</code>". If everything goes well, the problem disappears and the next step is to deploy the artifact to your company hosted maven repository to let your entire team use this.
+{% endhighlight %}
+<p>If it works, you will see in your build log a line telling "<code>Found a client.rebel.xml, renaming it to rebel.xml and put it into destination ejb-client archive</code>". If everything goes well, the problem disappears and the next step is to deploy the artifact to your company hosted maven repository to let your entire team use this.</p>
 
-Hope it'll help... <!--:--><!--:fr-->
+<p>Hope it'll help...</p> <!--:--><!--:fr
 <h2>La solution</h2>
 J'ai patché <em>maven-ejb-plugin</em> pour correspondre à mon besoin. C'est fait de façon très simple et certainement pas la plus optimale. L'astuce est de créer un fichier nommé <code>client.rebel.xml</code> contenant la configuration de  JRebel correspondant au module <em>ejb-client</em>. À la compilation, lors du build de la partie <em>ejb-client</em>, maven va automatiquement remplacer le <code>rebel.xml</code> autogénéré par le <code>client.rebel.xml</code>.
 La partie de code correspondant au patch est la suivante :
@@ -114,4 +114,4 @@ Pour l'utiliser, il est juste nécessaire de cloner les sources, de le compiler 
 </pre>
 Si tout fonctionne correctement, vous devriez voir dans vos logs de compilation une ligne disant "<code>Found a client.rebel.xml, renaming it to rebel.xml and put it into destination ejb-client archive</code>". Si tout se passe bien, le problème aura disparu et vous n'aurez plus qu'à déployer l'artifact sur votre repository maven d'entreprise pour que toute votre équipe puisse se débarasser de cet ennuyeux soucis.
 
-En espérant en aider certains...<!--:-->
+En espérant en aider certains...-->
