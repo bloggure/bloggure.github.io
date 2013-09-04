@@ -31,7 +31,7 @@ mv config/database.yml config/database.yml.old
 cp config/database.yml.example config/database.yml
 {% endhighlight %}
 Then edit the file to reflect your new configuration, only the production section is relevant in our case :
-{% highlight bash %}
+{% highlight yaml %}
 development:
   adapter: mysql2
   encoding: utf8
@@ -84,7 +84,7 @@ mv config/database.yml config/database.yml.old
 cp config/database.yml.example config/database.yml
 </pre>
 Il ne vous reste qu'à éditer le fichier pour refléter votre configuration, seule la partie production du fichier est utile dans notre cas :
-<pre class="brush: bash" highlight="27,28,30,31,32" title="database.yml">
+<pre class="brush: bash" ighlight="27,28,30,31,32" title="database.yml">
 development:
   adapter: mysql2
   encoding: utf8
