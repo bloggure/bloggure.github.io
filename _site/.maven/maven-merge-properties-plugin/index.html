@@ -1,0 +1,193 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>Merge properties maven plugin &#8211; Site Title</title>
+<meta name="description" content="Describe your website here.">
+<meta name="keywords" content="maven, merge, properties">
+
+
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Merge properties maven plugin">
+<meta property="og:description" content="Describe your website here.">
+<meta property="og:url" content="/.maven/maven-merge-properties-plugin">
+<meta property="og:site_name" content="Site Title">
+
+
+
+
+
+<link rel="canonical" href="/.maven/maven-merge-properties-plugin">
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Site Title Feed">
+
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.min.css">
+<!-- Webfonts -->
+<link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- Load Modernizr -->
+<script src="/assets/js/vendor/modernizr-2.6.2.custom.min.js"></script>
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/apple-touch-icon-144x144-precomposed.png">
+
+</head>
+
+<body id="post"  itemscope itemtype="http://schema.org/WebPage">
+
+<!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
+<nav id="dl-menu" class="dl-menuwrapper" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
+	<button class="dl-trigger">Open Menu</button>
+	<ul class="dl-menu">
+		<li><a href="">Home</a></li>
+		<li>
+			<a href="#">About</a>
+			<ul class="dl-submenu">
+				<li>
+					<img src="/images/avatar.jpg" alt="Your Name photo" class="author-photo">
+					<h4>Your Name</h4>
+					<p>Your bio goes here. It shouldn't be super long but a good two sentences or two should suffice.</p>
+				</li>
+				<li><a href="/about/">Learn More</a></li>
+				<li>
+					<a href="mailto:you@email.com"><i class="icon-envelope"></i> Email</a>
+				</li>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+			</ul><!-- /.dl-submenu -->
+		</li>
+		<li>
+			<a href="#">Posts</a>
+			<ul class="dl-submenu">
+				<li><a href="/archive/">All Posts</a></li>
+				<li><a href="/tags/">All Tags</a></li>
+			</ul>
+		</li>
+		<li><a href="/theme-setup">Theme Setup</a></li><li><a href="http://mademistakes.com">External Link</a></li>
+	</ul><!-- /.dl-menu -->
+</nav><!-- /.dl-menuwrapper -->
+
+
+
+
+<div id="main" role="main" itemprop="mainContentOfPage" itemscope itemtype="http://schema.org/Blog">
+  <article class="hentry" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+    <header class="header-title">
+      <div class="header-title-wrap">
+        
+          <h1 class="entry-title" itemprop="name"><a href="/.maven/maven-merge-properties-plugin" rel="bookmark" title="Merge properties maven plugin" itemprop="url">Merge properties maven plugin</a></h1>
+        
+        <h2>August 31, 2013</h2>
+      </div><!-- /.header-title-wrap -->
+    </header>
+    <div class="entry-content" itemprop="description">
+      <!--:en--><img class="alignright size-medium wp-image-74" alt="Maven" src="http://www.bloggure.info/wp-content/uploads/2010/11/Maven_logo1-300x76.gif" width="300" height="76" />At <a href="http://www.srmvision.com">SRMvision</a>, we develop with localization in mind. We don't have any user visible text that is not in fact tied to a java property file. Quickly, the problem that we faced was the difficulty to keep every language file in sync (and to tidy things up). We developed a small Maven plugin allowing us to ensure that our two main problems are now gone : <a href="https://github.com/code-troopers/merge-properties-maven-plugin">merge-properties-maven-plugin</a>.
+<h2>Quick example</h2>
+I think the easiest way to understand how it works is to explain it with a real use case. Let's say we have a module named <em>Zones</em> in our application, it will lead to create four files (if we are localized in two different languages) :
+<ul>
+	<li><span style="line-height: 15px;">l10n/Zones_en.properties</span></li>
+	<li>l10n/Zones_fr.properties</li>
+	<li>help/Zones_en.properties</li>
+	<li>help/Zones_fr.properties</li>
+</ul>
+As you might have guessed, we have got two different categories of target files, one for the application's localization, and the other one for the application's help. There is only one rule when it comes to filling these files, the property keys must begin with the name of the file, otherwise the build would fail. In this example, every key must begin with the prefix "<tt>Zones.".</tt>
+
+At the end, we want to get two resource bundles, so we set up the build to do so :
+
+<script src="https://gist.github.com/6397201.js?file=pom.xml"> </script>
+
+By reading this configuration section you can view almost every single option available in the plugin. You can exclude files from automatic key checking : in the example the files Global_*.properties will not be checked. It allows us to group commonly used keys without needing them to begin with the correct prefix (it also eases migration for legacy code, breaking the build would be too intrusive).
+
+You can also notice that we use a Maven property to enable the fail on count mismatch functionality of the plugin, with the help of Maven profiles, we can set it to false for development and to true for continuous integration and translation team. When this configuration is used you will get an output like the following in your Maven build :
+
+<script src="https://gist.github.com/6397201.js?file=maven.log"> </script>
+
+If the build should check consistency in merged files and if it does not match, it will output blank keys as well as lonely keys in order for your translator to fix it easily.
+<h2>Bonus feature</h2>
+We use Java's MessageFormat to format our translated string, one of the thing we tend to forget is to escape the single quotes in our translations. The plugin does this magic for us, it automatically adds the missing single quotes in every messages.<!--:-->
+
+      <footer class="entry-meta">
+        <span class="entry-tags"><a href="/tags/index.html#maven" title="Pages tagged maven" rel="tag" class="tag">maven</a><a href="/tags/index.html#merge" title="Pages tagged merge" rel="tag" class="tag">merge</a><a href="/tags/index.html#properties" title="Pages tagged properties" rel="tag" class="tag">properties</a></span>
+        <span><a href="/.maven/maven-merge-properties-plugin" rel="bookmark" title="Merge properties maven plugin" itemprop="url">Merge properties maven plugin</a></span>
+        was published on <span class="entry-date date published updated"><time datetime="2013-08-31T00:00:00-04:00" itemprop="datePublished">August 31, 2013</span></time>
+        
+        <span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name" class="fn"><a href="/about" title="About Your Name" itemprop="url">Your Name</a></span></span>
+        
+      </footer>
+    </div><!-- /.entry-content -->
+    
+    
+    <div class="read-more">
+      
+        <div class="read-more-header">
+          <a href="/blog/sample-post" class="read-more-btn">Read More</a>
+        </div><!-- /.read-more-header -->
+        <div class="read-more-content">
+          <h3><a href="/.wicket/wicket-1-4-9-tinymce" title="Wicket 1.4.x - TinyMCE">Wicket 1.4.x - TinyMCE</a></h3>
+          <p>At SRMvision, we develop with localization in mind. We don't have any user visible text that is not in fact tied to a java property file....&hellip; <a href="/.wicket/wicket-1-4-9-tinymce">Continue reading</a></p>
+        </div><!-- /.read-more-content -->
+      
+      <div class="read-more-list">
+        
+          <div class="list-item">
+            <h4><a href="/.android/android-switcher-widget" title="Android Switcher Widget">Android Switcher Widget</a></h4>
+            <span>Published on October 29, 2010</span>
+          </div><!-- /.list-item -->
+        
+          <div class="list-item">
+            <h4><a href="/.java/.maven/work/getting-source-revision-for-a-deployed-app-using-maven-and-a-servlet" title="Getting source revision for a deployed app using Maven and a Servlet">Getting source revision for a deployed app using Maven and a Servlet</a></h4>
+            <span>Published on November 01, 2010</span>
+          </div><!-- /.list-item -->
+        
+      </div><!-- /.read-more-list -->
+      
+    </div><!-- /.read-more -->
+  </article>
+</div><!-- /#main -->
+
+<div class="footer-wrapper">
+  <footer role="contentinfo">
+    <span>&copy; 2013 Your Name. Powered by <a href="http://jekyllrb.com">Jekyll</a> using the <a href="http://mademistakes.com/">HPSTR Theme</a>.</span>
+  </footer>
+</div><!-- /.footer-wrapper -->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="/assets/js/scripts.min.js"></script>
+
+	        
+
+</body>
+</html>

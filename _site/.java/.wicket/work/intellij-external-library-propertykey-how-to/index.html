@@ -1,0 +1,297 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>IntelliJ + External Library + @PropertyKey How To &#8211; Site Title</title>
+<meta name="description" content="Describe your website here.">
+<meta name="keywords" content="i18n, idea, intellij, java, tip, wicket">
+
+
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IntelliJ + External Library + @PropertyKey How To">
+<meta property="og:description" content="Describe your website here.">
+<meta property="og:url" content="/.java/.wicket/work/intellij-external-library-propertykey-how-to">
+<meta property="og:site_name" content="Site Title">
+
+
+
+
+
+<link rel="canonical" href="/.java/.wicket/work/intellij-external-library-propertykey-how-to">
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Site Title Feed">
+
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.min.css">
+<!-- Webfonts -->
+<link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- Load Modernizr -->
+<script src="/assets/js/vendor/modernizr-2.6.2.custom.min.js"></script>
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/apple-touch-icon-144x144-precomposed.png">
+
+</head>
+
+<body id="post"  itemscope itemtype="http://schema.org/WebPage">
+
+<!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
+<nav id="dl-menu" class="dl-menuwrapper" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
+	<button class="dl-trigger">Open Menu</button>
+	<ul class="dl-menu">
+		<li><a href="">Home</a></li>
+		<li>
+			<a href="#">About</a>
+			<ul class="dl-submenu">
+				<li>
+					<img src="/images/avatar.jpg" alt="Your Name photo" class="author-photo">
+					<h4>Your Name</h4>
+					<p>Your bio goes here. It shouldn't be super long but a good two sentences or two should suffice.</p>
+				</li>
+				<li><a href="/about/">Learn More</a></li>
+				<li>
+					<a href="mailto:you@email.com"><i class="icon-envelope"></i> Email</a>
+				</li>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+			</ul><!-- /.dl-submenu -->
+		</li>
+		<li>
+			<a href="#">Posts</a>
+			<ul class="dl-submenu">
+				<li><a href="/archive/">All Posts</a></li>
+				<li><a href="/tags/">All Tags</a></li>
+			</ul>
+		</li>
+		<li><a href="/theme-setup">Theme Setup</a></li><li><a href="http://mademistakes.com">External Link</a></li>
+	</ul><!-- /.dl-menu -->
+</nav><!-- /.dl-menuwrapper -->
+
+
+
+
+<div id="main" role="main" itemprop="mainContentOfPage" itemscope itemtype="http://schema.org/Blog">
+  <article class="hentry" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+    <header class="header-title">
+      <div class="header-title-wrap">
+        
+          <h1 class="entry-title" itemprop="name"><a href="/.java/.wicket/work/intellij-external-library-propertykey-how-to" rel="bookmark" title="IntelliJ + External Library + @PropertyKey How To" itemprop="url">IntelliJ + External Library + @PropertyKey How To</a></h1>
+        
+        <h2>August 21, 2011</h2>
+      </div><!-- /.header-title-wrap -->
+    </header>
+    <div class="entry-content" itemprop="description">
+      <!--:en--><a href="http://www.bloggure.info/work/intellij-external-library-propertykey-how-to.html/attachment/idea_icon" rel="attachment wp-att-365"><img src="http://www.bloggure.info/wp-content/uploads/2011/08/idea_icon.png" alt="" title="IntelliJ IDEA Icon" width="64" height="64" class="alignright size-full wp-image-365" /></a>I am a daily user of <a href="http://www.jetbrains.com/idea/">IntelliJ IDEA</a> to edit my Java code and <a href="http://wicket.apache.org">Apache Wicket</a> to write my web application. I decided recently to use IntelliJ's annotations to make my code a little more robust by using <code>@Nullable</code>, <code>@NotNull</code>, <code>@NonNls</code> and <code>@PropertyKey</code>.<br/>In this blog post I explain how to manually add annotation to an external library. 
+<!--:--><!--:fr--><a href="http://www.bloggure.info/work/intellij-external-library-propertykey-how-to.html/attachment/idea_icon" rel="attachment wp-att-365"><img src="http://www.bloggure.info/wp-content/uploads/2011/08/idea_icon.png" alt="" title="IntelliJ IDEA Icon" width="64" height="64" class="alignright size-full wp-image-365" /></a>J'utilise quotidiennement <a href="http://www.jetbrains.com/idea/">IntelliJ IDEA</a> pour développer en  Java et <a href="http://wicket.apache.org">Apache Wicket</a> pour écrire mes applications web. J'ai récemment entrepris d'utiliser les annotations d'IntelliJ pour rendre mon code un peu plus robuste grace à <code>@Nullable</code>, <code>@NotNull</code>, <code>@NonNls</code> and <code>@PropertyKey</code>.<br/>Dans ce billet, j'explique comment ajouter manuellement ces annotations à une librairies externe au projet.
+<!--:--><!--more--><!--:en-->
+<h2>IntelliJ annotations</h2>
+Let's explain quickly how you can use these annotations and the problem I faced with the latter.<br/>
+<ul>
+	<li><code>@Nullable</code> : tells the editor that the field, parameter, return type may be <code>null</code>. This way, IDEA will highlight you if you forget to check nullity.</li>
+	<li><code>@NotNull</code> : tells the editor that the field, parameter, return type will never be <code>null</code>. This way, IDEA will highlight you if you do unnecessary null checking. It even can throw <code>RuntimeException</code> if a method is invoked with a <code>null</code> parameter although it shouldn't. The exception tells exactly what parameter of what method, it can help a lot debbugging a <code>NullPointerException</code> coming out from nowhere !</li>
+	<li><code>@NonNls</code> : tells the editor that the string you entered is not involved in internationalization of any kind so it will not bother you with duplicate string literals.</li>
+	<li><code>@PropertyKey(resourceBundle)</code> : tells the editor that the following string have to be present in a specific resource bundle. This way, IDEA is able to notice you missing translations in your application.</li>
+</ul>
+<h2>How to use it...</h2>
+The first thing to do to use it is simply to annotate your source code like this:
+<pre class="brush: java">
+@NotNull
+public String doSomething(@NotNull Object myObject,
+                   @PropertyKey(resourceBundle="fr.gatay.cedric.bloggure.language") 
+                   String propertyKey, 
+                   @Nullable String argument){
+	 @NonNls String s =  "Return Value";
+     return s;
+}
+</pre>
+This method is completely useless, but it can ease explaining how annotations work. By looking at the prototype we can now see that the method never returns <code>null</code> value, doesn't accept a first parameter with a <code>null</code> value, takes its second parameter from the "<code>fr.gatay.cedric.bloggure.language</code>" resource bundle and accepts a potentially <code>null</code> third parameter.<br/>
+Last but not least, if we look at the implementation, we see that we tell IDEA not to verify the "Return Value" string against i18n rules.
+<h2>How to use it, in libraries...</h2>
+If in your project, you want to use this feature in included libraries you might be glad the guys at Jetbrains included a feature called "External annotations". It allows you to specify a location where to save these annotations.<br/>
+Here is a quick example on how to add <code>@NotNull</code> on <code>org.apache.wicket.extensions.Initializer</code> :
+First, invoke intention action, and select the annotation you want to put
+<a href="http://www.bloggure.info/wp-content/uploads/2011/08/annotate.png"><img src="http://www.bloggure.info/wp-content/uploads/2011/08/annotate.png" alt="" title="IDEA annotate" width="527" height="79" class="aligncenter size-full wp-image-362" /></a>
+Then, configure external annotation root, I tend to use a folder named annotation at the root of my workspace.
+<a href="http://www.bloggure.info/work/intellij-external-library-propertykey-how-to.html/attachment/externalroot" rel="attachment wp-att-363"><img src="http://www.bloggure.info/wp-content/uploads/2011/08/externalroot.png" alt="" title="IDEA external root selection" width="723" height="342" class="aligncenter size-full wp-image-363" /></a>
+That's all, if you look at the folder you specified, you will have the following structure:
+<a href="http://www.bloggure.info/work/intellij-external-library-propertykey-how-to.html/attachment/folder" rel="attachment wp-att-364"><img src="http://www.bloggure.info/wp-content/uploads/2011/08/folder.png" alt="" title="Annotations.xml folder" width="582" height="117" class="aligncenter size-full wp-image-364" /></a>
+In the folder corresponding to the package of the class you wanted to annotate you will find an <code>annotations.xml</code> file like the following:
+<pre class="brush: xml">
+<root>
+    <item name='org.apache.wicket.extensions.Initializer void init(org.apache.wicket.Application) 0'>
+        <annotation name='org.jetbrains.annotations.NotNull'>
+        </annotation>
+    </item>
+</root>
+</pre>
+The problem is that it is not easily possible to add <code>@PropertyKey</code> or <code>@NotNls</code> annotation in external libraries.
+<h2>How to manually add an annotation</h2>
+In my case, I wanted to add <code>@PropertyKey</code> on Apache Wicket feedback messages methods. My Wicket Application have a converter for string that handles internationalization, so I want to add <code>@PropertyKey(resourceBundle="fr.gatay.cedric.bloggure.language")</code> to the String parameter of <code>org.apache.wicket.Component</code> info and error methods.<br/>
+By digging into the generated <code>annotations.xml</code> file for <code>@NotNull</code> annotation, I found out how to manually add my annotation. In my case, I end up with an <code>annotations.xml</code> file like this in the folder <code>${annotationsRoot}/org/apache/wicket/</code> :
+<pre class="brush: xml">
+<root>
+ <item name="org.apache.wicket.Component void error(java.io.Serializable) 0">
+	 <annotation name="org.jetbrains.annotations.PropertyKey">
+	 	<val name="resourceBundle" val="fr.gatay.cedric.bloggure.language"/>
+	 </annotation>
+ </item>
+ <item name="org.apache.wicket.Component void info(java.lang.String) 0">
+	 <annotation name="org.jetbrains.annotations.PropertyKey">
+ 		<val name="resourceBundle" val="fr.gatay.cedric.bloggure.language"/>
+	 </annotation>
+ </item>
+</root>
+</pre>
+If you look closely at this sample, you will quickly understand how things work. First, the <code>item</code> element specify the method on which you want to put the annotation, please notice the number at the end specifying the parameter on which the annotation will be applied (starting at 0). 
+<br/>
+Inside the <code>item</code> element, you find the <code>annotation</code> element specifying the fully qualified class name of the annotation to apply. In the case of an annotation with parameters (like <code>@PropertyKey</code>), you can set these parameters using the <code>val</code> element, <code>name</code> xml attribute refers to the attribute's name and <code>val</code> xml attribute to the attribute's value.<br/>
+You might need to restart IntelliJ for the new values to be read.<!--:--><!--:fr-->
+<h2>Annotations d'IntelliJ</h2>
+Expliquons rapidement comment utiliser ces annotations et le problème que j'ai rencontré avec la dernière d'entre elle.<br/>
+<ul>
+	<li><code>@Nullable</code> : permet de dire à l'éditeur que l'attribut, le paramètre ou le type de retour peut être <code>null</code>. De cette façon,  IDEA va signaler tout oubli de vérification de la nullité.</li>
+	<li><code>@NotNull</code> : permet de dire à l'éditeur que l'attribut, le paramètre ou le type de retour ne peut pas être <code>null</code>. De cette façon, IDEA va vous avertir si vous faites une vérification de nullité inutile. Il va même lever une <code>RuntimeException</code> si une méthode est appelée avec un argument <code>null</code> alors qu'il ne devrait pas. Cette exception donne exactement le paramètre et la méthode impliqué et peut bien aider à débugguer une <code>NullPointerException</code> sortant de nulle part !</li>
+	<li><code>@NonNls</code> : permet de dire à l'éditeur que la chaine de caractères que vous avez saisi n'entre pas dans le processus d'internationalisation.</li>
+	<li><code>@PropertyKey(resourceBundle)</code> : permet de dire à l'éditeur que la chaine de caractères correspond à une clef dans un fichier de langue. De cette façon, IDEA est capable de vous notifier qu'il manque des traductions dans votre fichiers de langue.</li>
+</ul>
+<h2>Comment l'utiliser...</h2>
+La première et seule chose à faire est d'annoter votre code comme dans l'exemple suivant :
+<pre class="brush: java">
+@NotNull
+public String doSomething(@NotNull Object myObject,
+                   @PropertyKey(resourceBundle="fr.gatay.cedric.bloggure.language") 
+                   String propertyKey, 
+                   @Nullable String argument){
+	 @NonNls String s =  "Return Value";
+     return s;
+}
+</pre>
+Cette méthode ne sert à rien, mais elle permet simplement d'expliquer comment les annotations fonctionnent. En regardant le prototype nous pouvons simplement voir que la méthode ne retourne jamais de valeur <code>null</code>, n'accepte aucun premier paramètre avec une valeur <code>null</code>, prend un second paramètre provenant du fichier de langue "<code>fr.gatay.cedric.bloggure.language</code>" et accepte un troisième argument potentiellement <code>null</code>.<br/>
+Regardons l'implémentation, nous disons à IDEA de ne pas vérifier la chaîne "Return Value" avec les règles concernant l'internationalisation.
+<h2>Comment l'utiliser, dans des dépendances...</h2>
+Si dans votre projet, vous voulez utiliser cette fonctionnalité dans les dépendances, vous serez content d'apprendre que les mecs de Jetbrains ont prévu une fonction appelée "External annotations". Celle ci vous permet de définir un emplacement où ces annotations seront sauvegardées.<br/>
+Voici un rapide exemple pour ajouter <code>@NotNull</code> sur <code>org.apache.wicket.extensions.Initializer</code> :
+Premièrement, afficher le menu des intentions, et sélectionnez l'annotation que vous désirez ajouter 
+<a href="http://www.bloggure.info/wp-content/uploads/2011/08/annotate.png"><img src="http://www.bloggure.info/wp-content/uploads/2011/08/annotate.png" alt="" title="IDEA annotate" width="527" height="79" class="aligncenter size-full wp-image-362" /></a>
+Ensuite, configurez la racine de stockage des annotations externe. J'ai tendance à utiliser un dossier nommé annotation à la racine de mon espace de travail.
+<a href="http://www.bloggure.info/work/intellij-external-library-propertykey-how-to.html/attachment/externalroot" rel="attachment wp-att-363"><img src="http://www.bloggure.info/wp-content/uploads/2011/08/externalroot.png" alt="" title="IDEA external root selection" width="723" height="342" class="aligncenter size-full wp-image-363" /></a>
+C'est tout, si vous regardez le contenu du répertoire choisi, vous obtiendrez la structure suivante :
+<a href="http://www.bloggure.info/work/intellij-external-library-propertykey-how-to.html/attachment/folder" rel="attachment wp-att-364"><img src="http://www.bloggure.info/wp-content/uploads/2011/08/folder.png" alt="" title="Annotations.xml folder" width="582" height="117" class="aligncenter size-full wp-image-364" /></a>
+Dans le dossier correspondant au package de la classe que vous désirez annoter, vous trouverez un fichier
+<code>annotations.xml</code> comme ci-après :
+<pre class="brush: xml">
+<root>
+    <item name='org.apache.wicket.extensions.Initializer void init(org.apache.wicket.Application) 0'>
+        <annotation name='org.jetbrains.annotations.NotNull'>
+        </annotation>
+    </item>
+</root>
+</pre>
+Le soucis est qu'il n'est pas facile d'ajouter les annotations <code>@PropertyKey</code> ou <code>@NotNls</code> sur des dépendances externes.
+<h2>Comment ajouter manuellement une annotation</h2>
+Dans mon cas, je voulais ajouter <code>@PropertyKey</code> sur les méthodes de gestion des messages vers l'utilisateur d'Apache Wicket. Mon application Wicket inclut un convertisseur qui gère l'internationalisation automatiquement, je voulais donc ajouter <code>@PropertyKey(resourceBundle="fr.gatay.cedric.bloggure.language")</code> sur le paramètre de type String des méthodes info et error de <code>org.apache.wicket.Component</code>.<br/>
+En analysant le fichier <code>annotations.xml</code> généré pour l'annotation <code>@NotNull</code>, j'ai trouvé comment ajouter manuellement mon annotation. Dans mon cas, je me suis retrouvé avec un fichier <code>annotations.xml</code> comme ceci dans le dossier <code>${annotationsRoot}/org/apache/wicket/</code> :
+<pre class="brush: xml">
+<root>
+ <item name="org.apache.wicket.Component void error(java.io.Serializable) 0">
+	 <annotation name="org.jetbrains.annotations.PropertyKey">
+	 	<val name="resourceBundle" val="fr.gatay.cedric.bloggure.language"/>
+	 </annotation>
+ </item>
+ <item name="org.apache.wicket.Component void info(java.lang.String) 0">
+	 <annotation name="org.jetbrains.annotations.PropertyKey">
+ 		<val name="resourceBundle" val="fr.gatay.cedric.bloggure.language"/>
+	 </annotation>
+ </item>
+</root>
+</pre>
+Si vous regardez de plus près cet exemple, vous allez rapidement comprendre comment les choses fonctionnent. Premièrement l'élement <code>item</code> spécifie la méthode où vous voulez placer l'annotation, veuillez remarquer le nombre à la fin qui précise le paramètre sur lequel l'annotation prendra place (démarrant à 0). 
+<br/>
+Dans l'élément <code>item</code>, vous trouvez l'élément <code>annotation</code> précisant le nom complet de l'annotation à appliquer. Dans le cas d'une annotation avec des paramètres (comme <code>@PropertyKey</code>), vous pouvez définir ces paramètres en utilisant l'élément <code>val</code>, l'attribut XML <code>name</code> référence le nom de l'attribut et l'élément XML <code>val</code> référence la valeur de l'attribut.<br/>
+Il peut être nécessaire de redémarrer IntelliJ pour que les nouvelles valeurs soient prises en compte.<!--:-->
+
+      <footer class="entry-meta">
+        <span class="entry-tags"><a href="/tags/index.html#i18n" title="Pages tagged i18n" rel="tag" class="tag">i18n</a><a href="/tags/index.html#idea" title="Pages tagged idea" rel="tag" class="tag">idea</a><a href="/tags/index.html#intellij" title="Pages tagged intellij" rel="tag" class="tag">intellij</a><a href="/tags/index.html#java" title="Pages tagged java" rel="tag" class="tag">java</a><a href="/tags/index.html#tip" title="Pages tagged tip" rel="tag" class="tag">tip</a><a href="/tags/index.html#wicket" title="Pages tagged wicket" rel="tag" class="tag">wicket</a></span>
+        <span><a href="/.java/.wicket/work/intellij-external-library-propertykey-how-to" rel="bookmark" title="IntelliJ + External Library + @PropertyKey How To" itemprop="url">IntelliJ + External Library + @PropertyKey How To</a></span>
+        was published on <span class="entry-date date published updated"><time datetime="2011-08-21T00:00:00-04:00" itemprop="datePublished">August 21, 2011</span></time>
+        
+        <span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name" class="fn"><a href="/about" title="About Your Name" itemprop="url">Your Name</a></span></span>
+        
+      </footer>
+    </div><!-- /.entry-content -->
+    
+    
+    <div class="read-more">
+      
+        <div class="read-more-header">
+          <a href="/.shell/convert-a-mysql-database-from-latin1-to-utf-8" class="read-more-btn">Read More</a>
+        </div><!-- /.read-more-header -->
+        <div class="read-more-content">
+          <h3><a href="/.wicket/wicket-1-4-9-tinymce" title="Wicket 1.4.x - TinyMCE">Wicket 1.4.x - TinyMCE</a></h3>
+          <p>I am a daily user of IntelliJ IDEA to edit my Java code and Apache Wicket to write my web application. I decided recently to use IntelliJ...&hellip; <a href="/.wicket/wicket-1-4-9-tinymce">Continue reading</a></p>
+        </div><!-- /.read-more-content -->
+      
+      <div class="read-more-list">
+        
+          <div class="list-item">
+            <h4><a href="/.android/android-switcher-widget" title="Android Switcher Widget">Android Switcher Widget</a></h4>
+            <span>Published on October 29, 2010</span>
+          </div><!-- /.list-item -->
+        
+          <div class="list-item">
+            <h4><a href="/.java/.maven/work/getting-source-revision-for-a-deployed-app-using-maven-and-a-servlet" title="Getting source revision for a deployed app using Maven and a Servlet">Getting source revision for a deployed app using Maven and a Servlet</a></h4>
+            <span>Published on November 01, 2010</span>
+          </div><!-- /.list-item -->
+        
+      </div><!-- /.read-more-list -->
+      
+    </div><!-- /.read-more -->
+  </article>
+</div><!-- /#main -->
+
+<div class="footer-wrapper">
+  <footer role="contentinfo">
+    <span>&copy; 2013 Your Name. Powered by <a href="http://jekyllrb.com">Jekyll</a> using the <a href="http://mademistakes.com/">HPSTR Theme</a>.</span>
+  </footer>
+</div><!-- /.footer-wrapper -->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="/assets/js/scripts.min.js"></script>
+
+	        
+
+</body>
+</html>

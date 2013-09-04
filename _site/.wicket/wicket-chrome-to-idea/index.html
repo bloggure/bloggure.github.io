@@ -1,0 +1,209 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>Wicket Chrome to IDEA &#8211; Site Title</title>
+<meta name="description" content="Describe your website here.">
+<meta name="keywords" content="chrome, debug, intellij, wicket">
+
+
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Wicket Chrome to IDEA">
+<meta property="og:description" content="Describe your website here.">
+<meta property="og:url" content="/.wicket/wicket-chrome-to-idea">
+<meta property="og:site_name" content="Site Title">
+
+
+
+
+
+<link rel="canonical" href="/.wicket/wicket-chrome-to-idea">
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Site Title Feed">
+
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.min.css">
+<!-- Webfonts -->
+<link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- Load Modernizr -->
+<script src="/assets/js/vendor/modernizr-2.6.2.custom.min.js"></script>
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/apple-touch-icon-144x144-precomposed.png">
+
+</head>
+
+<body id="post"  itemscope itemtype="http://schema.org/WebPage">
+
+<!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
+<nav id="dl-menu" class="dl-menuwrapper" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
+	<button class="dl-trigger">Open Menu</button>
+	<ul class="dl-menu">
+		<li><a href="">Home</a></li>
+		<li>
+			<a href="#">About</a>
+			<ul class="dl-submenu">
+				<li>
+					<img src="/images/avatar.jpg" alt="Your Name photo" class="author-photo">
+					<h4>Your Name</h4>
+					<p>Your bio goes here. It shouldn't be super long but a good two sentences or two should suffice.</p>
+				</li>
+				<li><a href="/about/">Learn More</a></li>
+				<li>
+					<a href="mailto:you@email.com"><i class="icon-envelope"></i> Email</a>
+				</li>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+			</ul><!-- /.dl-submenu -->
+		</li>
+		<li>
+			<a href="#">Posts</a>
+			<ul class="dl-submenu">
+				<li><a href="/archive/">All Posts</a></li>
+				<li><a href="/tags/">All Tags</a></li>
+			</ul>
+		</li>
+		<li><a href="/theme-setup">Theme Setup</a></li><li><a href="http://mademistakes.com">External Link</a></li>
+	</ul><!-- /.dl-menu -->
+</nav><!-- /.dl-menuwrapper -->
+
+
+
+
+<div id="main" role="main" itemprop="mainContentOfPage" itemscope itemtype="http://schema.org/Blog">
+  <article class="hentry" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+    <header class="header-title">
+      <div class="header-title-wrap">
+        
+          <h1 class="entry-title" itemprop="name"><a href="/.wicket/wicket-chrome-to-idea" rel="bookmark" title="Wicket Chrome to IDEA" itemprop="url">Wicket Chrome to IDEA</a></h1>
+        
+        <h2>November 18, 2012</h2>
+      </div><!-- /.header-title-wrap -->
+    </header>
+    <div class="entry-content" itemprop="description">
+      <!--:en--><img class="alignright size-full wp-image-90" title="Wicket" src="http://www.bloggure.info/wp-content/uploads/2010/10/logo-wicket1.png" alt="" width="200" height="199" />It is not a secret that the <a href="http://www.srmvision.com">SRMvision</a> platform is developped using the <a href="http://wicket.apache.org/">Apache Wicket</a> framework.
+
+As our application became bigger and so our team, it's getting harder to find the correct Wicket class beneath the view of the page we get in our browsers.
+
+To help the team in this process, I made a simple Chrome extension and a IntelliJ IDEA plugin allowing to send class names to the IDE from the web browser (at the cost of a very simple class in your project, disabled in deployment mode).
+<h2>Getting your project ready</h2>
+In the <a href="https://github.com/CedricGatay/chrome-wicket-idea-example">chrome-wicket-idea-example</a> github repository, you have a very simple example of what needs to be done to enable navigation between your browser and your project opened in your IDE. Have a look at the <a href="https://github.com/CedricGatay/chrome-wicket-idea-example/blob/master/src/main/java/fr/gatay/WicketApplication.java">WicketApplication</a> class (specifically in the the <a href="https://github.com/CedricGatay/chrome-wicket-idea-example/blob/master/src/main/java/fr/gatay/WicketApplication.java#L28">init()</a> method) and at the <a href="https://github.com/CedricGatay/chrome-wicket-idea-example/blob/master/src/main/java/fr/gatay/DebugComponentBeforeRenderListener.java">DebugComponentBeforeRenderListener</a> class (it is where the 'simple' magic happen). The good thing is you only need to use this class in your project (confirmed working with Wicket 1.4, 1.5, and 6), and to mimic the initializer logic to get started.
+
+Please notice that you can specify which classes you want to track in your markup (by restricting on package names) at the listener's instanciation.
+To test the sample project, you can run the embedded jetty server by running :
+<pre class="brush: shell">mvn jetty:run</pre>
+<h2>Wicket Open In IDEA</h2>
+<h3>IDEA part</h3>
+The IntelliJ plugin listens for classnames to open on a http socket (10462, overridable in plugin settings).
+
+[caption id="attachment_719" align="aligncenter" width="941"]<img class="size-full wp-image-719" title="Plugin settings" src="http://www.bloggure.info/wp-content/uploads/2012/11/Capture-d’écran-2012-11-18-à-19.25.17.png" alt="" width="941" height="419" /> Plugin settings[/caption]
+
+You can get the IDEA plugin in its <a href="https://github.com/srmvision/wicket-open-in-idea-plugin/downloads">github repository</a>, to install it, you have to select "Install plugin from disk" from the "Plugins" category in your IDE settings.
+<h3>Chrome part</h3>
+The Chrome extension is really simple, like my TrelloScrum fork, it is not (yet) available on the Chrome Web Store, thus, you have to <a href="https://github.com/CedricGatay/chrome-wicket-open-to-idea/downloads">download the release here</a> and drag and drop it on your <a href="chrome://extensions">chrome://extensions</a> page.
+If you want, you can tweak its settings, via the "Options" page :
+<ul>
+	<li>IDE Host : if you change the setup of the plugin in your IDE (or run your IDE on another machine than your browser), you might need to change the host and port to reflect this.</li>
+	<li>Context menu presence host : if you want the context menu icon to appear only on sites where it should, you can narrow the domains here.</li>
+</ul>
+To use it, you only have to right click on an item in your "enhanced" web application and select "Wicket debug this".
+
+[caption id="attachment_709" align="aligncenter" width="315"]<img class="size-full wp-image-709 " title="Wicket debug this" src="http://www.bloggure.info/wp-content/uploads/2012/11/Capture-d’écran-2012-11-18-à-18.56.11.png" alt="" width="315" height="270" /> Context menu item[/caption]
+
+From there you'll get a modal window listing the matching classes names (sorted by parent order, the first is the closer to the element you pointed to, the next one is the parent class and so on). If there is not any opened modal when you try to use it, it means the extension did not detect any classname in the markup.
+
+[caption id="attachment_711" align="aligncenter" width="584"]<img class=" wp-image-711 " title="Send to IDEA Modal" src="http://www.bloggure.info/wp-content/uploads/2012/11/Capture-d’écran-2012-11-18-à-19.07.40-1024x740.png" alt="" width="584" height="422" /> Class modal selection[/caption]
+
+Each classname, when clicked, is sent to your IDE which will in turn opens the class matching the classname so you can edit it.
+The lower part of the modal window will inform you about the status of your last action :
+<ul>
+	<li>If the plugin is not enabled, or the IDE not running : it will display an error message</li>
+	<li>If all went like expected : it will display a confirmation message</li>
+</ul>
+I hope it will help other teams using this great framework, or it will give ideas to user of others frameworks.<!--:--><!--:fr--><p><em>Cet article n'a pas été traduit, veuillez trouver ci-dessous sa version anglaise</em></p><p><img class="alignright size-full wp-image-90" title="Wicket" src="http://www.bloggure.info/wp-content/uploads/2010/10/logo-wicket1.png" alt="" width="200" height="199" />It is not a secret that the <a href="http://www.srmvision.com">SRMvision</a> platform is developped using the <a href="http://wicket.apache.org/">Apache Wicket</a> framework.</p><p>As our application became bigger and so our team, it's getting harder to find the correct Wicket class beneath the view of the page we get in our browsers.</p><p>To help the team in this process, I made a simple Chrome extension and a IntelliJ IDEA plugin allowing to send class names to the IDE from the web browser (at the cost of a very simple class in your project, disabled in deployment mode).</p><h2>Getting your project ready</h2><p>In the <a href="https://github.com/CedricGatay/chrome-wicket-idea-example">chrome-wicket-idea-example</a> github repository, you have a very simple example of what needs to be done to enable navigation between your browser and your project opened in your IDE. Have a look at the <a href="https://github.com/CedricGatay/chrome-wicket-idea-example/blob/master/src/main/java/fr/gatay/WicketApplication.java">WicketApplication</a> class (specifically in the the <a href="https://github.com/CedricGatay/chrome-wicket-idea-example/blob/master/src/main/java/fr/gatay/WicketApplication.java#L28">init()</a> method) and at the <a href="https://github.com/CedricGatay/chrome-wicket-idea-example/blob/master/src/main/java/fr/gatay/DebugComponentBeforeRenderListener.java">DebugComponentBeforeRenderListener</a> class (it is where the 'simple' magic happen). The good thing is you only need to use this class in your project (confirmed working with Wicket 1.4, 1.5, and 6), and to mimic the initializer logic to get started.</p><p>Please notice that you can specify which classes you want to track in your markup (by restricting on package names) at the listener's instanciation.<br /><br /> To test the sample project, you can run the embedded jetty server by running :</p><pre class="brush: shell">mvn jetty:run</pre><h2>Wicket Open In IDEA</h2><h3>IDEA part</h3><p>The IntelliJ plugin listens for classnames to open on a http socket (10462, overridable in plugin settings).</p>[caption id="attachment_719" align="aligncenter" width="941"]<img class="size-full wp-image-719" title="Plugin settings" src="http://www.bloggure.info/wp-content/uploads/2012/11/Capture-d’écran-2012-11-18-à-19.25.17.png" alt="" width="941" height="419" /> Plugin settings[/caption]<p>You can get the IDEA plugin in its <a href="https://github.com/srmvision/wicket-open-in-idea-plugin/downloads">github repository</a>, to install it, you have to select "Install plugin from disk" from the "Plugins" category in your IDE settings.</p><h3>Chrome part</h3><p>The Chrome extension is really simple, like my TrelloScrum fork, it is not (yet) available on the Chrome Web Store, thus, you have to <a href="https://github.com/CedricGatay/chrome-wicket-open-to-idea/downloads">download the release here</a> and drag and drop it on your <a href="chrome://extensions">chrome://extensions</a> page.<br /><br /> If you want, you can tweak its settings, via the "Options" page :</p><ul><li>IDE Host : if you change the setup of the plugin in your IDE (or run your IDE on another machine than your browser), you might need to change the host and port to reflect this.</li><li>Context menu presence host : if you want the context menu icon to appear only on sites where it should, you can narrow the domains here.</li></ul><p>To use it, you only have to right click on an item in your "enhanced" web application and select "Wicket debug this".</p>[caption id="attachment_709" align="aligncenter" width="315"]<img class="size-full wp-image-709 " title="Wicket debug this" src="http://www.bloggure.info/wp-content/uploads/2012/11/Capture-d’écran-2012-11-18-à-18.56.11.png" alt="" width="315" height="270" /> Context menu item[/caption]<p>From there you'll get a modal window listing the matching classes names (sorted by parent order, the first is the closer to the element you pointed to, the next one is the parent class and so on). If there is not any opened modal when you try to use it, it means the extension did not detect any classname in the markup.</p>[caption id="attachment_711" align="aligncenter" width="584"]<img class=" wp-image-711 " title="Send to IDEA Modal" src="http://www.bloggure.info/wp-content/uploads/2012/11/Capture-d’écran-2012-11-18-à-19.07.40-1024x740.png" alt="" width="584" height="422" /> Class modal selection[/caption]<p>Each classname, when clicked, is sent to your IDE which will in turn opens the class matching the classname so you can edit it.<br /><br /> The lower part of the modal window will inform you about the status of your last action :</p><ul><li>If the plugin is not enabled, or the IDE not running : it will display an error message</li><li>If all went like expected : it will display a confirmation message</li></ul><p>I hope it will help other teams using this great framework, or it will give ideas to user of others frameworks.</p><!--:-->
+
+      <footer class="entry-meta">
+        <span class="entry-tags"><a href="/tags/index.html#chrome" title="Pages tagged chrome" rel="tag" class="tag">chrome</a><a href="/tags/index.html#debug" title="Pages tagged debug" rel="tag" class="tag">debug</a><a href="/tags/index.html#intellij" title="Pages tagged intellij" rel="tag" class="tag">intellij</a><a href="/tags/index.html#wicket" title="Pages tagged wicket" rel="tag" class="tag">wicket</a></span>
+        <span><a href="/.wicket/wicket-chrome-to-idea" rel="bookmark" title="Wicket Chrome to IDEA" itemprop="url">Wicket Chrome to IDEA</a></span>
+        was published on <span class="entry-date date published updated"><time datetime="2012-11-18T00:00:00-05:00" itemprop="datePublished">November 18, 2012</span></time>
+        
+        <span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name" class="fn"><a href="/about" title="About Your Name" itemprop="url">Your Name</a></span></span>
+        
+      </footer>
+    </div><!-- /.entry-content -->
+    
+    
+    <div class="read-more">
+      
+        <div class="read-more-header">
+          <a href="/work/learn-scala" class="read-more-btn">Read More</a>
+        </div><!-- /.read-more-header -->
+        <div class="read-more-content">
+          <h3><a href="/.wicket/wicket-1-4-9-tinymce" title="Wicket 1.4.x - TinyMCE">Wicket 1.4.x - TinyMCE</a></h3>
+          <p>It is not a secret that the SRMvision platform is developped using the Apache Wicket framework.As our application became bigger and so ou...&hellip; <a href="/.wicket/wicket-1-4-9-tinymce">Continue reading</a></p>
+        </div><!-- /.read-more-content -->
+      
+      <div class="read-more-list">
+        
+          <div class="list-item">
+            <h4><a href="/.android/android-switcher-widget" title="Android Switcher Widget">Android Switcher Widget</a></h4>
+            <span>Published on October 29, 2010</span>
+          </div><!-- /.list-item -->
+        
+          <div class="list-item">
+            <h4><a href="/.java/.maven/work/getting-source-revision-for-a-deployed-app-using-maven-and-a-servlet" title="Getting source revision for a deployed app using Maven and a Servlet">Getting source revision for a deployed app using Maven and a Servlet</a></h4>
+            <span>Published on November 01, 2010</span>
+          </div><!-- /.list-item -->
+        
+      </div><!-- /.read-more-list -->
+      
+    </div><!-- /.read-more -->
+  </article>
+</div><!-- /#main -->
+
+<div class="footer-wrapper">
+  <footer role="contentinfo">
+    <span>&copy; 2013 Your Name. Powered by <a href="http://jekyllrb.com">Jekyll</a> using the <a href="http://mademistakes.com/">HPSTR Theme</a>.</span>
+  </footer>
+</div><!-- /.footer-wrapper -->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="/assets/js/scripts.min.js"></script>
+
+	        
+
+</body>
+</html>

@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
  
- <title>The blog of Bloggure</title>
- <link href="http://bloggure.info/atom.xml" rel="self"/>
- <link href="http://bloggure.info"/>
- <updated>2013-09-03T20:27:24+02:00</updated>
- <id>http://bloggure.info</id>
+ <title>The blog of </title>
+ <link href="/atom.xml" rel="self"/>
+ <link href=""/>
+ <updated>2013-09-04T03:17:27-04:00</updated>
+ <id></id>
  <author>
-   <name>Bloggure</name>
-   <email>contact@bloggure.info</email>
+   <name></name>
+   <email></email>
  </author>
 
  
  <entry>
    <title>Merge properties maven plugin</title>
-   <link href="http://bloggure.info/.maven/2013/08/31/maven-merge-properties-plugin.html"/>
-   <updated>2013-08-31T00:00:00+02:00</updated>
-   <id>http://bloggure.info/.maven/2013/08/31/maven-merge-properties-plugin</id>
+   <link href="/.maven/maven-merge-properties-plugin"/>
+   <updated>2013-08-31T00:00:00-04:00</updated>
+   <id>/.maven/maven-merge-properties-plugin</id>
    <content type="html">&lt;!--:en--&gt;&lt;img class=&quot;alignright size-medium wp-image-74&quot; alt=&quot;Maven&quot; src=&quot;http://www.bloggure.info/wp-content/uploads/2010/11/Maven_logo1-300x76.gif&quot; width=&quot;300&quot; height=&quot;76&quot; /&gt;At &lt;a href=&quot;http://www.srmvision.com&quot;&gt;SRMvision&lt;/a&gt;, we develop with localization in mind. We don&#39;t have any user visible text that is not in fact tied to a java property file. Quickly, the problem that we faced was the difficulty to keep every language file in sync (and to tidy things up). We developed a small Maven plugin allowing us to ensure that our two main problems are now gone : &lt;a href=&quot;https://github.com/code-troopers/merge-properties-maven-plugin&quot;&gt;merge-properties-maven-plugin&lt;/a&gt;.
 &lt;h2&gt;Quick example&lt;/h2&gt;
 I think the easiest way to understand how it works is to explain it with a real use case. Let&#39;s say we have a module named &lt;em&gt;Zones&lt;/em&gt; in our application, it will lead to create four files (if we are localized in two different languages) :
@@ -46,67 +46,94 @@ We use Java&#39;s MessageFormat to format our translated string, one of the thin
  
  <entry>
    <title>Sample post</title>
-   <link href="http://bloggure.info/blog/2013/08/20/sample-post.html"/>
-   <updated>2013-08-20T00:00:00+02:00</updated>
-   <id>http://bloggure.info/blog/2013/08/20/sample-post</id>
-   <content type="html">&lt;p&gt;Tattooed roof party &lt;em&gt;vinyl&lt;/em&gt; freegan single-origin coffee wayfarers tousled, umami yr meggings hella selvage. Butcher bespoke seitan, cornhole umami gentrify put a bird on it occupy trust fund. Umami whatever kitsch, locavore fingerstache Tumblr pork belly &lt;a href=&#39;#&#39;&gt;keffiyeh&lt;/a&gt;. Chia Echo Park Pitchfork, Blue Bottle &lt;a href=&#39;#&#39;&gt;hashtag&lt;/a&gt; stumptown skateboard selvage mixtape. Echo Park retro butcher banjo cardigan, seitan flannel Brooklyn paleo fixie Truffaut. Forage mustache Thundercats next level disrupt. Bicycle rights forage tattooed chia, &lt;strong&gt;wayfarers&lt;/strong&gt; swag raw denim hashtag biodiesel occupy gastropub!&lt;/p&gt;
+   <link href="/blog/sample-post"/>
+   <updated>2013-08-20T00:00:00-04:00</updated>
+   <id>/blog/sample-post</id>
+   <content type="html">&lt;p&gt;Tattooed roof party &lt;em&gt;vinyl&lt;/em&gt; freegan single-origin coffee wayfarers tousled, umami yr 
+meggings hella selvage. Butcher bespoke seitan, cornhole umami gentrify put a bird 
+on it occupy trust fund. Umami whatever kitsch, locavore fingerstache Tumblr pork belly
+&lt;a href=&quot;#&quot;&gt;keffiyeh&lt;/a&gt;. Chia Echo Park Pitchfork, Blue Bottle &lt;a href=&quot;#&quot;&gt;hashtag&lt;/a&gt; stumptown skateboard selvage 
+mixtape. Echo Park retro butcher banjo cardigan, seitan flannel Brooklyn paleo fixie 
+Truffaut. Forage mustache Thundercats next level disrupt. Bicycle rights forage tattooed
+chia, &lt;strong&gt;wayfarers&lt;/strong&gt; swag raw denim hashtag biodiesel occupy gastropub!&lt;/p&gt;
+
 &lt;hr /&gt;
-&lt;h1 id=&#39;its_all_in_the_game&#39;&gt;It&amp;#8217;s all in the game.&lt;/h1&gt;
 
-&lt;h2 id=&#39;you_come_at_the_king_you_best_not_miss&#39;&gt;You come at the king, you best not miss.&lt;/h2&gt;
+&lt;h1 id=&quot;its-all-in-the-game&quot;&gt;It’s all in the game.&lt;/h1&gt;
+&lt;p&gt;## You come at the king, you best not miss.
+### Be subtle with it, man. You know what subtle means?&lt;/p&gt;
 
-&lt;h3 id=&#39;be_subtle_with_it_man_you_know_what_subtle_means&#39;&gt;Be subtle with it, man. You know what subtle means?&lt;/h3&gt;
-
-&lt;p&gt;VHS post-ironic cred &lt;strong&gt;bespoke&lt;/strong&gt; banjo. Yr wayfarers literally gentrify, flexitarian fap dreamcatcher plaid cornhole Intelligentsia paleo. Beard try-hard direct trade, shabby chic Helvetica &lt;code&gt;look ma, I can code&lt;/code&gt;. Lo-fi American Apparel tattooed &lt;a href=&#39;#&#39;&gt;Vice&lt;/a&gt; tofu, yr vinyl. Williamsburg butcher hella mumblecore fixie mlkshk, cliche wolf keytar mixtape kitsch banh mi salvia. High Life Odd Future &lt;em&gt;chambray&lt;/em&gt; kale chips hoodie, cray pop-up. Helvetica narwhal iPhone try-hard jean shorts.&lt;/p&gt;
+&lt;p&gt;VHS post-ironic cred &lt;strong&gt;bespoke&lt;/strong&gt; banjo. Yr wayfarers literally gentrify, flexitarian fap 
+dreamcatcher plaid cornhole Intelligentsia paleo. Beard try-hard direct trade, shabby chic 
+Helvetica &lt;code&gt;look ma, I can code&lt;/code&gt;. Lo-fi American Apparel tattooed &lt;a href=&quot;#&quot;&gt;Vice&lt;/a&gt; tofu, yr vinyl. 
+Williamsburg butcher hella mumblecore fixie mlkshk, cliche wolf keytar mixtape kitsch banh mi 
+salvia. High Life Odd Future &lt;em&gt;chambray&lt;/em&gt; kale chips hoodie, cray pop-up. Helvetica narwhal 
+iPhone try-hard jean shorts.&lt;/p&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;This is a quote from someone famous about productivity&lt;/p&gt;
+  &lt;p&gt;This is a quote from someone famous about productivity&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;Syntax highlighting with Solarized theme.&lt;/p&gt;
-&lt;div class=&#39;highlight&#39;&gt;&lt;pre&gt;&lt;code class=&#39;ruby&#39;&gt;&lt;span class=&#39;k&#39;&gt;class&lt;/span&gt; &lt;span class=&#39;nc&#39;&gt;User&lt;/span&gt; &lt;span class=&#39;o&#39;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#39;ss&#39;&gt;ActiveRecord&lt;/span&gt;&lt;span class=&#39;p&#39;&gt;:&lt;/span&gt;&lt;span class=&#39;ss&#39;&gt;:Base&lt;/span&gt;
-  &lt;span class=&#39;n&#39;&gt;attr_accessible&lt;/span&gt; &lt;span class=&#39;ss&#39;&gt;:email&lt;/span&gt;&lt;span class=&#39;p&#39;&gt;,&lt;/span&gt; &lt;span class=&#39;ss&#39;&gt;:name&lt;/span&gt;
 
-  &lt;span class=&#39;o&#39;&gt;.&lt;/span&gt;&lt;span class=&#39;n&#39;&gt;.&lt;/span&gt;&lt;span class=&#39;o&#39;&gt;.&lt;/span&gt; &lt;span class=&#39;n&#39;&gt;tons&lt;/span&gt; &lt;span class=&#39;n&#39;&gt;of&lt;/span&gt; &lt;span class=&#39;n&#39;&gt;other&lt;/span&gt; &lt;span class=&#39;n&#39;&gt;crap&lt;/span&gt; &lt;span class=&#39;o&#39;&gt;.&lt;/span&gt;&lt;span class=&#39;n&#39;&gt;.&lt;/span&gt;&lt;span class=&#39;o&#39;&gt;.&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;User&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;ActiveRecord&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:Base&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;attr_accessible&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:email&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:name&lt;/span&gt;
 
-&lt;span class=&#39;k&#39;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content>
+  &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tons&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;of&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;other&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;crap&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+</content>
  </entry>
  
  <entry>
    <title>Another sample</title>
-   <link href="http://bloggure.info/blog/2013/08/12/another-sample.html"/>
-   <updated>2013-08-12T00:00:00+02:00</updated>
-   <id>http://bloggure.info/blog/2013/08/12/another-sample</id>
-   <content type="html">&lt;p&gt;Tattooed roof party &lt;em&gt;vinyl&lt;/em&gt; freegan single-origin coffee wayfarers tousled, umami yr meggings hella selvage. Butcher bespoke seitan, cornhole umami gentrify put a bird on it occupy trust fund. Umami whatever kitsch, locavore fingerstache Tumblr pork belly &lt;a href=&#39;#&#39;&gt;keffiyeh&lt;/a&gt;. Chia Echo Park Pitchfork, Blue Bottle &lt;a href=&#39;#&#39;&gt;hashtag&lt;/a&gt; stumptown skateboard selvage mixtape. Echo Park retro butcher banjo cardigan, seitan flannel Brooklyn paleo fixie Truffaut. Forage mustache Thundercats next level disrupt. Bicycle rights forage tattooed chia, &lt;strong&gt;wayfarers&lt;/strong&gt; swag raw denim hashtag biodiesel occupy gastropub!&lt;/p&gt;
+   <link href="/blog/another-sample"/>
+   <updated>2013-08-12T00:00:00-04:00</updated>
+   <id>/blog/another-sample</id>
+   <content type="html">&lt;p&gt;Tattooed roof party &lt;em&gt;vinyl&lt;/em&gt; freegan single-origin coffee wayfarers tousled, umami yr 
+meggings hella selvage. Butcher bespoke seitan, cornhole umami gentrify put a bird 
+on it occupy trust fund. Umami whatever kitsch, locavore fingerstache Tumblr pork belly
+&lt;a href=&quot;#&quot;&gt;keffiyeh&lt;/a&gt;. Chia Echo Park Pitchfork, Blue Bottle &lt;a href=&quot;#&quot;&gt;hashtag&lt;/a&gt; stumptown skateboard selvage 
+mixtape. Echo Park retro butcher banjo cardigan, seitan flannel Brooklyn paleo fixie 
+Truffaut. Forage mustache Thundercats next level disrupt. Bicycle rights forage tattooed
+chia, &lt;strong&gt;wayfarers&lt;/strong&gt; swag raw denim hashtag biodiesel occupy gastropub!&lt;/p&gt;
+
 &lt;hr /&gt;
-&lt;h1 id=&#39;its_all_in_the_game&#39;&gt;It&amp;#8217;s all in the game.&lt;/h1&gt;
 
-&lt;h2 id=&#39;you_come_at_the_king_you_best_not_miss&#39;&gt;You come at the king, you best not miss.&lt;/h2&gt;
+&lt;h1 id=&quot;its-all-in-the-game&quot;&gt;It’s all in the game.&lt;/h1&gt;
+&lt;p&gt;## You come at the king, you best not miss.
+### Be subtle with it, man. You know what subtle means?&lt;/p&gt;
 
-&lt;h3 id=&#39;be_subtle_with_it_man_you_know_what_subtle_means&#39;&gt;Be subtle with it, man. You know what subtle means?&lt;/h3&gt;
-
-&lt;p&gt;VHS post-ironic cred &lt;strong&gt;bespoke&lt;/strong&gt; banjo. Yr wayfarers literally gentrify, flexitarian fap dreamcatcher plaid cornhole Intelligentsia paleo. Beard try-hard direct trade, shabby chic Helvetica &lt;code&gt;look ma, I can code&lt;/code&gt;. Lo-fi American Apparel tattooed &lt;a href=&#39;#&#39;&gt;Vice&lt;/a&gt; tofu, yr vinyl. Williamsburg butcher hella mumblecore fixie mlkshk, cliche wolf keytar mixtape kitsch banh mi salvia. High Life Odd Future &lt;em&gt;chambray&lt;/em&gt; kale chips hoodie, cray pop-up. Helvetica narwhal iPhone try-hard jean shorts.&lt;/p&gt;
+&lt;p&gt;VHS post-ironic cred &lt;strong&gt;bespoke&lt;/strong&gt; banjo. Yr wayfarers literally gentrify, flexitarian fap 
+dreamcatcher plaid cornhole Intelligentsia paleo. Beard try-hard direct trade, shabby chic 
+Helvetica &lt;code&gt;look ma, I can code&lt;/code&gt;. Lo-fi American Apparel tattooed &lt;a href=&quot;#&quot;&gt;Vice&lt;/a&gt; tofu, yr vinyl. 
+Williamsburg butcher hella mumblecore fixie mlkshk, cliche wolf keytar mixtape kitsch banh mi 
+salvia. High Life Odd Future &lt;em&gt;chambray&lt;/em&gt; kale chips hoodie, cray pop-up. Helvetica narwhal 
+iPhone try-hard jean shorts.&lt;/p&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;This is a quote from someone famous about productivity&lt;/p&gt;
+  &lt;p&gt;This is a quote from someone famous about productivity&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;Syntax highlighting with Solarized theme.&lt;/p&gt;
-&lt;div class=&#39;highlight&#39;&gt;&lt;pre&gt;&lt;code class=&#39;ruby&#39;&gt;&lt;span class=&#39;k&#39;&gt;class&lt;/span&gt; &lt;span class=&#39;nc&#39;&gt;User&lt;/span&gt; &lt;span class=&#39;o&#39;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#39;ss&#39;&gt;ActiveRecord&lt;/span&gt;&lt;span class=&#39;p&#39;&gt;:&lt;/span&gt;&lt;span class=&#39;ss&#39;&gt;:Base&lt;/span&gt;
-  &lt;span class=&#39;n&#39;&gt;attr_accessible&lt;/span&gt; &lt;span class=&#39;ss&#39;&gt;:email&lt;/span&gt;&lt;span class=&#39;p&#39;&gt;,&lt;/span&gt; &lt;span class=&#39;ss&#39;&gt;:name&lt;/span&gt;
 
-  &lt;span class=&#39;o&#39;&gt;.&lt;/span&gt;&lt;span class=&#39;n&#39;&gt;.&lt;/span&gt;&lt;span class=&#39;o&#39;&gt;.&lt;/span&gt; &lt;span class=&#39;n&#39;&gt;tons&lt;/span&gt; &lt;span class=&#39;n&#39;&gt;of&lt;/span&gt; &lt;span class=&#39;n&#39;&gt;other&lt;/span&gt; &lt;span class=&#39;n&#39;&gt;crap&lt;/span&gt; &lt;span class=&#39;o&#39;&gt;.&lt;/span&gt;&lt;span class=&#39;n&#39;&gt;.&lt;/span&gt;&lt;span class=&#39;o&#39;&gt;.&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;User&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;ActiveRecord&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:Base&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;attr_accessible&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:email&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:name&lt;/span&gt;
 
-&lt;span class=&#39;k&#39;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content>
+  &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tons&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;of&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;other&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;crap&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+</content>
  </entry>
  
  <entry>
    <title>Play Framework and i18n in views</title>
-   <link href="http://bloggure.info/work/2013/07/25/play-framework-and-i18n-in-views.html"/>
-   <updated>2013-07-25T00:00:00+02:00</updated>
-   <id>http://bloggure.info/work/2013/07/25/play-framework-and-i18n-in-views</id>
+   <link href="/work/play-framework-and-i18n-in-views"/>
+   <updated>2013-07-25T00:00:00-04:00</updated>
+   <id>/work/play-framework-and-i18n-in-views</id>
    <content type="html">&lt;!--:en--&gt;&lt;img class=&quot;alignright size-full wp-image-916&quot; alt=&quot;playlogo&quot; src=&quot;http://www.bloggure.info/wp-content/uploads/2013/07/playlogo.png&quot; width=&quot;150&quot; height=&quot;50&quot; /&gt;
 
 I was having a strange issue with localization in a Play Framework application. I followed the &lt;a href=&quot;http://www.playframework.com/documentation/2.0/ScalaI18N&quot;&gt;simple steps&lt;/a&gt; detailed on the official documentation but with no luck.
@@ -129,9 +156,9 @@ With this little trick, your calls to localization will use the locale extracted
  
  <entry>
    <title>Play application on Centos/RedHat in production mode</title>
-   <link href="http://bloggure.info/.java/.scala/.shell/ci/shelf/2013/07/25/centos-redhat-play-application-production-mode.html"/>
-   <updated>2013-07-25T00:00:00+02:00</updated>
-   <id>http://bloggure.info/.java/.scala/.shell/ci/shelf/2013/07/25/centos-redhat-play-application-production-mode</id>
+   <link href="/.java/.scala/.shell/ci/shelf/centos-redhat-play-application-production-mode"/>
+   <updated>2013-07-25T00:00:00-04:00</updated>
+   <id>/.java/.scala/.shell/ci/shelf/centos-redhat-play-application-production-mode</id>
    <content type="html">&lt;!--:fr--&gt;&lt;p&gt;&lt;strong&gt;tl;dr &lt;/strong&gt;: application &lt;a title=&quot;play&quot; href=&quot;http://www.playframework.com/&quot;&gt;Play&lt;/a&gt; (java ou &lt;a href=&quot;http://www.scala-lang.org/&quot;&gt;scala&lt;/a&gt;) sur un serveur &lt;a href=&quot;http://www.centos.org/&quot;&gt;Centos&lt;/a&gt; (ou &lt;a href=&quot;http://fr.wikipedia.org/wiki/Red_Hat_Linux&quot;&gt;Red Hat&lt;/a&gt;) derrière un serveur &lt;a title=&quot;nginx&quot; href=&quot;http://nginx.org/&quot;&gt;nginx&lt;/a&gt;.&lt;/p&gt;&lt;h2&gt;Script de démarrage/arrêt du daemon.&lt;/h2&gt;&lt;p&gt;Lancer une application Play en dev est assez aisé : &lt;code&gt;$ play run&lt;/code&gt;.&lt;/p&gt;&lt;p&gt;Maintenant, si vous avez besoin de déployer votre application en production, il est plus confortable de considérer votre application comme un service à part entière du système. Il se peut aussi que vous ayez besoin de spécifier un port et une interface particulière pour pouvoir utiliser nginx comme front-end (en &lt;a href=&quot;http://fr.wikipedia.org/wiki/Proxy_inverse&quot;&gt;reverse proxy&lt;/a&gt;). Et évidement, à l&#39;instar d&#39;un environnement de développement, vous pourriez avoir besoin de compresser le JS et le CSS, et également de régler finement les en-têtes HTTP pour gérer correctement le cache.&lt;/p&gt;&lt;p&gt;Tout d&#39;abord le script de lancement du daemon :&lt;/p&gt;
 &lt;script src=&quot;https://gist.github.com/tdebarochez/6082933.js&quot;&gt;&lt;/script&gt;
 &lt;p&gt;Je me suis inspiré des deux gists ci-dessous. Le premier, pour RedHat, utilise le binaire de play pour lancer le processus principal. Cette méthode facile à utiliser en développement semble assez limité en paramètre (tout du moins, très peu documentée). La seconde méthode, pour &lt;a href=&quot;http://www.debian.org/&quot;&gt;Debian&lt;/a&gt;, donne un bonne exemple d&#39;une configuration un peu plus élaborée de l&#39;exécution du daemon. Les paramètres en début de fichier parlent d&#39;eux-mêmes, je vous laisse les découvrir et reste à votre disposition pour toute question.&lt;/p&gt;&lt;p&gt;Source :&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;https://gist.github.com/THemming/2173037&quot;&gt;https://gist.github.com/THemming/2173037&lt;/a&gt; (script pour redhat)&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://gist.github.com/leon/2204773&quot;&gt;https://gist.github.com/leon/2204773&lt;/a&gt; (script pour debian)&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Configuration de nginx&lt;/h2&gt;&lt;p&gt;Sur un serveur web, il est souvent pratique de pouvoir faire tourner plusieurs applications utilisant des langages, des librairies, des frameworks, etc... hétérogènes (sur mon serveur, il y a l&#39;application Play en scala, une application &lt;a href=&quot;http://nodejs.org/&quot;&gt;Nodejs&lt;/a&gt; en &lt;a href=&quot;http://coffeescript.org/&quot;&gt;Coffescript&lt;/a&gt; et une application &lt;a href=&quot;http://php.net&quot;&gt;PHP&lt;/a&gt;/&lt;a href=&quot;http://www.mysql.fr/&quot;&gt;MySQL&lt;/a&gt; utilisant &lt;a href=&quot;http://httpd.apache.org/&quot;&gt;Apache&lt;/a&gt;). C&#39;est là que nginx intervient. Configuré en reverse-proxy, c&#39;est lui qui écoutera sur le port 80 de votre serveur et en fonction du nom de domaine relayera les requêtes HTTP à l&#39;application que vous avez choisis. Il vous suffit de configurer votre application en écoute sur un port libre en localhost et d&#39;indiquer à nginx qu&#39;en fonction du nom de domaine (à la manière des VirtualHost d&#39;Apache), il doit transmettre ses requêtes sur ce port.&lt;/p&gt;&lt;p&gt;Vous noterez une section fournissant un traitement particulier pour les fichiers statiques (js, css, png, jpg, etc...). En effet, je ne trouvais pas la configuration par défaut de play très satisfaisante pour diffuser ces fichiers. Il conviendra donc de copier tous les fichiers dans un dossier particulier au lancement de l&#39;application (il faut également pensé à y placer les fichiers &quot;compilé&quot; des scripts utilisant un pre-processeurs : coffeescript, &lt;a href=&quot;http://sass-lang.com&quot;&gt;SASS/SCSS&lt;/a&gt;, &lt;a href=&quot;http://lesscss.org/&quot;&gt;LESS&lt;/a&gt;, etc...). Tous les fichiers dans ce dossier auront une durée de cache maximale afin de minimiser le nombre de requêtes au serveur (la requête la plus rapide est celle qui n&#39;est pas faite). Cette technique a aussi l&#39;avantage de décharger la JVM du traitement de ses fichiers, ils sont directement retourné par nginx.&lt;/p&gt;
@@ -145,9 +172,9 @@ With this little trick, your calls to localization will use the locale extracted
  
  <entry>
    <title>Heroku Play ! Scala Compass Buildpack</title>
-   <link href="http://bloggure.info/.java/work/2013/07/08/heroku-play-scala-compass-buildpack.html"/>
-   <updated>2013-07-08T00:00:00+02:00</updated>
-   <id>http://bloggure.info/.java/work/2013/07/08/heroku-play-scala-compass-buildpack</id>
+   <link href="/.java/work/heroku-play-scala-compass-buildpack"/>
+   <updated>2013-07-08T00:00:00-04:00</updated>
+   <id>/.java/work/heroku-play-scala-compass-buildpack</id>
    <content type="html">&lt;!--:en--&gt;&lt;img class=&quot;size-thumbnail wp-image-758 alignright&quot; alt=&quot;MBP Keyboard&quot; src=&quot;http://www.bloggure.info/wp-content/uploads/2012/12/IMG_20121222_000541-150x150.jpg&quot; width=&quot;150&quot; height=&quot;150&quot; /&gt;I am actually working on a little side project with my friend &lt;a href=&quot;http://www.bloggure.info/author/tdebarochez&quot;&gt;Thomas Debarochez&lt;/a&gt;. We are using &lt;a href=&quot;http://www.playframework.com/&quot;&gt;Play!Framework&lt;/a&gt; and &lt;a href=&quot;http://compass-style.org/&quot;&gt;Compass&lt;/a&gt; and we deploy it to &lt;a href=&quot;https://www.heroku.com/&quot;&gt;Heroku&lt;/a&gt;.
 
 One issue that came when we first deployed the application with Compass to Heroku was that the default scala buildpack does not include sass and compass binaries.
@@ -162,9 +189,9 @@ I hope someone will find this useful !&lt;!--:--&gt;
  
  <entry>
    <title>Wicket Routes Mount</title>
-   <link href="http://bloggure.info/.wicket/2013/05/20/wicket-routes-mount.html"/>
-   <updated>2013-05-20T00:00:00+02:00</updated>
-   <id>http://bloggure.info/.wicket/2013/05/20/wicket-routes-mount</id>
+   <link href="/.wicket/wicket-routes-mount"/>
+   <updated>2013-05-20T00:00:00-04:00</updated>
+   <id>/.wicket/wicket-routes-mount</id>
    <content type="html">&lt;!--:en--&gt;&lt;img class=&quot;alignright size-thumbnail wp-image-90&quot; alt=&quot;Wicket&quot; src=&quot;http://www.bloggure.info/wp-content/uploads/2010/10/logo-wicket1-150x150.png&quot; width=&quot;150&quot; height=&quot;150&quot; /&gt;
 
 At &lt;a href=&quot;http://code-troopers.com&quot;&gt;Code-Troopers&lt;/a&gt;, we like to work with the frameworks we love. One of them is &lt;a href=&quot;http://wicket.apache.org&quot;&gt;Apache Wicket&lt;/a&gt;, and it happens to some of us doing some &lt;a href=&quot;http://www.playframework.com/&quot;&gt;Play! Framework&lt;/a&gt; or &lt;a href=&quot;http://rubyonrails.org/&quot;&gt;Ruby on Rails&lt;/a&gt; (either for a client project, a side project or giving back OSS love).
@@ -198,9 +225,9 @@ The files content is the following :
  
  <entry>
    <title>DuckDuckGo in Thunderbird</title>
-   <link href="http://bloggure.info/www/2013/03/24/duckduckgo-in-thunderbird.html"/>
-   <updated>2013-03-24T00:00:00+01:00</updated>
-   <id>http://bloggure.info/www/2013/03/24/duckduckgo-in-thunderbird</id>
+   <link href="/www/duckduckgo-in-thunderbird"/>
+   <updated>2013-03-24T00:00:00-04:00</updated>
+   <id>/www/duckduckgo-in-thunderbird</id>
    <content type="html">&lt;!--:en--&gt;&lt;a href=&quot;http://www.bloggure.info/wp-content/uploads/2013/03/logo_homepage.normal.v102.png&quot;&gt;&lt;img class=&quot;alignright size-thumbnail wp-image-890&quot; alt=&quot;Logo DuckDuckGo&quot; src=&quot;http://www.bloggure.info/wp-content/uploads/2013/03/logo_homepage.normal.v102-150x150.png&quot; width=&quot;150&quot; height=&quot;150&quot; /&gt;&lt;/a&gt;Mozilla added a function to search on the web in the latest versions of Thunderbird.That&#39;s nice, but the default search engine is bing. As a DuckDuckGo user, I wanted to add my favourite search engine and use it by default. So here&#39;s how to do it.
 &lt;ol&gt;
 	&lt;li&gt;&lt;a title=&quot;Find your Thunderbird profile folder&quot; href=&quot;http://kb.mozillazine.org/Profile_folder_-_Thunderbird&quot;&gt;Find your profile folder&lt;/a&gt;.&lt;/li&gt;
@@ -229,9 +256,9 @@ Pour utiliser google, ajoutez &lt;a href=&quot;http://bwinton.latte.ca/Work/goog
  
  <entry>
    <title>Alfred.app Glassfish workflow</title>
-   <link href="http://bloggure.info/.java/2013/03/19/alfred-glassfish-workflow.html"/>
-   <updated>2013-03-19T00:00:00+01:00</updated>
-   <id>http://bloggure.info/.java/2013/03/19/alfred-glassfish-workflow</id>
+   <link href="/.java/alfred-glassfish-workflow"/>
+   <updated>2013-03-19T00:00:00-04:00</updated>
+   <id>/.java/alfred-glassfish-workflow</id>
    <content type="html">&lt;!--:en--&gt;&lt;img class=&quot;size-thumbnail wp-image-879 alignright&quot; alt=&quot;alfred-icon&quot; src=&quot;http://www.bloggure.info/wp-content/uploads/2013/03/alfred-icon-150x150.jpg&quot; width=&quot;150&quot; height=&quot;150&quot; /&gt;I recently bought the &lt;a href=&quot;http://www.alfredapp.com/&quot;&gt;Alfred.app&lt;/a&gt; Powerpack. It is byfar the best application launcher / automation engine I&#39;ve ever used. One of the new features of the second version of this application is user customizable workflows.
 In my daily activities, I start, stop, restart and kill my &lt;a href=&quot;http://www.oracle.com/technetwork/middleware/glassfish/overview/index.html&quot;&gt;Glassfish&lt;/a&gt; server several times a day. In order to save me a few keystrokes and a few alt-tabbing, I created this small workflow allowing me to manage my local Glassfish instance.
 
@@ -254,9 +281,9 @@ Once this small step is done, you&#39;ll end up with the following prompt in you
  
  <entry>
    <title>Wicket 6 + CDI on Heroku</title>
-   <link href="http://bloggure.info/.wicket/work/2013/03/03/wicket-6-cdi-on-heroku.html"/>
-   <updated>2013-03-03T00:00:00+01:00</updated>
-   <id>http://bloggure.info/.wicket/work/2013/03/03/wicket-6-cdi-on-heroku</id>
+   <link href="/.wicket/work/wicket-6-cdi-on-heroku"/>
+   <updated>2013-03-03T00:00:00-05:00</updated>
+   <id>/.wicket/work/wicket-6-cdi-on-heroku</id>
    <content type="html">&lt;!--:en--&gt;&lt;p&gt;&lt;img class=&quot;alignright size-full wp-image-865&quot; alt=&quot;herokuwicket&quot; src=&quot;http://www.bloggure.info/wp-content/uploads/2013/03/herokuwicket.png&quot; width=&quot;96&quot; height=&quot;96&quot; /&gt;As an &lt;a href=&quot;http://apache.wicket.org&quot;&gt;Apache Wicket&lt;/a&gt; user for more than five years I really enjoy its programming model. I recently played with &lt;a href=&quot;http://www.playframework.com/&quot;&gt;Play Framework&lt;/a&gt; 2.1 and Scala and discovered that deploying to &lt;a href=&quot;http://www.heroku.com/&quot;&gt;Heroku&lt;/a&gt; is as easy as a git push. I wondered how difficult it could be using this mechanism to deploy a Wicket application.&lt;/p&gt;&lt;h1&gt;Existing attempts&lt;/h1&gt;&lt;p&gt;My initial investigation led me to this &lt;a href=&quot;http://wicketinaction.com/2011/09/git-wicket-running-on-heroku/&quot;&gt;blog post from Martijn Dashorst&lt;/a&gt; explaining how to deploy a Wicket 1.5 application to Heroku, the service has slightly evolved since and the quickstart no longer deploys (Maven repository is no longer available to the run environment).&lt;/p&gt;&lt;h1&gt;Adding JPA in the mix&lt;/h1&gt;&lt;p&gt;I adapted it to deploy and use Wicket 6 instead of 1.5. And as I am a CDI fan I completed the quickstart with the CDI Wicket module (inspired from &lt;a href=&quot;https://www.42lines.net/2011/11/21/adding-jpahibernate-into-the-cdi-and-wicket-mix/&quot;&gt;this post from Igor Vaynberg&lt;/a&gt;) and made the necessary steps to use the heroku bundled PostgreSQL database as a JPA datasource.&lt;/p&gt;&lt;p&gt;The key to make the database works correctly on Heroku resides in the following code snippet, where we parse the provided environment variable to populate hibernate properties.&lt;/p&gt;&lt;pre class=&quot;brush: java&quot;&gt;try {
      URI dbUri = new URI(System.getenv(&quot;DATABASE_URL&quot;));
      String username = dbUri.getUserInfo().split(&quot;:&quot;)[0];
@@ -285,9 +312,9 @@ Once this small step is done, you&#39;ll end up with the following prompt in you
  
  <entry>
    <title>Use Wicket templating system to generate Html</title>
-   <link href="http://bloggure.info/.java/.wicket/2013/01/20/use-wicket-templating-system-to-generate-html.html"/>
-   <updated>2013-01-20T00:00:00+01:00</updated>
-   <id>http://bloggure.info/.java/.wicket/2013/01/20/use-wicket-templating-system-to-generate-html</id>
+   <link href="/.java/.wicket/use-wicket-templating-system-to-generate-html"/>
+   <updated>2013-01-20T00:00:00-05:00</updated>
+   <id>/.java/.wicket/use-wicket-templating-system-to-generate-html</id>
    <content type="html">&lt;p&gt;
 &lt;img src=&quot;http://www.bloggure.info/wp-content/uploads/2013/01/html-icon.png&quot; alt=&quot;html-icon&quot; width=&quot;128&quot; height=&quot;128&quot; class=&quot;alignright size-full wp-image-844&quot; /&gt;&lt;a href=&quot;http://wicket.apache.org&quot;&gt;Apache Wicket&lt;/a&gt; is a great web framework, its clear separation between logic and markup allows to focus on what&#39;s need to be done. &lt;br/&gt; 
 As we use Wicket at &lt;a href=&quot;https://www.srmvision.com&quot;&gt;SRMvision&lt;/a&gt;, we needed to send mails with rather rich templates to our users. The first implementation we used was relying on Wicket to generate these templates using Html. We finally don&#39;t use it (our mailing tasks are done by a background job, thus we don&#39;t have access to our webapp), but I though the code used in our fast proof of concept could help someone else.
@@ -369,9 +396,9 @@ The only drawback of this is that you need a RequestCycle to generate the markup
  
  <entry>
    <title>De Free à Numericable</title>
-   <link href="http://bloggure.info/thoughts/2013/01/12/de-free-a-numericable.html"/>
-   <updated>2013-01-12T00:00:00+01:00</updated>
-   <id>http://bloggure.info/thoughts/2013/01/12/de-free-a-numericable</id>
+   <link href="/thoughts/de-free-a-numericable"/>
+   <updated>2013-01-12T00:00:00-05:00</updated>
+   <id>/thoughts/de-free-a-numericable</id>
    <content type="html">&lt;h2&gt;Marre de Free…&lt;/h2&gt;
 &lt;p&gt;Depuis 2003 maintenant je suis client ADSL de Free. Là où j&#39;ai toujours conseillé et trouvé que Free était un des acteurs du marché qui faisait bouger les choses, j&#39;ai depuis changé d&#39;avis.&lt;br/&gt;
 
@@ -388,9 +415,9 @@ Le lendemain, j&#39;ai contacté le service client via le chat (très bonne exp�
  
  <entry>
    <title>Sony Entertainment Web store - at last !</title>
-   <link href="http://bloggure.info/thoughts/www/2013/01/10/sony-entertainment-web-store-at-last.html"/>
-   <updated>2013-01-10T00:00:00+01:00</updated>
-   <id>http://bloggure.info/thoughts/www/2013/01/10/sony-entertainment-web-store-at-last</id>
+   <link href="/thoughts/www/sony-entertainment-web-store-at-last"/>
+   <updated>2013-01-10T00:00:00-05:00</updated>
+   <id>/thoughts/www/sony-entertainment-web-store-at-last</id>
    <content type="html">&lt;p&gt;I own a Playstation3 since January 2009 after getting the famous RROD on two successives Xbox 360. The PS3 is a really a nice gaming device, but the guys at Sony have  another focusing on everything but their store experience to their end users.&lt;/p&gt;
 &lt;img class=&quot;alignright size-thumbnail wp-image-176&quot; alt=&quot;Playstation3&quot; src=&quot;http://www.bloggure.info/wp-content/uploads/2010/12/Playstation3-150x150.jpg&quot; width=&quot;150&quot; height=&quot;150&quot; /&gt;
 &lt;p&gt;When I left the Xbox 360 world, one of the best feature of it was its store, I could even access it from my web browser and launch downloads so that I can play my games when I got home. I seriously miss this feature on the PS3. But I found that Sony, I guess along with the big store rewrite they made a few weeks ago, now allows us to browse and buy easily from our browser : &lt;a style=&quot;text-align: center;&quot; href=&quot;https://store.sonyentertainmentnetwork.com&quot;&gt;https://store.sonyentertainmentnetwork.com&lt;/a&gt;.&lt;/p&gt;
@@ -404,9 +431,9 @@ It seems that the downloads don&#39;t get pushed automatically to the console no
  
  <entry>
    <title>Regexper : visualize your regexps</title>
-   <link href="http://bloggure.info/work/www/2013/01/03/regexper-visualize-your-regexps.html"/>
-   <updated>2013-01-03T00:00:00+01:00</updated>
-   <id>http://bloggure.info/work/www/2013/01/03/regexper-visualize-your-regexps</id>
+   <link href="/work/www/regexper-visualize-your-regexps"/>
+   <updated>2013-01-03T00:00:00-05:00</updated>
+   <id>/work/www/regexper-visualize-your-regexps</id>
    <content type="html">&lt;p&gt;
 There is a famous quote about regular expressions, to which I don&#39;t really agree but I have to admit there is not much love for regexps around me. 
 &lt;blockquote&gt;
@@ -426,9 +453,9 @@ I think it could be useful to put it in your bookmarks with &lt;a href=&quot;htt
  
  <entry>
    <title>PostgreSQL under OS X Mountain Lion</title>
-   <link href="http://bloggure.info/work/2013/01/03/postgresql-under-os-x-mountain-lion.html"/>
-   <updated>2013-01-03T00:00:00+01:00</updated>
-   <id>http://bloggure.info/work/2013/01/03/postgresql-under-os-x-mountain-lion</id>
+   <link href="/work/postgresql-under-os-x-mountain-lion"/>
+   <updated>2013-01-03T00:00:00-05:00</updated>
+   <id>/work/postgresql-under-os-x-mountain-lion</id>
    <content type="html">&lt;img src=&quot;http://www.bloggure.info/wp-content/uploads/2013/01/netsuke-150x150.png&quot; alt=&quot;postgresql&quot; width=&quot;150&quot; height=&quot;150&quot; class=&quot;alignright size-thumbnail wp-image-798&quot; /&gt;&lt;p&gt;I am actually doing a side project which you will heard of very soon. For this project I am using &lt;a href=&quot;http://www.playframework.org/&quot;&gt;Play! Framework&lt;/a&gt; v2 with the server side being developed in &lt;a href=&quot;http://www.scala-lang.org/&quot;&gt;Scala&lt;/a&gt;. To efficiently push this new application to production, I am using the &lt;a href=&quot;http://www.heroku.com/&quot;&gt;Heroku platform&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;While my initial thoughts were using MySQL as my relational backend, the default stack provided by Heroku made me switch to postgresql that I have barely used in the past. I attempted to set it up on my machine, but with no luck, Mountain Lion is bundling an old version (8.4) whereas I wanted the same as on the Heroku platform. My first attempt with Homebrew was quite a disaster, I never managed to correctly connect my newly created user.&lt;/p&gt;
 
@@ -453,9 +480,9 @@ kern.sysv.shmmax=16777216
  
  <entry>
    <title>Juniper VPN SSL on Android</title>
-   <link href="http://bloggure.info/work/2013/01/01/juniper-vpn-ssl-on-android.html"/>
-   <updated>2013-01-01T00:00:00+01:00</updated>
-   <id>http://bloggure.info/work/2013/01/01/juniper-vpn-ssl-on-android</id>
+   <link href="/work/juniper-vpn-ssl-on-android"/>
+   <updated>2013-01-01T00:00:00-05:00</updated>
+   <id>/work/juniper-vpn-ssl-on-android</id>
    <content type="html">This morning I wanted to check if my newly installed backup scripts were working, but I didn&#39;t want to get my laptop out of my backpack. 
 
 A quick search got me to this little application from Juniper which lets me connect to our VPN easily (equivalent for Network Connect client on desktops) : &lt;a href=&quot;https://play.google.com/store/apps/details?id=net.juniper.junos.pulse.android&quot;&gt;https://play.google.com/store/apps/details?id=net.juniper.junos.pulse.android&lt;/a&gt;
@@ -464,9 +491,9 @@ A quick search got me to this little application from Juniper which lets me conn
  
  <entry>
    <title>Graph of programming languages people used in 2012</title>
-   <link href="http://bloggure.info/www/2012/12/30/graph-of-programming-languages-people-used-in-2012.html"/>
-   <updated>2012-12-30T00:00:00+01:00</updated>
-   <id>http://bloggure.info/www/2012/12/30/graph-of-programming-languages-people-used-in-2012</id>
+   <link href="/www/graph-of-programming-languages-people-used-in-2012"/>
+   <updated>2012-12-30T00:00:00-05:00</updated>
+   <id>/www/graph-of-programming-languages-people-used-in-2012</id>
    <content type="html">&lt;p&gt;I came across this link representing a visualization of programming languages usage based on a hashtag collect : &lt;a href=&quot;http://www.ioncannon.net/projects/code2012/&quot;&gt;http://www.ioncannon.net/projects/code2012/&lt;/a&gt;&lt;/p&gt; &lt;p&gt;Although this method can be criticized, it provides interesting data : JavaScript is the clear winner with Java just behind. We can see Scala is a growing language too, it has been used more than PHP last year (according to this study). &lt;/p&gt;
 
 &lt;em&gt;If you find another study on this topic don&#39;t hesitate to comment this blog post to let me know.&lt;/em&gt;
@@ -475,9 +502,9 @@ A quick search got me to this little application from Juniper which lets me conn
  
  <entry>
    <title>IntelliJ 12 Darcula + Monokai</title>
-   <link href="http://bloggure.info/work/2012/12/28/intellij-12-darcula-monokai.html"/>
-   <updated>2012-12-28T00:00:00+01:00</updated>
-   <id>http://bloggure.info/work/2012/12/28/intellij-12-darcula-monokai</id>
+   <link href="/work/intellij-12-darcula-monokai"/>
+   <updated>2012-12-28T00:00:00-05:00</updated>
+   <id>/work/intellij-12-darcula-monokai</id>
    <content type="html">&lt;p&gt;&lt;a href=&quot;https://twitter.com/loic_d&quot;&gt;Loïc Descotte&lt;/a&gt; shared via Twitter an excellent color scheme for IntelliJ inspired by &lt;a href=&quot;http://studiostyl.es/schemes/monokai&quot;&gt;Monokai&lt;/a&gt; color scheme.&lt;/p&gt;
 
 [caption id=&quot;attachment_780&quot; align=&quot;alignright&quot; width=&quot;917&quot;]&lt;img class=&quot;size-full wp-image-780&quot; alt=&quot;IntelliJ Darcula + Monokai&quot; src=&quot;http://www.bloggure.info/wp-content/uploads/2012/12/Capture-d’écran-2012-12-28-à-14.37.12.png&quot; width=&quot;917&quot; height=&quot;424&quot; /&gt; IntelliJ Darcula + Monokai[/caption]
@@ -496,9 +523,9 @@ Or you can simply import the jar containing the settings via the &lt;em&gt;File 
  
  <entry>
    <title>Quickly insert data to a SQL database in Groovy</title>
-   <link href="http://bloggure.info/.groovy/work/2012/12/27/quickly-insert-data-to-a-sql-database-in-groovy.html"/>
-   <updated>2012-12-27T00:00:00+01:00</updated>
-   <id>http://bloggure.info/.groovy/work/2012/12/27/quickly-insert-data-to-a-sql-database-in-groovy</id>
+   <link href="/.groovy/work/quickly-insert-data-to-a-sql-database-in-groovy"/>
+   <updated>2012-12-27T00:00:00-05:00</updated>
+   <id>/.groovy/work/quickly-insert-data-to-a-sql-database-in-groovy</id>
    <content type="html">&lt;img src=&quot;http://www.bloggure.info/wp-content/uploads/2012/12/groovy-200px.png&quot; alt=&quot;groovy-200px&quot; width=&quot;200&quot; height=&quot;100&quot; class=&quot;alignright size-full wp-image-771&quot; /&gt;
 &lt;p&gt;When we migrate data at &lt;a href=&quot;http://www.srmvision.com&quot;&gt;SRMvision&lt;/a&gt;, we use Groovy to focus on the migration logic without loosing time with heavy syntax and POJO mapping.
 Groovy is a great tool to do this, and its out of the box Sql handling is really very good. I found myself having the need to insert data to multiple existing table filling all columns.&lt;/p&gt;
@@ -532,9 +559,9 @@ insertIntoTable(&quot;MyTable&quot;, paramMap, sql)
  
  <entry>
    <title>OS X Tools I use in my daily activities</title>
-   <link href="http://bloggure.info/thoughts/work/2012/12/22/os-x-tools-i-use-in-my-daily-activities.html"/>
-   <updated>2012-12-22T00:00:00+01:00</updated>
-   <id>http://bloggure.info/thoughts/work/2012/12/22/os-x-tools-i-use-in-my-daily-activities</id>
+   <link href="/thoughts/work/os-x-tools-i-use-in-my-daily-activities"/>
+   <updated>2012-12-22T00:00:00-05:00</updated>
+   <id>/thoughts/work/os-x-tools-i-use-in-my-daily-activities</id>
    <content type="html">&lt;p&gt;&lt;img class=&quot;alignright size-thumbnail wp-image-758&quot; alt=&quot;MBP Keyboard&quot; src=&quot;http://www.bloggure.info/wp-content/uploads/2012/12/IMG_20121222_000541-150x150.jpg&quot; width=&quot;150&quot; height=&quot;150&quot; /&gt;During a Jabber talk with my friend &lt;a href=&quot;http://www.bloggure.info/author/tdebarochez&quot;&gt;Thomas Debarochez&lt;/a&gt; I mentioned an app I use everyday that he hardly ever knows. Then I think it might be a good idea to describe the tools I use everyday at work or home on my machines. My main computer is a MacBook Pro (late 2011) running latest OS X version (Mountain Lion). I use it to develop the &lt;a href=&quot;https://www.srmvision.com&quot;&gt;SRMvision platform&lt;/a&gt; which is built using Java EE technologies (the whole stack will be detailed in a further post).&lt;/p&gt;
 
 &lt;p&gt;The tools I use on my machine in my development process are the following :&lt;/p&gt;
@@ -579,9 +606,9 @@ And to finish with this little blog post, here are the stuff I keep installed on
  
  <entry>
    <title>Five Presentation Mistakes Everyone Makes</title>
-   <link href="http://bloggure.info/thoughts/www/2012/12/18/five-presentation-mistakes-everyone-makes.html"/>
-   <updated>2012-12-18T00:00:00+01:00</updated>
-   <id>http://bloggure.info/thoughts/www/2012/12/18/five-presentation-mistakes-everyone-makes</id>
+   <link href="/thoughts/www/five-presentation-mistakes-everyone-makes"/>
+   <updated>2012-12-18T00:00:00-05:00</updated>
+   <id>/thoughts/www/five-presentation-mistakes-everyone-makes</id>
    <content type="html">In my everyday browsing I came across this very interesting link explaining what people tends to do wrong when doing a keynote. 
 &lt;br/&gt;
 These points are really important but I attended a lot more presentations done wrong than following these simple advices : &lt;a href=&quot;http://feedly.com/k/Wi2EOx&quot;&gt;Five Presentation Mistakes Everyone Makes &lt;/a&gt;
@@ -590,9 +617,9 @@ These points are really important but I attended a lot more presentations done w
  
  <entry>
    <title>Ingress first try</title>
-   <link href="http://bloggure.info/www/2012/11/20/ingress-first-try.html"/>
-   <updated>2012-11-20T00:00:00+01:00</updated>
-   <id>http://bloggure.info/www/2012/11/20/ingress-first-try</id>
+   <link href="/www/ingress-first-try"/>
+   <updated>2012-11-20T00:00:00-05:00</updated>
+   <id>/www/ingress-first-try</id>
    <content type="html">&lt;!--:en--&gt;&lt;p&gt;&lt;img class=&quot;alignright size-thumbnail wp-image-731&quot; title=&quot;Ingress logo&quot; src=&quot;http://www.bloggure.info/wp-content/uploads/2012/11/Ingress-Featured-Logo-150x150.png&quot; alt=&quot;&quot; width=&quot;150&quot; height=&quot;150&quot; /&gt;I am among the first users of ingress in France, the concept feels good, but for the times being, there is not enough people playing to make it really interesting.&lt;br /&gt; In my hometown (Tours,France) I think we are under ten people running the game for now, so I am the first who captured the portals in the center of the city. The game is addictive even though there is almost nobody, I can&#39;t wait to see more people playing.&lt;/p&gt;&lt;p&gt;There is not much portals for now, but you can &lt;a href=&quot;http://support.google.com/ingress/answer/2808254?hl=en&quot;&gt;submit your own portals&lt;/a&gt;. I think I will use the camera of my brand new Nexus 4 to do this.&lt;/p&gt;[caption id=&quot;attachment_730&quot; align=&quot;aligncenter&quot; width=&quot;584&quot;]&lt;img class=&quot;size-large wp-image-730&quot; title=&quot;Ingress start&quot; src=&quot;http://www.bloggure.info/wp-content/uploads/2012/11/Capture-d’écran-2012-11-20-à-14.28.09-1024x606.png&quot; alt=&quot;&quot; width=&quot;584&quot; height=&quot;345&quot; /&gt; Ingress @ Tours[/caption]&lt;!--:--&gt;&lt;!--:fr--&gt;&lt;p&gt;&lt;em&gt;Cet article n&#39;a pas été traduit, veuillez trouver ci-dessous sa version anglaise&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img class=&quot;alignright size-thumbnail wp-image-731&quot; title=&quot;Ingress logo&quot; src=&quot;http://www.bloggure.info/wp-content/uploads/2012/11/Ingress-Featured-Logo-150x150.png&quot; alt=&quot;&quot; width=&quot;150&quot; height=&quot;150&quot; /&gt;I am among the first users of ingress in France, the concept feels good, but for the times being, there is not enough people playing to make it really interesting.&lt;br /&gt; In my hometown (Tours,France) I think we are under ten people running the game for now, so I am the first who captured the portals in the center of the city. The game is addictive even though there is almost nobody, I can&#39;t wait to see more people playing.&lt;/p&gt;&lt;p&gt;There is not much portals for now, but you can &lt;a href=&quot;http://support.google.com/ingress/answer/2808254?hl=en&quot;&gt;submit your own portals&lt;/a&gt;. I think I will use the camera of my brand new Nexus 4 to do this.&lt;/p&gt;[caption id=&quot;attachment_730&quot; align=&quot;aligncenter&quot; width=&quot;584&quot;]&lt;img class=&quot;size-large wp-image-730&quot; title=&quot;Ingress start&quot; src=&quot;http://www.bloggure.info/wp-content/uploads/2012/11/Capture-d’écran-2012-11-20-à-14.28.09-1024x606.png&quot; alt=&quot;&quot; width=&quot;584&quot; height=&quot;345&quot; /&gt; Ingress @ Tours[/caption]&lt;!--:--&gt;
 </content>
@@ -600,9 +627,9 @@ These points are really important but I attended a lot more presentations done w
  
  <entry>
    <title>Wicket Chrome to IDEA</title>
-   <link href="http://bloggure.info/.wicket/2012/11/18/wicket-chrome-to-idea.html"/>
-   <updated>2012-11-18T00:00:00+01:00</updated>
-   <id>http://bloggure.info/.wicket/2012/11/18/wicket-chrome-to-idea</id>
+   <link href="/.wicket/wicket-chrome-to-idea"/>
+   <updated>2012-11-18T00:00:00-05:00</updated>
+   <id>/.wicket/wicket-chrome-to-idea</id>
    <content type="html">&lt;!--:en--&gt;&lt;img class=&quot;alignright size-full wp-image-90&quot; title=&quot;Wicket&quot; src=&quot;http://www.bloggure.info/wp-content/uploads/2010/10/logo-wicket1.png&quot; alt=&quot;&quot; width=&quot;200&quot; height=&quot;199&quot; /&gt;It is not a secret that the &lt;a href=&quot;http://www.srmvision.com&quot;&gt;SRMvision&lt;/a&gt; platform is developped using the &lt;a href=&quot;http://wicket.apache.org/&quot;&gt;Apache Wicket&lt;/a&gt; framework.
 
 As our application became bigger and so our team, it&#39;s getting harder to find the correct Wicket class beneath the view of the page we get in our browsers.
@@ -648,9 +675,9 @@ I hope it will help other teams using this great framework, or it will give idea
  
  <entry>
    <title>Trying to learn Scala</title>
-   <link href="http://bloggure.info/work/2012/10/21/learn-scala.html"/>
-   <updated>2012-10-21T00:00:00+02:00</updated>
-   <id>http://bloggure.info/work/2012/10/21/learn-scala</id>
+   <link href="/work/learn-scala"/>
+   <updated>2012-10-21T00:00:00-04:00</updated>
+   <id>/work/learn-scala</id>
    <content type="html">&lt;!--:en--&gt;There is a lot of buzz around &lt;a href=&quot;http://www.scala-lang.org/&quot;&gt;Scala&lt;/a&gt; these days. The language is now known to divide a lot of programmers (specially ones with a Java background). To chose the side I&#39;m on, I read the excellent book from Martin Odersky, Lex Spoon and Bill Veners : &lt;a href=&quot;http://www.amazon.com/Programming-Scala-Comprehensive-Step---Step/dp/0981531644/ref=sr_1_1?ie=UTF8&amp;amp;qid=1350837328&amp;amp;sr=8-1&amp;amp;keywords=programming+in+scala&quot;&gt;Programming in Scala&lt;/a&gt;. The book is really well written, it explains a lot of great things about the language, but reading without exercising is not really efficient (of course you can try the examples yourself, but as I read it in bed, it is not that easy to do).
 
 &lt;img class=&quot;alignright  wp-image-681&quot; title=&quot;LearningScala&quot; src=&quot;http://www.bloggure.info/wp-content/uploads/2012/10/small-icon.hover_.png&quot; alt=&quot;&quot; width=&quot;240&quot; height=&quot;135&quot; /&gt;
@@ -669,9 +696,9 @@ If you&#39;re curious about Scala or about functional programming paradigm, you 
  
  <entry>
    <title>Using Trello as a Scrum sprint board</title>
-   <link href="http://bloggure.info/.js/2012/10/18/using-trello-as-a-scrum-sprint-board.html"/>
-   <updated>2012-10-18T00:00:00+02:00</updated>
-   <id>http://bloggure.info/.js/2012/10/18/using-trello-as-a-scrum-sprint-board</id>
+   <link href="/.js/using-trello-as-a-scrum-sprint-board"/>
+   <updated>2012-10-18T00:00:00-04:00</updated>
+   <id>/.js/using-trello-as-a-scrum-sprint-board</id>
    <content type="html">&lt;!--:en--&gt;&lt;p&gt;At &lt;a href=&quot;http://www.srmvision.com&quot;&gt;SRMvision&lt;/a&gt;, we use agile methods since day one, mainly Scrum, which we rearranged to fit our needs and goals at times. We&#39;ve always looked for the perfect computerized alternative to good old stickies.&lt;/p&gt;&lt;h2&gt;TrelloScrum Chrome Extension&lt;img class=&quot;alignright size-full wp-image-644&quot; title=&quot;Trello-Icon&quot; src=&quot;http://www.bloggure.info/wp-content/uploads/2012/10/Trello-Icon1.png&quot; alt=&quot;&quot; width=&quot;128&quot; height=&quot;128&quot; /&gt;&lt;/h2&gt;&lt;p&gt;When it came out, it was clear to me that &lt;a href=&quot;http://www.trello.com&quot;&gt;Trello&lt;/a&gt; could be the cornerstone of our internal workflow, we started from the very good &lt;a href=&quot;https://chrome.google.com/webstore/detail/trello-scrum/jdbcdblgjdpmfninkoogcfpnkjmndgje&quot;&gt;TrelloScrum plugin available on the Chrome Web Store&lt;/a&gt; to count story points. This plugin is really useful in planning sprints, it allows the Scrum master to track story points scheduled in order to fill every single day in the sprint.&lt;/p&gt;&lt;h2&gt;Forking the extension&lt;/h2&gt;&lt;p&gt;After a few sprints, we realized we needed more than what was included in the plugin. The main thing needed was tracking consumed story points to get a really rapid and efficient feedback on our sprint (real-time burndown values). Thanks to the guys behind the plugin (&lt;a href=&quot;http://q42.nl/blog&quot;&gt;Q42&lt;/a&gt;) and to Github, I was able to fork the project and add these features :&lt;/p&gt;&lt;ul&gt;&lt;li&gt;if you note points in square brackets : [3] they are considered as consumed points (contributed back to the plugin available in the Chrome Web Store)&lt;/li&gt;&lt;li&gt;on card detail, hitting the &quot;Done&quot; button flags the whole card points consumed and moves the card to the bottom of the list, then the card view is closed so you can focus on something else (only available in my fork)&lt;/li&gt;&lt;li&gt;plugged to the Trello client API, less flickering when updating cards&lt;/li&gt;&lt;/ul&gt;[caption id=&quot;attachment_631&quot; align=&quot;aligncenter&quot; width=&quot;315&quot;]&lt;img class=&quot;size-full wp-image-631 &quot; title=&quot;list&quot; src=&quot;http://www.bloggure.info/wp-content/uploads/2012/10/list.png&quot; alt=&quot;&quot; width=&quot;315&quot; height=&quot;290&quot; /&gt; List and cards points counts[/caption]&lt;p&gt;With this plugin, you&#39;ll get two counters on the top of each list and on a top of the board : consumed points in light blue and scheduled poins in blue. The scheduled and consumed terms are the one we use at &lt;a href=&quot;http://www.srmvision.com&quot;&gt;SRMvision&lt;/a&gt;, but you can use it the way you like to manage your sprints.&lt;/p&gt;&lt;h2&gt;Using the extension&lt;/h2&gt;&lt;p&gt;If you want to use my fork of the extension, you&#39;ll need to get it in my &lt;a href=&quot;https://github.com/CedricGatay/TrelloScrum/downloads&quot;&gt;Github account&lt;/a&gt;. As it is not available in the store, you&#39;ll need to drag and drop the downloaded file on the &lt;a href=&quot;chrome://extensions&quot;&gt;chrome://extensions&lt;/a&gt; page.&lt;/p&gt;[caption id=&quot;attachment_633&quot; align=&quot;alignright&quot; width=&quot;133&quot;]&lt;img class=&quot;size-full wp-image-633 &quot; style=&quot;text-align: center;&quot; title=&quot;unauthenticated&quot; src=&quot;http://www.bloggure.info/wp-content/uploads/2012/10/unauthenticated.png&quot; alt=&quot;&quot; width=&quot;133&quot; height=&quot;46&quot; /&gt; Unauthenticated plugin[/caption]&lt;p&gt;Next, you&#39;ll need to authenticate the plugin to your Trello account, to do so, there is a little circle on top of your profile picture which is on the top right corner of Trello.&lt;/p&gt;&lt;p&gt;You can use the plugin without allowing it to authenticate, if you do so, you won&#39;t be able to flag cards as Done using the button and thus, cards won&#39;t be moved to the bottom. To authenticate, you need to click the circle, it will popup the authenticate dialog, just follow the steps in this popup (and close it manually when you see a blank page - limitation of the extension).&lt;/p&gt;[caption id=&quot;attachment_632&quot; align=&quot;alignright&quot; width=&quot;139&quot;]&lt;a href=&quot;http://www.bloggure.info/wp-content/uploads/2012/10/authenticated.png&quot;&gt;&lt;img class=&quot;size-full wp-image-632 &quot; title=&quot;authenticated&quot; src=&quot;http://www.bloggure.info/wp-content/uploads/2012/10/authenticated.png&quot; alt=&quot;&quot; width=&quot;139&quot; height=&quot;48&quot; /&gt;&lt;/a&gt; Authenticated plugin[/caption]&lt;p&gt;Once authenticated, you should see a green circle and a &quot;Done&quot; button on cards details.&lt;/p&gt;&lt;p&gt;If you have feature requests or bugs, don&#39;t hesitate to use the &lt;a href=&quot;https://github.com/CedricGatay/TrelloScrum/issues&quot;&gt;Github issue tracker&lt;/a&gt;.&lt;/p&gt;&lt;!--:--&gt;&lt;!--:fr--&gt;&lt;p&gt;Chez &lt;a href=&quot;http://www.srmvision.com&quot;&gt;SRMvision&lt;/a&gt;, nous utilisons les méthodes agile depuis le début, principalement Scrum, que nous avons quelque peu modifié pour coller à nos besoins au fil du temps. Nous avons cherché depuis le début une bonne alternative informatisée aux bons vieux post-it.&lt;/p&gt;
 &lt;h2&gt;TrelloScrum Chrome Extension&lt;img class=&quot;alignright size-full wp-image-644&quot; title=&quot;Trello-Icon&quot; src=&quot;http://www.bloggure.info/wp-content/uploads/2012/10/Trello-Icon1.png&quot; alt=&quot;&quot; width=&quot;128&quot; height=&quot;128&quot; /&gt;&lt;/h2&gt;
 &lt;p&gt;Quand je l&#39;ai découvert, j&#39;ai rapidement pensé que &lt;a href=&quot;http://www.trello.com&quot;&gt;Trello&lt;/a&gt; pouvait être un des piliers de notre organisation interne. Nous avons d&#39;abord commencé par utiliser la très bonne extension &lt;a href=&quot;https://chrome.google.com/webstore/detail/trello-scrum/jdbcdblgjdpmfninkoogcfpnkjmndgje&quot;&gt;TrelloScrum disponible sur le Chrome Web Store&lt;/a&gt; pour effectuer le décompte des points de nos sprints. Ce plugin est réellement utile dans la planification de sprint, il permet au Scrum-master de facilement gérer le nombre de points utilisés pour remplir efficacement chaque jour du sprint.&lt;/p&gt;
@@ -699,18 +726,18 @@ If you&#39;re curious about Scala or about functional programming paradigm, you 
  
  <entry>
    <title>Vert.x in Homebrew</title>
-   <link href="http://bloggure.info/work/2012/05/13/vert-x-in-homebrew.html"/>
-   <updated>2012-05-13T00:00:00+02:00</updated>
-   <id>http://bloggure.info/work/2012/05/13/vert-x-in-homebrew</id>
+   <link href="/work/vert-x-in-homebrew"/>
+   <updated>2012-05-13T00:00:00-04:00</updated>
+   <id>/work/vert-x-in-homebrew</id>
    <content type="html">&lt;!--:en--&gt;I just made a pull request for integrating &lt;a href=&quot;http://vertx.io&quot;&gt;Vert.x&lt;/a&gt; into Homebrew. You can see it here : &lt;a href=&quot;https://github.com/mxcl/homebrew/pull/12227&quot;&gt;https://github.com/mxcl/homebrew/pull/12227&lt;/a&gt;, when it will be merged, a simple brew install vert.x will allow you to enjoy this sweet framework.&lt;!--:--&gt;
 </content>
  </entry>
  
  <entry>
    <title>GitlabHQ - SQLite to mySQL</title>
-   <link href="http://bloggure.info/.git/work/2012/05/08/gitlabhq-sqlite-to-mysql.html"/>
-   <updated>2012-05-08T00:00:00+02:00</updated>
-   <id>http://bloggure.info/.git/work/2012/05/08/gitlabhq-sqlite-to-mysql</id>
+   <link href="/.git/work/gitlabhq-sqlite-to-mysql"/>
+   <updated>2012-05-08T00:00:00-04:00</updated>
+   <id>/.git/work/gitlabhq-sqlite-to-mysql</id>
    <content type="html">&lt;!--:en--&gt;&lt;img src=&quot;http://www.bloggure.info/wp-content/uploads/2012/02/gitlabhq-logo.png&quot; alt=&quot;&quot; title=&quot;gitlabhq-logo&quot; width=&quot;175&quot; height=&quot;60&quot; class=&quot;alignright size-full wp-image-528&quot; /&gt;&lt;p&gt;As our &lt;a href=&quot;http://gitlabhq.com/&quot;&gt;GitlabHQ&lt;/a&gt; setup at &lt;a href=&quot;http://www.srmvision.com&quot;&gt;SRMvision&lt;/a&gt; is mean to stay, we wanted to migrate from the standard SQLite database to an easier to manage for us : mySQL.&lt;br /&gt; The steps are quite straighforward, first, setup mySQL :&lt;/p&gt;
 &lt;pre class=&quot;brush: sql&quot;&gt;
 create database gitlab; 
@@ -822,9 +849,9 @@ C&#39;est tout, il ne reste plus qu&#39;à redémarrer le serveur de GitlabHQ. S
  
  <entry>
    <title>Control Trac ticket workflow from your Git commits</title>
-   <link href="http://bloggure.info/.git/ci/2012/05/06/control-trac-ticket-workflow-from-your-git-commits.html"/>
-   <updated>2012-05-06T00:00:00+02:00</updated>
-   <id>http://bloggure.info/.git/ci/2012/05/06/control-trac-ticket-workflow-from-your-git-commits</id>
+   <link href="/.git/ci/control-trac-ticket-workflow-from-your-git-commits"/>
+   <updated>2012-05-06T00:00:00-04:00</updated>
+   <id>/.git/ci/control-trac-ticket-workflow-from-your-git-commits</id>
    <content type="html">&lt;!--:en--&gt;&lt;img class=&quot;alignright size-full wp-image-594&quot; title=&quot;Trac_Logo&quot; src=&quot;http://www.bloggure.info/wp-content/uploads/2012/05/Trac_Logo_512x512.png&quot; alt=&quot;&quot; width=&quot;128&quot; height=&quot;128&quot; /&gt;&lt;p&gt;As I said in an &lt;a title=&quot;GitLabHQ and a good branching model&quot; href=&quot;http://www.bloggure.info/work/gitlabhq.html&quot;&gt;earlier post&lt;/a&gt;, at SRMvision, we use feature branches to isolate our work and be able to publish it to our production environment with a clear change history.&lt;/p&gt;&lt;p&gt;One thing we use since the beginning (at the subversion time, pre-git era), is the control of our ticket tracker (&lt;a href=&quot;http://trac.edgewall.org/&quot;&gt;Trac&lt;/a&gt;) from our commit messages. We have the following verbs to control our tickets (synonyms are available, but we rarely use them) :&lt;/p&gt;&lt;ul&gt;&lt;li&gt;see #NUM to link to a ticket&lt;/li&gt;&lt;li&gt;fix #NUM to close a ticket&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Repository references to commits are automatically added into ticket&#39;s history in our Trac instance.&lt;/p&gt;&lt;p&gt;&lt;img title=&quot;Git_Commit_message&quot; src=&quot;http://www.bloggure.info/wp-content/uploads/2012/05/Capture-d’écran-2012-05-06-à-13.14.46.png&quot; alt=&quot;&quot; width=&quot;774&quot; height=&quot;164&quot; /&gt;&lt;/p&gt;&lt;p&gt;To be sure of the quality of our code, we set up a custom workflow in Trac. Once a dev/bugfix is done, we set the corresponding ticket to the &quot;Testing&quot; status. The next step is simple, either the test passes and the ticket is closed, or it does not and it returns to the developer. So, we added another verb to our commit handler : &quot;test&quot; to automatically set a ticket to the &quot;Testing&quot; status.&lt;/p&gt;&lt;p&gt;Our adoption of feature branches has forced us to rethink our workflow. Passing a ticket to &quot;testing&quot; while it is not even merged into our &quot;testable&quot; branch was really polluting Trac. That&#39;s why we added the status &quot;Fixed on branch&quot; to allow us to differentiate really testable ticket from not ready ones.&lt;/p&gt;&lt;p&gt;We finally adopted the following mecanism, keeping only our three verbs (see, fix, test) :&lt;/p&gt;&lt;ul&gt;&lt;li&gt;test on a branch other than master, ticket&#39;s status is set to &quot;Fixed on branch&quot;&lt;/li&gt;&lt;li&gt;on a branch merge to master, &quot;Fixed on branch&quot; tickets are reopened and set to &quot;Testing&quot;&lt;/li&gt;&lt;li&gt;on the branch master, test sets the ticket to &quot;Testing&quot;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;On a classic development, we can have 50 &quot;Fixed on branch&quot; tickets that automatically pass to &quot;Testing&quot; once merged onto master. Using this technique allows us to check if every single ticket related to the feature has been correctly handled from development to quality testing.&lt;/p&gt;&lt;p&gt;If you want to deploy a similar technique in your environment, files we are using are available at the following address : &lt;a href=&quot;https://github.com/CedricGatay/sandbox/tree/master/trac-git-hook&quot;&gt;https://github.com/CedricGatay/sandbox/tree/master/trac-git-hook&lt;/a&gt;&lt;/p&gt;&lt;p&gt;You will find the following files :&lt;/p&gt;&lt;ul&gt;&lt;li&gt;post-receive : git hook, to copy into the hooks/ directory of your &quot;central&quot; repository (the one connected to Trac), triggers delayed launch (1 minute later) of the next script (avoiding to block the commit),&lt;/li&gt;&lt;li&gt;trac-post-commit-hook : Trac hook parsing commit messages to control tickets&lt;/li&gt;&lt;li&gt;trac.options.ini : excerpt from Trac configuration file allowing to customize workflow&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Please notice il will be necessary for you to edit script settings referring to git repository in Trac (called &#39;git-clone&#39; for us) and paths corresponding to your environment.&lt;/p&gt;&lt;!--:--&gt;&lt;!--:fr--&gt;&lt;img class=&quot;alignright size-full wp-image-594&quot; title=&quot;Trac_Logo&quot; src=&quot;http://www.bloggure.info/wp-content/uploads/2012/05/Trac_Logo_512x512.png&quot; alt=&quot;&quot; width=&quot;128&quot; height=&quot;128&quot; /&gt;Comme mentionné dans un &lt;a title=&quot;GitLabHQ and a good branching model&quot; href=&quot;http://www.bloggure.info/work/gitlabhq.html&quot;&gt;précédent billet&lt;/a&gt;, chez SRMvision, nous utilisons intensivement les features branches pour isoler nos développements et nous permettre de basculer facilement une fonctionnalité en production avec un historique clair des modifications.
 
 Une des pratiques que nous avions mis en place depuis le début (à l&#39;époque ou nous utilisions subversion) est l&#39;interaction avec notre gestionnaire d&#39;incidents (&lt;a href=&quot;http://trac.edgewall.org/&quot;&gt;Trac&lt;/a&gt;) depuis nos commits. Ainsi, nous utilisons les commandes suivantes dans nos messages de commits (des synonymes existent, mais nous les utilisons peu) :
@@ -862,9 +889,9 @@ Notez qu&#39;il sera certainement nécessaire de modifier les variables des scri
  
  <entry>
    <title>How Github uses Pull Request</title>
-   <link href="http://bloggure.info/.git/thoughts/www/2012/05/04/how-github-uses-pull-request.html"/>
-   <updated>2012-05-04T00:00:00+02:00</updated>
-   <id>http://bloggure.info/.git/thoughts/www/2012/05/04/how-github-uses-pull-request</id>
+   <link href="/.git/thoughts/www/how-github-uses-pull-request"/>
+   <updated>2012-05-04T00:00:00-04:00</updated>
+   <id>/.git/thoughts/www/how-github-uses-pull-request</id>
    <content type="html">&lt;!--:en--&gt;I just read a very interesting blog post on the Github Blog : &quot;&lt;a href=&quot;https://github.com/blog/1124-how-we-use-pull-requests-to-build-github&quot; rel=&quot;bookmark&quot;&gt;How we use Pull Requests to build GitHub&lt;/a&gt;&quot;
 I think their solution to track features is very clever, I will try to mimic their solution using &lt;a href=&quot;http://gitlabhq.com/&quot;&gt;GitlabHQ&lt;/a&gt; merge requests.&lt;!--:--&gt;&lt;!--:fr--&gt;Je viens juste de lire un billet très intéressant sur le Blog de Github : &quot;&lt;a href=&quot;https://github.com/blog/1124-how-we-use-pull-requests-to-build-github&quot; rel=&quot;bookmark&quot;&gt;How we use Pull Requests to build GitHub&lt;/a&gt;&quot;
 Je trouve leur solution pour suivre le développement des fonctionnalités très malin, je pense essayer d&#39;adopter leur technique en utilisant les &quot;merge request&quot; de &lt;a href=&quot;http://gitlabhq.com/&quot;&gt;GitlabHQ&lt;/a&gt;&lt;!--:--&gt;
@@ -873,9 +900,9 @@ Je trouve leur solution pour suivre le développement des fonctionnalités très
  
  <entry>
    <title>Bitbucket : free personal Git (and Mercurial) repositories</title>
-   <link href="http://bloggure.info/.git/work/2012/05/04/bitbucket-free-personal-git-and-mercurial-repositories.html"/>
-   <updated>2012-05-04T00:00:00+02:00</updated>
-   <id>http://bloggure.info/.git/work/2012/05/04/bitbucket-free-personal-git-and-mercurial-repositories</id>
+   <link href="/.git/work/bitbucket-free-personal-git-and-mercurial-repositories"/>
+   <updated>2012-05-04T00:00:00-04:00</updated>
+   <id>/.git/work/bitbucket-free-personal-git-and-mercurial-repositories</id>
    <content type="html">&lt;!--:en--&gt;Some of you might have noticed that since I tried git I don&#39;t want to got back to another Version Control System for my work. At my company we now officially all use Git for about nine months without any hickup, we have our own hosted infrastructure using the wonderful &lt;a href=&quot;http://gitlabhq.com&quot;&gt;gitlabhq&lt;/a&gt;.&lt;a href=&quot;http://www.bloggure.info/wp-content/uploads/2012/05/Bitbucket.png&quot;&gt;&lt;img class=&quot;alignright size-full wp-image-586&quot; title=&quot;Bitbucket&quot; src=&quot;http://www.bloggure.info/wp-content/uploads/2012/05/Bitbucket.png&quot; alt=&quot;&quot; width=&quot;256&quot; height=&quot;256&quot; /&gt;&lt;/a&gt;
 
 For my personal projects (&lt;a href=&quot;https://play.google.com/store/apps/developer?id=Cedric+Gatay&quot;&gt;mainly Android applications&lt;/a&gt;), I only had local git repositories allowing me to really develop without being afraid of losing history. However, these local repositories were not synced anywhere but on my own hard drive (that&#39;s not really a secure way of handling things). My first attempt was to do as often as I though tarballs of my repositories and sync them on Dropbox.The problem in the chain was the fact the backup were done at times, which, in practice, means really rarely.
@@ -901,18 +928,18 @@ Le &quot;one more thing&quot; de cette solution (mais pas seulement) ne sera int
  
  <entry>
    <title>(Parts of) Android in C# ?</title>
-   <link href="http://bloggure.info/.android/www/2012/05/02/parts-of-android-in-c.html"/>
-   <updated>2012-05-02T00:00:00+02:00</updated>
-   <id>http://bloggure.info/.android/www/2012/05/02/parts-of-android-in-c</id>
+   <link href="/.android/www/parts-of-android-in-c"/>
+   <updated>2012-05-02T00:00:00-04:00</updated>
+   <id>/.android/www/parts-of-android-in-c</id>
    <content type="html">&lt;!--:en--&gt;While reading Hacker news, I found out this crazy project from the guys of &lt;a href=&quot;http://www.xamarin.com&quot;&gt;Xamarin&lt;/a&gt;. They started to port Android Java code (roughly 1M SLOC) to C# for running with Mono. Read more &lt;a href=&quot;http://blog.xamarin.com/2012/05/01/android-in-c-sharp/&quot;&gt;here&lt;/a&gt;.&lt;!--:--&gt;&lt;!--:fr--&gt;En me balladant sur Hacker news, je suis tombé sur ce projet de malade des mecs de &lt;a href=&quot;http://www.xamarin.com&quot;&gt;Xamarin&lt;/a&gt;. Ils ont commencé à porter le code Java d&#39;Android (environ 1 million de lignes de code) vers C# pour l&#39;utiliser au dessus de Mono (plus performant selon eux). Plus de détails sur &lt;a href=&quot;http://blog.xamarin.com/2012/05/01/android-in-c-sharp/&quot;&gt;leur blog&lt;/a&gt;.&lt;!--:--&gt;
 </content>
  </entry>
  
  <entry>
    <title>Amazon Cloud Drive Desktop</title>
-   <link href="http://bloggure.info/www/2012/05/02/amazon-cloud-drive-desktop.html"/>
-   <updated>2012-05-02T00:00:00+02:00</updated>
-   <id>http://bloggure.info/www/2012/05/02/amazon-cloud-drive-desktop</id>
+   <link href="/www/amazon-cloud-drive-desktop"/>
+   <updated>2012-05-02T00:00:00-04:00</updated>
+   <id>/www/amazon-cloud-drive-desktop</id>
    <content type="html">&lt;!--:en--&gt;&lt;img class=&quot;alignright size-full wp-image-581&quot; title=&quot;Amazon Cloud Drive&quot; src=&quot;http://www.bloggure.info/wp-content/uploads/2012/05/AppIcon_128.ico&quot; alt=&quot;&quot; /&gt;
 
 It is the war of pure players for cloud storage. Amazon has released its &lt;a href=&quot;http://www.amazon.com/gp/feature.html/ref=pe_234810_23726170_pe_button/?ie=UTF8&amp;amp;docId=1000796781&quot;&gt;desktop solution (Windows, Mac OS)&lt;/a&gt; for using Amazon Cloud Drive (another free 5Gb). We now have a wide choice of cloud storage solutions (aside &lt;a href=&quot;https://drive.google.com/start&quot;&gt;Google Drive&lt;/a&gt;, &lt;a href=&quot;https://www.dropbox.com&quot;&gt;Dropbox&lt;/a&gt;, &lt;a href=&quot;http://box.com/&quot;&gt;Box&lt;/a&gt;...)
@@ -931,9 +958,9 @@ C&#39;est la guerre du stockage en ligne. Amazon a rendu disponible sa version &
  
  <entry>
    <title>Installing HomeBrew without XCode</title>
-   <link href="http://bloggure.info/work/2012/04/28/installing-homebrew-without-xcode.html"/>
-   <updated>2012-04-28T00:00:00+02:00</updated>
-   <id>http://bloggure.info/work/2012/04/28/installing-homebrew-without-xcode</id>
+   <link href="/work/installing-homebrew-without-xcode"/>
+   <updated>2012-04-28T00:00:00-04:00</updated>
+   <id>/work/installing-homebrew-without-xcode</id>
    <content type="html">&lt;!--:en--&gt;&lt;p&gt;&lt;img class=&quot;alignright  wp-image-568&quot; title=&quot;Logo XCode&quot; src=&quot;http://www.bloggure.info/wp-content/uploads/2012/04/250px-Logo_xcode.png&quot; alt=&quot;&quot; width=&quot;150&quot; height=&quot;150&quot; /&gt;&lt;/p&gt;&lt;p&gt;Since I have a SSD in my laptop, I am always looking after things that waste the precious space of my main drive. Although I have a 120Gb drive, I have to say it is rapidly filled at 80% (maven downloading the internet syndrome). On of the good thing owning a Mac is the Unix subsystem allowing to use almost every software written for the Unix world.&lt;/p&gt;&lt;p&gt;There is some package systems for Mac OS X, &lt;a href=&quot;http://www.macports.org/&quot;&gt;MacPorts&lt;/a&gt;, &lt;a href=&quot;http://www.finkproject.org/&quot;&gt;Fink&lt;/a&gt;, &lt;a href=&quot;http://mxcl.github.com/homebrew/&quot;&gt;HomeBrew&lt;/a&gt; being the last one and the most convenient one. When I last switched to a Core i7 MacBook Pro, I migrated to HomeBrew and I have to say it is way lighter than MacPort. The only thing I find cumbersome is the need for a complete XCode install on drive, even though I do not develop using XCode. XCode is a heavy tool suite, weighting about 5Gb on your drive, only to get the tools needed for HomeBrew.&lt;/p&gt;&lt;p&gt;The nightmare is now over, Apple released Command Line Tools for XCode, that you can download on the official &lt;a href=&quot;https://developer.apple.com/downloads/index.action&quot;&gt;Apple Developer Site&lt;/a&gt; (you will need to log in with a valid developer id account, this is free don&#39;t worry).&lt;/p&gt;&lt;p&gt;Here is a simple step by step guide to uninstall XCode and replace it by Command Line Tools :&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Go to the Apple Developer site and download the dmg image of Command Line Tools&lt;/li&gt;&lt;li&gt;Open Terminal.app and run&lt;/li&gt;&lt;pre class=&quot;brush: bash&quot;&gt;sudo /Developer/Library/uninstall-devtools&lt;/pre&gt;&lt;li&gt;Open the dmg image and install the tools&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;That&#39;s all folks ! You can now install HomeBrew and enjoy your favorites open source software without the whole XCode suite.&lt;/p&gt;&lt;!--:--&gt;&lt;!--:fr--&gt;&lt;img class=&quot;alignright  wp-image-568&quot; title=&quot;Logo XCode&quot; src=&quot;http://www.bloggure.info/wp-content/uploads/2012/04/250px-Logo_xcode.png&quot; alt=&quot;&quot; width=&quot;150&quot; height=&quot;150&quot; /&gt;
 
 Depuis que j&#39;ai un SSD dans mon ordinateur, je suis toujours à la recherche des éléments qui gaspillent le spacieux espace de mon disque. Bien que j&#39;ai un disque de 120Go, celui-ci se remplit très rapidement à 80% (certainement grace à Maven qui télécharge internet). L&#39;un des points fort lorsqu&#39;on possède un Mac est le système Unix permettant l&#39;utilisation de quasiment tous les logiciels écrit dans le monde Unix.
@@ -955,9 +982,9 @@ C&#39;est terminé ! Vous pouvez maintenant installer HomeBrew et installer / ut
  
  <entry>
    <title>Devoxx France</title>
-   <link href="http://bloggure.info/work/2012/04/24/devoxx-france.html"/>
-   <updated>2012-04-24T00:00:00+02:00</updated>
-   <id>http://bloggure.info/work/2012/04/24/devoxx-france</id>
+   <link href="/work/devoxx-france"/>
+   <updated>2012-04-24T00:00:00-04:00</updated>
+   <id>/work/devoxx-france</id>
    <content type="html">&lt;!--:en--&gt;&lt;p&gt;Sorry folks, to be concise I choosed not to translate my blog post in English for now, thus I respect the 75% french - 25% english part of Devoxx France ;).&lt;br/&gt;
 However, if you&#39;re interested in my opinion, you can try to Google translate my french version located &lt;a href=&quot;http://www.bloggure.info/?p=543&amp;lang=fr&quot;&gt;here&lt;/a&gt;&lt;p&gt;&lt;!--:--&gt;&lt;!--:fr--&gt;J&#39;ai eu la chance d&#39;assister à l&#39;intégralité de la première édition de Devoxx France. 
 &lt;h2&gt;Devoxx France ?&lt;/h2&gt;
@@ -1072,9 +1099,9 @@ Rendez vous à Devoxx World en Novembre si je parviens à y aller, et sinon, à 
  
  <entry>
    <title>Devoxx France / D-3</title>
-   <link href="http://bloggure.info/work/2012/04/16/devoxx-france-d-3.html"/>
-   <updated>2012-04-16T00:00:00+02:00</updated>
-   <id>http://bloggure.info/work/2012/04/16/devoxx-france-d-3</id>
+   <link href="/work/devoxx-france-d-3"/>
+   <updated>2012-04-16T00:00:00-04:00</updated>
+   <id>/work/devoxx-france-d-3</id>
    <content type="html">&lt;!--:en--&gt;&lt;p&gt;I will be one of the 1200 geeks in Paris to attend the first edition of the famous &lt;a href=&quot;http://devoxx.fr/&quot;&gt;Devoxx&lt;/a&gt; conference in France. I will try to give feedback here on the keynotes I attend throughout the 3 days of this conference. Stay tuned...&lt;/p&gt;
 &lt;p&gt;Have a look at the teaser : &lt;/p&gt;
 &lt;iframe width=&quot;420&quot; height=&quot;315&quot; src=&quot;http://www.youtube.com/embed/II6XiGGlJX0&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;&lt;!--:--&gt;&lt;!--:fr--&gt;&lt;p&gt;Je vais faire partie des 1200 geeks présent à Paris en cette fin de semaine pour la première édition de &lt;a href=&quot;http://devoxx.fr/&quot;&gt;Devoxx France&lt;/a&gt;. Je résumerai ici mes impressions sur les différentes présentations et ateliers auquel je vais participer. À suivre...&lt;/p&gt;
@@ -1085,9 +1112,9 @@ Rendez vous à Devoxx World en Novembre si je parviens à y aller, et sinon, à 
  
  <entry>
    <title>GitLabHQ and a good branching model</title>
-   <link href="http://bloggure.info/.git/work/2012/02/23/gitlabhq.html"/>
-   <updated>2012-02-23T00:00:00+01:00</updated>
-   <id>http://bloggure.info/.git/work/2012/02/23/gitlabhq</id>
+   <link href="/.git/work/gitlabhq"/>
+   <updated>2012-02-23T00:00:00-05:00</updated>
+   <id>/.git/work/gitlabhq</id>
    <content type="html">&lt;!--:en--&gt;&lt;h2&gt;Migrating to Git&lt;/h2&gt;
 &lt;img src=&quot;http://www.bloggure.info/wp-content/uploads/2011/12/GitLogo.jpg&quot; alt=&quot;&quot; title=&quot;GitLogo&quot; width=&quot;97&quot; height=&quot;202&quot; class=&quot;alignright size-full wp-image-491&quot; /&gt;
 At work, we made the move from subversion to git as our version control tool. I used git for a few times before we migrate the whole project thanks to the git-svn bridge, and, apart from the usual headache when it comes to merging branches, I was rather convinced we would make the migration to git. To explain what branching model I was expecting to use, I dig the Internet for a good tool, hoping to migrate our so &quot;1.0&quot; Trac version control and issue management to a more github like one.
@@ -1234,18 +1261,18 @@ Au final, nous obtenons quelque chose comme ceci  :
  
  <entry>
    <title>Mac OS X 10.8 - Mountain Lion thoughts</title>
-   <link href="http://bloggure.info/thoughts/2012/02/17/mac-os-x-10-8-mountain-lion-thoughts.html"/>
-   <updated>2012-02-17T00:00:00+01:00</updated>
-   <id>http://bloggure.info/thoughts/2012/02/17/mac-os-x-10-8-mountain-lion-thoughts</id>
+   <link href="/thoughts/mac-os-x-10-8-mountain-lion-thoughts"/>
+   <updated>2012-02-17T00:00:00-05:00</updated>
+   <id>/thoughts/mac-os-x-10-8-mountain-lion-thoughts</id>
    <content type="html">&lt;!--:en--&gt;Apple silently announced their future release of Mac OS X operating system to come this summer (2012). The pages on Apple website show the new features and claim this release is the missing bridge between the iPad and the Macs, I think it narrows the gap between their two OSes even more than they claim, I fear a completely bound to Application Store operating system requiring jailbreak to be free in OS X 10.9...&lt;!--:--&gt;
 </content>
  </entry>
  
  <entry>
    <title>mongoDB request failing when upgrading (1.8 > 2.x)</title>
-   <link href="http://bloggure.info/nosql/work/2012/02/12/mongodb-request-failing-when-upgrading-1-8-2-x.html"/>
-   <updated>2012-02-12T00:00:00+01:00</updated>
-   <id>http://bloggure.info/nosql/work/2012/02/12/mongodb-request-failing-when-upgrading-1-8-2-x</id>
+   <link href="/nosql/work/mongodb-request-failing-when-upgrading-1-8-2-x"/>
+   <updated>2012-02-12T00:00:00-05:00</updated>
+   <id>/nosql/work/mongodb-request-failing-when-upgrading-1-8-2-x</id>
    <content type="html">&lt;!--:en--&gt;At work we faced a strange issue with mongoDB 2.x. Whereas our requests were working perfectly with mongoDB 1.8 we always got errors. The message mongoDB was firing at us was of the form : 
 
 &lt;pre class=&quot;brush: java&quot;&gt;
@@ -1271,9 +1298,9 @@ Puisque j&#39;ai mis pas mal de temps à comprendre ce qui se passait et que je 
  
  <entry>
    <title>git bisect saved my day !</title>
-   <link href="http://bloggure.info/.git/.maven/2011/12/19/git-bisect-saved-my-day.html"/>
-   <updated>2011-12-19T00:00:00+01:00</updated>
-   <id>http://bloggure.info/.git/.maven/2011/12/19/git-bisect-saved-my-day</id>
+   <link href="/.git/.maven/git-bisect-saved-my-day"/>
+   <updated>2011-12-19T00:00:00-05:00</updated>
+   <id>/.git/.maven/git-bisect-saved-my-day</id>
    <content type="html">This morning one of the Jenkins job went red, 5 tests were failing, and it was very difficult to find out which commit caused the break (69 commits were concerned), I used git bisect to run maven tests to find the guilty one. Here is a quick howto:
 &lt;ul&gt;
 	&lt;li&gt;find a stable commit (in my case it was &lt;strong&gt;2ea34cf09cc83804cdcc445476bfb597c617a034&lt;/strong&gt;)&lt;/li&gt;
@@ -1291,9 +1318,9 @@ That&#39;s all, in a few runs (6 in my cases), git found out the commit causing 
  
  <entry>
    <title>dotfiles or easily manage your shell environment</title>
-   <link href="http://bloggure.info/.shell/2011/12/18/dotfiles-or-easily-manage-your-shell-environment.html"/>
-   <updated>2011-12-18T00:00:00+01:00</updated>
-   <id>http://bloggure.info/.shell/2011/12/18/dotfiles-or-easily-manage-your-shell-environment</id>
+   <link href="/.shell/dotfiles-or-easily-manage-your-shell-environment"/>
+   <updated>2011-12-18T00:00:00-05:00</updated>
+   <id>/.shell/dotfiles-or-easily-manage-your-shell-environment</id>
    <content type="html">&lt;!--:en--&gt;&lt;img src=&quot;http://www.bloggure.info/wp-content/uploads/2011/12/Capture-d’écran-2011-12-18-à-18.55.51.png&quot; alt=&quot;&quot; title=&quot;dotfiles&quot; width=&quot;87&quot; height=&quot;68&quot; class=&quot;alignright size-full wp-image-483&quot; /&gt;
 &lt;p&gt;Like many terminal geek, I have a bunch of dot rc files allowing me to configure my environment. While this is a very powerful way to setup an environment, it is painful to log in a machine and set it up like you are used to, you often discover too late your favorite alias is missing.&lt;/p&gt;
 &lt;p&gt;
@@ -1326,9 +1353,9 @@ Notez que je suis un utilisateur de zsh, le fichier bashrc devrait marcher mais 
  
  <entry>
    <title>Trello unread notification favicon userscript</title>
-   <link href="http://bloggure.info/.js/www/2011/11/25/trello-unread-notification-favicon-userscript.html"/>
-   <updated>2011-11-25T00:00:00+01:00</updated>
-   <id>http://bloggure.info/.js/www/2011/11/25/trello-unread-notification-favicon-userscript</id>
+   <link href="/.js/www/trello-unread-notification-favicon-userscript"/>
+   <updated>2011-11-25T00:00:00-05:00</updated>
+   <id>/.js/www/trello-unread-notification-favicon-userscript</id>
    <content type="html">&lt;!--:en--&gt;&lt;h2&gt;What&#39;s Trello ?&lt;/h2&gt;
 &lt;img src=&quot;http://www.bloggure.info/wp-content/uploads/2011/11/Capture-d’écran-2011-11-25-à-20.48.43.png&quot; alt=&quot;&quot; title=&quot;Trello unread count&quot; width=&quot;87&quot; height=&quot;61&quot; class=&quot;alignright size-full wp-image-469&quot; /&gt;
 Trello is a really nice application to manage about everything you want. The GUI is really cool and simple to use, we are actually testing it in my company and we have a very good first feeling. If you want to discover more, don&#39;t hesitate to watch the presentation video and give it a try at &lt;a href=&quot;https://www.trello.com/&quot;&gt;Trello&lt;/a&gt; website.
@@ -1355,9 +1382,9 @@ Le script est  &lt;a href=&quot;http://goo.gl/odAG1&quot;&gt;téléchargeable su
  
  <entry>
    <title>Android : Detect AdBlocking</title>
-   <link href="http://bloggure.info/.android/2011/11/13/android-detect-adblocking.html"/>
-   <updated>2011-11-13T00:00:00+01:00</updated>
-   <id>http://bloggure.info/.android/2011/11/13/android-detect-adblocking</id>
+   <link href="/.android/android-detect-adblocking"/>
+   <updated>2011-11-13T00:00:00-05:00</updated>
+   <id>/.android/android-detect-adblocking</id>
    <content type="html">&lt;!--:en--&gt;&lt;a href=&quot;http://www.bloggure.info/wp-content/uploads/2011/11/home-bugdroid.png&quot;&gt;&lt;img src=&quot;http://www.bloggure.info/wp-content/uploads/2011/11/home-bugdroid.png&quot; alt=&quot;&quot; title=&quot;Bugdroid&quot; width=&quot;150&quot; height=&quot;174&quot; class=&quot;alignright size-full wp-image-464&quot; /&gt;&lt;/a&gt;
 &lt;p&gt;Developing for Android is really fun, as you have probably noticed if you want to have a wide user base you will have to give your application for free on the Android Market. From there, you have different way to monetize your application, you can limit features and unlock them in a payed version, display ads in free version and provide a way to disable ads (in-app purchase for example). In this article I will explain how to detect ad blocking in your applications.&lt;/p&gt;
 &lt;!--:--&gt;&lt;!--:fr--&gt;&lt;a href=&quot;http://www.bloggure.info/wp-content/uploads/2011/11/home-bugdroid.png&quot;&gt;&lt;img src=&quot;http://www.bloggure.info/wp-content/uploads/2011/11/home-bugdroid.png&quot; alt=&quot;&quot; title=&quot;Bugdroid&quot; width=&quot;150&quot; height=&quot;174&quot; class=&quot;alignright size-full wp-image-464&quot; /&gt;&lt;/a&gt;
@@ -1557,9 +1584,9 @@ L&#39;exemple suivant montre comment le faire, n&#39;hésitez pas à alerter vos
  
  <entry>
    <title>(Français) Mise en place de tests unitaire</title>
-   <link href="http://bloggure.info/ci/2011/10/27/francais-mise-en-place-de-tests-unitaire.html"/>
-   <updated>2011-10-27T00:00:00+02:00</updated>
-   <id>http://bloggure.info/ci/2011/10/27/francais-mise-en-place-de-tests-unitaire</id>
+   <link href="/ci/francais-mise-en-place-de-tests-unitaire"/>
+   <updated>2011-10-27T00:00:00-04:00</updated>
+   <id>/ci/francais-mise-en-place-de-tests-unitaire</id>
    <content type="html">&lt;!--:fr--&gt;&lt;h2&gt;A qui est destiné ce document&lt;/h2&gt;
 Ce document est à l&#39;attention des développeurs ayant de bonnes connaissances techniques. En revanche il est intéressant pour un chef de projet de connaître les généralités énoncées dans la première partie du document.
 &lt;h2&gt;Généralité&lt;/h2&gt;
@@ -1662,9 +1689,9 @@ Mieux vaut écrire trop de (bon) test que pas assez. En effet, même si chaque t
  
  <entry>
    <title>HP Touchpad quick hacks</title>
-   <link href="http://bloggure.info/work/2011/09/04/hp-touchpad-quick-hacks.html"/>
-   <updated>2011-09-04T00:00:00+02:00</updated>
-   <id>http://bloggure.info/work/2011/09/04/hp-touchpad-quick-hacks</id>
+   <link href="/work/hp-touchpad-quick-hacks"/>
+   <updated>2011-09-04T00:00:00-04:00</updated>
+   <id>/work/hp-touchpad-quick-hacks</id>
    <content type="html">&lt;!--:en--&gt;&lt;a href=&quot;http://www.bloggure.info/work/hp-touchpad-quick-hacks.html/attachment/hp-touchpad&quot; rel=&quot;attachment wp-att-395&quot;&gt;&lt;img src=&quot;http://www.bloggure.info/wp-content/uploads/2011/09/HP-TouchPad-150x150.jpg&quot; alt=&quot;&quot; title=&quot;HP-TouchPad&quot; width=&quot;150&quot; height=&quot;150&quot; class=&quot;alignright size-thumbnail wp-image-395&quot; /&gt;&lt;/a&gt;I am one of the lucky guys getting this hyped discontinued tablet from HP at the lowest price. I&#39;ll sum up here few things I did on it.
 
 &lt;h2&gt;First impressions&lt;/h2&gt;
@@ -1794,9 +1821,9 @@ J&#39;ai déjà fait beaucoup d&#39;autres choses avec la tablette. Par exemple 
  
  <entry>
    <title>Continuous delivery using Maven / Shell</title>
-   <link href="http://bloggure.info/.java/.maven/2011/09/04/continuous-delivery-using-maven-shell.html"/>
-   <updated>2011-09-04T00:00:00+02:00</updated>
-   <id>http://bloggure.info/.java/.maven/2011/09/04/continuous-delivery-using-maven-shell</id>
+   <link href="/.java/.maven/continuous-delivery-using-maven-shell"/>
+   <updated>2011-09-04T00:00:00-04:00</updated>
+   <id>/.java/.maven/continuous-delivery-using-maven-shell</id>
    <content type="html">&lt;!--:en--&gt;&lt;h2&gt;Continuous delivery&lt;/h2&gt;
 &lt;a href=&quot;http://www.bloggure.info/work/getting-source-revision-for-a-deployed-app-using-maven-and-a-servlet.html/attachment/maven_logo-2&quot; rel=&quot;attachment wp-att-74&quot;&gt;&lt;img src=&quot;http://www.bloggure.info/wp-content/uploads/2010/11/Maven_logo1.gif&quot; alt=&quot;&quot; title=&quot;Maven&quot; width=&quot;304&quot; height=&quot;78&quot; class=&quot;alignright size-full wp-image-74&quot; /&gt;&lt;/a&gt;
 After Continuous Integration, this is the word we see on the web these days. Its meaning is really simple, it consists in reducing steps in application deployment. In order to do so a set of tools actually exists, you can use the same PaaS images (thanks to the newcomer &lt;a href=&quot;http://blogs.vmware.com/console/2011/08/micro-cloud-foundry-open-paas-on-your-laptop-available-today.html&quot;&gt;Micro Cloud Foundry by VMWare&lt;/a&gt; or  use a special amazon ec2 instance) to have a development environment similar to production one. And you can use &lt;a href=&quot;http://wiki.opscode.com/display/chef/Home&quot;&gt;Chef&lt;/a&gt; to manage and automate your configuration. While these alternatives are really interesting, I think they are way too powerful and difficult to setup in simple cases.
@@ -1847,9 +1874,9 @@ Un simple mvn package permettra de construire l&#39;archive zip contenant tout c
  
  <entry>
    <title>IntelliJ + External Library + @PropertyKey How To</title>
-   <link href="http://bloggure.info/.java/.wicket/work/2011/08/21/intellij-external-library-propertykey-how-to.html"/>
-   <updated>2011-08-21T00:00:00+02:00</updated>
-   <id>http://bloggure.info/.java/.wicket/work/2011/08/21/intellij-external-library-propertykey-how-to</id>
+   <link href="/.java/.wicket/work/intellij-external-library-propertykey-how-to"/>
+   <updated>2011-08-21T00:00:00-04:00</updated>
+   <id>/.java/.wicket/work/intellij-external-library-propertykey-how-to</id>
    <content type="html">&lt;!--:en--&gt;&lt;a href=&quot;http://www.bloggure.info/work/intellij-external-library-propertykey-how-to.html/attachment/idea_icon&quot; rel=&quot;attachment wp-att-365&quot;&gt;&lt;img src=&quot;http://www.bloggure.info/wp-content/uploads/2011/08/idea_icon.png&quot; alt=&quot;&quot; title=&quot;IntelliJ IDEA Icon&quot; width=&quot;64&quot; height=&quot;64&quot; class=&quot;alignright size-full wp-image-365&quot; /&gt;&lt;/a&gt;I am a daily user of &lt;a href=&quot;http://www.jetbrains.com/idea/&quot;&gt;IntelliJ IDEA&lt;/a&gt; to edit my Java code and &lt;a href=&quot;http://wicket.apache.org&quot;&gt;Apache Wicket&lt;/a&gt; to write my web application. I decided recently to use IntelliJ&#39;s annotations to make my code a little more robust by using &lt;code&gt;@Nullable&lt;/code&gt;, &lt;code&gt;@NotNull&lt;/code&gt;, &lt;code&gt;@NonNls&lt;/code&gt; and &lt;code&gt;@PropertyKey&lt;/code&gt;.&lt;br/&gt;In this blog post I explain how to manually add annotation to an external library. 
 &lt;!--:--&gt;&lt;!--:fr--&gt;&lt;a href=&quot;http://www.bloggure.info/work/intellij-external-library-propertykey-how-to.html/attachment/idea_icon&quot; rel=&quot;attachment wp-att-365&quot;&gt;&lt;img src=&quot;http://www.bloggure.info/wp-content/uploads/2011/08/idea_icon.png&quot; alt=&quot;&quot; title=&quot;IntelliJ IDEA Icon&quot; width=&quot;64&quot; height=&quot;64&quot; class=&quot;alignright size-full wp-image-365&quot; /&gt;&lt;/a&gt;J&#39;utilise quotidiennement &lt;a href=&quot;http://www.jetbrains.com/idea/&quot;&gt;IntelliJ IDEA&lt;/a&gt; pour développer en  Java et &lt;a href=&quot;http://wicket.apache.org&quot;&gt;Apache Wicket&lt;/a&gt; pour écrire mes applications web. J&#39;ai récemment entrepris d&#39;utiliser les annotations d&#39;IntelliJ pour rendre mon code un peu plus robuste grace à &lt;code&gt;@Nullable&lt;/code&gt;, &lt;code&gt;@NotNull&lt;/code&gt;, &lt;code&gt;@NonNls&lt;/code&gt; and &lt;code&gt;@PropertyKey&lt;/code&gt;.&lt;br/&gt;Dans ce billet, j&#39;explique comment ajouter manuellement ces annotations à une librairies externe au projet.
 &lt;!--:--&gt;&lt;!--more--&gt;&lt;!--:en--&gt;
@@ -1983,9 +2010,9 @@ Il peut être nécessaire de redémarrer IntelliJ pour que les nouvelles valeurs
  
  <entry>
    <title>Convert a mySQL Database from latin1 to UTF-8</title>
-   <link href="http://bloggure.info/.shell/2011/08/21/convert-a-mysql-database-from-latin1-to-utf-8.html"/>
-   <updated>2011-08-21T00:00:00+02:00</updated>
-   <id>http://bloggure.info/.shell/2011/08/21/convert-a-mysql-database-from-latin1-to-utf-8</id>
+   <link href="/.shell/convert-a-mysql-database-from-latin1-to-utf-8"/>
+   <updated>2011-08-21T00:00:00-04:00</updated>
+   <id>/.shell/convert-a-mysql-database-from-latin1-to-utf-8</id>
    <content type="html">&lt;!--:en--&gt;A frequent problem when it comes to internationalisation is proper handling of different charset. When you&#39;re using Java and Maven it is relatively easy to set up source encoding to UTF-8, but the frequent point of failure is in the SQL database.
 &lt;br/&gt;
 If you use mySQL, and you have latin1 tables, but you should have UTF-8 instead, use this little script to convert from latin1 to UTF-8 : 
@@ -2012,9 +2039,9 @@ N&#39;oubliez pas non plus d&#39;ajouter les paramètres &lt;code&gt;&quot;useUn
  
  <entry>
    <title>ejb-client package + JRebel + Glassfish</title>
-   <link href="http://bloggure.info/.java/.maven/2011/08/09/ejb-client-package-jrebel-glassfish.html"/>
-   <updated>2011-08-09T00:00:00+02:00</updated>
-   <id>http://bloggure.info/.java/.maven/2011/08/09/ejb-client-package-jrebel-glassfish</id>
+   <link href="/.java/.maven/ejb-client-package-jrebel-glassfish"/>
+   <updated>2011-08-09T00:00:00-04:00</updated>
+   <id>/.java/.maven/ejb-client-package-jrebel-glassfish</id>
    <content type="html">&lt;!--:en--&gt;&lt;a href=&quot;http://www.bloggure.info/java-work/ejb-client-package-jrebel-glassfish.html/attachment/logo_jrebel&quot; rel=&quot;attachment wp-att-340&quot;&gt;&lt;img src=&quot;http://www.bloggure.info/wp-content/uploads/2011/08/logo_jrebel.png&quot; alt=&quot;&quot; title=&quot;JRebel&quot; width=&quot;146&quot; height=&quot;40&quot; class=&quot;alignright size-full wp-image-340&quot; /&gt;&lt;/a&gt;
 &lt;h2&gt;JRebel ?&lt;/h2&gt;
 I use &lt;a href=&quot;http://www.zeroturnaround.com/jrebel/&quot; title=&quot;JRebel&quot;&gt;JRebel&lt;/a&gt; to speed up my development. It is a really impressive tool allowing to develop full blended Java EE application as you would develop in PHP. No redeploy, at the cost of a little slow-down in development mode. The tool does what it says, and it&#39;s worth the price ! The JRebel plugin for maven does the job very well by generating the &lt;code&gt;rebel.xml&lt;/code&gt; file that does the magic.
@@ -2117,18 +2144,18 @@ En espérant en aider certains...&lt;!--:--&gt;
  
  <entry>
    <title>A programmer's life</title>
-   <link href="http://bloggure.info/www/2011/08/04/a-programmers-life.html"/>
-   <updated>2011-08-04T00:00:00+02:00</updated>
-   <id>http://bloggure.info/www/2011/08/04/a-programmers-life</id>
+   <link href="/www/a-programmers-life"/>
+   <updated>2011-08-04T00:00:00-04:00</updated>
+   <id>/www/a-programmers-life</id>
    <content type="html">&lt;!--:en--&gt;I just found out a great web comic site &lt;a href=&quot;http://aprogrammerslife.info/&quot; title=&quot;A programmer&#39;s life&quot;&gt;A programmer&#39;s life&lt;/a&gt;, don&#39;t hesitate to put it in your bookmarks next to &lt;a href=&quot;http://geekandpoke.typepad.com/&quot; title=&quot;Geek And Poke&quot; &gt;Geek And Poke&lt;/a&gt;.&lt;!--:--&gt;&lt;!--:fr--&gt;Je viens de trouver un excellent site de web comic &lt;a href=&quot;http://aprogrammerslife.info/&quot; title=&quot;A programmer&#39;s life&quot; &gt;A programmer&#39;s life&lt;/a&gt;, mettez le dans vos favoris à côté de &lt;a href=&quot;http://geekandpoke.typepad.com/&quot; title=&quot;Geek And Poke&quot;&gt;Geek And Poke&lt;/a&gt; !&lt;!--:--&gt;
 </content>
  </entry>
  
  <entry>
    <title>Alerta-JUL - Elegant log tailing</title>
-   <link href="http://bloggure.info/.shell/work/2011/07/30/alerta-jul-elegant-log-tailing.html"/>
-   <updated>2011-07-30T00:00:00+02:00</updated>
-   <id>http://bloggure.info/.shell/work/2011/07/30/alerta-jul-elegant-log-tailing</id>
+   <link href="/.shell/work/alerta-jul-elegant-log-tailing"/>
+   <updated>2011-07-30T00:00:00-04:00</updated>
+   <id>/.shell/work/alerta-jul-elegant-log-tailing</id>
    <content type="html">&lt;!--:en--&gt;&lt;a href=&quot;http://www.bloggure.info/work/alerta-jul-elegant-log-tailing.html/attachment/terminal128&quot; rel=&quot;attachment wp-att-275&quot;&gt;&lt;img class=&quot;alignright size-full wp-image-275&quot; title=&quot;Terminal&quot; src=&quot;http://www.bloggure.info/wp-content/uploads/2011/07/Terminal128.png&quot; alt=&quot;&quot; width=&quot;128&quot; height=&quot;128&quot; /&gt;&lt;/a&gt;
 &lt;h2&gt;Classic tailing&lt;/h2&gt;
 In my day to day activities, there is one thing I do everytime and I think every developer does : I tail the logs. The problem with logs checking is that you are rapidly facing a huge file, and the classic &lt;code&gt;tail -f&lt;/code&gt; is not enough. The sad part of log tailing is that you only have monochrome logs, without any colouring of any kind helping you identify critical lines against more common ones.
@@ -2259,9 +2286,9 @@ Les niveaux avec la couleurs &quot;skip&quot; ne seront pas imprimés dans votre
  
  <entry>
    <title>OS X Lion - Remove an app from Launchpad</title>
-   <link href="http://bloggure.info/.shell/2011/07/28/os-x-lion-remove-an-app-from-launchpad.html"/>
-   <updated>2011-07-28T00:00:00+02:00</updated>
-   <id>http://bloggure.info/.shell/2011/07/28/os-x-lion-remove-an-app-from-launchpad</id>
+   <link href="/.shell/os-x-lion-remove-an-app-from-launchpad"/>
+   <updated>2011-07-28T00:00:00-04:00</updated>
+   <id>/.shell/os-x-lion-remove-an-app-from-launchpad</id>
    <content type="html">&lt;!--:en--&gt;&lt;h2&gt;General Launchpad thoughts&lt;/h2&gt;
 &lt;a href=&quot;http://www.bloggure.info/shell/os-x-lion-remove-an-app-from-launchpad.html/attachment/launchpad&quot; rel=&quot;attachment wp-att-257&quot;&gt;&lt;img src=&quot;http://www.bloggure.info/wp-content/uploads/2011/07/Launchpad.png&quot; alt=&quot;&quot; title=&quot;Launchpad&quot; width=&quot;128&quot; height=&quot;128&quot; class=&quot;alignleft size-full wp-image-257&quot; /&gt;&lt;/a&gt;
 &lt;p&gt;I continue my tips regarding OS X Lion. As I said in my &lt;a title=&quot;First thoughts on OS X Lion&quot; href=&quot;http://www.bloggure.info/?p=181&quot;&gt;OS X Lion walkthrough&lt;/a&gt;, Lion come with a very iOS-ish application launcher : &lt;a href=&quot;http://www.apple.com/macosx/whats-new/launchpad.html&quot; target=&quot;_blank&quot;&gt;Launchpad&lt;/a&gt;. Out of the box, it is automatically populated with every application you have and application you download from the Mac App Store are added there too.&lt;br/&gt;
@@ -2339,9 +2366,9 @@ CREATE TABLE apps (item_id INTEGER PRIMARY KEY, title VARCHAR, bundleid VARCHAR,
  
  <entry>
    <title>OS X Lion - disable special char popup</title>
-   <link href="http://bloggure.info/.shell/2011/07/24/os-x-lion-disable-special-char-popup.html"/>
-   <updated>2011-07-24T00:00:00+02:00</updated>
-   <id>http://bloggure.info/.shell/2011/07/24/os-x-lion-disable-special-char-popup</id>
+   <link href="/.shell/os-x-lion-disable-special-char-popup"/>
+   <updated>2011-07-24T00:00:00-04:00</updated>
+   <id>/.shell/os-x-lion-disable-special-char-popup</id>
    <content type="html">&lt;!--:en--&gt;&lt;p&gt;One thing annoying in Lion is the popup appearing when you long press a key (similar to the one present in iOS showing special characters).&lt;br/&gt;
 I found a way to disable this by issuing a simple Terminal command : &lt;/p&gt;
 &lt;pre class=&quot;brush:shell&quot;&gt;
@@ -2366,9 +2393,9 @@ defaults read [-g]
  
  <entry>
    <title>Glassfish 3.x - recover admin console access</title>
-   <link href="http://bloggure.info/.java/work/2011/07/23/glassfish-3-x-recover-admin-console-access.html"/>
-   <updated>2011-07-23T00:00:00+02:00</updated>
-   <id>http://bloggure.info/.java/work/2011/07/23/glassfish-3-x-recover-admin-console-access</id>
+   <link href="/.java/work/glassfish-3-x-recover-admin-console-access"/>
+   <updated>2011-07-23T00:00:00-04:00</updated>
+   <id>/.java/work/glassfish-3-x-recover-admin-console-access</id>
    <content type="html">&lt;!--:en--&gt;&lt;a rel=&quot;attachment wp-att-71&quot; href=&quot;http://www.bloggure.info/work/glassfish-v3-custom-log-levels.html/attachment/glassfish&quot;&gt;&lt;img class=&quot;size-full wp-image-71 alignright&quot; title=&quot;glassfish&quot; src=&quot;http://www.bloggure.info/wp-content/uploads/2010/11/glassfish.png&quot; alt=&quot;&quot; width=&quot;92&quot; height=&quot;50&quot; /&gt;&lt;/a&gt;
 I have an issue for quite  a long time with web administration console in Glassfish 3.x. When I try to access it, I point my browser to &lt;code&gt;http://127.0.0.1:4848&lt;/code&gt;, the first access shows me the usual &quot;Web console is loading stuff&quot;, after a while, by looking at the log, I see the web administration is ready. I then hit refresh, it redirects me to
 &lt;code&gt;http://127.0.0.1:4848/common/index.jsf&lt;/code&gt; with a (not so) beautiful 404 error !
@@ -2395,9 +2422,9 @@ Pour faire la version courte, mettez en favoris ou prenez l&#39;habitude d&#39;a
  
  <entry>
    <title>Glassfish 3.x - Jersey with bundled dependencies</title>
-   <link href="http://bloggure.info/.java/work/2011/07/18/glassfish-3-x-jersey-with-bundled-dependencies.html"/>
-   <updated>2011-07-18T00:00:00+02:00</updated>
-   <id>http://bloggure.info/.java/work/2011/07/18/glassfish-3-x-jersey-with-bundled-dependencies</id>
+   <link href="/.java/work/glassfish-3-x-jersey-with-bundled-dependencies"/>
+   <updated>2011-07-18T00:00:00-04:00</updated>
+   <id>/.java/work/glassfish-3-x-jersey-with-bundled-dependencies</id>
    <content type="html">&lt;!--:en--&gt;&lt;a rel=&quot;attachment wp-att-71&quot; href=&quot;http://www.bloggure.info/work/glassfish-v3-custom-log-levels.html/attachment/glassfish&quot;&gt;&lt;img class=&quot;size-full wp-image-71 alignright&quot; title=&quot;glassfish&quot; src=&quot;http://www.bloggure.info/wp-content/uploads/2010/11/glassfish.png&quot; alt=&quot;&quot; width=&quot;92&quot; height=&quot;50&quot; /&gt;&lt;/a&gt;
 
 I just wanted to make a small post regarding an issue I spent almost a day getting rid off. I have a quite typical web architecture :
@@ -2437,9 +2464,9 @@ J&#39;espère aider quelqu&#39;un d&#39;autre avec cette astuce !&lt;!--:--&gt;
  
  <entry>
    <title>First thoughts on OS X Lion</title>
-   <link href="http://bloggure.info/.java/.shell/thoughts/2011/07/12/first-thoughts-on-os-x-lion.html"/>
-   <updated>2011-07-12T00:00:00+02:00</updated>
-   <id>http://bloggure.info/.java/.shell/thoughts/2011/07/12/first-thoughts-on-os-x-lion</id>
+   <link href="/.java/.shell/thoughts/first-thoughts-on-os-x-lion"/>
+   <updated>2011-07-12T00:00:00-04:00</updated>
+   <id>/.java/.shell/thoughts/first-thoughts-on-os-x-lion</id>
    <content type="html">&lt;!--:en--&gt;&lt;a href=&quot;http://www.bloggure.info/thoughts/first-thoughts-on-os-x-lion.html/attachment/lion-180x180&quot; rel=&quot;attachment wp-att-240&quot;&gt;&lt;img class=&quot;alignright size-full wp-image-240&quot; title=&quot;Lion&quot; src=&quot;http://www.bloggure.info/wp-content/uploads/2011/07/Lion-180x180.png&quot; alt=&quot;&quot; width=&quot;120&quot; height=&quot;120&quot; /&gt;&lt;/a&gt;I am actually running &lt;a title=&quot;Mac OS Lion&quot; href=&quot;http://www.apple.com/macosx/&quot;&gt;Mac OS Lion&lt;/a&gt; Golden Master (11A511) release for a week now and I wanted to give my first though on the new major version of Mac OS. The machine used to test-drive this OS is my main development machine:
 
 MacBook Pro 3,1 (late 2007) - 2.4 GHz Core 2 Duo, 4Gb RAM, 120Gb SSD + 160Gb HDD
@@ -2534,9 +2561,9 @@ Don&#39;t hesitate to share your thoughts via comments !
  
  <entry>
    <title>Playstation 3 - a random tale...</title>
-   <link href="http://bloggure.info/shelf/thoughts/www/2010/12/30/playstation-3-a-random-tale.html"/>
-   <updated>2010-12-30T00:00:00+01:00</updated>
-   <id>http://bloggure.info/shelf/thoughts/www/2010/12/30/playstation-3-a-random-tale</id>
+   <link href="/shelf/thoughts/www/playstation-3-a-random-tale"/>
+   <updated>2010-12-30T00:00:00-05:00</updated>
+   <id>/shelf/thoughts/www/playstation-3-a-random-tale</id>
    <content type="html">&lt;!--:en--&gt;&lt;img class=&quot;alignleft size-thumbnail wp-image-176&quot; title=&quot;Playstation3&quot; src=&quot;http://www.bloggure.info/wp-content/uploads/2010/12/Playstation3-150x150.jpg&quot; alt=&quot;&quot; width=&quot;150&quot; height=&quot;150&quot; /&gt;
 
 So, here we are, from &lt;a href=&quot;http://fail0verflow.com/&quot; target=&quot;_blank&quot;&gt; fail0verflow team&lt;/a&gt;&#39;s announce at 27c3, Playstation 3 security is no more. It&#39;s a good thing for homebrews, the return of otherOS and media center happyness. As from many of you might know, GameOS is exposed since the famous PSGroove thing. But we still were not able to boot on totally hand made code. The thing the team found is a critical error in implementing their random number generator used in signing code : it returns a constant value (those who are not afraid with mathematics can have a look &lt;a href=&quot;http://bit.ly/f2Qosq&quot; target=&quot;_blank&quot;&gt;there&lt;/a&gt; to understand). To be clear, we got the way to sign arbitrary code, and Sony can&#39;t do anything about this !
@@ -2553,9 +2580,9 @@ The bad thing is it surely will bring a lot more piracy on the PS3, I hope Sony 
  
  <entry>
    <title>Head.js - speed up your website</title>
-   <link href="http://bloggure.info/.js/www/2010/12/05/head-js-speed-up-your-website.html"/>
-   <updated>2010-12-05T00:00:00+01:00</updated>
-   <id>http://bloggure.info/.js/www/2010/12/05/head-js-speed-up-your-website</id>
+   <link href="/.js/www/head-js-speed-up-your-website"/>
+   <updated>2010-12-05T00:00:00-05:00</updated>
+   <id>/.js/www/head-js-speed-up-your-website</id>
    <content type="html">&lt;!--:en--&gt;&lt;a href=&quot;http://headjs.com/&quot;&gt;&lt;img class=&quot;alignleft size-full wp-image-157&quot; title=&quot;Head JS&quot; src=&quot;http://www.bloggure.info/wp-content/uploads/2010/12/head.png&quot; alt=&quot;&quot; width=&quot;100&quot; height=&quot;42&quot; /&gt;&lt;/a&gt;I found a little work in progress javascript library which seems to do what we all want : speed up our websites : &lt;a href=&quot;http://headjs.com/&quot;&gt;Head JS&lt;/a&gt;. It allows to load every script in parallel, taking advantage of fast CDN, and gives you easy way to target browser by the features they implements / lacks.
 
 I didn&#39;t had the time to test it in a real use case but I&#39;ll do it for sure and I will be giving some feedback !&lt;!--:--&gt;&lt;!--:fr--&gt;&lt;em&gt;Cet article n&#39;a pas été traduit, veuillez trouver ci-dessous sa version anglaise&lt;/em&gt;
@@ -2568,9 +2595,9 @@ I didn&#39;t had the time to test it in a real use case but I&#39;ll do it for s
  
  <entry>
    <title>Big Photo Frame Widget</title>
-   <link href="http://bloggure.info/.android/.java/2010/12/05/big-photo-frame-widget.html"/>
-   <updated>2010-12-05T00:00:00+01:00</updated>
-   <id>http://bloggure.info/.android/.java/2010/12/05/big-photo-frame-widget</id>
+   <link href="/.android/.java/big-photo-frame-widget"/>
+   <updated>2010-12-05T00:00:00-05:00</updated>
+   <id>/.android/.java/big-photo-frame-widget</id>
    <content type="html">&lt;!--:en--&gt;&lt;img class=&quot;size-thumbnail wp-image-168 alignright&quot; title=&quot;Big Photo Frame Widget&quot; src=&quot;http://www.bloggure.info/wp-content/uploads/2010/12/icon-150x150.png&quot; alt=&quot;&quot; width=&quot;120&quot; height=&quot;120&quot; /&gt;Android features a standard widget for displaying the pictures of your choice on your desktop, it&#39;s a good and frequently used widget by all Android users (which means used more and more each day !).
 
 The only thing missing from the standard widget is its only 2x2 size available. By using recent alternative launchers (&lt;a href=&quot;http://bit.ly/hOvhGK&quot; target=&quot;_blank&quot;&gt;ADW Launcher&lt;/a&gt; / &lt;a href=&quot;http://bit.ly/fF6e0C&quot; target=&quot;_blank&quot;&gt;LauncherPro Plus&lt;/a&gt;) you can resize the widget on your home screen but picture scaling is very poor.
@@ -2601,9 +2628,9 @@ Update : I&#39;ve released a donate version on the market, scan this QRCode to a
  
  <entry>
    <title>MacbookPro 3.1 Speed boost : SSD inside !</title>
-   <link href="http://bloggure.info/shelf/2010/11/21/macbookpro-31-superdrive-replacement.html"/>
-   <updated>2010-11-21T00:00:00+01:00</updated>
-   <id>http://bloggure.info/shelf/2010/11/21/macbookpro-31-superdrive-replacement</id>
+   <link href="/shelf/macbookpro-31-superdrive-replacement"/>
+   <updated>2010-11-21T00:00:00-05:00</updated>
+   <id>/shelf/macbookpro-31-superdrive-replacement</id>
    <content type="html">&lt;!--:en--&gt;&lt;img class=&quot;alignleft size-full wp-image-144&quot; title=&quot;MBP 3.1&quot; src=&quot;http://www.bloggure.info/wp-content/uploads/2010/11/MBP-3.1.png&quot; alt=&quot;&quot; width=&quot;150&quot; height=&quot;53&quot; /&gt;I am owner of a not so old MacbookPro (3.1 - late 2007), and, as it is my main development machine, I felt a little lack of space and speed mainly because of its hard drive (5400rpm / 160GB).
 
 I wanted speed and so I got a new generation drive with a 120GB SSD, I wanted space so I have dumped the useless SuperDrive from my machine to replace it with a drive caddy (found &lt;a title=&quot;here&quot; href=&quot;http://newmodeus.com/shop/index.php?main_page=product_info&amp;amp;products_id=258&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;) where I have put my old HDD.
@@ -2624,9 +2651,9 @@ My machine is now blazing fast and it helped me keeping it more instead of buyin
  
  <entry>
    <title>Prototype 1.7 new features</title>
-   <link href="http://bloggure.info/.js/work/2010/11/20/les-nouveautes-de-prototype-1-7.html"/>
-   <updated>2010-11-20T00:00:00+01:00</updated>
-   <id>http://bloggure.info/.js/work/2010/11/20/les-nouveautes-de-prototype-1-7</id>
+   <link href="/.js/work/les-nouveautes-de-prototype-1-7"/>
+   <updated>2010-11-20T00:00:00-05:00</updated>
+   <id>/.js/work/les-nouveautes-de-prototype-1-7</id>
    <content type="html">&lt;!--:en--&gt;&lt;em&gt;This blog post has not been translated, please find below the french version&lt;/em&gt;
 
 &lt;strong&gt;Màj : &lt;/strong&gt;Voici &lt;a href=&quot;http://prototypejs.org/2010/11/22/prototype-1-7&quot;&gt;l&#39;annonce officielle&lt;/a&gt;&lt;br /&gt;
@@ -2747,9 +2774,9 @@ Les trois améliorations de la nouvelle mouture énoncées ci-dessus peuvent-êt
  
  <entry>
    <title>So, I made it - back to iOS a year later...</title>
-   <link href="http://bloggure.info/shelf/2010/11/14/so-i-made-it.html"/>
-   <updated>2010-11-14T00:00:00+01:00</updated>
-   <id>http://bloggure.info/shelf/2010/11/14/so-i-made-it</id>
+   <link href="/shelf/so-i-made-it"/>
+   <updated>2010-11-14T00:00:00-05:00</updated>
+   <id>/shelf/so-i-made-it</id>
    <content type="html">&lt;!--:en--&gt;&lt;img class=&quot;alignleft size-thumbnail wp-image-68&quot; src=&quot;http://www.bloggure.info/wp-content/uploads/2010/11/ipad-150x150.png&quot; alt=&quot;&quot; width=&quot;105&quot; height=&quot;105&quot; /&gt;
 
 I was lurking on Android based tablets and I&#39;ve found a 50% bargain on an iPad, so I&#39;ve bought an iPad (16Gb / Wifi).
@@ -2772,9 +2799,9 @@ I am really impressed by the device so far, it is really fast, its battery last 
  
  <entry>
    <title>iTunes media sharing over the Internet from a NAS</title>
-   <link href="http://bloggure.info/.shell/shelf/2010/11/14/itunes-media-sharing-over-the-internet-from-a-nas.html"/>
-   <updated>2010-11-14T00:00:00+01:00</updated>
-   <id>http://bloggure.info/.shell/shelf/2010/11/14/itunes-media-sharing-over-the-internet-from-a-nas</id>
+   <link href="/.shell/shelf/itunes-media-sharing-over-the-internet-from-a-nas"/>
+   <updated>2010-11-14T00:00:00-05:00</updated>
+   <id>/.shell/shelf/itunes-media-sharing-over-the-internet-from-a-nas</id>
    <content type="html">&lt;!--:en--&gt;&lt;a href=&quot;http://www.bloggure.info/wp-content/uploads/2010/11/free-music-head.png&quot;&gt;&lt;img class=&quot;alignright size-full wp-image-99&quot; title=&quot;Music&quot; src=&quot;http://www.bloggure.info/wp-content/uploads/2010/11/free-music-head.png&quot; alt=&quot;&quot; width=&quot;200&quot; height=&quot;124&quot; /&gt;&lt;/a&gt;I am a big fan of music, and I like to listen to all my music wherever I am and whatever I do (specially when coding).
 
 All my medias are stored on a NAS drive that features a little embedded linux distribution as operating system. One of the service is called iTunes media sharing (mt-daapd is the real name of the daemon).
@@ -2871,9 +2898,9 @@ WARNING : you actually expose your media library to everyone on the internet, I 
  
  <entry>
    <title>Glassfish v3.x - custom log levels</title>
-   <link href="http://bloggure.info/.java/work/2010/11/02/glassfish-v3-custom-log-levels.html"/>
-   <updated>2010-11-02T00:00:00+01:00</updated>
-   <id>http://bloggure.info/.java/work/2010/11/02/glassfish-v3-custom-log-levels</id>
+   <link href="/.java/work/glassfish-v3-custom-log-levels"/>
+   <updated>2010-11-02T00:00:00-04:00</updated>
+   <id>/.java/work/glassfish-v3-custom-log-levels</id>
    <content type="html">&lt;!--:en--&gt;&lt;img class=&quot;alignright size-full wp-image-71&quot; src=&quot;http://www.bloggure.info/wp-content/uploads/2010/11/glassfish.png&quot; alt=&quot;&quot; width=&quot;92&quot; height=&quot;50&quot; /&gt;In Glassfish v2, you can easily set log levels using the admin console by going into &lt;em&gt;Application Server &amp;gt; Logging &amp;gt; Log Levels&lt;/em&gt;. There you can add custom filter and change levels only by using the console.
 
 In the new stable release of Glassfish, this option has disappeared, you can edit levels but there is no easy way to add custom filters. The trick is to alter manually the logging.properties file located in &lt;em&gt;&amp;lt;yourdomain&amp;gt;&lt;/em&gt;&lt;em&gt;/config&lt;/em&gt; directory.
@@ -2902,9 +2929,9 @@ En espérant que ça aide quelques personnes...&lt;!--:--&gt;
  
  <entry>
    <title>Getting source revision for a deployed app using Maven and a Servlet</title>
-   <link href="http://bloggure.info/.java/.maven/work/2010/11/01/getting-source-revision-for-a-deployed-app-using-maven-and-a-servlet.html"/>
-   <updated>2010-11-01T00:00:00+01:00</updated>
-   <id>http://bloggure.info/.java/.maven/work/2010/11/01/getting-source-revision-for-a-deployed-app-using-maven-and-a-servlet</id>
+   <link href="/.java/.maven/work/getting-source-revision-for-a-deployed-app-using-maven-and-a-servlet"/>
+   <updated>2010-11-01T00:00:00-04:00</updated>
+   <id>/.java/.maven/work/getting-source-revision-for-a-deployed-app-using-maven-and-a-servlet</id>
    <content type="html">&lt;!--:en--&gt;&lt;img class=&quot;alignright size-full wp-image-74&quot; src=&quot;http://www.bloggure.info/wp-content/uploads/2010/11/Maven_logo1.gif&quot; alt=&quot;&quot; width=&quot;274&quot; height=&quot;70&quot; /&gt;With our modern version control systems, we could assume we know for every single release we make the exact source code revision that corresponds. But, in the hurry of a bug found by your dear clients (or your product owner),  you can&#39;t find the corresponding tag in your VCS, it will make the whole patch process really difficult. You will have to find the exact revision, extract it and debug to patch (or backport an existing patch).
 
 I will explain a little trick to make the find the revision thing a lot easier (I am assuming you&#39;re using maven to build your projects) : &lt;a title=&quot;maven-buildnumber-plugin&quot; href=&quot;http://mojo.codehaus.org/buildnumber-maven-plugin/&quot;&gt;maven-buildnumber-plugin&lt;/a&gt;
@@ -3155,9 +3182,9 @@ This is confirmed to work under Glassfish application server, it might work with
  
  <entry>
    <title>Android Switcher Widget</title>
-   <link href="http://bloggure.info/.android/2010/10/29/android-switcher-widget.html"/>
-   <updated>2010-10-29T00:00:00+02:00</updated>
-   <id>http://bloggure.info/.android/2010/10/29/android-switcher-widget</id>
+   <link href="/.android/android-switcher-widget"/>
+   <updated>2010-10-29T00:00:00-04:00</updated>
+   <id>/.android/android-switcher-widget</id>
    <content type="html">&lt;!--:en--&gt;&lt;img class=&quot;alignright size-full wp-image-85&quot; title=&quot;Android Switcher Widget&quot; src=&quot;http://www.bloggure.info/wp-content/uploads/2010/10/app_icon.png&quot; alt=&quot;&quot; width=&quot;64&quot; height=&quot;64&quot; /&gt;Hey there,
 as some of you may know, I am a frequent reader (less frequent writer) on modaco&#39;s forum. Specially in the Acer Liquid&#39;s section (good device so far with an unbelieveable community).
 I found a thread talking about the lack of a task switching widget (&lt;a title=&quot;here&quot; href=&quot;http://bit.ly/cMYqDt&quot;&gt;http://bit.ly/cMYqDt&lt;/a&gt;) and so I did my best to do such a thing.
@@ -3196,9 +3223,9 @@ Please let me know if it does not work for you, I&#39;ll do my best to fix it.&l
  
  <entry>
    <title>Wicket 1.4.x - TinyMCE</title>
-   <link href="http://bloggure.info/.wicket/2010/10/24/wicket-1-4-9-tinymce.html"/>
-   <updated>2010-10-24T00:00:00+02:00</updated>
-   <id>http://bloggure.info/.wicket/2010/10/24/wicket-1-4-9-tinymce</id>
+   <link href="/.wicket/wicket-1-4-9-tinymce"/>
+   <updated>2010-10-24T00:00:00-04:00</updated>
+   <id>/.wicket/wicket-1-4-9-tinymce</id>
    <content type="html">&lt;!--:en--&gt;&lt;img class=&quot;alignleft size-full wp-image-90&quot; title=&quot;Wicket&quot; src=&quot;http://www.bloggure.info/wp-content/uploads/2010/10/logo-wicket1.png&quot; alt=&quot;&quot; width=&quot;120&quot; height=&quot;119&quot; /&gt;Heya all,
 
 I am trying to revive this blog from a long period of sleep. Let&#39;s start today with a little Java trick I made to have a working TinyMCE implementation using Wicket (tested over 1.4.9 and 1.4.13 in my case but I think it should work for any 1.4.x at least, please report successful attempts under other releases).

@@ -1,241 +1,346 @@
-<!DOCTYPE html>
-<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
-<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
-<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Bloggure - Blog Posts</title>
-  <meta name="author" content="Bloggure" />
-  <meta name="description" content="The blog of Bloggure" />
-  <link rel="canonical" href="http://bloggure.info/" />
+<meta charset="utf-8">
+<title>Latest Posts &#8211; Site Title</title>
+<meta name="description" content="Describe this nonsense.">
+<meta name="keywords" content="Jekyll, theme, themes, responsive, blog, modern">
 
-  <link href="//fonts.googleapis.com/css?family=Open+Sans:600,800" rel="stylesheet" type="text/css">
-  <link rel="shortcut icon" href="/favicon.png">
-  <link rel="alternate" type="application/rss+xml" title="Bloggure" href="http://bloggure.info/atom.xml" />
 
-  <link rel="stylesheet" href="/assets/css/all.css">
-<!--[if IE 7]>
-  <link rel="stylesheet" href="/assets/css/font-awesome-ie7.min.css">
-<![endif]-->
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Latest Posts">
+<meta property="og:description" content="Describe this nonsense.">
+<meta property="og:url" content="/index.html">
+<meta property="og:site_name" content="Site Title">
+
+
+
+
+
+<link rel="canonical" href="/">
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Site Title Feed">
+
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.min.css">
+<!-- Webfonts -->
+<link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- Load Modernizr -->
+<script src="/assets/js/vendor/modernizr-2.6.2.custom.min.js"></script>
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/apple-touch-icon-144x144-precomposed.png">
+
 </head>
-<body>
-  <div class="container">
-    <div class="four columns sidebar">
-      <nav>
-  <a href="/">
-    <img src="/logo.png" id="logo" alt="Blog logo"/>
-  </a>
-  <h2><a href="/">Bloggure</a></h2>
-  <hr/>
-  <ul>
-  <p>localhosting since 2005</p>
-  <hr/>
-  <div>
-    <div id="social">
-      Follow us:
-<div id="stalker">
-  
-  <a title="bloggure on Github" href="http://github.com/bloggure">
-    <i class="icon-github-sign"></i>
-  </a>
-  
 
-  
-  <a title="bloggure on Hacker News" href="http://news.ycombinator.com/user?id=bloggure">
-    <i class="icon-sign-blank"></i>
-    <span class="icon-overlay icon-hn">Y</span>
-  </a>
-  
+<body id="post-index" class="feature" itemscope itemtype="http://schema.org/WebPage">
 
-  
-  <a title="bloggure on Twitter" href="http://twitter.com/bloggure">
-    <i class="icon-twitter-sign"></i>
-  </a>
-  
+<!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
+<nav id="dl-menu" class="dl-menuwrapper" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
+	<button class="dl-trigger">Open Menu</button>
+	<ul class="dl-menu">
+		<li><a href="">Home</a></li>
+		<li>
+			<a href="#">About</a>
+			<ul class="dl-submenu">
+				<li>
+					<img src="/images/avatar.jpg" alt="Your Name photo" class="author-photo">
+					<h4>Your Name</h4>
+					<p>Your bio goes here. It shouldn't be super long but a good two sentences or two should suffice.</p>
+				</li>
+				<li><a href="/about/">Learn More</a></li>
+				<li>
+					<a href="mailto:you@email.com"><i class="icon-envelope"></i> Email</a>
+				</li>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+			</ul><!-- /.dl-submenu -->
+		</li>
+		<li>
+			<a href="#">Posts</a>
+			<ul class="dl-submenu">
+				<li><a href="/archive/">All Posts</a></li>
+				<li><a href="/tags/">All Tags</a></li>
+			</ul>
+		</li>
+		<li><a href="/theme-setup">Theme Setup</a></li><li><a href="http://mademistakes.com">External Link</a></li>
+	</ul><!-- /.dl-menu -->
+</nav><!-- /.dl-menuwrapper -->
 
-  <a title="RSS feed" id="rss" href="/atom.xml">
-    <i class="icon-rss-sign"></i>
-  </a>
-</div>
-    </div>
-  </div>
+
+<div class="entry-header">
+  
+    <div class="entry-image"><img src="/images/abstract-1.jpg" alt="Latest Posts" itemprop="image">
+      <div class="image-credit">Image source: <a href="http://www.dargadgetz.com/ios-7-abstract-wallpaper-pack-for-iphone-5-and-ipod-touch-retina/">dargadgetz</a></div><!-- /.image-credit -->
+    </div><!-- /.entry-image -->
+  
+  <div class="header-title">
+    <div class="header-title-wrap">
+      <h1>Site Title</h1>
+      <h2 itemprop="name">Latest Posts</h2>
+    </div><!-- /.header-title-wrap -->
+  </div><!-- /.header-title -->
+</div><!-- /.entry-header -->
+
+<div id="main" role="main" itemprop="mainContentOfPage" itemscope itemtype="http://schema.org/Blog">
+  
+<article class="hentry" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    <div class="entry-meta"><span class="entry-date date published updated"><time datetime="2013-08-31T00:00:00-04:00" itemprop="datePublished"><a href="/.maven/maven-merge-properties-plugin">August 31, 2013</a></time></span><span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name" class="fn"><a href="/about" title="About Your Name" itemprop="url">Your Name</a></span></span></div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title" itemprop="name"><a href="/.maven/maven-merge-properties-plugin" rel="bookmark" title="Merge properties maven plugin" itemprop="url">Merge properties maven plugin</a></h1>
+    
+  </header>
+  <div class="entry-content" itemprop="description">
+    <!--:en--><img class="alignright size-medium wp-image-74" alt="Maven" src="http://www.bloggure.info/wp-content/uploads/2010/11/Maven_logo1-300x76.gif" width="300" height="76" />At <a href="http://www.srmvision.com">SRMvision</a>, we develop with localization in mind. We don't have any user visible text that is not in fact tied to a java property file. Quickly, the problem that we faced was the difficulty to keep every language file in sync (and to tidy things up). We developed a small Maven plugin allowing us to ensure that our two main problems are now gone : <a href="https://github.com/code-troopers/merge-properties-maven-plugin">merge-properties-maven-plugin</a>.
+<h2>Quick example</h2>
+I think the easiest way to understand how it works is to explain it with a real use case. Let's say we have a module named <em>Zones</em> in our application, it will lead to create four files (if we are localized in two different languages) :
+<ul>
+	<li><span style="line-height: 15px;">l10n/Zones_en.properties</span></li>
+	<li>l10n/Zones_fr.properties</li>
+	<li>help/Zones_en.properties</li>
+	<li>help/Zones_fr.properties</li>
+</ul>
+As you might have guessed, we have got two different categories of target files, one for the application's localization, and the other one for the application's help. There is only one rule when it comes to filling these files, the property keys must begin with the name of the file, otherwise the build would fail. In this example, every key must begin with the prefix "<tt>Zones.".</tt>
+
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    <div class="entry-meta"><span class="entry-date date published updated"><time datetime="2013-08-20T00:00:00-04:00" itemprop="datePublished"><a href="/blog/sample-post">August 20, 2013</a></time></span><span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name" class="fn"><a href="/about" title="About Your Name" itemprop="url">Your Name</a></span></span></div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title" itemprop="name"><a href="/blog/sample-post" rel="bookmark" title="Sample post" itemprop="url">Sample post</a></h1>
+    
+  </header>
+  <div class="entry-content" itemprop="description">
+    <p>Tattooed roof party <em>vinyl</em> freegan single-origin coffee wayfarers tousled, umami yr 
+meggings hella selvage. Butcher bespoke seitan, cornhole umami gentrify put a bird 
+on it occupy trust fund. Umami whatever kitsch, locavore fingerstache Tumblr pork belly
+<a href="#">keffiyeh</a>. Chia Echo Park Pitchfork, Blue Bottle <a href="#">hashtag</a> stumptown skateboard selvage 
+mixtape. Echo Park retro butcher banjo cardigan, seitan flannel Brooklyn paleo fixie 
+Truffaut. Forage mustache Thundercats next level disrupt. Bicycle rights forage tattooed
+chia, <strong>wayfarers</strong> swag raw denim hashtag biodiesel occupy gastropub!</p>
+
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    <div class="entry-meta"><span class="entry-date date published updated"><time datetime="2013-08-12T00:00:00-04:00" itemprop="datePublished"><a href="/blog/another-sample">August 12, 2013</a></time></span><span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name" class="fn"><a href="/about" title="About Your Name" itemprop="url">Your Name</a></span></span></div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title" itemprop="name"><a href="/blog/another-sample" rel="bookmark" title="Another sample" itemprop="url">Another sample</a></h1>
+    
+  </header>
+  <div class="entry-content" itemprop="description">
+    <p>Tattooed roof party <em>vinyl</em> freegan single-origin coffee wayfarers tousled, umami yr 
+meggings hella selvage. Butcher bespoke seitan, cornhole umami gentrify put a bird 
+on it occupy trust fund. Umami whatever kitsch, locavore fingerstache Tumblr pork belly
+<a href="#">keffiyeh</a>. Chia Echo Park Pitchfork, Blue Bottle <a href="#">hashtag</a> stumptown skateboard selvage 
+mixtape. Echo Park retro butcher banjo cardigan, seitan flannel Brooklyn paleo fixie 
+Truffaut. Forage mustache Thundercats next level disrupt. Bicycle rights forage tattooed
+chia, <strong>wayfarers</strong> swag raw denim hashtag biodiesel occupy gastropub!</p>
+
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    <div class="entry-meta"><span class="entry-date date published updated"><time datetime="2013-07-25T00:00:00-04:00" itemprop="datePublished"><a href="/work/play-framework-and-i18n-in-views">July 25, 2013</a></time></span><span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name" class="fn"><a href="/about" title="About Your Name" itemprop="url">Your Name</a></span></span></div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title" itemprop="name"><a href="/work/play-framework-and-i18n-in-views" rel="bookmark" title="Play Framework and i18n in views" itemprop="url">Play Framework and i18n in views</a></h1>
+    
+  </header>
+  <div class="entry-content" itemprop="description">
+    <!--:en--><img class="alignright size-full wp-image-916" alt="playlogo" src="http://www.bloggure.info/wp-content/uploads/2013/07/playlogo.png" width="150" height="50" />
+
+I was having a strange issue with localization in a Play Framework application. I followed the <a href="http://www.playframework.com/documentation/2.0/ScalaI18N">simple steps</a> detailed on the official documentation but with no luck.
+
+When experimenting, I figured out that the locale used is the default locale of the JVM. In my case, my default locale is French so I only had French in my application. But on Heroku, the default locale is English and thus the application was only working in English.
+
+The trick consists in adding an implicit lang to your template views. In fact, Scala import an implicit lang with the lowest priority being the one coming from the JVM, if you want to get the language parsed from the Accept-Languages http header, you need to add an implicit as below :
+<pre class="brush: scala">@(title: String)(content: Html)(implicit lang: Lang)</pre>
+With this little trick, your calls to localization will use the locale extracted from the http request as expected.<!--:--><!--:fr--><img class="alignright size-full wp-image-916" alt="playlogo" src="http://www.bloggure.info/wp-content/uploads/2013/07/playlogo.png" width="150" height="50" />
+
+I was having a strange issue with localization in a Play Framework application. I followed the <a href="http://www.playframework.com/documentation/2.0/ScalaI18N">simple steps</a> detailed on the official documentation but with no luck.
+
+When experimenting, I figured out that the locale used is the default locale of the JVM. In my case, my default locale is French so I only had French in my application. But on Heroku, the default locale is English and thus the application was only working in English.
+
+The trick consists in adding an implicit lang to your template views. In fact, Scala import an implicit lang with the lowest priority being the one coming from the JVM, if you want to get the language parsed from the Accept-Languages http header, you need to add an implicit as below :
+<pre class="brush: scala">@(title: String)(content: Html)(implicit lang: Lang)</pre>
+With this little trick, your calls to localization will use the locale extracted from the http request as expected.<!--:-->
+
+
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    <div class="entry-meta"><span class="entry-date date published updated"><time datetime="2013-07-25T00:00:00-04:00" itemprop="datePublished"><a href="/.java/.scala/.shell/ci/shelf/centos-redhat-play-application-production-mode">July 25, 2013</a></time></span><span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name" class="fn"><a href="/about" title="About Your Name" itemprop="url">Your Name</a></span></span></div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title" itemprop="name"><a href="/.java/.scala/.shell/ci/shelf/centos-redhat-play-application-production-mode" rel="bookmark" title="Play application on Centos/RedHat in production mode" itemprop="url">Play application on Centos/RedHat in production mode</a></h1>
+    
+  </header>
+  <div class="entry-content" itemprop="description">
+    <!--:fr--><p><strong>tl;dr </strong>: application <a title="play" href="http://www.playframework.com/">Play</a> (java ou <a href="http://www.scala-lang.org/">scala</a>) sur un serveur <a href="http://www.centos.org/">Centos</a> (ou <a href="http://fr.wikipedia.org/wiki/Red_Hat_Linux">Red Hat</a>) derrière un serveur <a title="nginx" href="http://nginx.org/">nginx</a>.</p><h2>Script de démarrage/arrêt du daemon.</h2><p>Lancer une application Play en dev est assez aisé : <code>$ play run</code>.</p><p>Maintenant, si vous avez besoin de déployer votre application en production, il est plus confortable de considérer votre application comme un service à part entière du système. Il se peut aussi que vous ayez besoin de spécifier un port et une interface particulière pour pouvoir utiliser nginx comme front-end (en <a href="http://fr.wikipedia.org/wiki/Proxy_inverse">reverse proxy</a>). Et évidement, à l'instar d'un environnement de développement, vous pourriez avoir besoin de compresser le JS et le CSS, et également de régler finement les en-têtes HTTP pour gérer correctement le cache.</p><p>Tout d'abord le script de lancement du daemon :</p>
+<script src="https://gist.github.com/tdebarochez/6082933.js"></script>
+<p>Je me suis inspiré des deux gists ci-dessous. Le premier, pour RedHat, utilise le binaire de play pour lancer le processus principal. Cette méthode facile à utiliser en développement semble assez limité en paramètre (tout du moins, très peu documentée). La seconde méthode, pour <a href="http://www.debian.org/">Debian</a>, donne un bonne exemple d'une configuration un peu plus élaborée de l'exécution du daemon. Les paramètres en début de fichier parlent d'eux-mêmes, je vous laisse les découvrir et reste à votre disposition pour toute question.</p><p>Source :</p><ul><li><a href="https://gist.github.com/THemming/2173037">https://gist.github.com/THemming/2173037</a> (script pour redhat)</li><li><a href="https://gist.github.com/leon/2204773">https://gist.github.com/leon/2204773</a> (script pour debian)</li></ul><h2>Configuration de nginx</h2><p>Sur un serveur web, il est souvent pratique de pouvoir faire tourner plusieurs applications utilisant des langages, des librairies, des frameworks, etc... hétérogènes (sur mon serveur, il y a l'application Play en scala, une application <a href="http://nodejs.org/">Nodejs</a> en <a href="http://coffeescript.org/">Coffescript</a> et une application <a href="http://php.net">PHP</a>/<a href="http://www.mysql.fr/">MySQL</a> utilisant <a href="http://httpd.apache.org/">Apache</a>). C'est là que nginx intervient. Configuré en reverse-proxy, c'est lui qui écoutera sur le port 80 de votre serveur et en fonction du nom de domaine relayera les requêtes HTTP à l'application que vous avez choisis. Il vous suffit de configurer votre application en écoute sur un port libre en localhost et d'indiquer à nginx qu'en fonction du nom de domaine (à la manière des VirtualHost d'Apache), il doit transmettre ses requêtes sur ce port.</p><p>Vous noterez une section fournissant un traitement particulier pour les fichiers statiques (js, css, png, jpg, etc...). En effet, je ne trouvais pas la configuration par défaut de play très satisfaisante pour diffuser ces fichiers. Il conviendra donc de copier tous les fichiers dans un dossier particulier au lancement de l'application (il faut également pensé à y placer les fichiers "compilé" des scripts utilisant un pre-processeurs : coffeescript, <a href="http://sass-lang.com">SASS/SCSS</a>, <a href="http://lesscss.org/">LESS</a>, etc...). Tous les fichiers dans ce dossier auront une durée de cache maximale afin de minimiser le nombre de requêtes au serveur (la requête la plus rapide est celle qui n'est pas faite). Cette technique a aussi l'avantage de décharger la JVM du traitement de ses fichiers, ils sont directement retourné par nginx.</p>
+<script src="https://gist.github.com/tdebarochez/6083089.js"></script>
+<h2>Compilation des fichiers statiques</h2><p>Les pré-processeurs (Coffeescript, SASS, LESS, etc...) sont d'un grand confort pour le développement de la partie front-end d'une application web. Toutefois, il y a quelques détails qui ne faut pas négliger afin d'optimiser au maximum la distribution en HTTP de ces fichiers.</p><p>Prenons comme exemple un fichier .coffee (Coffeescript). Lorsqu'en développement vous lancer votre serveur, play se charge de re-compiler automatiquement le fichier afin de desservir un fichier javascript au navigateur qui a demandé le fichier. Dans notre environnement, les fichiers statiques se trouvent tous dans un dossier <code>static/</code>. Il faut donc "traduire" ce fichier en javascript et le placer dans ce dossier (en respectant l'arborescence utilisée en développement) : <code>coffee -o static/javascripts/ -c app/assets/javascripts/*.coffee</code>.</p><p>Ensuite, comme optimisation souvent préconnisée, il convient de "minifier" ces fichiers afin qu'ils soient le plus léger possible pendant le transport sur le réseau (qui peut-être une faible connexion 3g). Dans mon cas, j'ai utilisé <a href="https://github.com/yui/yuicompressor"><code>yuicompressor</code></a> qui fonctionne bien. Il en existe certainement des mieux, je n'ai pas testé, mais celui-là fonctionne comme je veux.</p>
+<script src="https://gist.github.com/tdebarochez/6083307.js"></script>
+<p>Note : comme amélioration possible, il faudrait dans cette partie là renommer les fichiers par un nom de fichier contenant un hash représentant le contenu de ce fichier afin de palier à tout problème d'invalidation du cache.</p><h2>Dans le futur</h2><p>Pour parfaire le déploiement de l'application, sur un VCS <a href="http://git-scm.com/">git</a> par exemple, il serait pratique d'automatiser le redémarrage du serveur sur un hook post-commit. Pour éviter également une coupure de service, il faudrait également, lancer la nouvelle application sur un autre port et switcher sur la nouvelle instance uniquement avec un reload de nginx. Mais bon tout ça peut faire l'objet d'un autre article. :)</p>
+<p><strong>Mise à jour du 29 juillet 2013</strong> : correction du script de lancement du daemon.</p><!--:-->
+
+
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+
+<div class="pagination">
+  
+    Previous
+  
+  <ul class="inline-list">
+    <li>
+      
+        <span class="current-page">1</span>
+      
+    </li>
+    
+      <li>
+        
+          <a href="/page2">2</a>
+        
+      </li>
+    
+      <li>
+        
+          <a href="/page3">3</a>
+        
+      </li>
+    
+      <li>
+        
+          <a href="/page4">4</a>
+        
+      </li>
+    
+      <li>
+        
+          <a href="/page5">5</a>
+        
+      </li>
+    
+      <li>
+        
+          <a href="/page6">6</a>
+        
+      </li>
+    
+      <li>
+        
+          <a href="/page7">7</a>
+        
+      </li>
+    
+      <li>
+        
+          <a href="/page8">8</a>
+        
+      </li>
+    
+      <li>
+        
+          <a href="/page9">9</a>
+        
+      </li>
+    
+      <li>
+        
+          <a href="/page10">10</a>
+        
+      </li>
+    
+      <li>
+        
+          <a href="/page11">11</a>
+        
+      </li>
+    
+      <li>
+        
+          <a href="/page12">12</a>
+        
+      </li>
+    
+      <li>
+        
+          <a href="/page13">13</a>
+        
+      </li>
+    
+      <li>
+        
+          <a href="/page14">14</a>
+        
+      </li>
+    
   </ul>
-</nav>
-    </div>
-
-    <div class="eleven columns content">
-      <div id="home">
-  <h2><i class="icon-bookmark"></i> Blog Posts</h2>
-  <ul id="blog-posts" class="posts">
-    
-      <li><span>31 Aug 2013 &raquo;</span><a href="/.maven/2013/08/31/maven-merge-properties-plugin.html">Merge properties maven plugin</a></li>
-    
-      <li><span>20 Aug 2013 &raquo;</span><a href="/blog/2013/08/20/sample-post.html">Sample post</a></li>
-    
-      <li><span>12 Aug 2013 &raquo;</span><a href="/blog/2013/08/12/another-sample.html">Another sample</a></li>
-    
-      <li><span>25 Jul 2013 &raquo;</span><a href="/work/2013/07/25/play-framework-and-i18n-in-views.html">Play Framework and i18n in views</a></li>
-    
-      <li><span>25 Jul 2013 &raquo;</span><a href="/.java/.scala/.shell/ci/shelf/2013/07/25/centos-redhat-play-application-production-mode.html">Play application on Centos/RedHat in production mode</a></li>
-    
-      <li><span>08 Jul 2013 &raquo;</span><a href="/.java/work/2013/07/08/heroku-play-scala-compass-buildpack.html">Heroku Play ! Scala Compass Buildpack</a></li>
-    
-      <li><span>20 May 2013 &raquo;</span><a href="/.wicket/2013/05/20/wicket-routes-mount.html">Wicket Routes Mount</a></li>
-    
-      <li><span>24 Mar 2013 &raquo;</span><a href="/www/2013/03/24/duckduckgo-in-thunderbird.html">DuckDuckGo in Thunderbird</a></li>
-    
-      <li><span>19 Mar 2013 &raquo;</span><a href="/.java/2013/03/19/alfred-glassfish-workflow.html">Alfred.app Glassfish workflow</a></li>
-    
-      <li><span>03 Mar 2013 &raquo;</span><a href="/.wicket/work/2013/03/03/wicket-6-cdi-on-heroku.html">Wicket 6 + CDI on Heroku</a></li>
-    
-      <li><span>20 Jan 2013 &raquo;</span><a href="/.java/.wicket/2013/01/20/use-wicket-templating-system-to-generate-html.html">Use Wicket templating system to generate Html</a></li>
-    
-      <li><span>12 Jan 2013 &raquo;</span><a href="/thoughts/2013/01/12/de-free-a-numericable.html">De Free à Numericable</a></li>
-    
-      <li><span>10 Jan 2013 &raquo;</span><a href="/thoughts/www/2013/01/10/sony-entertainment-web-store-at-last.html">Sony Entertainment Web store - at last !</a></li>
-    
-      <li><span>03 Jan 2013 &raquo;</span><a href="/work/www/2013/01/03/regexper-visualize-your-regexps.html">Regexper : visualize your regexps</a></li>
-    
-      <li><span>03 Jan 2013 &raquo;</span><a href="/work/2013/01/03/postgresql-under-os-x-mountain-lion.html">PostgreSQL under OS X Mountain Lion</a></li>
-    
-      <li><span>01 Jan 2013 &raquo;</span><a href="/work/2013/01/01/juniper-vpn-ssl-on-android.html">Juniper VPN SSL on Android</a></li>
-    
-      <li><span>30 Dec 2012 &raquo;</span><a href="/www/2012/12/30/graph-of-programming-languages-people-used-in-2012.html">Graph of programming languages people used in 2012</a></li>
-    
-      <li><span>28 Dec 2012 &raquo;</span><a href="/work/2012/12/28/intellij-12-darcula-monokai.html">IntelliJ 12 Darcula + Monokai</a></li>
-    
-      <li><span>27 Dec 2012 &raquo;</span><a href="/.groovy/work/2012/12/27/quickly-insert-data-to-a-sql-database-in-groovy.html">Quickly insert data to a SQL database in Groovy</a></li>
-    
-      <li><span>22 Dec 2012 &raquo;</span><a href="/thoughts/work/2012/12/22/os-x-tools-i-use-in-my-daily-activities.html">OS X Tools I use in my daily activities</a></li>
-    
-      <li><span>18 Dec 2012 &raquo;</span><a href="/thoughts/www/2012/12/18/five-presentation-mistakes-everyone-makes.html">Five Presentation Mistakes Everyone Makes</a></li>
-    
-      <li><span>20 Nov 2012 &raquo;</span><a href="/www/2012/11/20/ingress-first-try.html">Ingress first try</a></li>
-    
-      <li><span>18 Nov 2012 &raquo;</span><a href="/.wicket/2012/11/18/wicket-chrome-to-idea.html">Wicket Chrome to IDEA</a></li>
-    
-      <li><span>21 Oct 2012 &raquo;</span><a href="/work/2012/10/21/learn-scala.html">Trying to learn Scala</a></li>
-    
-      <li><span>18 Oct 2012 &raquo;</span><a href="/.js/2012/10/18/using-trello-as-a-scrum-sprint-board.html">Using Trello as a Scrum sprint board</a></li>
-    
-      <li><span>13 May 2012 &raquo;</span><a href="/work/2012/05/13/vert-x-in-homebrew.html">Vert.x in Homebrew</a></li>
-    
-      <li><span>08 May 2012 &raquo;</span><a href="/.git/work/2012/05/08/gitlabhq-sqlite-to-mysql.html">GitlabHQ - SQLite to mySQL</a></li>
-    
-      <li><span>06 May 2012 &raquo;</span><a href="/.git/ci/2012/05/06/control-trac-ticket-workflow-from-your-git-commits.html">Control Trac ticket workflow from your Git commits</a></li>
-    
-      <li><span>04 May 2012 &raquo;</span><a href="/.git/thoughts/www/2012/05/04/how-github-uses-pull-request.html">How Github uses Pull Request</a></li>
-    
-      <li><span>04 May 2012 &raquo;</span><a href="/.git/work/2012/05/04/bitbucket-free-personal-git-and-mercurial-repositories.html">Bitbucket : free personal Git (and Mercurial) repositories</a></li>
-    
-      <li><span>02 May 2012 &raquo;</span><a href="/.android/www/2012/05/02/parts-of-android-in-c.html">(Parts of) Android in C# ?</a></li>
-    
-      <li><span>02 May 2012 &raquo;</span><a href="/www/2012/05/02/amazon-cloud-drive-desktop.html">Amazon Cloud Drive Desktop</a></li>
-    
-      <li><span>28 Apr 2012 &raquo;</span><a href="/work/2012/04/28/installing-homebrew-without-xcode.html">Installing HomeBrew without XCode</a></li>
-    
-      <li><span>24 Apr 2012 &raquo;</span><a href="/work/2012/04/24/devoxx-france.html">Devoxx France</a></li>
-    
-      <li><span>16 Apr 2012 &raquo;</span><a href="/work/2012/04/16/devoxx-france-d-3.html">Devoxx France / D-3</a></li>
-    
-      <li><span>23 Feb 2012 &raquo;</span><a href="/.git/work/2012/02/23/gitlabhq.html">GitLabHQ and a good branching model</a></li>
-    
-      <li><span>17 Feb 2012 &raquo;</span><a href="/thoughts/2012/02/17/mac-os-x-10-8-mountain-lion-thoughts.html">Mac OS X 10.8 - Mountain Lion thoughts</a></li>
-    
-      <li><span>12 Feb 2012 &raquo;</span><a href="/nosql/work/2012/02/12/mongodb-request-failing-when-upgrading-1-8-2-x.html">mongoDB request failing when upgrading (1.8 > 2.x)</a></li>
-    
-      <li><span>19 Dec 2011 &raquo;</span><a href="/.git/.maven/2011/12/19/git-bisect-saved-my-day.html">git bisect saved my day !</a></li>
-    
-      <li><span>18 Dec 2011 &raquo;</span><a href="/.shell/2011/12/18/dotfiles-or-easily-manage-your-shell-environment.html">dotfiles or easily manage your shell environment</a></li>
-    
-      <li><span>25 Nov 2011 &raquo;</span><a href="/.js/www/2011/11/25/trello-unread-notification-favicon-userscript.html">Trello unread notification favicon userscript</a></li>
-    
-      <li><span>13 Nov 2011 &raquo;</span><a href="/.android/2011/11/13/android-detect-adblocking.html">Android : Detect AdBlocking</a></li>
-    
-      <li><span>27 Oct 2011 &raquo;</span><a href="/ci/2011/10/27/francais-mise-en-place-de-tests-unitaire.html">(Français) Mise en place de tests unitaire</a></li>
-    
-      <li><span>04 Sep 2011 &raquo;</span><a href="/work/2011/09/04/hp-touchpad-quick-hacks.html">HP Touchpad quick hacks</a></li>
-    
-      <li><span>04 Sep 2011 &raquo;</span><a href="/.java/.maven/2011/09/04/continuous-delivery-using-maven-shell.html">Continuous delivery using Maven / Shell</a></li>
-    
-      <li><span>21 Aug 2011 &raquo;</span><a href="/.java/.wicket/work/2011/08/21/intellij-external-library-propertykey-how-to.html">IntelliJ + External Library + @PropertyKey How To</a></li>
-    
-      <li><span>21 Aug 2011 &raquo;</span><a href="/.shell/2011/08/21/convert-a-mysql-database-from-latin1-to-utf-8.html">Convert a mySQL Database from latin1 to UTF-8</a></li>
-    
-      <li><span>09 Aug 2011 &raquo;</span><a href="/.java/.maven/2011/08/09/ejb-client-package-jrebel-glassfish.html">ejb-client package + JRebel + Glassfish</a></li>
-    
-      <li><span>04 Aug 2011 &raquo;</span><a href="/www/2011/08/04/a-programmers-life.html">A programmer's life</a></li>
-    
-      <li><span>30 Jul 2011 &raquo;</span><a href="/.shell/work/2011/07/30/alerta-jul-elegant-log-tailing.html">Alerta-JUL - Elegant log tailing</a></li>
-    
-      <li><span>28 Jul 2011 &raquo;</span><a href="/.shell/2011/07/28/os-x-lion-remove-an-app-from-launchpad.html">OS X Lion - Remove an app from Launchpad</a></li>
-    
-      <li><span>24 Jul 2011 &raquo;</span><a href="/.shell/2011/07/24/os-x-lion-disable-special-char-popup.html">OS X Lion - disable special char popup</a></li>
-    
-      <li><span>23 Jul 2011 &raquo;</span><a href="/.java/work/2011/07/23/glassfish-3-x-recover-admin-console-access.html">Glassfish 3.x - recover admin console access</a></li>
-    
-      <li><span>18 Jul 2011 &raquo;</span><a href="/.java/work/2011/07/18/glassfish-3-x-jersey-with-bundled-dependencies.html">Glassfish 3.x - Jersey with bundled dependencies</a></li>
-    
-      <li><span>12 Jul 2011 &raquo;</span><a href="/.java/.shell/thoughts/2011/07/12/first-thoughts-on-os-x-lion.html">First thoughts on OS X Lion</a></li>
-    
-      <li><span>30 Dec 2010 &raquo;</span><a href="/shelf/thoughts/www/2010/12/30/playstation-3-a-random-tale.html">Playstation 3 - a random tale...</a></li>
-    
-      <li><span>05 Dec 2010 &raquo;</span><a href="/.js/www/2010/12/05/head-js-speed-up-your-website.html">Head.js - speed up your website</a></li>
-    
-      <li><span>05 Dec 2010 &raquo;</span><a href="/.android/.java/2010/12/05/big-photo-frame-widget.html">Big Photo Frame Widget</a></li>
-    
-      <li><span>21 Nov 2010 &raquo;</span><a href="/shelf/2010/11/21/macbookpro-31-superdrive-replacement.html">MacbookPro 3.1 Speed boost : SSD inside !</a></li>
-    
-      <li><span>20 Nov 2010 &raquo;</span><a href="/.js/work/2010/11/20/les-nouveautes-de-prototype-1-7.html">Prototype 1.7 new features</a></li>
-    
-      <li><span>14 Nov 2010 &raquo;</span><a href="/shelf/2010/11/14/so-i-made-it.html">So, I made it - back to iOS a year later...</a></li>
-    
-      <li><span>14 Nov 2010 &raquo;</span><a href="/.shell/shelf/2010/11/14/itunes-media-sharing-over-the-internet-from-a-nas.html">iTunes media sharing over the Internet from a NAS</a></li>
-    
-      <li><span>02 Nov 2010 &raquo;</span><a href="/.java/work/2010/11/02/glassfish-v3-custom-log-levels.html">Glassfish v3.x - custom log levels</a></li>
-    
-      <li><span>01 Nov 2010 &raquo;</span><a href="/.java/.maven/work/2010/11/01/getting-source-revision-for-a-deployed-app-using-maven-and-a-servlet.html">Getting source revision for a deployed app using Maven and a Servlet</a></li>
-    
-      <li><span>29 Oct 2010 &raquo;</span><a href="/.android/2010/10/29/android-switcher-widget.html">Android Switcher Widget</a></li>
-    
-      <li><span>24 Oct 2010 &raquo;</span><a href="/.wicket/2010/10/24/wicket-1-4-9-tinymce.html">Wicket 1.4.x - TinyMCE</a></li>
-    
-  </ul>
-</div>
-    
-      <div class="footer">
-        <div class="disclaimer">
   
-  <p>
-    The postings on this site are my own and don't necessarily represent my 
-    employer’s positions, strategies or opinions.
-  </p>
+    <a href="/page2" class="btn">Next</a>
   
 
-  <p>
-    © Bloggure, 2013 &mdash; built with Jekyll using Lagom theme
-  </p>
 </div>
-      </div>
-    </div>
-  </div>
+</div><!-- /#main -->
 
+<div class="footer-wrapper">
+  <footer role="contentinfo">
+    <span>&copy; 2013 Your Name. Powered by <a href="http://jekyllrb.com">Jekyll</a> using the <a href="http://mademistakes.com/">HPSTR Theme</a>.</span>
+  </footer>
+</div><!-- /.footer-wrapper -->
 
-<script type="text/javascript">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="/assets/js/scripts.min.js"></script>
 
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-xxxx-x']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
-</script>
+          
 
 </body>
 </html>

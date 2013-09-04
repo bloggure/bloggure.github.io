@@ -1,27 +1,67 @@
-# General Jekyll Config
-pygments: true
-url: http://bloggure.info
-lsi: false
-exclude: [LICENSE, CNAME, README.md, .gitignore]
-comments: true
-# Theme customization - please change from the defaults!
-theme:
-  # Color for top bar, links, etc
-  highlight_color: '#3498db'
+title:            Site Title
+description:      Describe your website here.
+disqus_shortname: 
+#Comment out url when working locally to resolve base urls correctly
+#url:              http://bloggure.info
 
-  # Profile links on the left sidebar, leave blank to ignore
-  social:
-    github: bloggure
-    twitter: bloggure
-    hacker_news: bloggure
+# Owner/author information
+owner:
+  name:           Your Name
+  avatar:         avatar.jpg
+  bio:            "Your bio goes here. It shouldn't be super long but a good two sentences or two should suffice."
+  email:          you@email.com
+  # Social networking links used in footer. Update and remove as you like.
+  twitter:        
+  facebook:       
+  github:         
+  stackexchange:  
+  linkedin:       
+  instagram:      
+  flickr:         
+  tumblr:         
+  # For Google Authorship https://plus.google.com/authorship
+  google_plus:   
 
-  # "Hi, I'm _______"
-  name: Bloggure
-  email: contact@bloggure.info
-  tagline: There is no place like ::1
+# Analytics and webmaster tools stuff goes here
+google_analytics:   
+google_verify:      
+# https://ssl.bing.com/webmaster/configure/verify/ownership Option 2 content= goes here
+bing_verify:         
 
-  # Google Analytics key, leave blank to ignore
-  google_analytics_key: UA-xxxx-x
+# Links to include in top navigation
+# For external links add external: true
+links:
+  - title: Theme Setup
+    url: /theme-setup
+  - title: External Link
+    url: http://mademistakes.com
+    external: true
 
-  # Toggle "Postings are my own" disclaimer in footer
-  show_disclaimer: true
+# http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+timezone:    America/New_York
+future:      true
+pygments:    true
+markdown:    kramdown
+
+# https://github.com/mojombo/jekyll/wiki/Permalinks
+permalink:   /:categories/:title
+
+# Amount of post to show on home page
+paginate: 5
+
+kramdown:
+  auto_ids: true
+  footnote_nr: 1
+  entity_output: as_char
+  toc_levels: 1..6
+  use_coderay: true
+
+  coderay:
+    coderay_line_numbers: nil
+    coderay_line_numbers_start: 1
+    coderay_tab_width: 4
+    coderay_bold_every: 10
+    coderay_css: class
+
+include: [".htaccess"]
+exclude: ["lib", "config.rb", "Capfile", "config", "log", "Rakefile", "Rakefile.rb", "tmp", "less", "*.sublime-project", "*.sublime-workspace", "test", "spec", "Gruntfile.js", "package.json", "node_modules"]
