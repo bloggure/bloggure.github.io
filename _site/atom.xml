@@ -4,7 +4,7 @@
  <title>The blog of Bloggure</title>
  <link href="http://bloggure.info/atom.xml" rel="self"/>
  <link href="http://bloggure.info"/>
- <updated>2013-09-03T20:27:24+02:00</updated>
+ <updated>2013-09-04T10:37:46+02:00</updated>
  <id>http://bloggure.info</id>
  <author>
    <name>Bloggure</name>
@@ -3207,21 +3207,13 @@ For newcomers, &lt;a href=&quot;http://tinymce.moxiecode.com/&quot; target=&quot
 
 An implementation of TinyMCE for Wicket exists, it&#39;ll be the first result you get when you ask your old pal G***** a hand. But, this implementation is a bit tricky to find (outdated links everywhere) and not feature complete (or not fully complete), as I explain in the read more part...
 
-&lt;!--:--&gt;&lt;!--:fr--&gt;&lt;em&gt;Cet article n&#39;a pas été traduit, veuillez trouver ci-dessous sa version anglaise&lt;/em&gt;
-
-&lt;img class=&quot;alignleft size-full wp-image-90&quot; title=&quot;Wicket&quot; src=&quot;http://www.bloggure.info/wp-content/uploads/2010/10/logo-wicket1.png&quot; alt=&quot;&quot; width=&quot;120&quot; height=&quot;119&quot; /&gt;Heya all,
-
-I am trying to revive this blog from a long period of sleep. Let&#39;s start today with a little Java trick I made to have a working TinyMCE implementation using Wicket (tested over 1.4.9 and 1.4.13 in my case but I think it should work for any 1.4.x at least, please report successful attempts under other releases).
-
-For newcomers, &lt;a href=&quot;http://tinymce.moxiecode.com/&quot; target=&quot;_blank&quot;&gt;TinyMCE&lt;/a&gt; is a really powerful WYSIWYG editor written entirely in Javascript, it features plugin and theme ability in order to be THE editor to use in your projects. &lt;a href=&quot;http://wicket.apache.org/&quot; target=&quot;_blank&quot;&gt;Apache Wicket&lt;/a&gt; is a really powerful web framework based on Java EE specs (I think I&#39;ll talk a lot about Wicket in here...).
-
-An implementation of TinyMCE for Wicket exists, it&#39;ll be the first result you get when you ask your old pal G***** a hand. But, this implementation is a bit tricky to find (outdated links everywhere) and not feature complete (or not fully complete), as I explain in the read more part...
-
-&lt;!--:--&gt;&lt;!--more--&gt;&lt;!--:en--&gt;
+&lt;!--more--&gt;
 
 You can checkout latest almost working release from &lt;a href=&quot;https://wicket-stuff.svn.sourceforge.net/svnroot/wicket-stuff/releases/wicketstuff-core-1.4-rc7/tinymce-parent&quot; target=&quot;_blank&quot;&gt;there&lt;/a&gt; by using the following command line :
 
-[code lang=&quot;bash&quot; light=&quot;true&quot;] svn co https://wicket-stuff.svn.sourceforge.net/svnroot/wicket-stuff/releases/wicketstuff-core-1.4-rc7/tinymce-parent[/code]
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;svn co https://wicket-stuff.svn.sourceforge.net/svnroot/wicket-stuff/releases/wicketstuff-core-1.4-rc7/tinymce-parent
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
 
 Let me explain what problem I encountered, it happens only on isolated cases (ajax pushing the whole WYSIWYG shebang on a page without that mess). TinyMCE is then lost, and the only output you get when you try to call init() is &lt;code&gt;tinyMCE is undefined&lt;/code&gt; on your Javascript console. My first thought was to replace the outdated version bundled (3.1.0.1), so I headed to TinyMCE&#39;s website , downloaded latest version so far (3.3.9.2) and replaced it in my workspace. A try later and no luck, the problem is still here.
 
@@ -3233,118 +3225,55 @@ to the body of the document.
 
 This particular way of answering to browser is not well handled by TinyMCE, which looks up its baseURL by parsing script tags present in the DOM. The hack to circumvent this is really simple, make TinyMCE find its baseURL by reacting on src_ attributes. The following listing shows the patch in &lt;code&gt;tiny_mce_src.js&lt;/code&gt; on the &lt;code&gt;getBase(n)&lt;/code&gt;method :
 
-[code lang=&quot;js&quot; highlight=&quot;2,3,4,5&quot;]function getBase(n) {
-    var src_ = n.getAttribute(&amp;quot;src_&amp;quot;);
-    if (src_) {
-        n.src = src_;
-    }
-   if (n.src &amp;amp;&amp;amp; /tiny_mce(|_gzip|_jquery|_prototype|_full)(_dev|_src)?.js/.test(n.src)) {
-        if (/_(src|dev)\.js/g.test(n.src)) {
-            t.suffix = &#39;_src&#39;;
-        }
-        if ((p = n.src.indexOf(&#39;?&#39;)) != -1) {
-            t.query = n.src.substring(p + 1);
-        }
-
-        t.baseURL = n.src.substring(0, n.src.lastIndexOf(&#39;/&#39;));
-
-        // If path to script is relative and a base href was found add that one infront
-        // the src property will always be an absolute one on non IE browsers and IE 8
-        // so this logic will basically only be executed on older IE versions
-        if (base &amp;amp;&amp;amp; t.baseURL.indexOf(&#39;://&#39;) == -1 &amp;amp;&amp;amp; t.baseURL.indexOf(&#39;/&#39;) !== 0) {
-            t.baseURL = base + t.baseURL;
-        }
-        return t.baseURL;
-  }
-  return null;
-}[/code]
-
-With this hack, console error yelling &lt;code&gt;tinyMCE is undefined&lt;/code&gt; is gone. No more error but the editor still does not work, TinyMCE waits for the document to be ready before calling its render phase. Let&#39;s fake it by flagging when we&#39;re coming from a Wicket Ajax request. We simply add an attribute to tinyMCE object : in the &lt;code&gt;_init()&lt;/code&gt; method
-
-[code lang=&quot;js&quot;]
-t.isAjax = false;
-[/code]
-
-We flag in the &lt;code&gt;getBase(n)&lt;/code&gt; when we come from Wicket Ajax (when we get something like &lt;code&gt;&amp;lt;script src_=&quot;&quot;&amp;gt;&amp;lt;/script&amp;gt;&lt;/code&gt;)
-
-[code lang=&quot;js&quot; highlight=&quot;2&quot;]if (src_) {
-    t.isAjax = true;
-    n.src = src_;
-}[/code]
-
-and we set the &lt;code&gt;domLoaded&lt;/code&gt; flag to the newly introduced attribute at the end of the JavaScript file :
-
-[code lang=&quot;js&quot;]
-tinymce.dom.Event.domLoaded = tinymce.isAjax;
-[/code]
-
-This way, TinyMCE calls its render phase directly when we call &lt;code&gt;init()&lt;/code&gt; on tinyMCE object. This call is done by Wicket when the dom is ready and then we finally got TinyMCE working even when coming from an ajax javascript inclusion. The only thing you need to do in order for this to work in deployment mode is to compress tiny_mce_src.js to tiny_mce.js with this patch.
-
-You can find the resulting  &lt;code&gt;tiny_mce_src.js&lt;/code&gt; &lt;a href=&quot;http://gist.github.com/643272&quot;&gt;here&lt;/a&gt;.&lt;!--:--&gt;&lt;!--:fr--&gt;
-
-You can checkout latest almost working release from &lt;a href=&quot;https://wicket-stuff.svn.sourceforge.net/svnroot/wicket-stuff/releases/wicketstuff-core-1.4-rc7/tinymce-parent&quot; target=&quot;_blank&quot;&gt;there&lt;/a&gt; by using the following command line :
-
-[code lang=&quot;bash&quot; light=&quot;true&quot;] svn co https://wicket-stuff.svn.sourceforge.net/svnroot/wicket-stuff/releases/wicketstuff-core-1.4-rc7/tinymce-parent[/code]
-
-Let me explain what problem I encountered, it happens only on isolated cases (ajax pushing the whole WYSIWYG shebang on a page without that mess). TinyMCE is then lost, and the only output you get when you try to call init() is &lt;code&gt;tinyMCE is undefined&lt;/code&gt; on your Javascript console. My first thought was to replace the outdated version bundled (3.1.0.1), so I headed to TinyMCE&#39;s website , downloaded latest version so far (3.3.9.2) and replaced it in my workspace. A try later and no luck, the problem is still here.
-
-What&#39;s happening, why on hell this working component don&#39;t want to work anymore ? By digging into TinyMCE&#39;s code, you&#39;ll find that it looks for its baseURL, for lazy loading stuffs (depending on what you use), but Wicket responds to Ajax  headers contribution in a special way : instead of appending regular
-&lt;code&gt;&amp;lt;script type=&#39;text/javascript&#39; src=&#39;myurltomyfile.js&#39;&amp;gt;&amp;lt;/script&amp;gt;&lt;/code&gt;
-it appends
-&lt;code&gt;&amp;lt;script type=&#39;text/javascript&#39; src_=&#39;myurltomyfile.js&#39;&amp;gt;[content of myurltomyfile.js]&amp;lt;/script&amp;gt;&lt;/code&gt;
-to the body of the document.
-
-This particular way of answering to browser is not well handled by TinyMCE, which looks up its baseURL by parsing script tags present in the DOM. The hack to circumvent this is really simple, make TinyMCE find its baseURL by reacting on src_ attributes. The following listing shows the patch in &lt;code&gt;tiny_mce_src.js&lt;/code&gt; on the &lt;code&gt;getBase(n)&lt;/code&gt;method :
-
-[code lang=&quot;js&quot; highlight=&quot;2,3,4,5&quot;]function getBase(n) {
-    var src_ = n.getAttribute(&amp;quot;src_&amp;quot;);
-    if (src_) {
-        n.src = src_;
-    }
-   if (n.src &amp;amp;&amp;amp; /tiny_mce(|_gzip|_jquery|_prototype|_full)(_dev|_src)?.js/.test(n.src)) {
-        if (/_(src|dev)\.js/g.test(n.src)) {
-            t.suffix = &#39;_src&#39;;
-        }
-        if ((p = n.src.indexOf(&#39;?&#39;)) != -1) {
-            t.query = n.src.substring(p + 1);
-        }
-
-        t.baseURL = n.src.substring(0, n.src.lastIndexOf(&#39;/&#39;));
-
-        // If path to script is relative and a base href was found add that one infront
-        // the src property will always be an absolute one on non IE browsers and IE 8
-        // so this logic will basically only be executed on older IE versions
-        if (base &amp;amp;&amp;amp; t.baseURL.indexOf(&#39;://&#39;) == -1 &amp;amp;&amp;amp; t.baseURL.indexOf(&#39;/&#39;) !== 0) {
-            t.baseURL = base + t.baseURL;
-        }
-        return t.baseURL;
-  }
-  return null;
-}[/code]
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;js&quot;&gt;&lt;span class=&quot;lineno&quot;&gt; 1&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;getBase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 2&lt;/span&gt;     &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;src_&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getAttribute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;quot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;src_&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;quot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;);&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 3&lt;/span&gt;     &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;src_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 4&lt;/span&gt;         &lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;src_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 5&lt;/span&gt;     &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 6&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;amp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;amp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/tiny_mce(|_gzip|_jquery|_prototype|_full)(_dev|_src)?.js/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 7&lt;/span&gt;         &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/_(src|dev)\.js/g&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 8&lt;/span&gt;             &lt;span class=&quot;nx&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;suffix&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;_src&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 9&lt;/span&gt;         &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;10&lt;/span&gt;         &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;indexOf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;?&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;11&lt;/span&gt;             &lt;span class=&quot;nx&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;query&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;substring&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;12&lt;/span&gt;         &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;13&lt;/span&gt; 
+&lt;span class=&quot;lineno&quot;&gt;14&lt;/span&gt;         &lt;span class=&quot;nx&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;baseURL&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;substring&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;lastIndexOf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;/&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;15&lt;/span&gt; 
+&lt;span class=&quot;lineno&quot;&gt;16&lt;/span&gt;         &lt;span class=&quot;c1&quot;&gt;// If path to script is relative and a base href was found add that one infront&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;17&lt;/span&gt;         &lt;span class=&quot;c1&quot;&gt;// the src property will always be an absolute one on non IE browsers and IE 8&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;18&lt;/span&gt;         &lt;span class=&quot;c1&quot;&gt;// so this logic will basically only be executed on older IE versions&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;19&lt;/span&gt;         &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;base&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;amp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;amp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;baseURL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;indexOf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;://&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;amp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;amp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;baseURL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;indexOf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;/&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;20&lt;/span&gt;             &lt;span class=&quot;nx&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;baseURL&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;base&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;baseURL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;21&lt;/span&gt;         &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;22&lt;/span&gt;         &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;baseURL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;23&lt;/span&gt;   &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;24&lt;/span&gt;   &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;25&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 With this hack, console error yelling &lt;code&gt;tinyMCE is undefined&lt;/code&gt; is gone. No more error but the editor still does not work, TinyMCE waits for the document to be ready before calling its render phase. Let&#39;s fake it by flagging when we&#39;re coming from a Wicket Ajax request. We simply add an attribute to tinyMCE object : in the &lt;code&gt;_init()&lt;/code&gt; method
 
-[code lang=&quot;js&quot;]
-t.isAjax = false;
-[/code]
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;js&quot;&gt;&lt;span class=&quot;nx&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;isAjax&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 We flag in the &lt;code&gt;getBase(n)&lt;/code&gt; when we come from Wicket Ajax (when we get something like &lt;code&gt;&amp;lt;script src_=&quot;&quot;&amp;gt;&amp;lt;/script&amp;gt;&lt;/code&gt;)
 
-[code lang=&quot;js&quot; highlight=&quot;2&quot;]if (src_) {
-    t.isAjax = true;
-    n.src = src_;
-}[/code]
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;js&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;src_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;2&lt;/span&gt;     &lt;span class=&quot;nx&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;isAjax&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;3&lt;/span&gt;     &lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;src_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;4&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
 
 and we set the &lt;code&gt;domLoaded&lt;/code&gt; flag to the newly introduced attribute at the end of the JavaScript file :
 
-[code lang=&quot;js&quot;]
-tinymce.dom.Event.domLoaded = tinymce.isAjax;
-[/code]
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;js&quot;&gt;&lt;span class=&quot;nx&quot;&gt;tinymce&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;dom&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;domLoaded&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;tinymce&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;isAjax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 This way, TinyMCE calls its render phase directly when we call &lt;code&gt;init()&lt;/code&gt; on tinyMCE object. This call is done by Wicket when the dom is ready and then we finally got TinyMCE working even when coming from an ajax javascript inclusion. The only thing you need to do in order for this to work in deployment mode is to compress tiny_mce_src.js to tiny_mce.js with this patch.
 
-You can find the resulting  &lt;code&gt;tiny_mce_src.js&lt;/code&gt; &lt;a href=&quot;http://gist.github.com/643272&quot;&gt;here&lt;/a&gt;.&lt;!--:--&gt;
-</content>
+You can find the resulting  &lt;code&gt;tiny_mce_src.js&lt;/code&gt; &lt;a href=&quot;http://gist.github.com/643272&quot;&gt;here&lt;/a&gt;.</content>
  </entry>
  
  
