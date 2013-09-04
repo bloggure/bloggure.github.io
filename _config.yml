@@ -1,15 +1,15 @@
-title:            Site Title
-description:      Describe your website here.
-disqus_shortname: 
+title:            Bloggure
+description:      There is no place like ::1
+disqus_shortname: thereisnoplacelike1
 #Comment out url when working locally to resolve base urls correctly
 #url:              http://bloggure.info
 
 # Owner/author information
 owner:
-  name:           Your Name
-  avatar:         avatar.jpg
-  bio:            "Your bio goes here. It shouldn't be super long but a good two sentences or two should suffice."
-  email:          you@email.com
+  name:           #Your Name
+  avatar:         #avatar.jpg
+  bio:            #"Your bio goes here. It shouldn't be super long but a good two sentences or two should suffice."
+  email:          #you@email.com
   # Social networking links used in footer. Update and remove as you like.
   twitter:        
   facebook:       
@@ -65,3 +65,4 @@ kramdown:
 
 include: [".htaccess"]
 exclude: ["lib", "config.rb", "Capfile", "config", "log", "Rakefile", "Rakefile.rb", "tmp", "less", "*.sublime-project", "*.sublime-workspace", "test", "spec", "Gruntfile.js", "package.json", "node_modules"]
+excerpt_separator: <!--more-->

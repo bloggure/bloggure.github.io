@@ -10,8 +10,11 @@
 <body id="page" {% if page.image.feature %}class="feature"{% endif %} itemscope itemtype="http://schema.org/WebPage">
 
 {% include browser-upgrade.html %}
+<div class="meny">
 {% include navigation.html %}
+</div>
 
+<div class="content">
 {% if page.image.feature %}
 <div class="entry-header">
   <div class="entry-image"><img src="{{ site.url }}/images/{{ page.image.feature }}" alt="{{ page.title }}" itemprop="image">
@@ -50,6 +53,7 @@
     {% include footer.html %}
   </footer>
 </div><!-- /.footer-wrapper -->
+</div>
 
 {% include scripts.html %}          
 
