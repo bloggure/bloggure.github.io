@@ -16,21 +16,25 @@ meta:
   _yoast_wpseo_linkdex: '0'
 ---
 <!--:en--><img src="http://www.bloggure.info/wp-content/uploads/2012/02/gitlabhq-logo.png" alt="" title="gitlabhq-logo" width="175" height="60" class="alignright size-full wp-image-528" /><p>As our <a href="http://gitlabhq.com/">GitlabHQ</a> setup at <a href="http://www.srmvision.com">SRMvision</a> is mean to stay, we wanted to migrate from the standard SQLite database to an easier to manage for us : mySQL.<br /> The steps are quite straighforward, first, setup mySQL :</p>
+
 {% highlight sql %}
 create database gitlab; 
 grant all privileges on gitlab.* to "gitlab" identified by "gitlab"; 
 flush privileges;
 {% endhighlight %}
 Then prepare to dump the data out of GitlabHQ, stop your webserver, then, from your GitlabHQ folder : 
+
 {% highlight bash %}
 bundle exec rake db:data:dump RAILS_ENV=production
 {% endhighlight %}
 this will create a db/data.yml file. All you have to do now is reconfigure GitlabHQ to connect to mySQL and reimport the data. The database configuration takes place in the config/database.yml file, backup your existing file and rename the database.yml.example :
+
 {% highlight bash %}
 mv config/database.yml config/database.yml.old
 cp config/database.yml.example config/database.yml
 {% endhighlight %}
 Then edit the file to reflect your new configuration, only the production section is relevant in our case :
+
 {% highlight yaml %}
 development:
   adapter: mysql2
@@ -66,10 +70,12 @@ production:
   socket: /var/run/mysqld/mysqld.sock # mysql socket location on debian
 {% endhighlight %}
 Once this is done, you have to create the schema and restore your data :
+
 {% highlight bash %}
 bundle exec rake db:setup RAILS_ENV=production
 bundle exec rake db:data:load RAILS_ENV=production
 {% endhighlight %}
+
 Job's done, you just need to restart the GitlabHQ server now (nginx, apache...). If you encounter a problem and this does not work as expected, you just have to restore the database.yml.old file to go back to SQLite.<!--:--><!--:fr<img src="http://www.bloggure.info/wp-content/uploads/2012/02/gitlabhq-logo.png" alt="" title="gitlabhq-logo" width="175" height="60" class="alignright size-full wp-image-528" /><p>Comme notre installation de <a href="http://gitlabhq.com/">GitlabHQ</a> à <a href="http://www.srmvision.com">SRMvision</a> est faite pour rester, nous avons décidé de migrer de la base SQLite vers un système plus simple à gérer pour nous : mySQL.<br /> Les étapes sont assez simple, premièrement, configurons mySQL :</p>
 <pre class="brush: sql">
 create database gitlab; 
