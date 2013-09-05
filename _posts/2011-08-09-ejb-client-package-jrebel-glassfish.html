@@ -18,7 +18,7 @@ meta:
   _edit_last: '1'
   dsq_thread_id: '667908405'
 ---
-<!--:en--><a href="http://www.bloggure.info/java-work/ejb-client-package-jrebel-glassfish.html/attachment/logo_jrebel" rel="attachment wp-att-340"><img src="http://www.bloggure.info/wp-content/uploads/2011/08/logo_jrebel.png" alt="" title="JRebel" width="146" height="40" class="alignright size-full wp-image-340" /></a>
+<!--:en--><a href="http://www.bloggure.info/java-work/ejb-client-package-jrebel-glassfish.html/attachment/logo_jrebel" rel="attachment wp-att-340"><img src="/images/uploads/2011/08/logo_jrebel.png" alt="" title="JRebel" width="146" height="40" class="alignright size-full wp-image-340" /></a>
 <h2>JRebel ?</h2>
 <p>I use <a href="http://www.zeroturnaround.com/jrebel/" title="JRebel">JRebel</a> to speed up my development. It is a really impressive tool allowing to develop full blended Java EE application as you would develop in PHP. No redeploy, at the cost of a little slow-down in development mode. The tool does what it says, and it's worth the price ! The JRebel plugin for maven does the job very well by generating the <code>rebel.xml</code> file that does the magic.</p>
 
@@ -32,7 +32,7 @@ meta:
 The web application includes, in its <code>WEB-INF/lib</code> folder, the <em>ejb-client</em> artifact of my ejb module. To make it clear, <em>ejb-client</em> artifact is typically the jar containing the interfaces to be used by the client module(s).</p>
 
 <p>The problem I had was that JRebel magic was reloading too much things : in fact, it reloaded classes even if they were not in the <em>ejb-client</em>. My application container (Glassfish 3.x) was not very keen on this thing. I opened <a href="http://www.zeroturnaround.com/forum/topic.php?id=1315" title="JRebel + Glassfish 3.1 + ejb-client + Wicket">a thread on ZeroTurnAround's forum</a> and the answer I got is that I have to find a way to ignore files in my <em>ejb-client</em> module. By digging in <em>maven-ejb-plugin</em>, I didn't find anything to rename a file in the <em>ejb-client</em> module, and I didn't find a parameter to pass to JRebel to specify which filenames can contain its configuration.</p>
-<!--:--><!--:fr<a href="http://www.bloggure.info/java-work/ejb-client-package-jrebel-glassfish.html/attachment/logo_jrebel" rel="attachment wp-att-340"><img src="http://www.bloggure.info/wp-content/uploads/2011/08/logo_jrebel.png" alt="" title="JRebel" width="146" height="40" class="alignright size-full wp-image-340" /></a>
+<!--:--><!--:fr<a href="http://www.bloggure.info/java-work/ejb-client-package-jrebel-glassfish.html/attachment/logo_jrebel" rel="attachment wp-att-340"><img src="/images/uploads/2011/08/logo_jrebel.png" alt="" title="JRebel" width="146" height="40" class="alignright size-full wp-image-340" /></a>
 <h2>JRebel ?</h2>
 J'utilise <a href="http://www.zeroturnaround.com/jrebel/" title="JRebel">JRebel</a> pour accélerer mon cycle de développement. C'est un outil impressionnant qui permet de développer une application Java EE comme du PHP. Pas de redéploiement, tout ça au prix d'une petite perte de performances en mode développement. L'outil fait ce qu'il promet, et vaut réellement son prix ! Le plugin JRebel pour maven fait exactement ce qu'on attend de lui en générant automatiquement le fichier <code>rebel.xml</code> qui s'occupe de la magie.
 

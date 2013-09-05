@@ -18,7 +18,7 @@ meta:
   dsq_thread_id: '668087436'
 ---
 <!--:en--><h2>Migrating to Git</h2>
-<img src="http://www.bloggure.info/wp-content/uploads/2011/12/GitLogo.jpg" alt="" title="GitLogo" width="97" height="202" class="alignright size-full wp-image-491" />
+<img src="/images/uploads/2011/12/GitLogo.jpg" alt="" title="GitLogo" width="97" height="202" class="alignright size-full wp-image-491" />
 <p>At work, we made the move from subversion to git as our version control tool. I used git for a few times before we migrate the whole project thanks to the git-svn bridge, and, apart from the usual headache when it comes to merging branches, I was rather convinced we would make the migration to git. To explain what branching model I was expecting to use, I dig the Internet for a good tool, hoping to migrate our so "1.0" Trac version control and issue management to a more github like one.</p>
 
 <h2>Founds</h2>
@@ -26,7 +26,7 @@ meta:
 
 I came across <a href="http://gitlabhq.com/">gitlabhq</a>, which is a starting project, but promising as it aims to mimic github in many ways. I've tried it and I must say I am very impressed, it is now one of the tool we use internally, it is not yet a perfect tool but it does its jobs very well. We still use our old Trac environment with git integration to hunt down our bugs and control ticket workflow with commit messages (blog post to come). We also use Trac's wiki to write our internal documentation toward developpers.</p>
 <!--:--><!--:fr<h2>Migration vers Git</h2>
-<img src="http://www.bloggure.info/wp-content/uploads/2011/12/GitLogo.jpg" alt="" title="GitLogo" width="97" height="202" class="alignright size-full wp-image-491" />
+<img src="/images/uploads/2011/12/GitLogo.jpg" alt="" title="GitLogo" width="97" height="202" class="alignright size-full wp-image-491" />
 Au travail, nous avons pris la décision de passer de Subversion à Git comme outil de gestion de sources. J'ai utilisé git quelques mois avant de migrer l'intégralité du projet pour tout le monde grace à l'outil git-svn. Et, mis à part les problèmes habituels de merge entre branches svn, j'étais plutôt enthousiaste concernant la migration vers git. L'idée était de disposer d'un outil plus puissant pour pouvoir séparer plus efficacement les développements en utilisant des branches. Pour expliquer quelle technique j'avais envie de mettre en place pour gérer nos branches de développement, j'ai cherché l'outil qu'il nous fallait, tout en espérant pouvoir migrer notre outil de gestion d'incident actuel (Trac) vers un se rapprochant plus de github.
 
 <h2>Résultats</h2>
@@ -37,7 +37,7 @@ Nous utilisons toujours Trac pour gérer nos tickets de bugs et pour contrôler 
 <--><!--more--><!--:en-->
 <h2>GitLabHQ</h2>
 <h3>Repository management</h3>
-<img src="http://www.bloggure.info/wp-content/uploads/2012/02/gitlabhq-logo.png" alt="" title="gitlabhq-logo" width="175" height="60" class="alignright size-full wp-image-528" />
+<img src="/images/uploads/2012/02/gitlabhq-logo.png" alt="" title="gitlabhq-logo" width="175" height="60" class="alignright size-full wp-image-528" />
 <p>Our SVN setup was hooked to our internal LDAP for central authentication across our servers (with pam-ldap), making the move to git made this part rubbish because everything is now handled by ssh key exchange. If you've played a bit with gitosis or gitolite, you have probably seen it's not as straightforward as it seems granting a new user access to a repository. You have to clone the special administrative repository and copy public keys, edit configuration file and push this back to the server. This is a  simple but potentially time-consuming  operation. GitLabHQ provides a GUI allowing to add projects, users, keys.</p>
 
 <h3>User management</h3>
@@ -92,10 +92,10 @@ Once your svn repository is imported as a git one, you can push it to GitLabHQ. 
 
 <h2>Results</h2>
 <p>In the end, you got something like this :</p>
-<img src="http://www.bloggure.info/wp-content/uploads/2012/02/gitlabhq-branches.png" alt="" title="gitlabhq-branches" width="838" height="540" class="aligncenter size-full wp-image-524" /><!--:--><!--:fr>
+<img src="/images/uploads/2012/02/gitlabhq-branches.png" alt="" title="gitlabhq-branches" width="838" height="540" class="aligncenter size-full wp-image-524" /><!--:--><!--:fr>
 <h2>GitLabHQ</h2>
 <h3>Gestion de dépôts</h3>
-<img src="http://www.bloggure.info/wp-content/uploads/2012/02/gitlabhq-logo.png" alt="" title="gitlabhq-logo" width="175" height="60" class="alignright size-full wp-image-528" />
+<img src="/images/uploads/2012/02/gitlabhq-logo.png" alt="" title="gitlabhq-logo" width="175" height="60" class="alignright size-full wp-image-528" />
 Notre installation SVN est connectée à notre LDAP interne qui gère l'authentification sur nos différents serveurs (avec l'aide de pam-ldap). La migration vers Git a rendu cette partie inutile puisque tout est géré maintenant par échange de clefs SSH. 
 
 Si vous avez déjà joué avec gitosis ou gitolite, vous avez probablement remarqué que l'ajout d'un utilisateur à un dépôt n'est pas aussi simple qu'il paraît. Il faut clone le dépôt spécial d'administration, copier la clef publique de l'utilisateur, modifier les fichiers de configuration et effectuer un push de ces modifications vers le serveur.
@@ -157,4 +157,4 @@ Une fois qu'une fonctionnalité, un correctif ou un refactor est considéré ter
 
 <h2>Résultats</h2>
 Au final, nous obtenons quelque chose comme ceci  :
-<img src="http://www.bloggure.info/wp-content/uploads/2012/02/gitlabhq-branches.png" alt="" title="gitlabhq-branches" width="838" height="540" class="aligncenter size-full wp-image-524" /><-->
+<img src="/images/uploads/2012/02/gitlabhq-branches.png" alt="" title="gitlabhq-branches" width="838" height="540" class="aligncenter size-full wp-image-524" /><-->
