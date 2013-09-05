@@ -20,7 +20,7 @@ meta:
   dsq_thread_id: '667908408'
 ---
 <!--:en--><h2>Continuous delivery</h2>
-<a href="http://www.bloggure.info/work/getting-source-revision-for-a-deployed-app-using-maven-and-a-servlet.html/attachment/maven_logo-2" rel="attachment wp-att-74"><img src="/images/uploads/2010/11/Maven_logo1.gif" alt="" title="Maven" width="304" height="78" class="alignright size-full wp-image-74" /></a>
+<img src="/images/uploads/2010/11/Maven_logo1.gif" alt="" title="Maven" width="304" height="78" class="alignright size-full wp-image-74" />
 <p>After Continuous Integration, this is the word we see on the web these days. Its meaning is really simple, it consists in reducing steps in application deployment. In order to do so a set of tools actually exists, you can use the same PaaS images (thanks to the newcomer <a href="http://blogs.vmware.com/console/2011/08/micro-cloud-foundry-open-paas-on-your-laptop-available-today.html">Micro Cloud Foundry by VMWare</a> or  use a special amazon ec2 instance) to have a development environment similar to production one. And you can use <a href="http://wiki.opscode.com/display/chef/Home">Chef</a> to manage and automate your configuration. While these alternatives are really interesting, I think they are way too powerful and difficult to setup in simple cases.<br/>
 I will explain my "simple" solution based on maven, shell scripts and hostname detection.</p>
 
