@@ -22,7 +22,7 @@ meta:
   dsq_thread_id: '673549173'
   _yoast_wpseo_linkdex: '0'
 ---
-<!--:en--><a href="http://www.bloggure.info/work/intellij-external-library-propertykey-how-to.html/attachment/idea_icon" rel="attachment wp-att-365"><img src="/images/uploads/2011/08/idea_icon.png" alt="" title="IntelliJ IDEA Icon" width="64" height="64" class="alignright size-full wp-image-365" /></a><p>I am a daily user of <a href="http://www.jetbrains.com/idea/">IntelliJ IDEA</a> to edit my Java code and <a href="http://wicket.apache.org">Apache Wicket</a> to write my web application. I decided recently to use IntelliJ's annotations to make my code a little more robust by using <code>@Nullable</code>, <code>@NotNull</code>, <code>@NonNls</code> and <code>@PropertyKey</code>.<br/>In this blog post I explain how to manually add annotation to an external library. </p>
+<!--:en--><img src="/images/uploads/2011/08/idea_icon.png" alt="" title="IntelliJ IDEA Icon" width="64" height="64" class="alignright size-full wp-image-365" /><p>I am a daily user of <a href="http://www.jetbrains.com/idea/">IntelliJ IDEA</a> to edit my Java code and <a href="http://wicket.apache.org">Apache Wicket</a> to write my web application. I decided recently to use IntelliJ's annotations to make my code a little more robust by using <code>@Nullable</code>, <code>@NotNull</code>, <code>@NonNls</code> and <code>@PropertyKey</code>.<br/>In this blog post I explain how to manually add annotation to an external library. </p>
 <!--:--><!--:fr<a href="http://www.bloggure.info/work/intellij-external-library-propertykey-how-to.html/attachment/idea_icon" rel="attachment wp-att-365"><img src="/images/uploads/2011/08/idea_icon.png" alt="" title="IntelliJ IDEA Icon" width="64" height="64" class="alignright size-full wp-image-365" /></a>J'utilise quotidiennement <a href="http://www.jetbrains.com/idea/">IntelliJ IDEA</a> pour développer en  Java et <a href="http://wicket.apache.org">Apache Wicket</a> pour écrire mes applications web. J'ai récemment entrepris d'utiliser les annotations d'IntelliJ pour rendre mon code un peu plus robuste grace à <code>@Nullable</code>, <code>@NotNull</code>, <code>@NonNls</code> and <code>@PropertyKey</code>.<br/>Dans ce billet, j'explique comment ajouter manuellement ces annotations à une librairies externe au projet.
 <--><!--more--><!--:en-->
 <h2>IntelliJ annotations</h2>
@@ -52,11 +52,11 @@ Last but not least, if we look at the implementation, we see that we tell IDEA n
 <p>If in your project, you want to use this feature in included libraries you might be glad the guys at Jetbrains included a feature called "External annotations". It allows you to specify a location where to save these annotations.<br/>
 Here is a quick example on how to add <code>@NotNull</code> on <code>org.apache.wicket.extensions.Initializer</code> : <br/>
 First, invoke intention action, and select the annotation you want to put
-<a href="http://www.bloggure.info/wp-content/uploads/2011/08/annotate.png"><img src="/images/uploads/2011/08/annotate.png" alt="" title="IDEA annotate" width="527" height="79" class="aligncenter size-full wp-image-362" /></a><br/>
+<img src="/images/uploads/2011/08/annotate.png" alt="" title="IDEA annotate" width="527" height="79" class="aligncenter size-full wp-image-362" /><br/>
 Then, configure external annotation root, I tend to use a folder named annotation at the root of my workspace.
-<a href="http://www.bloggure.info/work/intellij-external-library-propertykey-how-to.html/attachment/externalroot" rel="attachment wp-att-363"><img src="/images/uploads/2011/08/externalroot.png" alt="" title="IDEA external root selection" width="723" height="342" class="aligncenter size-full wp-image-363" /></a><br/>
+<img src="/images/uploads/2011/08/externalroot.png" alt="" title="IDEA external root selection" width="723" height="342" class="aligncenter size-full wp-image-363" /><br/>
 That's all, if you look at the folder you specified, you will have the following structure:
-<a href="http://www.bloggure.info/work/intellij-external-library-propertykey-how-to.html/attachment/folder" rel="attachment wp-att-364"><img src="/images/uploads/2011/08/folder.png" alt="" title="Annotations.xml folder" width="582" height="117" class="aligncenter size-full wp-image-364" /></a><br/>
+<img src="/images/uploads/2011/08/folder.png" alt="" title="Annotations.xml folder" width="582" height="117" class="aligncenter size-full wp-image-364" /><br/>
 In the folder corresponding to the package of the class you wanted to annotate you will find an <code>annotations.xml</code> file like the following:
 {% highlight xml %}
 <root>
