@@ -35,7 +35,7 @@ mvn jetty:run
 <h3>IDEA part</h3>
 <p>The IntelliJ plugin listens for classnames to open on a http socket (10462, overridable in plugin settings).</p>
 
-[caption id="attachment_719" align="aligncenter" width="941"]<img class="size-full wp-image-719" title="Plugin settings" src="/images/uploads/2012/11/Capture-d’écran-2012-11-18-à-19.25.17.png" alt="" width="941" height="419" /> Plugin settings[/caption]
+[caption id="attachment_719" align="aligncenter" width="941"]<img class="size-full wp-image-719" title="Plugin settings" src="/images/uploads/2012/11/pluginsettings.png" alt="" width="941" height="419" /> Plugin settings[/caption]
 
 <p>You can get the IDEA plugin in its <a href="https://github.com/srmvision/wicket-open-in-idea-plugin/downloads">github repository</a>, to install it, you have to select "Install plugin from disk" from the "Plugins" category in your IDE settings.</p>
 <h3>Chrome part</h3>
@@ -47,11 +47,11 @@ If you want, you can tweak its settings, via the "Options" page :</p>
 </ul>
 <p>To use it, you only have to right click on an item in your "enhanced" web application and select "Wicket debug this".</p>
 
-[caption id="attachment_709" align="aligncenter" width="315"]<img class="size-full wp-image-709 " title="Wicket debug this" src="/images/uploads/2012/11/Capture-d’écran-2012-11-18-à-18.56.11.png" alt="" width="315" height="270" /> Context menu item[/caption]
+[caption id="attachment_709" align="aligncenter" width="315"]<img class="size-full wp-image-709 " title="Wicket debug this" src="/images/uploads/2012/11/rightclick.png" alt="" width="315" height="270" /> Context menu item[/caption]
 
 <p>From there you'll get a modal window listing the matching classes names (sorted by parent order, the first is the closer to the element you pointed to, the next one is the parent class and so on). If there is not any opened modal when you try to use it, it means the extension did not detect any classname in the markup.</p>
 
-[caption id="attachment_711" align="aligncenter" width="584"]<img class=" wp-image-711 " title="Send to IDEA Modal" src="/images/uploads/2012/11/Capture-d’écran-2012-11-18-à-19.07.40-1024x740.png" alt="" width="584" height="422" /> Class modal selection[/caption]
+[caption id="attachment_711" align="aligncenter" width="584"]<img class=" wp-image-711 " title="Send to IDEA Modal" src="/images/uploads/2012/11/chromescreen.png" alt="" width="584" height="422" /> Class modal selection[/caption]
 
 <p>Each classname, when clicked, is sent to your IDE which will in turn opens the class matching the classname so you can edit it.
 The lower part of the modal window will inform you about the status of your last action :</p>
