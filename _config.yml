@@ -1,5 +1,5 @@
-title:            Bloggure
-description:      There is no place like ::1
+title:            Bloggure | There is no place like ::1
+description:      Multi author blog about programming, computing and geek stuff
 disqus_shortname: thereisnoplacelike1
 #Comment out url when working locally to resolve base urls correctly
 #url:              http://bloggure.info
