@@ -1,0 +1,93 @@
+---
+layout: post
+title: Use Wicket templating system to generate Html
+permalink:  /work/java-work/use-wicket-templating-system-to-generate-html.html
+status: publish
+type: post
+published: true
+comments: false
+author : cgatay
+redir: true
+meta:
+  _edit_last: '1'
+  _wpas_done_all: '1'
+  dsq_thread_id: '1036880515'
+  _yoast_wpseo_linkdex: '0'
+---
+<p>
+<img src="/images/uploads/2013/01/html-icon.png" alt="html-icon" width="128" height="128" class="alignright size-full wp-image-844" /><a href="http://wicket.apache.org">Apache Wicket</a> is a great web framework, its clear separation between logic and markup allows to focus on what's need to be done. <br/> 
+As we use Wicket at <a href="https://www.srmvision.com">SRMvision</a>, we needed to send mails with rather rich templates to our users. The first implementation we used was relying on Wicket to generate these templates using Html. We finally don't use it (our mailing tasks are done by a background job, thus we don't have access to our webapp), but I though the code used in our fast proof of concept could help someone else.
+</p>
+
+{% highlight java %}
+import org.apache.wicket.markup.MarkupType;
+import org.apache.wicket.markup.html.WebMarkupContainer;
+import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.panel.Panel;
+import org.apache.wicket.markup.repeater.RepeatingView;
+import org.apache.wicket.model.PropertyModel;
+import org.apache.wicket.request.Response;
+import org.apache.wicket.response.StringResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
+/**
+ * Simple panel allowing to use the templating engine 
+ *    provided by Wicket to generate HTML.
+ * Typical use would be to generate mail content.
+ *
+ * User of this class will need to subclass it 
+ *    and create a panel as usual. 
+ * Then a call to getHtml() will return the generated Html.
+ *
+ * @author cedric at gatay.fr
+ */
+public class HtmlTemplaterPanel extends Panel {
+    private static final Logger LOGGER = 
+        LoggerFactory.getLogger(HtmlTemplaterPanel.class);
+
+    /**
+     * Default constructor takes no wicket:id > 
+     *   the panel will not be added to any component
+     */
+    public HtmlTemplaterPanel(){
+        super("dummy");
+    }
+
+    /**
+     * Call this whenever you want to get
+     *   the Html for this component
+     * @return Html or empty string
+     */
+    public String getHtml(){
+        final Response origResponse = getRequestCycle().getResponse();
+        try{
+            final StringResponse stringResponse = new StringResponse();
+            getRequestCycle().setResponse(stringResponse);
+            renderAssociatedMarkup("panel", "");
+            return stringResponse.toString();
+        }catch(Exception e){
+            LOGGER.error("Unable to build HTML for panel : {}",
+                         e.getMessage());
+        }finally{
+            getRequestCycle().setResponse(origResponse);
+        }
+        return "";
+    }
+
+    @Override
+    protected boolean getStatelessHint() {
+        return true;
+    }
+
+    @Override
+    public MarkupType getMarkupType() {
+        return MarkupType.HTML_MARKUP_TYPE;
+    }
+}
+{% endhighlight %}
+<p>
+If you want to generate a template using Apache Wicket, you only need to create a Panel and its associated markup which inherits this simple class. Then, when you want to get the Html for your component, call <code>getHtml()</code>.<br/>
+The only drawback of this is that you need a RequestCycle to generate the markup (you'll find out why reading the code).
+</p>

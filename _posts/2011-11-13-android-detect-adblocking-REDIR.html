@@ -1,0 +1,208 @@
+---
+layout: post
+title: 'Android : Detect AdBlocking'
+permalink : /work/java-work/android-java-work/android-detect-adblocking.html
+status: publish
+type: post
+published: true
+comments: false
+author : cgatay
+redir: true
+meta:
+  _edit_last: '1'
+  dsq_thread_id: '667873532'
+---
+<!--:en--><img src="/images/uploads/2011/11/home-bugdroid.png" alt="" title="Bugdroid" width="150" height="174" class="alignright size-full wp-image-464" />
+<p>Developing for Android is really fun, as you have probably noticed if you want to have a wide user base you will have to give your application for free on the Android Market. From there, you have different way to monetize your application, you can limit features and unlock them in a payed version, display ads in free version and provide a way to disable ads (in-app purchase for example). In this article I will explain how to detect ad blocking in your applications.</p>
+<!--:--><!--:fr<a href="http://www.bloggure.info/wp-content/uploads/2011/11/home-bugdroid.png"><img src="/images/uploads/2011/11/home-bugdroid.png" alt="" title="Bugdroid" width="150" height="174" class="alignright size-full wp-image-464" /></a>
+<p>Développer pour Android est vraiment amusant, mais si vous voulez que votre application touche un grand nombre d'utilisateurs vous devrez la rendre gratuite. Parti de ce constat, il existe quelques solutions pour monnayer votre application, vous pouvez débloquer quelques fonctionnalités dans une version payante, afficher des publicités dans la version gratuite et permettre de les débloquer via une version complète (avec un achat intégré à l'application par exemple). Dans cet article, je vais expliquer comment détecter le blocage des publicités par votre application.</p>
+<--><!--more--><!--:en-->
+
+<h2>Ad blocking ?</h2>
+<p>The way you try to monetize app will not be well accepted by everyone. Often, people use an Ad-Blocker (the same we know in web browsers) and will use the application for free as if they bought your ad free version. A rapid search on the Android market will point you to free application allowing to block ads on rooted devices.</p>
+
+<p>The system is quite simple, it consists in blocking ads by preventing DNS resolution process to work properly. Ads are loaded from a certain website on the internet. The system does a DNS query to resolve the IP adress of the remote site, the DNS resolution process can be accelerated by setting entries in the hosts file (<code>/etc/hosts</code> under *nix and so Android). If the system found a corresponding entry in the file, it does not waste time in querying DNS servers and use the specified address.</p>
+{% highlight bash %}
+127.0.0.1 localhost
+127.0.0.1 my.ad.server.tld
+{% endhighlight %}
+<p>You can find an example above, <code>my.ad.server.tld</code> is blocked by making the system think the IP is the one corresponding to the device.</p>
+
+<h2>Workaround</h2>
+<p>I will explain by a few code snippets how to detect ad blocking using the AdMob SDK. The first thing to do is not bound to the use of AdMob, we will simply read and detect if your ad provider server is in the hosts file.</p>
+{% highlight java %}
+public static boolean isAdBlockerPresent(boolean showAd) {
+        if (showAd){
+           BufferedReader in = null;
+           try {
+               in = new BufferedReader(new InputStreamReader(
+                                                            new FileInputStream("/etc/hosts")));
+               String line;
+
+               while ((line = in.readLine()) != null) {
+                  if (line.contains("admob")) {
+                      return true;
+                  }
+                }
+           } catch (Exception e) {
+           } finally {
+               if (in != null) {
+                   try {
+                       in.close();
+                   } catch (IOException e) {
+                   }
+               }
+           }
+        }
+        return false;
+    }
+{% endhighlight %}
+<p>The code is pretty straightforward, the method takes a boolean parameter allowing to bypass checking, and checks if the keyword "admob" is present in the hosts file. The good thing is that it does not require any specific permission to read the hosts file where you have to request root to write to it.</p>
+
+<p>To be efficient, you may want to check if ad blocking is enabled only when there is an error in ad download. The Admob SDK provides a convenient way to know when the download fail by implementing a listener. You can find a simple implementation below, you will only have to implements the behavior you want to adopt when ad blocking is detected (<code>onAdBlocked()</code>) and the logic to bypass adblocker checking (<code>shouldCheckAdBlock()</code>)</p>.
+{% highlight java %}
+import com.google.ads.AdListener;
+public abstract class AdBlockerListener implements AdListener{
+
+    public abstract void onAdBlocked();
+
+    public boolean shouldCheckAdBlock(){
+          return true;
+    }
+
+    public void onReceiveAd(final Ad ad) {
+    }
+
+    public void onFailedToReceiveAd(final Ad ad, final AdRequest.ErrorCode errorCode) {
+        Log.e("AdBlockerListener", "Failed to receive ad, checking if network blocker is installed...");
+        if (isAdBlockerPresent(shouldCheckAdBlock())) {
+               Log.e("AdBlockerListener", "Ad blocking seems enabled, tracking attempt");
+               onAdBlocked();
+            }
+        } else {
+            Log.e("AdBlockerListener", "No ad blocking detected, silently fails");
+        }
+    }
+
+    public void onPresentScreen(final Ad ad) {
+    }
+
+    public void onDismissScreen(final Ad ad) {
+    }
+
+    public void onLeaveApplication(final Ad ad) {
+    }
+}
+{% endhighlight %}
+<p>In your activity displaying ads, you just have to register the listener in your <code>AdView</code> and you're gone. The code sample below shows how to do, feel free to nag your users and pointing them to the in-app purchase or force them to quit (do it every n-ad blocking).</p>
+{% highlight java %}
+    void initView(){
+        adView = (AdView) findViewById(R.id.adView);
+        adView.setAdListener(new AdBlockerListener(){
+           public void onAdBlocked(){
+                 showNagScreen();
+           }
+
+           public boolean shouldCheckAdBlock(){
+                 return isFreeApp();
+            }
+
+        });
+    }
+{% endhighlight %}
+<p>That's all, you now have a simple way of detecting users using your applications without ads.</p><!--:--><!--:fr
+
+<h2>Blocage des publicités ?</h2>
+<p>La façon dont vous allez essayer de monnayer votre application ne sera pas bien acceptée par tous vos utilisateurs. Souvent, les utilisateurs utilisent un bloqueur de publicité (de la même nature que ceux présents dans les navigateurs web) et utiliseront donc l'application comme s'ils avaient acheté la version sans publicité. Une recherche rapide sur l'Android market vous permettra de trouver de telles applications (la seule contrainte est d'avoir un système "rooté").</p>
+
+<p>Le mécanisme est très simple, il bloque les publicités en empêchant le processus de résolution de nom (DNS) de fonctionner correctement. Les publicités proviennent d'un site sur internet, le système effectue donc une requête DNS pour résoudre l'adresse IP du serveur distant. Le processus peut être accéléré en utilisant un fichier (<code>/etc/hosts</code> sous les systèmes *nix et donc Android). Si le système trouve une entrée correspondante, il ne perd pas de temps à faire une requête auprès des serveurs DNS et utilise l'adresse précisée.</p>
+<pre class="brush: shell">
+127.0.0.1 localhost
+127.0.0.1 my.ad.server.tld
+</pre>
+<p>Vous pouvez trouver un exemple ci-dessous, <code>my.ad.server.tld</code> est bloqué en faisant en sorte que le système pense que l'adresse IP est celle correspondant au périphérique.</p>
+
+<h2>Détection</h2>
+<p>Je vais expliquer par quelques morceaux de code comment detecter le blocage de publicité (le SDK AdMob est utilisé). La première chose à faire n'est pas liée à l'utilisation d'AdMob, il suffit de lire le fichier <code>hosts</code> et détecter si votre serveur de publicité est bloqué.</p>
+<pre class="brush: java">
+public static boolean isAdBlockerPresent(boolean showAd) {
+        if (showAd){
+           BufferedReader in = null;
+           try {
+               in = new BufferedReader(new InputStreamReader(
+                                                            new FileInputStream("/etc/hosts")));
+               String line;
+
+               while ((line = in.readLine()) != null) {
+                  if (line.contains("admob")) {
+                      return true;
+                  }
+                }
+           } catch (Exception e) {
+           } finally {
+               if (in != null) {
+                   try {
+                       in.close();
+                   } catch (IOException e) {
+                   }
+               }
+           }
+        }
+        return false;
+    }
+</pre>
+<p>Le code est assez facile à comprendre, la méthode prend un paramètre permettant de contourner la vérification, et vérifie si le mot clef "admob" est présent dans le fichier <code>hosts</code>. Le bon côté est qu'il n'est pas nécessaire de disposer d'une permission spécifique pour lire le fichier <code>hosts</code> alors qu'il est nécessaire d'être super-utilisateur pour y écrire.</p>
+
+<p>Pour être efficace, il est intéressant de vérifier si le blocage des publicités est activé uniquement s'il y a une erreur lors du téléchargement de la publicité. Le SDK AdMob fournit un moyen simple de savoir si le téléchargement a échoué en implémentant un <code>listener</code>. Vous pouvez trouver un exemple d'implémentation ci-dessous, vous pouvez l'utiliser en ajoutant uniquement le comportement à adopter quand le blocage de publicité est détecté (<code>onAdBlocked()</code>) et la logique pour permettre de passer la vérification (<code>shouldCheckAdBlock()</code>)</p>.
+<pre class="brush: java">
+import com.google.ads.AdListener;
+public abstract class AdBlockerListener implements AdListener{
+
+    public abstract void onAdBlocked();
+
+    public boolean shouldCheckAdBlock(){
+          return true;
+    }
+
+    public void onReceiveAd(final Ad ad) {
+    }
+
+    public void onFailedToReceiveAd(final Ad ad, final AdRequest.ErrorCode errorCode) {
+        Log.e("AdBlockerListener", "Failed to receive ad, checking if network blocker is installed...");
+        if (isAdBlockerPresent(shouldCheckAdBlock())) {
+               Log.e("AdBlockerListener", "Ad blocking seems enabled, tracking attempt");
+               onAdBlocked();
+            }
+        } else {
+            Log.e("AdBlockerListener", "No ad blocking detected, silently fails");
+        }
+    }
+
+    public void onPresentScreen(final Ad ad) {
+    }
+
+    public void onDismissScreen(final Ad ad) {
+    }
+
+    public void onLeaveApplication(final Ad ad) {
+    }
+}
+</pre>
+<p>Dans l'activité affichant la publicité, vous avez juste à enregistrer le <code>listener</code> auprès de votre <code>AdView</code>.
+L'exemple suivant montre comment le faire, n'hésitez pas à alerter vos utilisateurs que vous avez détecté le blocage de publicité et leur permettre d'acheter la version sans publicité facilement (ou de quitter l'application le cas échéant). Cependant, ne le faites pas pour tous les lancements mais tous les n lancements.</p>
+<pre class="brush: java">
+    void initView(){
+        adView = (AdView) findViewById(R.id.adView);
+        adView.setAdListener(new AdBlockerListener(){
+           public void onAdBlocked(){
+                 showNagScreen();
+           }
+
+           public boolean shouldCheckAdBlock(){
+                 return isFreeApp();
+            }
+
+        });
+    }
+</pre>
+<p>C'est fini, vous avez maintenant un moyen simple de détecter et de réagir aux utilisateurs utilisant un bloqueur de publicité.</p><-->

@@ -1,0 +1,130 @@
+---
+layout: post
+title: GitlabHQ - SQLite to mySQL
+permalink: /work/gitlabhq-sqlite-to-mysql.html
+status: publish
+type: post
+published: true
+comments: false
+author : cgatay
+redir: true
+meta:
+  _edit_last: '1'
+  dsq_thread_id: '680909102'
+  _yoast_wpseo_linkdex: '0'
+---
+<!--:en--><img src="/images/uploads/2012/02/gitlabhq-logo.png" alt="" title="gitlabhq-logo" width="175" height="60" class="alignright size-full wp-image-528" /><p>As our <a href="http://gitlabhq.com/">GitlabHQ</a> setup at <a href="http://www.srmvision.com">SRMvision</a> is mean to stay, we wanted to migrate from the standard SQLite database to an easier to manage for us : mySQL.<br /> The steps are quite straighforward, first, setup mySQL :</p>
+
+{% highlight sql %}
+create database gitlab; 
+grant all privileges on gitlab.* to "gitlab" identified by "gitlab"; 
+flush privileges;
+{% endhighlight %}
+Then prepare to dump the data out of GitlabHQ, stop your webserver, then, from your GitlabHQ folder : 
+
+{% highlight bash %}
+bundle exec rake db:data:dump RAILS_ENV=production
+{% endhighlight %}
+this will create a db/data.yml file. All you have to do now is reconfigure GitlabHQ to connect to mySQL and reimport the data. The database configuration takes place in the config/database.yml file, backup your existing file and rename the database.yml.example :
+
+{% highlight bash %}
+mv config/database.yml config/database.yml.old
+cp config/database.yml.example config/database.yml
+{% endhighlight %}
+Then edit the file to reflect your new configuration, only the production section is relevant in our case :
+
+{% highlight yaml %}
+development:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: gitlabhq_development
+  pool: 5
+  username: root
+  password: "secure password"
+  # socket: /tmp/mysql.sock
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: gitlabhq_test
+  pool: 5
+  username: root
+  password: "secure password"
+  # socket: /tmp/mysql.sock
+
+production:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: true # allows to autoreconnect if the mysql service restarts
+  database: gitlab # to replace with your database name
+  pool: 5
+  username: gitlab # to replace with your credentials
+  password: "gitlab" # to replace with your credentials
+  socket: /var/run/mysqld/mysqld.sock # mysql socket location on debian
+{% endhighlight %}
+Once this is done, you have to create the schema and restore your data :
+
+{% highlight bash %}
+bundle exec rake db:setup RAILS_ENV=production
+bundle exec rake db:data:load RAILS_ENV=production
+{% endhighlight %}
+
+Job's done, you just need to restart the GitlabHQ server now (nginx, apache...). If you encounter a problem and this does not work as expected, you just have to restore the database.yml.old file to go back to SQLite.<!--:--><!--:fr<img src="/images/uploads/2012/02/gitlabhq-logo.png" alt="" title="gitlabhq-logo" width="175" height="60" class="alignright size-full wp-image-528" /><p>Comme notre installation de <a href="http://gitlabhq.com/">GitlabHQ</a> à <a href="http://www.srmvision.com">SRMvision</a> est faite pour rester, nous avons décidé de migrer de la base SQLite vers un système plus simple à gérer pour nous : mySQL.<br /> Les étapes sont assez simple, premièrement, configurons mySQL :</p>
+<pre class="brush: sql">
+create database gitlab; 
+grant all privileges on gitlab.* to "gitlab" identified by "gitlab"; 
+flush privileges;</pre>
+Ensuite récupérons les données existantes dans GitlabHQ, arrêtez votre serveur, puis, depuis le dossier de GitlabHQ : 
+<pre class="brush: bash">bundle exec rake db:data:dump RAILS_ENV=production</pre>
+ceci va créer un fichier db/data.yml. Tout ce qu'il vous reste à faire maintenant est de reconfigurer GitlabHQ pour lui dire de se connecter à mySQL et d'y intégrer les données existantes.
+La configuration de la base de données à utiliser se trouve dans le fichier config/database.yml, sauvegardez le et récupérez le database.yml.example comme base de travail:
+<pre class="brush: bash">
+mv config/database.yml config/database.yml.old
+cp config/database.yml.example config/database.yml
+</pre>
+Il ne vous reste qu'à éditer le fichier pour refléter votre configuration, seule la partie production du fichier est utile dans notre cas :
+<pre class="brush: bash" ighlight="27,28,30,31,32" title="database.yml">
+development:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: gitlabhq_development
+  pool: 5
+  username: root
+  password: "secure password"
+  # socket: /tmp/mysql.sock
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: gitlabhq_test
+  pool: 5
+  username: root
+  password: "secure password"
+  # socket: /tmp/mysql.sock
+
+production:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: true # permet de se reconnecter quand le service mysql redémarre
+  database: gitlab # à remplacer avec le nom de votre base
+  pool: 5
+  username: gitlab # à remplacer avec vos identifiants
+  password: "gitlab" # à remplacer avec vos identifiants
+  socket: /var/run/mysqld/mysqld.sock # mysql socket location on debian
+</pre>
+Une fois ceci fait, il vous reste à créer le schéma et à importer vos données sauvegardées :
+<pre class="brush: bash">
+bundle exec rake db:setup RAILS_ENV=production
+bundle exec rake db:data:load RAILS_ENV=production
+</pre>
+C'est tout, il ne reste plus qu'à redémarrer le serveur de GitlabHQ. Si toutefois ça ne fonctionnait pas, vous n'avez qu'à restaurer le fichier database.yml.old pour retourner à la configuration par défaut utilisant SQLite.<-->

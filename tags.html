@@ -25,7 +25,7 @@ description: "An archive of posts sorted by tag."
 		<ul>
 		{% assign pages_list = tag[1] %}  
 		{% for post in pages_list %}
-			{% if post.title != null %}
+			{% if post.title != null and post.redir != true %}
 			{% if group == null or group == post.group %}
 				<li class="entry-title" itemprop="name"><a href="{{ site.url }}{{ post.url }}" rel="bookmark" title="{{ post.title }}" itemprop="url">{{ post.title }}</a></li>
 			{% endif %}
