@@ -1,0 +1,25 @@
+---
+layout: post
+title: Quickly test design changes
+categories:
+- www
+tags:
+- design
+- browser
+- hack
+status: publish
+type: post
+published: true
+comments: true
+author : cgatay
+---
+<p>
+  When you're developping Web applications, you often ask yourself what does your beautiful design will look like if your users enter a very long text. Or you may want to prototype a new screen based on an existing one, I came around a quick hack using HTML5 goodness: <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Content_Editable">content editable</a> !
+</p>
+<p>
+  On the page you want to edit, open your JavaScript console (Cmd+Alt+I on Chrome Mac), and enter the following 
+  {% highlight javascript %}
+  document.body.contentEditable = true;
+  {% endhighlight %}<br/>
+  Now you can freely edit the text on your page, once you're done, you can switch off the content editable mode setting the property to false !
+</p>
