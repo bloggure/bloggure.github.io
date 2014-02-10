@@ -4,7 +4,7 @@ category:
 title: "RestX the webservice firework"
 tagline: 
 tags : [java, webservice, tdd] 
-published: false
+published: true
 ---
 
 # Another Java Rest framework #
