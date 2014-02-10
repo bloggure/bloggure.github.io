@@ -1,7 +1,7 @@
 ---
 layout: post 
 category: 
-title: "RestX the webservice firework"
+title: "RestX the webservice framework"
 tagline: 
 tags : [java, webservice, tdd] 
 published: true
