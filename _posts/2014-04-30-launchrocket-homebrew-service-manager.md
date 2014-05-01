@@ -5,6 +5,8 @@ title: "LaunchRocket - Homebrew service manager"
 tagline:
 tags : [mac, homebrew, service]
 published: true
+comments: true
+author: cgatay
 ---
 
 # Manage your services #
