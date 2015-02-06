@@ -1,6 +1,6 @@
 ---
 layout: page
 permalink: /tdebarochez/
-title: Thomas Debarochez
+title: Thomas de Barochez
 share: true
 ---
