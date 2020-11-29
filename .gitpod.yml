@@ -3,3 +3,4 @@ image:
 
 tasks:
   - init: bundle install
+  - host: echo "url: https://4000-$(echo $GITPOD_WORKSPACE_URL | sed -s 's|https://||g')" > _config.gitpod.yml
