@@ -3,7 +3,10 @@ description:      Multi author blog about programming, computing and geek stuff
 disqus_shortname: thereisnoplacelike1
 #Comment out url when working locally to resolve base urls correctly
 url:              http://www.bloggure.info
-
+# url: https://4000-b70a7248-4dc1-4a14-838d-111a0e5b0296.ws-eu01.gitpod.io
+plugins:
+  - jekyll-gist
+  - jekyll-paginate
 # Owner/author information
 owner:
   name:           #Your Name
@@ -54,15 +57,16 @@ kramdown:
   footnote_nr: 1
   entity_output: as_char
   toc_levels: 1..6
-  use_coderay: true
+  syntax_highlighter: coderay
 
-  coderay:
-    coderay_line_numbers: nil
-    coderay_line_numbers_start: 1
-    coderay_tab_width: 4
-    coderay_bold_every: 10
-    coderay_css: class
+
+  syntax_highlighter_opts:
+    line_numbers: nil
+    line_numbers_start: 1
+    tab_width: 4
+    bold_every: 10
+    css: class
 
 include: [".htaccess"]
-exclude: ["lib", "config.rb", "Capfile", "config", "log", "Rakefile", "Rakefile.rb", "tmp", "less", "*.sublime-project", "*.sublime-workspace", "test", "spec", "Gruntfile.js", "package.json", "node_modules"]
+exclude: ["lib", "config.rb", "Capfile", "config", "log", "Rakefile", "Rakefile.rb", "tmp", "less", "*.sublime-project", "*.sublime-workspace", "test", "spec", "Gruntfile.js", "package.json", "node_modules", "vendor"]
 excerpt_separator: <!--more-->

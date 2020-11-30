@@ -26,13 +26,13 @@ meta:
 <!--:--><!--:fr<a href="http://www.bloggure.info/work/intellij-external-library-propertykey-how-to.html/attachment/idea_icon" rel="attachment wp-att-365"><img src="/images/uploads/2011/08/idea_icon.png" alt="" title="IntelliJ IDEA Icon" width="64" height="64" class="alignright size-full wp-image-365" /></a>J'utilise quotidiennement <a href="http://www.jetbrains.com/idea/">IntelliJ IDEA</a> pour développer en  Java et <a href="http://wicket.apache.org">Apache Wicket</a> pour écrire mes applications web. J'ai récemment entrepris d'utiliser les annotations d'IntelliJ pour rendre mon code un peu plus robuste grace à <code>@Nullable</code>, <code>@NotNull</code>, <code>@NonNls</code> and <code>@PropertyKey</code>.<br/>Dans ce billet, j'explique comment ajouter manuellement ces annotations à une librairies externe au projet.
 <--><!--more--><!--:en-->
 <h2>IntelliJ annotations</h2>
-<p>Let's explain quickly how you can use these annotations and the problem I faced with the latter.<br/>
+<p>Let's explain quickly how you can use these annotations and the problem I faced with the latter.</p>
 <ul>
 	<li><code>@Nullable</code> : tells the editor that the field, parameter, return type may be <code>null</code>. This way, IDEA will highlight you if you forget to check nullity.</li>
 	<li><code>@NotNull</code> : tells the editor that the field, parameter, return type will never be <code>null</code>. This way, IDEA will highlight you if you do unnecessary null checking. It even can throw <code>RuntimeException</code> if a method is invoked with a <code>null</code> parameter although it shouldn't. The exception tells exactly what parameter of what method, it can help a lot debbugging a <code>NullPointerException</code> coming out from nowhere !</li>
 	<li><code>@NonNls</code> : tells the editor that the string you entered is not involved in internationalization of any kind so it will not bother you with duplicate string literals.</li>
 	<li><code>@PropertyKey(resourceBundle)</code> : tells the editor that the following string have to be present in a specific resource bundle. This way, IDEA is able to notice you missing translations in your application.</li>
-</ul></p>
+</ul>
 <h2>How to use it...</h2>
 <p>The first thing to do to use it is simply to annotate your source code like this:
 {% highlight java %}

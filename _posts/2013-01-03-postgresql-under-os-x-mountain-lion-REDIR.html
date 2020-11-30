@@ -22,15 +22,14 @@ meta:
 After a few hours mumbling, I looked for an alternative to the Homebrew version. Luckily, the guys at Heroku provide a neat application <a href="http://postgresapp.com/">Postgres.app</a> to drop that allows to quickly start/stop a postgresql server. My problem was I didn't had enough connections to allow my application to start, I was always getting this message : <code>remaining connection slots are reserved for non-replication superuser connections</code>.
 </p>
 <p>
-I edited the configuration file 
+I edited the configuration file </p>
 <pre class="brush: bash">vim "~/Library/Application Support/Postgres/var/postgresql.conf"</pre>
-to bump the number of connections to a lot more (20 instead of 10) but it prevented my server to start. With a lot of file editing and restarts, I found that the limit for my machine was 11 connections.
-</p>
+<p>to bump the number of connections to a lot more (20 instead of 10) but it prevented my server to start. With a lot of file editing and restarts, I found that the limit for my machine was 11 connections.</p>
+
 <p>
-The solution to this problem resides in a special setup of the mac os kernel which defines the amount of shared memory a process can allocate. To get rid of this, you can edit your <code>/etc/sysctl.conf</code> file (root required) and put the following lines (it will persist across reboots)
+The solution to this problem resides in a special setup of the mac os kernel which defines the amount of shared memory a process can allocate. To get rid of this, you can edit your <code>/etc/sysctl.conf</code> file (root required) and put the following lines (it will persist across reboots)</p>
 <pre class="brush: bash">
 kern.sysv.shmall=65536
 kern.sysv.shmmax=16777216
 </pre>
-</p>
 <em>Credits for this tip comes from <a href="http://ruby.zigzo.com/2012/07/07/postgresql-postgres-app-and-a-gotcha-on-mac-osx-lion">http://ruby.zigzo.com/2012/07/07/postgresql-postgres-app-and-a-gotcha-on-mac-osx-lion</a>/</em>

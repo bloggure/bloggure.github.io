@@ -1,2 +1,2 @@
 language: ruby
-script: "bundle exec jekyll build --trace"
+script: "bundle install && bundle exec jekyll build --trace"

@@ -56,11 +56,11 @@ This dependency will transitively gets <code>wicket-auth-roles</code> (if there 
 /home               codetroopers.HomePage           
 /secured            codetroopers.SecuredPage        USER
 /user/${mode}/#{id} codetroopers.UserPage           ADMIN,USER</pre>
-<p>The files content is the following :
+<p>The files content is the following :</p>
 <ul>
 	<li>Mount path : using standard Wicket syntax (<code>${requiredParam}</code> and <code>#{optionalParam}</code> are available)</li>
 	<li>Page class : fully qualified name of the page class to mount</li>
 	<li>Roles (optional) : comma separated list of roles required to access the page</li>
 </ul>
-</p>
+
 <em>IntelliJ IDEA can do completion for class names in this file (you just need to hit the <code>ctrl+space</code> shortcut twice)</em><!--:-->
