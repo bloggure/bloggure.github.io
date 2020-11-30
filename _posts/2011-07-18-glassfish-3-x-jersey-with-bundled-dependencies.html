@@ -25,13 +25,13 @@ meta:
 ---
 <!--:en--><img class="size-full wp-image-71 alignright" title="glassfish" src="/images/uploads/2010/11/glassfish.png" alt="" width="92" height="50" />
 
-<p>I just wanted to make a small post regarding an issue I spent almost a day getting rid off. I have a quite typical web architecture :
+<p>I just wanted to make a small post regarding an issue I spent almost a day getting rid off. I have a quite typical web architecture :</p>
 <ul>
 	<li>jar module encapsulating business logic (EJBs)</li>
 	<li>war module providing front end web access</li>
 	<li>war module for web service access (using JAX-RS)</li>
 </ul>
-</p>
+
 <h2>The headache</h2>
 <p>Each war module depends on the ejb-client counterpart present in WEB-INF/lib. The problem I faced is that my @EJB injections was raising ClassNotFoundExceptions. I tried bypassing automatic injection with manual JNDI lookups but the same errors occurred. Playing with the debugger I found that the jars present in lib folder were not added into the web application's classloader.</p>
 <h2>The workaround</h2>
