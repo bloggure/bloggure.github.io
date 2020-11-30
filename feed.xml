@@ -1,0 +1,827 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+<title type="text">Bloggure | There is no place like ::1</title>
+<generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
+<link rel="self" type="application/atom+xml" href="http://www.bloggure.info/feed.xml" />
+<link rel="alternate" type="text/html" href="http://www.bloggure.info" />
+<updated>2020-11-30T23:13:21+01:00</updated>
+<id>http://www.bloggure.info/</id>
+<author>
+  <name></name>
+  <uri>http://www.bloggure.info/</uri>
+  <email></email>
+</author>
+
+
+<entry>
+  <title type="html"><![CDATA[Bloggure revival]]></title>
+  <link>http://www.bloggure.info/Revival</link>
+  <id>http://www.bloggure.info/Revival</id>
+  <published>2020-12-01T00:00:00+01:00</published>
+  <updated>2020-12-01T00:00:00+01:00</updated>
+  <author>
+    <name></name>
+    <uri>http://www.bloggure.info</uri>
+    <email></email>
+  </author>
+  <content type="html">&lt;h1 id=&quot;its-been-a-long-time&quot;&gt;It’s been a long time&lt;/h1&gt;
+
+&lt;p&gt;It’s been a very long time since last post (5 years…).&lt;/p&gt;
+
+&lt;p&gt;I am convinced that blogging is useful, at least for my present self, and for my future self that tends to lose track of important things.&lt;/p&gt;
+
+&lt;h2 id=&quot;what-will-this-be-about-&quot;&gt;What will this be about ?&lt;/h2&gt;
+
+&lt;p&gt;In the &lt;em&gt;past&lt;/em&gt; I blogged a lot about Java / Maven and so on, my days have evolved to another languages, so I guess
+there will be less JVM things (but may be a few Kotlin) and more Swift / Rust on the other end.&lt;/p&gt;
+
+&lt;h2 id=&quot;technical-stack&quot;&gt;Technical stack&lt;/h2&gt;
+
+&lt;p&gt;In a blog reboot, we (I mean dev) like to follow the latest trend and migrate our blog system to latest hype stack.
+I will avoid this and focus on writing instead, so the site stays in its 15’ shape:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://jekyllrb.com/&quot;&gt;jekyll&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://pages.github.com&quot;&gt;github-pages&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;markdown (I think &lt;code&gt;jenkins-asciidoc&lt;/code&gt; is around the corner though)&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://actions.github.com&quot;&gt;github actions&lt;/a&gt; for building&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The sole new thing is that I’m trying to write using &lt;a href=&quot;https://gitpod.io&quot;&gt;gitpod.io&lt;/a&gt; to get a distraction free environment.&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/Revival&quot;&gt;Bloggure revival&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure | There is no place like ::1&lt;/a&gt; on December 01, 2020.&lt;/p&gt;</content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[Avoid Proxy Headaches in Docker with redsocks]]></title>
+  <link>http://www.bloggure.info/redsocks-avoid-docker-proxy-headaches</link>
+  <id>http://www.bloggure.info/redsocks-avoid-docker-proxy-headaches</id>
+  <published>2015-11-16T00:00:00+01:00</published>
+  <updated>2015-11-16T00:00:00+01:00</updated>
+  <author>
+    <name></name>
+    <uri>http://www.bloggure.info</uri>
+    <email></email>
+  </author>
+  <content type="html">&lt;h1 id=&quot;proxying-with-docker&quot;&gt;Proxying with Docker&lt;/h1&gt;
+
+&lt;p&gt;When using docker under a corporate proxy, it can be cumbersome to have a working networking in all containers. You often end up being blocked by specific network access which does not seem to be properly forwarded to the proper proxy. For example when using &lt;code&gt;apt&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;classic-way-of-doing&quot;&gt;Classic way of doing&lt;/h2&gt;
+
+&lt;p&gt;There is a &lt;a href=&quot;https://docs.docker.com/engine/articles/systemd/#http-proxy&quot;&gt;documented way&lt;/a&gt; of using a proxy, by adding command-line switches to your docker deamon. However, it does not seem to work everytime and could require exporting additional settings to your in-container applications (in my experience though).&lt;/p&gt;
+
+&lt;h2 id=&quot;why-not-using-docker&quot;&gt;Why not using docker&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/ncarlier/&quot;&gt;Nicolas&lt;/a&gt; pointed me an image he created to help with the setup of a corporate proxy. It uses &lt;a href=&quot;http://darkk.net.ru/redsocks/&quot;&gt;redsocks&lt;/a&gt; under the hood that listen to the docker socket and automatically add the glue to do the forwarding through the proxy.&lt;/p&gt;
+
+&lt;p&gt;Easy proxying in docker is just one command away ! (fill in the blank of your proxy ip and port)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker run \
+       --restart=always \
+       --privileged=true \
+       --net=host \
+       -d ncarlier/redsocks \
+       $PROXY_IP $PROXY_PORT
+&lt;/code&gt;&lt;/pre&gt;
+
+  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/redsocks-avoid-docker-proxy-headaches&quot;&gt;Avoid Proxy Headaches in Docker with redsocks&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure | There is no place like ::1&lt;/a&gt; on November 16, 2015.&lt;/p&gt;</content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[Faster ssh multi hop]]></title>
+  <link>http://www.bloggure.info/faster-ssh-multi-hop</link>
+  <id>http://www.bloggure.info/faster-ssh-multi-hop</id>
+  <published>2015-09-07T00:00:00+02:00</published>
+  <updated>2015-09-07T00:00:00+02:00</updated>
+  <author>
+    <name></name>
+    <uri>http://www.bloggure.info</uri>
+    <email></email>
+  </author>
+  <content type="html">&lt;h1 id=&quot;multi-hop&quot;&gt;Multi Hop&lt;/h1&gt;
+
+&lt;p&gt;It is often required that, for security reason, you have to hop through a SSH gateway to access other machines. While this is perfectly fine and simple to do, it is often cumbersome to open a new session.
+However, with a small script you can speed up your access to machines even with such a restriction in place.&lt;/p&gt;
+
+&lt;h2 id=&quot;classical-way-of-hoping&quot;&gt;Classical way of hop’ing&lt;/h2&gt;
+
+&lt;p&gt;Let’s say our gateway is named &lt;code&gt;gateway&lt;/code&gt; and our target host &lt;code&gt;myAppHost&lt;/code&gt; the classical way of doing it would be :&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;ssh gateway
+you@gateway $ hostname
+gateway.my.tld
+you@gateway $ ssh myAppHost
+you@myAppHost $ hostname
+myAppHost.my.tld
+   &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;faster-way-of-hoping&quot;&gt;Faster way of hop’ing&lt;/h2&gt;
+
+&lt;p&gt;A quicker way of doing this is to specify the ssh command directly, there is one thing to tell ssh though: allocating a TTY even if it does not seem to be connected to one. 
+In fact, the command supplied to ssh is not supposed to be interactive, that is why you need to give this hint to SSH :&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;ssh -t gateway ssh myAppHost
+you@myAppHost $ hostname
+myAppHost.my.tld
+   &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;script-this-&quot;&gt;Script this !&lt;/h2&gt;
+&lt;p&gt;The script is really simple, and only consists in the following&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;ch&quot;&gt;#!/bin/sh&lt;/span&gt;
+ssh -t gateway ssh &lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;
+   &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Save this in your path and give it the run permission then you are all set (mine is named &lt;code&gt;gssh&lt;/code&gt;). All you have to do to connect is now a simple &lt;code&gt;gssh myAppHost&lt;/code&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/faster-ssh-multi-hop&quot;&gt;Faster ssh multi hop&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure | There is no place like ::1&lt;/a&gt; on September 07, 2015.&lt;/p&gt;</content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[How to get all failing tests for a multimodule Maven project]]></title>
+  <link>http://www.bloggure.info/MavenFailTestAtEnd</link>
+  <id>http://www.bloggure.info/MavenFailTestAtEnd</id>
+  <published>2015-09-03T00:00:00+02:00</published>
+  <updated>2015-09-03T00:00:00+02:00</updated>
+  <author>
+    <name></name>
+    <uri>http://www.bloggure.info</uri>
+    <email></email>
+  </author>
+  <content type="html">&lt;h1 id=&quot;maven-testing&quot;&gt;Maven testing&lt;/h1&gt;
+
+&lt;p&gt;One of the bothering thing being a contractor is that you often happen to work on a project with a skip tests flag set on all developers computer.&lt;/p&gt;
+
+&lt;p&gt;One of the thing I tend to do when on such project is enabling tests and trying to fix as much as possible (often the fixes are easy to do).&lt;/p&gt;
+
+&lt;h2 id=&quot;multi-module-testing&quot;&gt;Multi module testing&lt;/h2&gt;
+&lt;p&gt;By design, surefire plugin make the build fail if there is a test failure. 
+While this is ok in single module, when working with multi-module project it can be nice to run all tests on all modules regardless of the failures happening in some modules.&lt;/p&gt;
+
+&lt;p&gt;Maven is a great tool and allows such a behavior very easily, it allows two command line switches for that :&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code&gt;--fail-at-end&lt;/code&gt; : will fail the build at the end if there is test failures&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;--fail-never&lt;/code&gt; : will never fail the build, even if there is test failures&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;flags-behavior-differences&quot;&gt;Flags behavior differences&lt;/h2&gt;
+&lt;p&gt;There is one thing to understand when using the &lt;code&gt;--fail-at-end&lt;/code&gt; flag, it will fail the build at end for a module with test failure but it will also prevents building of dependent modules.&lt;/p&gt;
+
+&lt;p&gt;With a small example it become obvious. Let’s say that we have a multi project containing the following :&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;core : containing model objects and services&lt;/li&gt;
+  &lt;li&gt;web : containing web views for browser access&lt;/li&gt;
+  &lt;li&gt;javafx : containing desktop application classes&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;It is straightforward to see that &lt;code&gt;web&lt;/code&gt; and &lt;code&gt;javafx&lt;/code&gt; modules will depends on the &lt;code&gt;core&lt;/code&gt; module.&lt;/p&gt;
+
+&lt;h3 id=&quot;fail-at-end&quot;&gt;fail-at-end&lt;/h3&gt;
+&lt;p&gt;If using the &lt;code&gt;--fail-at-end&lt;/code&gt; flag, a test failure in the core module will prevent building the &lt;code&gt;web&lt;/code&gt; and &lt;code&gt;javafx&lt;/code&gt; module completely : you will not be able to track tests failure before fixing the ones from &lt;code&gt;core&lt;/code&gt; (at least on a single build command).&lt;/p&gt;
+
+&lt;h3 id=&quot;fail-never&quot;&gt;fail-never&lt;/h3&gt;
+&lt;p&gt;If using the &lt;code&gt;--fail-never&lt;/code&gt; flag, a test failure in the &lt;code&gt;core&lt;/code&gt; module will be reported but the build and tests of the &lt;code&gt;web&lt;/code&gt; and &lt;code&gt;javafx&lt;/code&gt; modules will be built and their respective tests errors will also be reported.&lt;/p&gt;
+
+&lt;h2 id=&quot;tired-of-typing&quot;&gt;Tired of typing&lt;/h2&gt;
+&lt;p&gt;If you find that typing &lt;code&gt;--fail-at-end&lt;/code&gt; is too long, remember yourself it short alias : &lt;code&gt;-fae&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The same is also available for the &lt;code&gt;--fail-never&lt;/code&gt; flag with : &lt;code&gt;-fn&lt;/code&gt;.&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/MavenFailTestAtEnd&quot;&gt;How to get all failing tests for a multimodule Maven project&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure | There is no place like ::1&lt;/a&gt; on September 03, 2015.&lt;/p&gt;</content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[Auto apply a keymap using udev when a Typematrix is plugged]]></title>
+  <link>http://www.bloggure.info/AutoApplyKeymapUdev</link>
+  <id>http://www.bloggure.info/AutoApplyKeymapUdev</id>
+  <published>2015-09-01T00:00:00+02:00</published>
+  <updated>2015-09-01T00:00:00+02:00</updated>
+  <author>
+    <name></name>
+    <uri>http://www.bloggure.info</uri>
+    <email></email>
+  </author>
+  <content type="html">&lt;h1 id=&quot;switching-keymap&quot;&gt;Switching keymap&lt;/h1&gt;
+
+&lt;p&gt;As some of you might know, I am now using a Typematrix 2030 on a daily basis. When I switched to this great keyboard I also adopted a new layout on it : Colemak.&lt;/p&gt;
+
+&lt;p&gt;However, to be able to pair with others not using a Colemak mapping, I did not set the default mapping to Colemak but I instead use an udev rule to set the input method to Colemak only for the Typematrix.&lt;/p&gt;
+
+&lt;h2 id=&quot;write-a-keymap-switch-script&quot;&gt;Write a keymap switch script&lt;/h2&gt;
+
+&lt;p&gt;Thanks to &lt;a href=&quot;https://twitter.com/BitardMichael&quot;&gt;@BitardMichael&lt;/a&gt; tips and existing scripts I ended up with the following script saved in &lt;code&gt;/usr/local/bin/set_typematrix_colemak_mapping&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;One of the tricky part was having a way of executing the script only when the keyboard is ready, without blocking udev’s job (or the keyboard is not yet visible by the X system). The workaround I found was scheduling the execution of the job with the simple &lt;code&gt;at&lt;/code&gt; command.&lt;/p&gt;
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/1673456ec94a1f6d8d0d.js?file=set_typematrix_colemak_mapping&quot;&gt; &lt;/script&gt;
+
+&lt;h2 id=&quot;tell-udev-to-run-the-script-on-keyboard-detection&quot;&gt;Tell udev to run the script on keyboard detection&lt;/h2&gt;
+&lt;p&gt;The process is really easy, all you need to do is to add the following to a new file : &lt;code&gt;/lib/udev/rules.d/85-typematrix.rules&lt;/code&gt;&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/1673456ec94a1f6d8d0d.js?file=85-typematrix.rules&quot;&gt; &lt;/script&gt;
+
+&lt;h2 id=&quot;adapting-it-to-your-use-case&quot;&gt;Adapting it to your use case&lt;/h2&gt;
+&lt;p&gt;If you are using another keyboard than a Typematrix you will need to adapt the udev rule with the proper Vendor / Product IDs (you can grab them with &lt;code&gt;lsusb&lt;/code&gt;). 
+For the &lt;code&gt;xinput&lt;/code&gt; part, you will need to adjust the grep to match your hardware.&lt;/p&gt;
+
+&lt;p&gt;Of course the same goes for your layout : colemak / dvorak / bépo …&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/AutoApplyKeymapUdev&quot;&gt;Auto apply a keymap using udev when a Typematrix is plugged&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure | There is no place like ::1&lt;/a&gt; on September 01, 2015.&lt;/p&gt;</content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[Debug Failsafe Integration Test easily]]></title>
+  <link>http://www.bloggure.info/DebugMavenFailsafe</link>
+  <id>http://www.bloggure.info/DebugMavenFailsafe</id>
+  <published>2015-04-13T00:00:00+02:00</published>
+  <updated>2015-04-13T00:00:00+02:00</updated>
+  <author>
+    <name></name>
+    <uri>http://www.bloggure.info</uri>
+    <email></email>
+  </author>
+  <content type="html">&lt;h1 id=&quot;arquillian-testing&quot;&gt;Arquillian testing&lt;/h1&gt;
+
+&lt;p&gt;Arquillian testing is very convenient to get a full environment deployed on an application server and test quickly. 
+However sometimes we need to debug what’s inside.&lt;/p&gt;
+
+&lt;h2 id=&quot;launch-maven-in-debug-mode&quot;&gt;Launch Maven in Debug mode&lt;/h2&gt;
+&lt;p&gt;One way of doing it can be launching Maven in debug mode with the &lt;code&gt;mvnDebug&lt;/code&gt; command instead of the classical &lt;code&gt;mvn&lt;/code&gt;.
+It will open a JPDA debugger on port 8000 by default, you then just need to connect to it with your preferred IDE.
+But, if there is forked processes, you won’t be able to debug inside them.&lt;/p&gt;
+
+&lt;h2 id=&quot;launch-failsafe-integration-tests-in-debug-mode&quot;&gt;Launch Failsafe Integration Tests in Debug mode&lt;/h2&gt;
+&lt;p&gt;When using Arquillian, there is a high probability that Arquillian is running in a forked process (with embedded containers).&lt;/p&gt;
+
+&lt;p&gt;There is an easy way to tell &lt;code&gt;maven-failsafe-plugin&lt;/code&gt; to wait for a debugger when starting : use the &lt;code&gt;-Dmaven.failsafe.debug&lt;/code&gt; property.&lt;/p&gt;
+
+&lt;p&gt;You can even specify the options as you would in &lt;code&gt;$JAVA_OPTS&lt;/code&gt; to change ports / wait…&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/DebugMavenFailsafe&quot;&gt;Debug Failsafe Integration Test easily&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure | There is no place like ::1&lt;/a&gt; on April 13, 2015.&lt;/p&gt;</content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[Rescue a VPS upgrade with chroot]]></title>
+  <link>http://www.bloggure.info/rescue-a-vps-with-chroot</link>
+  <id>http://www.bloggure.info/rescue-a-vps-with-chroot</id>
+  <published>2014-09-22T00:00:00+02:00</published>
+  <updated>2014-09-22T00:00:00+02:00</updated>
+  <author>
+    <name></name>
+    <uri>http://www.bloggure.info</uri>
+    <email></email>
+  </author>
+  <content type="html">&lt;h1 id=&quot;oops&quot;&gt;Oops&lt;/h1&gt;
+&lt;p&gt;A few days ago, I finally decided to upgrade the installed Linux on my dedicated box hosted at &lt;a href=&quot;http://www.kimsufi.com&quot;&gt;OVH&lt;/a&gt;. As with every task you tend to postpone until it is too late, it failed miserably, Murphy’s law I am looking at you right now !&lt;/p&gt;
+
+&lt;p&gt;During the install process, the machine hanged (I am not sure whether the machine is faulty or not, it seems to shut down under heavy load). Fortunately for me, OVH is kind enough to send a tech resets the machine, and if it does not ping when booted, the tech reboots the machine in rescue mode.&lt;/p&gt;
+
+&lt;h1 id=&quot;rescue-mode&quot;&gt;Rescue mode&lt;/h1&gt;
+&lt;p&gt;The rescue mode is a lightweight Linux booted on the machine so you can run &lt;code&gt;fsck&lt;/code&gt;and other commands to rescue your filesystem (you can even &lt;code&gt;scp&lt;/code&gt; files to backup before a reinstall for example.&lt;/p&gt;
+
+&lt;p&gt;My problem was simple, I needed to allow &lt;code&gt;dpkg&lt;/code&gt; to finish its job in order for me to get a working machine. Then I think of the good old powerful &lt;code&gt;chroot&lt;/code&gt; command and I remembered how powerful Unixes are !&lt;/p&gt;
+
+&lt;h1 id=&quot;mounting-filesystems&quot;&gt;Mounting filesystems&lt;/h1&gt;
+&lt;p&gt;As you should know, &lt;code&gt;chroot&lt;/code&gt; is a command allowing to change the root of a file system, litterally jailing it into a directory (popular things of today like pico containers like Docker are improved versions of chroot).&lt;/p&gt;
+
+&lt;p&gt;The partition layout of my machine is the following :&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;sda1 contains the root filesystem&lt;/li&gt;
+  &lt;li&gt;sda2 contains home directories&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I issued the following commands to “jail” the rescue mode into my machine :&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ mount /dev/sda1 /mnt
+$ mount /dev/sda2 /mnt/home
+    
+$ mount -o &lt;span class=&quot;nb&quot;&gt;bind&lt;/span&gt; /proc /mnt/proc
+$ mount -o &lt;span class=&quot;nb&quot;&gt;bind&lt;/span&gt; /dev /mnt/dev
+$ mount -o &lt;span class=&quot;nb&quot;&gt;bind&lt;/span&gt; /dev/pts /mnt/dev/pts
+$ mount -o &lt;span class=&quot;nb&quot;&gt;bind&lt;/span&gt; /sys /mnt/sys 
+$ chroot /mnt/
+    &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;From then, I was on my machine, with my files and so on, so I have been able to run &lt;code&gt;dpkg&lt;/code&gt; to finish the install :&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ dpkg --configure --a
+    &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Finally, &lt;code&gt;dpkg&lt;/code&gt; sent me back to a working prompt and I have been able to reboot the machine (do not forget to change boot disk in OVH manager to &lt;code&gt;hd&lt;/code&gt; or &lt;code&gt;netboot&lt;/code&gt; to prevent rebooting in rescue mode).&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/rescue-a-vps-with-chroot&quot;&gt;Rescue a VPS upgrade with chroot&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure | There is no place like ::1&lt;/a&gt; on September 22, 2014.&lt;/p&gt;</content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[Homebrew Cask - commandline install on Mac]]></title>
+  <link>http://www.bloggure.info/brew-cask-install-everything-from-cli</link>
+  <id>http://www.bloggure.info/brew-cask-install-everything-from-cli</id>
+  <published>2014-05-02T00:00:00+02:00</published>
+  <updated>2014-05-02T00:00:00+02:00</updated>
+  <author>
+    <name></name>
+    <uri>http://www.bloggure.info</uri>
+    <email></email>
+  </author>
+  <content type="html">&lt;h1 id=&quot;command-line-nerd&quot;&gt;Command line nerd&lt;/h1&gt;
+
+&lt;p&gt;As a command line geek, I always have at least one open and tend to use it for everything on my machine.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://brew.sh&quot;&gt;HomeBrew&lt;/a&gt; is a very convenient tool to install command line tools to your Mac without cluttering up your environment. You can use it like your Linux friends are using &lt;code&gt;apt-get&lt;/code&gt; or &lt;code&gt;yum&lt;/code&gt; and it feels really nice.&lt;/p&gt;
+
+&lt;p&gt;One thing that your friend can do and you cannot, is installing Google Chrome only using command line, this is where &lt;a href=&quot;https://github.com/phinze/homebrew-cask&quot;&gt;HomeBrew Cask&lt;/a&gt; comes to the rescue.&lt;/p&gt;
+
+&lt;h1 id=&quot;installation-guide&quot;&gt;Installation guide&lt;/h1&gt;
+
+&lt;p&gt;Cask will be up and running in a very few steps :&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ brew tap phinze/cask
+$ brew install brew-cask
+$ brew cask install dropbox #for example
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&quot;usage-hint&quot;&gt;Usage hint&lt;/h1&gt;
+&lt;p&gt;This tool is really nice because it allows you to script your machine setup. No more headaches forgetting the installation of &lt;mypreferred.app&gt; when you want to use it.&lt;/mypreferred.app&gt;&lt;/p&gt;
+
+&lt;p&gt;Don’t hesitate to add a small script in your &lt;code&gt;.dotfiles&lt;/code&gt; to seed your software on new machines, and if your preferred software is missing, it is really easy to add new casks.&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/brew-cask-install-everything-from-cli&quot;&gt;Homebrew Cask - commandline install on Mac&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure | There is no place like ::1&lt;/a&gt; on May 02, 2014.&lt;/p&gt;</content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[LaunchRocket - Homebrew service manager]]></title>
+  <link>http://www.bloggure.info/launchrocket-homebrew-service-manager</link>
+  <id>http://www.bloggure.info/launchrocket-homebrew-service-manager</id>
+  <published>2014-04-30T00:00:00+02:00</published>
+  <updated>2014-04-30T00:00:00+02:00</updated>
+  <author>
+    <name></name>
+    <uri>http://www.bloggure.info</uri>
+    <email></email>
+  </author>
+  <content type="html">&lt;h1 id=&quot;manage-your-services&quot;&gt;Manage your services&lt;/h1&gt;
+
+&lt;p&gt;If you’re using &lt;a href=&quot;http://brew.sh&quot;&gt;HomeBrew&lt;/a&gt; to manage your software installation on your Mac, there is a thing that is not that easy to do : &lt;code&gt;launchd&lt;/code&gt; or &lt;code&gt;launchctl&lt;/code&gt; service management. Often you need to manually tell &lt;code&gt;launchd&lt;/code&gt; to load the &lt;code&gt;plist&lt;/code&gt; of your newly installed service. It leads to a lot of things launched at boot on your machine, and they are not easy to manage.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/jimbojsb/launchrocket&quot;&gt;LaunchRocket&lt;/a&gt; provides a simple PreferencePane allowing you to start/stop services when you only need to with a clean and simple GUI.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/post/LaunchRocket.png&quot; alt=&quot;LaunchRocket in action&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;You can easily install it via &lt;code&gt;brew cask&lt;/code&gt; (more to come on brew cask soon) or download the &lt;a href=&quot;https://github.com/jimbojsb/launchrocket/releases&quot;&gt;zip distribution&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/launchrocket-homebrew-service-manager&quot;&gt;LaunchRocket - Homebrew service manager&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure | There is no place like ::1&lt;/a&gt; on April 30, 2014.&lt;/p&gt;</content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[Use VirtualBox to do a real install]]></title>
+  <link>http://www.bloggure.info/www/os/use-VirtualBox-to-do-a-real-install</link>
+  <id>http://www.bloggure.info/www/os/use-VirtualBox-to-do-a-real-install</id>
+  <published>2014-03-08T00:00:00+01:00</published>
+  <updated>2014-03-08T00:00:00+01:00</updated>
+  <author>
+    <name></name>
+    <uri>http://www.bloggure.info</uri>
+    <email></email>
+  </author>
+  <content type="html">&lt;h1 id=&quot;install-from-virtualbox-&quot;&gt;Install from VirtualBox ?&lt;/h1&gt;
+&lt;p&gt;If you are like me, you have got plenty of hard drives hanging around and never got an optical drive or an usb stick. One thing that could reveal itself to be hard is installing a new Operating System on any machine without any of the two I mentionned earlier.&lt;/p&gt;
+
+&lt;p&gt;In this short tips and tricks post, I will show you how you can use VirtualBox raw disks feature (I guess here for compatibility with VMWare) to install a new Operating System from your old one (yes, without the 10 minutes part were you can do nothing else with your computer).&lt;/p&gt;
+
+&lt;h1 id=&quot;prerequisites&quot;&gt;Prerequisites&lt;/h1&gt;
+
+&lt;p&gt;What you will need in order for this to work :&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;a Linux setup with root access (sudoing will be fine)&lt;/li&gt;
+  &lt;li&gt;a second hard drive where you want to put your brand new Operating System&lt;/li&gt;
+  &lt;li&gt;ISO file of the OS you want to install&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;install&quot;&gt;Install&lt;/h1&gt;
+
+&lt;p&gt;First of all, install VirtualBox on your system (&lt;code&gt;yum&lt;/code&gt;, &lt;code&gt;apt-get&lt;/code&gt;, whatever your package system is).
+Then you will need to find out what is the identifier of the drive you want to use as a new (&lt;code&gt;sudo fdisk -l&lt;/code&gt; can tell you everything you need to know about your disks).&lt;/p&gt;
+
+&lt;p&gt;In my example lets say I want to install on a 300GB hard drive, I got this &lt;code&gt;fdisk&lt;/code&gt; output&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cgatay@cgatay2:~$ sudo fdisk -l
+[sudo] password for cgatay:
+
+Disk /dev/sda: 251.1 GB, 251059544064 bytes
+255 heads, 63 sectors/track, 30522 cylinders, total 490350672 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0x000efa30
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/sda1   *        2048   489302015   244649984   83  Linux
+/dev/sda2       489304062   490348543      522241    5  Extended
+/dev/sda5       489304064   490348543      522240   82  Linux swap / Solaris
+
+Disk /dev/sdb: 400.1 GB, 400088457216 bytes
+255 heads, 63 sectors/track, 48641 cylinders, total 781422768 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0x0003f041
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/sdb1   *          63   390627047   195313492+   7  HPFS/NTFS/exFAT
+/dev/sdb2       390627048   781422767   195397860    c  W95 FAT32 (LBA)
+
+Disk /dev/sdc: 1000.2 GB, 1000204886016 bytes
+255 heads, 63 sectors/track, 121601 cylinders, total 1953525168 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0x00048185
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/sdc1   *        2048      499711      248832   83  Linux
+/dev/sdc2          499712  1952790527   976145408   83  Linux
+/dev/sdc3      1952792574  1953523711      365569    5  Extended
+/dev/sdc5      1952792576  1953523711      365568   82  Linux swap / Solaris
+
+Disk /dev/sdd: 300.1 GB, 300090728448 bytes
+255 heads, 63 sectors/track, 36483 cylinders, total 586114704 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0x000cb074
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/sdd1   *        2048   574060543   287029248   83  Linux
+/dev/sdd2       574062590   586113023     6025217    5  Extended
+/dev/sdd5       574062592   586113023     6025216   82  Linux swap / Solaris
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The interesting line is the one stating &lt;code&gt;Disk /dev/sdd: 300.1 GB&lt;/code&gt;. From now on I will use /dev/sdd as the target of my install.&lt;/p&gt;
+
+&lt;p&gt;For the rest of the commands to work you need to run everything as root (by sudoing), I think there is more “cleaner” way of doing this by correctly setting &lt;code&gt;suid&lt;/code&gt; flags but I did not took the time to look after this.&lt;/p&gt;
+
+&lt;p&gt;You need to create the hard disk file that will point to your physical install, then launch VirtualBox as root (there is a lot of chances that your regular user can’t do everything he wants on a device):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo VBoxManage internalcommands createrawvmdk -filename disk.vmdk -rawdisk /dev/sdd; #replace /dev/sdd with your device
+sudo VirtualBox;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;From there, this is a simple VirtualBox machine setup, you just need to select the created disk.vmdk file for the hard disk of your Virtual Machine, mount the ISO and proceed with the install. At the end of the install, you can shut down the VirtualMachine, reboot your computer and use the boot selection menu of your bios (or change the boot order) to boot directly on your newly installed system.&lt;/p&gt;
+
+&lt;p&gt;If you are on a Linux system, you can issue a &lt;code&gt;update-grub&lt;/code&gt; that will detect all your operating systems and will create the boot menu (you can still boot your old one this way).&lt;/p&gt;
+
+&lt;h1 id=&quot;disclaimer&quot;&gt;Disclaimer&lt;/h1&gt;
+
+&lt;p&gt;This method has been tested multiple times for installing Windows as well as Linuxes without any hurt. However, it might kill kitten or trigger a nuclear war if used incorrectly, in such cases, I decline responsibility.&lt;/p&gt;
+
+&lt;h1 id=&quot;thoughts&quot;&gt;Thoughts&lt;/h1&gt;
+
+&lt;p&gt;As a side note, I think a Linux host is not required, you can achieve the same with a Windows operating system, the command line surely just need some improvements to point to the physical disk.&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/www/os/use-VirtualBox-to-do-a-real-install&quot;&gt;Use VirtualBox to do a real install&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure | There is no place like ::1&lt;/a&gt; on March 08, 2014.&lt;/p&gt;</content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[RestX the webservice framework]]></title>
+  <link>http://www.bloggure.info/restx-the-webservice-firework</link>
+  <id>http://www.bloggure.info/restx-the-webservice-firework</id>
+  <published>2014-02-10T00:00:00+01:00</published>
+  <updated>2014-02-10T00:00:00+01:00</updated>
+  <author>
+    <name></name>
+    <uri>http://www.bloggure.info</uri>
+    <email></email>
+  </author>
+  <content type="html">&lt;h1 id=&quot;another-java-rest-framework&quot;&gt;Another Java Rest framework&lt;/h1&gt;
+
+&lt;p&gt;If you’re a somewhat experienced Java developer I guess you’ve encountered a lot of framework when it comes to write web services.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.restx.io&quot;&gt;Restx.io&lt;/a&gt; is a new kid on the block leveraging high velocity with a focus on testability through a set of unique and great features :&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;each rest endpoint generates its documentation from its tests (real killer feature here : we hate writing docs but we live writing tests!)&lt;/li&gt;
+  &lt;li&gt;a built in monitoring engine&lt;/li&gt;
+  &lt;li&gt;everything that can be done at compile time is done at that time (annotations / dependency injection)&lt;/li&gt;
+  &lt;li&gt;it is written in good old plain Java (IDE support : I’m looking at you Play Framework!)&lt;/li&gt;
+  &lt;li&gt;auto compile (we don’t like waiting!)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I’ve tested it on a few small projects, I can’t wait to try it on a real project !&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/restx-the-webservice-firework&quot;&gt;RestX the webservice framework&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure | There is no place like ::1&lt;/a&gt; on February 10, 2014.&lt;/p&gt;</content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[Great Ebooks for Half Price]]></title>
+  <link>http://www.bloggure.info/www/great-ebooks-for-half-price</link>
+  <id>http://www.bloggure.info/www/great-ebooks-for-half-price</id>
+  <published>2013-10-15T00:00:00+02:00</published>
+  <updated>2013-10-15T00:00:00+02:00</updated>
+  <author>
+    <name></name>
+    <uri>http://www.bloggure.info</uri>
+    <email></email>
+  </author>
+  <content type="html">&lt;p&gt;&lt;a href=&quot;http://bit.ly/1bqvB29&quot;&gt;Packt Publishing&lt;/a&gt; is actually discounting the full range of their eBooks and videos by 50 percent until October 17th using this discount code : COL50.&lt;/p&gt;
+
+&lt;p&gt;It can be a good opportunity to check &lt;a href=&quot;http://www.packtpub.com/instant-apache-wicket-6/book&quot;&gt;“Instant Apache Wicket 6”&lt;/a&gt; which I reviewed a few weeks ago for the newcomers to Apache Wicket. Another good deal could be checking out the best-seller title &lt;a href=&quot;http://www.packtpub.com/angularjs-web-application-development/book&quot;&gt;“Mastering Web Application Development with AngularJS”&lt;/a&gt;!&lt;/p&gt;
+
+&lt;p&gt;Head over to &lt;a href=&quot;http://bit.ly/1bqvB29&quot;&gt;Packt Publishing site&lt;/a&gt; and pick the books of your choice using the promo code COL50.&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/www/great-ebooks-for-half-price&quot;&gt;Great Ebooks for Half Price&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure | There is no place like ::1&lt;/a&gt; on October 15, 2013.&lt;/p&gt;</content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[Quickly test design changes]]></title>
+  <link>http://www.bloggure.info/www/quickly-test-design-changes</link>
+  <id>http://www.bloggure.info/www/quickly-test-design-changes</id>
+  <published>2013-10-01T00:00:00+02:00</published>
+  <updated>2013-10-01T00:00:00+02:00</updated>
+  <author>
+    <name></name>
+    <uri>http://www.bloggure.info</uri>
+    <email></email>
+  </author>
+  <content type="html">&lt;p&gt;
+  When you're developping Web applications, you often ask yourself what does your beautiful design will look like if your users enter a very long text. Or you may want to prototype a new screen based on an existing one, I came around a quick hack using HTML5 goodness: &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Content_Editable&quot;&gt;content editable&lt;/a&gt; !
+&lt;/p&gt;
+&lt;p&gt;
+  On the page you want to edit, open your JavaScript console (Cmd+Alt+I on Chrome Mac), and enter the following 
+  &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span&gt;&lt;/span&gt;  &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;contentEditable&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;&lt;br/&gt;
+  Now you can freely edit the text on your page, once you're done, you can switch off the content editable mode setting the property to false !
+&lt;/p&gt;
+  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/www/quickly-test-design-changes&quot;&gt;Quickly test design changes&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure | There is no place like ::1&lt;/a&gt; on October 01, 2013.&lt;/p&gt;</content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[Merge properties maven plugin]]></title>
+  <link>http://www.bloggure.info/.maven/maven-merge-properties-plugin</link>
+  <id>http://www.bloggure.info/.maven/maven-merge-properties-plugin</id>
+  <published>2013-08-31T00:00:00+02:00</published>
+  <updated>2013-08-31T00:00:00+02:00</updated>
+  <author>
+    <name></name>
+    <uri>http://www.bloggure.info</uri>
+    <email></email>
+  </author>
+  <content type="html">&lt;!--:en--&gt;&lt;img class=&quot;alignright size-medium wp-image-74&quot; alt=&quot;Maven&quot; src=&quot;/images/uploads/2010/11/Maven_logo1-300x76.gif&quot; width=&quot;300&quot; height=&quot;76&quot; /&gt;&lt;p&gt;At &lt;a href=&quot;http://www.srmvision.com&quot;&gt;SRMvision&lt;/a&gt;, we develop with localization in mind. We don't have any user visible text that is not in fact tied to a java property file. Quickly, the problem that we faced was the difficulty to keep every language file in sync (and to tidy things up). We developed a small Maven plugin allowing us to ensure that our two main problems are now gone : &lt;a href=&quot;https://github.com/code-troopers/merge-properties-maven-plugin&quot;&gt;merge-properties-maven-plugin&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Quick example&lt;/h2&gt;
+&lt;p&gt;I think the easiest way to understand how it works is to explain it with a real use case. Let's say we have a module named &lt;em&gt;Zones&lt;/em&gt; in our application, it will lead to create four files (if we are localized in two different languages) :&lt;/p&gt;
+&lt;ul&gt;
+	&lt;li&gt;l10n/Zones_en.properties&lt;/li&gt;
+	&lt;li&gt;l10n/Zones_fr.properties&lt;/li&gt;
+	&lt;li&gt;help/Zones_en.properties&lt;/li&gt;
+	&lt;li&gt;help/Zones_fr.properties&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;As you might have guessed, we have got two different categories of target files, one for the application's localization, and the other one for the application's help. There is only one rule when it comes to filling these files, the property keys must begin with the name of the file, otherwise the build would fail. In this example, every key must begin with the prefix &quot;&lt;tt&gt;Zones.&quot;.&lt;/tt&gt;&lt;/p&gt;
+
+&lt;p&gt;At the end, we want to get two resource bundles, so we set up the build to do so :&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request&lt;/pre&gt;&lt;/noscript&gt;&lt;script src=&quot;https://gist.github.com/6397201.js?file=pom.xml&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;By reading this configuration section you can view almost every single option available in the plugin. You can exclude files from automatic key checking : in the example the files Global_*.properties will not be checked. It allows us to group commonly used keys without needing them to begin with the correct prefix (it also eases migration for legacy code, breaking the build would be too intrusive).&lt;/p&gt;
+
+&lt;p&gt;You can also notice that we use a Maven property to enable the fail on count mismatch functionality of the plugin, with the help of Maven profiles, we can set it to false for development and to true for continuous integration and translation team. When this configuration is used you will get an output like the following in your Maven build :&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request&lt;/pre&gt;&lt;/noscript&gt;&lt;script src=&quot;https://gist.github.com/6397201.js?file=maven.log&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;If the build should check consistency in merged files and if it does not match, it will output blank keys as well as lonely keys in order for your translator to fix it easily.&lt;/p&gt;
+&lt;h2&gt;Bonus feature&lt;/h2&gt;
+&lt;p&gt;We use Java's MessageFormat to format our translated string, one of the thing we tend to forget is to escape the single quotes in our translations. The plugin does this magic for us, it automatically adds the missing single quotes in every messages.&lt;/p&gt;&lt;!--:--&gt;
+
+  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/.maven/maven-merge-properties-plugin&quot;&gt;Merge properties maven plugin&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure | There is no place like ::1&lt;/a&gt; on August 31, 2013.&lt;/p&gt;</content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[Play Framework and i18n in views]]></title>
+  <link>http://www.bloggure.info/work/play-framework-and-i18n-in-views</link>
+  <id>http://www.bloggure.info/work/play-framework-and-i18n-in-views</id>
+  <published>2013-07-25T00:00:00+02:00</published>
+  <updated>2013-07-25T00:00:00+02:00</updated>
+  <author>
+    <name></name>
+    <uri>http://www.bloggure.info</uri>
+    <email></email>
+  </author>
+  <content type="html">&lt;!--:en--&gt;&lt;img class=&quot;alignright size-full wp-image-916&quot; alt=&quot;playlogo&quot; src=&quot;/images/uploads/2013/07/playlogo.png&quot; width=&quot;150&quot; height=&quot;50&quot; /&gt;
+
+&lt;p&gt;I was having a strange issue with localization in a Play Framework application. I followed the &lt;a href=&quot;http://www.playframework.com/documentation/2.0/ScalaI18N&quot;&gt;simple steps&lt;/a&gt; detailed on the official documentation but with no luck.&lt;/p&gt;
+
+&lt;p&gt;When experimenting, I figured out that the locale used is the default locale of the JVM. In my case, my default locale is French so I only had French in my application. But on Heroku, the default locale is English and thus the application was only working in English.&lt;/p&gt;
+
+&lt;p&gt;The trick consists in adding an implicit lang to your template views. In fact, Scala import an implicit lang with the lowest priority being the one coming from the JVM, if you want to get the language parsed from the Accept-Languages http header, you need to add an implicit as below :&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;@(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Html&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;implicit&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lang&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Lang&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;With this little trick, your calls to localization will use the locale extracted from the http request as expected.&lt;/p&gt;&lt;!--:--&gt;&lt;!--:fr&lt;img class=&quot;alignright size-full wp-image-916&quot; alt=&quot;playlogo&quot; src=&quot;/images/uploads/2013/07/playlogo.png&quot; width=&quot;150&quot; height=&quot;50&quot; /&gt;
+
+I was having a strange issue with localization in a Play Framework application. I followed the &lt;a href=&quot;http://www.playframework.com/documentation/2.0/ScalaI18N&quot;&gt;simple steps&lt;/a&gt; detailed on the official documentation but with no luck.
+
+When experimenting, I figured out that the locale used is the default locale of the JVM. In my case, my default locale is French so I only had French in my application. But on Heroku, the default locale is English and thus the application was only working in English.
+
+The trick consists in adding an implicit lang to your template views. In fact, Scala import an implicit lang with the lowest priority being the one coming from the JVM, if you want to get the language parsed from the Accept-Languages http header, you need to add an implicit as below :
+&lt;pre class=&quot;brush: scala&quot;&gt;@(title: String)(content: Html)(implicit lang: Lang)&lt;/pre&gt;
+With this little trick, your calls to localization will use the locale extracted from the http request as expected.&lt;--&gt;
+
+  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/work/play-framework-and-i18n-in-views&quot;&gt;Play Framework and i18n in views&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure | There is no place like ::1&lt;/a&gt; on July 25, 2013.&lt;/p&gt;</content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[Play application on Centos/RedHat in production mode]]></title>
+  <link>http://www.bloggure.info/.java/.scala/.shell/ci/shelf/centos-redhat-play-application-production-mode</link>
+  <id>http://www.bloggure.info/.java/.scala/.shell/ci/shelf/centos-redhat-play-application-production-mode</id>
+  <published>2013-07-25T00:00:00+02:00</published>
+  <updated>2013-07-25T00:00:00+02:00</updated>
+  <author>
+    <name></name>
+    <uri>http://www.bloggure.info</uri>
+    <email></email>
+  </author>
+  <content type="html">&lt;em&gt;Sorry english readers, the following post is only available in french !&lt;/em&gt;
+&lt;!--:fr--&gt;&lt;p&gt;&lt;strong&gt;tl;dr &lt;/strong&gt;: application &lt;a title=&quot;play&quot; href=&quot;http://www.playframework.com/&quot;&gt;Play&lt;/a&gt; (java ou &lt;a href=&quot;http://www.scala-lang.org/&quot;&gt;scala&lt;/a&gt;) sur un serveur &lt;a href=&quot;http://www.centos.org/&quot;&gt;Centos&lt;/a&gt; (ou &lt;a href=&quot;http://fr.wikipedia.org/wiki/Red_Hat_Linux&quot;&gt;Red Hat&lt;/a&gt;) derrière un serveur &lt;a title=&quot;nginx&quot; href=&quot;http://nginx.org/&quot;&gt;nginx&lt;/a&gt;.&lt;/p&gt;&lt;h2&gt;Script de démarrage/arrêt du daemon.&lt;/h2&gt;&lt;p&gt;Lancer une application Play en dev est assez aisé : &lt;code&gt;$ play run&lt;/code&gt;.&lt;/p&gt;&lt;p&gt;Maintenant, si vous avez besoin de déployer votre application en production, il est plus confortable de considérer votre application comme un service à part entière du système. Il se peut aussi que vous ayez besoin de spécifier un port et une interface particulière pour pouvoir utiliser nginx comme front-end (en &lt;a href=&quot;http://fr.wikipedia.org/wiki/Proxy_inverse&quot;&gt;reverse proxy&lt;/a&gt;). Et évidement, à l'instar d'un environnement de développement, vous pourriez avoir besoin de compresser le JS et le CSS, et également de régler finement les en-têtes HTTP pour gérer correctement le cache.&lt;/p&gt;&lt;p&gt;Tout d'abord le script de lancement du daemon :&lt;/p&gt;
+&lt;script src=&quot;https://gist.github.com/tdebarochez/6082933.js&quot;&gt;&lt;/script&gt;
+&lt;p&gt;Je me suis inspiré des deux gists ci-dessous. Le premier, pour RedHat, utilise le binaire de play pour lancer le processus principal. Cette méthode facile à utiliser en développement semble assez limité en paramètre (tout du moins, très peu documentée). La seconde méthode, pour &lt;a href=&quot;http://www.debian.org/&quot;&gt;Debian&lt;/a&gt;, donne un bonne exemple d'une configuration un peu plus élaborée de l'exécution du daemon. Les paramètres en début de fichier parlent d'eux-mêmes, je vous laisse les découvrir et reste à votre disposition pour toute question.&lt;/p&gt;&lt;p&gt;Source :&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;https://gist.github.com/THemming/2173037&quot;&gt;https://gist.github.com/THemming/2173037&lt;/a&gt; (script pour redhat)&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://gist.github.com/leon/2204773&quot;&gt;https://gist.github.com/leon/2204773&lt;/a&gt; (script pour debian)&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Configuration de nginx&lt;/h2&gt;&lt;p&gt;Sur un serveur web, il est souvent pratique de pouvoir faire tourner plusieurs applications utilisant des langages, des librairies, des frameworks, etc... hétérogènes (sur mon serveur, il y a l'application Play en scala, une application &lt;a href=&quot;http://nodejs.org/&quot;&gt;Nodejs&lt;/a&gt; en &lt;a href=&quot;http://coffeescript.org/&quot;&gt;Coffescript&lt;/a&gt; et une application &lt;a href=&quot;http://php.net&quot;&gt;PHP&lt;/a&gt;/&lt;a href=&quot;http://www.mysql.fr/&quot;&gt;MySQL&lt;/a&gt; utilisant &lt;a href=&quot;http://httpd.apache.org/&quot;&gt;Apache&lt;/a&gt;). C'est là que nginx intervient. Configuré en reverse-proxy, c'est lui qui écoutera sur le port 80 de votre serveur et en fonction du nom de domaine relayera les requêtes HTTP à l'application que vous avez choisis. Il vous suffit de configurer votre application en écoute sur un port libre en localhost et d'indiquer à nginx qu'en fonction du nom de domaine (à la manière des VirtualHost d'Apache), il doit transmettre ses requêtes sur ce port.&lt;/p&gt;&lt;p&gt;Vous noterez une section fournissant un traitement particulier pour les fichiers statiques (js, css, png, jpg, etc...). En effet, je ne trouvais pas la configuration par défaut de play très satisfaisante pour diffuser ces fichiers. Il conviendra donc de copier tous les fichiers dans un dossier particulier au lancement de l'application (il faut également pensé à y placer les fichiers &quot;compilé&quot; des scripts utilisant un pre-processeurs : coffeescript, &lt;a href=&quot;http://sass-lang.com&quot;&gt;SASS/SCSS&lt;/a&gt;, &lt;a href=&quot;http://lesscss.org/&quot;&gt;LESS&lt;/a&gt;, etc...). Tous les fichiers dans ce dossier auront une durée de cache maximale afin de minimiser le nombre de requêtes au serveur (la requête la plus rapide est celle qui n'est pas faite). Cette technique a aussi l'avantage de décharger la JVM du traitement de ses fichiers, ils sont directement retourné par nginx.&lt;/p&gt;
+&lt;script src=&quot;https://gist.github.com/tdebarochez/6083089.js&quot;&gt;&lt;/script&gt;
+&lt;h2&gt;Compilation des fichiers statiques&lt;/h2&gt;&lt;p&gt;Les pré-processeurs (Coffeescript, SASS, LESS, etc...) sont d'un grand confort pour le développement de la partie front-end d'une application web. Toutefois, il y a quelques détails qui ne faut pas négliger afin d'optimiser au maximum la distribution en HTTP de ces fichiers.&lt;/p&gt;&lt;p&gt;Prenons comme exemple un fichier .coffee (Coffeescript). Lorsqu'en développement vous lancer votre serveur, play se charge de re-compiler automatiquement le fichier afin de desservir un fichier javascript au navigateur qui a demandé le fichier. Dans notre environnement, les fichiers statiques se trouvent tous dans un dossier &lt;code&gt;static/&lt;/code&gt;. Il faut donc &quot;traduire&quot; ce fichier en javascript et le placer dans ce dossier (en respectant l'arborescence utilisée en développement) : &lt;code&gt;coffee -o static/javascripts/ -c app/assets/javascripts/*.coffee&lt;/code&gt;.&lt;/p&gt;&lt;p&gt;Ensuite, comme optimisation souvent préconnisée, il convient de &quot;minifier&quot; ces fichiers afin qu'ils soient le plus léger possible pendant le transport sur le réseau (qui peut-être une faible connexion 3g). Dans mon cas, j'ai utilisé &lt;a href=&quot;https://github.com/yui/yuicompressor&quot;&gt;&lt;code&gt;yuicompressor&lt;/code&gt;&lt;/a&gt; qui fonctionne bien. Il en existe certainement des mieux, je n'ai pas testé, mais celui-là fonctionne comme je veux.&lt;/p&gt;
+&lt;script src=&quot;https://gist.github.com/tdebarochez/6083307.js&quot;&gt;&lt;/script&gt;
+&lt;p&gt;Note : comme amélioration possible, il faudrait dans cette partie là renommer les fichiers par un nom de fichier contenant un hash représentant le contenu de ce fichier afin de palier à tout problème d'invalidation du cache.&lt;/p&gt;&lt;h2&gt;Dans le futur&lt;/h2&gt;&lt;p&gt;Pour parfaire le déploiement de l'application, sur un VCS &lt;a href=&quot;http://git-scm.com/&quot;&gt;git&lt;/a&gt; par exemple, il serait pratique d'automatiser le redémarrage du serveur sur un hook post-commit. Pour éviter également une coupure de service, il faudrait également, lancer la nouvelle application sur un autre port et switcher sur la nouvelle instance uniquement avec un reload de nginx. Mais bon tout ça peut faire l'objet d'un autre article. :)&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Mise à jour du 29 juillet 2013&lt;/strong&gt; : correction du script de lancement du daemon.&lt;/p&gt;&lt;!--:--&gt;
+
+  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/.java/.scala/.shell/ci/shelf/centos-redhat-play-application-production-mode&quot;&gt;Play application on Centos/RedHat in production mode&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure | There is no place like ::1&lt;/a&gt; on July 25, 2013.&lt;/p&gt;</content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[Heroku Play ! Scala Compass Buildpack]]></title>
+  <link>http://www.bloggure.info/.java/work/heroku-play-scala-compass-buildpack</link>
+  <id>http://www.bloggure.info/.java/work/heroku-play-scala-compass-buildpack</id>
+  <published>2013-07-08T00:00:00+02:00</published>
+  <updated>2013-07-08T00:00:00+02:00</updated>
+  <author>
+    <name></name>
+    <uri>http://www.bloggure.info</uri>
+    <email></email>
+  </author>
+  <content type="html">&lt;!--:en--&gt;&lt;img class=&quot;size-thumbnail wp-image-758 alignright&quot; alt=&quot;MBP Keyboard&quot; src=&quot;/images/uploads/2012/12/IMG_20121222_000541-150x150.jpg&quot; width=&quot;150&quot; height=&quot;150&quot; /&gt;&lt;p&gt;I am actually working on a little side project with my friend &lt;a href=&quot;http://www.bloggure.info/author/tdebarochez&quot;&gt;Thomas Debarochez&lt;/a&gt;. We are using &lt;a href=&quot;http://www.playframework.com/&quot;&gt;Play!Framework&lt;/a&gt; and &lt;a href=&quot;http://compass-style.org/&quot;&gt;Compass&lt;/a&gt; and we deploy it to &lt;a href=&quot;https://www.heroku.com/&quot;&gt;Heroku&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;One issue that came when we first deployed the application with Compass to Heroku was that the default scala buildpack does not include sass and compass binaries.&lt;/p&gt;
+
+&lt;p&gt;Following &lt;a href=&quot;https://groups.google.com/forum/#!topic/play-framework/fzGj5RqW-l8&quot;&gt;this post&lt;/a&gt; on the Play!Framework mailing list, I forked and patched the &lt;a href=&quot;https://github.com/heroku/heroku-buildpack-scala&quot;&gt;buildpack&lt;/a&gt; to install sass and compass on the environment.&lt;/p&gt;
+
+&lt;p&gt;You can find it here and use it with the following command :
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;heroku config:set &lt;span class=&quot;nv&quot;&gt;BUILDPACK_URL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;https://github.com/CedricGatay/heroku-buildpack-scala&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;I hope someone will find this useful !&lt;/p&gt;&lt;!--:--&gt;
+
+  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/.java/work/heroku-play-scala-compass-buildpack&quot;&gt;Heroku Play ! Scala Compass Buildpack&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure | There is no place like ::1&lt;/a&gt; on July 08, 2013.&lt;/p&gt;</content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[Wicket Routes Mount]]></title>
+  <link>http://www.bloggure.info/.wicket/wicket-routes-mount</link>
+  <id>http://www.bloggure.info/.wicket/wicket-routes-mount</id>
+  <published>2013-05-20T00:00:00+02:00</published>
+  <updated>2013-05-20T00:00:00+02:00</updated>
+  <author>
+    <name></name>
+    <uri>http://www.bloggure.info</uri>
+    <email></email>
+  </author>
+  <content type="html">&lt;!--:en--&gt;&lt;img class=&quot;alignright size-thumbnail wp-image-90&quot; alt=&quot;Wicket&quot; src=&quot;/images/uploads/2010/10/logo-wicket1-150x150.png&quot; width=&quot;150&quot; height=&quot;150&quot; /&gt;
+
+&lt;p&gt;At &lt;a href=&quot;http://code-troopers.com&quot;&gt;Code-Troopers&lt;/a&gt;, we like to work with the frameworks we love. One of them is &lt;a href=&quot;http://wicket.apache.org&quot;&gt;Apache Wicket&lt;/a&gt;, and it happens to some of us doing some &lt;a href=&quot;http://www.playframework.com/&quot;&gt;Play! Framework&lt;/a&gt; or &lt;a href=&quot;http://rubyonrails.org/&quot;&gt;Ruby on Rails&lt;/a&gt; (either for a client project, a side project or giving back OSS love).&lt;/p&gt;
+
+&lt;p&gt;One thing really great is this two frameworks is the central route system, one file allows to group all the routes handled by your application. Wicket does not provide such way of grouping routes, you can manually mount routes into your application or annotate your page classes.&lt;/p&gt;
+&lt;h2&gt;Wicket routes mount library&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/code-troopers/wicket-routes-mount&quot;&gt;This small library project available on Github&lt;/a&gt; allows to group mounts into a central file. To use it, simply add its dependency to your &lt;code&gt;pom.xml&lt;/code&gt; (artifact is available on Maven central):&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;com.code-troopers&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;wicket-route-mount&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;0.1&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;em&gt;
+This dependency will transitively gets &lt;code&gt;wicket-auth-roles&lt;/code&gt; (if there is a special need for a version without this dependency, it could be done easily).
+&lt;/em&gt;
+&lt;h2&gt;Usage&lt;/h2&gt;
+&lt;p&gt;To use it, simply create a &lt;code&gt;routes.conf&lt;/code&gt; file at the root of the sources in your project (typically &lt;code&gt;src/main/resources/&lt;/code&gt;) respecting the following format :&lt;/p&gt;
+&lt;pre&gt;# mountPoint        class                           roles
+/home               codetroopers.HomePage           
+/secured            codetroopers.SecuredPage        USER
+/user/${mode}/#{id} codetroopers.UserPage           ADMIN,USER&lt;/pre&gt;
+&lt;p&gt;The files content is the following :&lt;/p&gt;
+&lt;ul&gt;
+	&lt;li&gt;Mount path : using standard Wicket syntax (&lt;code&gt;${requiredParam}&lt;/code&gt; and &lt;code&gt;#{optionalParam}&lt;/code&gt; are available)&lt;/li&gt;
+	&lt;li&gt;Page class : fully qualified name of the page class to mount&lt;/li&gt;
+	&lt;li&gt;Roles (optional) : comma separated list of roles required to access the page&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;em&gt;IntelliJ IDEA can do completion for class names in this file (you just need to hit the &lt;code&gt;ctrl+space&lt;/code&gt; shortcut twice)&lt;/em&gt;&lt;!--:--&gt;
+
+  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/.wicket/wicket-routes-mount&quot;&gt;Wicket Routes Mount&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure | There is no place like ::1&lt;/a&gt; on May 20, 2013.&lt;/p&gt;</content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[Wicket Routes Mount]]></title>
+  <link>http://www.bloggure.info/work/java-work/wicket-work/wicket-routes-mount.html</link>
+  <id>http://www.bloggure.info/work/java-work/wicket-work/wicket-routes-mount-REDIR</id>
+  <published>2013-05-20T00:00:00+02:00</published>
+  <updated>2013-05-20T00:00:00+02:00</updated>
+  <author>
+    <name></name>
+    <uri>http://www.bloggure.info</uri>
+    <email></email>
+  </author>
+  <content type="html">&lt;!--:en--&gt;&lt;img class=&quot;alignright size-thumbnail wp-image-90&quot; alt=&quot;Wicket&quot; src=&quot;/images/uploads/2010/10/logo-wicket1-150x150.png&quot; width=&quot;150&quot; height=&quot;150&quot; /&gt;
+
+&lt;p&gt;At &lt;a href=&quot;http://code-troopers.com&quot;&gt;Code-Troopers&lt;/a&gt;, we like to work with the frameworks we love. One of them is &lt;a href=&quot;http://wicket.apache.org&quot;&gt;Apache Wicket&lt;/a&gt;, and it happens to some of us doing some &lt;a href=&quot;http://www.playframework.com/&quot;&gt;Play! Framework&lt;/a&gt; or &lt;a href=&quot;http://rubyonrails.org/&quot;&gt;Ruby on Rails&lt;/a&gt; (either for a client project, a side project or giving back OSS love).&lt;/p&gt;
+
+&lt;p&gt;One thing really great is this two frameworks is the central route system, one file allows to group all the routes handled by your application. Wicket does not provide such way of grouping routes, you can manually mount routes into your application or annotate your page classes.&lt;/p&gt;
+&lt;h2&gt;Wicket routes mount library&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/code-troopers/wicket-routes-mount&quot;&gt;This small library project available on Github&lt;/a&gt; allows to group mounts into a central file. To use it, simply add its dependency to your &lt;code&gt;pom.xml&lt;/code&gt; (artifact is available on Maven central):&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;com.code-troopers&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;wicket-route-mount&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;0.1&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;em&gt;
+This dependency will transitively gets &lt;code&gt;wicket-auth-roles&lt;/code&gt; (if there is a special need for a version without this dependency, it could be done easily).
+&lt;/em&gt;
+&lt;h2&gt;Usage&lt;/h2&gt;
+&lt;p&gt;To use it, simply create a &lt;code&gt;routes.conf&lt;/code&gt; file at the root of the sources in your project (typically &lt;code&gt;src/main/resources/&lt;/code&gt;) respecting the following format :&lt;/p&gt;
+&lt;pre&gt;# mountPoint        class                           roles
+/home               codetroopers.HomePage           
+/secured            codetroopers.SecuredPage        USER
+/user/${mode}/#{id} codetroopers.UserPage           ADMIN,USER&lt;/pre&gt;
+&lt;p&gt;The files content is the following : &lt;/p&gt;
+&lt;ul&gt;
+	&lt;li&gt;Mount path : using standard Wicket syntax (&lt;code&gt;${requiredParam}&lt;/code&gt; and &lt;code&gt;#{optionalParam}&lt;/code&gt; are available)&lt;/li&gt;
+	&lt;li&gt;Page class : fully qualified name of the page class to mount&lt;/li&gt;
+	&lt;li&gt;Roles (optional) : comma separated list of roles required to access the page&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;em&gt;IntelliJ IDEA can do completion for class names in this file (you just need to hit the &lt;code&gt;ctrl+space&lt;/code&gt; shortcut twice)&lt;/em&gt;&lt;!--:--&gt;
+
+  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/work/java-work/wicket-work/wicket-routes-mount.html&quot;&gt;Wicket Routes Mount&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure | There is no place like ::1&lt;/a&gt; on May 20, 2013.&lt;/p&gt;</content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[DuckDuckGo in Thunderbird]]></title>
+  <link>http://www.bloggure.info/www/duckduckgo-in-thunderbird</link>
+  <id>http://www.bloggure.info/www/duckduckgo-in-thunderbird</id>
+  <published>2013-03-24T00:00:00+01:00</published>
+  <updated>2013-03-24T00:00:00+01:00</updated>
+  <author>
+    <name></name>
+    <uri>http://www.bloggure.info</uri>
+    <email></email>
+  </author>
+  <content type="html">&lt;!--:en--&gt;&lt;a href=&quot;http://www.bloggure.info/wp-content/uploads/2013/03/logo_homepage.normal.v102.png&quot;&gt;&lt;img class=&quot;alignright size-thumbnail wp-image-890&quot; alt=&quot;Logo DuckDuckGo&quot; src=&quot;/images/uploads/2013/03/logo_homepage.normal.v102-150x150.png&quot; width=&quot;150&quot; height=&quot;150&quot; /&gt;&lt;/a&gt;Mozilla added a function to search on the web in the latest versions of Thunderbird.That's nice, but the default search engine is bing. As a DuckDuckGo user, I wanted to add my favourite search engine and use it by default. So here's how to do it.
+&lt;ol&gt;
+	&lt;li&gt;&lt;a title=&quot;Find your Thunderbird profile folder&quot; href=&quot;http://kb.mozillazine.org/Profile_folder_-_Thunderbird&quot;&gt;Find your profile folder&lt;/a&gt;.&lt;/li&gt;
+	&lt;li&gt;In it, create a folder named &quot;searchplugins&quot; (without the quotes) if it doesn't exists.&lt;/li&gt;
+	&lt;li&gt;Save &lt;a title=&quot;DuckDuckGo search plugin&quot; href=&quot;http://www.fribourg-est-independant.org/fonji/ddg.xml&quot;&gt;this xml&lt;/a&gt; file in it.&lt;/li&gt;
+	&lt;li&gt;(Re)start Thunderbird.&lt;/li&gt;
+	&lt;li&gt;Select some text in any mail, right clic and search with bing (sorry).&lt;/li&gt;
+	&lt;li&gt;Click the DuckDuckGo icon on the left.&lt;/li&gt;
+	&lt;li&gt;Click the heart icon on the bottom left.&lt;/li&gt;
+	&lt;li&gt;That's all!&lt;/li&gt;
+&lt;/ol&gt;
+To add google, add &lt;a href=&quot;http://bwinton.latte.ca/Work/google.xml&quot;&gt;this file&lt;/a&gt; in the same folder.&lt;!--:--&gt;&lt;!--:fr&lt;a href=&quot;http://www.bloggure.info/wp-content/uploads/2013/03/logo_homepage.normal.v102.png&quot;&gt;&lt;img class=&quot;alignright size-thumbnail wp-image-890&quot; alt=&quot;Logo DuckDuckGo&quot; src=&quot;/images/uploads/2013/03/logo_homepage.normal.v102-150x150.png&quot; width=&quot;150&quot; height=&quot;150&quot; /&gt;&lt;/a&gt;Mozilla a ajouté une fonction de recherche sur internet dans les dernières versions de Thunderbird. C'est très utile, mais le moteur par défaut est bing et, en tant qu'utilisateur de DuckDuckGo, j'ai voulu changer ceci pour mettre mon moteur favori à la place. Voici comment procéder :
+&lt;ol&gt;
+	&lt;li&gt;&lt;a title=&quot;Trouver votre profil thunderbird&quot; href=&quot;https://support.mozillamessaging.com/fr/kb/profil-utilisateur#w_oai-mon-profil-est-il-stockae&quot;&gt;Trouvez le répertoire de votre profil.&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;Créez un répertoire &quot;searchplugins&quot; (sans guillemets) s'il n'existe pas déjà.&lt;/li&gt;
+	&lt;li&gt;Sauvegardez &lt;a title=&quot;DuckDuckGo search plugin&quot; href=&quot;http://www.fribourg-est-independant.org/fonji/ddg.xml&quot;&gt;ce fichier xml&lt;/a&gt; dans searchplugins.&lt;/li&gt;
+	&lt;li&gt;(Re)démarrez Thunderbird.&lt;/li&gt;
+	&lt;li&gt;Selectionnez du texte dans un email, faites un clic droit puis &quot;rechercher avec bing&quot; (désolé).&lt;/li&gt;
+	&lt;li&gt;Cliquez l'icône DuckDuckGo sur la gauche.&lt;/li&gt;
+	&lt;li&gt;Cliquez sur le cœur dans le coin en bas à gauche.&lt;/li&gt;
+	&lt;li&gt;C'est tout !&lt;/li&gt;
+&lt;/ol&gt;
+Pour utiliser google, ajoutez &lt;a href=&quot;http://bwinton.latte.ca/Work/google.xml&quot;&gt;ce fichier&lt;/a&gt; dans le même répertoire.&lt;--&gt;
+
+  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/www/duckduckgo-in-thunderbird&quot;&gt;DuckDuckGo in Thunderbird&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure | There is no place like ::1&lt;/a&gt; on March 24, 2013.&lt;/p&gt;</content>
+</entry>
+
+</feed>
