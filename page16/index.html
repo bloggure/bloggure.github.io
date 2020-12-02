@@ -127,6 +127,67 @@
             <div class="entry-meta">
               <span class="entry-date date published updated"
                 ><time
+                  datetime="2011-08-04T00:00:00+02:00"
+                  itemprop="datePublished"
+                  ><a href="http://www.bloggure.info/www/a-programmers-life"
+                    >August 04, 2011</a
+                  ></time
+                ></span
+              ><span
+                class="author vcard"
+                itemprop="author"
+                itemscope
+                itemtype="http://schema.org/Person"
+                ><span itemprop="name" class="fn"
+                  ><a
+                    href="http://www.bloggure.info/cgatay"
+                    title="About cgatay"
+                    itemprop="url"
+                    >cgatay</a
+                  ></span
+                ></span
+              >&nbsp; &bull; &nbsp;<span class="entry-comments"
+                ><a
+                  href="http://www.bloggure.info/www/a-programmers-life/#disqus_thread"
+                  >Comment</a
+                ></span
+              >
+            </div>
+            <!-- /.entry-meta -->
+
+            <h1 class="entry-title" itemprop="name">
+              <a
+                href="http://www.bloggure.info/www/a-programmers-life"
+                rel="bookmark"
+                title="A programmer's life"
+                itemprop="url"
+                >A programmer's life</a
+              >
+            </h1>
+          </header>
+          <div class="entry-content" itemprop="description">
+            <!--:en-->I just found out a great web comic site
+            <a href="http://aprogrammerslife.info/" title="A programmer's life"
+              >A programmer's life</a
+            >, don't hesitate to put it in your bookmarks next to
+            <a href="http://geekandpoke.typepad.com/" title="Geek And Poke"
+              >Geek And Poke</a
+            >.<!--:--><!--:frJe viens de trouver un excellent site de web comic <a href="http://aprogrammerslife.info/" title="A programmer's life" >A programmer's life</a>, mettez le dans vos favoris à côté de <a href="http://geekandpoke.typepad.com/" title="Geek And Poke">Geek And Poke</a> !<-->
+          </div>
+          <!-- /.entry-content -->
+        </article>
+        <!-- /.hentry -->
+
+        <article
+          class="hentry"
+          itemprop="blogPost"
+          itemscope
+          itemtype="http://schema.org/BlogPosting"
+        >
+          <header>
+            <div class="entry-meta">
+              <span class="entry-date date published updated"
+                ><time
                   datetime="2011-07-30T00:00:00+02:00"
                   itemprop="datePublished"
                   ><a
@@ -398,116 +459,6 @@ Si vous voulez découvrir plus de paramètres, n'hésitez pas à fouiller dans l
 <pre class="brush:shell">
 defaults read [-g]
 </pre>:-->
-          </div>
-          <!-- /.entry-content -->
-        </article>
-        <!-- /.hentry -->
-
-        <article
-          class="hentry"
-          itemprop="blogPost"
-          itemscope
-          itemtype="http://schema.org/BlogPosting"
-        >
-          <header>
-            <div class="entry-meta">
-              <span class="entry-date date published updated"
-                ><time
-                  datetime="2011-07-23T00:00:00+02:00"
-                  itemprop="datePublished"
-                  ><a
-                    href="http://www.bloggure.info/.java/work/glassfish-3-x-recover-admin-console-access"
-                    >July 23, 2011</a
-                  ></time
-                ></span
-              ><span
-                class="author vcard"
-                itemprop="author"
-                itemscope
-                itemtype="http://schema.org/Person"
-                ><span itemprop="name" class="fn"
-                  ><a
-                    href="http://www.bloggure.info/cgatay"
-                    title="About cgatay"
-                    itemprop="url"
-                    >cgatay</a
-                  ></span
-                ></span
-              >&nbsp; &bull; &nbsp;<span class="entry-comments"
-                ><a
-                  href="http://www.bloggure.info/.java/work/glassfish-3-x-recover-admin-console-access/#disqus_thread"
-                  >Comment</a
-                ></span
-              >
-            </div>
-            <!-- /.entry-meta -->
-
-            <h1 class="entry-title" itemprop="name">
-              <a
-                href="http://www.bloggure.info/.java/work/glassfish-3-x-recover-admin-console-access"
-                rel="bookmark"
-                title="Glassfish 3.x - recover admin console access"
-                itemprop="url"
-                >Glassfish 3.x - recover admin console access</a
-              >
-            </h1>
-          </header>
-          <div class="entry-content" itemprop="description">
-            <!--:en--><img
-              class="size-full wp-image-71 alignright"
-              title="glassfish"
-              src="/images/uploads/2010/11/glassfish.png"
-              alt=""
-              width="92"
-              height="50"
-            />
-            <p>
-              I have an issue for quite  a long time with web administration
-              console in Glassfish 3.x. When I try to access it, I point my
-              browser to <code>http://127.0.0.1:4848</code>, the first access
-              shows me the usual "Web console is loading stuff", after a while,
-              by looking at the log, I see the web administration is ready. I
-              then hit refresh, it redirects me to
-              <code>http://127.0.0.1:4848/common/index.jsf</code> with a (not
-              so) beautiful 404 error !
-            </p>
-
-            <h2>The discovery</h2>
-            <p>
-              I found the workaround by telling myself, wait, it never asked me
-              to login....
-            </p>
-
-            <p>
-              Let's try to hit <code>http://127.0.0.1:4848/login.jsf</code>,
-              well, I got the usual login screen, I enter my login credential,
-              and got redirected to
-              <code>http://127.0.0.1:4848/common/index.jsf</code>.... but now
-              <strong>it works ! </strong>(I tried looking at Glassfish sources
-              to identify and narrow down the source of my problem, but with a
-              quick lookup, I couldn't figure out where the things are supposed
-              to be done...)
-            </p>
-
-            <h2>The Useful tip !</h2>
-            <p>
-              To make it short, bookmark or be used to access the web
-              administration console for your Glassfish 3.x server via
-              <a href="http://127.0.0.1:4848/login.jsf"
-                ><code>http://127.0.0.1:4848/login.jsf</code></a
-              >
-            </p>
-            !<!--:--><!--:fr<a rel="attachment wp-att-71" href="http://www.bloggure.info/work/glassfish-v3-custom-log-levels.html/attachment/glassfish"><img class="size-full wp-image-71 alignright" title="glassfish" src="/images/uploads/2010/11/glassfish.png" alt="" width="92" height="50" /></a>
-J'ai un problème depuis un petit moment avec la console d'administration web de Glassfish v3.x. Quand j'essaie d'y accéder, je vais vers l'adresse <code>http://127.0.0.1:4848</code>, le premier accès me montre l'habituel "Initialisation de la console d'administration". Après quelques instants, en regardant les logs, je vois que la console est prête. <br/>
-Je rafraichis donc la page qui me renvoies vers <code>http://127.0.0.1:4848/common/index.jsf</code> avec une magnifique erreur 404 !
-
-<h2>La découverte</h2>
-J'ai trouvé la solution en me disant, hum, il ne m'a jamais demandé de me logguer...
-
-Si j'essaie d'aller à l'addresse <code>http://127.0.0.1:4848/login.jsf</code>, et bien, j'ai l'écran de login habituel, je saisis mes informations de connexion et je suis redirigé vers <code>http://127.0.0.1:4848/common/index.jsf</code>.... mais maintenant <strong>ça marche ! </strong>(J'ai essayé de regarder les sources de Glassfish pour identifier et comprendre ce qui se passait, mais avec un rapide coup d'oeil je n'ai pas été capable de savoir où les choses sont censées se passer...)
-
-<h2>L'astuce pratique !</h2>
-Pour faire la version courte, mettez en favoris ou prenez l'habitude d'accéder à l'interface d'administration web de votre serveur Glassfish 3.x avec l'adresse <a href="http://127.0.0.1:4848/login.jsf"><code>http://127.0.0.1:4848/login.jsf</code></a> !:-->
           </div>
           <!-- /.entry-content -->
         </article>

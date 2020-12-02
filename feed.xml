@@ -4,13 +4,95 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="http://www.bloggure.info/feed.xml" />
 <link rel="alternate" type="text/html" href="http://www.bloggure.info" />
-<updated>2020-11-30T23:13:21+01:00</updated>
+<updated>2020-12-02T19:20:46+01:00</updated>
 <id>http://www.bloggure.info/</id>
 <author>
   <name></name>
   <uri>http://www.bloggure.info/</uri>
   <email></email>
 </author>
+
+
+<entry>
+  <title type="html"><![CDATA[XCode unit test and inheritance]]></title>
+  <link>http://www.bloggure.info/XCodeUnitTestInheritance</link>
+  <id>http://www.bloggure.info/XCodeUnitTestInheritance</id>
+  <published>2020-12-02T00:00:00+01:00</published>
+  <updated>2020-12-02T00:00:00+01:00</updated>
+  <author>
+    <name></name>
+    <uri>http://www.bloggure.info</uri>
+    <email></email>
+  </author>
+  <content type="html">&lt;p&gt;As I was working on an iOS project, I added unit tests to ensure things are not behaving badly (and will not).&lt;/p&gt;
+
+&lt;p&gt;During the process, a common pattern showed up and a few fields were required, I came up with the idea to basically create a &lt;code&gt;BaseClass&lt;/code&gt; for my tests, so that everything is unified.&lt;/p&gt;
+
+&lt;h2 id=&quot;base-idea&quot;&gt;Base idea&lt;/h2&gt;
+
+&lt;p&gt;I came up with something like the following for my tests&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;class BaseTest&amp;lt;T, Action&amp;gt;: XCTestCase {
+    var subject: T!
+    var actions: [Action]!
+
+    override func setUp(){
+        subject = T()
+        actions = []
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;class LoginTest: BaseTest&amp;lt;LoginMiddleware, LoginAction&amp;gt; {
+    func test_loginIsWorking(){
+        // ...
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It worked very well within XCode, I could run the tests by hitting the 🔹 in the gutter.&lt;/p&gt;
+
+&lt;h2 id=&quot;bad-things-happen&quot;&gt;Bad things happen&lt;/h2&gt;
+
+&lt;p&gt;The thing that I discovered later (thanks to the CI feedback), is that XCode was not properly discovering my tests as it should.
+At first I blamed the fact that my new tests were not at the top level of my sources folder (and the other ones were), but it was easy to check that this was not the problem at all.&lt;/p&gt;
+
+&lt;p&gt;Then, I blamed &lt;code&gt;fastlane&lt;/code&gt; and thought that I’ve missed something in my test target configuration or something, but in fact, the problem was similar when using classical &lt;code&gt;CMD + U&lt;/code&gt; key combo.&lt;/p&gt;
+
+&lt;p&gt;XCode was simply not discovering my test.&lt;/p&gt;
+
+&lt;h2 id=&quot;workaround&quot;&gt;Workaround&lt;/h2&gt;
+&lt;p&gt;Inheritance is often misused, in this case, I think it is relevant, but I applied classical way of working around this. I changed my &lt;code&gt;BaseClass&lt;/code&gt; to a &lt;code&gt;BaseHelper&lt;/code&gt; instead, to which the test delegates the calls.&lt;/p&gt;
+
+&lt;p&gt;With this, the test class properly inherits &lt;code&gt;XCTestCase&lt;/code&gt; and is discovered as expected (even in subfolders).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;class BaseHelper&amp;lt;T, Action&amp;gt;{
+    var subject: T!
+    var actions: [Action]!
+
+    init() {
+        subject = T()
+        actions = []
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;class LoginTest: XCTestCase {
+    var helper: BaseHelper&amp;lt;LoginMiddleware, LoginAction&amp;gt;!
+
+    override func setUp(){
+        helper = .init()
+    }
+    func test_loginIsWorking(){
+        // ...
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The nice thing in this solution is that the &lt;code&gt;setUp&lt;/code&gt; call is no longer magical !&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/XCodeUnitTestInheritance&quot;&gt;XCode unit test and inheritance&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure | There is no place like ::1&lt;/a&gt; on December 02, 2020.&lt;/p&gt;</content>
+</entry>
 
 
 <entry>
@@ -783,45 +865,6 @@ This dependency will transitively gets &lt;code&gt;wicket-auth-roles&lt;/code&gt
 &lt;em&gt;IntelliJ IDEA can do completion for class names in this file (you just need to hit the &lt;code&gt;ctrl+space&lt;/code&gt; shortcut twice)&lt;/em&gt;&lt;!--:--&gt;
 
   &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/work/java-work/wicket-work/wicket-routes-mount.html&quot;&gt;Wicket Routes Mount&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure | There is no place like ::1&lt;/a&gt; on May 20, 2013.&lt;/p&gt;</content>
-</entry>
-
-
-<entry>
-  <title type="html"><![CDATA[DuckDuckGo in Thunderbird]]></title>
-  <link>http://www.bloggure.info/www/duckduckgo-in-thunderbird</link>
-  <id>http://www.bloggure.info/www/duckduckgo-in-thunderbird</id>
-  <published>2013-03-24T00:00:00+01:00</published>
-  <updated>2013-03-24T00:00:00+01:00</updated>
-  <author>
-    <name></name>
-    <uri>http://www.bloggure.info</uri>
-    <email></email>
-  </author>
-  <content type="html">&lt;!--:en--&gt;&lt;a href=&quot;http://www.bloggure.info/wp-content/uploads/2013/03/logo_homepage.normal.v102.png&quot;&gt;&lt;img class=&quot;alignright size-thumbnail wp-image-890&quot; alt=&quot;Logo DuckDuckGo&quot; src=&quot;/images/uploads/2013/03/logo_homepage.normal.v102-150x150.png&quot; width=&quot;150&quot; height=&quot;150&quot; /&gt;&lt;/a&gt;Mozilla added a function to search on the web in the latest versions of Thunderbird.That's nice, but the default search engine is bing. As a DuckDuckGo user, I wanted to add my favourite search engine and use it by default. So here's how to do it.
-&lt;ol&gt;
-	&lt;li&gt;&lt;a title=&quot;Find your Thunderbird profile folder&quot; href=&quot;http://kb.mozillazine.org/Profile_folder_-_Thunderbird&quot;&gt;Find your profile folder&lt;/a&gt;.&lt;/li&gt;
-	&lt;li&gt;In it, create a folder named &quot;searchplugins&quot; (without the quotes) if it doesn't exists.&lt;/li&gt;
-	&lt;li&gt;Save &lt;a title=&quot;DuckDuckGo search plugin&quot; href=&quot;http://www.fribourg-est-independant.org/fonji/ddg.xml&quot;&gt;this xml&lt;/a&gt; file in it.&lt;/li&gt;
-	&lt;li&gt;(Re)start Thunderbird.&lt;/li&gt;
-	&lt;li&gt;Select some text in any mail, right clic and search with bing (sorry).&lt;/li&gt;
-	&lt;li&gt;Click the DuckDuckGo icon on the left.&lt;/li&gt;
-	&lt;li&gt;Click the heart icon on the bottom left.&lt;/li&gt;
-	&lt;li&gt;That's all!&lt;/li&gt;
-&lt;/ol&gt;
-To add google, add &lt;a href=&quot;http://bwinton.latte.ca/Work/google.xml&quot;&gt;this file&lt;/a&gt; in the same folder.&lt;!--:--&gt;&lt;!--:fr&lt;a href=&quot;http://www.bloggure.info/wp-content/uploads/2013/03/logo_homepage.normal.v102.png&quot;&gt;&lt;img class=&quot;alignright size-thumbnail wp-image-890&quot; alt=&quot;Logo DuckDuckGo&quot; src=&quot;/images/uploads/2013/03/logo_homepage.normal.v102-150x150.png&quot; width=&quot;150&quot; height=&quot;150&quot; /&gt;&lt;/a&gt;Mozilla a ajouté une fonction de recherche sur internet dans les dernières versions de Thunderbird. C'est très utile, mais le moteur par défaut est bing et, en tant qu'utilisateur de DuckDuckGo, j'ai voulu changer ceci pour mettre mon moteur favori à la place. Voici comment procéder :
-&lt;ol&gt;
-	&lt;li&gt;&lt;a title=&quot;Trouver votre profil thunderbird&quot; href=&quot;https://support.mozillamessaging.com/fr/kb/profil-utilisateur#w_oai-mon-profil-est-il-stockae&quot;&gt;Trouvez le répertoire de votre profil.&lt;/a&gt;&lt;/li&gt;
-	&lt;li&gt;Créez un répertoire &quot;searchplugins&quot; (sans guillemets) s'il n'existe pas déjà.&lt;/li&gt;
-	&lt;li&gt;Sauvegardez &lt;a title=&quot;DuckDuckGo search plugin&quot; href=&quot;http://www.fribourg-est-independant.org/fonji/ddg.xml&quot;&gt;ce fichier xml&lt;/a&gt; dans searchplugins.&lt;/li&gt;
-	&lt;li&gt;(Re)démarrez Thunderbird.&lt;/li&gt;
-	&lt;li&gt;Selectionnez du texte dans un email, faites un clic droit puis &quot;rechercher avec bing&quot; (désolé).&lt;/li&gt;
-	&lt;li&gt;Cliquez l'icône DuckDuckGo sur la gauche.&lt;/li&gt;
-	&lt;li&gt;Cliquez sur le cœur dans le coin en bas à gauche.&lt;/li&gt;
-	&lt;li&gt;C'est tout !&lt;/li&gt;
-&lt;/ol&gt;
-Pour utiliser google, ajoutez &lt;a href=&quot;http://bwinton.latte.ca/Work/google.xml&quot;&gt;ce fichier&lt;/a&gt; dans le même répertoire.&lt;--&gt;
-
-  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/www/duckduckgo-in-thunderbird&quot;&gt;DuckDuckGo in Thunderbird&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure | There is no place like ::1&lt;/a&gt; on March 24, 2013.&lt;/p&gt;</content>
 </entry>
 
 </feed>

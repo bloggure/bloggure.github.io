@@ -8,29 +8,26 @@
   <head>
     <meta charset="utf-8" />
     <title>
-      Graph of programming languages people used in 2012 &#8211; Bloggure |
-      There is no place like ::1
+      XCode unit test and inheritance &#8211; Bloggure | There is no place like
+      ::1
     </title>
     <meta
       name="description"
       content="Multi author blog about programming, computing and geek stuff"
     />
-    <meta name="keywords" content="java, languages, scala" />
+    <meta name="keywords" content="xcode, test, swift" />
 
     <!-- Open Graph -->
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="article" />
-    <meta
-      property="og:title"
-      content="Graph of programming languages people used in 2012"
-    />
+    <meta property="og:title" content="XCode unit test and inheritance" />
     <meta
       property="og:description"
       content="Multi author blog about programming, computing and geek stuff"
     />
     <meta
       property="og:url"
-      content="http://www.bloggure.info/www/graph-of-programming-languages-people-used-in-2012"
+      content="http://www.bloggure.info/XCodeUnitTestInheritance"
     />
     <meta
       property="og:site_name"
@@ -39,7 +36,7 @@
 
     <link
       rel="canonical"
-      href="http://www.bloggure.info/www/graph-of-programming-languages-people-used-in-2012"
+      href="http://www.bloggure.info/XCodeUnitTestInheritance"
     />
     <link
       href="http://www.bloggure.info/feed.xml"
@@ -145,11 +142,10 @@
             <div class="entry-meta">
               <span class="entry-date date published updated"
                 ><time
-                  datetime="2012-12-30T00:00:00+01:00"
+                  datetime="2020-12-02T00:00:00+01:00"
                   itemprop="datePublished"
-                  ><a
-                    href="http://www.bloggure.info/www/graph-of-programming-languages-people-used-in-2012"
-                    >December 30, 2012</a
+                  ><a href="http://www.bloggure.info/XCodeUnitTestInheritance"
+                    >December 02, 2020</a
                   ></time
                 ></span
               ><span
@@ -167,7 +163,7 @@
                 ></span
               >&nbsp; &bull; &nbsp;<span class="entry-comments"
                 ><a
-                  href="http://www.bloggure.info/www/graph-of-programming-languages-people-used-in-2012/#disqus_thread"
+                  href="http://www.bloggure.info/XCodeUnitTestInheritance/#disqus_thread"
                   >Comment</a
                 ></span
               >
@@ -176,71 +172,153 @@
 
             <h1 class="entry-title" itemprop="name">
               <a
-                href="http://www.bloggure.info/www/graph-of-programming-languages-people-used-in-2012"
+                href="http://www.bloggure.info/XCodeUnitTestInheritance"
                 rel="bookmark"
-                title="Graph of programming languages people used in 2012"
+                title="XCode unit test and inheritance"
                 itemprop="url"
-                >Graph of programming languages people used in 2012</a
+                >XCode unit test and inheritance</a
               >
             </h1>
           </header>
           <div class="entry-content" itemprop="description">
             <p>
-              I came across this link representing a visualization of
-              programming languages usage based on a hashtag collect :
-              <a href="http://www.ioncannon.net/projects/code2012/"
-                >http://www.ioncannon.net/projects/code2012/</a
-              >
-            </p>
-            <p>
-              Although this method can be criticized, it provides interesting
-              data : JavaScript is the clear winner with Java just behind. We
-              can see Scala is a growing language too, it has been used more
-              than PHP last year (according to this study).
+              As I was working on an iOS project, I added unit tests to ensure
+              things are not behaving badly (and will not).
             </p>
 
-            <em
-              >If you find another study on this topic don't hesitate to comment
-              this blog post to let me know.</em
-            >
+            <p>
+              During the process, a common pattern showed up and a few fields
+              were required, I came up with the idea to basically create a
+              <code>BaseClass</code> for my tests, so that everything is
+              unified.
+            </p>
+
+            <h2 id="base-idea">Base idea</h2>
+
+            <p>I came up with something like the following for my tests</p>
+
+            <pre><code class="language-swift">class BaseTest&lt;T, Action&gt;: XCTestCase {
+    var subject: T!
+    var actions: [Action]!
+
+    override func setUp(){
+        subject = T()
+        actions = []
+    }
+}
+</code></pre>
+
+            <pre><code class="language-swift">class LoginTest: BaseTest&lt;LoginMiddleware, LoginAction&gt; {
+    func test_loginIsWorking(){
+        // ...
+    }
+}
+</code></pre>
+
+            <p>
+              It worked very well within XCode, I could run the tests by hitting
+              the 🔹 in the gutter.
+            </p>
+
+            <h2 id="bad-things-happen">Bad things happen</h2>
+
+            <p>
+              The thing that I discovered later (thanks to the CI feedback), is
+              that XCode was not properly discovering my tests as it should. At
+              first I blamed the fact that my new tests were not at the top
+              level of my sources folder (and the other ones were), but it was
+              easy to check that this was not the problem at all.
+            </p>
+
+            <p>
+              Then, I blamed <code>fastlane</code> and thought that I’ve missed
+              something in my test target configuration or something, but in
+              fact, the problem was similar when using classical
+              <code>CMD + U</code> key combo.
+            </p>
+
+            <p>XCode was simply not discovering my test.</p>
+
+            <h2 id="workaround">Workaround</h2>
+            <p>
+              Inheritance is often misused, in this case, I think it is
+              relevant, but I applied classical way of working around this. I
+              changed my <code>BaseClass</code> to a
+              <code>BaseHelper</code> instead, to which the test delegates the
+              calls.
+            </p>
+
+            <p>
+              With this, the test class properly inherits
+              <code>XCTestCase</code> and is discovered as expected (even in
+              subfolders).
+            </p>
+
+            <pre><code class="language-swift">class BaseHelper&lt;T, Action&gt;{
+    var subject: T!
+    var actions: [Action]!
+
+    init() {
+        subject = T()
+        actions = []
+    }
+}
+</code></pre>
+
+            <pre><code class="language-swift">class LoginTest: XCTestCase {
+    var helper: BaseHelper&lt;LoginMiddleware, LoginAction&gt;!
+
+    override func setUp(){
+        helper = .init()
+    }
+    func test_loginIsWorking(){
+        // ...
+    }
+}
+</code></pre>
+
+            <p>
+              The nice thing in this solution is that the
+              <code>setUp</code> call is no longer magical !
+            </p>
 
             <footer class="entry-meta">
               <span class="entry-tags"
                 ><a
-                  href="http://www.bloggure.info/tags/index.html#java"
-                  title="Pages tagged java"
+                  href="http://www.bloggure.info/tags/index.html#xcode"
+                  title="Pages tagged xcode"
                   rel="tag"
                   class="tag"
-                  >java</a
+                  >xcode</a
                 ><a
-                  href="http://www.bloggure.info/tags/index.html#languages"
-                  title="Pages tagged languages"
+                  href="http://www.bloggure.info/tags/index.html#test"
+                  title="Pages tagged test"
                   rel="tag"
                   class="tag"
-                  >languages</a
+                  >test</a
                 ><a
-                  href="http://www.bloggure.info/tags/index.html#scala"
-                  title="Pages tagged scala"
+                  href="http://www.bloggure.info/tags/index.html#swift"
+                  title="Pages tagged swift"
                   rel="tag"
                   class="tag"
-                  >scala</a
+                  >swift</a
                 ></span
               >
               <span
                 ><a
-                  href="http://www.bloggure.info/www/graph-of-programming-languages-people-used-in-2012"
+                  href="http://www.bloggure.info/XCodeUnitTestInheritance"
                   rel="bookmark"
-                  title="Graph of programming languages people used in 2012"
+                  title="XCode unit test and inheritance"
                   itemprop="url"
-                  >Graph of programming languages people used in 2012</a
+                  >XCode unit test and inheritance</a
                 ></span
               >
               was published on
               <span class="entry-date date published updated"
                 ><time
-                  datetime="2012-12-30T00:00:00+01:00"
+                  datetime="2020-12-02T00:00:00+01:00"
                   itemprop="datePublished"
-                  >December 30, 2012</time
+                  >December 02, 2020</time
                 ></span
               >
 
@@ -261,12 +339,12 @@
               <div class="social-share">
                 <ul
                   class="socialcount socialcount-small inline-list"
-                  data-url="http://www.bloggure.info/www/graph-of-programming-languages-people-used-in-2012"
-                  data-share-text="Graph of programming languages people used in 2012"
+                  data-url="http://www.bloggure.info/XCodeUnitTestInheritance"
+                  data-share-text="XCode unit test and inheritance"
                 >
                   <li class="facebook">
                     <a
-                      href="https://www.facebook.com/sharer/sharer.php?u=http://www.bloggure.info/www/graph-of-programming-languages-people-used-in-2012"
+                      href="https://www.facebook.com/sharer/sharer.php?u=http://www.bloggure.info/XCodeUnitTestInheritance"
                       title="Share on Facebook"
                       ><span class="count"
                         ><i class="icon-facebook-sign"></i> Like</span
@@ -275,7 +353,7 @@
                   </li>
                   <li class="twitter">
                     <a
-                      href="https://twitter.com/intent/tweet?text=http://www.bloggure.info/www/graph-of-programming-languages-people-used-in-2012"
+                      href="https://twitter.com/intent/tweet?text=http://www.bloggure.info/XCodeUnitTestInheritance"
                       title="Share on Twitter"
                       ><span class="count"
                         ><i class="icon-twitter-sign"></i> Tweet</span
@@ -284,7 +362,7 @@
                   </li>
                   <li class="googleplus">
                     <a
-                      href="https://plus.google.com/share?url=http://www.bloggure.info/www/graph-of-programming-languages-people-used-in-2012"
+                      href="https://plus.google.com/share?url=http://www.bloggure.info/XCodeUnitTestInheritance"
                       title="Share on Google Plus"
                       ><span class="count"
                         ><i class="icon-google-plus-sign"></i> +1</span
@@ -341,45 +419,27 @@
 
       <div class="read-more">
         <div class="read-more-header">
-          <a
-            href="http://www.bloggure.info/work/intellij-12-darcula-monokai"
-            class="read-more-btn"
+          <a href="http://www.bloggure.info/Revival" class="read-more-btn"
             >Read More</a
           >
         </div>
         <!-- /.read-more-header -->
         <div class="read-more-content">
           <h3>
-            <a
-              href="http://www.bloggure.info/XCodeUnitTestInheritance"
-              title="XCode unit test and inheritance"
-              >XCode unit test and inheritance</a
+            <a href="http://www.bloggure.info/Revival" title="Bloggure revival"
+              >Bloggure revival</a
             >
           </h3>
           <p>
-            As I was working on an iOS project, I added unit tests to ensure
-            things are not behaving badly (and will not).During the process, a
-            commo...&hellip;
-            <a href="http://www.bloggure.info/XCodeUnitTestInheritance"
-              >Continue reading</a
-            >
+            It’s been a long timeIt’s been a very long time since last post (5
+            years…).I am convinced that blogging is useful, at least for my
+            presen...&hellip;
+            <a href="http://www.bloggure.info/Revival">Continue reading</a>
           </p>
         </div>
         <!-- /.read-more-content -->
 
         <div class="read-more-list">
-          <div class="list-item">
-            <h4>
-              <a
-                href="http://www.bloggure.info/Revival"
-                title="Bloggure revival"
-                >Bloggure revival</a
-              >
-            </h4>
-            <span>Published on December 01, 2020</span>
-          </div>
-          <!-- /.list-item -->
-
           <div class="list-item">
             <h4>
               <a
@@ -389,6 +449,18 @@
               >
             </h4>
             <span>Published on November 16, 2015</span>
+          </div>
+          <!-- /.list-item -->
+
+          <div class="list-item">
+            <h4>
+              <a
+                href="http://www.bloggure.info/faster-ssh-multi-hop"
+                title="Faster ssh multi hop"
+                >Faster ssh multi hop</a
+              >
+            </h4>
+            <span>Published on September 07, 2015</span>
           </div>
           <!-- /.list-item -->
         </div>

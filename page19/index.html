@@ -127,6 +127,112 @@
             <div class="entry-meta">
               <span class="entry-date date published updated"
                 ><time
+                  datetime="2010-11-02T00:00:00+01:00"
+                  itemprop="datePublished"
+                  ><a
+                    href="http://www.bloggure.info/.java/work/glassfish-v3-custom-log-levels"
+                    >November 02, 2010</a
+                  ></time
+                ></span
+              ><span
+                class="author vcard"
+                itemprop="author"
+                itemscope
+                itemtype="http://schema.org/Person"
+                ><span itemprop="name" class="fn"
+                  ><a
+                    href="http://www.bloggure.info/cgatay"
+                    title="About cgatay"
+                    itemprop="url"
+                    >cgatay</a
+                  ></span
+                ></span
+              >&nbsp; &bull; &nbsp;<span class="entry-comments"
+                ><a
+                  href="http://www.bloggure.info/.java/work/glassfish-v3-custom-log-levels/#disqus_thread"
+                  >Comment</a
+                ></span
+              >
+            </div>
+            <!-- /.entry-meta -->
+
+            <h1 class="entry-title" itemprop="name">
+              <a
+                href="http://www.bloggure.info/.java/work/glassfish-v3-custom-log-levels"
+                rel="bookmark"
+                title="Glassfish v3.x - custom log levels"
+                itemprop="url"
+                >Glassfish v3.x - custom log levels</a
+              >
+            </h1>
+          </header>
+          <div class="entry-content" itemprop="description">
+            <!--:en--><img
+              class="alignright size-full wp-image-71"
+              src="/images/uploads/2010/11/glassfish.png"
+              alt=""
+              width="92"
+              height="50"
+            />
+            <p>
+              In Glassfish v2, you can easily set log levels using the admin
+              console by going into
+              <em>Application Server &gt; Logging &gt; Log Levels</em>. There
+              you can add custom filter and change levels only by using the
+              console.
+            </p>
+
+            <p>
+              In the new stable release of Glassfish, this option has
+              disappeared, you can edit levels but there is no easy way to add
+              custom filters. The trick is to alter manually the
+              logging.properties file located in <em>&lt;yourdomain&gt;</em
+              ><em>/config</em> directory. For example, if you want to filter
+              out logs from Sun's Portlet Container, you have to set the
+              following in the logging.properties file :
+            </p>
+
+            <code>
+              debug.com.sun.portlet.portletcontainer.impl.level=FINEST
+            </code>
+
+            <p>
+              Please notice the <code>.level</code> at the end of the fully
+              qualified name of the class hierarchy to filter. After adding the
+              new entry, you will be able to alter level via the admin console
+              of Glassfish, or even simpler, simply edit the file : the changes
+              are taken on the fly (in certain conditions, you might need to
+              restart the server) !
+            </p>
+
+            <p>Hope it'll help...<!--:--></p>
+            <!--:fr<img class="alignright size-full wp-image-71" src="/images/uploads/2010/11/glassfish.png" alt="" width="92" height="50" />Dans Glassfish v2, il est facile de configurer les niveaux de log en utilisant la console d'administration en allant dans les catégories <em>Application Server &gt; Logging &gt; Log Levels</em>. D'ici vous pouvez rajouter des niveaux personnalisés et changer les niveaux de façon graphique.
+
+Dans la nouvelle version stable de Glassfish, cette option a disparu, vous pouvez éditer les niveaux mais il n'y a pas de système simple permettant d'ajouter des niveaux personnalisés. L'astuce est de modifier le fichier logging.properties présent dans le répertoire  <em>&lt;yourdomain&gt;</em><em>/config</em>.
+Par exemple, si vous voulez filtrer les logs du container de portlets de Sun vous devez ajouter la ligne suivante dans votre fichier  logging.properties :
+
+[code light="true"]
+debug.com.sun.portlet.portletcontainer.impl.level=FINEST
+[/code]
+
+Prêtez attention a l'ajout de <code>.level</code> à la fin du nom complet de la class à filtrer. Après avoir ajouté de nouvelles entrées, vous pourrez changer le niveau via l'administration de Glassfish, ou, encore plus simple, éditer de nouveau le fichier, les changements sont pris à la volée (dans certaines conditions, un redémarrage du serveur peut être requis) ! 
+
+En espérant que ça aide quelques personnes... -->
+          </div>
+          <!-- /.entry-content -->
+        </article>
+        <!-- /.hentry -->
+
+        <article
+          class="hentry"
+          itemprop="blogPost"
+          itemscope
+          itemtype="http://schema.org/BlogPosting"
+        >
+          <header>
+            <div class="entry-meta">
+              <span class="entry-date date published updated"
+                ><time
                   datetime="2010-11-01T00:00:00+01:00"
                   itemprop="datePublished"
                   ><a

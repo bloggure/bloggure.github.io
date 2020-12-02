@@ -127,6 +127,214 @@
             <div class="entry-meta">
               <span class="entry-date date published updated"
                 ><time
+                  datetime="2014-03-08T00:00:00+01:00"
+                  itemprop="datePublished"
+                  ><a
+                    href="http://www.bloggure.info/www/os/use-VirtualBox-to-do-a-real-install"
+                    >March 08, 2014</a
+                  ></time
+                ></span
+              ><span
+                class="author vcard"
+                itemprop="author"
+                itemscope
+                itemtype="http://schema.org/Person"
+                ><span itemprop="name" class="fn"
+                  ><a
+                    href="http://www.bloggure.info/cgatay"
+                    title="About cgatay"
+                    itemprop="url"
+                    >cgatay</a
+                  ></span
+                ></span
+              >&nbsp; &bull; &nbsp;<span class="entry-comments"
+                ><a
+                  href="http://www.bloggure.info/www/os/use-VirtualBox-to-do-a-real-install/#disqus_thread"
+                  >Comment</a
+                ></span
+              >
+            </div>
+            <!-- /.entry-meta -->
+
+            <h1 class="entry-title" itemprop="name">
+              <a
+                href="http://www.bloggure.info/www/os/use-VirtualBox-to-do-a-real-install"
+                rel="bookmark"
+                title="Use VirtualBox to do a real install"
+                itemprop="url"
+                >Use VirtualBox to do a real install</a
+              >
+            </h1>
+          </header>
+          <div class="entry-content" itemprop="description">
+            <h1 id="install-from-virtualbox-">Install from VirtualBox ?</h1>
+            <p>
+              If you are like me, you have got plenty of hard drives hanging
+              around and never got an optical drive or an usb stick. One thing
+              that could reveal itself to be hard is installing a new Operating
+              System on any machine without any of the two I mentionned earlier.
+            </p>
+
+            <p>
+              In this short tips and tricks post, I will show you how you can
+              use VirtualBox raw disks feature (I guess here for compatibility
+              with VMWare) to install a new Operating System from your old one
+              (yes, without the 10 minutes part were you can do nothing else
+              with your computer).
+            </p>
+
+            <h1 id="prerequisites">Prerequisites</h1>
+
+            <p>What you will need in order for this to work :</p>
+
+            <ul>
+              <li>a Linux setup with root access (sudoing will be fine)</li>
+              <li>
+                a second hard drive where you want to put your brand new
+                Operating System
+              </li>
+              <li>ISO file of the OS you want to install</li>
+            </ul>
+
+            <h1 id="install">Install</h1>
+
+            <p>
+              First of all, install VirtualBox on your system (<code>yum</code>,
+              <code>apt-get</code>, whatever your package system is). Then you
+              will need to find out what is the identifier of the drive you want
+              to use as a new (<code>sudo fdisk -l</code> can tell you
+              everything you need to know about your disks).
+            </p>
+
+            <p>
+              In my example lets say I want to install on a 300GB hard drive, I
+              got this <code>fdisk</code> output
+            </p>
+
+            <pre><code>cgatay@cgatay2:~$ sudo fdisk -l
+[sudo] password for cgatay:
+
+Disk /dev/sda: 251.1 GB, 251059544064 bytes
+255 heads, 63 sectors/track, 30522 cylinders, total 490350672 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0x000efa30
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/sda1   *        2048   489302015   244649984   83  Linux
+/dev/sda2       489304062   490348543      522241    5  Extended
+/dev/sda5       489304064   490348543      522240   82  Linux swap / Solaris
+
+Disk /dev/sdb: 400.1 GB, 400088457216 bytes
+255 heads, 63 sectors/track, 48641 cylinders, total 781422768 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0x0003f041
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/sdb1   *          63   390627047   195313492+   7  HPFS/NTFS/exFAT
+/dev/sdb2       390627048   781422767   195397860    c  W95 FAT32 (LBA)
+
+Disk /dev/sdc: 1000.2 GB, 1000204886016 bytes
+255 heads, 63 sectors/track, 121601 cylinders, total 1953525168 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0x00048185
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/sdc1   *        2048      499711      248832   83  Linux
+/dev/sdc2          499712  1952790527   976145408   83  Linux
+/dev/sdc3      1952792574  1953523711      365569    5  Extended
+/dev/sdc5      1952792576  1953523711      365568   82  Linux swap / Solaris
+
+Disk /dev/sdd: 300.1 GB, 300090728448 bytes
+255 heads, 63 sectors/track, 36483 cylinders, total 586114704 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0x000cb074
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/sdd1   *        2048   574060543   287029248   83  Linux
+/dev/sdd2       574062590   586113023     6025217    5  Extended
+/dev/sdd5       574062592   586113023     6025216   82  Linux swap / Solaris
+</code></pre>
+
+            <p>
+              The interesting line is the one stating
+              <code>Disk /dev/sdd: 300.1 GB</code>. From now on I will use
+              /dev/sdd as the target of my install.
+            </p>
+
+            <p>
+              For the rest of the commands to work you need to run everything as
+              root (by sudoing), I think there is more “cleaner” way of doing
+              this by correctly setting <code>suid</code> flags but I did not
+              took the time to look after this.
+            </p>
+
+            <p>
+              You need to create the hard disk file that will point to your
+              physical install, then launch VirtualBox as root (there is a lot
+              of chances that your regular user can’t do everything he wants on
+              a device):
+            </p>
+
+            <pre><code>sudo VBoxManage internalcommands createrawvmdk -filename disk.vmdk -rawdisk /dev/sdd; #replace /dev/sdd with your device
+sudo VirtualBox;
+</code></pre>
+
+            <p>
+              From there, this is a simple VirtualBox machine setup, you just
+              need to select the created disk.vmdk file for the hard disk of
+              your Virtual Machine, mount the ISO and proceed with the install.
+              At the end of the install, you can shut down the VirtualMachine,
+              reboot your computer and use the boot selection menu of your bios
+              (or change the boot order) to boot directly on your newly
+              installed system.
+            </p>
+
+            <p>
+              If you are on a Linux system, you can issue a
+              <code>update-grub</code> that will detect all your operating
+              systems and will create the boot menu (you can still boot your old
+              one this way).
+            </p>
+
+            <h1 id="disclaimer">Disclaimer</h1>
+
+            <p>
+              This method has been tested multiple times for installing Windows
+              as well as Linuxes without any hurt. However, it might kill kitten
+              or trigger a nuclear war if used incorrectly, in such cases, I
+              decline responsibility.
+            </p>
+
+            <h1 id="thoughts">Thoughts</h1>
+
+            <p>
+              As a side note, I think a Linux host is not required, you can
+              achieve the same with a Windows operating system, the command line
+              surely just need some improvements to point to the physical disk.
+            </p>
+          </div>
+          <!-- /.entry-content -->
+        </article>
+        <!-- /.hentry -->
+
+        <article
+          class="hentry"
+          itemprop="blogPost"
+          itemscope
+          itemtype="http://schema.org/BlogPosting"
+        >
+          <header>
+            <div class="entry-meta">
+              <span class="entry-date date published updated"
+                ><time
                   datetime="2014-02-10T00:00:00+01:00"
                   itemprop="datePublished"
                   ><a
@@ -497,109 +705,6 @@
               automatically adds the missing single quotes in every messages.
             </p>
             <!--:-->
-          </div>
-          <!-- /.entry-content -->
-        </article>
-        <!-- /.hentry -->
-
-        <article
-          class="hentry"
-          itemprop="blogPost"
-          itemscope
-          itemtype="http://schema.org/BlogPosting"
-        >
-          <header>
-            <div class="entry-meta">
-              <span class="entry-date date published updated"
-                ><time
-                  datetime="2013-07-25T00:00:00+02:00"
-                  itemprop="datePublished"
-                  ><a
-                    href="http://www.bloggure.info/work/play-framework-and-i18n-in-views"
-                    >July 25, 2013</a
-                  ></time
-                ></span
-              ><span
-                class="author vcard"
-                itemprop="author"
-                itemscope
-                itemtype="http://schema.org/Person"
-                ><span itemprop="name" class="fn"
-                  ><a
-                    href="http://www.bloggure.info/cgatay"
-                    title="About cgatay"
-                    itemprop="url"
-                    >cgatay</a
-                  ></span
-                ></span
-              >&nbsp; &bull; &nbsp;<span class="entry-comments"
-                ><a
-                  href="http://www.bloggure.info/work/play-framework-and-i18n-in-views/#disqus_thread"
-                  >Comment</a
-                ></span
-              >
-            </div>
-            <!-- /.entry-meta -->
-
-            <h1 class="entry-title" itemprop="name">
-              <a
-                href="http://www.bloggure.info/work/play-framework-and-i18n-in-views"
-                rel="bookmark"
-                title="Play Framework and i18n in views"
-                itemprop="url"
-                >Play Framework and i18n in views</a
-              >
-            </h1>
-          </header>
-          <div class="entry-content" itemprop="description">
-            <!--:en--><img
-              class="alignright size-full wp-image-916"
-              alt="playlogo"
-              src="/images/uploads/2013/07/playlogo.png"
-              width="150"
-              height="50"
-            />
-
-            <p>
-              I was having a strange issue with localization in a Play Framework
-              application. I followed the
-              <a href="http://www.playframework.com/documentation/2.0/ScalaI18N"
-                >simple steps</a
-              >
-              detailed on the official documentation but with no luck.
-            </p>
-
-            <p>
-              When experimenting, I figured out that the locale used is the
-              default locale of the JVM. In my case, my default locale is French
-              so I only had French in my application. But on Heroku, the default
-              locale is English and thus the application was only working in
-              English.
-            </p>
-
-            <p>
-              The trick consists in adding an implicit lang to your template
-              views. In fact, Scala import an implicit lang with the lowest
-              priority being the one coming from the JVM, if you want to get the
-              language parsed from the Accept-Languages http header, you need to
-              add an implicit as below :
-            </p>
-            <figure class="highlight">
-              <pre><code class="language-scala" data-lang="scala"><span></span><span class="o">@(</span><span class="n">title</span><span class="k">:</span> <span class="kt">String</span><span class="o">)(</span><span class="n">content</span><span class="k">:</span> <span class="kt">Html</span><span class="o">)(</span><span class="k">implicit</span> <span class="n">lang</span><span class="k">:</span> <span class="kt">Lang</span><span class="o">)</span></code></pre>
-            </figure>
-            <p>
-              With this little trick, your calls to localization will use the
-              locale extracted from the http request as expected.
-            </p>
-            <!--:--><!--:fr<img class="alignright size-full wp-image-916" alt="playlogo" src="/images/uploads/2013/07/playlogo.png" width="150" height="50" />
-
-I was having a strange issue with localization in a Play Framework application. I followed the <a href="http://www.playframework.com/documentation/2.0/ScalaI18N">simple steps</a> detailed on the official documentation but with no luck.
-
-When experimenting, I figured out that the locale used is the default locale of the JVM. In my case, my default locale is French so I only had French in my application. But on Heroku, the default locale is English and thus the application was only working in English.
-
-The trick consists in adding an implicit lang to your template views. In fact, Scala import an implicit lang with the lowest priority being the one coming from the JVM, if you want to get the language parsed from the Accept-Languages http header, you need to add an implicit as below :
-<pre class="brush: scala">@(title: String)(content: Html)(implicit lang: Lang)</pre>
-With this little trick, your calls to localization will use the locale extracted from the http request as expected.<-->
           </div>
           <!-- /.entry-content -->
         </article>
