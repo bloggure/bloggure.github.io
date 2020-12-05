@@ -174,31 +174,30 @@
             <p>
               During the process, a common pattern showed up and a few fields
               were required, I came up with the idea to basically create a
-              <code>BaseClass</code> for my tests, so that everything is
-              unified.
+              <code>BaseTest</code> for my tests, so that everything is unified.
             </p>
 
             <h2 id="base-idea">Base idea</h2>
 
             <p>I came up with something like the following for my tests</p>
 
-            <pre><code class="language-swift">class BaseTest&lt;T, Action&gt;: XCTestCase {
-    var subject: T!
-    var actions: [Action]!
+            <figure class="highlight">
+              <pre><code class="language-swift" data-lang="swift"><span></span><span class="kd">class</span> <span class="nc">BaseTest</span><span class="p">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">Action</span><span class="p">&gt;:</span> <span class="n">XCTestCase</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">subject</span><span class="p">:</span> <span class="n">T</span><span class="p">!</span>
+    <span class="kd">var</span> <span class="nv">actions</span><span class="p">:</span> <span class="p">[</span><span class="n">Action</span><span class="p">]</span><span class="o">!</span>
 
-    override func setUp(){
-        subject = T()
-        actions = []
-    }
-}
-</code></pre>
+    <span class="kr">override</span> <span class="kd">func</span> <span class="nf">setUp</span><span class="p">(){</span>
+        <span class="n">subject</span> <span class="p">=</span> <span class="n">T</span><span class="p">()</span>
+        <span class="n">actions</span> <span class="p">=</span> <span class="p">[]</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 
-            <pre><code class="language-swift">class LoginTest: BaseTest&lt;LoginMiddleware, LoginAction&gt; {
-    func test_loginIsWorking(){
-        // ...
-    }
-}
-</code></pre>
+<span class="kd">class</span> <span class="nc">LoginTest</span><span class="p">:</span> <span class="n">BaseTest</span><span class="p">&lt;</span><span class="n">LoginMiddleware</span><span class="p">,</span> <span class="n">LoginAction</span><span class="p">&gt;</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">test_loginIsWorking</span><span class="p">(){</span>
+        <span class="c1">// ...</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre>
+            </figure>
 
             <p>
               It worked very well within XCode, I could run the tests by hitting
@@ -228,7 +227,7 @@
             <p>
               Inheritance is often misused, in this case, I think it is
               relevant, but I applied classical way of working around this. I
-              changed my <code>BaseClass</code> to a
+              changed my <code>BaseTest</code> to a
               <code>BaseHelper</code> instead, to which the test delegates the
               calls.
             </p>
@@ -239,28 +238,28 @@
               subfolders).
             </p>
 
-            <pre><code class="language-swift">class BaseHelper&lt;T, Action&gt;{
-    var subject: T!
-    var actions: [Action]!
+            <figure class="highlight">
+              <pre><code class="language-swift" data-lang="swift"><span></span><span class="kd">class</span> <span class="nc">BaseHelper</span><span class="p">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">Action</span><span class="p">&gt;{</span>
+    <span class="kd">var</span> <span class="nv">subject</span><span class="p">:</span> <span class="n">T</span><span class="p">!</span>
+    <span class="kd">var</span> <span class="nv">actions</span><span class="p">:</span> <span class="p">[</span><span class="n">Action</span><span class="p">]</span><span class="o">!</span>
 
-    init() {
-        subject = T()
-        actions = []
-    }
-}
-</code></pre>
+    <span class="kd">init</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">subject</span> <span class="p">=</span> <span class="n">T</span><span class="p">()</span>
+        <span class="n">actions</span> <span class="p">=</span> <span class="p">[]</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 
-            <pre><code class="language-swift">class LoginTest: XCTestCase {
-    var helper: BaseHelper&lt;LoginMiddleware, LoginAction&gt;!
+<span class="kd">class</span> <span class="nc">LoginTest</span><span class="p">:</span> <span class="n">XCTestCase</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">helper</span><span class="p">:</span> <span class="n">BaseHelper</span><span class="p">&lt;</span><span class="n">LoginMiddleware</span><span class="p">,</span> <span class="n">LoginAction</span><span class="p">&gt;</span><span class="o">!</span>
 
-    override func setUp(){
-        helper = .init()
-    }
-    func test_loginIsWorking(){
-        // ...
-    }
-}
-</code></pre>
+    <span class="kr">override</span> <span class="kd">func</span> <span class="nf">setUp</span><span class="p">(){</span>
+        <span class="n">helper</span> <span class="p">=</span> <span class="p">.</span><span class="kd">init</span><span class="p">()</span>
+    <span class="p">}</span>
+    <span class="kd">func</span> <span class="nf">test_loginIsWorking</span><span class="p">(){</span>
+        <span class="c1">// ...</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre>
+            </figure>
 
             <p>
               The nice thing in this solution is that the
