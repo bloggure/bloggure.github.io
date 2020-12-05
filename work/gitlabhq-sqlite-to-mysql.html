@@ -7,9 +7,7 @@
   <!--<![endif]-->
   <head>
     <meta charset="utf-8" />
-    <title>
-      GitlabHQ - SQLite to mySQL &#8211; Bloggure | There is no place like ::1
-    </title>
+    <title>GitlabHQ - SQLite to mySQL &#8211; Bloggure</title>
     <meta
       name="description"
       content="Multi author blog about programming, computing and geek stuff"
@@ -28,10 +26,7 @@
       property="og:url"
       content="http://www.bloggure.info/work/gitlabhq-sqlite-to-mysql.html"
     />
-    <meta
-      property="og:site_name"
-      content="Bloggure | There is no place like ::1"
-    />
+    <meta property="og:site_name" content="Bloggure" />
 
     <link
       rel="canonical"
@@ -41,7 +36,7 @@
       href="http://www.bloggure.info/feed.xml"
       type="application/atom+xml"
       rel="alternate"
-      title="Bloggure | There is no place like ::1 Feed"
+      title="Bloggure Feed"
     />
 
     <!-- http://t.co/dKP3o1e -->
@@ -52,11 +47,11 @@
     <!-- For all browsers -->
     <link
       rel="stylesheet"
-      href="http://www.bloggure.info/assets/css/main.min.css"
+      href="http://www.bloggure.info/assets/css/main.css"
     />
     <!-- Webfonts -->
     <link
-      href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic"
+      href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic"
       rel="stylesheet"
       type="text/css"
     />
@@ -70,7 +65,7 @@
     <!-- 16x16 -->
     <link rel="shortcut icon" href="http://www.bloggure.info/favicon.ico" />
     <!-- 32x32 -->
-    <!-- <link rel="shortcut icon" href="http://www.bloggure.info/favicon.png"> -->
+    <link rel="shortcut icon" href="http://www.bloggure.info/favicon.png" />
     <!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
     <link
       rel="apple-touch-icon-precomposed"
@@ -96,26 +91,10 @@
     />
   </head>
 
-  <body id="post-index" itemscope itemtype="http://schema.org/WebPage">
+  <body id="post">
     <!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
-    <div class="meny">
-      <nav
-        role="navigation"
-        itemscope
-        itemtype="http://schema.org/SiteNavigationElement"
-      >
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/archive/">All Posts</a></li>
-          <li><a href="/tags/">All Tags</a></li>
-        </ul>
-        <!-- /.dl-menu -->
-      </nav>
-      <!-- /.dl-menuwrapper -->
-    </div>
-    <!--<div class="meny-arrow"></div>-->
 
-    <div class="content">
+    <div class="entry-header">
       <header class="header-title">
         <div class="header-title-wrap">
           <h1 class="entry-title" itemprop="name">
@@ -124,19 +103,11 @@
         </div>
         <!-- /.header-title-wrap -->
       </header>
-      <div
-        id="main"
-        role="main"
-        itemprop="mainContentOfPage"
-        itemscope
-        itemtype="http://schema.org/Blog"
-      >
-        <article
-          class="hentry"
-          itemprop="blogPost"
-          itemscope
-          itemtype="http://schema.org/BlogPosting"
-        >
+    </div>
+
+    <div id="main" role="main">
+      <article class="hentry">
+        <div class="entry-content">
           <header>
             <div class="entry-meta">
               <span class="entry-date date published updated"
@@ -175,48 +146,47 @@
               >
             </h1>
           </header>
-          <div class="entry-content" itemprop="description">
-            <!--:en--><img
-              src="/images/uploads/2012/02/gitlabhq-logo.png"
-              alt=""
-              title="gitlabhq-logo"
-              width="175"
-              height="60"
-              class="alignright size-full wp-image-528"
-            />
-            <p>
-              As our <a href="http://gitlabhq.com/">GitlabHQ</a> setup at
-              <a href="http://www.srmvision.com">SRMvision</a> is mean to stay,
-              we wanted to migrate from the standard SQLite database to an
-              easier to manage for us : mySQL.<br />
-              The steps are quite straighforward, first, setup mySQL :
-            </p>
+          <!--:en--><img
+            src="/images/uploads/2012/02/gitlabhq-logo.png"
+            alt=""
+            title="gitlabhq-logo"
+            width="175"
+            height="60"
+            class="alignright size-full wp-image-528"
+          />
+          <p>
+            As our <a href="http://gitlabhq.com/">GitlabHQ</a> setup at
+            <a href="http://www.srmvision.com">SRMvision</a> is mean to stay, we
+            wanted to migrate from the standard SQLite database to an easier to
+            manage for us : mySQL.<br />
+            The steps are quite straighforward, first, setup mySQL :
+          </p>
 
-            <figure class="highlight">
-              <pre><code class="language-sql" data-lang="sql"><span></span><span class="k">create</span> <span class="k">database</span> <span class="n">gitlab</span><span class="p">;</span> 
+          <figure class="highlight">
+            <pre><code class="language-sql" data-lang="sql"><span></span><span class="k">create</span> <span class="k">database</span> <span class="n">gitlab</span><span class="p">;</span> 
 <span class="k">grant</span> <span class="k">all</span> <span class="k">privileges</span> <span class="k">on</span> <span class="n">gitlab</span><span class="p">.</span><span class="o">*</span> <span class="k">to</span> <span class="ss">&quot;gitlab&quot;</span> <span class="n">identified</span> <span class="k">by</span> <span class="ss">&quot;gitlab&quot;</span><span class="p">;</span> 
 <span class="n">flush</span> <span class="k">privileges</span><span class="p">;</span></code></pre>
-            </figure>
-            Then prepare to dump the data out of GitlabHQ, stop your webserver,
-            then, from your GitlabHQ folder :
+          </figure>
+          Then prepare to dump the data out of GitlabHQ, stop your webserver,
+          then, from your GitlabHQ folder :
 
-            <figure class="highlight">
-              <pre><code class="language-bash" data-lang="bash"><span></span>bundle <span class="nb">exec</span> rake db:data:dump <span class="nv">RAILS_ENV</span><span class="o">=</span>production</code></pre>
-            </figure>
-            this will create a db/data.yml file. All you have to do now is
-            reconfigure GitlabHQ to connect to mySQL and reimport the data. The
-            database configuration takes place in the config/database.yml file,
-            backup your existing file and rename the database.yml.example :
+          <figure class="highlight">
+            <pre><code class="language-bash" data-lang="bash"><span></span>bundle <span class="nb">exec</span> rake db:data:dump <span class="nv">RAILS_ENV</span><span class="o">=</span>production</code></pre>
+          </figure>
+          this will create a db/data.yml file. All you have to do now is
+          reconfigure GitlabHQ to connect to mySQL and reimport the data. The
+          database configuration takes place in the config/database.yml file,
+          backup your existing file and rename the database.yml.example :
 
-            <figure class="highlight">
-              <pre><code class="language-bash" data-lang="bash"><span></span>mv config/database.yml config/database.yml.old
+          <figure class="highlight">
+            <pre><code class="language-bash" data-lang="bash"><span></span>mv config/database.yml config/database.yml.old
 cp config/database.yml.example config/database.yml</code></pre>
-            </figure>
-            Then edit the file to reflect your new configuration, only the
-            production section is relevant in our case :
+          </figure>
+          Then edit the file to reflect your new configuration, only the
+          production section is relevant in our case :
 
-            <figure class="highlight">
-              <pre><code class="language-yaml" data-lang="yaml"><span></span><span class="l l-Scalar l-Scalar-Plain">development</span><span class="p p-Indicator">:</span>
+          <figure class="highlight">
+            <pre><code class="language-yaml" data-lang="yaml"><span></span><span class="l l-Scalar l-Scalar-Plain">development</span><span class="p p-Indicator">:</span>
   <span class="l l-Scalar l-Scalar-Plain">adapter</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">mysql2</span>
   <span class="l l-Scalar l-Scalar-Plain">encoding</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">utf8</span>
   <span class="l l-Scalar l-Scalar-Plain">reconnect</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
@@ -248,19 +218,19 @@ cp config/database.yml.example config/database.yml</code></pre>
   <span class="l l-Scalar l-Scalar-Plain">username</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">gitlab</span> <span class="c1"># to replace with your credentials</span>
   <span class="l l-Scalar l-Scalar-Plain">password</span><span class="p p-Indicator">:</span> <span class="s">&quot;gitlab&quot;</span> <span class="c1"># to replace with your credentials</span>
   <span class="l l-Scalar l-Scalar-Plain">socket</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/var/run/mysqld/mysqld.sock</span> <span class="c1"># mysql socket location on debian</span></code></pre>
-            </figure>
-            Once this is done, you have to create the schema and restore your
-            data :
+          </figure>
+          Once this is done, you have to create the schema and restore your data
+          :
 
-            <figure class="highlight">
-              <pre><code class="language-bash" data-lang="bash"><span></span>bundle <span class="nb">exec</span> rake db:setup <span class="nv">RAILS_ENV</span><span class="o">=</span>production
+          <figure class="highlight">
+            <pre><code class="language-bash" data-lang="bash"><span></span>bundle <span class="nb">exec</span> rake db:setup <span class="nv">RAILS_ENV</span><span class="o">=</span>production
 bundle <span class="nb">exec</span> rake db:data:load <span class="nv">RAILS_ENV</span><span class="o">=</span>production</code></pre>
-            </figure>
+          </figure>
 
-            Job's done, you just need to restart the GitlabHQ server now (nginx,
-            apache...). If you encounter a problem and this does not work as
-            expected, you just have to restore the database.yml.old file to go
-            back to SQLite.<!--:--><!--:fr<img src="/images/uploads/2012/02/gitlabhq-logo.png" alt="" title="gitlabhq-logo" width="175" height="60" class="alignright size-full wp-image-528" /><p>Comme notre installation de <a href="http://gitlabhq.com/">GitlabHQ</a> à <a href="http://www.srmvision.com">SRMvision</a> est faite pour rester, nous avons décidé de migrer de la base SQLite vers un système plus simple à gérer pour nous : mySQL.<br /> Les étapes sont assez simple, premièrement, configurons mySQL :</p>
+          Job's done, you just need to restart the GitlabHQ server now (nginx,
+          apache...). If you encounter a problem and this does not work as
+          expected, you just have to restore the database.yml.old file to go
+          back to SQLite.<!--:--><!--:fr<img src="/images/uploads/2012/02/gitlabhq-logo.png" alt="" title="gitlabhq-logo" width="175" height="60" class="alignright size-full wp-image-528" /><p>Comme notre installation de <a href="http://gitlabhq.com/">GitlabHQ</a> à <a href="http://www.srmvision.com">SRMvision</a> est faite pour rester, nous avons décidé de migrer de la base SQLite vers un système plus simple à gérer pour nous : mySQL.<br /> Les étapes sont assez simple, premièrement, configurons mySQL :</p>
 <pre class="brush: sql">
 create database gitlab; 
 grant all privileges on gitlab.* to "gitlab" identified by "gitlab"; 
@@ -315,151 +285,111 @@ bundle exec rake db:data:load RAILS_ENV=production
 </pre>
 C'est tout, il ne reste plus qu'à redémarrer le serveur de GitlabHQ. Si toutefois ça ne fonctionnait pas, vous n'avez qu'à restaurer le fichier database.yml.old pour retourner à la configuration par défaut utilisant SQLite.<-->
 
-            <footer class="entry-meta">
-              <span class="entry-tags"></span>
-              <span
-                ><a
-                  href="http://www.bloggure.info/work/gitlabhq-sqlite-to-mysql.html"
-                  rel="bookmark"
-                  title="GitlabHQ - SQLite to mySQL"
-                  itemprop="url"
-                  >GitlabHQ - SQLite to mySQL</a
-                ></span
-              >
-              was published on
-              <span class="entry-date date published updated"
-                ><time
-                  datetime="2012-05-08T00:00:00+02:00"
-                  itemprop="datePublished"
-                  >May 08, 2012</time
-                ></span
-              >
+          <footer class="entry-meta">
+            <span class="entry-tags"></span>
 
-              <span
-                class="author vcard"
-                itemprop="author"
-                itemscope
-                itemtype="http://schema.org/Person"
-                ><span itemprop="name" class="fn"
-                  ><a
-                    href="http://www.bloggure.info/cgatay"
-                    title="About cgatay"
-                    itemprop="url"
-                    >cgatay</a
-                  ></span
-                ></span
-              >
-              <div class="social-share">
-                <ul
-                  class="socialcount socialcount-small inline-list"
-                  data-url="http://www.bloggure.info/work/gitlabhq-sqlite-to-mysql.html"
-                  data-share-text="GitlabHQ - SQLite to mySQL"
-                >
-                  <li class="facebook">
-                    <a
-                      href="https://www.facebook.com/sharer/sharer.php?u=http://www.bloggure.info/work/gitlabhq-sqlite-to-mysql.html"
-                      title="Share on Facebook"
-                      ><span class="count"
-                        ><i class="icon-facebook-sign"></i> Like</span
-                      ></a
-                    >
-                  </li>
-                  <li class="twitter">
-                    <a
-                      href="https://twitter.com/intent/tweet?text=http://www.bloggure.info/work/gitlabhq-sqlite-to-mysql.html"
-                      title="Share on Twitter"
-                      ><span class="count"
-                        ><i class="icon-twitter-sign"></i> Tweet</span
-                      ></a
-                    >
-                  </li>
-                  <li class="googleplus">
-                    <a
-                      href="https://plus.google.com/share?url=http://www.bloggure.info/work/gitlabhq-sqlite-to-mysql.html"
-                      title="Share on Google Plus"
-                      ><span class="count"
-                        ><i class="icon-google-plus-sign"></i> +1</span
-                      ></a
-                    >
-                  </li>
-                </ul>
-              </div>
-              <!-- /.social-share -->
-            </footer>
-          </div>
-          <!-- /.entry-content -->
-        </article>
-      </div>
-      <!-- /#main -->
-
-      <div class="read-more">
-        <div class="read-more-header">
-          <a
-            href="http://www.bloggure.info/.git/ci/control-trac-ticket-workflow-from-your-git-commits"
-            class="read-more-btn"
-            >Read More</a
-          >
+            <div class="social-share">
+              <ul class="socialcount socialcount-small inline-list">
+                <li class="facebook">
+                  <a
+                    href="https://www.facebook.com/sharer/sharer.php?u=http://www.bloggure.info/work/gitlabhq-sqlite-to-mysql.html"
+                    title="Share on Facebook"
+                    ><span class="count"
+                      ><i class="fa fa-facebook-square"></i> Like</span
+                    ></a
+                  >
+                </li>
+                <li class="twitter">
+                  <a
+                    href="https://twitter.com/intent/tweet?text=http://www.bloggure.info/work/gitlabhq-sqlite-to-mysql.html"
+                    title="Share on Twitter"
+                    ><span class="count"
+                      ><i class="fa fa-twitter-square"></i> Tweet</span
+                    ></a
+                  >
+                </li>
+              </ul>
+            </div>
+            <!-- /.social-share -->
+          </footer>
         </div>
-        <!-- /.read-more-header -->
-        <div class="read-more-content">
-          <h3>
+        <!-- /.entry-content -->
+
+        <div class="read-more">
+          <div class="read-more-header">
             <a
-              href="http://www.bloggure.info/XCodeUnitTestInheritance"
-              title="XCode unit test and inheritance"
-              >XCode unit test and inheritance</a
+              href="http://www.bloggure.info/.git/ci/control-trac-ticket-workflow-from-your-git-commits"
+              class="read-more-btn"
+              >Read More</a
             >
-          </h3>
-          <p>
-            As I was working on an iOS project, I added unit tests to ensure
-            things are not behaving badly (and will not).During the process, a
-            commo...&hellip;
-            <a href="http://www.bloggure.info/XCodeUnitTestInheritance"
-              >Continue reading</a
-            >
-          </p>
-        </div>
-        <!-- /.read-more-content -->
-
-        <div class="read-more-list">
-          <div class="list-item">
-            <h4>
-              <a
-                href="http://www.bloggure.info/Revival"
-                title="Bloggure revival"
-                >Bloggure revival</a
-              >
-            </h4>
-            <span>Published on December 01, 2020</span>
           </div>
-          <!-- /.list-item -->
-
-          <div class="list-item">
-            <h4>
+          <!-- /.read-more-header -->
+          <div class="read-more-content">
+            <h3>
               <a
-                href="http://www.bloggure.info/redsocks-avoid-docker-proxy-headaches"
-                title="Avoid Proxy Headaches in Docker with redsocks"
-                >Avoid Proxy Headaches in Docker with redsocks</a
+                href="http://www.bloggure.info/XCodeUnitTestInheritance"
+                title="XCode unit test and inheritance"
+                >XCode unit test and inheritance</a
               >
-            </h4>
-            <span>Published on November 16, 2015</span>
+            </h3>
+            <p>
+              As I was working on an iOS project, I added unit tests to ensure
+              things are not behaving badly (and will not).During the process, a
+              commo...&hellip;
+              <a href="http://www.bloggure.info/XCodeUnitTestInheritance"
+                >Continue reading</a
+              >
+            </p>
           </div>
-          <!-- /.list-item -->
-        </div>
-        <!-- /.read-more-list -->
-      </div>
-      <!-- /.read-more -->
+          <!-- /.read-more-content -->
 
-      <div class="footer-wrapper">
-        <footer role="contentinfo">
-          <span
-            >&copy; 2020 . Powered by
-            <a href="http://jekyllrb.com">Jekyll</a> using a theme based on
-            <a href="http://mademistakes.com/">HPSTR</a>.</span
-          >
-        </footer>
-      </div>
-      <!-- /.footer-wrapper -->
+          <div class="read-more-list">
+            <div class="list-item">
+              <h4>
+                <a
+                  href="http://www.bloggure.info/Revival"
+                  title="Bloggure revival"
+                  >Bloggure revival</a
+                >
+              </h4>
+              <span>Published on December 01, 2020</span>
+            </div>
+            <!-- /.list-item -->
+
+            <div class="list-item">
+              <h4>
+                <a
+                  href="http://www.bloggure.info/redsocks-avoid-docker-proxy-headaches"
+                  title="Avoid Proxy Headaches in Docker with redsocks"
+                  >Avoid Proxy Headaches in Docker with redsocks</a
+                >
+              </h4>
+              <span>Published on November 16, 2015</span>
+            </div>
+            <!-- /.list-item -->
+          </div>
+          <!-- /.read-more-list -->
+        </div>
+        <!-- /.read-more -->
+      </article>
     </div>
+    <!-- /#main -->
+
+    <div class="footer-wrapper">
+      <footer role="contentinfo">
+        <span
+          >&copy; 2020 . Powered by
+          <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using a theme
+          based on
+          <a
+            href="https://mademistakes.com/work/hpstr-jekyll-theme/"
+            rel="nofollow"
+            >HPSTR</a
+          >.</span
+        >
+      </footer>
+    </div>
+    <!-- /.footer-wrapper -->
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script>
@@ -472,23 +402,29 @@ C'est tout, il ne reste plus qu'à redémarrer le serveur de GitlabHQ. Si toutef
 
     <!-- Asynchronous Google Analytics snippet -->
     <script>
-      var _gaq = _gaq || [];
-      var pluginUrl = "//www.google-analytics.com/plugins/ga/inpage_linkid.js";
-      _gaq.push(["_require", "inpage_linkid", pluginUrl]);
-      _gaq.push(["_setAccount", "UA-11718843-3"]);
-      _gaq.push(["_trackPageview"]);
+      (function (i, s, o, g, r, a, m) {
+        i["GoogleAnalyticsObject"] = r;
+        (i[r] =
+          i[r] ||
+          function () {
+            (i[r].q = i[r].q || []).push(arguments);
+          }),
+          (i[r].l = 1 * new Date());
+        (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m);
+      })(
+        window,
+        document,
+        "script",
+        "//www.google-analytics.com/analytics.js",
+        "ga"
+      );
 
-      (function () {
-        var ga = document.createElement("script");
-        ga.type = "text/javascript";
-        ga.async = true;
-        ga.src =
-          ("https:" == document.location.protocol
-            ? "https://ssl"
-            : "http://www") + ".google-analytics.com/ga.js";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(ga, s);
-      })();
+      ga("create", "UA-11718843-3", "auto");
+      ga("require", "linkid", "linkid.js");
+      ga("send", "pageview");
     </script>
   </body>
 </html>

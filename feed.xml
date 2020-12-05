@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
-<title type="text">Bloggure | There is no place like ::1</title>
+<title type="text">Bloggure</title>
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="http://www.bloggure.info/feed.xml" />
 <link rel="alternate" type="text/html" href="http://www.bloggure.info" />
-<updated>2020-12-05T09:21:29+01:00</updated>
+<updated>2020-12-05T11:31:11+01:00</updated>
 <id>http://www.bloggure.info/</id>
 <author>
   <name></name>
@@ -87,7 +87,7 @@ At first I blamed the fact that my new tests were not at the top level of my sou
 
 &lt;p&gt;The nice thing in this solution is that the &lt;code&gt;setUp&lt;/code&gt; call is no longer magical !&lt;/p&gt;
 
-  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/XCodeUnitTestInheritance&quot;&gt;XCode unit test and inheritance&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure | There is no place like ::1&lt;/a&gt; on December 02, 2020.&lt;/p&gt;</content>
+  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/XCodeUnitTestInheritance&quot;&gt;XCode unit test and inheritance&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure&lt;/a&gt; on December 02, 2020.&lt;/p&gt;</content>
 </entry>
 
 
@@ -127,7 +127,7 @@ I will avoid this and focus on writing instead, so the site stays in its 15’ s
 
 &lt;p&gt;The sole new thing is that I’m trying to write using &lt;a href=&quot;https://gitpod.io&quot;&gt;gitpod.io&lt;/a&gt; to get a distraction free environment.&lt;/p&gt;
 
-  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/Revival&quot;&gt;Bloggure revival&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure | There is no place like ::1&lt;/a&gt; on December 01, 2020.&lt;/p&gt;</content>
+  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/Revival&quot;&gt;Bloggure revival&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure&lt;/a&gt; on December 01, 2020.&lt;/p&gt;</content>
 </entry>
 
 
@@ -164,7 +164,7 @@ I will avoid this and focus on writing instead, so the site stays in its 15’ s
        $PROXY_IP $PROXY_PORT
 &lt;/code&gt;&lt;/pre&gt;
 
-  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/redsocks-avoid-docker-proxy-headaches&quot;&gt;Avoid Proxy Headaches in Docker with redsocks&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure | There is no place like ::1&lt;/a&gt; on November 16, 2015.&lt;/p&gt;</content>
+  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/redsocks-avoid-docker-proxy-headaches&quot;&gt;Avoid Proxy Headaches in Docker with redsocks&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure&lt;/a&gt; on November 16, 2015.&lt;/p&gt;</content>
 </entry>
 
 
@@ -215,7 +215,7 @@ ssh -t gateway ssh &lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;
 
 &lt;p&gt;Save this in your path and give it the run permission then you are all set (mine is named &lt;code&gt;gssh&lt;/code&gt;). All you have to do to connect is now a simple &lt;code&gt;gssh myAppHost&lt;/code&gt;&lt;/p&gt;
 
-  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/faster-ssh-multi-hop&quot;&gt;Faster ssh multi hop&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure | There is no place like ::1&lt;/a&gt; on September 07, 2015.&lt;/p&gt;</content>
+  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/faster-ssh-multi-hop&quot;&gt;Faster ssh multi hop&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure&lt;/a&gt; on September 07, 2015.&lt;/p&gt;</content>
 </entry>
 
 
@@ -271,7 +271,7 @@ While this is ok in single module, when working with multi-module project it can
 
 &lt;p&gt;The same is also available for the &lt;code&gt;--fail-never&lt;/code&gt; flag with : &lt;code&gt;-fn&lt;/code&gt;.&lt;/p&gt;
 
-  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/MavenFailTestAtEnd&quot;&gt;How to get all failing tests for a multimodule Maven project&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure | There is no place like ::1&lt;/a&gt; on September 03, 2015.&lt;/p&gt;</content>
+  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/MavenFailTestAtEnd&quot;&gt;How to get all failing tests for a multimodule Maven project&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure&lt;/a&gt; on September 03, 2015.&lt;/p&gt;</content>
 </entry>
 
 
@@ -312,7 +312,7 @@ For the &lt;code&gt;xinput&lt;/code&gt; part, you will need to adjust the grep t
 
 &lt;p&gt;Of course the same goes for your layout : colemak / dvorak / bépo …&lt;/p&gt;
 
-  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/AutoApplyKeymapUdev&quot;&gt;Auto apply a keymap using udev when a Typematrix is plugged&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure | There is no place like ::1&lt;/a&gt; on September 01, 2015.&lt;/p&gt;</content>
+  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/AutoApplyKeymapUdev&quot;&gt;Auto apply a keymap using udev when a Typematrix is plugged&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure&lt;/a&gt; on September 01, 2015.&lt;/p&gt;</content>
 </entry>
 
 
@@ -344,7 +344,7 @@ But, if there is forked processes, you won’t be able to debug inside them.&lt;
 
 &lt;p&gt;You can even specify the options as you would in &lt;code&gt;$JAVA_OPTS&lt;/code&gt; to change ports / wait…&lt;/p&gt;
 
-  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/DebugMavenFailsafe&quot;&gt;Debug Failsafe Integration Test easily&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure | There is no place like ::1&lt;/a&gt; on April 13, 2015.&lt;/p&gt;</content>
+  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/DebugMavenFailsafe&quot;&gt;Debug Failsafe Integration Test easily&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure&lt;/a&gt; on April 13, 2015.&lt;/p&gt;</content>
 </entry>
 
 
@@ -398,7 +398,7 @@ $ chroot /mnt/
 
 &lt;p&gt;Finally, &lt;code&gt;dpkg&lt;/code&gt; sent me back to a working prompt and I have been able to reboot the machine (do not forget to change boot disk in OVH manager to &lt;code&gt;hd&lt;/code&gt; or &lt;code&gt;netboot&lt;/code&gt; to prevent rebooting in rescue mode).&lt;/p&gt;
 
-  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/rescue-a-vps-with-chroot&quot;&gt;Rescue a VPS upgrade with chroot&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure | There is no place like ::1&lt;/a&gt; on September 22, 2014.&lt;/p&gt;</content>
+  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/rescue-a-vps-with-chroot&quot;&gt;Rescue a VPS upgrade with chroot&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure&lt;/a&gt; on September 22, 2014.&lt;/p&gt;</content>
 </entry>
 
 
@@ -435,7 +435,7 @@ $ brew cask install dropbox #for example
 
 &lt;p&gt;Don’t hesitate to add a small script in your &lt;code&gt;.dotfiles&lt;/code&gt; to seed your software on new machines, and if your preferred software is missing, it is really easy to add new casks.&lt;/p&gt;
 
-  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/brew-cask-install-everything-from-cli&quot;&gt;Homebrew Cask - commandline install on Mac&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure | There is no place like ::1&lt;/a&gt; on May 02, 2014.&lt;/p&gt;</content>
+  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/brew-cask-install-everything-from-cli&quot;&gt;Homebrew Cask - commandline install on Mac&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure&lt;/a&gt; on May 02, 2014.&lt;/p&gt;</content>
 </entry>
 
 
@@ -460,7 +460,7 @@ $ brew cask install dropbox #for example
 
 &lt;p&gt;You can easily install it via &lt;code&gt;brew cask&lt;/code&gt; (more to come on brew cask soon) or download the &lt;a href=&quot;https://github.com/jimbojsb/launchrocket/releases&quot;&gt;zip distribution&lt;/a&gt;&lt;/p&gt;
 
-  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/launchrocket-homebrew-service-manager&quot;&gt;LaunchRocket - Homebrew service manager&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure | There is no place like ::1&lt;/a&gt; on April 30, 2014.&lt;/p&gt;</content>
+  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/launchrocket-homebrew-service-manager&quot;&gt;LaunchRocket - Homebrew service manager&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure&lt;/a&gt; on April 30, 2014.&lt;/p&gt;</content>
 </entry>
 
 
@@ -571,7 +571,7 @@ sudo VirtualBox;
 
 &lt;p&gt;As a side note, I think a Linux host is not required, you can achieve the same with a Windows operating system, the command line surely just need some improvements to point to the physical disk.&lt;/p&gt;
 
-  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/www/os/use-VirtualBox-to-do-a-real-install&quot;&gt;Use VirtualBox to do a real install&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure | There is no place like ::1&lt;/a&gt; on March 08, 2014.&lt;/p&gt;</content>
+  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/www/os/use-VirtualBox-to-do-a-real-install&quot;&gt;Use VirtualBox to do a real install&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure&lt;/a&gt; on March 08, 2014.&lt;/p&gt;</content>
 </entry>
 
 
@@ -602,7 +602,7 @@ sudo VirtualBox;
 
 &lt;p&gt;I’ve tested it on a few small projects, I can’t wait to try it on a real project !&lt;/p&gt;
 
-  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/restx-the-webservice-firework&quot;&gt;RestX the webservice framework&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure | There is no place like ::1&lt;/a&gt; on February 10, 2014.&lt;/p&gt;</content>
+  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/restx-the-webservice-firework&quot;&gt;RestX the webservice framework&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure&lt;/a&gt; on February 10, 2014.&lt;/p&gt;</content>
 </entry>
 
 
@@ -623,7 +623,7 @@ sudo VirtualBox;
 
 &lt;p&gt;Head over to &lt;a href=&quot;http://bit.ly/1bqvB29&quot;&gt;Packt Publishing site&lt;/a&gt; and pick the books of your choice using the promo code COL50.&lt;/p&gt;
 
-  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/www/great-ebooks-for-half-price&quot;&gt;Great Ebooks for Half Price&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure | There is no place like ::1&lt;/a&gt; on October 15, 2013.&lt;/p&gt;</content>
+  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/www/great-ebooks-for-half-price&quot;&gt;Great Ebooks for Half Price&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure&lt;/a&gt; on October 15, 2013.&lt;/p&gt;</content>
 </entry>
 
 
@@ -647,7 +647,7 @@ sudo VirtualBox;
   &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;&lt;br/&gt;
   Now you can freely edit the text on your page, once you're done, you can switch off the content editable mode setting the property to false !
 &lt;/p&gt;
-  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/www/quickly-test-design-changes&quot;&gt;Quickly test design changes&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure | There is no place like ::1&lt;/a&gt; on October 01, 2013.&lt;/p&gt;</content>
+  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/www/quickly-test-design-changes&quot;&gt;Quickly test design changes&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure&lt;/a&gt; on October 01, 2013.&lt;/p&gt;</content>
 </entry>
 
 
@@ -687,7 +687,7 @@ sudo VirtualBox;
 &lt;h2&gt;Bonus feature&lt;/h2&gt;
 &lt;p&gt;We use Java's MessageFormat to format our translated string, one of the thing we tend to forget is to escape the single quotes in our translations. The plugin does this magic for us, it automatically adds the missing single quotes in every messages.&lt;/p&gt;&lt;!--:--&gt;
 
-  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/.maven/maven-merge-properties-plugin&quot;&gt;Merge properties maven plugin&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure | There is no place like ::1&lt;/a&gt; on August 31, 2013.&lt;/p&gt;</content>
+  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/.maven/maven-merge-properties-plugin&quot;&gt;Merge properties maven plugin&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure&lt;/a&gt; on August 31, 2013.&lt;/p&gt;</content>
 </entry>
 
 
@@ -720,7 +720,7 @@ The trick consists in adding an implicit lang to your template views. In fact, S
 &lt;pre class=&quot;brush: scala&quot;&gt;@(title: String)(content: Html)(implicit lang: Lang)&lt;/pre&gt;
 With this little trick, your calls to localization will use the locale extracted from the http request as expected.&lt;--&gt;
 
-  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/work/play-framework-and-i18n-in-views&quot;&gt;Play Framework and i18n in views&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure | There is no place like ::1&lt;/a&gt; on July 25, 2013.&lt;/p&gt;</content>
+  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/work/play-framework-and-i18n-in-views&quot;&gt;Play Framework and i18n in views&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure&lt;/a&gt; on July 25, 2013.&lt;/p&gt;</content>
 </entry>
 
 
@@ -745,7 +745,7 @@ With this little trick, your calls to localization will use the locale extracted
 &lt;p&gt;Note : comme amélioration possible, il faudrait dans cette partie là renommer les fichiers par un nom de fichier contenant un hash représentant le contenu de ce fichier afin de palier à tout problème d'invalidation du cache.&lt;/p&gt;&lt;h2&gt;Dans le futur&lt;/h2&gt;&lt;p&gt;Pour parfaire le déploiement de l'application, sur un VCS &lt;a href=&quot;http://git-scm.com/&quot;&gt;git&lt;/a&gt; par exemple, il serait pratique d'automatiser le redémarrage du serveur sur un hook post-commit. Pour éviter également une coupure de service, il faudrait également, lancer la nouvelle application sur un autre port et switcher sur la nouvelle instance uniquement avec un reload de nginx. Mais bon tout ça peut faire l'objet d'un autre article. :)&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Mise à jour du 29 juillet 2013&lt;/strong&gt; : correction du script de lancement du daemon.&lt;/p&gt;&lt;!--:--&gt;
 
-  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/.java/.scala/.shell/ci/shelf/centos-redhat-play-application-production-mode&quot;&gt;Play application on Centos/RedHat in production mode&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure | There is no place like ::1&lt;/a&gt; on July 25, 2013.&lt;/p&gt;</content>
+  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/.java/.scala/.shell/ci/shelf/centos-redhat-play-application-production-mode&quot;&gt;Play application on Centos/RedHat in production mode&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure&lt;/a&gt; on July 25, 2013.&lt;/p&gt;</content>
 </entry>
 
 
@@ -770,7 +770,7 @@ With this little trick, your calls to localization will use the locale extracted
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;heroku config:set &lt;span class=&quot;nv&quot;&gt;BUILDPACK_URL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;https://github.com/CedricGatay/heroku-buildpack-scala&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 &lt;p&gt;I hope someone will find this useful !&lt;/p&gt;&lt;!--:--&gt;
 
-  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/.java/work/heroku-play-scala-compass-buildpack&quot;&gt;Heroku Play ! Scala Compass Buildpack&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure | There is no place like ::1&lt;/a&gt; on July 08, 2013.&lt;/p&gt;</content>
+  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/.java/work/heroku-play-scala-compass-buildpack&quot;&gt;Heroku Play ! Scala Compass Buildpack&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure&lt;/a&gt; on July 08, 2013.&lt;/p&gt;</content>
 </entry>
 
 
@@ -815,7 +815,7 @@ This dependency will transitively gets &lt;code&gt;wicket-auth-roles&lt;/code&gt
 
 &lt;em&gt;IntelliJ IDEA can do completion for class names in this file (you just need to hit the &lt;code&gt;ctrl+space&lt;/code&gt; shortcut twice)&lt;/em&gt;&lt;!--:--&gt;
 
-  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/.wicket/wicket-routes-mount&quot;&gt;Wicket Routes Mount&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure | There is no place like ::1&lt;/a&gt; on May 20, 2013.&lt;/p&gt;</content>
+  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/.wicket/wicket-routes-mount&quot;&gt;Wicket Routes Mount&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure&lt;/a&gt; on May 20, 2013.&lt;/p&gt;</content>
 </entry>
 
 
@@ -860,7 +860,7 @@ This dependency will transitively gets &lt;code&gt;wicket-auth-roles&lt;/code&gt
 
 &lt;em&gt;IntelliJ IDEA can do completion for class names in this file (you just need to hit the &lt;code&gt;ctrl+space&lt;/code&gt; shortcut twice)&lt;/em&gt;&lt;!--:--&gt;
 
-  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/work/java-work/wicket-work/wicket-routes-mount.html&quot;&gt;Wicket Routes Mount&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure | There is no place like ::1&lt;/a&gt; on May 20, 2013.&lt;/p&gt;</content>
+  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/work/java-work/wicket-work/wicket-routes-mount.html&quot;&gt;Wicket Routes Mount&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure&lt;/a&gt; on May 20, 2013.&lt;/p&gt;</content>
 </entry>
 
 </feed>
