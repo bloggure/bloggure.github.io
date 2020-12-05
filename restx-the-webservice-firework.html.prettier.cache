@@ -7,31 +7,31 @@
   <!--<![endif]-->
   <head>
     <meta charset="utf-8" />
-    <title>So, I made it - back to iOS a year later... &#8211; Bloggure</title>
+    <title>RestX the webservice framework &#8211; Bloggure</title>
     <meta
       name="description"
       content="Multi author blog about programming, computing and geek stuff"
     />
-    <meta name="keywords" content="ipad" />
+    <meta name="keywords" content="java, webservice, tdd" />
 
     <!-- Open Graph -->
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="article" />
-    <meta
-      property="og:title"
-      content="So, I made it - back to iOS a year later..."
-    />
+    <meta property="og:title" content="RestX the webservice framework" />
     <meta
       property="og:description"
       content="Multi author blog about programming, computing and geek stuff"
     />
     <meta
       property="og:url"
-      content="http://www.bloggure.info/shelf/so-i-made-it"
+      content="http://www.bloggure.info/restx-the-webservice-firework"
     />
     <meta property="og:site_name" content="Bloggure" />
 
-    <link rel="canonical" href="http://www.bloggure.info/shelf/so-i-made-it" />
+    <link
+      rel="canonical"
+      href="http://www.bloggure.info/restx-the-webservice-firework"
+    />
     <link
       href="http://www.bloggure.info/feed.xml"
       type="application/atom+xml"
@@ -112,10 +112,11 @@
             <div class="entry-meta">
               <span class="entry-date date published updated"
                 ><time
-                  datetime="2010-11-14T00:00:00+01:00"
+                  datetime="2014-02-10T00:00:00+01:00"
                   itemprop="datePublished"
-                  ><a href="http://www.bloggure.info/shelf/so-i-made-it"
-                    >November 14, 2010</a
+                  ><a
+                    href="http://www.bloggure.info/restx-the-webservice-firework"
+                    >February 10, 2014</a
                   ></time
                 ></span
               ><span
@@ -125,69 +126,77 @@
                 itemtype="http://schema.org/Person"
                 ><span itemprop="name" class="fn"
                   ><a
-                    href="http://www.bloggure.info/cgatay"
-                    title="About cgatay"
+                    href="http://www.bloggure.info/"
+                    title="About "
                     itemprop="url"
-                    >cgatay</a
-                  ></span
-                ></span
-              >&nbsp; &bull; &nbsp;<span class="entry-comments"
-                ><a
-                  href="http://www.bloggure.info/shelf/so-i-made-it/#disqus_thread"
-                  >Comment</a
-                ></span
-              >
+                  ></a></span
+              ></span>
             </div>
             <!-- /.entry-meta -->
 
             <h1 class="entry-title" itemprop="name">
               <a
-                href="http://www.bloggure.info/shelf/so-i-made-it"
+                href="http://www.bloggure.info/restx-the-webservice-firework"
                 rel="bookmark"
-                title="So, I made it - back to iOS a year later..."
+                title="RestX the webservice framework"
                 itemprop="url"
-                >So, I made it - back to iOS a year later...</a
+                >RestX the webservice framework</a
               >
             </h1>
           </header>
-          <!--:en--><img
-            class="alignleft size-thumbnail wp-image-68"
-            src="/images/uploads/2010/11/ipad-150x150.png"
-            alt=""
-            width="105"
-            height="105"
-          />
+          <h1 id="another-java-rest-framework">Another Java Rest framework</h1>
+
           <p>
-            I was lurking on Android based tablets and I've found a 50% bargain
-            on an iPad, so I've bought an iPad (16Gb / Wifi).
+            If you’re a somewhat experienced Java developer I guess you’ve
+            encountered a lot of framework when it comes to write web services.
           </p>
 
           <p>
-            I am really impressed by the device so far, it is really fast, its
-            battery last for hours. It still have the bad things of iOS &lt; 4,
-            no multitasking is really bugging me...
+            <a href="http://www.restx.io">Restx.io</a> is a new kid on the block
+            leveraging high velocity with a focus on testability through a set
+            of unique and great features :
           </p>
-          <em
-            >Post updated ! I will update this post as soon as iOS 4.x will be
-            released...</em
-          >
 
-          <!--:--><!--more--><!--:en-->
+          <ul>
+            <li>
+              each rest endpoint generates its documentation from its tests
+              (real killer feature here : we hate writing docs but we live
+              writing tests!)
+            </li>
+            <li>a built in monitoring engine</li>
+            <li>
+              everything that can be done at compile time is done at that time
+              (annotations / dependency injection)
+            </li>
+            <li>
+              it is written in good old plain Java (IDE support : I’m looking at
+              you Play Framework!)
+            </li>
+            <li>auto compile (we don’t like waiting!)</li>
+          </ul>
+
           <p>
-            iOS 4.2.1 has arrived for a few weeks now. iPad is still an awesome
-            device for me, multitasking bring the ability to play for music
-            streamed via DLNA while surfing the web with Safari mobile. The only
-            things I really regret is the unability to play Flash content
-            (nowadays there is still a lot of website using it, and as a couch
-            internet device we tend to browse those...).
+            I’ve tested it on a few small projects, I can’t wait to try it on a
+            real project !
           </p>
+
           <footer class="entry-meta">
             <span class="entry-tags"
               ><a
-                href="http://www.bloggure.info/tags/#ipad"
-                title="Pages tagged ipad"
+                href="http://www.bloggure.info/tags/#java"
+                title="Pages tagged java"
                 class="tag"
-                ><span class="term">ipad</span></a
+                ><span class="term">java</span></a
+              ><a
+                href="http://www.bloggure.info/tags/#webservice"
+                title="Pages tagged webservice"
+                class="tag"
+                ><span class="term">webservice</span></a
+              ><a
+                href="http://www.bloggure.info/tags/#tdd"
+                title="Pages tagged tdd"
+                class="tag"
+                ><span class="term">tdd</span></a
               ></span
             >
 
@@ -195,7 +204,7 @@
               <ul class="socialcount socialcount-small inline-list">
                 <li class="facebook">
                   <a
-                    href="https://www.facebook.com/sharer/sharer.php?u=http://www.bloggure.info/shelf/so-i-made-it"
+                    href="https://www.facebook.com/sharer/sharer.php?u=http://www.bloggure.info/restx-the-webservice-firework"
                     title="Share on Facebook"
                     ><span class="count"
                       ><i class="fa fa-facebook-square"></i> Like</span
@@ -204,7 +213,7 @@
                 </li>
                 <li class="twitter">
                   <a
-                    href="https://twitter.com/intent/tweet?text=http://www.bloggure.info/shelf/so-i-made-it"
+                    href="https://twitter.com/intent/tweet?text=http://www.bloggure.info/restx-the-webservice-firework"
                     title="Share on Twitter"
                     ><span class="count"
                       ><i class="fa fa-twitter-square"></i> Tweet</span
@@ -222,7 +231,7 @@
         <div class="read-more">
           <div class="read-more-header">
             <a
-              href="http://www.bloggure.info/.shell/shelf/itunes-media-sharing-over-the-internet-from-a-nas"
+              href="http://www.bloggure.info/www/great-ebooks-for-half-price"
               class="read-more-btn"
               >Read More</a
             >
@@ -231,16 +240,16 @@
           <div class="read-more-content">
             <h3>
               <a
-                href="http://www.bloggure.info/SwiftUI-UIKit_Interop"
-                title="SwiftUI UIKit Interop"
-                >SwiftUI UIKit Interop</a
+                href="http://www.bloggure.info/XCodeUnitTestInheritance"
+                title="XCode unit test and inheritance"
+                >XCode unit test and inheritance</a
               >
             </h3>
             <p>
-              Now that iOS13 is available for more than year, we can start to
-              set it as a lower bound for our deployments.This allows us to play
-              with a...&hellip;
-              <a href="http://www.bloggure.info/SwiftUI-UIKit_Interop"
+              As I was working on an iOS project, I added unit tests to ensure
+              things are not behaving badly (and will not).During the process, a
+              commo...&hellip;
+              <a href="http://www.bloggure.info/XCodeUnitTestInheritance"
                 >Continue reading</a
               >
             </p>
@@ -251,24 +260,24 @@
             <div class="list-item">
               <h4>
                 <a
-                  href="http://www.bloggure.info/XCodeUnitTestInheritance"
-                  title="XCode unit test and inheritance"
-                  >XCode unit test and inheritance</a
-                >
-              </h4>
-              <span>Published on December 02, 2020</span>
-            </div>
-            <!-- /.list-item -->
-
-            <div class="list-item">
-              <h4>
-                <a
                   href="http://www.bloggure.info/Revival"
                   title="Bloggure revival"
                   >Bloggure revival</a
                 >
               </h4>
               <span>Published on December 01, 2020</span>
+            </div>
+            <!-- /.list-item -->
+
+            <div class="list-item">
+              <h4>
+                <a
+                  href="http://www.bloggure.info/redsocks-avoid-docker-proxy-headaches"
+                  title="Avoid Proxy Headaches in Docker with redsocks"
+                  >Avoid Proxy Headaches in Docker with redsocks</a
+                >
+              </h4>
+              <span>Published on November 16, 2015</span>
             </div>
             <!-- /.list-item -->
           </div>

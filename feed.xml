@@ -4,13 +4,120 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="http://www.bloggure.info/feed.xml" />
 <link rel="alternate" type="text/html" href="http://www.bloggure.info" />
-<updated>2020-12-05T11:31:11+01:00</updated>
+<updated>2020-12-05T18:03:41+01:00</updated>
 <id>http://www.bloggure.info/</id>
 <author>
   <name></name>
   <uri>http://www.bloggure.info/</uri>
   <email></email>
 </author>
+
+
+<entry>
+  <title type="html"><![CDATA[SwiftUI UIKit Interop]]></title>
+  <link>http://www.bloggure.info/SwiftUI-UIKit_Interop</link>
+  <id>http://www.bloggure.info/SwiftUI-UIKit_Interop</id>
+  <published>2020-12-03T00:00:00+01:00</published>
+  <updated>2020-12-03T00:00:00+01:00</updated>
+  <author>
+    <name></name>
+    <uri>http://www.bloggure.info</uri>
+    <email></email>
+  </author>
+  <content type="html">&lt;p&gt;Now that iOS13 is available for more than year, we can start to set it as a lower bound for our deployments.&lt;/p&gt;
+
+&lt;p&gt;This allows us to play with all sugar that Apple put in it, one of the biggest thing is the arrival of SwiftUI to supercede UIKit (write cross platform UIs and so on).&lt;/p&gt;
+
+&lt;h2 id=&quot;bridging-the-two-worlds&quot;&gt;Bridging the two worlds&lt;/h2&gt;
+
+&lt;h3 id=&quot;using-swiftui-from-uikit&quot;&gt;Using SwiftUI from UIKit&lt;/h3&gt;
+
+&lt;p&gt;The first thing we might try to do, is embedding a SwiftUI View inside our &lt;code&gt;UIViewController&lt;/code&gt; based application. To do so, Apple gives us &lt;code&gt;UIHostingViewController&lt;/code&gt; which is a simple bridging controller, straightforward to use.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-swift&quot; data-lang=&quot;swift&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyNewView&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;View&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;view&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;some&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;View&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;Text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;I&amp;#39;m in SwiftUI&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyNewViewViewController&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;UIHostingViewController&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+        &lt;span class=&quot;kc&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rootView&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MyNewView&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3 id=&quot;uiviewcontroller-in-swiftui&quot;&gt;UIViewController in SwiftUI&lt;/h3&gt;
+
+&lt;p&gt;However, at times we still need to reuse our good old &lt;code&gt;UIViewController&lt;/code&gt;, either because we can not afford a full SwiftUI rewrite, so we want to keep old code and migrate pieces by pieces or because we are using something not yet adapted to SwiftUI.&lt;/p&gt;
+
+&lt;p&gt;In my case it was using the camera to scan a QRCode.&lt;/p&gt;
+
+&lt;h4 id=&quot;non-elegant-solution&quot;&gt;Non elegant solution&lt;/h4&gt;
+
+&lt;p&gt;I faced a few issue with examples I found out, most of them are adding an extension to the &lt;code&gt;UIViewController&lt;/code&gt; that makes it conform to &lt;code&gt;UIViewControllerRepresentable&lt;/code&gt;.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-swift&quot; data-lang=&quot;swift&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyViewController&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;UIViewController&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;cancellable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Cancellable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// classic stuff&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;extension&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyViewController&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;UIViewControllerRepresentable&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;typealias&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;UIViewControllerType&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MyViewController&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;makeUIViewController&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;context&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;UIViewControllerRepresentableContext&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MyViewController&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;UIViewControllerType&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kc&quot;&gt;self&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// don&amp;#39;t .init() please, class instance is already available&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;updateUIViewController&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;UIViewControllerType&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;context&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;UIViewControllerRepresentableContext&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MyViewController&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;dismantleUIViewController&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;uiViewController&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;UIViewControllerType&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;coordinator&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Coordinator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;uiViewController&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cancellable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cancel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyView&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;View&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;some&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;View&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;MyViewController&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;I find this not easy to read, as we’re doing weird thing by returning  &lt;code&gt;self&lt;/code&gt; from a function named &lt;code&gt;makeUIViewController&lt;/code&gt;.
+Some example are telling to return &lt;code&gt;MyViewController()&lt;/code&gt; instead of &lt;code&gt;self&lt;/code&gt;. Please don’t do this otherwise you’re creating the &lt;code&gt;UIViewController&lt;/code&gt; twice for each call !&lt;/p&gt;
+
+&lt;p&gt;I also had a leak when using  &lt;code&gt;Combine&lt;/code&gt; (more to come about this great framework), my  &lt;code&gt;Cancellable&lt;/code&gt;s were never freed, leading in a memory cycle that kept the &lt;code&gt;UIViewController&lt;/code&gt; living even though it was no longer presented.&lt;/p&gt;
+
+&lt;p&gt;It is important to do proper house keeping in the &lt;code&gt;dismantleUIViewController&lt;/code&gt; method if you don’t want to use too much memory and slow down your app.&lt;/p&gt;
+
+&lt;h4 id=&quot;nice-looking-way-of-doing&quot;&gt;Nice looking way of doing&lt;/h4&gt;
+
+&lt;p&gt;You will find a working example below, basically we need to implement a &lt;code&gt;UIViewControllerRepresentable&lt;/code&gt; struct to represent be the container for our &lt;code&gt;UIViewController&lt;/code&gt; in the SwiftUI world.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-swift&quot; data-lang=&quot;swift&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyViewController&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;UIViewController&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;cancellable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Cancellable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// classic stuff&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyGreatView&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;UIViewControllerRepresentable&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;typealias&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;UIViewControllerType&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MyViewController&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;makeUIViewController&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;context&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;UIViewControllerRepresentableContext&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MyGreatView&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;UIViewControllerType&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;MyViewController&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;updateUIViewController&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;UIViewControllerType&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;context&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;UIViewControllerRepresentableContext&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MyGreatView&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;dismantleUIViewController&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;uiViewController&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;UIViewControllerType&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;coordinator&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Coordinator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;uiViewController&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cancellable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cancel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyView&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;View&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;some&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;View&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;MyGreatView&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/SwiftUI-UIKit_Interop&quot;&gt;SwiftUI UIKit Interop&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure&lt;/a&gt; on December 03, 2020.&lt;/p&gt;</content>
+</entry>
 
 
 <entry>
@@ -816,51 +923,6 @@ This dependency will transitively gets &lt;code&gt;wicket-auth-roles&lt;/code&gt
 &lt;em&gt;IntelliJ IDEA can do completion for class names in this file (you just need to hit the &lt;code&gt;ctrl+space&lt;/code&gt; shortcut twice)&lt;/em&gt;&lt;!--:--&gt;
 
   &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/.wicket/wicket-routes-mount&quot;&gt;Wicket Routes Mount&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure&lt;/a&gt; on May 20, 2013.&lt;/p&gt;</content>
-</entry>
-
-
-<entry>
-  <title type="html"><![CDATA[Wicket Routes Mount]]></title>
-  <link>http://www.bloggure.info/work/java-work/wicket-work/wicket-routes-mount.html</link>
-  <id>http://www.bloggure.info/work/java-work/wicket-work/wicket-routes-mount-REDIR</id>
-  <published>2013-05-20T00:00:00+02:00</published>
-  <updated>2013-05-20T00:00:00+02:00</updated>
-  <author>
-    <name></name>
-    <uri>http://www.bloggure.info</uri>
-    <email></email>
-  </author>
-  <content type="html">&lt;!--:en--&gt;&lt;img class=&quot;alignright size-thumbnail wp-image-90&quot; alt=&quot;Wicket&quot; src=&quot;/images/uploads/2010/10/logo-wicket1-150x150.png&quot; width=&quot;150&quot; height=&quot;150&quot; /&gt;
-
-&lt;p&gt;At &lt;a href=&quot;http://code-troopers.com&quot;&gt;Code-Troopers&lt;/a&gt;, we like to work with the frameworks we love. One of them is &lt;a href=&quot;http://wicket.apache.org&quot;&gt;Apache Wicket&lt;/a&gt;, and it happens to some of us doing some &lt;a href=&quot;http://www.playframework.com/&quot;&gt;Play! Framework&lt;/a&gt; or &lt;a href=&quot;http://rubyonrails.org/&quot;&gt;Ruby on Rails&lt;/a&gt; (either for a client project, a side project or giving back OSS love).&lt;/p&gt;
-
-&lt;p&gt;One thing really great is this two frameworks is the central route system, one file allows to group all the routes handled by your application. Wicket does not provide such way of grouping routes, you can manually mount routes into your application or annotate your page classes.&lt;/p&gt;
-&lt;h2&gt;Wicket routes mount library&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/code-troopers/wicket-routes-mount&quot;&gt;This small library project available on Github&lt;/a&gt; allows to group mounts into a central file. To use it, simply add its dependency to your &lt;code&gt;pom.xml&lt;/code&gt; (artifact is available on Maven central):&lt;/p&gt;
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;com.code-troopers&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;wicket-route-mount&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;0.1&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-&lt;em&gt;
-This dependency will transitively gets &lt;code&gt;wicket-auth-roles&lt;/code&gt; (if there is a special need for a version without this dependency, it could be done easily).
-&lt;/em&gt;
-&lt;h2&gt;Usage&lt;/h2&gt;
-&lt;p&gt;To use it, simply create a &lt;code&gt;routes.conf&lt;/code&gt; file at the root of the sources in your project (typically &lt;code&gt;src/main/resources/&lt;/code&gt;) respecting the following format :&lt;/p&gt;
-&lt;pre&gt;# mountPoint        class                           roles
-/home               codetroopers.HomePage           
-/secured            codetroopers.SecuredPage        USER
-/user/${mode}/#{id} codetroopers.UserPage           ADMIN,USER&lt;/pre&gt;
-&lt;p&gt;The files content is the following : &lt;/p&gt;
-&lt;ul&gt;
-	&lt;li&gt;Mount path : using standard Wicket syntax (&lt;code&gt;${requiredParam}&lt;/code&gt; and &lt;code&gt;#{optionalParam}&lt;/code&gt; are available)&lt;/li&gt;
-	&lt;li&gt;Page class : fully qualified name of the page class to mount&lt;/li&gt;
-	&lt;li&gt;Roles (optional) : comma separated list of roles required to access the page&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;em&gt;IntelliJ IDEA can do completion for class names in this file (you just need to hit the &lt;code&gt;ctrl+space&lt;/code&gt; shortcut twice)&lt;/em&gt;&lt;!--:--&gt;
-
-  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/work/java-work/wicket-work/wicket-routes-mount.html&quot;&gt;Wicket Routes Mount&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure&lt;/a&gt; on May 20, 2013.&lt;/p&gt;</content>
 </entry>
 
 </feed>

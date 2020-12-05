@@ -110,6 +110,203 @@
           <div class="entry-meta">
             <span class="entry-date date published updated"
               ><time
+                datetime="2012-10-18T00:00:00+02:00"
+                itemprop="datePublished"
+                ><a
+                  href="http://www.bloggure.info/.js/using-trello-as-a-scrum-sprint-board"
+                  >October 18, 2012</a
+                ></time
+              ></span
+            ><span
+              class="author vcard"
+              itemprop="author"
+              itemscope
+              itemtype="http://schema.org/Person"
+              ><span itemprop="name" class="fn"
+                ><a
+                  href="http://www.bloggure.info/cgatay"
+                  title="About cgatay"
+                  itemprop="url"
+                  >cgatay</a
+                ></span
+              ></span
+            >&nbsp; &bull; &nbsp;<span class="entry-comments"
+              ><a
+                href="http://www.bloggure.info/.js/using-trello-as-a-scrum-sprint-board/#disqus_thread"
+                >Comment</a
+              ></span
+            >
+          </div>
+          <!-- /.entry-meta -->
+
+          <h1 class="entry-title" itemprop="name">
+            <a
+              href="http://www.bloggure.info/.js/using-trello-as-a-scrum-sprint-board"
+              rel="bookmark"
+              title="Using Trello as a Scrum sprint board"
+              itemprop="url"
+              >Using Trello as a Scrum sprint board</a
+            >
+          </h1>
+        </header>
+        <div class="entry-content" itemprop="description">
+          <!--:en-->
+          <p>
+            At <a href="http://www.srmvision.com">SRMvision</a>, we use agile
+            methods since day one, mainly Scrum, which we rearranged to fit our
+            needs and goals at times. We've always looked for the perfect
+            computerized alternative to good old stickies.
+          </p>
+          <h2>
+            TrelloScrum Chrome Extension<img
+              class="alignright size-full wp-image-644"
+              title="Trello-Icon"
+              src="/images/uploads/2012/10/Trello-Icon1.png"
+              alt=""
+              width="128"
+              height="128"
+            />
+          </h2>
+          <p>
+            When it came out, it was clear to me that
+            <a href="http://www.trello.com">Trello</a> could be the cornerstone
+            of our internal workflow, we started from the very good
+            <a
+              href="https://chrome.google.com/webstore/detail/trello-scrum/jdbcdblgjdpmfninkoogcfpnkjmndgje"
+              >TrelloScrum plugin available on the Chrome Web Store</a
+            >
+            to count story points. This plugin is really useful in planning
+            sprints, it allows the Scrum master to track story points scheduled
+            in order to fill every single day in the sprint.
+          </p>
+          <h2>Forking the extension</h2>
+          <p>
+            After a few sprints, we realized we needed more than what was
+            included in the plugin. The main thing needed was tracking consumed
+            story points to get a really rapid and efficient feedback on our
+            sprint (real-time burndown values). Thanks to the guys behind the
+            plugin (<a href="http://q42.nl/blog">Q42</a>) and to Github, I was
+            able to fork the project and add these features :
+          </p>
+          <ul>
+            <li>
+              if you note points in square brackets : [3] they are considered as
+              consumed points (contributed back to the plugin available in the
+              Chrome Web Store)
+            </li>
+            <li>
+              on card detail, hitting the "Done" button flags the whole card
+              points consumed and moves the card to the bottom of the list, then
+              the card view is closed so you can focus on something else (only
+              available in my fork)
+            </li>
+            <li>
+              plugged to the Trello client API, less flickering when updating
+              cards
+            </li>
+          </ul>
+          <!-- [caption id="attachment_631" align="aligncenter" width="315"] --><img
+            class="size-full wp-image-631"
+            title="list"
+            src="/images/uploads/2012/10/list.png"
+            alt=""
+            width="315"
+            height="290"
+          /><!--  List and cards points counts[/caption] -->
+          <p>
+            With this plugin, you'll get two counters on the top of each list
+            and on a top of the board : consumed points in light blue and
+            scheduled poins in blue. The scheduled and consumed terms are the
+            one we use at <a href="http://www.srmvision.com">SRMvision</a>, but
+            you can use it the way you like to manage your sprints.
+          </p>
+          <h2>Using the extension</h2>
+          <p>
+            If you want to use my fork of the extension, you'll need to get it
+            in my
+            <a href="https://github.com/CedricGatay/TrelloScrum/downloads"
+              >Github account</a
+            >. As it is not available in the store, you'll need to drag and drop
+            the downloaded file on the
+            <a href="chrome://extensions">chrome://extensions</a> page.
+          </p>
+          <!-- [caption id="attachment_633" align="alignright" width="133"] --><img
+            class="size-full wp-image-633"
+            style="text-align: center"
+            title="unauthenticated"
+            src="/images/uploads/2012/10/unauthenticated.png"
+            alt=""
+            width="133"
+            height="46"
+          /><!--  Unauthenticated plugin[/caption] -->
+          <p>
+            Next, you'll need to authenticate the plugin to your Trello account,
+            to do so, there is a little circle on top of your profile picture
+            which is on the top right corner of Trello.
+          </p>
+          <p>
+            You can use the plugin without allowing it to authenticate, if you
+            do so, you won't be able to flag cards as Done using the button and
+            thus, cards won't be moved to the bottom. To authenticate, you need
+            to click the circle, it will popup the authenticate dialog, just
+            follow the steps in this popup (and close it manually when you see a
+            blank page - limitation of the extension).
+          </p>
+          <!-- [caption id="attachment_632" align="alignright" width="139"] --><img
+            class="size-full wp-image-632"
+            title="authenticated"
+            src="/images/uploads/2012/10/authenticated.png"
+            alt=""
+            width="139"
+            height="48"
+          /><!-- Authenticated plugin[/caption] -->
+          <p>
+            Once authenticated, you should see a green circle and a "Done"
+            button on cards details.
+          </p>
+          <p>
+            If you have feature requests or bugs, don't hesitate to use the
+            <a href="https://github.com/CedricGatay/TrelloScrum/issues"
+              >Github issue tracker</a
+            >.
+          </p>
+          <!--:--><!--:fr<p>Chez <a href="http://www.srmvision.com">SRMvision</a>, nous utilisons les méthodes agile depuis le début, principalement Scrum, que nous avons quelque peu modifié pour coller à nos besoins au fil du temps. Nous avons cherché depuis le début une bonne alternative informatisée aux bons vieux post-it.</p>
+<h2>TrelloScrum Chrome Extension<img class="alignright size-full wp-image-644" title="Trello-Icon" src="/images/uploads/2012/10/Trello-Icon1.png" alt="" width="128" height="128" /></h2>
+<p>Quand je l'ai découvert, j'ai rapidement pensé que <a href="http://www.trello.com">Trello</a> pouvait être un des piliers de notre organisation interne. Nous avons d'abord commencé par utiliser la très bonne extension <a href="https://chrome.google.com/webstore/detail/trello-scrum/jdbcdblgjdpmfninkoogcfpnkjmndgje">TrelloScrum disponible sur le Chrome Web Store</a> pour effectuer le décompte des points de nos sprints. Ce plugin est réellement utile dans la planification de sprint, il permet au Scrum-master de facilement gérer le nombre de points utilisés pour remplir efficacement chaque jour du sprint.</p>
+<h2>Contribuer à l'extension</h2>
+<p>Après quelques sprints, nous nous sommes rendus compte que nous avions besoin d'un petit peu plus que ce que le plugin offrait. La principale chose dont nous avions besoin était d'identifier les points consommés au jour le jour afin d'avoir une analyse rapide (on obtient donc un burndown en temps réel). Grace aux développeurs de l'extension originale (<a href="http://q42.nl/blog">Q42</a>) et à la magie de Github, j'ai pu contribuer à l'extension en ajoutant ces fonctionnalités :</p>
+<ul>
+<li>en notant les points entre crochets : [3] ceux-ci seront considérés en tant que points utilisés (cette amélioration est maintenant présente dans la version disponible sur le Chrome Web Store)</li>
+<li>dans le détail d'une carte, le bouton "Done" permet de marquer l'intégralité des points de la carte utilisés, de fermer la carte, et de la bouger à la fin de la liste, pour permettre de se concentrer sur la prochaine tâche à effectuer (uniquement disponible dans ma version modifiée)</li>
+<li>utilisation de l'API cliente Trello, les modifications provoquent moins de clignotements dans l'interface</li>
+</ul>
+[caption id="attachment_631" align="aligncenter" width="315"]<img class="size-full wp-image-631 " title="list" src="/images/uploads/2012/10/list.png" alt="" width="315" height="290" /> Décompte de points sur la liste et les cartes[/caption]
+<p>Grace à cette version, vous aurez deux décomptes dans le coin supérieur droit de chaque liste ainsi qu'en haut de l'ardoise en cours. Les points utilisés sont présentés en bleu clair et les points restant en bleu foncé. Les notions de points "utilisés" et "restant" sont les termes que nous utilisons pour gérer nos sprints chez SRMvision, mais vous pouvez bien entendu changer la signification des décomptes pour coller à votre façon de gérer vos sprints.</p>
+<h2>Utiliser l'extension</h2>
+<p>Si vous désirez utiliser ma version de l'extension, vous devrez la récupérer en allant la télécharger depuis mon <a href="https://github.com/CedricGatay/TrelloScrum/downloads">compte Github</a>. Puisqu'elle n'est pas disponible dans le Chrome Web Store, vous devrez effectuer un glisser déplacer du fichier téléchargé sur la page <a href="chrome://extensions">chrome://extensions</a> de votre navigateur.</p>
+[caption id="attachment_633" align="alignright" width="133"]<img class="size-full wp-image-633 " style="text-align: center;" title="unauthenticated" src="/images/uploads/2012/10/unauthenticated.png" alt="" width="133" height="46" /> Plugin non autorisé[/caption]
+<p>Ensuite, vous devrez autoriser le plugin auprès de votre compte Trello. Pour ce faire, il y a un petit cercle présent au dessus de votre image de profil (dans le coin supérieur droit).</p>
+<p>Vous pouvez utiliser le plugin sans l'autoriser, si c'est le cas, vous n'aurez pas le bouton "Done" dans le détail d'une carte et vous ne bénéficierez pas du déplacement automatique des cartes.</p>
+<p>Pour autoriser le plugin, vous devez cliquer sur le cercle, la fenêtre d'autorisation s'ouvrira, dans laquelle il suffit de suivre les étapes pour autoriser le plugin (vous devrez fermer manuellement la fenêtre qui s'est ouverte - limite de l'extension pour l'instant).</p>
+[caption id="attachment_632" align="alignright" width="139"]<a href="http://www.bloggure.info/wp-content/uploads/2012/10/authenticated.png"><img class="size-full wp-image-632 " title="authenticated" src="/images/uploads/2012/10/authenticated.png" alt="" width="139" height="48" /></a> Plugin autorisé[/caption]
+<p>Une fois le plugin autorisé, vous devriez voir le plugin passer au vert, et vous devriez avoir le bouton "Done" présent sur le détail des cartes.</p>
+<p>Si vous avez des idées de fonctionnalités ou détecté un bug, n'hésitez pas à vous servir du <a href="https://github.com/CedricGatay/TrelloScrum/issues">système de ticket de Github</a>.</p>
+<-->
+        </div>
+        <!-- /.entry-content -->
+      </article>
+      <!-- /.hentry -->
+
+      <article
+        class="hentry"
+        itemprop="blogPost"
+        itemscope
+        itemtype="http://schema.org/BlogPosting"
+      >
+        <header>
+          <div class="entry-meta">
+            <span class="entry-date date published updated"
+              ><time
                 datetime="2012-05-13T00:00:00+02:00"
                 itemprop="datePublished"
                 ><a href="http://www.bloggure.info/work/vert-x-in-homebrew"
@@ -349,202 +546,6 @@ bundle exec rake db:setup RAILS_ENV=production
 bundle exec rake db:data:load RAILS_ENV=production
 </pre>
 C'est tout, il ne reste plus qu'à redémarrer le serveur de GitlabHQ. Si toutefois ça ne fonctionnait pas, vous n'avez qu'à restaurer le fichier database.yml.old pour retourner à la configuration par défaut utilisant SQLite.<-->
-        </div>
-        <!-- /.entry-content -->
-      </article>
-      <!-- /.hentry -->
-
-      <article
-        class="hentry"
-        itemprop="blogPost"
-        itemscope
-        itemtype="http://schema.org/BlogPosting"
-      >
-        <header>
-          <div class="entry-meta">
-            <span class="entry-date date published updated"
-              ><time
-                datetime="2012-05-06T00:00:00+02:00"
-                itemprop="datePublished"
-                ><a
-                  href="http://www.bloggure.info/.git/ci/control-trac-ticket-workflow-from-your-git-commits"
-                  >May 06, 2012</a
-                ></time
-              ></span
-            ><span
-              class="author vcard"
-              itemprop="author"
-              itemscope
-              itemtype="http://schema.org/Person"
-              ><span itemprop="name" class="fn"
-                ><a
-                  href="http://www.bloggure.info/cgatay"
-                  title="About cgatay"
-                  itemprop="url"
-                  >cgatay</a
-                ></span
-              ></span
-            >&nbsp; &bull; &nbsp;<span class="entry-comments"
-              ><a
-                href="http://www.bloggure.info/.git/ci/control-trac-ticket-workflow-from-your-git-commits/#disqus_thread"
-                >Comment</a
-              ></span
-            >
-          </div>
-          <!-- /.entry-meta -->
-
-          <h1 class="entry-title" itemprop="name">
-            <a
-              href="http://www.bloggure.info/.git/ci/control-trac-ticket-workflow-from-your-git-commits"
-              rel="bookmark"
-              title="Control Trac ticket workflow from your Git commits"
-              itemprop="url"
-              >Control Trac ticket workflow from your Git commits</a
-            >
-          </h1>
-        </header>
-        <div class="entry-content" itemprop="description">
-          <!--:en--><img
-            class="alignright size-full wp-image-594"
-            title="Trac_Logo"
-            src="/images/uploads/2012/05/Trac_Logo_512x512.png"
-            alt=""
-            width="128"
-            height="128"
-          />
-          <p>
-            As I said in an
-            <a
-              title="GitLabHQ and a good branching model"
-              href="/.git/work/gitlabhq"
-              >earlier post</a
-            >, at SRMvision, we use feature branches to isolate our work and be
-            able to publish it to our production environment with a clear change
-            history.
-          </p>
-          <p>
-            One thing we use since the beginning (at the subversion time,
-            pre-git era), is the control of our ticket tracker (<a
-              href="http://trac.edgewall.org/"
-              >Trac</a
-            >) from our commit messages. We have the following verbs to control
-            our tickets (synonyms are available, but we rarely use them) :
-          </p>
-          <ul>
-            <li>see #NUM to link to a ticket</li>
-            <li>fix #NUM to close a ticket</li>
-          </ul>
-          <p>
-            Repository references to commits are automatically added into
-            ticket's history in our Trac instance.
-          </p>
-          <p>
-            <img
-              title="Git_Commit_message"
-              src="/images/uploads/2012/05/tracmsg.png"
-              alt=""
-              width="774"
-              height="164"
-            />
-          </p>
-          <p>
-            To be sure of the quality of our code, we set up a custom workflow
-            in Trac. Once a dev/bugfix is done, we set the corresponding ticket
-            to the "Testing" status. The next step is simple, either the test
-            passes and the ticket is closed, or it does not and it returns to
-            the developer. So, we added another verb to our commit handler :
-            "test" to automatically set a ticket to the "Testing" status.
-          </p>
-          <p>
-            Our adoption of feature branches has forced us to rethink our
-            workflow. Passing a ticket to "testing" while it is not even merged
-            into our "testable" branch was really polluting Trac. That's why we
-            added the status "Fixed on branch" to allow us to differentiate
-            really testable ticket from not ready ones.
-          </p>
-          <p>
-            We finally adopted the following mecanism, keeping only our three
-            verbs (see, fix, test) :
-          </p>
-          <ul>
-            <li>
-              test on a branch other than master, ticket's status is set to
-              "Fixed on branch"
-            </li>
-            <li>
-              on a branch merge to master, "Fixed on branch" tickets are
-              reopened and set to "Testing"
-            </li>
-            <li>on the branch master, test sets the ticket to "Testing"</li>
-          </ul>
-          <p>
-            On a classic development, we can have 50 "Fixed on branch" tickets
-            that automatically pass to "Testing" once merged onto master. Using
-            this technique allows us to check if every single ticket related to
-            the feature has been correctly handled from development to quality
-            testing.
-          </p>
-          <p>
-            If you want to deploy a similar technique in your environment, files
-            we are using are available at the following address : <a
-              href="https://github.com/CedricGatay/sandbox/tree/master/trac-git-hook"
-              >https://github.com/CedricGatay/sandbox/tree/master/trac-git-hook</a
-            >
-          </p>
-          <p>You will find the following files :</p>
-          <ul>
-            <li>
-              post-receive : git hook, to copy into the hooks/ directory of your
-              "central" repository (the one connected to Trac), triggers delayed
-              launch (1 minute later) of the next script (avoiding to block the
-              commit),
-            </li>
-            <li>
-              trac-post-commit-hook : Trac hook parsing commit messages to
-              control tickets
-            </li>
-            <li>
-              trac.options.ini : excerpt from Trac configuration file allowing
-              to customize workflow
-            </li>
-          </ul>
-          <p>
-            Please notice il will be necessary for you to edit script settings
-            referring to git repository in Trac (called 'git-clone' for us) and
-            paths corresponding to your environment.
-          </p>
-          <!--:--><!--:fr<img class="alignright size-full wp-image-594" title="Trac_Logo" src="/images/uploads/2012/05/Trac_Logo_512x512.png" alt="" width="128" height="128" />Comme mentionné dans un <a title="GitLabHQ and a good branching model" href="http://www.bloggure.info/work/gitlabhq.html">précédent billet</a>, chez SRMvision, nous utilisons intensivement les features branches pour isoler nos développements et nous permettre de basculer facilement une fonctionnalité en production avec un historique clair des modifications.
-
-Une des pratiques que nous avions mis en place depuis le début (à l'époque ou nous utilisions subversion) est l'interaction avec notre gestionnaire d'incidents (<a href="http://trac.edgewall.org/">Trac</a>) depuis nos commits. Ainsi, nous utilisons les commandes suivantes dans nos messages de commits (des synonymes existent, mais nous les utilisons peu) :
-<ul>
-	<li>see #NUM pour référencer un ticket</li>
-	<li>fix #NUM pour clore un ticket</li>
-</ul>
-Les références vers les commits concernés sont donc intégrées automatiquement dans l'historique des tickets sur Trac.
-
-<img class="aligncenter size-full wp-image-600" title="Git_Commit_message" src="/images/uploads/2012/05/Capture-d’écran-2012-05-06-à-13.14.46.png" alt="" width="774" height="164" />
-
-Pour s'assurer de la qualité de nos développements, nous avons mis en place un workflow personnalisé dans Trac. Une fois un développement / bugfix terminé, nous passons le ticket le concernant en statut "Testing". Le résultat est simple, soit le test est concluant et le ticket est clos, soit il ne l'est pas et il retourne donc au développeur. Ainsi, aux commandes décrites précédemment, nous avons ajouté la possibilité de passer un ticket en test en mettant la commande "test" dans nos commits.
-
-Le fait d'avoir maintenant beaucoup de branches nous a conduit à repenser notre façon de fonctionner pour avoir un contrôle plus efficace des tickets. En effet, contrôler le workflow des tickets pour les passer en test alors qu'ils ne sont pas encore sur la branche "recettable" a commencé à introduire plus de bruit sur Trac que de bénéfices réels. Nous avons donc rajouté un statut "Fixed on branch" nous permettant de différencier les tickets réellement testables de ceux qui ne sont pas encore prêts.
-
-Après quelques hésitations, nous avons fini par obtenir le mécanisme suivant, tout en gardant les mêmes trois verbes principaux (see, fix, test) :
-<ul>
-	<li>Lors d'un commit incluant le verbe "test" sur une branche autre que le master, le statut du ticket est passé à "Fixed on branch" et le ticket est clos.</li>
-	<li>Lors du merge de la branche sur le master, les tickets "Fixed on branch" sont automatiquement repassés en "Testing"</li>
-	<li>Le comportement sur la branche master reste identique</li>
-</ul>
-Sur un développement de fonctionnalité classique, nous pouvons avoir 50 tickets "Fixed on branch" qui se réouvrent automatiquement en "Testing" lors du passage de la fonctionnalité sur le master. Cette technique nous permet de suivre facilement le développement d'une fonctionnalité de sa réalisation à sa livraison.
-
-Si vous désirez mettre en place un mécanisme similaire dans votre environnement, les fichiers que nous utilisons sont disponibles à l'adresse suivante : <a href="https://github.com/CedricGatay/sandbox/tree/master/trac-git-hook">https://github.com/CedricGatay/sandbox/tree/master/trac-git-hook</a>
-
-Vous trouverez les trois fichiers suivants:
-<ul>
-	<li>post-receive : hook git à proprement parler, à placer dans le dossier hooks/ de votre dépôt central, déclenche le lancement différé (1 minute plus tard) du script suivant (pour éviter de bloquer le commit),</li>
-	<li>trac-post-commit-hook : hook trac effectuant le traitement des messages de commit pour intéragir avec les tickets</li>
-	<li>trac.options.ini : extrait du fichier de configuration Trac permettant de personnaliser le workflow des tickets</li>
-</ul>
-Notez qu'il sera certainement nécessaire de modifier les variables des scripts python permettant de référencer le dépôt git dans Trac (dans notre cas il est nommé git-clone), ainsi que les chemins utilisés dans votre environnement.<-->
         </div>
         <!-- /.entry-content -->
       </article>

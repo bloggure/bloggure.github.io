@@ -110,6 +110,200 @@
           <div class="entry-meta">
             <span class="entry-date date published updated"
               ><time
+                datetime="2020-12-03T00:00:00+01:00"
+                itemprop="datePublished"
+                ><a href="http://www.bloggure.info/SwiftUI-UIKit_Interop"
+                  >December 03, 2020</a
+                ></time
+              ></span
+            ><span
+              class="author vcard"
+              itemprop="author"
+              itemscope
+              itemtype="http://schema.org/Person"
+              ><span itemprop="name" class="fn"
+                ><a
+                  href="http://www.bloggure.info/cgatay"
+                  title="About cgatay"
+                  itemprop="url"
+                  >cgatay</a
+                ></span
+              ></span
+            >&nbsp; &bull; &nbsp;<span class="entry-comments"
+              ><a
+                href="http://www.bloggure.info/SwiftUI-UIKit_Interop/#disqus_thread"
+                >Comment</a
+              ></span
+            >
+          </div>
+          <!-- /.entry-meta -->
+
+          <h1 class="entry-title" itemprop="name">
+            <a
+              href="http://www.bloggure.info/SwiftUI-UIKit_Interop"
+              rel="bookmark"
+              title="SwiftUI UIKit Interop"
+              itemprop="url"
+              >SwiftUI UIKit Interop</a
+            >
+          </h1>
+        </header>
+        <div class="entry-content" itemprop="description">
+          <p>
+            Now that iOS13 is available for more than year, we can start to set
+            it as a lower bound for our deployments.
+          </p>
+
+          <p>
+            This allows us to play with all sugar that Apple put in it, one of
+            the biggest thing is the arrival of SwiftUI to supercede UIKit
+            (write cross platform UIs and so on).
+          </p>
+
+          <h2 id="bridging-the-two-worlds">Bridging the two worlds</h2>
+
+          <h3 id="using-swiftui-from-uikit">Using SwiftUI from UIKit</h3>
+
+          <p>
+            The first thing we might try to do, is embedding a SwiftUI View
+            inside our <code>UIViewController</code> based application. To do
+            so, Apple gives us <code>UIHostingViewController</code> which is a
+            simple bridging controller, straightforward to use.
+          </p>
+
+          <figure class="highlight">
+            <pre><code class="language-swift" data-lang="swift"><span></span><span class="kd">struct</span> <span class="nc">MyNewView</span><span class="p">:</span> <span class="n">View</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">view</span><span class="p">:</span> <span class="n">some</span> <span class="n">View</span> <span class="p">{</span>
+        <span class="n">Text</span><span class="p">(</span><span class="s">&quot;I&#39;m in SwiftUI&quot;</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="kd">class</span> <span class="nc">MyNewViewViewController</span><span class="p">:</span> <span class="n">UIHostingViewController</span> <span class="p">{</span>
+    <span class="kd">init</span><span class="p">(){</span>
+        <span class="kc">super</span><span class="p">.</span><span class="kd">init</span><span class="p">(</span><span class="n">rootView</span><span class="p">:</span> <span class="n">MyNewView</span><span class="p">())</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre>
+          </figure>
+
+          <h3 id="uiviewcontroller-in-swiftui">UIViewController in SwiftUI</h3>
+
+          <p>
+            However, at times we still need to reuse our good old
+            <code>UIViewController</code>, either because we can not afford a
+            full SwiftUI rewrite, so we want to keep old code and migrate pieces
+            by pieces or because we are using something not yet adapted to
+            SwiftUI.
+          </p>
+
+          <p>In my case it was using the camera to scan a QRCode.</p>
+
+          <h4 id="non-elegant-solution">Non elegant solution</h4>
+
+          <p>
+            I faced a few issue with examples I found out, most of them are
+            adding an extension to the <code>UIViewController</code> that makes
+            it conform to <code>UIViewControllerRepresentable</code>.
+          </p>
+
+          <figure class="highlight">
+            <pre><code class="language-swift" data-lang="swift"><span></span><span class="kd">class</span> <span class="nc">MyViewController</span><span class="p">:</span> <span class="bp">UIViewController</span><span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">cancellable</span><span class="p">:</span> <span class="n">Cancellable</span><span class="p">?</span>
+    <span class="c1">// classic stuff</span>
+<span class="p">}</span>
+
+<span class="kd">extension</span> <span class="nc">MyViewController</span><span class="p">:</span> <span class="n">UIViewControllerRepresentable</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">typealias</span> <span class="n">UIViewControllerType</span> <span class="p">=</span> <span class="n">MyViewController</span>
+
+    <span class="kd">public</span> <span class="kd">func</span> <span class="nf">makeUIViewController</span><span class="p">(</span><span class="n">context</span> <span class="kc">_</span><span class="p">:</span> <span class="n">UIViewControllerRepresentableContext</span><span class="p">&lt;</span><span class="n">MyViewController</span><span class="p">&gt;)</span> <span class="p">-&gt;</span> <span class="n">UIViewControllerType</span> <span class="p">{</span>
+        <span class="kc">self</span> <span class="c1">// don&#39;t .init() please, class instance is already available</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kd">func</span> <span class="nf">updateUIViewController</span><span class="p">(</span><span class="kc">_</span><span class="p">:</span> <span class="n">UIViewControllerType</span><span class="p">,</span> <span class="n">context</span> <span class="kc">_</span><span class="p">:</span> <span class="n">UIViewControllerRepresentableContext</span><span class="p">&lt;</span><span class="n">MyViewController</span><span class="p">&gt;)</span> <span class="p">{}</span>
+
+    <span class="kd">static</span> <span class="kd">func</span> <span class="nf">dismantleUIViewController</span><span class="p">(</span><span class="kc">_</span> <span class="n">uiViewController</span><span class="p">:</span> <span class="n">UIViewControllerType</span><span class="p">,</span> <span class="n">coordinator</span> <span class="kc">_</span><span class="p">:</span> <span class="n">Coordinator</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">uiViewController</span><span class="p">.</span><span class="n">cancellable</span><span class="p">?.</span><span class="n">cancel</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span> <span class="nc">MyView</span><span class="p">:</span> <span class="n">View</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nv">body</span><span class="p">:</span> <span class="n">some</span> <span class="n">View</span> <span class="p">{</span>
+    <span class="n">MyViewController</span><span class="p">()</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre>
+          </figure>
+
+          <p>
+            I find this not easy to read, as we’re doing weird thing by
+            returning <code>self</code> from a function named
+            <code>makeUIViewController</code>. Some example are telling to
+            return <code>MyViewController()</code> instead of <code>self</code>.
+            Please don’t do this otherwise you’re creating the
+            <code>UIViewController</code> twice for each call !
+          </p>
+
+          <p>
+            I also had a leak when using <code>Combine</code> (more to come
+            about this great framework), my <code>Cancellable</code>s were never
+            freed, leading in a memory cycle that kept the
+            <code>UIViewController</code> living even though it was no longer
+            presented.
+          </p>
+
+          <p>
+            It is important to do proper house keeping in the
+            <code>dismantleUIViewController</code> method if you don’t want to
+            use too much memory and slow down your app.
+          </p>
+
+          <h4 id="nice-looking-way-of-doing">Nice looking way of doing</h4>
+
+          <p>
+            You will find a working example below, basically we need to
+            implement a <code>UIViewControllerRepresentable</code> struct to
+            represent be the container for our <code>UIViewController</code> in
+            the SwiftUI world.
+          </p>
+
+          <figure class="highlight">
+            <pre><code class="language-swift" data-lang="swift"><span></span><span class="kd">class</span> <span class="nc">MyViewController</span><span class="p">:</span> <span class="bp">UIViewController</span><span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">cancellable</span><span class="p">:</span> <span class="n">Cancellable</span><span class="p">?</span>
+    <span class="c1">// classic stuff</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span> <span class="nc">MyGreatView</span><span class="p">:</span> <span class="n">UIViewControllerRepresentable</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">typealias</span> <span class="n">UIViewControllerType</span> <span class="p">=</span> <span class="n">MyViewController</span>
+
+    <span class="kd">public</span> <span class="kd">func</span> <span class="nf">makeUIViewController</span><span class="p">(</span><span class="n">context</span> <span class="kc">_</span><span class="p">:</span> <span class="n">UIViewControllerRepresentableContext</span><span class="p">&lt;</span><span class="n">MyGreatView</span><span class="p">&gt;)</span> <span class="p">-&gt;</span> <span class="n">UIViewControllerType</span> <span class="p">{</span>
+        <span class="n">MyViewController</span><span class="p">()</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kd">func</span> <span class="nf">updateUIViewController</span><span class="p">(</span><span class="kc">_</span><span class="p">:</span> <span class="n">UIViewControllerType</span><span class="p">,</span> <span class="n">context</span> <span class="kc">_</span><span class="p">:</span> <span class="n">UIViewControllerRepresentableContext</span><span class="p">&lt;</span><span class="n">MyGreatView</span><span class="p">&gt;)</span> <span class="p">{}</span>
+
+    <span class="kd">static</span> <span class="kd">func</span> <span class="nf">dismantleUIViewController</span><span class="p">(</span><span class="kc">_</span> <span class="n">uiViewController</span><span class="p">:</span> <span class="n">UIViewControllerType</span><span class="p">,</span> <span class="n">coordinator</span> <span class="kc">_</span><span class="p">:</span> <span class="n">Coordinator</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">uiViewController</span><span class="p">.</span><span class="n">cancellable</span><span class="p">?.</span><span class="n">cancel</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span> <span class="nc">MyView</span><span class="p">:</span> <span class="n">View</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nv">body</span><span class="p">:</span> <span class="n">some</span> <span class="n">View</span> <span class="p">{</span>
+    <span class="n">MyGreatView</span><span class="p">()</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre>
+          </figure>
+        </div>
+        <!-- /.entry-content -->
+      </article>
+      <!-- /.hentry -->
+
+      <article
+        class="hentry"
+        itemprop="blogPost"
+        itemscope
+        itemtype="http://schema.org/BlogPosting"
+      >
+        <header>
+          <div class="entry-meta">
+            <span class="entry-date date published updated"
+              ><time
                 datetime="2020-12-02T00:00:00+01:00"
                 itemprop="datePublished"
                 ><a href="http://www.bloggure.info/XCodeUnitTestInheritance"
@@ -557,150 +751,6 @@ ssh -t gateway ssh <span class="nv">$1</span>
             Save this in your path and give it the run permission then you are
             all set (mine is named <code>gssh</code>). All you have to do to
             connect is now a simple <code>gssh myAppHost</code>
-          </p>
-        </div>
-        <!-- /.entry-content -->
-      </article>
-      <!-- /.hentry -->
-
-      <article
-        class="hentry"
-        itemprop="blogPost"
-        itemscope
-        itemtype="http://schema.org/BlogPosting"
-      >
-        <header>
-          <div class="entry-meta">
-            <span class="entry-date date published updated"
-              ><time
-                datetime="2015-09-03T00:00:00+02:00"
-                itemprop="datePublished"
-                ><a href="http://www.bloggure.info/MavenFailTestAtEnd"
-                  >September 03, 2015</a
-                ></time
-              ></span
-            ><span
-              class="author vcard"
-              itemprop="author"
-              itemscope
-              itemtype="http://schema.org/Person"
-              ><span itemprop="name" class="fn"
-                ><a
-                  href="http://www.bloggure.info/cgatay"
-                  title="About cgatay"
-                  itemprop="url"
-                  >cgatay</a
-                ></span
-              ></span
-            >&nbsp; &bull; &nbsp;<span class="entry-comments"
-              ><a
-                href="http://www.bloggure.info/MavenFailTestAtEnd/#disqus_thread"
-                >Comment</a
-              ></span
-            >
-          </div>
-          <!-- /.entry-meta -->
-
-          <h1 class="entry-title" itemprop="name">
-            <a
-              href="http://www.bloggure.info/MavenFailTestAtEnd"
-              rel="bookmark"
-              title="How to get all failing tests for a multimodule Maven project"
-              itemprop="url"
-              >How to get all failing tests for a multimodule Maven project</a
-            >
-          </h1>
-        </header>
-        <div class="entry-content" itemprop="description">
-          <h1 id="maven-testing">Maven testing</h1>
-
-          <p>
-            One of the bothering thing being a contractor is that you often
-            happen to work on a project with a skip tests flag set on all
-            developers computer.
-          </p>
-
-          <p>
-            One of the thing I tend to do when on such project is enabling tests
-            and trying to fix as much as possible (often the fixes are easy to
-            do).
-          </p>
-
-          <h2 id="multi-module-testing">Multi module testing</h2>
-          <p>
-            By design, surefire plugin make the build fail if there is a test
-            failure. While this is ok in single module, when working with
-            multi-module project it can be nice to run all tests on all modules
-            regardless of the failures happening in some modules.
-          </p>
-
-          <p>
-            Maven is a great tool and allows such a behavior very easily, it
-            allows two command line switches for that :
-          </p>
-
-          <ul>
-            <li>
-              <code>--fail-at-end</code> : will fail the build at the end if
-              there is test failures
-            </li>
-            <li>
-              <code>--fail-never</code> : will never fail the build, even if
-              there is test failures
-            </li>
-          </ul>
-
-          <h2 id="flags-behavior-differences">Flags behavior differences</h2>
-          <p>
-            There is one thing to understand when using the
-            <code>--fail-at-end</code> flag, it will fail the build at end for a
-            module with test failure but it will also prevents building of
-            dependent modules.
-          </p>
-
-          <p>
-            With a small example it become obvious. Let’s say that we have a
-            multi project containing the following :
-          </p>
-
-          <ul>
-            <li>core : containing model objects and services</li>
-            <li>web : containing web views for browser access</li>
-            <li>javafx : containing desktop application classes</li>
-          </ul>
-
-          <p>
-            It is straightforward to see that <code>web</code> and
-            <code>javafx</code> modules will depends on the
-            <code>core</code> module.
-          </p>
-
-          <h3 id="fail-at-end">fail-at-end</h3>
-          <p>
-            If using the <code>--fail-at-end</code> flag, a test failure in the
-            core module will prevent building the <code>web</code> and
-            <code>javafx</code> module completely : you will not be able to
-            track tests failure before fixing the ones from
-            <code>core</code> (at least on a single build command).
-          </p>
-
-          <h3 id="fail-never">fail-never</h3>
-          <p>
-            If using the <code>--fail-never</code> flag, a test failure in the
-            <code>core</code> module will be reported but the build and tests of
-            the <code>web</code> and <code>javafx</code> modules will be built
-            and their respective tests errors will also be reported.
-          </p>
-
-          <h2 id="tired-of-typing">Tired of typing</h2>
-          <p>
-            If you find that typing <code>--fail-at-end</code> is too long,
-            remember yourself it short alias : <code>-fae</code>.
-          </p>
-
-          <p>
-            The same is also available for the <code>--fail-never</code> flag
-            with : <code>-fn</code>.
           </p>
         </div>
         <!-- /.entry-content -->
