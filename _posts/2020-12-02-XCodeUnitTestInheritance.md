@@ -11,13 +11,13 @@ author: cgatay
 
 As I was working on an iOS project, I added unit tests to ensure things are not behaving badly (and will not).
 
-During the process, a common pattern showed up and a few fields were required, I came up with the idea to basically create a `BaseClass` for my tests, so that everything is unified.
+During the process, a common pattern showed up and a few fields were required, I came up with the idea to basically create a `BaseTest` for my tests, so that everything is unified.
 
 ## Base idea
 
 I came up with something like the following for my tests
 
-```swift
+{% highlight swift %}
 class BaseTest<T, Action>: XCTestCase {
     var subject: T!
     var actions: [Action]!
@@ -27,15 +27,14 @@ class BaseTest<T, Action>: XCTestCase {
         actions = []
     }
 }
-```
 
-```swift
 class LoginTest: BaseTest<LoginMiddleware, LoginAction> {
     func test_loginIsWorking(){
         // ...
     }
 }
-```
+
+{% endhighlight %}
 
 It worked very well within XCode, I could run the tests by hitting the 🔹 in the gutter.
 
@@ -49,11 +48,11 @@ Then, I blamed `fastlane` and thought that I've missed something in my test targ
 XCode was simply not discovering my test.
 
 ## Workaround
-Inheritance is often misused, in this case, I think it is relevant, but I applied classical way of working around this. I changed my `BaseClass` to a `BaseHelper` instead, to which the test delegates the calls.
+Inheritance is often misused, in this case, I think it is relevant, but I applied classical way of working around this. I changed my `BaseTest` to a `BaseHelper` instead, to which the test delegates the calls.
 
 With this, the test class properly inherits `XCTestCase` and is discovered as expected (even in subfolders).
 
-```swift
+{% highlight swift %}
 class BaseHelper<T, Action>{
     var subject: T!
     var actions: [Action]!
@@ -63,9 +62,7 @@ class BaseHelper<T, Action>{
         actions = []
     }
 }
-```
 
-```swift
 class LoginTest: XCTestCase {
     var helper: BaseHelper<LoginMiddleware, LoginAction>!
 
@@ -76,6 +73,6 @@ class LoginTest: XCTestCase {
         // ...
     }
 }
-```
+{% endhighlight %}
 
 The nice thing in this solution is that the `setUp` call is no longer magical !
