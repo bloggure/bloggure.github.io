@@ -6,7 +6,7 @@
         {
             "label": "serve",
             "type": "shell",
-            "command": "JEKYLL_ENV='production' bundle exec jekyll serve --config _config.yml,_config.gitpod.yml --watch",
+            "command": "JEKYLL_ENV='production' bundle exec jekyll serve --config _config.yml,_config.gitpod.yml --watch --draft",
             "problemMatcher": []
         }
     ]
