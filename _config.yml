@@ -1,4 +1,4 @@
-title:            Bloggure | There is no place like ::1
+title:            Bloggure
 description:      Multi author blog about programming, computing and geek stuff
 disqus_shortname: thereisnoplacelike1
 #Comment out url when working locally to resolve base urls correctly
@@ -7,6 +7,11 @@ url:              http://www.bloggure.info
 plugins:
   - jekyll-gist
   - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-feed
+sass:
+  sass_dir: _sass
+  style: compressed
 # Owner/author information
 owner:
   name:           #Your Name
@@ -53,6 +58,7 @@ permalink:   /:categories/:title
 paginate: 5
 
 kramdown:
+  input: GFM
   auto_ids: true
   footnote_nr: 1
   entity_output: as_char
