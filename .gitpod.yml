@@ -2,8 +2,8 @@ image:
   file: .gitpod.Dockerfile
 
 tasks:
-- before: >
-    echo "url: $(gp url 4000)" > _config.gitpod.yml
-  init: bundle install
-- command: JEKYLL_ENV='production' bundle exec jekyll serve --config _config.yml,_config.gitpod.yml --watch --drafts
-  openIn: bottom
+  - before: >
+      echo "url: $(gp url 4000)" > _config.gitpod.yml
+    init: bundle install
+  - command: JEKYLL_ENV='production' bundle exec jekyll serve --config _config.yml,_config.gitpod.yml --watch --drafts
+    openIn: bottom
