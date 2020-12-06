@@ -110,6 +110,78 @@
           <div class="entry-meta">
             <span class="entry-date date published updated"
               ><time
+                datetime="2012-04-16T00:00:00+02:00"
+                itemprop="datePublished"
+                ><a href="http://www.bloggure.info/work/devoxx-france-d-3"
+                  >April 16, 2012</a
+                ></time
+              ></span
+            ><span
+              class="author vcard"
+              itemprop="author"
+              itemscope
+              itemtype="http://schema.org/Person"
+              ><span itemprop="name" class="fn"
+                ><a
+                  href="http://www.bloggure.info/cgatay"
+                  title="About cgatay"
+                  itemprop="url"
+                  >cgatay</a
+                ></span
+              ></span
+            >&nbsp; &bull; &nbsp;<span class="entry-comments"
+              ><a
+                href="http://www.bloggure.info/work/devoxx-france-d-3#disqus_thread"
+                >Comment</a
+              ></span
+            >
+          </div>
+          <!-- /.entry-meta -->
+
+          <h1 class="entry-title" itemprop="name">
+            <a
+              href="http://www.bloggure.info/work/devoxx-france-d-3"
+              rel="bookmark"
+              title="Devoxx France / D-3"
+              itemprop="url"
+              >Devoxx France / D-3</a
+            >
+          </h1>
+        </header>
+        <div class="entry-content" itemprop="description">
+          <!--:en-->
+          <p>
+            I will be one of the 1200 geeks in Paris to attend the first edition
+            of the famous <a href="http://devoxx.fr/">Devoxx</a> conference in
+            France. I will try to give feedback here on the keynotes I attend
+            throughout the 3 days of this conference. Stay tuned...
+          </p>
+          <p>Have a look at the teaser :</p>
+          <iframe
+            width="420"
+            height="315"
+            src="http://www.youtube.com/embed/II6XiGGlJX0"
+            frameborder="0"
+            allowfullscreen
+          ></iframe
+          ><!--:--><!--:fr<p>Je vais faire partie des 1200 geeks présent à Paris en cette fin de semaine pour la première édition de <a href="http://devoxx.fr/">Devoxx France</a>. Je résumerai ici mes impressions sur les différentes présentations et ateliers auquel je vais participer. À suivre...</p>
+<p>Jetez un oeil au teaser : </p>
+<iframe width="420" height="315" src="http://www.youtube.com/embed/II6XiGGlJX0" frameborder="0" allowfullscreen></iframe><-->
+        </div>
+        <!-- /.entry-content -->
+      </article>
+      <!-- /.hentry -->
+
+      <article
+        class="hentry"
+        itemprop="blogPost"
+        itemscope
+        itemtype="http://schema.org/BlogPosting"
+      >
+        <header>
+          <div class="entry-meta">
+            <span class="entry-date date published updated"
+              ><time
                 datetime="2012-02-23T00:00:00+01:00"
                 itemprop="datePublished"
                 ><a href="http://www.bloggure.info/.git/work/gitlabhq"
@@ -371,93 +443,6 @@ Puisque j'ai mis pas mal de temps à comprendre ce qui se passait et que je n'ai
       </article>
       <!-- /.hentry -->
 
-      <article
-        class="hentry"
-        itemprop="blogPost"
-        itemscope
-        itemtype="http://schema.org/BlogPosting"
-      >
-        <header>
-          <div class="entry-meta">
-            <span class="entry-date date published updated"
-              ><time
-                datetime="2011-12-19T00:00:00+01:00"
-                itemprop="datePublished"
-                ><a
-                  href="http://www.bloggure.info/.git/.maven/git-bisect-saved-my-day"
-                  >December 19, 2011</a
-                ></time
-              ></span
-            ><span
-              class="author vcard"
-              itemprop="author"
-              itemscope
-              itemtype="http://schema.org/Person"
-              ><span itemprop="name" class="fn"
-                ><a
-                  href="http://www.bloggure.info/cgatay"
-                  title="About cgatay"
-                  itemprop="url"
-                  >cgatay</a
-                ></span
-              ></span
-            >&nbsp; &bull; &nbsp;<span class="entry-comments"
-              ><a
-                href="http://www.bloggure.info/.git/.maven/git-bisect-saved-my-day#disqus_thread"
-                >Comment</a
-              ></span
-            >
-          </div>
-          <!-- /.entry-meta -->
-
-          <h1 class="entry-title" itemprop="name">
-            <a
-              href="http://www.bloggure.info/.git/.maven/git-bisect-saved-my-day"
-              rel="bookmark"
-              title="git bisect saved my day !"
-              itemprop="url"
-              >git bisect saved my day !</a
-            >
-          </h1>
-        </header>
-        <div class="entry-content" itemprop="description">
-          <p>
-            This morning one of the Jenkins job went red, 5 tests were failing,
-            and it was very difficult to find out which commit caused the break
-            (69 commits were concerned), I used git bisect to run maven tests to
-            find the guilty one. Here is a quick howto:
-          </p>
-          <ul>
-            <li>
-              find a stable commit (in my case it
-              was <strong>2ea34cf09cc83804cdcc445476bfb597c617a034</strong>)
-            </li>
-            <li>
-              write a short script (myScript.sh) allowing you to run the tests:
-            </li>
-          </ul>
-
-          <figure class="highlight">
-            <pre><code class="language-bash" data-lang="bash"><span></span><span class="ch">#!/bin/sh</span>
-mvn -f path/to/my/pom.xml -Dtest<span class="o">=</span>MyTestClass <span class="nb">test</span></code></pre>
-          </figure>
-          <ul>
-            <li>
-              git bisect start <strong>HEAD</strong>
-              <strong>2ea34cf09cc83804cdcc445476bfb597c617a034</strong>
-            </li>
-            <li>git bisect run ./myScript.sh</li>
-          </ul>
-          <p>
-            That's all, in a few runs (6 in my cases), git found out the commit
-            causing the test failure, a simple git revert and tests were back to
-            green !
-          </p>
-        </div>
-        <!-- /.entry-content -->
-      </article>
-      <!-- /.hentry -->
-
       <div class="pagination">
         <a href="http://www.bloggure.info/page12" class="btn">Previous</a>
 
@@ -536,6 +521,10 @@ mvn -f path/to/my/pom.xml -Dtest<span class="o">=</span>MyTestClass <span class=
 
           <li>
             <a href="http://www.bloggure.info/page19">19</a>
+          </li>
+
+          <li>
+            <a href="http://www.bloggure.info/page20">20</a>
           </li>
         </ul>
 

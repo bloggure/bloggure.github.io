@@ -110,6 +110,89 @@
           <div class="entry-meta">
             <span class="entry-date date published updated"
               ><time
+                datetime="2011-08-21T00:00:00+02:00"
+                itemprop="datePublished"
+                ><a
+                  href="http://www.bloggure.info/.shell/convert-a-mysql-database-from-latin1-to-utf-8"
+                  >August 21, 2011</a
+                ></time
+              ></span
+            ><span
+              class="author vcard"
+              itemprop="author"
+              itemscope
+              itemtype="http://schema.org/Person"
+              ><span itemprop="name" class="fn"
+                ><a
+                  href="http://www.bloggure.info/cgatay"
+                  title="About cgatay"
+                  itemprop="url"
+                  >cgatay</a
+                ></span
+              ></span
+            >&nbsp; &bull; &nbsp;<span class="entry-comments"
+              ><a
+                href="http://www.bloggure.info/.shell/convert-a-mysql-database-from-latin1-to-utf-8#disqus_thread"
+                >Comment</a
+              ></span
+            >
+          </div>
+          <!-- /.entry-meta -->
+
+          <h1 class="entry-title" itemprop="name">
+            <a
+              href="http://www.bloggure.info/.shell/convert-a-mysql-database-from-latin1-to-utf-8"
+              rel="bookmark"
+              title="Convert a mySQL Database from latin1 to UTF-8"
+              itemprop="url"
+              >Convert a mySQL Database from latin1 to UTF-8</a
+            >
+          </h1>
+        </header>
+        <div class="entry-content" itemprop="description">
+          <!--:en-->A frequent problem when it comes to internationalisation is
+          proper handling of different charset. When you're using Java and Maven
+          it is relatively easy to set up source encoding to UTF-8, but the
+          frequent point of failure is in the SQL database.
+          <br />
+          If you use mySQL, and you have latin1 tables, but you should have
+          UTF-8 instead, use this little script to convert from latin1 to UTF-8
+          :
+          <figure class="highlight">
+            <pre><code class="language-bash" data-lang="bash"><span></span>mysqldump --user<span class="o">=</span><span class="si">${</span><span class="nv">USER</span><span class="si">}</span> --password<span class="o">=</span><span class="si">${</span><span class="nv">PASS</span><span class="si">}</span> --default-character-set<span class="o">=</span>latin1 --skip-set-charset <span class="si">${</span><span class="nv">DATABASE</span><span class="si">}</span> &gt; dump.sql<span class="p">;</span>
+sed -r ‘s/latin1/utf8/g’ dump.sql &gt; dump_utf.sql
+mysql --user<span class="o">=</span><span class="si">${</span><span class="nv">USER</span><span class="si">}</span> --password<span class="o">=</span><span class="si">${</span><span class="nv">PASS</span><span class="si">}</span> --execute<span class="o">=</span>”DROP DATABASE <span class="si">${</span><span class="nv">DATABASE</span><span class="si">}</span><span class="p">;</span> CREATE DATABASE <span class="si">${</span><span class="nv">DATABASE</span><span class="si">}</span> CHARACTER SET utf8 COLLATE utf8_general_ci<span class="p">;</span>”
+mysql --user<span class="o">=</span><span class="si">${</span><span class="nv">USER</span><span class="si">}</span> --password<span class="o">=</span><span class="si">${</span><span class="nv">PASS</span><span class="si">}</span> --default-character-set<span class="o">=</span>utf8 dbname &lt; dump_utf.sql</code></pre>
+          </figure>
+          Generally speaking, don't hesitate to always put the
+          <code>--default-character-set=utf8</code> on all the mySQL commands
+          you execute. Don't forget to add at the end of your jdbc connection
+          url the following parameters :
+          <code>"useUnicode=true&characterEncoding=UTF-8"</code> to ensure you
+          connect using UTF-8.<!--:--><!--:frUn problème fréquent quand on doit aborder l'internationalisation est la bonne gestion des différents charset. Quand vous utilisez du Java avec Maven, il est relativement simple de définir l'encoding des fichiers sources en UTF-8 mais le point courant d'échec et la base SQL.
+<br/>
+Si vous utilisez mySQL et que vous avez des tables en latin1, mais que vous devriez avoir de l'UTF-8, utilisez ce petit script pour convertir du latin1 vers l'UTF-8 :
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>mysqldump --user<span class="o">=</span><span class="si">${</span><span class="nv">USER</span><span class="si">}</span> --password<span class="o">=</span><span class="si">${</span><span class="nv">PASS</span><span class="si">}</span> --default-character-set<span class="o">=</span>latin1 --skip-set-charset <span class="si">${</span><span class="nv">DATABASE</span><span class="si">}</span> &gt; dump.sql<span class="p">;</span>
+sed -r ‘s/latin1/utf8/g’ dump.sql &gt; dump_utf.sql
+mysql --user<span class="o">=</span><span class="si">${</span><span class="nv">USER</span><span class="si">}</span> --password<span class="o">=</span><span class="si">${</span><span class="nv">PASS</span><span class="si">}</span> --execute<span class="o">=</span>”DROP DATABASE <span class="si">${</span><span class="nv">DATABASE</span><span class="si">}</span><span class="p">;</span> CREATE DATABASE <span class="si">${</span><span class="nv">DATABASE</span><span class="si">}</span> CHARACTER SET utf8 COLLATE utf8_general_ci<span class="p">;</span>”
+mysql --user<span class="o">=</span><span class="si">${</span><span class="nv">USER</span><span class="si">}</span> --password<span class="o">=</span><span class="si">${</span><span class="nv">PASS</span><span class="si">}</span> --default-character-set<span class="o">=</span>utf8 dbname &lt; dump_utf.sql</code></pre></figure>
+Globalement, n'hésitez pas à toujours placer <code>--default-character-set=utf8</code> dans toutes les commandes mySQL que vous exécutez.
+N'oubliez pas non plus d'ajouter les paramètres <code>"useUnicode=true&characterEncoding=UTF-8"</code> à la fin de votre url de connexion jdbc pour vous assurez que vous vous connectez en UTF-8.-->
+        </div>
+        <!-- /.entry-content -->
+      </article>
+      <!-- /.hentry -->
+
+      <article
+        class="hentry"
+        itemprop="blogPost"
+        itemscope
+        itemtype="http://schema.org/BlogPosting"
+      >
+        <header>
+          <div class="entry-meta">
+            <span class="entry-date date published updated"
+              ><time
                 datetime="2011-08-09T00:00:00+02:00"
                 itemprop="datePublished"
                 ><a
@@ -567,6 +650,10 @@ Veuillez faire attention en essayant ma procédure, Launchpad pourrait devenir i
 
           <li>
             <a href="http://www.bloggure.info/page19">19</a>
+          </li>
+
+          <li>
+            <a href="http://www.bloggure.info/page20">20</a>
           </li>
         </ul>
 

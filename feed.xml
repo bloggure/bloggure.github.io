@@ -4,13 +4,62 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="http://www.bloggure.info/feed.xml" />
 <link rel="alternate" type="text/html" href="http://www.bloggure.info" />
-<updated>2020-12-06T11:08:38+01:00</updated>
+<updated>2020-12-06T11:48:23+01:00</updated>
 <id>http://www.bloggure.info/</id>
 <author>
   <name></name>
   <uri>http://www.bloggure.info/</uri>
   <email></email>
 </author>
+
+
+<entry>
+  <title type="html"><![CDATA[macOS tools checklist]]></title>
+  <link>http://www.bloggure.info/mac-checklist</link>
+  <id>http://www.bloggure.info/mac-checklist</id>
+  <published>2020-12-06T00:00:00+01:00</published>
+  <updated>2020-12-06T00:00:00+01:00</updated>
+  <author>
+    <name></name>
+    <uri>http://www.bloggure.info</uri>
+    <email></email>
+  </author>
+  <content type="html">&lt;h1 id=&quot;welcome-to-the-mac-world&quot;&gt;Welcome to the mac world&lt;/h1&gt;
+
+&lt;p&gt;Wether you’re new to macOS or an user coming from different machines, the tools we tend to use is very important to be productive.&lt;/p&gt;
+
+&lt;p&gt;Here you’ll find my list and what I install on a fresh machine to get started.&lt;/p&gt;
+
+&lt;h2 id=&quot;system-tools&quot;&gt;System tools&lt;/h2&gt;
+
+&lt;p&gt;First and foremost, I start with &lt;a href=&quot;https://brew.sh&quot;&gt;&lt;code&gt;brew&lt;/code&gt;&lt;/a&gt; to handle all my packages, but instead of doing so manually, I use my &lt;a href=&quot;https://github.com/CedricGatay/dotfiles.git&quot;&gt;&lt;code&gt;dotfiles&lt;/code&gt;&lt;/a&gt; and my “magic”
+install script that does all the heavy lifting for me.&lt;/p&gt;
+
+&lt;h2 id=&quot;keyboard-tools&quot;&gt;Keyboard tools&lt;/h2&gt;
+
+&lt;p&gt;I use a TypeMatrix with a Colemak layout and also the internal keyboard of my laptop with its default layout.
+Colemak layout is available on a fresh macOS install but it is far from perfect as there are a lot of missing dead keys 
+(to type accented letters mainly), so I start by installing the layout provided on this page: &lt;a href=&quot;https://colemak.com/Mac&quot;&gt;Colemak mac&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;To easily switch between the two and get almost the same feeling, I use &lt;a href=&quot;http://karabiner-elements.pqrs.org/&quot;&gt;Karabiner Elements&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;everyday-tools&quot;&gt;Everyday tools&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://sdkman.io&quot;&gt;sdkman&lt;/a&gt;: to manage installation of various sdk (mainly Java based)&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://iterm2.com&quot;&gt;iTerm&lt;/a&gt;: nice terminal app with profiles&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/tmux/tmux/wiki&quot;&gt;tmux&lt;/a&gt;: multi terminal in one window, switching terminal with a keystroke&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.zsh.org&quot;&gt;zsh&lt;/a&gt;: Z-Shell&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://starship.rs&quot;&gt;starship&lt;/a&gt;: fast shell prompt&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/BurntSushi/ripgrep&quot;&gt;ripgrep&lt;/a&gt;: faster &lt;code&gt;grep&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/sharkdp/bat&quot;&gt;bat&lt;/a&gt;: nice &lt;code&gt;cat&lt;/code&gt; alternative (with paging / highlighting)&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/ogham/exa&quot;&gt;exa&lt;/a&gt;: replacement for &lt;code&gt;ls&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.alfredapp.com&quot;&gt;Alfred&lt;/a&gt;: Spotlight with more features, this is my main app launcher / switcher&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://go.setapp.com/invite/cgatay&quot;&gt;SetApp&lt;/a&gt;: App subscription service, use many tools from this (BetterTouchTool, iStat, BarTender…)&lt;/li&gt;
+&lt;/ul&gt;
+
+  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/mac-checklist&quot;&gt;macOS tools checklist&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure&lt;/a&gt; on December 06, 2020.&lt;/p&gt;</content>
+</entry>
 
 
 <entry>
@@ -878,51 +927,6 @@ With this little trick, your calls to localization will use the locale extracted
 &lt;p&gt;I hope someone will find this useful !&lt;/p&gt;&lt;!--:--&gt;
 
   &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/.java/work/heroku-play-scala-compass-buildpack&quot;&gt;Heroku Play ! Scala Compass Buildpack&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure&lt;/a&gt; on July 08, 2013.&lt;/p&gt;</content>
-</entry>
-
-
-<entry>
-  <title type="html"><![CDATA[Wicket Routes Mount]]></title>
-  <link>http://www.bloggure.info/.wicket/wicket-routes-mount</link>
-  <id>http://www.bloggure.info/.wicket/wicket-routes-mount</id>
-  <published>2013-05-20T00:00:00+02:00</published>
-  <updated>2013-05-20T00:00:00+02:00</updated>
-  <author>
-    <name></name>
-    <uri>http://www.bloggure.info</uri>
-    <email></email>
-  </author>
-  <content type="html">&lt;!--:en--&gt;&lt;img class=&quot;alignright size-thumbnail wp-image-90&quot; alt=&quot;Wicket&quot; src=&quot;/images/uploads/2010/10/logo-wicket1-150x150.png&quot; width=&quot;150&quot; height=&quot;150&quot; /&gt;
-
-&lt;p&gt;At &lt;a href=&quot;http://code-troopers.com&quot;&gt;Code-Troopers&lt;/a&gt;, we like to work with the frameworks we love. One of them is &lt;a href=&quot;http://wicket.apache.org&quot;&gt;Apache Wicket&lt;/a&gt;, and it happens to some of us doing some &lt;a href=&quot;http://www.playframework.com/&quot;&gt;Play! Framework&lt;/a&gt; or &lt;a href=&quot;http://rubyonrails.org/&quot;&gt;Ruby on Rails&lt;/a&gt; (either for a client project, a side project or giving back OSS love).&lt;/p&gt;
-
-&lt;p&gt;One thing really great is this two frameworks is the central route system, one file allows to group all the routes handled by your application. Wicket does not provide such way of grouping routes, you can manually mount routes into your application or annotate your page classes.&lt;/p&gt;
-&lt;h2&gt;Wicket routes mount library&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/code-troopers/wicket-routes-mount&quot;&gt;This small library project available on Github&lt;/a&gt; allows to group mounts into a central file. To use it, simply add its dependency to your &lt;code&gt;pom.xml&lt;/code&gt; (artifact is available on Maven central):&lt;/p&gt;
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;com.code-troopers&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;wicket-route-mount&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;0.1&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-&lt;em&gt;
-This dependency will transitively gets &lt;code&gt;wicket-auth-roles&lt;/code&gt; (if there is a special need for a version without this dependency, it could be done easily).
-&lt;/em&gt;
-&lt;h2&gt;Usage&lt;/h2&gt;
-&lt;p&gt;To use it, simply create a &lt;code&gt;routes.conf&lt;/code&gt; file at the root of the sources in your project (typically &lt;code&gt;src/main/resources/&lt;/code&gt;) respecting the following format :&lt;/p&gt;
-&lt;pre&gt;# mountPoint        class                           roles
-/home               codetroopers.HomePage           
-/secured            codetroopers.SecuredPage        USER
-/user/${mode}/#{id} codetroopers.UserPage           ADMIN,USER&lt;/pre&gt;
-&lt;p&gt;The files content is the following :&lt;/p&gt;
-&lt;ul&gt;
-	&lt;li&gt;Mount path : using standard Wicket syntax (&lt;code&gt;${requiredParam}&lt;/code&gt; and &lt;code&gt;#{optionalParam}&lt;/code&gt; are available)&lt;/li&gt;
-	&lt;li&gt;Page class : fully qualified name of the page class to mount&lt;/li&gt;
-	&lt;li&gt;Roles (optional) : comma separated list of roles required to access the page&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;em&gt;IntelliJ IDEA can do completion for class names in this file (you just need to hit the &lt;code&gt;ctrl+space&lt;/code&gt; shortcut twice)&lt;/em&gt;&lt;!--:--&gt;
-
-  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/.wicket/wicket-routes-mount&quot;&gt;Wicket Routes Mount&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure&lt;/a&gt; on May 20, 2013.&lt;/p&gt;</content>
 </entry>
 
 </feed>

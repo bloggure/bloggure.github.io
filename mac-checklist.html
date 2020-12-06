@@ -7,36 +7,25 @@
   <!--<![endif]-->
   <head>
     <meta charset="utf-8" />
-    <title>
-      iTunes media sharing over the Internet from a NAS &#8211; Bloggure
-    </title>
+    <title>macOS tools checklist &#8211; Bloggure</title>
     <meta
       name="description"
       content="Multi author blog about programming, computing and geek stuff"
     />
-    <meta name="keywords" content="" />
+    <meta name="keywords" content="macos, tools, checklist" />
 
     <!-- Open Graph -->
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="article" />
-    <meta
-      property="og:title"
-      content="iTunes media sharing over the Internet from a NAS"
-    />
+    <meta property="og:title" content="macOS tools checklist" />
     <meta
       property="og:description"
       content="Multi author blog about programming, computing and geek stuff"
     />
-    <meta
-      property="og:url"
-      content="http://www.bloggure.info/.shell/shelf/itunes-media-sharing-over-the-internet-from-a-nas"
-    />
+    <meta property="og:url" content="http://www.bloggure.info/mac-checklist" />
     <meta property="og:site_name" content="Bloggure" />
 
-    <link
-      rel="canonical"
-      href="http://www.bloggure.info/.shell/shelf/itunes-media-sharing-over-the-internet-from-a-nas"
-    />
+    <link rel="canonical" href="http://www.bloggure.info/mac-checklist" />
     <link
       href="http://www.bloggure.info/feed.xml"
       type="application/atom+xml"
@@ -117,11 +106,10 @@
             <div class="entry-meta">
               <span class="entry-date date published updated"
                 ><time
-                  datetime="2010-11-14T00:00:00+01:00"
+                  datetime="2020-12-06T00:00:00+01:00"
                   itemprop="datePublished"
-                  ><a
-                    href="http://www.bloggure.info/.shell/shelf/itunes-media-sharing-over-the-internet-from-a-nas"
-                    >November 14, 2010</a
+                  ><a href="http://www.bloggure.info/mac-checklist"
+                    >December 06, 2020</a
                   ></time
                 ></span
               ><span
@@ -138,8 +126,7 @@
                   ></span
                 ></span
               >&nbsp; &bull; &nbsp;<span class="entry-comments"
-                ><a
-                  href="http://www.bloggure.info/.shell/shelf/itunes-media-sharing-over-the-internet-from-a-nas#disqus_thread"
+                ><a href="http://www.bloggure.info/mac-checklist#disqus_thread"
                   >Comment</a
                 ></span
               >
@@ -148,126 +135,125 @@
 
             <h1 class="entry-title" itemprop="name">
               <a
-                href="http://www.bloggure.info/.shell/shelf/itunes-media-sharing-over-the-internet-from-a-nas"
+                href="http://www.bloggure.info/mac-checklist"
                 rel="bookmark"
-                title="iTunes media sharing over the Internet from a NAS"
+                title="macOS tools checklist"
                 itemprop="url"
-                >iTunes media sharing over the Internet from a NAS</a
+                >macOS tools checklist</a
               >
             </h1>
           </header>
-          <!--:en--><img
-            class="alignright size-full wp-image-99"
-            title="Music"
-            src="/images/uploads/2010/11/free-music-head.png"
-            alt=""
-            width="200"
-            height="124"
-          />
+          <h1 id="welcome-to-the-mac-world">Welcome to the mac world</h1>
+
           <p>
-            I am a big fan of music, and I like to listen to all my music
-            wherever I am and whatever I do (specially when coding).
+            Wether you’re new to macOS or an user coming from different
+            machines, the tools we tend to use is very important to be
+            productive.
           </p>
 
           <p>
-            All my medias are stored on a NAS drive that features a little
-            embedded linux distribution as operating system. One of the service
-            is called iTunes media sharing (mt-daapd is the real name of the
-            daemon).
+            Here you’ll find my list and what I install on a fresh machine to
+            get started.
+          </p>
+
+          <h2 id="system-tools">System tools</h2>
+
+          <p>
+            First and foremost, I start with
+            <a href="https://brew.sh"><code>brew</code></a> to handle all my
+            packages, but instead of doing so manually, I use my
+            <a href="https://github.com/CedricGatay/dotfiles.git"
+              ><code>dotfiles</code></a
+            >
+            and my “magic” install script that does all the heavy lifting for
+            me.
+          </p>
+
+          <h2 id="keyboard-tools">Keyboard tools</h2>
+
+          <p>
+            I use a TypeMatrix with a Colemak layout and also the internal
+            keyboard of my laptop with its default layout. Colemak layout is
+            available on a fresh macOS install but it is far from perfect as
+            there are a lot of missing dead keys (to type accented letters
+            mainly), so I start by installing the layout provided on this page:
+            <a href="https://colemak.com/Mac">Colemak mac</a>
           </p>
 
           <p>
-            It is really a cool feature as I can listen media stored on my NAS
-            from whatever device on my LAN. The magic behind is called Bonjour
-            which is a protocol that allows device to register themselves on the
-            network and being discovered by others.
+            To easily switch between the two and get almost the same feeling, I
+            use
+            <a href="http://karabiner-elements.pqrs.org/">Karabiner Elements</a
+            >.
           </p>
 
-          <p>
-            My problem is I want to be able to listen to my home music at work,
-            and Bonjour service does not go out of my LAN. The additional thing
-            is I want to listen to my music using iTunes (I am fond of
-            <a title="Bowtie" href="http://bowtieapp.com" target="_blank"
-              >Bowtie</a
-            >) on my MacBook Pro.
-          </p>
+          <h2 id="everyday-tools">Everyday tools</h2>
 
-          <!--:--><!--more--><!--:en-->
-          <h1>Simulating Bonjour presence</h1>
-          <p>
-            The trick is to use a little software called <em>dns-sd </em>to
-            register your distant IP-address as a Bonjour source, by executing
-            the following command (replacing YOURIP with your public IP), you
-            should see a shared library (named MYNAME) in iTunes :
-          </p>
+          <ul>
+            <li>
+              <a href="https://sdkman.io">sdkman</a>: to manage installation of
+              various sdk (mainly Java based)
+            </li>
+            <li>
+              <a href="https://iterm2.com">iTerm</a>: nice terminal app with
+              profiles
+            </li>
+            <li>
+              <a href="https://github.com/tmux/tmux/wiki">tmux</a>: multi
+              terminal in one window, switching terminal with a keystroke
+            </li>
+            <li><a href="https://www.zsh.org">zsh</a>: Z-Shell</li>
+            <li>
+              <a href="https://starship.rs">starship</a>: fast shell prompt
+            </li>
+            <li>
+              <a href="https://github.com/BurntSushi/ripgrep">ripgrep</a>:
+              faster <code>grep</code>
+            </li>
+            <li>
+              <a href="https://github.com/sharkdp/bat">bat</a>: nice
+              <code>cat</code> alternative (with paging / highlighting)
+            </li>
+            <li>
+              <a href="https://github.com/ogham/exa">exa</a>: replacement for
+              <code>ls</code>
+            </li>
+            <li>
+              <a href="https://www.alfredapp.com">Alfred</a>: Spotlight with
+              more features, this is my main app launcher / switcher
+            </li>
+            <li>
+              <a href="https://go.setapp.com/invite/cgatay">SetApp</a>: App
+              subscription service, use many tools from this (BetterTouchTool,
+              iStat, BarTender…)
+            </li>
+          </ul>
 
-          <figure class="highlight">
-            <pre><code class="language-bash" data-lang="bash"><span></span>dns-sd -P MYNAME _daap._tcp. <span class="s2">&quot;my details&quot;</span> <span class="m">3689</span> homemusic.local YOURIP<span class="p">&amp;</span></code></pre>
-          </figure>
-
-          <p>
-            If it does not work, I think you've forgotten to open the 3689 TCP
-            port of your firewall and / or to forward it to your box running
-            mt-daapd.
-          </p>
-          <h1>Modifying iTunes to launch dns-sd</h1>
-          <p>
-            The thing is that it is not very convenient to launch the command
-            line with iTunes, it would be better if all was automatic.
-          </p>
-
-          <p>
-            There is a simple way of doing it that you'll have to do each times
-            iTunes is updated, moving the actual iTunes binary to another file
-            and trigger its launch from a small shell script.
-          </p>
-
-          <p>
-            First step is to move iTunes binary, launch a Terminal.app and type
-            the following :
-          </p>
-
-          <figure class="highlight">
-            <pre><code class="language-bash" data-lang="bash"><span></span>mv /Applications/iTunes.app/Contents/MacOS/iTunes /Applications/iTunes.app/Contents/MacOS/iTunes.bin</code></pre>
-          </figure>
-
-          <p>
-            Then, create the following shell script and record it under
-            /Applications/iTunes.app/Contents/MacOS/iTunes
-          </p>
-
-          <figure class="highlight">
-            <pre><code class="language-bash" data-lang="bash"><span></span><span class="ch">#!/bin/sh</span>
-dns-sd -P MYNAME _daap._tcp. <span class="s2">&quot;my details&quot;</span> <span class="m">3689</span> homemusic.local YOURIP <span class="p">&amp;</span>
-/Applications/iTunes.app/Contents/MacOS/iTunes.bin</code></pre>
-          </figure>
-
-          <p>Finally, make the script executable by <em>chmod</em>ding it :</p>
-
-          <figure class="highlight">
-            <pre><code class="language-bash" data-lang="bash"><span></span>chmod +x /Applications/iTunes.app/Contents/MacOS/iTunes</code></pre>
-          </figure>
-
-          <p>
-            The next time you'll launch iTunes, the <em>dns-sd </em>service will
-            be automatically launched, your shared media library will appear and
-            your ears will love this !
-          </p>
-
-          <p>
-            WARNING : you actually expose your media library to everyone on the
-            internet, I suggest you to set a password / change port number / use
-            a SSH tunnel to circumvent this...
-          </p>
-          <!--:-->
           <footer class="entry-meta">
-            <span class="entry-tags"></span>
+            <span class="entry-tags"
+              ><a
+                href="http://www.bloggure.info/tags/#macos"
+                title="Pages tagged macos"
+                class="tag"
+                ><span class="term">macos</span></a
+              ><a
+                href="http://www.bloggure.info/tags/#tools"
+                title="Pages tagged tools"
+                class="tag"
+                ><span class="term">tools</span></a
+              ><a
+                href="http://www.bloggure.info/tags/#checklist"
+                title="Pages tagged checklist"
+                class="tag"
+                ><span class="term">checklist</span></a
+              ></span
+            >
 
             <div class="social-share">
               <ul class="socialcount socialcount-small inline-list">
                 <li class="facebook">
                   <a
-                    href="https://www.facebook.com/sharer/sharer.php?u=http://www.bloggure.info/.shell/shelf/itunes-media-sharing-over-the-internet-from-a-nas"
+                    href="https://www.facebook.com/sharer/sharer.php?u=http://www.bloggure.info/mac-checklist"
                     title="Share on Facebook"
                     ><span class="count"
                       ><i class="fa fa-facebook-square"></i> Like</span
@@ -276,7 +262,7 @@ dns-sd -P MYNAME _daap._tcp. <span class="s2">&quot;my details&quot;</span> <spa
                 </li>
                 <li class="twitter">
                   <a
-                    href="https://twitter.com/intent/tweet?text=http://www.bloggure.info/.shell/shelf/itunes-media-sharing-over-the-internet-from-a-nas"
+                    href="https://twitter.com/intent/tweet?text=http://www.bloggure.info/mac-checklist"
                     title="Share on Twitter"
                     ><span class="count"
                       ><i class="fa fa-twitter-square"></i> Tweet</span
@@ -294,7 +280,7 @@ dns-sd -P MYNAME _daap._tcp. <span class="s2">&quot;my details&quot;</span> <spa
         <div class="read-more">
           <div class="read-more-header">
             <a
-              href="http://www.bloggure.info/.java/work/glassfish-v3-custom-log-levels"
+              href="http://www.bloggure.info/SwiftUI-UIKit_Interop"
               class="read-more-btn"
               >Read More</a
             >
@@ -303,16 +289,16 @@ dns-sd -P MYNAME _daap._tcp. <span class="s2">&quot;my details&quot;</span> <spa
           <div class="read-more-content">
             <h3>
               <a
-                href="http://www.bloggure.info/mac-checklist"
-                title="macOS tools checklist"
-                >macOS tools checklist</a
+                href="http://www.bloggure.info/SwiftUI-UIKit_Interop"
+                title="SwiftUI UIKit Interop"
+                >SwiftUI UIKit Interop</a
               >
             </h3>
             <p>
-              # Welcome to the mac worldWether you're new to macOS or an user
-              coming from different machines, the tools we tend to use is very
-              importan...&hellip;
-              <a href="http://www.bloggure.info/mac-checklist"
+              Now that iOS13 is available for more than year, we can start to
+              set it as a lower bound for our deployments.This allows us to play
+              with a...&hellip;
+              <a href="http://www.bloggure.info/SwiftUI-UIKit_Interop"
                 >Continue reading</a
               >
             </p>
@@ -323,24 +309,24 @@ dns-sd -P MYNAME _daap._tcp. <span class="s2">&quot;my details&quot;</span> <spa
             <div class="list-item">
               <h4>
                 <a
-                  href="http://www.bloggure.info/SwiftUI-UIKit_Interop"
-                  title="SwiftUI UIKit Interop"
-                  >SwiftUI UIKit Interop</a
-                >
-              </h4>
-              <span>Published on December 03, 2020</span>
-            </div>
-            <!-- /.list-item -->
-
-            <div class="list-item">
-              <h4>
-                <a
                   href="http://www.bloggure.info/XCodeUnitTestInheritance"
                   title="XCode unit test and inheritance"
                   >XCode unit test and inheritance</a
                 >
               </h4>
               <span>Published on December 02, 2020</span>
+            </div>
+            <!-- /.list-item -->
+
+            <div class="list-item">
+              <h4>
+                <a
+                  href="http://www.bloggure.info/Revival"
+                  title="Bloggure revival"
+                  >Bloggure revival</a
+                >
+              </h4>
+              <span>Published on December 01, 2020</span>
             </div>
             <!-- /.list-item -->
           </div>
