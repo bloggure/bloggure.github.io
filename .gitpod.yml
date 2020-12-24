@@ -3,7 +3,7 @@ image:
 
 tasks:
   - before: >
-      echo "url: $(gp url 4000)" > _config.gitpod.yml;
+      echo "url: $(gp url 4000)" > _config.gitpod.yml &&
       bundle install
   - command: JEKYLL_ENV='production' bundle exec jekyll serve --config _config.yml,_config.gitpod.yml --watch --drafts
     openIn: bottom
