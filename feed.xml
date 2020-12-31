@@ -4,13 +4,82 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="http://www.bloggure.info/feed.xml" />
 <link rel="alternate" type="text/html" href="http://www.bloggure.info" />
-<updated>2020-12-24T19:12:14+01:00</updated>
+<updated>2020-12-31T17:06:41+01:00</updated>
 <id>http://www.bloggure.info/</id>
 <author>
   <name></name>
   <uri>http://www.bloggure.info/</uri>
   <email></email>
 </author>
+
+
+<entry>
+  <title type="html"><![CDATA[Git-gone]]></title>
+  <link>http://www.bloggure.info/git-gone</link>
+  <id>http://www.bloggure.info/git-gone</id>
+  <published>2020-12-31T00:00:00+01:00</published>
+  <updated>2020-12-31T00:00:00+01:00</updated>
+  <author>
+    <name></name>
+    <uri>http://www.bloggure.info</uri>
+    <email></email>
+  </author>
+  <content type="html">&lt;h1 id=&quot;git-daily-usage&quot;&gt;Git daily usage&lt;/h1&gt;
+
+&lt;p&gt;If you’re like most developers nowadays you make an extensive usage of &lt;code&gt;git&lt;/code&gt; across a large number of repositories.&lt;/p&gt;
+
+&lt;p&gt;The now-classic branching model that consists in using a branch for every fix / feature / experiment before 
+creating a merge request is perfect for collaborating efficiently. 
+However it comes with one downside, local branches can quickly become messy and removing stale branches is not that easy&lt;/p&gt;
+
+&lt;h2 id=&quot;removing-remote-branches&quot;&gt;Removing remote branches&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;git&lt;/code&gt; is a really well designed tool and removing remote references from your local repository is easily done by&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span&gt;&lt;/span&gt;git remote prune origin&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;This will remove local references to non existing branches, however it is not useful to remember this command, we can configure &lt;code&gt;git&lt;/code&gt; so that it
+prunes automatically on fetching :&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span&gt;&lt;/span&gt;git config --global fetch.prune &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;removing-local-branches&quot;&gt;Removing local branches&lt;/h2&gt;
+
+&lt;p&gt;This is where things can be quite messy, as local branches might have been merged, rebased, or squashed, and “classic” commands
+allowing to detected merged branches are not always working as they ought.&lt;/p&gt;
+
+&lt;p&gt;If you search how to clean up local branches, you might find a lot of commands involving &lt;code&gt;git branch --merged&lt;/code&gt; with &lt;code&gt;grep&lt;/code&gt; and &lt;code&gt;xargs&lt;/code&gt;
+all the way.&lt;/p&gt;
+
+&lt;p&gt;I found out a little neat tool to do so, called &lt;a href=&quot;https://github.com/lunaryorn/git-gone&quot;&gt;&lt;code&gt;git-gone&lt;/code&gt; (github/lunaryorn/git-gone)&lt;/a&gt;, written in Rust 🧡&lt;/p&gt;
+
+&lt;h3 id=&quot;install-it&quot;&gt;Install it&lt;/h3&gt;
+
+&lt;p&gt;As all rust project, it is packaged and easy to install using cargo&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-swift&quot; data-lang=&quot;swift&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cargo&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;git&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gone&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3 id=&quot;list-branches-to-prune&quot;&gt;List branches to prune&lt;/h3&gt;
+
+&lt;p&gt;Before doing anything silly, we can list the branches that are candidate to removal (the &lt;code&gt;-f&lt;/code&gt; flag forces fetching remote)&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-swift&quot; data-lang=&quot;swift&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gone&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;feature&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;asciidoc&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;fix&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;imageCompress&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3 id=&quot;pruneem-all&quot;&gt;Prune’em all&lt;/h3&gt;
+
+&lt;p&gt;And finally, you can remove them (the &lt;code&gt;-f&lt;/code&gt; flag is still here to sync with remote)&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-swift&quot; data-lang=&quot;swift&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gone&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;prune&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Deleted&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;feature&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;asciidoc&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;restore&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;checkout&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;feature&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;asciidoc&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f007a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;`)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Deleted&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fix&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;imageCompress&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;restore&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;checkout&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fix&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;imageCompress&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;af523b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;`)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;code&gt;git-gone&lt;/code&gt; is event clever enough to give you the command to restore a branch if change your mind 
+(as long as you did not &lt;code&gt;git gc&lt;/code&gt; the revision is still available locally, so you can restore it)&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/git-gone&quot;&gt;Git-gone&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure&lt;/a&gt; on December 31, 2020.&lt;/p&gt;</content>
+</entry>
 
 
 <entry>
@@ -902,31 +971,6 @@ With this little trick, your calls to localization will use the locale extracted
 &lt;p&gt;&lt;strong&gt;Mise à jour du 29 juillet 2013&lt;/strong&gt; : correction du script de lancement du daemon.&lt;/p&gt;&lt;!--:--&gt;
 
   &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/.java/.scala/.shell/ci/shelf/centos-redhat-play-application-production-mode&quot;&gt;Play application on Centos/RedHat in production mode&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure&lt;/a&gt; on July 25, 2013.&lt;/p&gt;</content>
-</entry>
-
-
-<entry>
-  <title type="html"><![CDATA[Heroku Play ! Scala Compass Buildpack]]></title>
-  <link>http://www.bloggure.info/.java/work/heroku-play-scala-compass-buildpack</link>
-  <id>http://www.bloggure.info/.java/work/heroku-play-scala-compass-buildpack</id>
-  <published>2013-07-08T00:00:00+02:00</published>
-  <updated>2013-07-08T00:00:00+02:00</updated>
-  <author>
-    <name></name>
-    <uri>http://www.bloggure.info</uri>
-    <email></email>
-  </author>
-  <content type="html">&lt;!--:en--&gt;&lt;img class=&quot;size-thumbnail wp-image-758 alignright&quot; alt=&quot;MBP Keyboard&quot; src=&quot;/images/uploads/2012/12/IMG_20121222_000541-150x150.jpg&quot; width=&quot;150&quot; height=&quot;150&quot; /&gt;&lt;p&gt;I am actually working on a little side project with my friend &lt;a href=&quot;http://www.bloggure.info/author/tdebarochez&quot;&gt;Thomas Debarochez&lt;/a&gt;. We are using &lt;a href=&quot;http://www.playframework.com/&quot;&gt;Play!Framework&lt;/a&gt; and &lt;a href=&quot;http://compass-style.org/&quot;&gt;Compass&lt;/a&gt; and we deploy it to &lt;a href=&quot;https://www.heroku.com/&quot;&gt;Heroku&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;One issue that came when we first deployed the application with Compass to Heroku was that the default scala buildpack does not include sass and compass binaries.&lt;/p&gt;
-
-&lt;p&gt;Following &lt;a href=&quot;https://groups.google.com/forum/#!topic/play-framework/fzGj5RqW-l8&quot;&gt;this post&lt;/a&gt; on the Play!Framework mailing list, I forked and patched the &lt;a href=&quot;https://github.com/heroku/heroku-buildpack-scala&quot;&gt;buildpack&lt;/a&gt; to install sass and compass on the environment.&lt;/p&gt;
-
-&lt;p&gt;You can find it here and use it with the following command :
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;heroku config:set &lt;span class=&quot;nv&quot;&gt;BUILDPACK_URL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;https://github.com/CedricGatay/heroku-buildpack-scala&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-&lt;p&gt;I hope someone will find this useful !&lt;/p&gt;&lt;!--:--&gt;
-
-  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/.java/work/heroku-play-scala-compass-buildpack&quot;&gt;Heroku Play ! Scala Compass Buildpack&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure&lt;/a&gt; on July 08, 2013.&lt;/p&gt;</content>
 </entry>
 
 </feed>

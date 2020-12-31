@@ -110,6 +110,109 @@
           <div class="entry-meta">
             <span class="entry-date date published updated"
               ><time
+                datetime="2012-02-12T00:00:00+01:00"
+                itemprop="datePublished"
+                ><a
+                  href="http://www.bloggure.info/nosql/work/mongodb-request-failing-when-upgrading-1-8-2-x"
+                  >February 12, 2012</a
+                ></time
+              ></span
+            ><span
+              class="author vcard"
+              itemprop="author"
+              itemscope
+              itemtype="http://schema.org/Person"
+              ><span itemprop="name" class="fn"
+                ><a
+                  href="http://www.bloggure.info/cgatay"
+                  title="About cgatay"
+                  itemprop="url"
+                  >cgatay</a
+                ></span
+              ></span
+            >&nbsp; &bull; &nbsp;<span class="entry-comments"
+              ><a
+                href="http://www.bloggure.info/nosql/work/mongodb-request-failing-when-upgrading-1-8-2-x#disqus_thread"
+                >Comment</a
+              ></span
+            >
+          </div>
+          <!-- /.entry-meta -->
+
+          <h1 class="entry-title" itemprop="name">
+            <a
+              href="http://www.bloggure.info/nosql/work/mongodb-request-failing-when-upgrading-1-8-2-x"
+              rel="bookmark"
+              title="mongoDB request failing when upgrading (1.8 > 2.x)"
+              itemprop="url"
+              >mongoDB request failing when upgrading (1.8 > 2.x)</a
+            >
+          </h1>
+        </header>
+        <div class="entry-content" itemprop="description">
+          <!--:en-->
+          <p>
+            At work we faced a strange issue with mongoDB 2.x. Whereas our
+            requests were working perfectly with mongoDB 1.8 we always got
+            errors. The message mongoDB was firing at us was of the form :
+          </p>
+
+          <figure class="highlight">
+            <pre><code class="language-java" data-lang="java"><span></span><span class="n">Caused</span> <span class="n">by</span><span class="o">:</span> <span class="n">com</span><span class="o">.</span><span class="na">mongodb</span><span class="o">.</span><span class="na">MongoException</span><span class="o">:</span> <span class="n">assertion</span> <span class="n">db</span><span class="o">/../</span><span class="n">bson</span><span class="o">/</span><span class="n">bsonobjbuilder</span><span class="o">.</span><span class="na">h</span><span class="o">:</span><span class="mi">127</span>
+       <span class="n">at</span> <span class="n">com</span><span class="o">.</span><span class="na">mongodb</span><span class="o">.</span><span class="na">MongoException</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="n">MongoException</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">82</span><span class="o">)</span></code></pre>
+          </figure>
+          <img
+            src="/images/uploads/2012/02/mongo.png"
+            alt=""
+            title="mongoDB leaf"
+            width="128"
+            height="128"
+            class="alignright size-full wp-image-507"
+          />
+          <p>
+            I found the following issue in
+            <a href="https://jira.mongodb.org/browse/SERVER-3846"
+              >mongoDB's Jira</a
+            >
+            but apparently nothing to do with our requests (we are not using
+            empty properties indexes), it takes me a lot of time to figure out
+            that, at times, our request were sorted on empty properties (<a
+              href="https://jira.mongodb.org/browse/SERVER-3874"
+              >as stated here</a
+            >). The fix is really simple,
+            <strong>do not sort on empty properties</strong> !
+          </p>
+
+          <p>
+            As it takes me times to find this and I did not find any blog post
+            explaining this, I hope it will help another developer.
+          </p>
+          <!--:--><!--:frNous avons rencontré un problème assez étrange avec mongoDB 2.x. Alors que nos requêtes existantes marchaient sans aucun soucis avec mongoDB 1.8. mongoDB répondait invariablement avec l'erreur suivante :
+
+<pre class="brush: java">
+Caused by: com.mongodb.MongoException: assertion db/../bson/bsonobjbuilder.h:127
+       at com.mongodb.MongoException.parse(MongoException.java:82)
+</pre>
+<img src="/images/uploads/2012/02/mongo.png" alt="" title="mongoDB leaf" width="128" height="128" class="alignright size-full wp-image-507" />
+J'ai bien sur trouvé le bug suivant sur <a href="https://jira.mongodb.org/browse/SERVER-3846">le Jira du projet mongoDB</a> mais apparement rien à voir avec nos requêtes (nous n'avons pas d'index sur des propriétés vides). Cela m'a pris pas mal de temps avant de comprendre que, parfois, nos requêtes étaient parfois triées sur des propriétés vides (<a href="https://jira.mongodb.org/browse/SERVER-3874">comme précisé ici</a>).
+Le correctif est vraiment simple, <strong>ne triez pas sur des propriétés vides</strong> !
+
+Puisque j'ai mis pas mal de temps à comprendre ce qui se passait et que je n'ai trouvé aucun billet relatif, j'espère que ça aidera un autre développeur.<-->
+        </div>
+        <!-- /.entry-content -->
+      </article>
+      <!-- /.hentry -->
+
+      <article
+        class="hentry"
+        itemprop="blogPost"
+        itemscope
+        itemtype="http://schema.org/BlogPosting"
+      >
+        <header>
+          <div class="entry-meta">
+            <span class="entry-date date published updated"
+              ><time
                 datetime="2011-12-19T00:00:00+01:00"
                 itemprop="datePublished"
                 ><a

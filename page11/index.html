@@ -110,6 +110,199 @@
           <div class="entry-meta">
             <span class="entry-date date published updated"
               ><time
+                datetime="2012-05-08T00:00:00+02:00"
+                itemprop="datePublished"
+                ><a
+                  href="http://www.bloggure.info/.git/work/gitlabhq-sqlite-to-mysql"
+                  >May 08, 2012</a
+                ></time
+              ></span
+            ><span
+              class="author vcard"
+              itemprop="author"
+              itemscope
+              itemtype="http://schema.org/Person"
+              ><span itemprop="name" class="fn"
+                ><a
+                  href="http://www.bloggure.info/cgatay"
+                  title="About cgatay"
+                  itemprop="url"
+                  >cgatay</a
+                ></span
+              ></span
+            >&nbsp; &bull; &nbsp;<span class="entry-comments"
+              ><a
+                href="http://www.bloggure.info/.git/work/gitlabhq-sqlite-to-mysql#disqus_thread"
+                >Comment</a
+              ></span
+            >
+          </div>
+          <!-- /.entry-meta -->
+
+          <h1 class="entry-title" itemprop="name">
+            <a
+              href="http://www.bloggure.info/.git/work/gitlabhq-sqlite-to-mysql"
+              rel="bookmark"
+              title="GitlabHQ - SQLite to mySQL"
+              itemprop="url"
+              >GitlabHQ - SQLite to mySQL</a
+            >
+          </h1>
+        </header>
+        <div class="entry-content" itemprop="description">
+          <!--:en--><img
+            src="/images/uploads/2012/02/gitlabhq-logo.png"
+            alt=""
+            title="gitlabhq-logo"
+            width="175"
+            height="60"
+            class="alignright size-full wp-image-528"
+          />
+          <p>
+            As our <a href="http://gitlabhq.com/">GitlabHQ</a> setup at
+            <a href="http://www.srmvision.com">SRMvision</a> is mean to stay, we
+            wanted to migrate from the standard SQLite database to an easier to
+            manage for us : mySQL.<br />
+            The steps are quite straighforward, first, setup mySQL :
+          </p>
+
+          <figure class="highlight">
+            <pre><code class="language-sql" data-lang="sql"><span></span><span class="k">create</span> <span class="k">database</span> <span class="n">gitlab</span><span class="p">;</span> 
+<span class="k">grant</span> <span class="k">all</span> <span class="k">privileges</span> <span class="k">on</span> <span class="n">gitlab</span><span class="p">.</span><span class="o">*</span> <span class="k">to</span> <span class="ss">&quot;gitlab&quot;</span> <span class="n">identified</span> <span class="k">by</span> <span class="ss">&quot;gitlab&quot;</span><span class="p">;</span> 
+<span class="n">flush</span> <span class="k">privileges</span><span class="p">;</span></code></pre>
+          </figure>
+          Then prepare to dump the data out of GitlabHQ, stop your webserver,
+          then, from your GitlabHQ folder :
+
+          <figure class="highlight">
+            <pre><code class="language-bash" data-lang="bash"><span></span>bundle <span class="nb">exec</span> rake db:data:dump <span class="nv">RAILS_ENV</span><span class="o">=</span>production</code></pre>
+          </figure>
+          this will create a db/data.yml file. All you have to do now is
+          reconfigure GitlabHQ to connect to mySQL and reimport the data. The
+          database configuration takes place in the config/database.yml file,
+          backup your existing file and rename the database.yml.example :
+
+          <figure class="highlight">
+            <pre><code class="language-bash" data-lang="bash"><span></span>mv config/database.yml config/database.yml.old
+cp config/database.yml.example config/database.yml</code></pre>
+          </figure>
+          Then edit the file to reflect your new configuration, only the
+          production section is relevant in our case :
+
+          <figure class="highlight">
+            <pre><code class="language-yaml" data-lang="yaml"><span></span><span class="l l-Scalar l-Scalar-Plain">development</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">adapter</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">mysql2</span>
+  <span class="l l-Scalar l-Scalar-Plain">encoding</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">utf8</span>
+  <span class="l l-Scalar l-Scalar-Plain">reconnect</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+  <span class="l l-Scalar l-Scalar-Plain">database</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">gitlabhq_development</span>
+  <span class="l l-Scalar l-Scalar-Plain">pool</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">5</span>
+  <span class="l l-Scalar l-Scalar-Plain">username</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">root</span>
+  <span class="l l-Scalar l-Scalar-Plain">password</span><span class="p p-Indicator">:</span> <span class="s">&quot;secure</span><span class="nv"> </span><span class="s">password&quot;</span>
+  <span class="c1"># socket: /tmp/mysql.sock</span>
+
+<span class="c1"># Warning: The database defined as &quot;test&quot; will be erased and</span>
+<span class="c1"># re-generated from your development database when you run &quot;rake&quot;.</span>
+<span class="c1"># Do not set this db to the same as development or production.</span>
+<span class="l l-Scalar l-Scalar-Plain">test</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">adapter</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">mysql2</span>
+  <span class="l l-Scalar l-Scalar-Plain">encoding</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">utf8</span>
+  <span class="l l-Scalar l-Scalar-Plain">reconnect</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+  <span class="l l-Scalar l-Scalar-Plain">database</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">gitlabhq_test</span>
+  <span class="l l-Scalar l-Scalar-Plain">pool</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">5</span>
+  <span class="l l-Scalar l-Scalar-Plain">username</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">root</span>
+  <span class="l l-Scalar l-Scalar-Plain">password</span><span class="p p-Indicator">:</span> <span class="s">&quot;secure</span><span class="nv"> </span><span class="s">password&quot;</span>
+  <span class="c1"># socket: /tmp/mysql.sock</span>
+
+<span class="l l-Scalar l-Scalar-Plain">production</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">adapter</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">mysql2</span>
+  <span class="l l-Scalar l-Scalar-Plain">encoding</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">utf8</span>
+  <span class="l l-Scalar l-Scalar-Plain">reconnect</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span> <span class="c1"># allows to autoreconnect if the mysql service restarts</span>
+  <span class="l l-Scalar l-Scalar-Plain">database</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">gitlab</span> <span class="c1"># to replace with your database name</span>
+  <span class="l l-Scalar l-Scalar-Plain">pool</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">5</span>
+  <span class="l l-Scalar l-Scalar-Plain">username</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">gitlab</span> <span class="c1"># to replace with your credentials</span>
+  <span class="l l-Scalar l-Scalar-Plain">password</span><span class="p p-Indicator">:</span> <span class="s">&quot;gitlab&quot;</span> <span class="c1"># to replace with your credentials</span>
+  <span class="l l-Scalar l-Scalar-Plain">socket</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/var/run/mysqld/mysqld.sock</span> <span class="c1"># mysql socket location on debian</span></code></pre>
+          </figure>
+          Once this is done, you have to create the schema and restore your data
+          :
+
+          <figure class="highlight">
+            <pre><code class="language-bash" data-lang="bash"><span></span>bundle <span class="nb">exec</span> rake db:setup <span class="nv">RAILS_ENV</span><span class="o">=</span>production
+bundle <span class="nb">exec</span> rake db:data:load <span class="nv">RAILS_ENV</span><span class="o">=</span>production</code></pre>
+          </figure>
+
+          Job's done, you just need to restart the GitlabHQ server now (nginx,
+          apache...). If you encounter a problem and this does not work as
+          expected, you just have to restore the database.yml.old file to go
+          back to SQLite.<!--:--><!--:fr<img src="/images/uploads/2012/02/gitlabhq-logo.png" alt="" title="gitlabhq-logo" width="175" height="60" class="alignright size-full wp-image-528" /><p>Comme notre installation de <a href="http://gitlabhq.com/">GitlabHQ</a> à <a href="http://www.srmvision.com">SRMvision</a> est faite pour rester, nous avons décidé de migrer de la base SQLite vers un système plus simple à gérer pour nous : mySQL.<br /> Les étapes sont assez simple, premièrement, configurons mySQL :</p>
+<pre class="brush: sql">
+create database gitlab; 
+grant all privileges on gitlab.* to "gitlab" identified by "gitlab"; 
+flush privileges;</pre>
+Ensuite récupérons les données existantes dans GitlabHQ, arrêtez votre serveur, puis, depuis le dossier de GitlabHQ : 
+<pre class="brush: bash">bundle exec rake db:data:dump RAILS_ENV=production</pre>
+ceci va créer un fichier db/data.yml. Tout ce qu'il vous reste à faire maintenant est de reconfigurer GitlabHQ pour lui dire de se connecter à mySQL et d'y intégrer les données existantes.
+La configuration de la base de données à utiliser se trouve dans le fichier config/database.yml, sauvegardez le et récupérez le database.yml.example comme base de travail:
+<pre class="brush: bash">
+mv config/database.yml config/database.yml.old
+cp config/database.yml.example config/database.yml
+</pre>
+Il ne vous reste qu'à éditer le fichier pour refléter votre configuration, seule la partie production du fichier est utile dans notre cas :
+<pre class="brush: bash" ighlight="27,28,30,31,32" title="database.yml">
+development:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: gitlabhq_development
+  pool: 5
+  username: root
+  password: "secure password"
+  # socket: /tmp/mysql.sock
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: gitlabhq_test
+  pool: 5
+  username: root
+  password: "secure password"
+  # socket: /tmp/mysql.sock
+
+production:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: true # permet de se reconnecter quand le service mysql redémarre
+  database: gitlab # à remplacer avec le nom de votre base
+  pool: 5
+  username: gitlab # à remplacer avec vos identifiants
+  password: "gitlab" # à remplacer avec vos identifiants
+  socket: /var/run/mysqld/mysqld.sock # mysql socket location on debian
+</pre>
+Une fois ceci fait, il vous reste à créer le schéma et à importer vos données sauvegardées :
+<pre class="brush: bash">
+bundle exec rake db:setup RAILS_ENV=production
+bundle exec rake db:data:load RAILS_ENV=production
+</pre>
+C'est tout, il ne reste plus qu'à redémarrer le serveur de GitlabHQ. Si toutefois ça ne fonctionnait pas, vous n'avez qu'à restaurer le fichier database.yml.old pour retourner à la configuration par défaut utilisant SQLite.<-->
+        </div>
+        <!-- /.entry-content -->
+      </article>
+      <!-- /.hentry -->
+
+      <article
+        class="hentry"
+        itemprop="blogPost"
+        itemscope
+        itemtype="http://schema.org/BlogPosting"
+      >
+        <header>
+          <div class="entry-meta">
+            <span class="entry-date date published updated"
+              ><time
                 datetime="2012-05-06T00:00:00+02:00"
                 itemprop="datePublished"
                 ><a
@@ -355,121 +548,6 @@ Notez qu'il sera certainement nécessaire de modifier les variables des scripts 
           to mimic their solution using
           <a href="http://gitlabhq.com/">GitlabHQ</a> merge requests.<!--:--><!--:frJe viens juste de lire un billet très intéressant sur le Blog de Github : "<a href="https://github.com/blog/1124-how-we-use-pull-requests-to-build-github" rel="bookmark">How we use Pull Requests to build GitHub</a>"
 Je trouve leur solution pour suivre le développement des fonctionnalités très malin, je pense essayer d'adopter leur technique en utilisant les "merge request" de <a href="http://gitlabhq.com/">GitlabHQ</a><-->
-        </div>
-        <!-- /.entry-content -->
-      </article>
-      <!-- /.hentry -->
-
-      <article
-        class="hentry"
-        itemprop="blogPost"
-        itemscope
-        itemtype="http://schema.org/BlogPosting"
-      >
-        <header>
-          <div class="entry-meta">
-            <span class="entry-date date published updated"
-              ><time
-                datetime="2012-05-04T00:00:00+02:00"
-                itemprop="datePublished"
-                ><a
-                  href="http://www.bloggure.info/.git/work/bitbucket-free-personal-git-and-mercurial-repositories"
-                  >May 04, 2012</a
-                ></time
-              ></span
-            ><span
-              class="author vcard"
-              itemprop="author"
-              itemscope
-              itemtype="http://schema.org/Person"
-              ><span itemprop="name" class="fn"
-                ><a
-                  href="http://www.bloggure.info/cgatay"
-                  title="About cgatay"
-                  itemprop="url"
-                  >cgatay</a
-                ></span
-              ></span
-            >&nbsp; &bull; &nbsp;<span class="entry-comments"
-              ><a
-                href="http://www.bloggure.info/.git/work/bitbucket-free-personal-git-and-mercurial-repositories#disqus_thread"
-                >Comment</a
-              ></span
-            >
-          </div>
-          <!-- /.entry-meta -->
-
-          <h1 class="entry-title" itemprop="name">
-            <a
-              href="http://www.bloggure.info/.git/work/bitbucket-free-personal-git-and-mercurial-repositories"
-              rel="bookmark"
-              title="Bitbucket : free personal Git (and Mercurial) repositories"
-              itemprop="url"
-              >Bitbucket : free personal Git (and Mercurial) repositories</a
-            >
-          </h1>
-        </header>
-        <div class="entry-content" itemprop="description">
-          <!--:en-->Some of you might have noticed that since I tried git I
-          don't want to got back to another Version Control System for my work.
-          At my company we now officially all use Git for about nine months
-          without any hickup, we have our own hosted infrastructure using the
-          wonderful <a href="http://gitlabhq.com">gitlabhq</a>.<img
-            class="alignright size-full wp-image-586"
-            title="Bitbucket"
-            src="/images/uploads/2012/05/Bitbucket.png"
-            alt=""
-            width="256"
-            height="256"
-          />
-
-          <p>
-            For my personal projects (<a
-              href="https://play.google.com/store/apps/developer?id=Cedric+Gatay"
-              >mainly Android applications</a
-            >), I only had local git repositories allowing me to really develop
-            without being afraid of losing history. However, these local
-            repositories were not synced anywhere but on my own hard drive
-            (that's not really a secure way of handling things). My first
-            attempt was to do as often as I though tarballs of my repositories
-            and sync them on Dropbox.The problem in the chain was the fact the
-            backup were done at times, which, in practice, means really rarely.
-          </p>
-
-          <p>
-            I had looked for free git hosting providing private repositories,
-            but I did not find a free one that satisfies my main prerequisite :
-            unlimited (or large) private repositories count.
-          </p>
-
-          <p>
-            A few days ago, I cleaned my whole personal development folder and I
-            began searching another time for a free hosting. I found out that
-            <a href="https://bitbucket.org/">Bitbucket</a>, which at the time I
-            first looked at it was only providing Mercurial hosting, now offers
-            free git hosting with unlimited repositories.
-          </p>
-
-          <p>
-            The "one more thing" of this hosting solution (but not only) will
-            only be interesting for Mac users.
-            <a href="http://www.atlassian.com/">Atlassian</a> released a free
-            GUI client for Git and Mercurial
-            <a href="http://www.sourcetreeapp.com/">SourceTree.app</a>, and,
-            although I am not fan of a GUI for Git, but I must say I use it
-            regularly (its branch view is awesome).
-          </p>
-          <!--:--><!--:frCertains d'entre vous auront remarqué que depuis que j'ai essayé Git je ne veux pas revenir à un autre système de gestion de version. Dans ma société nous utilisons maintenant officiellement Git depuis un peu plus de neuf mois sans aucun heurt, nous utilisons cependant notre propre architecture d'hébergement en utilisant l'excellent <a href="http://gitlabhq.com">gitlabhq</a>.<a href="http://www.bloggure.info/wp-content/uploads/2012/05/Bitbucket.png"><img class="alignright size-full wp-image-586" title="Bitbucket" src="/images/uploads/2012/05/Bitbucket.png" alt="" width="256" height="256" /></a>
-
-Pour mes projets personnel (<a href="https://play.google.com/store/apps/developer?id=Cedric+Gatay">principalement des applications Android</a>), j'utilisais uniquement des dépôts git locaux. Ceux-ci me permettaient de développer sans me soucier de perdre l'historique de ce que j'avais pu faire. Cependant, ces dépôts locaux n'étaient synchronisés nulle part ailleurs (ce n'est pas vraiment une façon sûre de stocker des choses auxquelles on tient). Ma première solution était de faire des archives aussi souvent que j'y pensais de mes dépôts et de les copier sur Dropbox. Le principal problème dans ma technique cette technique est que je le faisais quand j'y pensais, ce qui, en réalité, arrivait assez rarement.
-
-J'avais recherché des solutions d'hébergement Git gratuites mais je n'avais pas trouvé une seule gratuite qui satisfasse ma condition principale : disposer d'un nombre illimité de dépôts privés.
-
-Il y a quelques jours, j'ai fait du ménage dans mes développements personnels et j'ai recommencé à chercher à nouveau un hébergement gratuit. J'ai fini par me rendre compte que <a href="https://bitbucket.org/">Bitbucket</a>, qui à l'époque de ma première recherche ne fournissait que Mercurial, propose maintenant l'hébergement d'un nombre illimité de dépôt Git également dans sa version gratuite.
-
-Le "one more thing" de cette solution (mais pas seulement) ne sera intéressant que pour les utilisateurs de Mac.
-
-<a href="http://www.atlassian.com/">Atlassian</a> a développé un excellent client graphique gratuit pour Git et Mercurial <a href="http://www.sourcetreeapp.com/">SourceTree.app</a>, et, bien que je ne sois pas fan d'une interface graphique pour utiliser Git, je dois reconnaître que je l'utilise régulièrement (la visualisation des branches est géniale).<-->
         </div>
         <!-- /.entry-content -->
       </article>

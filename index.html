@@ -110,6 +110,160 @@
           <div class="entry-meta">
             <span class="entry-date date published updated"
               ><time
+                datetime="2020-12-31T00:00:00+01:00"
+                itemprop="datePublished"
+                ><a href="http://www.bloggure.info/git-gone"
+                  >December 31, 2020</a
+                ></time
+              ></span
+            ><span
+              class="author vcard"
+              itemprop="author"
+              itemscope
+              itemtype="http://schema.org/Person"
+              ><span itemprop="name" class="fn"
+                ><a
+                  href="http://www.bloggure.info/cgatay"
+                  title="About cgatay"
+                  itemprop="url"
+                  >cgatay</a
+                ></span
+              ></span
+            >&nbsp; &bull; &nbsp;<span class="entry-comments"
+              ><a href="http://www.bloggure.info/git-gone#disqus_thread"
+                >Comment</a
+              ></span
+            >
+          </div>
+          <!-- /.entry-meta -->
+
+          <h1 class="entry-title" itemprop="name">
+            <a
+              href="http://www.bloggure.info/git-gone"
+              rel="bookmark"
+              title="Git-gone"
+              itemprop="url"
+              >Git-gone</a
+            >
+          </h1>
+        </header>
+        <div class="entry-content" itemprop="description">
+          <h1 id="git-daily-usage">Git daily usage</h1>
+
+          <p>
+            If you’re like most developers nowadays you make an extensive usage
+            of <code>git</code> across a large number of repositories.
+          </p>
+
+          <p>
+            The now-classic branching model that consists in using a branch for
+            every fix / feature / experiment before creating a merge request is
+            perfect for collaborating efficiently. However it comes with one
+            downside, local branches can quickly become messy and removing stale
+            branches is not that easy
+          </p>
+
+          <h2 id="removing-remote-branches">Removing remote branches</h2>
+
+          <p>
+            <code>git</code> is a really well designed tool and removing remote
+            references from your local repository is easily done by
+          </p>
+
+          <figure class="highlight">
+            <pre><code class="language-shell" data-lang="shell"><span></span>git remote prune origin</code></pre>
+          </figure>
+
+          <p>
+            This will remove local references to non existing branches, however
+            it is not useful to remember this command, we can configure
+            <code>git</code> so that it prunes automatically on fetching :
+          </p>
+
+          <figure class="highlight">
+            <pre><code class="language-shell" data-lang="shell"><span></span>git config --global fetch.prune <span class="nb">true</span></code></pre>
+          </figure>
+
+          <h2 id="removing-local-branches">Removing local branches</h2>
+
+          <p>
+            This is where things can be quite messy, as local branches might
+            have been merged, rebased, or squashed, and “classic” commands
+            allowing to detected merged branches are not always working as they
+            ought.
+          </p>
+
+          <p>
+            If you search how to clean up local branches, you might find a lot
+            of commands involving <code>git branch --merged</code> with
+            <code>grep</code> and <code>xargs</code> all the way.
+          </p>
+
+          <p>
+            I found out a little neat tool to do so, called
+            <a href="https://github.com/lunaryorn/git-gone"
+              ><code>git-gone</code> (github/lunaryorn/git-gone)</a
+            >, written in Rust 🧡
+          </p>
+
+          <h3 id="install-it">Install it</h3>
+
+          <p>
+            As all rust project, it is packaged and easy to install using cargo
+          </p>
+
+          <figure class="highlight">
+            <pre><code class="language-swift" data-lang="swift"><span></span><span class="n">cargo</span> <span class="n">install</span> <span class="n">git</span><span class="o">-</span><span class="n">gone</span></code></pre>
+          </figure>
+
+          <h3 id="list-branches-to-prune">List branches to prune</h3>
+
+          <p>
+            Before doing anything silly, we can list the branches that are
+            candidate to removal (the <code>-f</code> flag forces fetching
+            remote)
+          </p>
+
+          <figure class="highlight">
+            <pre><code class="language-swift" data-lang="swift"><span></span><span class="err">$</span> <span class="n">git</span> <span class="n">gone</span> <span class="o">-</span><span class="n">f</span> <span class="n">list</span>
+<span class="n">feature</span><span class="o">/</span><span class="n">asciidoc</span>
+<span class="n">fix</span><span class="o">/</span><span class="n">imageCompress</span></code></pre>
+          </figure>
+
+          <h3 id="pruneem-all">Prune’em all</h3>
+
+          <p>
+            And finally, you can remove them (the <code>-f</code> flag is still
+            here to sync with remote)
+          </p>
+
+          <figure class="highlight">
+            <pre><code class="language-swift" data-lang="swift"><span></span><span class="err">$</span> <span class="n">git</span> <span class="n">gone</span> <span class="o">-</span><span class="n">f</span> <span class="n">prune</span>
+<span class="n">Deleted</span> <span class="n">feature</span><span class="o">/</span><span class="n">asciidoc</span> <span class="p">(</span><span class="n">restore</span> <span class="n">with</span> <span class="p">`</span><span class="n">git</span> <span class="n">checkout</span> <span class="o">-</span><span class="n">b</span> <span class="n">feature</span><span class="o">/</span><span class="n">asciidoc</span> <span class="mi">8</span><span class="n">f007a</span><span class="p">`)</span>
+<span class="n">Deleted</span> <span class="n">fix</span><span class="o">/</span><span class="n">imageCompress</span> <span class="p">(</span><span class="n">restore</span> <span class="n">with</span> <span class="p">`</span><span class="n">git</span> <span class="n">checkout</span> <span class="o">-</span><span class="n">b</span> <span class="n">fix</span><span class="o">/</span><span class="n">imageCompress</span> <span class="n">af523b</span><span class="p">`)</span></code></pre>
+          </figure>
+
+          <p>
+            <code>git-gone</code> is event clever enough to give you the command
+            to restore a branch if change your mind (as long as you did not
+            <code>git gc</code> the revision is still available locally, so you
+            can restore it)
+          </p>
+        </div>
+        <!-- /.entry-content -->
+      </article>
+      <!-- /.hentry -->
+
+      <article
+        class="hentry"
+        itemprop="blogPost"
+        itemscope
+        itemtype="http://schema.org/BlogPosting"
+      >
+        <header>
+          <div class="entry-meta">
+            <span class="entry-date date published updated"
+              ><time
                 datetime="2020-12-06T00:00:00+01:00"
                 itemprop="datePublished"
                 ><a href="http://www.bloggure.info/mac-checklist"
@@ -677,107 +831,6 @@
             <a href="https://gitpod.io">gitpod.io</a> to get a distraction free
             environment.
           </p>
-        </div>
-        <!-- /.entry-content -->
-      </article>
-      <!-- /.hentry -->
-
-      <article
-        class="hentry"
-        itemprop="blogPost"
-        itemscope
-        itemtype="http://schema.org/BlogPosting"
-      >
-        <header>
-          <div class="entry-meta">
-            <span class="entry-date date published updated"
-              ><time
-                datetime="2015-11-16T00:00:00+01:00"
-                itemprop="datePublished"
-                ><a
-                  href="http://www.bloggure.info/redsocks-avoid-docker-proxy-headaches"
-                  >November 16, 2015</a
-                ></time
-              ></span
-            ><span
-              class="author vcard"
-              itemprop="author"
-              itemscope
-              itemtype="http://schema.org/Person"
-              ><span itemprop="name" class="fn"
-                ><a
-                  href="http://www.bloggure.info/cgatay"
-                  title="About cgatay"
-                  itemprop="url"
-                  >cgatay</a
-                ></span
-              ></span
-            >&nbsp; &bull; &nbsp;<span class="entry-comments"
-              ><a
-                href="http://www.bloggure.info/redsocks-avoid-docker-proxy-headaches#disqus_thread"
-                >Comment</a
-              ></span
-            >
-          </div>
-          <!-- /.entry-meta -->
-
-          <h1 class="entry-title" itemprop="name">
-            <a
-              href="http://www.bloggure.info/redsocks-avoid-docker-proxy-headaches"
-              rel="bookmark"
-              title="Avoid Proxy Headaches in Docker with redsocks"
-              itemprop="url"
-              >Avoid Proxy Headaches in Docker with redsocks</a
-            >
-          </h1>
-        </header>
-        <div class="entry-content" itemprop="description">
-          <h1 id="proxying-with-docker">Proxying with Docker</h1>
-
-          <p>
-            When using docker under a corporate proxy, it can be cumbersome to
-            have a working networking in all containers. You often end up being
-            blocked by specific network access which does not seem to be
-            properly forwarded to the proper proxy. For example when using
-            <code>apt</code>.
-          </p>
-
-          <h2 id="classic-way-of-doing">Classic way of doing</h2>
-
-          <p>
-            There is a
-            <a
-              href="https://docs.docker.com/engine/articles/systemd/#http-proxy"
-              >documented way</a
-            >
-            of using a proxy, by adding command-line switches to your docker
-            deamon. However, it does not seem to work everytime and could
-            require exporting additional settings to your in-container
-            applications (in my experience though).
-          </p>
-
-          <h2 id="why-not-using-docker">Why not using docker</h2>
-
-          <p>
-            <a href="https://github.com/ncarlier/">Nicolas</a> pointed me an
-            image he created to help with the setup of a corporate proxy. It
-            uses <a href="http://darkk.net.ru/redsocks/">redsocks</a> under the
-            hood that listen to the docker socket and automatically add the glue
-            to do the forwarding through the proxy.
-          </p>
-
-          <p>
-            Easy proxying in docker is just one command away ! (fill in the
-            blank of your proxy ip and port)
-          </p>
-
-          <pre><code>docker run \
-       --restart=always \
-       --privileged=true \
-       --net=host \
-       -d ncarlier/redsocks \
-       $PROXY_IP $PROXY_PORT
-</code></pre>
         </div>
         <!-- /.entry-content -->
       </article>

@@ -8,20 +8,20 @@
   <head>
     <meta charset="utf-8" />
     <title>
-      Quickly insert data to a SQL database in Groovy &#8211; Bloggure
+      Graph of programming languages people used in 2012 &#8211; Bloggure
     </title>
     <meta
       name="description"
       content="Multi author blog about programming, computing and geek stuff"
     />
-    <meta name="keywords" content="groovy, sql, tip" />
+    <meta name="keywords" content="java, languages, scala" />
 
     <!-- Open Graph -->
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="article" />
     <meta
       property="og:title"
-      content="Quickly insert data to a SQL database in Groovy"
+      content="Graph of programming languages people used in 2012"
     />
     <meta
       property="og:description"
@@ -29,13 +29,13 @@
     />
     <meta
       property="og:url"
-      content="http://www.bloggure.info/.groovy/work/quickly-insert-data-to-a-sql-database-in-groovy"
+      content="http://www.bloggure.info/www/graph-of-programming-languages-people-used-in-2012"
     />
     <meta property="og:site_name" content="Bloggure" />
 
     <link
       rel="canonical"
-      href="http://www.bloggure.info/.groovy/work/quickly-insert-data-to-a-sql-database-in-groovy"
+      href="http://www.bloggure.info/www/graph-of-programming-languages-people-used-in-2012"
     />
     <link
       href="http://www.bloggure.info/feed.xml"
@@ -117,11 +117,11 @@
             <div class="entry-meta">
               <span class="entry-date date published updated"
                 ><time
-                  datetime="2012-12-27T00:00:00+01:00"
+                  datetime="2012-12-30T00:00:00+01:00"
                   itemprop="datePublished"
                   ><a
-                    href="http://www.bloggure.info/.groovy/work/quickly-insert-data-to-a-sql-database-in-groovy"
-                    >December 27, 2012</a
+                    href="http://www.bloggure.info/www/graph-of-programming-languages-people-used-in-2012"
+                    >December 30, 2012</a
                   ></time
                 ></span
               ><span
@@ -139,7 +139,7 @@
                 ></span
               >&nbsp; &bull; &nbsp;<span class="entry-comments"
                 ><a
-                  href="http://www.bloggure.info/.groovy/work/quickly-insert-data-to-a-sql-database-in-groovy#disqus_thread"
+                  href="http://www.bloggure.info/www/graph-of-programming-languages-people-used-in-2012#disqus_thread"
                   >Comment</a
                 ></span
               >
@@ -148,78 +148,50 @@
 
             <h1 class="entry-title" itemprop="name">
               <a
-                href="http://www.bloggure.info/.groovy/work/quickly-insert-data-to-a-sql-database-in-groovy"
+                href="http://www.bloggure.info/www/graph-of-programming-languages-people-used-in-2012"
                 rel="bookmark"
-                title="Quickly insert data to a SQL database in Groovy"
+                title="Graph of programming languages people used in 2012"
                 itemprop="url"
-                >Quickly insert data to a SQL database in Groovy</a
+                >Graph of programming languages people used in 2012</a
               >
             </h1>
           </header>
-          <img
-            src="/images/uploads/2012/12/groovy-200px.png"
-            alt="groovy-200px"
-            width="200"
-            height="100"
-            class="alignright size-full wp-image-771"
-          />
           <p>
-            When we migrate data at
-            <a href="http://www.srmvision.com">SRMvision</a>, we use Groovy to
-            focus on the migration logic without loosing time with heavy syntax
-            and POJO mapping. Groovy is a great tool to do this, and its out of
-            the box Sql handling is really very good. I found myself having the
-            need to insert data to multiple existing table filling all columns.
+            I came across this link representing a visualization of programming
+            languages usage based on a hashtag collect :
+            <a href="http://www.ioncannon.net/projects/code2012/"
+              >http://www.ioncannon.net/projects/code2012/</a
+            >
+          </p>
+          <p>
+            Although this method can be criticized, it provides interesting data
+            : JavaScript is the clear winner with Java just behind. We can see
+            Scala is a growing language too, it has been used more than PHP last
+            year (according to this study).
           </p>
 
-          <p>
-            While we can do it easily, it can become a mess rapidly when there
-            is a lot of columns to handle. With this little snippet, you can
-            leverage Groovy's maps to get a solid insertIntoTable
-          </p>
-          <figure class="highlight">
-            <pre><code class="language-groovy" data-lang="groovy"><span></span><span class="kd">static</span> <span class="kt">def</span> <span class="nf">insertIntoTable</span><span class="o">(</span><span class="n">String</span> <span class="n">tableName</span><span class="o">,</span> 
-                           <span class="n">Map</span> <span class="n">paramMap</span><span class="o">,</span> 
-                           <span class="kd">final</span> <span class="n">Sql</span> <span class="n">sql</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">sql</span><span class="o">.</span><span class="na">executeInsert</span><span class="o">(</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">             INSERT INTO ${tableName} </span>
-<span class="s2">                    (${paramMap.keySet().join(&#39;,&#39;)})</span>
-<span class="s2">                    VALUES </span>
-<span class="s2">                    (${paramMap.keySet().collect { key -&gt; &quot;:&quot; + key }.join(&#39;,&#39;)})</span>
-<span class="s2">        &quot;&quot;&quot;</span><span class="o">,</span> <span class="n">paramMap</span><span class="o">)</span>
-<span class="o">}</span></code></pre>
-          </figure>
-
-          <p>
-            To use it, one can simply call it this way (with the sql object
-            correctly bound to a connection)
-          </p>
-          <figure class="highlight">
-            <pre><code class="language-groovy" data-lang="groovy"><span></span><span class="kt">def</span> <span class="n">paramMap</span> <span class="o">=</span> <span class="o">[</span> 
-    <span class="n">id</span> <span class="o">:</span> <span class="mi">1</span><span class="o">,</span> 
-    <span class="n">myFirstColumn</span> <span class="o">:</span> <span class="s2">&quot;My first value&quot;</span><span class="o">,</span> 
-    <span class="n">mySecondColumn</span> <span class="o">:</span> <span class="s2">&quot;Second&quot;</span> 
-<span class="o">]</span>
-<span class="n">insertIntoTable</span><span class="o">(</span><span class="s2">&quot;MyTable&quot;</span><span class="o">,</span> <span class="n">paramMap</span><span class="o">,</span> <span class="n">sql</span><span class="o">)</span></code></pre>
-          </figure>
+          <em
+            >If you find another study on this topic don't hesitate to comment
+            this blog post to let me know.</em
+          >
 
           <footer class="entry-meta">
             <span class="entry-tags"
               ><a
-                href="http://www.bloggure.info/tags/#groovy"
-                title="Pages tagged groovy"
+                href="http://www.bloggure.info/tags/#java"
+                title="Pages tagged java"
                 class="tag"
-                ><span class="term">groovy</span></a
+                ><span class="term">java</span></a
               ><a
-                href="http://www.bloggure.info/tags/#sql"
-                title="Pages tagged sql"
+                href="http://www.bloggure.info/tags/#languages"
+                title="Pages tagged languages"
                 class="tag"
-                ><span class="term">sql</span></a
+                ><span class="term">languages</span></a
               ><a
-                href="http://www.bloggure.info/tags/#tip"
-                title="Pages tagged tip"
+                href="http://www.bloggure.info/tags/#scala"
+                title="Pages tagged scala"
                 class="tag"
-                ><span class="term">tip</span></a
+                ><span class="term">scala</span></a
               ></span
             >
 
@@ -227,7 +199,7 @@
               <ul class="socialcount socialcount-small inline-list">
                 <li class="facebook">
                   <a
-                    href="https://www.facebook.com/sharer/sharer.php?u=http://www.bloggure.info/.groovy/work/quickly-insert-data-to-a-sql-database-in-groovy"
+                    href="https://www.facebook.com/sharer/sharer.php?u=http://www.bloggure.info/www/graph-of-programming-languages-people-used-in-2012"
                     title="Share on Facebook"
                     ><span class="count"
                       ><i class="fa fa-facebook-square"></i> Like</span
@@ -236,7 +208,7 @@
                 </li>
                 <li class="twitter">
                   <a
-                    href="https://twitter.com/intent/tweet?text=http://www.bloggure.info/.groovy/work/quickly-insert-data-to-a-sql-database-in-groovy"
+                    href="https://twitter.com/intent/tweet?text=http://www.bloggure.info/www/graph-of-programming-languages-people-used-in-2012"
                     title="Share on Twitter"
                     ><span class="count"
                       ><i class="fa fa-twitter-square"></i> Tweet</span
@@ -254,7 +226,7 @@
         <div class="read-more">
           <div class="read-more-header">
             <a
-              href="http://www.bloggure.info/thoughts/work/os-x-tools-i-use-in-my-daily-activities"
+              href="http://www.bloggure.info/work/intellij-12-darcula-monokai"
               class="read-more-btn"
               >Read More</a
             >
@@ -262,32 +234,24 @@
           <!-- /.read-more-header -->
           <div class="read-more-content">
             <h3>
-              <a href="http://www.bloggure.info/git-gone" title="Git-gone"
-                >Git-gone</a
+              <a
+                href="http://www.bloggure.info/mac-checklist"
+                title="macOS tools checklist"
+                >macOS tools checklist</a
               >
             </h3>
             <p>
-              # Git daily usageIf you're like most developers nowadays you make
-              an extensive usage of `git` across a large number of
-              repositories.The n...&hellip;
-              <a href="http://www.bloggure.info/git-gone">Continue reading</a>
+              # Welcome to the mac worldWether you're new to macOS or an user
+              coming from different machines, the tools we tend to use is very
+              importan...&hellip;
+              <a href="http://www.bloggure.info/mac-checklist"
+                >Continue reading</a
+              >
             </p>
           </div>
           <!-- /.read-more-content -->
 
           <div class="read-more-list">
-            <div class="list-item">
-              <h4>
-                <a
-                  href="http://www.bloggure.info/mac-checklist"
-                  title="macOS tools checklist"
-                  >macOS tools checklist</a
-                >
-              </h4>
-              <span>Published on December 06, 2020</span>
-            </div>
-            <!-- /.list-item -->
-
             <div class="list-item">
               <h4>
                 <a
@@ -297,6 +261,18 @@
                 >
               </h4>
               <span>Published on December 03, 2020</span>
+            </div>
+            <!-- /.list-item -->
+
+            <div class="list-item">
+              <h4>
+                <a
+                  href="http://www.bloggure.info/XCodeUnitTestInheritance"
+                  title="XCode unit test and inheritance"
+                  >XCode unit test and inheritance</a
+                >
+              </h4>
+              <span>Published on December 02, 2020</span>
             </div>
             <!-- /.list-item -->
           </div>
