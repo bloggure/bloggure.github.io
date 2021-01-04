@@ -4,7 +4,7 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="http://www.bloggure.info/feed.xml" />
 <link rel="alternate" type="text/html" href="http://www.bloggure.info" />
-<updated>2020-12-31T17:06:41+01:00</updated>
+<updated>2021-01-04T09:00:15+01:00</updated>
 <id>http://www.bloggure.info/</id>
 <author>
   <name></name>
@@ -75,7 +75,7 @@ all the way.&lt;/p&gt;
 &lt;span class=&quot;n&quot;&gt;Deleted&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;feature&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;asciidoc&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;restore&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;checkout&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;feature&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;asciidoc&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f007a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;`)&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;Deleted&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fix&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;imageCompress&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;restore&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;checkout&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fix&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;imageCompress&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;af523b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;`)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;&lt;code&gt;git-gone&lt;/code&gt; is event clever enough to give you the command to restore a branch if change your mind 
+&lt;p&gt;&lt;code&gt;git-gone&lt;/code&gt; is even clever enough to give you the command to restore a branch if change your mind 
 (as long as you did not &lt;code&gt;git gc&lt;/code&gt; the revision is still available locally, so you can restore it)&lt;/p&gt;
 
   &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/git-gone&quot;&gt;Git-gone&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure&lt;/a&gt; on December 31, 2020.&lt;/p&gt;</content>
