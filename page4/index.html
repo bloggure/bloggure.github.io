@@ -110,6 +110,89 @@
           <div class="entry-meta">
             <span class="entry-date date published updated"
               ><time
+                datetime="2014-02-10T00:00:00+01:00"
+                itemprop="datePublished"
+                ><a
+                  href="http://www.bloggure.info/restx-the-webservice-firework"
+                  >February 10, 2014</a
+                ></time
+              ></span
+            ><span
+              class="author vcard"
+              itemprop="author"
+              itemscope
+              itemtype="http://schema.org/Person"
+              ><span itemprop="name" class="fn"
+                ><a
+                  href="http://www.bloggure.info/"
+                  title="About "
+                  itemprop="url"
+                ></a></span
+            ></span>
+          </div>
+          <!-- /.entry-meta -->
+
+          <h1 class="entry-title" itemprop="name">
+            <a
+              href="http://www.bloggure.info/restx-the-webservice-firework"
+              rel="bookmark"
+              title="RestX the webservice framework"
+              itemprop="url"
+              >RestX the webservice framework</a
+            >
+          </h1>
+        </header>
+        <div class="entry-content" itemprop="description">
+          <h1 id="another-java-rest-framework">Another Java Rest framework</h1>
+
+          <p>
+            If you’re a somewhat experienced Java developer I guess you’ve
+            encountered a lot of framework when it comes to write web services.
+          </p>
+
+          <p>
+            <a href="http://www.restx.io">Restx.io</a> is a new kid on the block
+            leveraging high velocity with a focus on testability through a set
+            of unique and great features :
+          </p>
+
+          <ul>
+            <li>
+              each rest endpoint generates its documentation from its tests
+              (real killer feature here : we hate writing docs but we live
+              writing tests!)
+            </li>
+            <li>a built in monitoring engine</li>
+            <li>
+              everything that can be done at compile time is done at that time
+              (annotations / dependency injection)
+            </li>
+            <li>
+              it is written in good old plain Java (IDE support : I’m looking at
+              you Play Framework!)
+            </li>
+            <li>auto compile (we don’t like waiting!)</li>
+          </ul>
+
+          <p>
+            I’ve tested it on a few small projects, I can’t wait to try it on a
+            real project !
+          </p>
+        </div>
+        <!-- /.entry-content -->
+      </article>
+      <!-- /.hentry -->
+
+      <article
+        class="hentry"
+        itemprop="blogPost"
+        itemscope
+        itemtype="http://schema.org/BlogPosting"
+      >
+        <header>
+          <div class="entry-meta">
+            <span class="entry-date date published updated"
+              ><time
                 datetime="2013-10-15T00:00:00+02:00"
                 itemprop="datePublished"
                 ><a
@@ -494,214 +577,6 @@ When experimenting, I figured out that the locale used is the default locale of 
 The trick consists in adding an implicit lang to your template views. In fact, Scala import an implicit lang with the lowest priority being the one coming from the JVM, if you want to get the language parsed from the Accept-Languages http header, you need to add an implicit as below :
 <pre class="brush: scala">@(title: String)(content: Html)(implicit lang: Lang)</pre>
 With this little trick, your calls to localization will use the locale extracted from the http request as expected.<-->
-        </div>
-        <!-- /.entry-content -->
-      </article>
-      <!-- /.hentry -->
-
-      <article
-        class="hentry"
-        itemprop="blogPost"
-        itemscope
-        itemtype="http://schema.org/BlogPosting"
-      >
-        <header>
-          <div class="entry-meta">
-            <span class="entry-date date published updated"
-              ><time
-                datetime="2013-07-25T00:00:00+02:00"
-                itemprop="datePublished"
-                ><a
-                  href="http://www.bloggure.info/.java/.scala/.shell/ci/shelf/centos-redhat-play-application-production-mode"
-                  >July 25, 2013</a
-                ></time
-              ></span
-            ><span
-              class="author vcard"
-              itemprop="author"
-              itemscope
-              itemtype="http://schema.org/Person"
-              ><span itemprop="name" class="fn"
-                ><a
-                  href="http://www.bloggure.info/tdebarochez"
-                  title="About tdebarochez"
-                  itemprop="url"
-                  >tdebarochez</a
-                ></span
-              ></span
-            >&nbsp; &bull; &nbsp;<span class="entry-comments"
-              ><a
-                href="http://www.bloggure.info/.java/.scala/.shell/ci/shelf/centos-redhat-play-application-production-mode#disqus_thread"
-                >Comment</a
-              ></span
-            >
-          </div>
-          <!-- /.entry-meta -->
-
-          <h1 class="entry-title" itemprop="name">
-            <a
-              href="http://www.bloggure.info/.java/.scala/.shell/ci/shelf/centos-redhat-play-application-production-mode"
-              rel="bookmark"
-              title="Play application on Centos/RedHat in production mode"
-              itemprop="url"
-              >Play application on Centos/RedHat in production mode</a
-            >
-          </h1>
-        </header>
-        <div class="entry-content" itemprop="description">
-          <em
-            >Sorry english readers, the following post is only available in
-            french !</em
-          >
-          <!--:fr-->
-          <p>
-            <strong>tl;dr </strong>: application
-            <a title="play" href="http://www.playframework.com/">Play</a> (java
-            ou <a href="http://www.scala-lang.org/">scala</a>) sur un serveur
-            <a href="http://www.centos.org/">Centos</a> (ou
-            <a href="http://fr.wikipedia.org/wiki/Red_Hat_Linux">Red Hat</a>)
-            derrière un serveur
-            <a title="nginx" href="http://nginx.org/">nginx</a>.
-          </p>
-          <h2>Script de démarrage/arrêt du daemon.</h2>
-          <p>
-            Lancer une application Play en dev est assez aisé :
-            <code>$ play run</code>.
-          </p>
-          <p>
-            Maintenant, si vous avez besoin de déployer votre application en
-            production, il est plus confortable de considérer votre application
-            comme un service à part entière du système. Il se peut aussi que
-            vous ayez besoin de spécifier un port et une interface particulière
-            pour pouvoir utiliser nginx comme front-end (en
-            <a href="http://fr.wikipedia.org/wiki/Proxy_inverse"
-              >reverse proxy</a
-            >). Et évidement, à l'instar d'un environnement de développement,
-            vous pourriez avoir besoin de compresser le JS et le CSS, et
-            également de régler finement les en-têtes HTTP pour gérer
-            correctement le cache.
-          </p>
-          <p>Tout d'abord le script de lancement du daemon :</p>
-          <script src="https://gist.github.com/tdebarochez/6082933.js"></script>
-          <p>
-            Je me suis inspiré des deux gists ci-dessous. Le premier, pour
-            RedHat, utilise le binaire de play pour lancer le processus
-            principal. Cette méthode facile à utiliser en développement semble
-            assez limité en paramètre (tout du moins, très peu documentée). La
-            seconde méthode, pour <a href="http://www.debian.org/">Debian</a>,
-            donne un bonne exemple d'une configuration un peu plus élaborée de
-            l'exécution du daemon. Les paramètres en début de fichier parlent
-            d'eux-mêmes, je vous laisse les découvrir et reste à votre
-            disposition pour toute question.
-          </p>
-          <p>Source :</p>
-          <ul>
-            <li>
-              <a href="https://gist.github.com/THemming/2173037"
-                >https://gist.github.com/THemming/2173037</a
-              >
-              (script pour redhat)
-            </li>
-            <li>
-              <a href="https://gist.github.com/leon/2204773"
-                >https://gist.github.com/leon/2204773</a
-              >
-              (script pour debian)
-            </li>
-          </ul>
-          <h2>Configuration de nginx</h2>
-          <p>
-            Sur un serveur web, il est souvent pratique de pouvoir faire tourner
-            plusieurs applications utilisant des langages, des librairies, des
-            frameworks, etc... hétérogènes (sur mon serveur, il y a
-            l'application Play en scala, une application
-            <a href="http://nodejs.org/">Nodejs</a> en
-            <a href="http://coffeescript.org/">Coffescript</a> et une
-            application <a href="http://php.net">PHP</a>/<a
-              href="http://www.mysql.fr/"
-              >MySQL</a
-            >
-            utilisant <a href="http://httpd.apache.org/">Apache</a>). C'est là
-            que nginx intervient. Configuré en reverse-proxy, c'est lui qui
-            écoutera sur le port 80 de votre serveur et en fonction du nom de
-            domaine relayera les requêtes HTTP à l'application que vous avez
-            choisis. Il vous suffit de configurer votre application en écoute
-            sur un port libre en localhost et d'indiquer à nginx qu'en fonction
-            du nom de domaine (à la manière des VirtualHost d'Apache), il doit
-            transmettre ses requêtes sur ce port.
-          </p>
-          <p>
-            Vous noterez une section fournissant un traitement particulier pour
-            les fichiers statiques (js, css, png, jpg, etc...). En effet, je ne
-            trouvais pas la configuration par défaut de play très satisfaisante
-            pour diffuser ces fichiers. Il conviendra donc de copier tous les
-            fichiers dans un dossier particulier au lancement de l'application
-            (il faut également pensé à y placer les fichiers "compilé" des
-            scripts utilisant un pre-processeurs : coffeescript,
-            <a href="http://sass-lang.com">SASS/SCSS</a>,
-            <a href="http://lesscss.org/">LESS</a>, etc...). Tous les fichiers
-            dans ce dossier auront une durée de cache maximale afin de minimiser
-            le nombre de requêtes au serveur (la requête la plus rapide est
-            celle qui n'est pas faite). Cette technique a aussi l'avantage de
-            décharger la JVM du traitement de ses fichiers, ils sont directement
-            retourné par nginx.
-          </p>
-          <script src="https://gist.github.com/tdebarochez/6083089.js"></script>
-          <h2>Compilation des fichiers statiques</h2>
-          <p>
-            Les pré-processeurs (Coffeescript, SASS, LESS, etc...) sont d'un
-            grand confort pour le développement de la partie front-end d'une
-            application web. Toutefois, il y a quelques détails qui ne faut pas
-            négliger afin d'optimiser au maximum la distribution en HTTP de ces
-            fichiers.
-          </p>
-          <p>
-            Prenons comme exemple un fichier .coffee (Coffeescript). Lorsqu'en
-            développement vous lancer votre serveur, play se charge de
-            re-compiler automatiquement le fichier afin de desservir un fichier
-            javascript au navigateur qui a demandé le fichier. Dans notre
-            environnement, les fichiers statiques se trouvent tous dans un
-            dossier <code>static/</code>. Il faut donc "traduire" ce fichier en
-            javascript et le placer dans ce dossier (en respectant
-            l'arborescence utilisée en développement) :
-            <code
-              >coffee -o static/javascripts/ -c
-              app/assets/javascripts/*.coffee</code
-            >.
-          </p>
-          <p>
-            Ensuite, comme optimisation souvent préconnisée, il convient de
-            "minifier" ces fichiers afin qu'ils soient le plus léger possible
-            pendant le transport sur le réseau (qui peut-être une faible
-            connexion 3g). Dans mon cas, j'ai utilisé
-            <a href="https://github.com/yui/yuicompressor"
-              ><code>yuicompressor</code></a
-            >
-            qui fonctionne bien. Il en existe certainement des mieux, je n'ai
-            pas testé, mais celui-là fonctionne comme je veux.
-          </p>
-          <script src="https://gist.github.com/tdebarochez/6083307.js"></script>
-          <p>
-            Note : comme amélioration possible, il faudrait dans cette partie là
-            renommer les fichiers par un nom de fichier contenant un hash
-            représentant le contenu de ce fichier afin de palier à tout problème
-            d'invalidation du cache.
-          </p>
-          <h2>Dans le futur</h2>
-          <p>
-            Pour parfaire le déploiement de l'application, sur un VCS
-            <a href="http://git-scm.com/">git</a> par exemple, il serait
-            pratique d'automatiser le redémarrage du serveur sur un hook
-            post-commit. Pour éviter également une coupure de service, il
-            faudrait également, lancer la nouvelle application sur un autre port
-            et switcher sur la nouvelle instance uniquement avec un reload de
-            nginx. Mais bon tout ça peut faire l'objet d'un autre article. :)
-          </p>
-          <p>
-            <strong>Mise à jour du 29 juillet 2013</strong> : correction du
-            script de lancement du daemon.
-          </p>
-          <!--:-->
         </div>
         <!-- /.entry-content -->
       </article>

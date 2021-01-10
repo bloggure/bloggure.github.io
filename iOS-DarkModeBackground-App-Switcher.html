@@ -7,35 +7,30 @@
   <!--<![endif]-->
   <head>
     <meta charset="utf-8" />
-    <title>
-      Graph of programming languages people used in 2012 &#8211; Bloggure
-    </title>
+    <title>Dark Mode iOS Snapshot &#8211; Bloggure</title>
     <meta
       name="description"
       content="Multi author blog about programming, computing and geek stuff"
     />
-    <meta name="keywords" content="java, languages, scala" />
+    <meta name="keywords" content="ios, dark mode, tip" />
 
     <!-- Open Graph -->
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="article" />
-    <meta
-      property="og:title"
-      content="Graph of programming languages people used in 2012"
-    />
+    <meta property="og:title" content="Dark Mode iOS Snapshot" />
     <meta
       property="og:description"
       content="Multi author blog about programming, computing and geek stuff"
     />
     <meta
       property="og:url"
-      content="http://www.bloggure.info/www/graph-of-programming-languages-people-used-in-2012"
+      content="http://www.bloggure.info/iOS-DarkModeBackground-App-Switcher"
     />
     <meta property="og:site_name" content="Bloggure" />
 
     <link
       rel="canonical"
-      href="http://www.bloggure.info/www/graph-of-programming-languages-people-used-in-2012"
+      href="http://www.bloggure.info/iOS-DarkModeBackground-App-Switcher"
     />
     <link
       href="http://www.bloggure.info/feed.xml"
@@ -117,11 +112,11 @@
             <div class="entry-meta">
               <span class="entry-date date published updated"
                 ><time
-                  datetime="2012-12-30T00:00:00+01:00"
+                  datetime="2021-01-10T00:00:00+01:00"
                   itemprop="datePublished"
                   ><a
-                    href="http://www.bloggure.info/www/graph-of-programming-languages-people-used-in-2012"
-                    >December 30, 2012</a
+                    href="http://www.bloggure.info/iOS-DarkModeBackground-App-Switcher"
+                    >January 10, 2021</a
                   ></time
                 ></span
               ><span
@@ -139,7 +134,7 @@
                 ></span
               >&nbsp; &bull; &nbsp;<span class="entry-comments"
                 ><a
-                  href="http://www.bloggure.info/www/graph-of-programming-languages-people-used-in-2012#disqus_thread"
+                  href="http://www.bloggure.info/iOS-DarkModeBackground-App-Switcher#disqus_thread"
                   >Comment</a
                 ></span
               >
@@ -148,50 +143,93 @@
 
             <h1 class="entry-title" itemprop="name">
               <a
-                href="http://www.bloggure.info/www/graph-of-programming-languages-people-used-in-2012"
+                href="http://www.bloggure.info/iOS-DarkModeBackground-App-Switcher"
                 rel="bookmark"
-                title="Graph of programming languages people used in 2012"
+                title="Dark Mode iOS Snapshot"
                 itemprop="url"
-                >Graph of programming languages people used in 2012</a
+                >Dark Mode iOS Snapshot</a
               >
             </h1>
           </header>
+          <h1 id="dark-mode-support">Dark mode support</h1>
+
           <p>
-            I came across this link representing a visualization of programming
-            languages usage based on a hashtag collect :
-            <a href="http://www.ioncannon.net/projects/code2012/"
-              >http://www.ioncannon.net/projects/code2012/</a
-            >
-          </p>
-          <p>
-            Although this method can be criticized, it provides interesting data
-            : JavaScript is the clear winner with Java just behind. We can see
-            Scala is a growing language too, it has been used more than PHP last
-            year (according to this study).
+            As you might know, iOS supports Dark mode since iOS 12. It is pretty
+            straightforward to implement it by using dynamic colors. Either
+            system provided ones or adjust them using trait collections.
           </p>
 
-          <em
-            >If you find another study on this topic don't hesitate to comment
-            this blog post to let me know.</em
-          >
+          <h2 id="dynamically-switch">Dynamically switch</h2>
+
+          <p>
+            At times, we can not rely on default colors but we have to listen
+            for <code>traitCollection</code> changes in order to do what is
+            appropriate for adapting the UI to the mode being active.
+          </p>
+
+          <p>
+            It is easy to do by checking current <code>traitCollection</code> :
+          </p>
+
+          <figure class="highlight">
+            <pre><code class="language-swift" data-lang="swift"><span></span><span class="kr">override</span> <span class="kd">func</span> <span class="nf">traitCollectionDidChange</span><span class="p">(</span><span class="kc">_</span> <span class="n">previousTraitCollection</span><span class="p">:</span> <span class="bp">UITraitCollection</span><span class="p">?)</span> <span class="p">{</span>
+    <span class="kc">super</span><span class="p">.</span><span class="n">traitCollectionDidChange</span><span class="p">(</span><span class="n">previousTraitCollection</span><span class="p">)</span>
+
+    <span class="kd">let</span> <span class="nv">userInterfaceStyle</span> <span class="p">=</span> <span class="n">traitCollection</span><span class="p">.</span><span class="n">userInterfaceStyle</span> 
+    <span class="c1">// Either .unspecified, .light, or .dark</span>
+<span class="p">}</span>
+ </code></pre>
+          </figure>
+
+          <h2 id="app-switcher-tricks">App switcher tricks</h2>
+
+          <p>
+            One thing that I was not aware is that iOS switches back and forth
+            between active mode and the complementary when the app goes to the
+            background :
+          </p>
+
+          <p>
+            To have proper representation in application switcher, if the trait
+            collection is changed, the OS takes a screenshot of your app using
+            <code>light</code> and <code>dark</code> schemes.
+          </p>
+
+          <h2 id="consequences">Consequences</h2>
+
+          <p>
+            This can lead to subtle problems, in my case, I was loading a
+            specific stylesheet for MapBox, that, when loaded, was registering /
+            refreshing elements on map. Thus, when the app was put to the
+            background, a lot of things were happening, without a clear
+            explanation (and the app was sometimes crashing due to the very fast
+            switching between map stylesheets).
+          </p>
+
+          <p>
+            The workaround is rather simple : if the app is in the background we
+            prevent loading the stylesheet, the trade-off is acceptable : the
+            app can display an invalid preview in application switcher, but, it
+            is nicer on CPU / Network.
+          </p>
 
           <footer class="entry-meta">
             <span class="entry-tags"
               ><a
-                href="http://www.bloggure.info/tags/#java"
-                title="Pages tagged java"
+                href="http://www.bloggure.info/tags/#ios"
+                title="Pages tagged ios"
                 class="tag"
-                ><span class="term">java</span></a
+                ><span class="term">ios</span></a
               ><a
-                href="http://www.bloggure.info/tags/#languages"
-                title="Pages tagged languages"
+                href="http://www.bloggure.info/tags/#dark mode"
+                title="Pages tagged dark mode"
                 class="tag"
-                ><span class="term">languages</span></a
+                ><span class="term">dark mode</span></a
               ><a
-                href="http://www.bloggure.info/tags/#scala"
-                title="Pages tagged scala"
+                href="http://www.bloggure.info/tags/#tip"
+                title="Pages tagged tip"
                 class="tag"
-                ><span class="term">scala</span></a
+                ><span class="term">tip</span></a
               ></span
             >
 
@@ -199,7 +237,7 @@
               <ul class="socialcount socialcount-small inline-list">
                 <li class="facebook">
                   <a
-                    href="https://www.facebook.com/sharer/sharer.php?u=http://www.bloggure.info/www/graph-of-programming-languages-people-used-in-2012"
+                    href="https://www.facebook.com/sharer/sharer.php?u=http://www.bloggure.info/iOS-DarkModeBackground-App-Switcher"
                     title="Share on Facebook"
                     ><span class="count"
                       ><i class="fa fa-facebook-square"></i> Like</span
@@ -208,7 +246,7 @@
                 </li>
                 <li class="twitter">
                   <a
-                    href="https://twitter.com/intent/tweet?text=http://www.bloggure.info/www/graph-of-programming-languages-people-used-in-2012"
+                    href="https://twitter.com/intent/tweet?text=http://www.bloggure.info/iOS-DarkModeBackground-App-Switcher"
                     title="Share on Twitter"
                     ><span class="count"
                       ><i class="fa fa-twitter-square"></i> Tweet</span
@@ -225,33 +263,39 @@
         <!-- /#disqus_thread -->
         <div class="read-more">
           <div class="read-more-header">
-            <a
-              href="http://www.bloggure.info/work/intellij-12-darcula-monokai"
-              class="read-more-btn"
+            <a href="http://www.bloggure.info/git-gone" class="read-more-btn"
               >Read More</a
             >
           </div>
           <!-- /.read-more-header -->
           <div class="read-more-content">
             <h3>
-              <a
-                href="http://www.bloggure.info/mac-checklist"
-                title="macOS tools checklist"
-                >macOS tools checklist</a
+              <a href="http://www.bloggure.info/git-gone" title="Git-gone"
+                >Git-gone</a
               >
             </h3>
             <p>
-              # Welcome to the mac worldWether you're new to macOS or an user
-              coming from different machines, the tools we tend to use is very
-              importan...&hellip;
-              <a href="http://www.bloggure.info/mac-checklist"
-                >Continue reading</a
-              >
+              Git daily usageIf you’re like most developers nowadays you make an
+              extensive usage of git across a large number of repositories.The
+              now-c...&hellip;
+              <a href="http://www.bloggure.info/git-gone">Continue reading</a>
             </p>
           </div>
           <!-- /.read-more-content -->
 
           <div class="read-more-list">
+            <div class="list-item">
+              <h4>
+                <a
+                  href="http://www.bloggure.info/mac-checklist"
+                  title="macOS tools checklist"
+                  >macOS tools checklist</a
+                >
+              </h4>
+              <span>Published on December 06, 2020</span>
+            </div>
+            <!-- /.list-item -->
+
             <div class="list-item">
               <h4>
                 <a
@@ -261,18 +305,6 @@
                 >
               </h4>
               <span>Published on December 03, 2020</span>
-            </div>
-            <!-- /.list-item -->
-
-            <div class="list-item">
-              <h4>
-                <a
-                  href="http://www.bloggure.info/XCodeUnitTestInheritance"
-                  title="XCode unit test and inheritance"
-                  >XCode unit test and inheritance</a
-                >
-              </h4>
-              <span>Published on December 02, 2020</span>
             </div>
             <!-- /.list-item -->
           </div>
@@ -286,7 +318,7 @@
     <div class="footer-wrapper">
       <footer role="contentinfo">
         <span
-          >&copy; 2020 . Powered by
+          >&copy; 2021 . Powered by
           <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using a theme
           based on
           <a

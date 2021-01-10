@@ -110,6 +110,104 @@
           <div class="entry-meta">
             <span class="entry-date date published updated"
               ><time
+                datetime="2020-12-01T00:00:00+01:00"
+                itemprop="datePublished"
+                ><a href="http://www.bloggure.info/Revival"
+                  >December 01, 2020</a
+                ></time
+              ></span
+            ><span
+              class="author vcard"
+              itemprop="author"
+              itemscope
+              itemtype="http://schema.org/Person"
+              ><span itemprop="name" class="fn"
+                ><a
+                  href="http://www.bloggure.info/cgatay"
+                  title="About cgatay"
+                  itemprop="url"
+                  >cgatay</a
+                ></span
+              ></span
+            >&nbsp; &bull; &nbsp;<span class="entry-comments"
+              ><a href="http://www.bloggure.info/Revival#disqus_thread"
+                >Comment</a
+              ></span
+            >
+          </div>
+          <!-- /.entry-meta -->
+
+          <h1 class="entry-title" itemprop="name">
+            <a
+              href="http://www.bloggure.info/Revival"
+              rel="bookmark"
+              title="Bloggure revival"
+              itemprop="url"
+              >Bloggure revival</a
+            >
+          </h1>
+        </header>
+        <div class="entry-content" itemprop="description">
+          <h1 id="its-been-a-long-time">It’s been a long time</h1>
+
+          <p>It’s been a very long time since last post (5 years…).</p>
+
+          <p>
+            I am convinced that blogging is useful, at least for my present
+            self, and for my future self that tends to lose track of important
+            things.
+          </p>
+
+          <h2 id="what-will-this-be-about-">What will this be about ?</h2>
+
+          <p>
+            In the <em>past</em> I blogged a lot about Java / Maven and so on,
+            my days have evolved to another languages, so I guess there will be
+            less JVM things (but may be a few Kotlin) and more Swift / Rust on
+            the other end.
+          </p>
+
+          <h2 id="technical-stack">Technical stack</h2>
+
+          <p>
+            In a blog reboot, we (I mean dev) like to follow the latest trend
+            and migrate our blog system to latest hype stack. I will avoid this
+            and focus on writing instead, so the site stays in its 15’ shape:
+          </p>
+
+          <ul>
+            <li><a href="http://jekyllrb.com/">jekyll</a></li>
+            <li><a href="https://pages.github.com">github-pages</a></li>
+            <li>
+              markdown (I think <code>jenkins-asciidoc</code> is around the
+              corner though)
+            </li>
+            <li>
+              <a href="https://actions.github.com">github actions</a> for
+              building
+            </li>
+          </ul>
+
+          <p>
+            The sole new thing is that I’m trying to write using
+            <a href="https://gitpod.io">gitpod.io</a> to get a distraction free
+            environment.
+          </p>
+        </div>
+        <!-- /.entry-content -->
+      </article>
+      <!-- /.hentry -->
+
+      <article
+        class="hentry"
+        itemprop="blogPost"
+        itemscope
+        itemtype="http://schema.org/BlogPosting"
+      >
+        <header>
+          <div class="entry-meta">
+            <span class="entry-date date published updated"
+              ><time
                 datetime="2015-11-16T00:00:00+01:00"
                 itemprop="datePublished"
                 ><a
@@ -567,96 +665,6 @@ ssh -t gateway ssh <span class="nv">$1</span>
 
           <p>
             Of course the same goes for your layout : colemak / dvorak / bépo …
-          </p>
-        </div>
-        <!-- /.entry-content -->
-      </article>
-      <!-- /.hentry -->
-
-      <article
-        class="hentry"
-        itemprop="blogPost"
-        itemscope
-        itemtype="http://schema.org/BlogPosting"
-      >
-        <header>
-          <div class="entry-meta">
-            <span class="entry-date date published updated"
-              ><time
-                datetime="2015-04-13T00:00:00+02:00"
-                itemprop="datePublished"
-                ><a href="http://www.bloggure.info/DebugMavenFailsafe"
-                  >April 13, 2015</a
-                ></time
-              ></span
-            ><span
-              class="author vcard"
-              itemprop="author"
-              itemscope
-              itemtype="http://schema.org/Person"
-              ><span itemprop="name" class="fn"
-                ><a
-                  href="http://www.bloggure.info/cgatay"
-                  title="About cgatay"
-                  itemprop="url"
-                  >cgatay</a
-                ></span
-              ></span
-            >&nbsp; &bull; &nbsp;<span class="entry-comments"
-              ><a
-                href="http://www.bloggure.info/DebugMavenFailsafe#disqus_thread"
-                >Comment</a
-              ></span
-            >
-          </div>
-          <!-- /.entry-meta -->
-
-          <h1 class="entry-title" itemprop="name">
-            <a
-              href="http://www.bloggure.info/DebugMavenFailsafe"
-              rel="bookmark"
-              title="Debug Failsafe Integration Test easily"
-              itemprop="url"
-              >Debug Failsafe Integration Test easily</a
-            >
-          </h1>
-        </header>
-        <div class="entry-content" itemprop="description">
-          <h1 id="arquillian-testing">Arquillian testing</h1>
-
-          <p>
-            Arquillian testing is very convenient to get a full environment
-            deployed on an application server and test quickly. However
-            sometimes we need to debug what’s inside.
-          </p>
-
-          <h2 id="launch-maven-in-debug-mode">Launch Maven in Debug mode</h2>
-          <p>
-            One way of doing it can be launching Maven in debug mode with the
-            <code>mvnDebug</code> command instead of the classical
-            <code>mvn</code>. It will open a JPDA debugger on port 8000 by
-            default, you then just need to connect to it with your preferred
-            IDE. But, if there is forked processes, you won’t be able to debug
-            inside them.
-          </p>
-
-          <h2 id="launch-failsafe-integration-tests-in-debug-mode">
-            Launch Failsafe Integration Tests in Debug mode
-          </h2>
-          <p>
-            When using Arquillian, there is a high probability that Arquillian
-            is running in a forked process (with embedded containers).
-          </p>
-
-          <p>
-            There is an easy way to tell <code>maven-failsafe-plugin</code> to
-            wait for a debugger when starting : use the
-            <code>-Dmaven.failsafe.debug</code> property.
-          </p>
-
-          <p>
-            You can even specify the options as you would in
-            <code>$JAVA_OPTS</code> to change ports / wait…
           </p>
         </div>
         <!-- /.entry-content -->

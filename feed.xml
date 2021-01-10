@@ -4,13 +4,61 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="http://www.bloggure.info/feed.xml" />
 <link rel="alternate" type="text/html" href="http://www.bloggure.info" />
-<updated>2021-01-04T09:00:15+01:00</updated>
+<updated>2021-01-10T11:37:43+01:00</updated>
 <id>http://www.bloggure.info/</id>
 <author>
   <name></name>
   <uri>http://www.bloggure.info/</uri>
   <email></email>
 </author>
+
+
+<entry>
+  <title type="html"><![CDATA[Dark Mode iOS Snapshot]]></title>
+  <link>http://www.bloggure.info/iOS-DarkModeBackground-App-Switcher</link>
+  <id>http://www.bloggure.info/iOS-DarkModeBackground-App-Switcher</id>
+  <published>2021-01-10T00:00:00+01:00</published>
+  <updated>2021-01-10T00:00:00+01:00</updated>
+  <author>
+    <name></name>
+    <uri>http://www.bloggure.info</uri>
+    <email></email>
+  </author>
+  <content type="html">&lt;h1 id=&quot;dark-mode-support&quot;&gt;Dark mode support&lt;/h1&gt;
+
+&lt;p&gt;As you might know, iOS supports Dark mode since iOS 12. 
+It is pretty straightforward to implement it by using dynamic colors. Either system provided ones or adjust them using trait collections.&lt;/p&gt;
+
+&lt;h2 id=&quot;dynamically-switch&quot;&gt;Dynamically switch&lt;/h2&gt;
+
+&lt;p&gt;At times, we can not rely on default colors but we have to listen for &lt;code&gt;traitCollection&lt;/code&gt; changes in order to do what is appropriate for adapting the UI to the mode being active.&lt;/p&gt;
+
+&lt;p&gt;It is easy to do by checking current &lt;code&gt;traitCollection&lt;/code&gt; :&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-swift&quot; data-lang=&quot;swift&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;kr&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;traitCollectionDidChange&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;previousTraitCollection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;UITraitCollection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kc&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;traitCollectionDidChange&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;previousTraitCollection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;userInterfaceStyle&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;traitCollection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;userInterfaceStyle&lt;/span&gt; 
+    &lt;span class=&quot;c1&quot;&gt;// Either .unspecified, .light, or .dark&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+ &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;app-switcher-tricks&quot;&gt;App switcher tricks&lt;/h2&gt;
+
+&lt;p&gt;One thing that I was not aware is that iOS switches back and forth
+between active mode and the complementary when the app goes to the background :&lt;/p&gt;
+
+&lt;p&gt;To have proper representation in application switcher, if the trait collection is changed, the OS takes a screenshot of your app using  &lt;code&gt;light&lt;/code&gt; and &lt;code&gt;dark&lt;/code&gt; schemes.&lt;/p&gt;
+
+&lt;h2 id=&quot;consequences&quot;&gt;Consequences&lt;/h2&gt;
+
+&lt;p&gt;This can lead to subtle problems, in my case, I was loading a specific stylesheet for MapBox, that, when loaded, was registering / refreshing elements on map. Thus, when the app was put to the background, a lot of things were happening, without a clear explanation (and the app was sometimes crashing due to the very fast switching between map stylesheets).&lt;/p&gt;
+
+&lt;p&gt;The workaround is rather simple : if the app is in the background we prevent loading the stylesheet, the trade-off is acceptable : the app can display an 
+invalid preview in application switcher, but, it is nicer on CPU / Network.&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/iOS-DarkModeBackground-App-Switcher&quot;&gt;Dark Mode iOS Snapshot&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure&lt;/a&gt; on January 10, 2021.&lt;/p&gt;</content>
+</entry>
 
 
 <entry>
@@ -946,31 +994,6 @@ The trick consists in adding an implicit lang to your template views. In fact, S
 With this little trick, your calls to localization will use the locale extracted from the http request as expected.&lt;--&gt;
 
   &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/work/play-framework-and-i18n-in-views&quot;&gt;Play Framework and i18n in views&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure&lt;/a&gt; on July 25, 2013.&lt;/p&gt;</content>
-</entry>
-
-
-<entry>
-  <title type="html"><![CDATA[Play application on Centos/RedHat in production mode]]></title>
-  <link>http://www.bloggure.info/.java/.scala/.shell/ci/shelf/centos-redhat-play-application-production-mode</link>
-  <id>http://www.bloggure.info/.java/.scala/.shell/ci/shelf/centos-redhat-play-application-production-mode</id>
-  <published>2013-07-25T00:00:00+02:00</published>
-  <updated>2013-07-25T00:00:00+02:00</updated>
-  <author>
-    <name></name>
-    <uri>http://www.bloggure.info</uri>
-    <email></email>
-  </author>
-  <content type="html">&lt;em&gt;Sorry english readers, the following post is only available in french !&lt;/em&gt;
-&lt;!--:fr--&gt;&lt;p&gt;&lt;strong&gt;tl;dr &lt;/strong&gt;: application &lt;a title=&quot;play&quot; href=&quot;http://www.playframework.com/&quot;&gt;Play&lt;/a&gt; (java ou &lt;a href=&quot;http://www.scala-lang.org/&quot;&gt;scala&lt;/a&gt;) sur un serveur &lt;a href=&quot;http://www.centos.org/&quot;&gt;Centos&lt;/a&gt; (ou &lt;a href=&quot;http://fr.wikipedia.org/wiki/Red_Hat_Linux&quot;&gt;Red Hat&lt;/a&gt;) derrière un serveur &lt;a title=&quot;nginx&quot; href=&quot;http://nginx.org/&quot;&gt;nginx&lt;/a&gt;.&lt;/p&gt;&lt;h2&gt;Script de démarrage/arrêt du daemon.&lt;/h2&gt;&lt;p&gt;Lancer une application Play en dev est assez aisé : &lt;code&gt;$ play run&lt;/code&gt;.&lt;/p&gt;&lt;p&gt;Maintenant, si vous avez besoin de déployer votre application en production, il est plus confortable de considérer votre application comme un service à part entière du système. Il se peut aussi que vous ayez besoin de spécifier un port et une interface particulière pour pouvoir utiliser nginx comme front-end (en &lt;a href=&quot;http://fr.wikipedia.org/wiki/Proxy_inverse&quot;&gt;reverse proxy&lt;/a&gt;). Et évidement, à l'instar d'un environnement de développement, vous pourriez avoir besoin de compresser le JS et le CSS, et également de régler finement les en-têtes HTTP pour gérer correctement le cache.&lt;/p&gt;&lt;p&gt;Tout d'abord le script de lancement du daemon :&lt;/p&gt;
-&lt;script src=&quot;https://gist.github.com/tdebarochez/6082933.js&quot;&gt;&lt;/script&gt;
-&lt;p&gt;Je me suis inspiré des deux gists ci-dessous. Le premier, pour RedHat, utilise le binaire de play pour lancer le processus principal. Cette méthode facile à utiliser en développement semble assez limité en paramètre (tout du moins, très peu documentée). La seconde méthode, pour &lt;a href=&quot;http://www.debian.org/&quot;&gt;Debian&lt;/a&gt;, donne un bonne exemple d'une configuration un peu plus élaborée de l'exécution du daemon. Les paramètres en début de fichier parlent d'eux-mêmes, je vous laisse les découvrir et reste à votre disposition pour toute question.&lt;/p&gt;&lt;p&gt;Source :&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;https://gist.github.com/THemming/2173037&quot;&gt;https://gist.github.com/THemming/2173037&lt;/a&gt; (script pour redhat)&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://gist.github.com/leon/2204773&quot;&gt;https://gist.github.com/leon/2204773&lt;/a&gt; (script pour debian)&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Configuration de nginx&lt;/h2&gt;&lt;p&gt;Sur un serveur web, il est souvent pratique de pouvoir faire tourner plusieurs applications utilisant des langages, des librairies, des frameworks, etc... hétérogènes (sur mon serveur, il y a l'application Play en scala, une application &lt;a href=&quot;http://nodejs.org/&quot;&gt;Nodejs&lt;/a&gt; en &lt;a href=&quot;http://coffeescript.org/&quot;&gt;Coffescript&lt;/a&gt; et une application &lt;a href=&quot;http://php.net&quot;&gt;PHP&lt;/a&gt;/&lt;a href=&quot;http://www.mysql.fr/&quot;&gt;MySQL&lt;/a&gt; utilisant &lt;a href=&quot;http://httpd.apache.org/&quot;&gt;Apache&lt;/a&gt;). C'est là que nginx intervient. Configuré en reverse-proxy, c'est lui qui écoutera sur le port 80 de votre serveur et en fonction du nom de domaine relayera les requêtes HTTP à l'application que vous avez choisis. Il vous suffit de configurer votre application en écoute sur un port libre en localhost et d'indiquer à nginx qu'en fonction du nom de domaine (à la manière des VirtualHost d'Apache), il doit transmettre ses requêtes sur ce port.&lt;/p&gt;&lt;p&gt;Vous noterez une section fournissant un traitement particulier pour les fichiers statiques (js, css, png, jpg, etc...). En effet, je ne trouvais pas la configuration par défaut de play très satisfaisante pour diffuser ces fichiers. Il conviendra donc de copier tous les fichiers dans un dossier particulier au lancement de l'application (il faut également pensé à y placer les fichiers &quot;compilé&quot; des scripts utilisant un pre-processeurs : coffeescript, &lt;a href=&quot;http://sass-lang.com&quot;&gt;SASS/SCSS&lt;/a&gt;, &lt;a href=&quot;http://lesscss.org/&quot;&gt;LESS&lt;/a&gt;, etc...). Tous les fichiers dans ce dossier auront une durée de cache maximale afin de minimiser le nombre de requêtes au serveur (la requête la plus rapide est celle qui n'est pas faite). Cette technique a aussi l'avantage de décharger la JVM du traitement de ses fichiers, ils sont directement retourné par nginx.&lt;/p&gt;
-&lt;script src=&quot;https://gist.github.com/tdebarochez/6083089.js&quot;&gt;&lt;/script&gt;
-&lt;h2&gt;Compilation des fichiers statiques&lt;/h2&gt;&lt;p&gt;Les pré-processeurs (Coffeescript, SASS, LESS, etc...) sont d'un grand confort pour le développement de la partie front-end d'une application web. Toutefois, il y a quelques détails qui ne faut pas négliger afin d'optimiser au maximum la distribution en HTTP de ces fichiers.&lt;/p&gt;&lt;p&gt;Prenons comme exemple un fichier .coffee (Coffeescript). Lorsqu'en développement vous lancer votre serveur, play se charge de re-compiler automatiquement le fichier afin de desservir un fichier javascript au navigateur qui a demandé le fichier. Dans notre environnement, les fichiers statiques se trouvent tous dans un dossier &lt;code&gt;static/&lt;/code&gt;. Il faut donc &quot;traduire&quot; ce fichier en javascript et le placer dans ce dossier (en respectant l'arborescence utilisée en développement) : &lt;code&gt;coffee -o static/javascripts/ -c app/assets/javascripts/*.coffee&lt;/code&gt;.&lt;/p&gt;&lt;p&gt;Ensuite, comme optimisation souvent préconnisée, il convient de &quot;minifier&quot; ces fichiers afin qu'ils soient le plus léger possible pendant le transport sur le réseau (qui peut-être une faible connexion 3g). Dans mon cas, j'ai utilisé &lt;a href=&quot;https://github.com/yui/yuicompressor&quot;&gt;&lt;code&gt;yuicompressor&lt;/code&gt;&lt;/a&gt; qui fonctionne bien. Il en existe certainement des mieux, je n'ai pas testé, mais celui-là fonctionne comme je veux.&lt;/p&gt;
-&lt;script src=&quot;https://gist.github.com/tdebarochez/6083307.js&quot;&gt;&lt;/script&gt;
-&lt;p&gt;Note : comme amélioration possible, il faudrait dans cette partie là renommer les fichiers par un nom de fichier contenant un hash représentant le contenu de ce fichier afin de palier à tout problème d'invalidation du cache.&lt;/p&gt;&lt;h2&gt;Dans le futur&lt;/h2&gt;&lt;p&gt;Pour parfaire le déploiement de l'application, sur un VCS &lt;a href=&quot;http://git-scm.com/&quot;&gt;git&lt;/a&gt; par exemple, il serait pratique d'automatiser le redémarrage du serveur sur un hook post-commit. Pour éviter également une coupure de service, il faudrait également, lancer la nouvelle application sur un autre port et switcher sur la nouvelle instance uniquement avec un reload de nginx. Mais bon tout ça peut faire l'objet d'un autre article. :)&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Mise à jour du 29 juillet 2013&lt;/strong&gt; : correction du script de lancement du daemon.&lt;/p&gt;&lt;!--:--&gt;
-
-  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/.java/.scala/.shell/ci/shelf/centos-redhat-play-application-production-mode&quot;&gt;Play application on Centos/RedHat in production mode&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure&lt;/a&gt; on July 25, 2013.&lt;/p&gt;</content>
 </entry>
 
 </feed>

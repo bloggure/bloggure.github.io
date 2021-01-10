@@ -110,6 +110,96 @@
           <div class="entry-meta">
             <span class="entry-date date published updated"
               ><time
+                datetime="2015-04-13T00:00:00+02:00"
+                itemprop="datePublished"
+                ><a href="http://www.bloggure.info/DebugMavenFailsafe"
+                  >April 13, 2015</a
+                ></time
+              ></span
+            ><span
+              class="author vcard"
+              itemprop="author"
+              itemscope
+              itemtype="http://schema.org/Person"
+              ><span itemprop="name" class="fn"
+                ><a
+                  href="http://www.bloggure.info/cgatay"
+                  title="About cgatay"
+                  itemprop="url"
+                  >cgatay</a
+                ></span
+              ></span
+            >&nbsp; &bull; &nbsp;<span class="entry-comments"
+              ><a
+                href="http://www.bloggure.info/DebugMavenFailsafe#disqus_thread"
+                >Comment</a
+              ></span
+            >
+          </div>
+          <!-- /.entry-meta -->
+
+          <h1 class="entry-title" itemprop="name">
+            <a
+              href="http://www.bloggure.info/DebugMavenFailsafe"
+              rel="bookmark"
+              title="Debug Failsafe Integration Test easily"
+              itemprop="url"
+              >Debug Failsafe Integration Test easily</a
+            >
+          </h1>
+        </header>
+        <div class="entry-content" itemprop="description">
+          <h1 id="arquillian-testing">Arquillian testing</h1>
+
+          <p>
+            Arquillian testing is very convenient to get a full environment
+            deployed on an application server and test quickly. However
+            sometimes we need to debug what’s inside.
+          </p>
+
+          <h2 id="launch-maven-in-debug-mode">Launch Maven in Debug mode</h2>
+          <p>
+            One way of doing it can be launching Maven in debug mode with the
+            <code>mvnDebug</code> command instead of the classical
+            <code>mvn</code>. It will open a JPDA debugger on port 8000 by
+            default, you then just need to connect to it with your preferred
+            IDE. But, if there is forked processes, you won’t be able to debug
+            inside them.
+          </p>
+
+          <h2 id="launch-failsafe-integration-tests-in-debug-mode">
+            Launch Failsafe Integration Tests in Debug mode
+          </h2>
+          <p>
+            When using Arquillian, there is a high probability that Arquillian
+            is running in a forked process (with embedded containers).
+          </p>
+
+          <p>
+            There is an easy way to tell <code>maven-failsafe-plugin</code> to
+            wait for a debugger when starting : use the
+            <code>-Dmaven.failsafe.debug</code> property.
+          </p>
+
+          <p>
+            You can even specify the options as you would in
+            <code>$JAVA_OPTS</code> to change ports / wait…
+          </p>
+        </div>
+        <!-- /.entry-content -->
+      </article>
+      <!-- /.hentry -->
+
+      <article
+        class="hentry"
+        itemprop="blogPost"
+        itemscope
+        itemtype="http://schema.org/BlogPosting"
+      >
+        <header>
+          <div class="entry-meta">
+            <span class="entry-date date published updated"
+              ><time
                 datetime="2014-09-22T00:00:00+02:00"
                 itemprop="datePublished"
                 ><a href="http://www.bloggure.info/rescue-a-vps-with-chroot"
@@ -620,89 +710,6 @@ sudo VirtualBox;
             As a side note, I think a Linux host is not required, you can
             achieve the same with a Windows operating system, the command line
             surely just need some improvements to point to the physical disk.
-          </p>
-        </div>
-        <!-- /.entry-content -->
-      </article>
-      <!-- /.hentry -->
-
-      <article
-        class="hentry"
-        itemprop="blogPost"
-        itemscope
-        itemtype="http://schema.org/BlogPosting"
-      >
-        <header>
-          <div class="entry-meta">
-            <span class="entry-date date published updated"
-              ><time
-                datetime="2014-02-10T00:00:00+01:00"
-                itemprop="datePublished"
-                ><a
-                  href="http://www.bloggure.info/restx-the-webservice-firework"
-                  >February 10, 2014</a
-                ></time
-              ></span
-            ><span
-              class="author vcard"
-              itemprop="author"
-              itemscope
-              itemtype="http://schema.org/Person"
-              ><span itemprop="name" class="fn"
-                ><a
-                  href="http://www.bloggure.info/"
-                  title="About "
-                  itemprop="url"
-                ></a></span
-            ></span>
-          </div>
-          <!-- /.entry-meta -->
-
-          <h1 class="entry-title" itemprop="name">
-            <a
-              href="http://www.bloggure.info/restx-the-webservice-firework"
-              rel="bookmark"
-              title="RestX the webservice framework"
-              itemprop="url"
-              >RestX the webservice framework</a
-            >
-          </h1>
-        </header>
-        <div class="entry-content" itemprop="description">
-          <h1 id="another-java-rest-framework">Another Java Rest framework</h1>
-
-          <p>
-            If you’re a somewhat experienced Java developer I guess you’ve
-            encountered a lot of framework when it comes to write web services.
-          </p>
-
-          <p>
-            <a href="http://www.restx.io">Restx.io</a> is a new kid on the block
-            leveraging high velocity with a focus on testability through a set
-            of unique and great features :
-          </p>
-
-          <ul>
-            <li>
-              each rest endpoint generates its documentation from its tests
-              (real killer feature here : we hate writing docs but we live
-              writing tests!)
-            </li>
-            <li>a built in monitoring engine</li>
-            <li>
-              everything that can be done at compile time is done at that time
-              (annotations / dependency injection)
-            </li>
-            <li>
-              it is written in good old plain Java (IDE support : I’m looking at
-              you Play Framework!)
-            </li>
-            <li>auto compile (we don’t like waiting!)</li>
-          </ul>
-
-          <p>
-            I’ve tested it on a few small projects, I can’t wait to try it on a
-            real project !
           </p>
         </div>
         <!-- /.entry-content -->

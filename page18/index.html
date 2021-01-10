@@ -110,6 +110,120 @@
           <div class="entry-meta">
             <span class="entry-date date published updated"
               ><time
+                datetime="2011-07-18T00:00:00+02:00"
+                itemprop="datePublished"
+                ><a
+                  href="http://www.bloggure.info/.java/work/glassfish-3-x-jersey-with-bundled-dependencies"
+                  >July 18, 2011</a
+                ></time
+              ></span
+            ><span
+              class="author vcard"
+              itemprop="author"
+              itemscope
+              itemtype="http://schema.org/Person"
+              ><span itemprop="name" class="fn"
+                ><a
+                  href="http://www.bloggure.info/cgatay"
+                  title="About cgatay"
+                  itemprop="url"
+                  >cgatay</a
+                ></span
+              ></span
+            >&nbsp; &bull; &nbsp;<span class="entry-comments"
+              ><a
+                href="http://www.bloggure.info/.java/work/glassfish-3-x-jersey-with-bundled-dependencies#disqus_thread"
+                >Comment</a
+              ></span
+            >
+          </div>
+          <!-- /.entry-meta -->
+
+          <h1 class="entry-title" itemprop="name">
+            <a
+              href="http://www.bloggure.info/.java/work/glassfish-3-x-jersey-with-bundled-dependencies"
+              rel="bookmark"
+              title="Glassfish 3.x - Jersey with bundled dependencies"
+              itemprop="url"
+              >Glassfish 3.x - Jersey with bundled dependencies</a
+            >
+          </h1>
+        </header>
+        <div class="entry-content" itemprop="description">
+          <!--:en--><img
+            class="size-full wp-image-71 alignright"
+            title="glassfish"
+            src="/images/uploads/2010/11/glassfish.png"
+            alt=""
+            width="92"
+            height="50"
+          />
+
+          <p>
+            I just wanted to make a small post regarding an issue I spent almost
+            a day getting rid off. I have a quite typical web architecture :
+          </p>
+          <ul>
+            <li>jar module encapsulating business logic (EJBs)</li>
+            <li>war module providing front end web access</li>
+            <li>war module for web service access (using JAX-RS)</li>
+          </ul>
+
+          <h2>The headache</h2>
+          <p>
+            Each war module depends on the ejb-client counterpart present in
+            WEB-INF/lib. The problem I faced is that my @EJB injections was
+            raising ClassNotFoundExceptions. I tried bypassing automatic
+            injection with manual JNDI lookups but the same errors occurred.
+            Playing with the debugger I found that the jars present in lib
+            folder were not added into the web application's classloader.
+          </p>
+          <h2>The workaround</h2>
+          <p>
+            I spent a lot of time trying many things to fix this and found out
+            the trick by downloading Jersey's sample. You simply have to have a
+            sun-web.xml with the following content :
+            <figure class="highlight">
+              <pre><code class="language-xml" data-lang="xml"><span></span><span class="nt">&lt;sun-web-app&gt;</span>
+  <span class="nt">&lt;class-loader</span> <span class="na">delegate=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;&lt;/class-loader&gt;</span>
+<span class="nt">&lt;/sun-web-app&gt;</span></code></pre>
+            </figure>
+          </p>
+
+          <p>I hope it will help someone else!</p>
+          <!--:--><!--:fr<a rel="attachment wp-att-71" href="http://www.bloggure.info/work/glassfish-v3-custom-log-levels.html/attachment/glassfish"><img class="size-full wp-image-71 alignright" title="glassfish" src="/images/uploads/2010/11/glassfish.png" alt="" width="92" height="50" /></a>
+Je voulais juste faire un petit billet concernant un soucis que j'ai mis quasiment une journée à résoudre. J'ai une application web avec une architecture assez commune : 
+<ul>
+	<li>un module métier (packagé dans un jar composé d'EJBs)</li>
+	<li>un module web frontal (packagé dans un war)</li>
+	<li>un module web pour les web services (utilisant exclusivement JAX-RS, packagé dans un war)</li>
+</ul>
+<h2>Le casse tête!</h2>
+Chaque module war a une dépendance sur la partie ejb cliente du module métier (présents dans le WEB-INF/lib donc). Le problème que j'ai rencontré est que l'injection de dépendances dans mon module web-service (@EJB) lève des ClassNotFoundExceptions. J'ai essayé de passer outre l'injection automatique par le conteneur en faisant une recherche manuelle dans l'annuaire JNDI mais ceci s'est soldé par un échec avec la même erreur à la clef.
+En jouant avec le débuggueur, je me suis rendu compte que les jars présents dans le dossier lib n'étaient pas ajoutés au classloader de l'application web.
+<h2>La solution</h2>
+J'ai passé longtemps à essayer beaucoup de choses pour corriger ce problème et j'ai trouvé l'astuce dans les exemples d'utilisation de Jersey.<br/>
+Il suffit simplement d'avoir un fichier sun-web.xml avec le contenu suivant :
+<pre class="brush: xml"><sun-web-app>
+  <class-loader delegate="true"></class-loader>
+</sun-web-app>
+</pre>
+J'espère aider quelqu'un d'autre avec cette astuce !-->
+        </div>
+        <!-- /.entry-content -->
+      </article>
+      <!-- /.hentry -->
+
+      <article
+        class="hentry"
+        itemprop="blogPost"
+        itemscope
+        itemtype="http://schema.org/BlogPosting"
+      >
+        <header>
+          <div class="entry-meta">
+            <span class="entry-date date published updated"
+              ><time
                 datetime="2011-07-12T00:00:00+02:00"
                 itemprop="datePublished"
                 ><a
@@ -464,97 +578,6 @@
                 width="100"
                 height="100"
             /></a>
-          </p>
-        </div>
-        <!-- /.entry-content -->
-      </article>
-      <!-- /.hentry -->
-
-      <article
-        class="hentry"
-        itemprop="blogPost"
-        itemscope
-        itemtype="http://schema.org/BlogPosting"
-      >
-        <header>
-          <div class="entry-meta">
-            <span class="entry-date date published updated"
-              ><time
-                datetime="2010-11-21T00:00:00+01:00"
-                itemprop="datePublished"
-                ><a
-                  href="http://www.bloggure.info/shelf/macbookpro-31-superdrive-replacement"
-                  >November 21, 2010</a
-                ></time
-              ></span
-            ><span
-              class="author vcard"
-              itemprop="author"
-              itemscope
-              itemtype="http://schema.org/Person"
-              ><span itemprop="name" class="fn"
-                ><a
-                  href="http://www.bloggure.info/cgatay"
-                  title="About cgatay"
-                  itemprop="url"
-                  >cgatay</a
-                ></span
-              ></span
-            >&nbsp; &bull; &nbsp;<span class="entry-comments"
-              ><a
-                href="http://www.bloggure.info/shelf/macbookpro-31-superdrive-replacement#disqus_thread"
-                >Comment</a
-              ></span
-            >
-          </div>
-          <!-- /.entry-meta -->
-
-          <h1 class="entry-title" itemprop="name">
-            <a
-              href="http://www.bloggure.info/shelf/macbookpro-31-superdrive-replacement"
-              rel="bookmark"
-              title="MacbookPro 3.1 Speed boost : SSD inside !"
-              itemprop="url"
-              >MacbookPro 3.1 Speed boost : SSD inside !</a
-            >
-          </h1>
-        </header>
-        <div class="entry-content" itemprop="description">
-          <!--:en--><img
-            class="alignleft size-full wp-image-144"
-            title="MBP 3.1"
-            src="/images/uploads/2010/11/MBP-3.1.png"
-            alt=""
-            width="150"
-            height="53"
-          />
-          <p>
-            I am owner of a not so old MacbookPro (3.1 - late 2007), and, as it
-            is my main development machine, I felt a little lack of space and
-            speed mainly because of its hard drive (5400rpm / 160GB).
-          </p>
-
-          <p>
-            I wanted speed and so I got a new generation drive with a 120GB SSD,
-            I wanted space so I have dumped the useless SuperDrive from my
-            machine to replace it with a drive caddy (found
-            <a
-              title="here"
-              href="http://newmodeus.com/shop/index.php?main_page=product_info&amp;products_id=258"
-              target="_blank"
-              >here</a
-            >) where I have put my old HDD.
-          </p>
-
-          <p>
-            The operation is not so easy, but if you are careful and if you take
-            your time, you will not regret what you'll get !
-          </p>
-
-          <p>
-            My machine is now blazing fast and it helped me keeping it more
-            instead of buying a shiny new MBP with an unremoveable battery (I
-            think I don't have the feeling with laptop batteries...)
           </p>
         </div>
         <!-- /.entry-content -->

@@ -110,6 +110,122 @@
           <div class="entry-meta">
             <span class="entry-date date published updated"
               ><time
+                datetime="2021-01-10T00:00:00+01:00"
+                itemprop="datePublished"
+                ><a
+                  href="http://www.bloggure.info/iOS-DarkModeBackground-App-Switcher"
+                  >January 10, 2021</a
+                ></time
+              ></span
+            ><span
+              class="author vcard"
+              itemprop="author"
+              itemscope
+              itemtype="http://schema.org/Person"
+              ><span itemprop="name" class="fn"
+                ><a
+                  href="http://www.bloggure.info/cgatay"
+                  title="About cgatay"
+                  itemprop="url"
+                  >cgatay</a
+                ></span
+              ></span
+            >&nbsp; &bull; &nbsp;<span class="entry-comments"
+              ><a
+                href="http://www.bloggure.info/iOS-DarkModeBackground-App-Switcher#disqus_thread"
+                >Comment</a
+              ></span
+            >
+          </div>
+          <!-- /.entry-meta -->
+
+          <h1 class="entry-title" itemprop="name">
+            <a
+              href="http://www.bloggure.info/iOS-DarkModeBackground-App-Switcher"
+              rel="bookmark"
+              title="Dark Mode iOS Snapshot"
+              itemprop="url"
+              >Dark Mode iOS Snapshot</a
+            >
+          </h1>
+        </header>
+        <div class="entry-content" itemprop="description">
+          <h1 id="dark-mode-support">Dark mode support</h1>
+
+          <p>
+            As you might know, iOS supports Dark mode since iOS 12. It is pretty
+            straightforward to implement it by using dynamic colors. Either
+            system provided ones or adjust them using trait collections.
+          </p>
+
+          <h2 id="dynamically-switch">Dynamically switch</h2>
+
+          <p>
+            At times, we can not rely on default colors but we have to listen
+            for <code>traitCollection</code> changes in order to do what is
+            appropriate for adapting the UI to the mode being active.
+          </p>
+
+          <p>
+            It is easy to do by checking current <code>traitCollection</code> :
+          </p>
+
+          <figure class="highlight">
+            <pre><code class="language-swift" data-lang="swift"><span></span><span class="kr">override</span> <span class="kd">func</span> <span class="nf">traitCollectionDidChange</span><span class="p">(</span><span class="kc">_</span> <span class="n">previousTraitCollection</span><span class="p">:</span> <span class="bp">UITraitCollection</span><span class="p">?)</span> <span class="p">{</span>
+    <span class="kc">super</span><span class="p">.</span><span class="n">traitCollectionDidChange</span><span class="p">(</span><span class="n">previousTraitCollection</span><span class="p">)</span>
+
+    <span class="kd">let</span> <span class="nv">userInterfaceStyle</span> <span class="p">=</span> <span class="n">traitCollection</span><span class="p">.</span><span class="n">userInterfaceStyle</span> 
+    <span class="c1">// Either .unspecified, .light, or .dark</span>
+<span class="p">}</span>
+ </code></pre>
+          </figure>
+
+          <h2 id="app-switcher-tricks">App switcher tricks</h2>
+
+          <p>
+            One thing that I was not aware is that iOS switches back and forth
+            between active mode and the complementary when the app goes to the
+            background :
+          </p>
+
+          <p>
+            To have proper representation in application switcher, if the trait
+            collection is changed, the OS takes a screenshot of your app using
+            <code>light</code> and <code>dark</code> schemes.
+          </p>
+
+          <h2 id="consequences">Consequences</h2>
+
+          <p>
+            This can lead to subtle problems, in my case, I was loading a
+            specific stylesheet for MapBox, that, when loaded, was registering /
+            refreshing elements on map. Thus, when the app was put to the
+            background, a lot of things were happening, without a clear
+            explanation (and the app was sometimes crashing due to the very fast
+            switching between map stylesheets).
+          </p>
+
+          <p>
+            The workaround is rather simple : if the app is in the background we
+            prevent loading the stylesheet, the trade-off is acceptable : the
+            app can display an invalid preview in application switcher, but, it
+            is nicer on CPU / Network.
+          </p>
+        </div>
+        <!-- /.entry-content -->
+      </article>
+      <!-- /.hentry -->
+
+      <article
+        class="hentry"
+        itemprop="blogPost"
+        itemscope
+        itemtype="http://schema.org/BlogPosting"
+      >
+        <header>
+          <div class="entry-meta">
+            <span class="entry-date date published updated"
+              ><time
                 datetime="2020-12-31T00:00:00+01:00"
                 itemprop="datePublished"
                 ><a href="http://www.bloggure.info/git-gone"
@@ -732,104 +848,6 @@
           <p>
             The nice thing in this solution is that the <code>setUp</code> call
             is no longer magical !
-          </p>
-        </div>
-        <!-- /.entry-content -->
-      </article>
-      <!-- /.hentry -->
-
-      <article
-        class="hentry"
-        itemprop="blogPost"
-        itemscope
-        itemtype="http://schema.org/BlogPosting"
-      >
-        <header>
-          <div class="entry-meta">
-            <span class="entry-date date published updated"
-              ><time
-                datetime="2020-12-01T00:00:00+01:00"
-                itemprop="datePublished"
-                ><a href="http://www.bloggure.info/Revival"
-                  >December 01, 2020</a
-                ></time
-              ></span
-            ><span
-              class="author vcard"
-              itemprop="author"
-              itemscope
-              itemtype="http://schema.org/Person"
-              ><span itemprop="name" class="fn"
-                ><a
-                  href="http://www.bloggure.info/cgatay"
-                  title="About cgatay"
-                  itemprop="url"
-                  >cgatay</a
-                ></span
-              ></span
-            >&nbsp; &bull; &nbsp;<span class="entry-comments"
-              ><a href="http://www.bloggure.info/Revival#disqus_thread"
-                >Comment</a
-              ></span
-            >
-          </div>
-          <!-- /.entry-meta -->
-
-          <h1 class="entry-title" itemprop="name">
-            <a
-              href="http://www.bloggure.info/Revival"
-              rel="bookmark"
-              title="Bloggure revival"
-              itemprop="url"
-              >Bloggure revival</a
-            >
-          </h1>
-        </header>
-        <div class="entry-content" itemprop="description">
-          <h1 id="its-been-a-long-time">It’s been a long time</h1>
-
-          <p>It’s been a very long time since last post (5 years…).</p>
-
-          <p>
-            I am convinced that blogging is useful, at least for my present
-            self, and for my future self that tends to lose track of important
-            things.
-          </p>
-
-          <h2 id="what-will-this-be-about-">What will this be about ?</h2>
-
-          <p>
-            In the <em>past</em> I blogged a lot about Java / Maven and so on,
-            my days have evolved to another languages, so I guess there will be
-            less JVM things (but may be a few Kotlin) and more Swift / Rust on
-            the other end.
-          </p>
-
-          <h2 id="technical-stack">Technical stack</h2>
-
-          <p>
-            In a blog reboot, we (I mean dev) like to follow the latest trend
-            and migrate our blog system to latest hype stack. I will avoid this
-            and focus on writing instead, so the site stays in its 15’ shape:
-          </p>
-
-          <ul>
-            <li><a href="http://jekyllrb.com/">jekyll</a></li>
-            <li><a href="https://pages.github.com">github-pages</a></li>
-            <li>
-              markdown (I think <code>jenkins-asciidoc</code> is around the
-              corner though)
-            </li>
-            <li>
-              <a href="https://actions.github.com">github actions</a> for
-              building
-            </li>
-          </ul>
-
-          <p>
-            The sole new thing is that I’m trying to write using
-            <a href="https://gitpod.io">gitpod.io</a> to get a distraction free
-            environment.
           </p>
         </div>
         <!-- /.entry-content -->
