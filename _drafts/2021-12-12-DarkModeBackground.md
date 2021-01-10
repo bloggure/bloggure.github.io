@@ -1,1 +1,0 @@
-// Talk about what iOS is doing when the app is going to background with dark mode and app switcher screenshots
