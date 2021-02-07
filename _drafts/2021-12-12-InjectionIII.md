@@ -26,3 +26,33 @@ post_install do |installer|
     end
 end
 {% endhighlight %}
+
+# InjectionIII.app
+
+## Do you remind JRebel ?
+
+## Chapito
+
+Example
+> EventController, change fireDate do Date().addingTimeInterval(5) +s, app to home screen
+
+> AboutController > duplicate version, then save
+
+
+> Run XProbe, on about eval self.versionTextView.text = "Toto"
+
+> Run method tracing (for package chapito), simply refresh about
+
+> Main.storyboard, play with constraints cross fingers (wait wait wait)
+
+Show how to setup:
+ * app install
+ * bundle load
+ * almost nothings
+ * (injected magic)
+
+Limits:
+ * only works on simulators
+ * sometimes messy with storyboards
+ * can do weird things on classes that have a status (store recreate)
+ * talk about remote contorl
