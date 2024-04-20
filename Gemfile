@@ -6,4 +6,4 @@ gem 'jekyll-gist'
 gem 'kramdown-syntax-coderay'
 gem "webrick", "~> 1.8"
 
-gem "nokogiri", "~> 1.16"
+gem "nokogiri", "1.14"
