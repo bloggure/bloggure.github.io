@@ -110,6 +110,117 @@
           <div class="entry-meta">
             <span class="entry-date date published updated"
               ><time
+                datetime="2013-03-24T00:00:00+01:00"
+                itemprop="datePublished"
+                ><a
+                  href="http://www.bloggure.info/www/duckduckgo-in-thunderbird"
+                  >March 24, 2013</a
+                ></time
+              ></span
+            ><span
+              class="author vcard"
+              itemprop="author"
+              itemscope
+              itemtype="http://schema.org/Person"
+              ><span itemprop="name" class="fn"
+                ><a
+                  href="http://www.bloggure.info/yfonjallaz"
+                  title="About yfonjallaz"
+                  itemprop="url"
+                  >yfonjallaz</a
+                ></span
+              ></span
+            >&nbsp; &bull; &nbsp;<span class="entry-comments"
+              ><a
+                href="http://www.bloggure.info/www/duckduckgo-in-thunderbird#disqus_thread"
+                >Comment</a
+              ></span
+            >
+          </div>
+          <!-- /.entry-meta -->
+
+          <h1 class="entry-title" itemprop="name">
+            <a
+              href="http://www.bloggure.info/www/duckduckgo-in-thunderbird"
+              rel="bookmark"
+              title="DuckDuckGo in Thunderbird"
+              itemprop="url"
+              >DuckDuckGo in Thunderbird</a
+            >
+          </h1>
+        </header>
+        <div class="entry-content" itemprop="description">
+          <!--:en--><a
+            href="http://www.bloggure.info/wp-content/uploads/2013/03/logo_homepage.normal.v102.png"
+            ><img
+              class="alignright size-thumbnail wp-image-890"
+              alt="Logo DuckDuckGo"
+              src="/images/uploads/2013/03/logo_homepage.normal.v102-150x150.png"
+              width="150"
+              height="150" /></a
+          >Mozilla added a function to search on the web in the latest versions
+          of Thunderbird.That's nice, but the default search engine is bing. As
+          a DuckDuckGo user, I wanted to add my favourite search engine and use
+          it by default. So here's how to do it.
+          <ol>
+            <li>
+              <a
+                title="Find your Thunderbird profile folder"
+                href="http://kb.mozillazine.org/Profile_folder_-_Thunderbird"
+                >Find your profile folder</a
+              >.
+            </li>
+            <li>
+              In it, create a folder named "searchplugins" (without the quotes)
+              if it doesn't exists.
+            </li>
+            <li>
+              Save
+              <a
+                title="DuckDuckGo search plugin"
+                href="http://www.fribourg-est-independant.org/fonji/ddg.xml"
+                >this xml</a
+              >
+              file in it.
+            </li>
+            <li>(Re)start Thunderbird.</li>
+            <li>
+              Select some text in any mail, right clic and search with bing
+              (sorry).
+            </li>
+            <li>Click the DuckDuckGo icon on the left.</li>
+            <li>Click the heart icon on the bottom left.</li>
+            <li>That's all!</li>
+          </ol>
+          To add google, add
+          <a href="http://bwinton.latte.ca/Work/google.xml">this file</a> in the
+          same folder.<!--:--><!--:fr<a href="http://www.bloggure.info/wp-content/uploads/2013/03/logo_homepage.normal.v102.png"><img class="alignright size-thumbnail wp-image-890" alt="Logo DuckDuckGo" src="/images/uploads/2013/03/logo_homepage.normal.v102-150x150.png" width="150" height="150" /></a>Mozilla a ajouté une fonction de recherche sur internet dans les dernières versions de Thunderbird. C'est très utile, mais le moteur par défaut est bing et, en tant qu'utilisateur de DuckDuckGo, j'ai voulu changer ceci pour mettre mon moteur favori à la place. Voici comment procéder :
+<ol>
+	<li><a title="Trouver votre profil thunderbird" href="https://support.mozillamessaging.com/fr/kb/profil-utilisateur#w_oai-mon-profil-est-il-stockae">Trouvez le répertoire de votre profil.</a></li>
+	<li>Créez un répertoire "searchplugins" (sans guillemets) s'il n'existe pas déjà.</li>
+	<li>Sauvegardez <a title="DuckDuckGo search plugin" href="http://www.fribourg-est-independant.org/fonji/ddg.xml">ce fichier xml</a> dans searchplugins.</li>
+	<li>(Re)démarrez Thunderbird.</li>
+	<li>Selectionnez du texte dans un email, faites un clic droit puis "rechercher avec bing" (désolé).</li>
+	<li>Cliquez l'icône DuckDuckGo sur la gauche.</li>
+	<li>Cliquez sur le cœur dans le coin en bas à gauche.</li>
+	<li>C'est tout !</li>
+</ol>
+Pour utiliser google, ajoutez <a href="http://bwinton.latte.ca/Work/google.xml">ce fichier</a> dans le même répertoire.<-->
+        </div>
+        <!-- /.entry-content -->
+      </article>
+      <!-- /.hentry -->
+
+      <article
+        class="hentry"
+        itemprop="blogPost"
+        itemscope
+        itemtype="http://schema.org/BlogPosting"
+      >
+        <header>
+          <div class="entry-meta">
+            <span class="entry-date date published updated"
+              ><time
                 datetime="2013-03-19T00:00:00+01:00"
                 itemprop="datePublished"
                 ><a
@@ -303,18 +414,18 @@ Once this small step is done, you'll end up with the following prompt in your Al
             variable to populate hibernate properties.
           </p>
           <figure class="highlight">
-            <pre><code class="language-java" data-lang="java"><span></span>  <span class="k">try</span> <span class="o">{</span>
-     <span class="n">URI</span> <span class="n">dbUri</span> <span class="o">=</span> <span class="k">new</span> <span class="n">URI</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">getenv</span><span class="o">(</span><span class="s">&quot;DATABASE_URL&quot;</span><span class="o">));</span>
-     <span class="n">String</span> <span class="n">username</span> <span class="o">=</span> <span class="n">dbUri</span><span class="o">.</span><span class="na">getUserInfo</span><span class="o">().</span><span class="na">split</span><span class="o">(</span><span class="s">&quot;:&quot;</span><span class="o">)[</span><span class="mi">0</span><span class="o">];</span>
-     <span class="n">String</span> <span class="n">password</span> <span class="o">=</span> <span class="n">dbUri</span><span class="o">.</span><span class="na">getUserInfo</span><span class="o">().</span><span class="na">split</span><span class="o">(</span><span class="s">&quot;:&quot;</span><span class="o">)[</span><span class="mi">1</span><span class="o">];</span>
-     <span class="n">String</span> <span class="n">dbUrl</span> <span class="o">=</span> <span class="s">&quot;jdbc:postgresql://&quot;</span> <span class="o">+</span> <span class="n">dbUri</span><span class="o">.</span><span class="na">getHost</span><span class="o">()</span> 
-                    <span class="o">+</span> <span class="sc">&#39;:&#39;</span> <span class="o">+</span> <span class="n">dbUri</span><span class="o">.</span><span class="na">getPort</span><span class="o">()</span> <span class="o">+</span> <span class="n">dbUri</span><span class="o">.</span><span class="na">getPath</span><span class="o">();</span>
-     <span class="n">System</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="s">&quot;hibernate.connection.url&quot;</span><span class="o">,</span> <span class="n">dbUrl</span><span class="o">);</span>
-     <span class="n">System</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="s">&quot;hibernate.connection.user&quot;</span><span class="o">,</span> <span class="n">username</span><span class="o">);</span>
-     <span class="n">System</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="s">&quot;hibernate.connection.password&quot;</span><span class="o">,</span> <span class="n">password</span><span class="o">);</span>
-<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-     <span class="n">LOGGER</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="s">&quot;Unable to extract database url&quot;</span><span class="o">);</span>
-<span class="o">}</span></code></pre>
+            <pre><code class="language-java" data-lang="java"><span></span><span class="w">  </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">     </span><span class="n">URI</span><span class="w"> </span><span class="n">dbUri</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">URI</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">getenv</span><span class="p">(</span><span class="s">&quot;DATABASE_URL&quot;</span><span class="p">));</span>
+<span class="w">     </span><span class="n">String</span><span class="w"> </span><span class="n">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dbUri</span><span class="p">.</span><span class="na">getUserInfo</span><span class="p">().</span><span class="na">split</span><span class="p">(</span><span class="s">&quot;:&quot;</span><span class="p">)</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">;</span>
+<span class="w">     </span><span class="n">String</span><span class="w"> </span><span class="n">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dbUri</span><span class="p">.</span><span class="na">getUserInfo</span><span class="p">().</span><span class="na">split</span><span class="p">(</span><span class="s">&quot;:&quot;</span><span class="p">)</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="p">;</span>
+<span class="w">     </span><span class="n">String</span><span class="w"> </span><span class="n">dbUrl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;jdbc:postgresql://&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dbUri</span><span class="p">.</span><span class="na">getHost</span><span class="p">()</span><span class="w"> </span>
+<span class="w">                    </span><span class="o">+</span><span class="w"> </span><span class="sc">&#39;:&#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dbUri</span><span class="p">.</span><span class="na">getPort</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dbUri</span><span class="p">.</span><span class="na">getPath</span><span class="p">();</span>
+<span class="w">     </span><span class="n">System</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="s">&quot;hibernate.connection.url&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">dbUrl</span><span class="p">);</span>
+<span class="w">     </span><span class="n">System</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="s">&quot;hibernate.connection.user&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">username</span><span class="p">);</span>
+<span class="w">     </span><span class="n">System</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="s">&quot;hibernate.connection.password&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">password</span><span class="p">);</span>
+<span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">     </span><span class="n">LOGGER</span><span class="p">.</span><span class="na">error</span><span class="p">(</span><span class="s">&quot;Unable to extract database url&quot;</span><span class="p">);</span>
+<span class="p">}</span></code></pre>
           </figure>
           <h1>Session replication</h1>
           <p>
@@ -464,7 +575,7 @@ Once this small step is done, you'll end up with the following prompt in your Al
     <div class="footer-wrapper">
       <footer role="contentinfo">
         <span
-          >&copy; 2021 . Powered by
+          >&copy; 2024 . Powered by
           <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using a theme
           based on
           <a

@@ -110,6 +110,158 @@
           <div class="entry-meta">
             <span class="entry-date date published updated"
               ><time
+                datetime="2020-12-02T00:00:00+01:00"
+                itemprop="datePublished"
+                ><a href="http://www.bloggure.info/XCodeUnitTestInheritance"
+                  >December 02, 2020</a
+                ></time
+              ></span
+            ><span
+              class="author vcard"
+              itemprop="author"
+              itemscope
+              itemtype="http://schema.org/Person"
+              ><span itemprop="name" class="fn"
+                ><a
+                  href="http://www.bloggure.info/cgatay"
+                  title="About cgatay"
+                  itemprop="url"
+                  >cgatay</a
+                ></span
+              ></span
+            >&nbsp; &bull; &nbsp;<span class="entry-comments"
+              ><a
+                href="http://www.bloggure.info/XCodeUnitTestInheritance#disqus_thread"
+                >Comment</a
+              ></span
+            >
+          </div>
+          <!-- /.entry-meta -->
+
+          <h1 class="entry-title" itemprop="name">
+            <a
+              href="http://www.bloggure.info/XCodeUnitTestInheritance"
+              rel="bookmark"
+              title="XCode unit test and inheritance"
+              itemprop="url"
+              >XCode unit test and inheritance</a
+            >
+          </h1>
+        </header>
+        <div class="entry-content" itemprop="description">
+          <p>
+            As I was working on an iOS project, I added unit tests to ensure
+            things are not behaving badly (and will not).
+          </p>
+
+          <p>
+            During the process, a common pattern showed up and a few fields were
+            required, I came up with the idea to basically create a
+            <code>BaseTest</code> for my tests, so that everything is unified.
+          </p>
+
+          <h2 id="base-idea">Base idea</h2>
+
+          <p>I came up with something like the following for my tests</p>
+
+          <figure class="highlight">
+            <pre><code class="language-swift" data-lang="swift"><span></span><span class="kd">class</span> <span class="nc">BaseTest</span><span class="p">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">Action</span><span class="p">&gt;:</span> <span class="n">XCTestCase</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">subject</span><span class="p">:</span> <span class="n">T</span><span class="p">!</span>
+    <span class="kd">var</span> <span class="nv">actions</span><span class="p">:</span> <span class="p">[</span><span class="n">Action</span><span class="p">]</span><span class="o">!</span>
+
+    <span class="kr">override</span> <span class="kd">func</span> <span class="nf">setUp</span><span class="p">(){</span>
+        <span class="n">subject</span> <span class="p">=</span> <span class="n">T</span><span class="p">()</span>
+        <span class="n">actions</span> <span class="p">=</span> <span class="p">[]</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nc">LoginTest</span><span class="p">:</span> <span class="n">BaseTest</span><span class="p">&lt;</span><span class="n">LoginMiddleware</span><span class="p">,</span> <span class="n">LoginAction</span><span class="p">&gt;</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">test_loginIsWorking</span><span class="p">(){</span>
+        <span class="c1">// ...</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre>
+          </figure>
+
+          <p>
+            It worked very well within XCode, I could run the tests by hitting
+            the 🔹 in the gutter.
+          </p>
+
+          <h2 id="bad-things-happen">Bad things happen</h2>
+
+          <p>
+            The thing that I discovered later (thanks to the CI feedback), is
+            that XCode was not properly discovering my tests as it should. At
+            first I blamed the fact that my new tests were not at the top level
+            of my sources folder (and the other ones were), but it was easy to
+            check that this was not the problem at all.
+          </p>
+
+          <p>
+            Then, I blamed <code>fastlane</code> and thought that I’ve missed
+            something in my test target configuration or something, but in fact,
+            the problem was similar when using classical
+            <code>CMD + U</code> key combo.
+          </p>
+
+          <p>XCode was simply not discovering my test.</p>
+
+          <h2 id="workaround">Workaround</h2>
+          <p>
+            Inheritance is often misused, in this case, I think it is relevant,
+            but I applied classical way of working around this. I changed my
+            <code>BaseTest</code> to a <code>BaseHelper</code> instead, to which
+            the test delegates the calls.
+          </p>
+
+          <p>
+            With this, the test class properly inherits
+            <code>XCTestCase</code> and is discovered as expected (even in
+            subfolders).
+          </p>
+
+          <figure class="highlight">
+            <pre><code class="language-swift" data-lang="swift"><span></span><span class="kd">class</span> <span class="nc">BaseHelper</span><span class="p">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">Action</span><span class="p">&gt;{</span>
+    <span class="kd">var</span> <span class="nv">subject</span><span class="p">:</span> <span class="n">T</span><span class="p">!</span>
+    <span class="kd">var</span> <span class="nv">actions</span><span class="p">:</span> <span class="p">[</span><span class="n">Action</span><span class="p">]</span><span class="o">!</span>
+
+    <span class="kd">init</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">subject</span> <span class="p">=</span> <span class="n">T</span><span class="p">()</span>
+        <span class="n">actions</span> <span class="p">=</span> <span class="p">[]</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nc">LoginTest</span><span class="p">:</span> <span class="n">XCTestCase</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">helper</span><span class="p">:</span> <span class="n">BaseHelper</span><span class="p">&lt;</span><span class="n">LoginMiddleware</span><span class="p">,</span> <span class="n">LoginAction</span><span class="p">&gt;</span><span class="o">!</span>
+
+    <span class="kr">override</span> <span class="kd">func</span> <span class="nf">setUp</span><span class="p">(){</span>
+        <span class="n">helper</span> <span class="p">=</span> <span class="p">.</span><span class="kd">init</span><span class="p">()</span>
+    <span class="p">}</span>
+    <span class="kd">func</span> <span class="nf">test_loginIsWorking</span><span class="p">(){</span>
+        <span class="c1">// ...</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre>
+          </figure>
+
+          <p>
+            The nice thing in this solution is that the <code>setUp</code> call
+            is no longer magical !
+          </p>
+        </div>
+        <!-- /.entry-content -->
+      </article>
+      <!-- /.hentry -->
+
+      <article
+        class="hentry"
+        itemprop="blogPost"
+        itemscope
+        itemtype="http://schema.org/BlogPosting"
+      >
+        <header>
+          <div class="entry-meta">
+            <span class="entry-date date published updated"
+              ><time
                 datetime="2020-12-01T00:00:00+01:00"
                 itemprop="datePublished"
                 ><a href="http://www.bloggure.info/Revival"
@@ -366,13 +518,13 @@
           </p>
 
           <figure class="highlight">
-            <pre><code class="language-bash" data-lang="bash"><span></span>ssh gateway
-you@gateway $ hostname
+            <pre><code class="language-bash" data-lang="bash"><span></span>ssh<span class="w"> </span>gateway
+you@gateway<span class="w"> </span>$<span class="w"> </span>hostname
 gateway.my.tld
-you@gateway $ ssh myAppHost
-you@myAppHost $ hostname
+you@gateway<span class="w"> </span>$<span class="w"> </span>ssh<span class="w"> </span>myAppHost
+you@myAppHost<span class="w"> </span>$<span class="w"> </span>hostname
 myAppHost.my.tld
-   </code></pre>
+<span class="w">   </span></code></pre>
           </figure>
 
           <h2 id="faster-way-of-hoping">Faster way of hop’ing</h2>
@@ -386,10 +538,10 @@ myAppHost.my.tld
           </p>
 
           <figure class="highlight">
-            <pre><code class="language-bash" data-lang="bash"><span></span>ssh -t gateway ssh myAppHost
-you@myAppHost $ hostname
+            <pre><code class="language-bash" data-lang="bash"><span></span>ssh<span class="w"> </span>-t<span class="w"> </span>gateway<span class="w"> </span>ssh<span class="w"> </span>myAppHost
+you@myAppHost<span class="w"> </span>$<span class="w"> </span>hostname
 myAppHost.my.tld
-   </code></pre>
+<span class="w">   </span></code></pre>
           </figure>
 
           <h2 id="script-this-">Script this !</h2>
@@ -397,8 +549,8 @@ myAppHost.my.tld
 
           <figure class="highlight">
             <pre><code class="language-bash" data-lang="bash"><span></span><span class="ch">#!/bin/sh</span>
-ssh -t gateway ssh <span class="nv">$1</span>
-   </code></pre>
+ssh<span class="w"> </span>-t<span class="w"> </span>gateway<span class="w"> </span>ssh<span class="w"> </span><span class="nv">$1</span>
+<span class="w">   </span></code></pre>
           </figure>
 
           <p>
@@ -555,122 +707,6 @@ ssh -t gateway ssh <span class="nv">$1</span>
       </article>
       <!-- /.hentry -->
 
-      <article
-        class="hentry"
-        itemprop="blogPost"
-        itemscope
-        itemtype="http://schema.org/BlogPosting"
-      >
-        <header>
-          <div class="entry-meta">
-            <span class="entry-date date published updated"
-              ><time
-                datetime="2015-09-01T00:00:00+02:00"
-                itemprop="datePublished"
-                ><a href="http://www.bloggure.info/AutoApplyKeymapUdev"
-                  >September 01, 2015</a
-                ></time
-              ></span
-            ><span
-              class="author vcard"
-              itemprop="author"
-              itemscope
-              itemtype="http://schema.org/Person"
-              ><span itemprop="name" class="fn"
-                ><a
-                  href="http://www.bloggure.info/cgatay"
-                  title="About cgatay"
-                  itemprop="url"
-                  >cgatay</a
-                ></span
-              ></span
-            >&nbsp; &bull; &nbsp;<span class="entry-comments"
-              ><a
-                href="http://www.bloggure.info/AutoApplyKeymapUdev#disqus_thread"
-                >Comment</a
-              ></span
-            >
-          </div>
-          <!-- /.entry-meta -->
-
-          <h1 class="entry-title" itemprop="name">
-            <a
-              href="http://www.bloggure.info/AutoApplyKeymapUdev"
-              rel="bookmark"
-              title="Auto apply a keymap using udev when a Typematrix is plugged"
-              itemprop="url"
-              >Auto apply a keymap using udev when a Typematrix is plugged</a
-            >
-          </h1>
-        </header>
-        <div class="entry-content" itemprop="description">
-          <h1 id="switching-keymap">Switching keymap</h1>
-
-          <p>
-            As some of you might know, I am now using a Typematrix 2030 on a
-            daily basis. When I switched to this great keyboard I also adopted a
-            new layout on it : Colemak.
-          </p>
-
-          <p>
-            However, to be able to pair with others not using a Colemak mapping,
-            I did not set the default mapping to Colemak but I instead use an
-            udev rule to set the input method to Colemak only for the
-            Typematrix.
-          </p>
-
-          <h2 id="write-a-keymap-switch-script">
-            Write a keymap switch script
-          </h2>
-
-          <p>
-            Thanks to
-            <a href="https://twitter.com/BitardMichael">@BitardMichael</a> tips
-            and existing scripts I ended up with the following script saved in
-            <code>/usr/local/bin/set_typematrix_colemak_mapping</code>
-          </p>
-
-          <p>
-            One of the tricky part was having a way of executing the script only
-            when the keyboard is ready, without blocking udev’s job (or the
-            keyboard is not yet visible by the X system). The workaround I found
-            was scheduling the execution of the job with the simple
-            <code>at</code> command.
-          </p>
-          <noscript><pre>400: Invalid request</pre></noscript>
-          <script src="https://gist.github.com/1673456ec94a1f6d8d0d.js?file=set_typematrix_colemak_mapping"></script>
-
-          <h2 id="tell-udev-to-run-the-script-on-keyboard-detection">
-            Tell udev to run the script on keyboard detection
-          </h2>
-          <p>
-            The process is really easy, all you need to do is to add the
-            following to a new file :
-            <code>/lib/udev/rules.d/85-typematrix.rules</code>
-          </p>
-
-          <noscript><pre>400: Invalid request</pre></noscript>
-          <script src="https://gist.github.com/1673456ec94a1f6d8d0d.js?file=85-typematrix.rules"></script>
-
-          <h2 id="adapting-it-to-your-use-case">
-            Adapting it to your use case
-          </h2>
-          <p>
-            If you are using another keyboard than a Typematrix you will need to
-            adapt the udev rule with the proper Vendor / Product IDs (you can
-            grab them with <code>lsusb</code>). For the
-            <code>xinput</code> part, you will need to adjust the grep to match
-            your hardware.
-          </p>
-
-          <p>
-            Of course the same goes for your layout : colemak / dvorak / bépo …
-          </p>
-        </div>
-        <!-- /.entry-content -->
-      </article>
-      <!-- /.hentry -->
-
       <div class="pagination">
         <a href="http://www.bloggure.info/" class="btn">Previous</a>
 
@@ -764,7 +800,7 @@ ssh -t gateway ssh <span class="nv">$1</span>
     <div class="footer-wrapper">
       <footer role="contentinfo">
         <span
-          >&copy; 2021 . Powered by
+          >&copy; 2024 . Powered by
           <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using a theme
           based on
           <a

@@ -170,8 +170,8 @@
           tas de mesures sur un élement. Il existe deux manières d'utiliser
           cette classe, voici la méthode du fainéant :
           <figure class="highlight">
-            <pre><code class="language-js" data-lang="js"><span></span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;elt&#39;</span><span class="p">).</span><span class="nx">measure</span><span class="p">(</span><span class="s1">&#39;margin-top&#39;</span><span class="p">);</span> <span class="c1">// -&amp;gt; retourne la marge haute en pixel de elt</span>
-<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;elt&#39;</span><span class="p">).</span><span class="nx">measure</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">);</span> <span class="c1">// -&amp;gt; retourne la hauteur en pixel de elt</span></code></pre>
+            <pre><code class="language-js" data-lang="js"><span></span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;elt&#39;</span><span class="p">).</span><span class="nx">measure</span><span class="p">(</span><span class="s1">&#39;margin-top&#39;</span><span class="p">);</span><span class="w"> </span><span class="c1">// -&amp;gt; retourne la marge haute en pixel de elt</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;elt&#39;</span><span class="p">).</span><span class="nx">measure</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">);</span><span class="w"> </span><span class="c1">// -&amp;gt; retourne la hauteur en pixel de elt</span></code></pre>
           </figure>
           Le fonctionnement de la deuxième ligne est similaire à l'utilisation
           de la méthode
@@ -179,9 +179,9 @@
             >Element#getHeight()</a
           >. Une utilisation plus minutieuse pourrait ressembler à ça ;
           <figure class="highlight">
-            <pre><code class="language-js" data-lang="js"><span></span><span class="kd">var</span> <span class="nx">layout</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;elt&#39;</span><span class="p">).</span><span class="nx">getLayout</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
-<span class="nx">layout</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;margin-top&#39;</span><span class="p">);</span> <span class="c1">// retourne la même hauteur que précédemment.</span>
-<span class="nx">layout</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">);</span> <span class="c1">// retourne la même hauteur que précédemment.</span></code></pre>
+            <pre><code class="language-js" data-lang="js"><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">layout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;elt&#39;</span><span class="p">).</span><span class="nx">getLayout</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="nx">layout</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;margin-top&#39;</span><span class="p">);</span><span class="w"> </span><span class="c1">// retourne la même hauteur que précédemment.</span>
+<span class="nx">layout</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">);</span><span class="w"> </span><span class="c1">// retourne la même hauteur que précédemment.</span></code></pre>
           </figure>
           L'avantage de la seconde méthode est que les valeurs de base
           nécessaire au calcul des dimensions sont mises en cache dans la
@@ -236,16 +236,16 @@
           ou qu'il a atteind la racine de l'arbre. On devait précédemment faire
           ce genre de chose :
           <figure class="highlight">
-            <pre><code class="language-js" data-lang="js"><span></span><span class="kd">var</span> <span class="nx">listener</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">evt</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">target</span> <span class="o">=</span> <span class="nx">evt</span><span class="p">.</span><span class="nx">findElement</span><span class="p">(</span><span class="s1">&#39;.foo&#39;</span><span class="p">);</span>
-  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">Object</span><span class="p">.</span><span class="nx">isElement</span><span class="p">(</span><span class="nx">target</span><span class="p">))</span> <span class="p">{</span>
-    <span class="k">return</span><span class="p">;</span>
-  <span class="p">}</span>
-  <span class="p">...</span> <span class="c1">// traitement avec target, élement qui nous intéresse</span>
+            <pre><code class="language-js" data-lang="js"><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">listener</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">evt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">var</span><span class="w"> </span><span class="nx">target</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">evt</span><span class="p">.</span><span class="nx">findElement</span><span class="p">(</span><span class="s1">&#39;.foo&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nb">Object</span><span class="p">.</span><span class="nx">isElement</span><span class="p">(</span><span class="nx">target</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="p">...</span><span class="w"> </span><span class="c1">// traitement avec target, élement qui nous intéresse</span>
 <span class="p">}</span>
-<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;elt&#39;</span><span class="p">).</span><span class="nx">observe</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="nx">listener</span><span class="p">);</span>
-<span class="p">...</span> <span class="c1">// et au besoin :</span>
-<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;elt&#39;</span><span class="p">).</span><span class="nx">stopObserving</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="nx">listener</span><span class="p">);</span></code></pre>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;elt&#39;</span><span class="p">).</span><span class="nx">observe</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">listener</span><span class="p">);</span>
+<span class="p">...</span><span class="w"> </span><span class="c1">// et au besoin :</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;elt&#39;</span><span class="p">).</span><span class="nx">stopObserving</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">listener</span><span class="p">);</span></code></pre>
           </figure>
           Quand nous devions arrêter l'observation d'un évènement particulier il
           était fastidieux de devoir stocker la fonction assignée dans une
@@ -276,12 +276,12 @@
           qui permettent respectivement d'arrêter et de reprendre l'observation
           d'un évènement particulier. En voici un exemple d'utilisation :
           <figure class="highlight">
-            <pre><code class="language-js" data-lang="js"><span></span><span class="kd">var</span> <span class="nx">handler</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;elt&#39;</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="s1">&#39;.foo&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">evt</span><span class="p">,</span> <span class="nx">target</span><span class="p">)</span> <span class="p">{</span>
-  <span class="p">...</span> <span class="c1">// traitement avec target, élement qui nous intéresse</span>
+            <pre><code class="language-js" data-lang="js"><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">handler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;elt&#39;</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;.foo&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">evt</span><span class="p">,</span><span class="w"> </span><span class="nx">target</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="p">...</span><span class="w"> </span><span class="c1">// traitement avec target, élement qui nous intéresse</span>
 <span class="p">});</span>
-<span class="p">...</span> <span class="c1">// et au besoin :</span>
+<span class="p">...</span><span class="w"> </span><span class="c1">// et au besoin :</span>
 <span class="nx">handler</span><span class="p">.</span><span class="nx">stop</span><span class="p">();</span>
-<span class="p">...</span> <span class="c1">// et de nouveau :</span>
+<span class="p">...</span><span class="w"> </span><span class="c1">// et de nouveau :</span>
 <span class="nx">handler</span><span class="p">.</span><span class="nx">start</span><span class="p">();</span></code></pre>
           </figure>
           Pour compléter ces améliorations, une nouvelle méthode a été ajouté :
@@ -355,17 +355,16 @@ rake dist SELECTOR_ENGINE=legacy_selector</pre
           <div class="read-more-content">
             <h3>
               <a
-                href="http://www.bloggure.info/iOS-DarkModeBackground-App-Switcher"
-                title="Dark Mode iOS Snapshot"
-                >Dark Mode iOS Snapshot</a
+                href="http://www.bloggure.info/Swift_VisibleForTesting_Macro"
+                title="Swift macro : @VisibleForTesting"
+                >Swift macro : @VisibleForTesting</a
               >
             </h3>
             <p>
-              # Dark mode supportAs you might know, iOS supports Dark mode since
-              iOS 12. It is pretty straightforward to implement it by using
-              dynamic ...&hellip;
-              <a
-                href="http://www.bloggure.info/iOS-DarkModeBackground-App-Switcher"
+              As an ancient Java developer, I’ve learned to use a set of
+              annotations to bring meta programming in my projects. Meta
+              programming can be ...&hellip;
+              <a href="http://www.bloggure.info/Swift_VisibleForTesting_Macro"
                 >Continue reading</a
               >
             </p>
@@ -375,23 +374,23 @@ rake dist SELECTOR_ENGINE=legacy_selector</pre
           <div class="read-more-list">
             <div class="list-item">
               <h4>
-                <a href="http://www.bloggure.info/git-gone" title="Git-gone"
-                  >Git-gone</a
+                <a
+                  href="http://www.bloggure.info/iOS-DarkModeBackground-App-Switcher"
+                  title="Dark Mode iOS Snapshot"
+                  >Dark Mode iOS Snapshot</a
                 >
               </h4>
-              <span>Published on December 31, 2020</span>
+              <span>Published on January 10, 2021</span>
             </div>
             <!-- /.list-item -->
 
             <div class="list-item">
               <h4>
-                <a
-                  href="http://www.bloggure.info/mac-checklist"
-                  title="macOS tools checklist"
-                  >macOS tools checklist</a
+                <a href="http://www.bloggure.info/git-gone" title="Git-gone"
+                  >Git-gone</a
                 >
               </h4>
-              <span>Published on December 06, 2020</span>
+              <span>Published on December 31, 2020</span>
             </div>
             <!-- /.list-item -->
           </div>
@@ -405,7 +404,7 @@ rake dist SELECTOR_ENGINE=legacy_selector</pre
     <div class="footer-wrapper">
       <footer role="contentinfo">
         <span
-          >&copy; 2021 . Powered by
+          >&copy; 2024 . Powered by
           <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using a theme
           based on
           <a

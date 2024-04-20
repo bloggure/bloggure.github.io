@@ -178,15 +178,15 @@
             leverage Groovy's maps to get a solid insertIntoTable
           </p>
           <figure class="highlight">
-            <pre><code class="language-groovy" data-lang="groovy"><span></span><span class="kd">static</span> <span class="kt">def</span> <span class="nf">insertIntoTable</span><span class="o">(</span><span class="n">String</span> <span class="n">tableName</span><span class="o">,</span> 
-                           <span class="n">Map</span> <span class="n">paramMap</span><span class="o">,</span> 
-                           <span class="kd">final</span> <span class="n">Sql</span> <span class="n">sql</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">sql</span><span class="o">.</span><span class="na">executeInsert</span><span class="o">(</span><span class="s2">&quot;&quot;&quot;</span>
+            <pre><code class="language-groovy" data-lang="groovy"><span></span><span class="kd">static</span><span class="w"> </span><span class="kt">def</span><span class="w"> </span><span class="nf">insertIntoTable</span><span class="o">(</span><span class="n">String</span><span class="w"> </span><span class="n">tableName</span><span class="o">,</span><span class="w"> </span>
+<span class="w">                           </span><span class="n">Map</span><span class="w"> </span><span class="n">paramMap</span><span class="o">,</span><span class="w"> </span>
+<span class="w">                           </span><span class="kd">final</span><span class="w"> </span><span class="n">Sql</span><span class="w"> </span><span class="n">sql</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">        </span><span class="n">sql</span><span class="o">.</span><span class="na">executeInsert</span><span class="o">(</span><span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">             INSERT INTO ${tableName} </span>
 <span class="s2">                    (${paramMap.keySet().join(&#39;,&#39;)})</span>
 <span class="s2">                    VALUES </span>
 <span class="s2">                    (${paramMap.keySet().collect { key -&gt; &quot;:&quot; + key }.join(&#39;,&#39;)})</span>
-<span class="s2">        &quot;&quot;&quot;</span><span class="o">,</span> <span class="n">paramMap</span><span class="o">)</span>
+<span class="s2">        &quot;&quot;&quot;</span><span class="o">,</span><span class="w"> </span><span class="n">paramMap</span><span class="o">)</span>
 <span class="o">}</span></code></pre>
           </figure>
 
@@ -195,12 +195,12 @@
             correctly bound to a connection)
           </p>
           <figure class="highlight">
-            <pre><code class="language-groovy" data-lang="groovy"><span></span><span class="kt">def</span> <span class="n">paramMap</span> <span class="o">=</span> <span class="o">[</span> 
-    <span class="n">id</span> <span class="o">:</span> <span class="mi">1</span><span class="o">,</span> 
-    <span class="n">myFirstColumn</span> <span class="o">:</span> <span class="s2">&quot;My first value&quot;</span><span class="o">,</span> 
-    <span class="n">mySecondColumn</span> <span class="o">:</span> <span class="s2">&quot;Second&quot;</span> 
+            <pre><code class="language-groovy" data-lang="groovy"><span></span><span class="kt">def</span><span class="w"> </span><span class="n">paramMap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>
+<span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="o">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">myFirstColumn</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;My first value&quot;</span><span class="o">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">mySecondColumn</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Second&quot;</span><span class="w"> </span>
 <span class="o">]</span>
-<span class="n">insertIntoTable</span><span class="o">(</span><span class="s2">&quot;MyTable&quot;</span><span class="o">,</span> <span class="n">paramMap</span><span class="o">,</span> <span class="n">sql</span><span class="o">)</span></code></pre>
+<span class="n">insertIntoTable</span><span class="o">(</span><span class="s2">&quot;MyTable&quot;</span><span class="o">,</span><span class="w"> </span><span class="n">paramMap</span><span class="o">,</span><span class="w"> </span><span class="n">sql</span><span class="o">)</span></code></pre>
           </figure>
 
           <footer class="entry-meta">
@@ -263,17 +263,16 @@
           <div class="read-more-content">
             <h3>
               <a
-                href="http://www.bloggure.info/iOS-DarkModeBackground-App-Switcher"
-                title="Dark Mode iOS Snapshot"
-                >Dark Mode iOS Snapshot</a
+                href="http://www.bloggure.info/Swift_VisibleForTesting_Macro"
+                title="Swift macro : @VisibleForTesting"
+                >Swift macro : @VisibleForTesting</a
               >
             </h3>
             <p>
-              # Dark mode supportAs you might know, iOS supports Dark mode since
-              iOS 12. It is pretty straightforward to implement it by using
-              dynamic ...&hellip;
-              <a
-                href="http://www.bloggure.info/iOS-DarkModeBackground-App-Switcher"
+              As an ancient Java developer, I’ve learned to use a set of
+              annotations to bring meta programming in my projects. Meta
+              programming can be ...&hellip;
+              <a href="http://www.bloggure.info/Swift_VisibleForTesting_Macro"
                 >Continue reading</a
               >
             </p>
@@ -283,23 +282,23 @@
           <div class="read-more-list">
             <div class="list-item">
               <h4>
-                <a href="http://www.bloggure.info/git-gone" title="Git-gone"
-                  >Git-gone</a
+                <a
+                  href="http://www.bloggure.info/iOS-DarkModeBackground-App-Switcher"
+                  title="Dark Mode iOS Snapshot"
+                  >Dark Mode iOS Snapshot</a
                 >
               </h4>
-              <span>Published on December 31, 2020</span>
+              <span>Published on January 10, 2021</span>
             </div>
             <!-- /.list-item -->
 
             <div class="list-item">
               <h4>
-                <a
-                  href="http://www.bloggure.info/mac-checklist"
-                  title="macOS tools checklist"
-                  >macOS tools checklist</a
+                <a href="http://www.bloggure.info/git-gone" title="Git-gone"
+                  >Git-gone</a
                 >
               </h4>
-              <span>Published on December 06, 2020</span>
+              <span>Published on December 31, 2020</span>
             </div>
             <!-- /.list-item -->
           </div>
@@ -313,7 +312,7 @@
     <div class="footer-wrapper">
       <footer role="contentinfo">
         <span
-          >&copy; 2021 . Powered by
+          >&copy; 2024 . Powered by
           <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using a theme
           based on
           <a

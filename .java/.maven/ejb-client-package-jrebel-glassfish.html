@@ -244,15 +244,15 @@ J'ai donc fouiné dans <em>maven-ejb-plugin</em>, mais je n'ai rien trouvé perm
           </p>
           <p>The piece of code corresponding to the patch is the following:</p>
           <figure class="highlight">
-            <pre><code class="language-java" data-lang="java"><span></span><span class="n">File</span> <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="n">outputDirectory</span><span class="o">,</span> <span class="s">&quot;client.rebel.xml&quot;</span><span class="o">);</span>
-<span class="k">if</span> <span class="o">(</span><span class="n">file</span><span class="o">.</span><span class="na">exists</span><span class="o">()){</span>
-   <span class="n">getLog</span><span class="o">().</span><span class="na">info</span><span class="o">(</span><span class="s">&quot;Found a client.rebel.xml, renaming it to rebel.xml and put it into destination ejb-client archive&quot;</span><span class="o">);</span>
-   <span class="n">clientArchiver</span><span class="o">.</span><span class="na">getArchiver</span><span class="o">().</span><span class="na">addFile</span><span class="o">(</span><span class="n">file</span><span class="o">,</span> <span class="s">&quot;rebel.xml&quot;</span><span class="o">);</span>
-   <span class="n">List</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">(</span><span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">excludes</span><span class="o">));</span>
-   <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&quot;**/client.rebel.xml&quot;</span><span class="o">);</span>
-   <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&quot;**/rebel.xml&quot;</span><span class="o">);</span>
-   <span class="n">excludes</span> <span class="o">=</span> <span class="o">(</span><span class="n">String</span><span class="o">[])</span> <span class="n">list</span><span class="o">.</span><span class="na">toArray</span><span class="o">(</span><span class="n">EMPTY_STRING_ARRAY</span><span class="o">);</span>
-<span class="o">}</span></code></pre>
+            <pre><code class="language-java" data-lang="java"><span></span><span class="n">File</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">File</span><span class="p">(</span><span class="n">outputDirectory</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;client.rebel.xml&quot;</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">file</span><span class="p">.</span><span class="na">exists</span><span class="p">()){</span>
+<span class="w">   </span><span class="n">getLog</span><span class="p">().</span><span class="na">info</span><span class="p">(</span><span class="s">&quot;Found a client.rebel.xml, renaming it to rebel.xml and put it into destination ejb-client archive&quot;</span><span class="p">);</span>
+<span class="w">   </span><span class="n">clientArchiver</span><span class="p">.</span><span class="na">getArchiver</span><span class="p">().</span><span class="na">addFile</span><span class="p">(</span><span class="n">file</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;rebel.xml&quot;</span><span class="p">);</span>
+<span class="w">   </span><span class="n">List</span><span class="w"> </span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="p">(</span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="n">excludes</span><span class="p">));</span>
+<span class="w">   </span><span class="n">list</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;**/client.rebel.xml&quot;</span><span class="p">);</span>
+<span class="w">   </span><span class="n">list</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;**/rebel.xml&quot;</span><span class="p">);</span>
+<span class="w">   </span><span class="n">excludes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="p">)</span><span class="w"> </span><span class="n">list</span><span class="p">.</span><span class="na">toArray</span><span class="p">(</span><span class="n">EMPTY_STRING_ARRAY</span><span class="p">);</span>
+<span class="p">}</span></code></pre>
           </figure>
           <p>
             This is the only modification done to the original
@@ -281,13 +281,13 @@ J'ai donc fouiné dans <em>maven-ejb-plugin</em>, mais je n'ai rien trouvé perm
           </p>
           <figure class="highlight">
             <pre><code class="language-xml" data-lang="xml"><span></span><span class="nt">&lt;build&gt;</span>
- <span class="nt">&lt;plugins&gt;</span>
-   <span class="nt">&lt;plugin&gt;</span>
-     <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
-     <span class="nt">&lt;artifactId&gt;</span>maven-ejb-plugin<span class="nt">&lt;/artifactId&gt;</span>
-     <span class="nt">&lt;version&gt;</span>2.3-jrebel<span class="nt">&lt;/version&gt;</span>
-  <span class="nt">&lt;/plugin&gt;</span>
- <span class="nt">&lt;/plugins&gt;</span>
+<span class="w"> </span><span class="nt">&lt;plugins&gt;</span>
+<span class="w">   </span><span class="nt">&lt;plugin&gt;</span>
+<span class="w">     </span><span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">     </span><span class="nt">&lt;artifactId&gt;</span>maven-ejb-plugin<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">     </span><span class="nt">&lt;version&gt;</span>2.3-jrebel<span class="nt">&lt;/version&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/plugin&gt;</span>
+<span class="w"> </span><span class="nt">&lt;/plugins&gt;</span>
 <span class="nt">&lt;/build&gt;</span></code></pre>
           </figure>
           <p>
@@ -410,17 +410,16 @@ En espérant en aider certains...-->
           <div class="read-more-content">
             <h3>
               <a
-                href="http://www.bloggure.info/iOS-DarkModeBackground-App-Switcher"
-                title="Dark Mode iOS Snapshot"
-                >Dark Mode iOS Snapshot</a
+                href="http://www.bloggure.info/Swift_VisibleForTesting_Macro"
+                title="Swift macro : @VisibleForTesting"
+                >Swift macro : @VisibleForTesting</a
               >
             </h3>
             <p>
-              # Dark mode supportAs you might know, iOS supports Dark mode since
-              iOS 12. It is pretty straightforward to implement it by using
-              dynamic ...&hellip;
-              <a
-                href="http://www.bloggure.info/iOS-DarkModeBackground-App-Switcher"
+              As an ancient Java developer, I’ve learned to use a set of
+              annotations to bring meta programming in my projects. Meta
+              programming can be ...&hellip;
+              <a href="http://www.bloggure.info/Swift_VisibleForTesting_Macro"
                 >Continue reading</a
               >
             </p>
@@ -430,23 +429,23 @@ En espérant en aider certains...-->
           <div class="read-more-list">
             <div class="list-item">
               <h4>
-                <a href="http://www.bloggure.info/git-gone" title="Git-gone"
-                  >Git-gone</a
+                <a
+                  href="http://www.bloggure.info/iOS-DarkModeBackground-App-Switcher"
+                  title="Dark Mode iOS Snapshot"
+                  >Dark Mode iOS Snapshot</a
                 >
               </h4>
-              <span>Published on December 31, 2020</span>
+              <span>Published on January 10, 2021</span>
             </div>
             <!-- /.list-item -->
 
             <div class="list-item">
               <h4>
-                <a
-                  href="http://www.bloggure.info/mac-checklist"
-                  title="macOS tools checklist"
-                  >macOS tools checklist</a
+                <a href="http://www.bloggure.info/git-gone" title="Git-gone"
+                  >Git-gone</a
                 >
               </h4>
-              <span>Published on December 06, 2020</span>
+              <span>Published on December 31, 2020</span>
             </div>
             <!-- /.list-item -->
           </div>
@@ -460,7 +459,7 @@ En espérant en aider certains...-->
     <div class="footer-wrapper">
       <footer role="contentinfo">
         <span
-          >&copy; 2021 . Powered by
+          >&copy; 2024 . Powered by
           <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using a theme
           based on
           <a

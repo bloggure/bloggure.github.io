@@ -432,10 +432,10 @@ Un simple mvn package permettra de construire l'archive zip contenant tout ce qu
           UTF-8 instead, use this little script to convert from latin1 to UTF-8
           :
           <figure class="highlight">
-            <pre><code class="language-bash" data-lang="bash"><span></span>mysqldump --user<span class="o">=</span><span class="si">${</span><span class="nv">USER</span><span class="si">}</span> --password<span class="o">=</span><span class="si">${</span><span class="nv">PASS</span><span class="si">}</span> --default-character-set<span class="o">=</span>latin1 --skip-set-charset <span class="si">${</span><span class="nv">DATABASE</span><span class="si">}</span> &gt; dump.sql<span class="p">;</span>
-sed -r ‘s/latin1/utf8/g’ dump.sql &gt; dump_utf.sql
-mysql --user<span class="o">=</span><span class="si">${</span><span class="nv">USER</span><span class="si">}</span> --password<span class="o">=</span><span class="si">${</span><span class="nv">PASS</span><span class="si">}</span> --execute<span class="o">=</span>”DROP DATABASE <span class="si">${</span><span class="nv">DATABASE</span><span class="si">}</span><span class="p">;</span> CREATE DATABASE <span class="si">${</span><span class="nv">DATABASE</span><span class="si">}</span> CHARACTER SET utf8 COLLATE utf8_general_ci<span class="p">;</span>”
-mysql --user<span class="o">=</span><span class="si">${</span><span class="nv">USER</span><span class="si">}</span> --password<span class="o">=</span><span class="si">${</span><span class="nv">PASS</span><span class="si">}</span> --default-character-set<span class="o">=</span>utf8 dbname &lt; dump_utf.sql</code></pre>
+            <pre><code class="language-bash" data-lang="bash"><span></span>mysqldump<span class="w"> </span>--user<span class="o">=</span><span class="si">${</span><span class="nv">USER</span><span class="si">}</span><span class="w"> </span>--password<span class="o">=</span><span class="si">${</span><span class="nv">PASS</span><span class="si">}</span><span class="w"> </span>--default-character-set<span class="o">=</span>latin1<span class="w"> </span>--skip-set-charset<span class="w"> </span><span class="si">${</span><span class="nv">DATABASE</span><span class="si">}</span><span class="w"> </span>&gt;<span class="w"> </span>dump.sql<span class="p">;</span>
+sed<span class="w"> </span>-r<span class="w"> </span>‘s/latin1/utf8/g’<span class="w"> </span>dump.sql<span class="w"> </span>&gt;<span class="w"> </span>dump_utf.sql
+mysql<span class="w"> </span>--user<span class="o">=</span><span class="si">${</span><span class="nv">USER</span><span class="si">}</span><span class="w"> </span>--password<span class="o">=</span><span class="si">${</span><span class="nv">PASS</span><span class="si">}</span><span class="w"> </span>--execute<span class="o">=</span>”DROP<span class="w"> </span>DATABASE<span class="w"> </span><span class="si">${</span><span class="nv">DATABASE</span><span class="si">}</span><span class="p">;</span><span class="w"> </span>CREATE<span class="w"> </span>DATABASE<span class="w"> </span><span class="si">${</span><span class="nv">DATABASE</span><span class="si">}</span><span class="w"> </span>CHARACTER<span class="w"> </span>SET<span class="w"> </span>utf8<span class="w"> </span>COLLATE<span class="w"> </span>utf8_general_ci<span class="p">;</span>”
+mysql<span class="w"> </span>--user<span class="o">=</span><span class="si">${</span><span class="nv">USER</span><span class="si">}</span><span class="w"> </span>--password<span class="o">=</span><span class="si">${</span><span class="nv">PASS</span><span class="si">}</span><span class="w"> </span>--default-character-set<span class="o">=</span>utf8<span class="w"> </span>dbname<span class="w"> </span>&lt;<span class="w"> </span>dump_utf.sql</code></pre>
           </figure>
           Generally speaking, don't hesitate to always put the
           <code>--default-character-set=utf8</code> on all the mySQL commands
@@ -445,10 +445,10 @@ mysql --user<span class="o">=</span><span class="si">${</span><span class="nv">U
           connect using UTF-8.<!--:--><!--:frUn problème fréquent quand on doit aborder l'internationalisation est la bonne gestion des différents charset. Quand vous utilisez du Java avec Maven, il est relativement simple de définir l'encoding des fichiers sources en UTF-8 mais le point courant d'échec et la base SQL.
 <br/>
 Si vous utilisez mySQL et que vous avez des tables en latin1, mais que vous devriez avoir de l'UTF-8, utilisez ce petit script pour convertir du latin1 vers l'UTF-8 :
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>mysqldump --user<span class="o">=</span><span class="si">${</span><span class="nv">USER</span><span class="si">}</span> --password<span class="o">=</span><span class="si">${</span><span class="nv">PASS</span><span class="si">}</span> --default-character-set<span class="o">=</span>latin1 --skip-set-charset <span class="si">${</span><span class="nv">DATABASE</span><span class="si">}</span> &gt; dump.sql<span class="p">;</span>
-sed -r ‘s/latin1/utf8/g’ dump.sql &gt; dump_utf.sql
-mysql --user<span class="o">=</span><span class="si">${</span><span class="nv">USER</span><span class="si">}</span> --password<span class="o">=</span><span class="si">${</span><span class="nv">PASS</span><span class="si">}</span> --execute<span class="o">=</span>”DROP DATABASE <span class="si">${</span><span class="nv">DATABASE</span><span class="si">}</span><span class="p">;</span> CREATE DATABASE <span class="si">${</span><span class="nv">DATABASE</span><span class="si">}</span> CHARACTER SET utf8 COLLATE utf8_general_ci<span class="p">;</span>”
-mysql --user<span class="o">=</span><span class="si">${</span><span class="nv">USER</span><span class="si">}</span> --password<span class="o">=</span><span class="si">${</span><span class="nv">PASS</span><span class="si">}</span> --default-character-set<span class="o">=</span>utf8 dbname &lt; dump_utf.sql</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>mysqldump<span class="w"> </span>--user<span class="o">=</span><span class="si">${</span><span class="nv">USER</span><span class="si">}</span><span class="w"> </span>--password<span class="o">=</span><span class="si">${</span><span class="nv">PASS</span><span class="si">}</span><span class="w"> </span>--default-character-set<span class="o">=</span>latin1<span class="w"> </span>--skip-set-charset<span class="w"> </span><span class="si">${</span><span class="nv">DATABASE</span><span class="si">}</span><span class="w"> </span>&gt;<span class="w"> </span>dump.sql<span class="p">;</span>
+sed<span class="w"> </span>-r<span class="w"> </span>‘s/latin1/utf8/g’<span class="w"> </span>dump.sql<span class="w"> </span>&gt;<span class="w"> </span>dump_utf.sql
+mysql<span class="w"> </span>--user<span class="o">=</span><span class="si">${</span><span class="nv">USER</span><span class="si">}</span><span class="w"> </span>--password<span class="o">=</span><span class="si">${</span><span class="nv">PASS</span><span class="si">}</span><span class="w"> </span>--execute<span class="o">=</span>”DROP<span class="w"> </span>DATABASE<span class="w"> </span><span class="si">${</span><span class="nv">DATABASE</span><span class="si">}</span><span class="p">;</span><span class="w"> </span>CREATE<span class="w"> </span>DATABASE<span class="w"> </span><span class="si">${</span><span class="nv">DATABASE</span><span class="si">}</span><span class="w"> </span>CHARACTER<span class="w"> </span>SET<span class="w"> </span>utf8<span class="w"> </span>COLLATE<span class="w"> </span>utf8_general_ci<span class="p">;</span>”
+mysql<span class="w"> </span>--user<span class="o">=</span><span class="si">${</span><span class="nv">USER</span><span class="si">}</span><span class="w"> </span>--password<span class="o">=</span><span class="si">${</span><span class="nv">PASS</span><span class="si">}</span><span class="w"> </span>--default-character-set<span class="o">=</span>utf8<span class="w"> </span>dbname<span class="w"> </span>&lt;<span class="w"> </span>dump_utf.sql</code></pre></figure>
 Globalement, n'hésitez pas à toujours placer <code>--default-character-set=utf8</code> dans toutes les commandes mySQL que vous exécutez.
 N'oubliez pas non plus d'ajouter les paramètres <code>"useUnicode=true&characterEncoding=UTF-8"</code> à la fin de votre url de connexion jdbc pour vous assurez que vous vous connectez en UTF-8.-->
         </div>
@@ -586,67 +586,6 @@ J'ai donc fouiné dans <em>maven-ejb-plugin</em>, mais je n'ai rien trouvé perm
       </article>
       <!-- /.hentry -->
 
-      <article
-        class="hentry"
-        itemprop="blogPost"
-        itemscope
-        itemtype="http://schema.org/BlogPosting"
-      >
-        <header>
-          <div class="entry-meta">
-            <span class="entry-date date published updated"
-              ><time
-                datetime="2011-08-04T00:00:00+02:00"
-                itemprop="datePublished"
-                ><a href="http://www.bloggure.info/www/a-programmers-life"
-                  >August 04, 2011</a
-                ></time
-              ></span
-            ><span
-              class="author vcard"
-              itemprop="author"
-              itemscope
-              itemtype="http://schema.org/Person"
-              ><span itemprop="name" class="fn"
-                ><a
-                  href="http://www.bloggure.info/cgatay"
-                  title="About cgatay"
-                  itemprop="url"
-                  >cgatay</a
-                ></span
-              ></span
-            >&nbsp; &bull; &nbsp;<span class="entry-comments"
-              ><a
-                href="http://www.bloggure.info/www/a-programmers-life#disqus_thread"
-                >Comment</a
-              ></span
-            >
-          </div>
-          <!-- /.entry-meta -->
-
-          <h1 class="entry-title" itemprop="name">
-            <a
-              href="http://www.bloggure.info/www/a-programmers-life"
-              rel="bookmark"
-              title="A programmer's life"
-              itemprop="url"
-              >A programmer's life</a
-            >
-          </h1>
-        </header>
-        <div class="entry-content" itemprop="description">
-          <!--:en-->I just found out a great web comic site
-          <a href="http://aprogrammerslife.info/" title="A programmer's life"
-            >A programmer's life</a
-          >, don't hesitate to put it in your bookmarks next to
-          <a href="http://geekandpoke.typepad.com/" title="Geek And Poke"
-            >Geek And Poke</a
-          >.<!--:--><!--:frJe viens de trouver un excellent site de web comic <a href="http://aprogrammerslife.info/" title="A programmer's life" >A programmer's life</a>, mettez le dans vos favoris à côté de <a href="http://geekandpoke.typepad.com/" title="Geek And Poke">Geek And Poke</a> !<-->
-        </div>
-        <!-- /.entry-content -->
-      </article>
-      <!-- /.hentry -->
-
       <div class="pagination">
         <a href="http://www.bloggure.info/page15" class="btn">Previous</a>
 
@@ -740,7 +679,7 @@ J'ai donc fouiné dans <em>maven-ejb-plugin</em>, mais je n'ai rien trouvé perm
     <div class="footer-wrapper">
       <footer role="contentinfo">
         <span
-          >&copy; 2021 . Powered by
+          >&copy; 2024 . Powered by
           <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using a theme
           based on
           <a

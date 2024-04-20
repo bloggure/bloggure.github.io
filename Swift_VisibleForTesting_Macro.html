@@ -7,30 +7,30 @@
   <!--<![endif]-->
   <head>
     <meta charset="utf-8" />
-    <title>Play Framework and i18n in views &#8211; Bloggure</title>
+    <title>Swift macro : @VisibleForTesting &#8211; Bloggure</title>
     <meta
       name="description"
       content="Multi author blog about programming, computing and geek stuff"
     />
-    <meta name="keywords" content="playframework, scala" />
+    <meta name="keywords" content="ios, test, macro tip" />
 
     <!-- Open Graph -->
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="Play Framework and i18n in views" />
+    <meta property="og:title" content="Swift macro : @VisibleForTesting" />
     <meta
       property="og:description"
       content="Multi author blog about programming, computing and geek stuff"
     />
     <meta
       property="og:url"
-      content="http://www.bloggure.info/work/play-framework-and-i18n-in-views"
+      content="http://www.bloggure.info/Swift_VisibleForTesting_Macro"
     />
     <meta property="og:site_name" content="Bloggure" />
 
     <link
       rel="canonical"
-      href="http://www.bloggure.info/work/play-framework-and-i18n-in-views"
+      href="http://www.bloggure.info/Swift_VisibleForTesting_Macro"
     />
     <link
       href="http://www.bloggure.info/feed.xml"
@@ -112,11 +112,11 @@
             <div class="entry-meta">
               <span class="entry-date date published updated"
                 ><time
-                  datetime="2013-07-25T00:00:00+02:00"
+                  datetime="2024-04-19T00:00:00+02:00"
                   itemprop="datePublished"
                   ><a
-                    href="http://www.bloggure.info/work/play-framework-and-i18n-in-views"
-                    >July 25, 2013</a
+                    href="http://www.bloggure.info/Swift_VisibleForTesting_Macro"
+                    >April 19, 2024</a
                   ></time
                 ></span
               ><span
@@ -134,7 +134,7 @@
                 ></span
               >&nbsp; &bull; &nbsp;<span class="entry-comments"
                 ><a
-                  href="http://www.bloggure.info/work/play-framework-and-i18n-in-views#disqus_thread"
+                  href="http://www.bloggure.info/Swift_VisibleForTesting_Macro#disqus_thread"
                   >Comment</a
                 ></span
               >
@@ -143,75 +143,189 @@
 
             <h1 class="entry-title" itemprop="name">
               <a
-                href="http://www.bloggure.info/work/play-framework-and-i18n-in-views"
+                href="http://www.bloggure.info/Swift_VisibleForTesting_Macro"
                 rel="bookmark"
-                title="Play Framework and i18n in views"
+                title="Swift macro : @VisibleForTesting"
                 itemprop="url"
-                >Play Framework and i18n in views</a
+                >Swift macro : @VisibleForTesting</a
               >
             </h1>
           </header>
-          <!--:en--><img
-            class="alignright size-full wp-image-916"
-            alt="playlogo"
-            src="/images/uploads/2013/07/playlogo.png"
-            width="150"
-            height="50"
-          />
+          <p>
+            As an ancient Java developer, I’ve learned to use a set of
+            annotations to bring meta programming in my projects.
+          </p>
 
           <p>
-            I was having a strange issue with localization in a Play Framework
-            application. I followed the
-            <a href="http://www.playframework.com/documentation/2.0/ScalaI18N"
-              >simple steps</a
+            Meta programming can be considered as an orthogonal thing to your
+            code, you can inject code to log things, to wrap execution in a
+            transaction or simply provide some context to your fellow developer.
+          </p>
+
+          <p>
+            One of my favorite context providing annotation at this time was
+            brought by Google-Annotations package :
+            <a
+              href="https://guava.dev/releases/19.0/api/docs/com/google/common/annotations/VisibleForTesting.html"
+              ><code>@VisibleForTesting</code></a
             >
-            detailed on the official documentation but with no luck.
           </p>
 
           <p>
-            When experimenting, I figured out that the locale used is the
-            default locale of the JVM. In my case, my default locale is French
-            so I only had French in my application. But on Heroku, the default
-            locale is English and thus the application was only working in
-            English.
+            Its goal is rather simple: provide the context that the visibility
+            of the variable / method is not as restricted as it should be, but
+            this is for the sake of testing.
           </p>
 
           <p>
-            The trick consists in adding an implicit lang to your template
-            views. In fact, Scala import an implicit lang with the lowest
-            priority being the one coming from the JVM, if you want to get the
-            language parsed from the Accept-Languages http header, you need to
-            add an implicit as below :
+            When going back to my loved XCode (just kidding), I miss these kind
+            of useful information.
           </p>
+
+          <p>
+            Of course you can add a comment, that maybe someone will read if he
+            begins to wonder why the visibility is too important.
+          </p>
+
           <figure class="highlight">
-            <pre><code class="language-scala" data-lang="scala"><span></span><span class="o">@</span><span class="p">(</span><span class="n">title</span><span class="p">:</span><span class="w"> </span><span class="nc">String</span><span class="p">)(</span><span class="n">content</span><span class="p">:</span><span class="w"> </span><span class="nc">Html</span><span class="p">)(</span><span class="k">implicit</span><span class="w"> </span><span class="n">lang</span><span class="p">:</span><span class="w"> </span><span class="nc">Lang</span><span class="p">)</span></code></pre>
+            <pre><code class="language-swift" data-lang="swift"><span></span><span class="c1">// this method should be private but we want to access it from unit test code  </span>
+<span class="kd">func</span> <span class="nf">doStuff</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span></code></pre>
           </figure>
+
           <p>
-            With this little trick, your calls to localization will use the
-            locale extracted from the http request as expected.
+            You can also play with the deprecation annotation to trigger a
+            warning (one more to add and parse with your eyes…)
           </p>
-          <!--:--><!--:fr<img class="alignright size-full wp-image-916" alt="playlogo" src="/images/uploads/2013/07/playlogo.png" width="150" height="50" />
 
-I was having a strange issue with localization in a Play Framework application. I followed the <a href="http://www.playframework.com/documentation/2.0/ScalaI18N">simple steps</a> detailed on the official documentation but with no luck.
+          <figure class="highlight">
+            <pre><code class="language-swift" data-lang="swift"><span></span><span class="p">@</span><span class="n">available</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">deprecated</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="s">&quot;This is visible for testing&quot;</span><span class="p">)</span>  
+<span class="kd">var</span> <span class="nv">myState</span><span class="p">:</span> <span class="n">State</span></code></pre>
+          </figure>
 
-When experimenting, I figured out that the locale used is the default locale of the JVM. In my case, my default locale is French so I only had French in my application. But on Heroku, the default locale is English and thus the application was only working in English.
+          <p>
+            But one thing I was really missing is the ability to really set the
+            proper visibility on my fields while keeping the testability.
+          </p>
 
-The trick consists in adding an implicit lang to your template views. In fact, Scala import an implicit lang with the lowest priority being the one coming from the JVM, if you want to get the language parsed from the Accept-Languages http header, you need to add an implicit as below :
-<pre class="brush: scala">@(title: String)(content: Html)(implicit lang: Lang)</pre>
-With this little trick, your calls to localization will use the locale extracted from the http request as expected.<-->
+          <p>
+            Recently,
+            <a href="https://www.swift.org/blog/swift-5.9-released/"
+              >Swift 5.9 had added Macro support</a
+            >. Macros can be seen as ways to generate code based on specific
+            instructions (this brings back old Java-apt memories).
+          </p>
+
+          <h1 id="macro-types">Macro types</h1>
+
+          <p>
+            There are multiples macro types, whether they can attach to fields,
+            and depending on what they can do:
+          </p>
+
+          <ul>
+            <li>Providing accessors</li>
+            <li>Generating code alongside the annotated field</li>
+            <li>Generating code “in-place”</li>
+          </ul>
+
+          <p>There are two ways of calling macros :</p>
+
+          <ul>
+            <li>Attached ones with <code>@MacroName</code></li>
+            <li>Freeform ones with <code>#MacroName</code></li>
+          </ul>
+
+          <p>
+            I will not enter the details of each type and implementation, you
+            will see more on this later here and can scout on GitHub
+            repositories for inspiration.
+          </p>
+
+          <p>
+            Attached macros are written with a leading @ and can generate code
+            alongside some of our declaration. This allowed me to introduce my
+            own <code>@VisibleForTesting</code> for swift implementation.
+          </p>
+
+          <p>
+            The idea behind this is really simple, generate specific code with
+            public visibility that wraps call to the “non-exposed” real method.
+          </p>
+
+          <p>
+            This way we get the best of both worlds, we keep our fields private,
+            we tell our colleagues that this field is available for testing and
+            we are able to test it properly.
+          </p>
+
+          <h1 id="what-does-it-look-like-">What does it look like ?</h1>
+
+          <p>
+            To use this library, you need to add an SPM dependency on this
+            repository:
+            <a href="https://github.com/CedricGatay/SwiftMacroUtils"
+              >https://github.com/CedricGatay/SwiftMacroUtils</a
+            >
+          </p>
+
+          <figure class="highlight">
+            <pre><code class="language-swift" data-lang="swift"><span></span><span class="p">.</span><span class="n">package</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="s">&quot;https://github.com/CedricGatay/SwiftMacroUtils&quot;</span><span class="p">,</span> <span class="n">branch</span><span class="p">:</span> <span class="s">&quot;main&quot;</span><span class="p">)</span></code></pre>
+          </figure>
+
+          <p>
+            Then, let’s say you want to give access for testing to the name var
+            of the Dog struct to your testing code, you simply need to do the
+            following
+          </p>
+
+          <figure class="highlight">
+            <pre><code class="language-swift" data-lang="swift"><span></span><span class="kd">struct</span> <span class="nc">Dog</span> <span class="p">{</span>
+    <span class="p">@</span><span class="n">VisibleForTesting</span>
+    <span class="kd">private</span> <span class="kd">var</span> <span class="nv">name</span><span class="p">:</span> <span class="nb">String</span><span class="p">?</span>
+<span class="p">}</span></code></pre>
+          </figure>
+
+          <p>
+            Under the hood, the macro will generate a public accessor that you
+            will be able to use in your tests
+          </p>
+
+          <figure class="highlight">
+            <pre><code class="language-swift" data-lang="swift"><span></span><span class="kd">public</span> <span class="kd">var</span> <span class="nv">__test_name</span><span class="p">:</span> <span class="nb">String</span><span class="p">?</span> <span class="p">{</span>
+    <span class="kr">get</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">name</span>
+    <span class="p">}</span>
+    <span class="kr">set</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">name</span> <span class="p">=</span> <span class="n">newValue</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre>
+          </figure>
+
+          <p>
+            The same goes for <code>let</code>, <code>func</code>, and
+            <code>init</code> . The only specific thing to keep in mind that if
+            you annotate a <code>class</code> initializer, you need to mark it
+            as <code>required</code>, otherwise the build will fail (but a nice
+            comment will tell you why).
+          </p>
 
           <footer class="entry-meta">
             <span class="entry-tags"
               ><a
-                href="http://www.bloggure.info/tags/#playframework"
-                title="Pages tagged playframework"
+                href="http://www.bloggure.info/tags/#ios"
+                title="Pages tagged ios"
                 class="tag"
-                ><span class="term">playframework</span></a
+                ><span class="term">ios</span></a
               ><a
-                href="http://www.bloggure.info/tags/#scala"
-                title="Pages tagged scala"
+                href="http://www.bloggure.info/tags/#test"
+                title="Pages tagged test"
                 class="tag"
-                ><span class="term">scala</span></a
+                ><span class="term">test</span></a
+              ><a
+                href="http://www.bloggure.info/tags/#macro tip"
+                title="Pages tagged macro tip"
+                class="tag"
+                ><span class="term">macro tip</span></a
               ></span
             >
 
@@ -219,7 +333,7 @@ With this little trick, your calls to localization will use the locale extracted
               <ul class="socialcount socialcount-small inline-list">
                 <li class="facebook">
                   <a
-                    href="https://www.facebook.com/sharer/sharer.php?u=http://www.bloggure.info/work/play-framework-and-i18n-in-views"
+                    href="https://www.facebook.com/sharer/sharer.php?u=http://www.bloggure.info/Swift_VisibleForTesting_Macro"
                     title="Share on Facebook"
                     ><span class="count"
                       ><i class="fa fa-facebook-square"></i> Like</span
@@ -228,7 +342,7 @@ With this little trick, your calls to localization will use the locale extracted
                 </li>
                 <li class="twitter">
                   <a
-                    href="https://twitter.com/intent/tweet?text=http://www.bloggure.info/work/play-framework-and-i18n-in-views"
+                    href="https://twitter.com/intent/tweet?text=http://www.bloggure.info/Swift_VisibleForTesting_Macro"
                     title="Share on Twitter"
                     ><span class="count"
                       ><i class="fa fa-twitter-square"></i> Tweet</span
@@ -246,7 +360,7 @@ With this little trick, your calls to localization will use the locale extracted
         <div class="read-more">
           <div class="read-more-header">
             <a
-              href="http://www.bloggure.info/.java/.scala/.shell/ci/shelf/centos-redhat-play-application-production-mode"
+              href="http://www.bloggure.info/iOS-DarkModeBackground-App-Switcher"
               class="read-more-btn"
               >Read More</a
             >
@@ -255,16 +369,17 @@ With this little trick, your calls to localization will use the locale extracted
           <div class="read-more-content">
             <h3>
               <a
-                href="http://www.bloggure.info/Swift_VisibleForTesting_Macro"
-                title="Swift macro : @VisibleForTesting"
-                >Swift macro : @VisibleForTesting</a
+                href="http://www.bloggure.info/iOS-DarkModeBackground-App-Switcher"
+                title="Dark Mode iOS Snapshot"
+                >Dark Mode iOS Snapshot</a
               >
             </h3>
             <p>
-              As an ancient Java developer, I’ve learned to use a set of
-              annotations to bring meta programming in my projects. Meta
-              programming can be ...&hellip;
-              <a href="http://www.bloggure.info/Swift_VisibleForTesting_Macro"
+              Dark mode supportAs you might know, iOS supports Dark mode since
+              iOS 12. It is pretty straightforward to implement it by using
+              dynamic co...&hellip;
+              <a
+                href="http://www.bloggure.info/iOS-DarkModeBackground-App-Switcher"
                 >Continue reading</a
               >
             </p>
@@ -274,23 +389,23 @@ With this little trick, your calls to localization will use the locale extracted
           <div class="read-more-list">
             <div class="list-item">
               <h4>
-                <a
-                  href="http://www.bloggure.info/iOS-DarkModeBackground-App-Switcher"
-                  title="Dark Mode iOS Snapshot"
-                  >Dark Mode iOS Snapshot</a
-                >
-              </h4>
-              <span>Published on January 10, 2021</span>
-            </div>
-            <!-- /.list-item -->
-
-            <div class="list-item">
-              <h4>
                 <a href="http://www.bloggure.info/git-gone" title="Git-gone"
                   >Git-gone</a
                 >
               </h4>
               <span>Published on December 31, 2020</span>
+            </div>
+            <!-- /.list-item -->
+
+            <div class="list-item">
+              <h4>
+                <a
+                  href="http://www.bloggure.info/mac-checklist"
+                  title="macOS tools checklist"
+                  >macOS tools checklist</a
+                >
+              </h4>
+              <span>Published on December 06, 2020</span>
             </div>
             <!-- /.list-item -->
           </div>

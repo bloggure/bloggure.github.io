@@ -217,43 +217,43 @@
           <p>
             Voici un cas de mise en oeuvre avec JUnit :
             <figure class="highlight">
-              <pre><code class="language-java" data-lang="java"><span></span><span class="kn">import</span> <span class="nn">org.junit.*</span><span class="o">;</span>
-<span class="kn">import static</span> <span class="nn">org.junit.Assert.*</span><span class="o">;</span>
+              <pre><code class="language-java" data-lang="java"><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.junit.*</span><span class="p">;</span>
+<span class="kn">import static</span><span class="w"> </span><span class="nn">org.junit.Assert.*</span><span class="p">;</span>
 
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SampleTest</span> <span class="o">{</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">SampleTest</span><span class="w"> </span><span class="p">{</span>
 
-    <span class="nd">@Before</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setUp</span><span class="o">()</span> <span class="o">{</span>
-        <span class="c1">// exécuté avant chaque test</span>
-    <span class="o">}</span>
+<span class="w">    </span><span class="nd">@Before</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setUp</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// exécuté avant chaque test</span>
+<span class="w">    </span><span class="p">}</span>
 
-    <span class="nd">@After</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">tearDown</span><span class="o">()</span> <span class="o">{</span>
-        <span class="c1">// exécuté après chaque test</span>
-    <span class="o">}</span>
+<span class="w">    </span><span class="nd">@After</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">tearDown</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// exécuté après chaque test</span>
+<span class="w">    </span><span class="p">}</span>
 
-    <span class="nd">@Test</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testCondition1</span><span class="o">()</span> <span class="o">{</span>
-        <span class="n">assertIsTrue</span><span class="o">(</span><span class="n">condition1</span><span class="o">);</span>
-    <span class="o">}</span>
+<span class="w">    </span><span class="nd">@Test</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">testCondition1</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">assertIsTrue</span><span class="p">(</span><span class="n">condition1</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
 
-    <span class="nd">@Test</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testCondition2</span><span class="o">()</span> <span class="o">{</span>
-        <span class="n">assertIsFalse</span><span class="o">(</span><span class="n">condition2</span><span class="o">);</span>
-    <span class="o">}</span>
+<span class="w">    </span><span class="nd">@Test</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">testCondition2</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">assertIsFalse</span><span class="p">(</span><span class="n">condition2</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
 
-<span class="o">}</span></code></pre>
+<span class="p">}</span></code></pre>
             </figure>
           </p>
           <p>
             Dans l'ordre seront exécutés :
             <figure class="highlight">
-              <pre><code class="language-java" data-lang="java"><span></span><span class="nl">SampleTest:</span><span class="o">:</span><span class="n">setUp</span><span class="o">();</span>
-<span class="nl">SampleTest:</span><span class="o">:</span><span class="n">testCondition1</span><span class="o">();</span>
-<span class="nl">SampleTest:</span><span class="o">:</span><span class="n">tearDown</span><span class="o">();</span>
-<span class="nl">SampleTest:</span><span class="o">:</span><span class="n">setUp</span><span class="o">();</span>
-<span class="nl">SampleTest:</span><span class="o">:</span><span class="n">testCondition2</span><span class="o">();</span>
-<span class="nl">SampleTest:</span><span class="o">:</span><span class="n">tearDown</span><span class="o">();</span></code></pre>
+              <pre><code class="language-java" data-lang="java"><span></span><span class="nl">SampleTest</span><span class="p">::</span><span class="n">setUp</span><span class="p">();</span>
+<span class="nl">SampleTest</span><span class="p">::</span><span class="n">testCondition1</span><span class="p">();</span>
+<span class="nl">SampleTest</span><span class="p">::</span><span class="n">tearDown</span><span class="p">();</span>
+<span class="nl">SampleTest</span><span class="p">::</span><span class="n">setUp</span><span class="p">();</span>
+<span class="nl">SampleTest</span><span class="p">::</span><span class="n">testCondition2</span><span class="p">();</span>
+<span class="nl">SampleTest</span><span class="p">::</span><span class="n">tearDown</span><span class="p">();</span></code></pre>
             </figure>
           </p>
           <p>
@@ -263,34 +263,34 @@
             exécuté en parallèle. Voici un exemple en Javascript en utilisant
             <code>expresso</code> pour tester une application web (complexe) :
             <figure class="highlight">
-              <pre><code class="language-js" data-lang="js"><span></span><span class="kd">var</span> <span class="nx">assert</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;assert&#39;</span><span class="p">);</span>
- <span class="p">,</span> <span class="nx">server</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">).</span><span class="nx">createServer</span><span class="p">();</span>
+              <pre><code class="language-js" data-lang="js"><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">assert</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;assert&#39;</span><span class="p">);</span>
+<span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nx">server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">).</span><span class="nx">createServer</span><span class="p">();</span>
 
-<span class="nx">assert</span><span class="p">.</span><span class="nx">response</span><span class="p">(</span><span class="nx">server</span><span class="p">,</span> <span class="p">{</span>
-    <span class="nx">url</span><span class="o">:</span> <span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="nx">timeout</span><span class="o">:</span> <span class="mi">500</span>
-<span class="p">},</span> <span class="p">{</span>
-    <span class="nx">body</span><span class="o">:</span> <span class="s1">&#39;foobar&#39;</span> <span class="c1">// vérifie que le corps de la requête HTTP contient &#39;foobar&#39;</span>
+<span class="nx">assert</span><span class="p">.</span><span class="nx">response</span><span class="p">(</span><span class="nx">server</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">url</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;/&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">timeout</span><span class="o">:</span><span class="w"> </span><span class="mf">500</span>
+<span class="p">},</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;foobar&#39;</span><span class="w"> </span><span class="c1">// vérifie que le corps de la requête HTTP contient &#39;foobar&#39;</span>
 <span class="p">});</span>
 
-<span class="nx">assert</span><span class="p">.</span><span class="nx">response</span><span class="p">(</span><span class="nx">server</span><span class="p">,</span> <span class="p">{</span>
-    <span class="nx">url</span><span class="o">:</span> <span class="s1">&#39;/&#39;</span><span class="p">,</span>
-    <span class="nx">method</span><span class="o">:</span> <span class="s1">&#39;GET&#39;</span>
-<span class="p">},</span> <span class="p">{</span><span class="nx">body</span><span class="o">:</span> <span class="s1">&#39;{&quot;name&quot;:&quot;tj&quot;}&#39;</span><span class="p">,</span> <span class="c1">// vérifie le contenu du corps de la requête HTTP, son statusCode et ses headers</span>
-    <span class="nx">status</span><span class="o">:</span> <span class="mi">200</span><span class="p">,</span>
-    <span class="nx">headers</span><span class="o">:</span> <span class="p">{</span>
-        <span class="s1">&#39;Content-Type&#39;</span><span class="o">:</span> <span class="s1">&#39;application/json; charset=utf-8&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;X-Foo&#39;</span><span class="o">:</span> <span class="s1">&#39;bar&#39;</span>
-    <span class="p">}</span>
+<span class="nx">assert</span><span class="p">.</span><span class="nx">response</span><span class="p">(</span><span class="nx">server</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">url</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;/&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;GET&#39;</span>
+<span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;{&quot;name&quot;:&quot;tj&quot;}&#39;</span><span class="p">,</span><span class="w"> </span><span class="c1">// vérifie le contenu du corps de la requête HTTP, son statusCode et ses headers</span>
+<span class="w">    </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="mf">200</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="s1">&#39;Content-Type&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;application/json; charset=utf-8&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="s1">&#39;X-Foo&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;bar&#39;</span>
+<span class="w">    </span><span class="p">}</span>
 <span class="p">});</span>
 
-<span class="nx">assert</span><span class="p">.</span><span class="nx">response</span><span class="p">(</span><span class="nx">server</span><span class="p">,</span> <span class="p">{</span>
-    <span class="nx">url</span><span class="o">:</span> <span class="s1">&#39;/foo&#39;</span><span class="p">,</span>
-    <span class="nx">method</span><span class="o">:</span> <span class="s1">&#39;POST&#39;</span><span class="p">,</span>
-    <span class="nx">data</span><span class="o">:</span> <span class="s1">&#39;bar baz&#39;</span>
-<span class="p">},</span> <span class="p">{</span>
-    <span class="nx">body</span><span class="o">:</span> <span class="s1">&#39;/foo bar baz&#39;</span><span class="p">,</span> <span class="c1">// vérifie les données renvoyées par le serveur quand on poste un formulaire</span>
-    <span class="nx">status</span><span class="o">:</span> <span class="mi">200</span>
-<span class="p">},</span> <span class="s1">&#39;Test POST&#39;</span><span class="p">);</span></code></pre>
+<span class="nx">assert</span><span class="p">.</span><span class="nx">response</span><span class="p">(</span><span class="nx">server</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">url</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;/foo&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;POST&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">data</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;bar baz&#39;</span>
+<span class="p">},</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;/foo bar baz&#39;</span><span class="p">,</span><span class="w"> </span><span class="c1">// vérifie les données renvoyées par le serveur quand on poste un formulaire</span>
+<span class="w">    </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="mf">200</span>
+<span class="p">},</span><span class="w"> </span><span class="s1">&#39;Test POST&#39;</span><span class="p">);</span></code></pre>
             </figure>
           </p>
           <h2>Bonnes pratiques</h2>
@@ -401,17 +401,16 @@
           <div class="read-more-content">
             <h3>
               <a
-                href="http://www.bloggure.info/iOS-DarkModeBackground-App-Switcher"
-                title="Dark Mode iOS Snapshot"
-                >Dark Mode iOS Snapshot</a
+                href="http://www.bloggure.info/Swift_VisibleForTesting_Macro"
+                title="Swift macro : @VisibleForTesting"
+                >Swift macro : @VisibleForTesting</a
               >
             </h3>
             <p>
-              # Dark mode supportAs you might know, iOS supports Dark mode since
-              iOS 12. It is pretty straightforward to implement it by using
-              dynamic ...&hellip;
-              <a
-                href="http://www.bloggure.info/iOS-DarkModeBackground-App-Switcher"
+              As an ancient Java developer, I’ve learned to use a set of
+              annotations to bring meta programming in my projects. Meta
+              programming can be ...&hellip;
+              <a href="http://www.bloggure.info/Swift_VisibleForTesting_Macro"
                 >Continue reading</a
               >
             </p>
@@ -421,23 +420,23 @@
           <div class="read-more-list">
             <div class="list-item">
               <h4>
-                <a href="http://www.bloggure.info/git-gone" title="Git-gone"
-                  >Git-gone</a
+                <a
+                  href="http://www.bloggure.info/iOS-DarkModeBackground-App-Switcher"
+                  title="Dark Mode iOS Snapshot"
+                  >Dark Mode iOS Snapshot</a
                 >
               </h4>
-              <span>Published on December 31, 2020</span>
+              <span>Published on January 10, 2021</span>
             </div>
             <!-- /.list-item -->
 
             <div class="list-item">
               <h4>
-                <a
-                  href="http://www.bloggure.info/mac-checklist"
-                  title="macOS tools checklist"
-                  >macOS tools checklist</a
+                <a href="http://www.bloggure.info/git-gone" title="Git-gone"
+                  >Git-gone</a
                 >
               </h4>
-              <span>Published on December 06, 2020</span>
+              <span>Published on December 31, 2020</span>
             </div>
             <!-- /.list-item -->
           </div>
@@ -451,7 +450,7 @@
     <div class="footer-wrapper">
       <footer role="contentinfo">
         <span
-          >&copy; 2021 . Powered by
+          >&copy; 2024 . Powered by
           <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using a theme
           based on
           <a

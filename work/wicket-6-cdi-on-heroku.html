@@ -191,18 +191,18 @@
             variable to populate hibernate properties.
           </p>
           <figure class="highlight">
-            <pre><code class="language-java" data-lang="java"><span></span>  <span class="k">try</span> <span class="o">{</span>
-     <span class="n">URI</span> <span class="n">dbUri</span> <span class="o">=</span> <span class="k">new</span> <span class="n">URI</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">getenv</span><span class="o">(</span><span class="s">&quot;DATABASE_URL&quot;</span><span class="o">));</span>
-     <span class="n">String</span> <span class="n">username</span> <span class="o">=</span> <span class="n">dbUri</span><span class="o">.</span><span class="na">getUserInfo</span><span class="o">().</span><span class="na">split</span><span class="o">(</span><span class="s">&quot;:&quot;</span><span class="o">)[</span><span class="mi">0</span><span class="o">];</span>
-     <span class="n">String</span> <span class="n">password</span> <span class="o">=</span> <span class="n">dbUri</span><span class="o">.</span><span class="na">getUserInfo</span><span class="o">().</span><span class="na">split</span><span class="o">(</span><span class="s">&quot;:&quot;</span><span class="o">)[</span><span class="mi">1</span><span class="o">];</span>
-     <span class="n">String</span> <span class="n">dbUrl</span> <span class="o">=</span> <span class="s">&quot;jdbc:postgresql://&quot;</span> <span class="o">+</span> <span class="n">dbUri</span><span class="o">.</span><span class="na">getHost</span><span class="o">()</span> 
-                    <span class="o">+</span> <span class="sc">&#39;:&#39;</span> <span class="o">+</span> <span class="n">dbUri</span><span class="o">.</span><span class="na">getPort</span><span class="o">()</span> <span class="o">+</span> <span class="n">dbUri</span><span class="o">.</span><span class="na">getPath</span><span class="o">();</span>
-     <span class="n">System</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="s">&quot;hibernate.connection.url&quot;</span><span class="o">,</span> <span class="n">dbUrl</span><span class="o">);</span>
-     <span class="n">System</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="s">&quot;hibernate.connection.user&quot;</span><span class="o">,</span> <span class="n">username</span><span class="o">);</span>
-     <span class="n">System</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="s">&quot;hibernate.connection.password&quot;</span><span class="o">,</span> <span class="n">password</span><span class="o">);</span>
-<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-     <span class="n">LOGGER</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="s">&quot;Unable to extract database url&quot;</span><span class="o">);</span>
-<span class="o">}</span></code></pre>
+            <pre><code class="language-java" data-lang="java"><span></span><span class="w">  </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">     </span><span class="n">URI</span><span class="w"> </span><span class="n">dbUri</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">URI</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">getenv</span><span class="p">(</span><span class="s">&quot;DATABASE_URL&quot;</span><span class="p">));</span>
+<span class="w">     </span><span class="n">String</span><span class="w"> </span><span class="n">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dbUri</span><span class="p">.</span><span class="na">getUserInfo</span><span class="p">().</span><span class="na">split</span><span class="p">(</span><span class="s">&quot;:&quot;</span><span class="p">)</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">;</span>
+<span class="w">     </span><span class="n">String</span><span class="w"> </span><span class="n">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dbUri</span><span class="p">.</span><span class="na">getUserInfo</span><span class="p">().</span><span class="na">split</span><span class="p">(</span><span class="s">&quot;:&quot;</span><span class="p">)</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="p">;</span>
+<span class="w">     </span><span class="n">String</span><span class="w"> </span><span class="n">dbUrl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;jdbc:postgresql://&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dbUri</span><span class="p">.</span><span class="na">getHost</span><span class="p">()</span><span class="w"> </span>
+<span class="w">                    </span><span class="o">+</span><span class="w"> </span><span class="sc">&#39;:&#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dbUri</span><span class="p">.</span><span class="na">getPort</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dbUri</span><span class="p">.</span><span class="na">getPath</span><span class="p">();</span>
+<span class="w">     </span><span class="n">System</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="s">&quot;hibernate.connection.url&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">dbUrl</span><span class="p">);</span>
+<span class="w">     </span><span class="n">System</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="s">&quot;hibernate.connection.user&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">username</span><span class="p">);</span>
+<span class="w">     </span><span class="n">System</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="s">&quot;hibernate.connection.password&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">password</span><span class="p">);</span>
+<span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">     </span><span class="n">LOGGER</span><span class="p">.</span><span class="na">error</span><span class="p">(</span><span class="s">&quot;Unable to extract database url&quot;</span><span class="p">);</span>
+<span class="p">}</span></code></pre>
           </figure>
           <h1>Session replication</h1>
           <p>
@@ -297,17 +297,16 @@
           <div class="read-more-content">
             <h3>
               <a
-                href="http://www.bloggure.info/iOS-DarkModeBackground-App-Switcher"
-                title="Dark Mode iOS Snapshot"
-                >Dark Mode iOS Snapshot</a
+                href="http://www.bloggure.info/Swift_VisibleForTesting_Macro"
+                title="Swift macro : @VisibleForTesting"
+                >Swift macro : @VisibleForTesting</a
               >
             </h3>
             <p>
-              # Dark mode supportAs you might know, iOS supports Dark mode since
-              iOS 12. It is pretty straightforward to implement it by using
-              dynamic ...&hellip;
-              <a
-                href="http://www.bloggure.info/iOS-DarkModeBackground-App-Switcher"
+              As an ancient Java developer, I’ve learned to use a set of
+              annotations to bring meta programming in my projects. Meta
+              programming can be ...&hellip;
+              <a href="http://www.bloggure.info/Swift_VisibleForTesting_Macro"
                 >Continue reading</a
               >
             </p>
@@ -317,23 +316,23 @@
           <div class="read-more-list">
             <div class="list-item">
               <h4>
-                <a href="http://www.bloggure.info/git-gone" title="Git-gone"
-                  >Git-gone</a
+                <a
+                  href="http://www.bloggure.info/iOS-DarkModeBackground-App-Switcher"
+                  title="Dark Mode iOS Snapshot"
+                  >Dark Mode iOS Snapshot</a
                 >
               </h4>
-              <span>Published on December 31, 2020</span>
+              <span>Published on January 10, 2021</span>
             </div>
             <!-- /.list-item -->
 
             <div class="list-item">
               <h4>
-                <a
-                  href="http://www.bloggure.info/mac-checklist"
-                  title="macOS tools checklist"
-                  >macOS tools checklist</a
+                <a href="http://www.bloggure.info/git-gone" title="Git-gone"
+                  >Git-gone</a
                 >
               </h4>
-              <span>Published on December 06, 2020</span>
+              <span>Published on December 31, 2020</span>
             </div>
             <!-- /.list-item -->
           </div>
@@ -347,7 +346,7 @@
     <div class="footer-wrapper">
       <footer role="contentinfo">
         <span
-          >&copy; 2021 . Powered by
+          >&copy; 2024 . Powered by
           <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using a theme
           based on
           <a

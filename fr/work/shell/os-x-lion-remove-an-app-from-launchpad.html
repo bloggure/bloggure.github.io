@@ -223,10 +223,10 @@ Veuillez faire attention en essayant ma procédure, Launchpad pourrait devenir i
             shortcut)
           </p>
           <figure class="highlight">
-            <pre><code class="language-bash" data-lang="bash"><span></span>sqlite3 ~/Library/Application<span class="se">\ </span>Support/Dock/*.db <span class="s1">&#39;select * from apps;&#39;</span>    
+            <pre><code class="language-bash" data-lang="bash"><span></span>sqlite3<span class="w"> </span>~/Library/Application<span class="se">\ </span>Support/Dock/*.db<span class="w"> </span><span class="s1">&#39;select * from apps;&#39;</span><span class="w">    </span>
 <span class="o">[</span>...<span class="o">]</span>
 <span class="m">48</span><span class="p">|</span>uninstall<span class="p">|</span>com.akamai.euc_uninstall_mac<span class="o">||</span><span class="p">|</span><span class="m">298505501</span>.0<span class="p">|</span>book?
-<span class="m">49</span><span class="p">|</span>Livre des polices<span class="p">|</span>com.apple.FontBook<span class="o">||</span><span class="m">4</span><span class="p">|</span><span class="m">328036648</span>.0<span class="p">|</span>bookt
+<span class="m">49</span><span class="p">|</span>Livre<span class="w"> </span>des<span class="w"> </span>polices<span class="p">|</span>com.apple.FontBook<span class="o">||</span><span class="m">4</span><span class="p">|</span><span class="m">328036648</span>.0<span class="p">|</span>bookt
 <span class="m">50</span><span class="p">|</span>Fraise<span class="p">|</span>org.fraise.Fraise<span class="o">||</span><span class="p">|</span><span class="m">332837534</span>.0<span class="p">|</span>bookp
 <span class="o">[</span>...<span class="o">]</span></code></pre>
           </figure>
@@ -239,8 +239,8 @@ Veuillez faire attention en essayant ma procédure, Launchpad pourrait devenir i
             command looks like :
           </p>
           <figure class="highlight">
-            <pre><code class="language-bash" data-lang="bash"><span></span>sqlite3 ~/Library/Application<span class="se">\ </span>Support/Dock/*.db <span class="s1">&#39;delete from apps where item_id=48;&#39;</span>    
-killall Dock</code></pre>
+            <pre><code class="language-bash" data-lang="bash"><span></span>sqlite3<span class="w"> </span>~/Library/Application<span class="se">\ </span>Support/Dock/*.db<span class="w"> </span><span class="s1">&#39;delete from apps where item_id=48;&#39;</span><span class="w">    </span>
+killall<span class="w"> </span>Dock</code></pre>
           </figure>
 
           <p>
@@ -251,8 +251,8 @@ killall Dock</code></pre>
           <h2>Technical notice</h2>
           For the geeky there, the table structure is the following :
           <figure class="highlight">
-            <pre><code class="language-sql" data-lang="sql"><span></span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">apps</span> <span class="p">(</span><span class="n">item_id</span> <span class="nb">INTEGER</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span> <span class="n">title</span> <span class="nb">VARCHAR</span><span class="p">,</span> <span class="n">bundleid</span> <span class="nb">VARCHAR</span><span class="p">,</span> 
-                   <span class="n">storeid</span> <span class="nb">VARCHAR</span><span class="p">,</span><span class="n">category_id</span> <span class="nb">INTEGER</span><span class="p">,</span> <span class="n">moddate</span> <span class="nb">REAL</span><span class="p">,</span> <span class="n">bookmark</span> <span class="nb">BLOB</span><span class="p">);</span></code></pre>
+            <pre><code class="language-sql" data-lang="sql"><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">apps</span><span class="w"> </span><span class="p">(</span><span class="n">item_id</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w"> </span><span class="n">title</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">,</span><span class="w"> </span><span class="n">bundleid</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                   </span><span class="n">storeid</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">,</span><span class="n">category_id</span><span class="w"> </span><span class="nb">INTEGER</span><span class="p">,</span><span class="w"> </span><span class="n">moddate</span><span class="w"> </span><span class="nb">REAL</span><span class="p">,</span><span class="w"> </span><span class="n">bookmark</span><span class="w"> </span><span class="nb">BLOB</span><span class="p">);</span></code></pre>
           </figure>
           <!--:--><!--:fr
 
@@ -323,17 +323,16 @@ CREATE TABLE apps (item_id INTEGER PRIMARY KEY, title VARCHAR, bundleid VARCHAR,
           <div class="read-more-content">
             <h3>
               <a
-                href="http://www.bloggure.info/iOS-DarkModeBackground-App-Switcher"
-                title="Dark Mode iOS Snapshot"
-                >Dark Mode iOS Snapshot</a
+                href="http://www.bloggure.info/Swift_VisibleForTesting_Macro"
+                title="Swift macro : @VisibleForTesting"
+                >Swift macro : @VisibleForTesting</a
               >
             </h3>
             <p>
-              # Dark mode supportAs you might know, iOS supports Dark mode since
-              iOS 12. It is pretty straightforward to implement it by using
-              dynamic ...&hellip;
-              <a
-                href="http://www.bloggure.info/iOS-DarkModeBackground-App-Switcher"
+              As an ancient Java developer, I’ve learned to use a set of
+              annotations to bring meta programming in my projects. Meta
+              programming can be ...&hellip;
+              <a href="http://www.bloggure.info/Swift_VisibleForTesting_Macro"
                 >Continue reading</a
               >
             </p>
@@ -343,23 +342,23 @@ CREATE TABLE apps (item_id INTEGER PRIMARY KEY, title VARCHAR, bundleid VARCHAR,
           <div class="read-more-list">
             <div class="list-item">
               <h4>
-                <a href="http://www.bloggure.info/git-gone" title="Git-gone"
-                  >Git-gone</a
+                <a
+                  href="http://www.bloggure.info/iOS-DarkModeBackground-App-Switcher"
+                  title="Dark Mode iOS Snapshot"
+                  >Dark Mode iOS Snapshot</a
                 >
               </h4>
-              <span>Published on December 31, 2020</span>
+              <span>Published on January 10, 2021</span>
             </div>
             <!-- /.list-item -->
 
             <div class="list-item">
               <h4>
-                <a
-                  href="http://www.bloggure.info/mac-checklist"
-                  title="macOS tools checklist"
-                  >macOS tools checklist</a
+                <a href="http://www.bloggure.info/git-gone" title="Git-gone"
+                  >Git-gone</a
                 >
               </h4>
-              <span>Published on December 06, 2020</span>
+              <span>Published on December 31, 2020</span>
             </div>
             <!-- /.list-item -->
           </div>
@@ -373,7 +372,7 @@ CREATE TABLE apps (item_id INTEGER PRIMARY KEY, title VARCHAR, bundleid VARCHAR,
     <div class="footer-wrapper">
       <footer role="contentinfo">
         <span
-          >&copy; 2021 . Powered by
+          >&copy; 2024 . Powered by
           <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using a theme
           based on
           <a

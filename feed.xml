@@ -4,13 +4,103 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="http://www.bloggure.info/feed.xml" />
 <link rel="alternate" type="text/html" href="http://www.bloggure.info" />
-<updated>2021-07-19T16:52:24+02:00</updated>
+<updated>2024-04-20T10:19:41+02:00</updated>
 <id>http://www.bloggure.info/</id>
 <author>
   <name></name>
   <uri>http://www.bloggure.info/</uri>
   <email></email>
 </author>
+
+
+<entry>
+  <title type="html"><![CDATA[Swift macro : @VisibleForTesting]]></title>
+  <link>http://www.bloggure.info/Swift_VisibleForTesting_Macro</link>
+  <id>http://www.bloggure.info/Swift_VisibleForTesting_Macro</id>
+  <published>2024-04-19T00:00:00+02:00</published>
+  <updated>2024-04-19T00:00:00+02:00</updated>
+  <author>
+    <name></name>
+    <uri>http://www.bloggure.info</uri>
+    <email></email>
+  </author>
+  <content type="html">&lt;p&gt;As an ancient Java developer, I’ve learned to use a set of annotations to bring meta programming in my projects.&lt;/p&gt;
+
+&lt;p&gt;Meta programming can be considered as an orthogonal thing to your code, you can inject code to log things, to wrap execution in a transaction or simply provide some context to your fellow developer.&lt;/p&gt;
+
+&lt;p&gt;One of my favorite context providing annotation at this time was brought by Google-Annotations package : &lt;a href=&quot;https://guava.dev/releases/19.0/api/docs/com/google/common/annotations/VisibleForTesting.html&quot;&gt;&lt;code&gt;@VisibleForTesting&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Its goal is rather simple: provide the context that the visibility of the variable / method is not as restricted as it should be, but this is for the sake of testing.&lt;/p&gt;
+
+&lt;p&gt;When going back to my loved XCode (just kidding), I miss these kind of useful information.&lt;/p&gt;
+
+&lt;p&gt;Of course you can add a comment, that maybe someone will read if he begins to wonder why the visibility is too important.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-swift&quot; data-lang=&quot;swift&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;// this method should be private but we want to access it from unit test code  &lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;doStuff&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;You can also play with the deprecation annotation to trigger a warning (one more to add and parse with your eyes…)&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-swift&quot; data-lang=&quot;swift&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;available&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;deprecated&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;This is visible for testing&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;  
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;myState&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;State&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;But one thing I was really missing is the ability to really set the proper visibility on my fields while keeping the testability.&lt;/p&gt;
+
+&lt;p&gt;Recently, &lt;a href=&quot;https://www.swift.org/blog/swift-5.9-released/&quot;&gt;Swift 5.9 had added Macro support&lt;/a&gt;. Macros can be seen as ways to generate code based on specific instructions (this brings back old Java-apt memories).&lt;/p&gt;
+
+&lt;h1 id=&quot;macro-types&quot;&gt;Macro types&lt;/h1&gt;
+
+&lt;p&gt;There are multiples macro types, whether they can attach to fields, and depending on what they can do:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Providing accessors&lt;/li&gt;
+  &lt;li&gt;Generating code alongside the annotated field&lt;/li&gt;
+  &lt;li&gt;Generating code “in-place”&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;There are two ways of calling macros :&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Attached ones with &lt;code&gt;@MacroName&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Freeform ones with &lt;code&gt;#MacroName&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I will not enter the details of each type and implementation, you will see more on this later here and can scout on GitHub repositories for inspiration.&lt;/p&gt;
+
+&lt;p&gt;Attached macros are written with a leading @ and can generate code alongside some of our declaration. This allowed me to introduce my own &lt;code&gt;@VisibleForTesting&lt;/code&gt; for swift implementation.&lt;/p&gt;
+
+&lt;p&gt;The idea behind this is really simple, generate specific code with public visibility that wraps call to the “non-exposed” real method.&lt;/p&gt;
+
+&lt;p&gt;This way we get the best of both worlds, we keep our fields private, we tell our colleagues that this field is available for testing and we are able to test it properly.&lt;/p&gt;
+
+&lt;h1 id=&quot;what-does-it-look-like-&quot;&gt;What does it look like ?&lt;/h1&gt;
+
+&lt;p&gt;To use this library, you need to add an SPM dependency on this repository: &lt;a href=&quot;https://github.com/CedricGatay/SwiftMacroUtils&quot;&gt;https://github.com/CedricGatay/SwiftMacroUtils&lt;/a&gt;&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-swift&quot; data-lang=&quot;swift&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;package&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;https://github.com/CedricGatay/SwiftMacroUtils&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;branch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;main&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Then, let’s say you want to give access for testing to the name var of the Dog struct to your testing code, you simply need to do the following&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-swift&quot; data-lang=&quot;swift&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Dog&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;VisibleForTesting&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Under the hood, the macro will generate a public accessor that you will be able to use in your tests&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-swift&quot; data-lang=&quot;swift&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;__test_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kr&quot;&gt;get&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kc&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;kr&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kc&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;newValue&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;The same goes for &lt;code&gt;let&lt;/code&gt;, &lt;code&gt;func&lt;/code&gt;, and &lt;code&gt;init&lt;/code&gt; . The only specific thing to keep in mind that if you annotate a &lt;code&gt;class&lt;/code&gt; initializer, you need to mark it as &lt;code&gt;required&lt;/code&gt;, otherwise the build will fail (but a nice comment will tell you why).&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/Swift_VisibleForTesting_Macro&quot;&gt;Swift macro : @VisibleForTesting&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure&lt;/a&gt; on April 19, 2024.&lt;/p&gt;</content>
+</entry>
 
 
 <entry>
@@ -84,12 +174,12 @@ However it comes with one downside, local branches can quickly become messy and 
 
 &lt;p&gt;&lt;code&gt;git&lt;/code&gt; is a really well designed tool and removing remote references from your local repository is easily done by&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span&gt;&lt;/span&gt;git remote prune origin&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span&gt;&lt;/span&gt;git&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;remote&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;prune&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;origin&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;This will remove local references to non existing branches, however it is not useful to remember this command, we can configure &lt;code&gt;git&lt;/code&gt; so that it
 prunes automatically on fetching :&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span&gt;&lt;/span&gt;git config --global fetch.prune &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span&gt;&lt;/span&gt;git&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;config&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;--global&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;fetch.prune&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h2 id=&quot;removing-local-branches&quot;&gt;Removing local branches&lt;/h2&gt;
 
@@ -461,30 +551,30 @@ However, with a small script you can speed up your access to machines even with 
 
 &lt;p&gt;Let’s say our gateway is named &lt;code&gt;gateway&lt;/code&gt; and our target host &lt;code&gt;myAppHost&lt;/code&gt; the classical way of doing it would be :&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;ssh gateway
-you@gateway $ hostname
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;ssh&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;gateway
+you@gateway&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;$&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;hostname
 gateway.my.tld
-you@gateway $ ssh myAppHost
-you@myAppHost $ hostname
+you@gateway&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;$&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;ssh&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;myAppHost
+you@myAppHost&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;$&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;hostname
 myAppHost.my.tld
-   &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;span class=&quot;w&quot;&gt;   &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h2 id=&quot;faster-way-of-hoping&quot;&gt;Faster way of hop’ing&lt;/h2&gt;
 
 &lt;p&gt;A quicker way of doing this is to specify the ssh command directly, there is one thing to tell ssh though: allocating a TTY even if it does not seem to be connected to one. 
 In fact, the command supplied to ssh is not supposed to be interactive, that is why you need to give this hint to SSH :&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;ssh -t gateway ssh myAppHost
-you@myAppHost $ hostname
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;ssh&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;-t&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;gateway&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;ssh&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;myAppHost
+you@myAppHost&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;$&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;hostname
 myAppHost.my.tld
-   &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;span class=&quot;w&quot;&gt;   &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h2 id=&quot;script-this-&quot;&gt;Script this !&lt;/h2&gt;
 &lt;p&gt;The script is really simple, and only consists in the following&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;ch&quot;&gt;#!/bin/sh&lt;/span&gt;
-ssh -t gateway ssh &lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;
-   &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+ssh&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;-t&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;gateway&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;ssh&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;   &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Save this in your path and give it the run permission then you are all set (mine is named &lt;code&gt;gssh&lt;/code&gt;). All you have to do to connect is now a simple &lt;code&gt;gssh myAppHost&lt;/code&gt;&lt;/p&gt;
 
@@ -654,20 +744,20 @@ But, if there is forked processes, you won’t be able to debug inside them.&lt;
 
 &lt;p&gt;I issued the following commands to “jail” the rescue mode into my machine :&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ mount /dev/sda1 /mnt
-$ mount /dev/sda2 /mnt/home
-    
-$ mount -o &lt;span class=&quot;nb&quot;&gt;bind&lt;/span&gt; /proc /mnt/proc
-$ mount -o &lt;span class=&quot;nb&quot;&gt;bind&lt;/span&gt; /dev /mnt/dev
-$ mount -o &lt;span class=&quot;nb&quot;&gt;bind&lt;/span&gt; /dev/pts /mnt/dev/pts
-$ mount -o &lt;span class=&quot;nb&quot;&gt;bind&lt;/span&gt; /sys /mnt/sys 
-$ chroot /mnt/
-    &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;mount&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;/dev/sda1&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;/mnt
+$&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;mount&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;/dev/sda2&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;/mnt/home
+&lt;span class=&quot;w&quot;&gt;    &lt;/span&gt;
+$&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;mount&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;-o&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;bind&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;/proc&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;/mnt/proc
+$&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;mount&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;-o&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;bind&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;/dev&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;/mnt/dev
+$&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;mount&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;-o&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;bind&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;/dev/pts&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;/mnt/dev/pts
+$&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;mount&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;-o&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;bind&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;/sys&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;/mnt/sys&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;
+$&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;chroot&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;/mnt/
+&lt;span class=&quot;w&quot;&gt;    &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;From then, I was on my machine, with my files and so on, so I have been able to run &lt;code&gt;dpkg&lt;/code&gt; to finish the install :&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ dpkg --configure --a
-    &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;dpkg&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;--configure&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;--a
+&lt;span class=&quot;w&quot;&gt;    &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Finally, &lt;code&gt;dpkg&lt;/code&gt; sent me back to a working prompt and I have been able to reboot the machine (do not forget to change boot disk in OVH manager to &lt;code&gt;hd&lt;/code&gt; or &lt;code&gt;netboot&lt;/code&gt; to prevent rebooting in rescue mode).&lt;/p&gt;
 
@@ -912,13 +1002,13 @@ sudo VirtualBox;
     <email></email>
   </author>
   <content type="html">&lt;p&gt;
-  When you're developping Web applications, you often ask yourself what does your beautiful design will look like if your users enter a very long text. Or you may want to prototype a new screen based on an existing one, I came around a quick hack using HTML5 goodness: &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Content_Editable&quot;&gt;content editable&lt;/a&gt; !
+  When you&apos;re developping Web applications, you often ask yourself what does your beautiful design will look like if your users enter a very long text. Or you may want to prototype a new screen based on an existing one, I came around a quick hack using HTML5 goodness: &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Content_Editable&quot;&gt;content editable&lt;/a&gt; !
 &lt;/p&gt;
 &lt;p&gt;
   On the page you want to edit, open your JavaScript console (Cmd+Alt+I on Chrome Mac), and enter the following 
-  &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span&gt;&lt;/span&gt;  &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;contentEditable&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;&lt;br/&gt;
-  Now you can freely edit the text on your page, once you're done, you can switch off the content editable mode setting the property to false !
+  &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;contentEditable&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;&lt;br/&gt;
+  Now you can freely edit the text on your page, once you&apos;re done, you can switch off the content editable mode setting the property to false !
 &lt;/p&gt;
   &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/www/quickly-test-design-changes&quot;&gt;Quickly test design changes&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure&lt;/a&gt; on October 01, 2013.&lt;/p&gt;</content>
 </entry>
@@ -935,16 +1025,16 @@ sudo VirtualBox;
     <uri>http://www.bloggure.info</uri>
     <email></email>
   </author>
-  <content type="html">&lt;!--:en--&gt;&lt;img class=&quot;alignright size-medium wp-image-74&quot; alt=&quot;Maven&quot; src=&quot;/images/uploads/2010/11/Maven_logo1-300x76.gif&quot; width=&quot;300&quot; height=&quot;76&quot; /&gt;&lt;p&gt;At &lt;a href=&quot;http://www.srmvision.com&quot;&gt;SRMvision&lt;/a&gt;, we develop with localization in mind. We don't have any user visible text that is not in fact tied to a java property file. Quickly, the problem that we faced was the difficulty to keep every language file in sync (and to tidy things up). We developed a small Maven plugin allowing us to ensure that our two main problems are now gone : &lt;a href=&quot;https://github.com/code-troopers/merge-properties-maven-plugin&quot;&gt;merge-properties-maven-plugin&lt;/a&gt;.&lt;/p&gt;
+  <content type="html">&lt;!--:en--&gt;&lt;img class=&quot;alignright size-medium wp-image-74&quot; alt=&quot;Maven&quot; src=&quot;/images/uploads/2010/11/Maven_logo1-300x76.gif&quot; width=&quot;300&quot; height=&quot;76&quot; /&gt;&lt;p&gt;At &lt;a href=&quot;http://www.srmvision.com&quot;&gt;SRMvision&lt;/a&gt;, we develop with localization in mind. We don&apos;t have any user visible text that is not in fact tied to a java property file. Quickly, the problem that we faced was the difficulty to keep every language file in sync (and to tidy things up). We developed a small Maven plugin allowing us to ensure that our two main problems are now gone : &lt;a href=&quot;https://github.com/code-troopers/merge-properties-maven-plugin&quot;&gt;merge-properties-maven-plugin&lt;/a&gt;.&lt;/p&gt;
 &lt;h2&gt;Quick example&lt;/h2&gt;
-&lt;p&gt;I think the easiest way to understand how it works is to explain it with a real use case. Let's say we have a module named &lt;em&gt;Zones&lt;/em&gt; in our application, it will lead to create four files (if we are localized in two different languages) :&lt;/p&gt;
+&lt;p&gt;I think the easiest way to understand how it works is to explain it with a real use case. Let&apos;s say we have a module named &lt;em&gt;Zones&lt;/em&gt; in our application, it will lead to create four files (if we are localized in two different languages) :&lt;/p&gt;
 &lt;ul&gt;
 	&lt;li&gt;l10n/Zones_en.properties&lt;/li&gt;
 	&lt;li&gt;l10n/Zones_fr.properties&lt;/li&gt;
 	&lt;li&gt;help/Zones_en.properties&lt;/li&gt;
 	&lt;li&gt;help/Zones_fr.properties&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;As you might have guessed, we have got two different categories of target files, one for the application's localization, and the other one for the application's help. There is only one rule when it comes to filling these files, the property keys must begin with the name of the file, otherwise the build would fail. In this example, every key must begin with the prefix &quot;&lt;tt&gt;Zones.&quot;.&lt;/tt&gt;&lt;/p&gt;
+&lt;p&gt;As you might have guessed, we have got two different categories of target files, one for the application&apos;s localization, and the other one for the application&apos;s help. There is only one rule when it comes to filling these files, the property keys must begin with the name of the file, otherwise the build would fail. In this example, every key must begin with the prefix &quot;&lt;tt&gt;Zones.&quot;.&lt;/tt&gt;&lt;/p&gt;
 
 &lt;p&gt;At the end, we want to get two resource bundles, so we set up the build to do so :&lt;/p&gt;
 
@@ -958,42 +1048,9 @@ sudo VirtualBox;
 
 &lt;p&gt;If the build should check consistency in merged files and if it does not match, it will output blank keys as well as lonely keys in order for your translator to fix it easily.&lt;/p&gt;
 &lt;h2&gt;Bonus feature&lt;/h2&gt;
-&lt;p&gt;We use Java's MessageFormat to format our translated string, one of the thing we tend to forget is to escape the single quotes in our translations. The plugin does this magic for us, it automatically adds the missing single quotes in every messages.&lt;/p&gt;&lt;!--:--&gt;
+&lt;p&gt;We use Java&apos;s MessageFormat to format our translated string, one of the thing we tend to forget is to escape the single quotes in our translations. The plugin does this magic for us, it automatically adds the missing single quotes in every messages.&lt;/p&gt;&lt;!--:--&gt;
 
   &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/.maven/maven-merge-properties-plugin&quot;&gt;Merge properties maven plugin&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure&lt;/a&gt; on August 31, 2013.&lt;/p&gt;</content>
-</entry>
-
-
-<entry>
-  <title type="html"><![CDATA[Play Framework and i18n in views]]></title>
-  <link>http://www.bloggure.info/work/play-framework-and-i18n-in-views</link>
-  <id>http://www.bloggure.info/work/play-framework-and-i18n-in-views</id>
-  <published>2013-07-25T00:00:00+02:00</published>
-  <updated>2013-07-25T00:00:00+02:00</updated>
-  <author>
-    <name></name>
-    <uri>http://www.bloggure.info</uri>
-    <email></email>
-  </author>
-  <content type="html">&lt;!--:en--&gt;&lt;img class=&quot;alignright size-full wp-image-916&quot; alt=&quot;playlogo&quot; src=&quot;/images/uploads/2013/07/playlogo.png&quot; width=&quot;150&quot; height=&quot;50&quot; /&gt;
-
-&lt;p&gt;I was having a strange issue with localization in a Play Framework application. I followed the &lt;a href=&quot;http://www.playframework.com/documentation/2.0/ScalaI18N&quot;&gt;simple steps&lt;/a&gt; detailed on the official documentation but with no luck.&lt;/p&gt;
-
-&lt;p&gt;When experimenting, I figured out that the locale used is the default locale of the JVM. In my case, my default locale is French so I only had French in my application. But on Heroku, the default locale is English and thus the application was only working in English.&lt;/p&gt;
-
-&lt;p&gt;The trick consists in adding an implicit lang to your template views. In fact, Scala import an implicit lang with the lowest priority being the one coming from the JVM, if you want to get the language parsed from the Accept-Languages http header, you need to add an implicit as below :&lt;/p&gt;
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;@(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Html&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;implicit&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lang&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Lang&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-&lt;p&gt;With this little trick, your calls to localization will use the locale extracted from the http request as expected.&lt;/p&gt;&lt;!--:--&gt;&lt;!--:fr&lt;img class=&quot;alignright size-full wp-image-916&quot; alt=&quot;playlogo&quot; src=&quot;/images/uploads/2013/07/playlogo.png&quot; width=&quot;150&quot; height=&quot;50&quot; /&gt;
-
-I was having a strange issue with localization in a Play Framework application. I followed the &lt;a href=&quot;http://www.playframework.com/documentation/2.0/ScalaI18N&quot;&gt;simple steps&lt;/a&gt; detailed on the official documentation but with no luck.
-
-When experimenting, I figured out that the locale used is the default locale of the JVM. In my case, my default locale is French so I only had French in my application. But on Heroku, the default locale is English and thus the application was only working in English.
-
-The trick consists in adding an implicit lang to your template views. In fact, Scala import an implicit lang with the lowest priority being the one coming from the JVM, if you want to get the language parsed from the Accept-Languages http header, you need to add an implicit as below :
-&lt;pre class=&quot;brush: scala&quot;&gt;@(title: String)(content: Html)(implicit lang: Lang)&lt;/pre&gt;
-With this little trick, your calls to localization will use the locale extracted from the http request as expected.&lt;--&gt;
-
-  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/work/play-framework-and-i18n-in-views&quot;&gt;Play Framework and i18n in views&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure&lt;/a&gt; on July 25, 2013.&lt;/p&gt;</content>
 </entry>
 
 </feed>

@@ -113,6 +113,109 @@
                 datetime="2013-07-25T00:00:00+02:00"
                 itemprop="datePublished"
                 ><a
+                  href="http://www.bloggure.info/work/play-framework-and-i18n-in-views"
+                  >July 25, 2013</a
+                ></time
+              ></span
+            ><span
+              class="author vcard"
+              itemprop="author"
+              itemscope
+              itemtype="http://schema.org/Person"
+              ><span itemprop="name" class="fn"
+                ><a
+                  href="http://www.bloggure.info/cgatay"
+                  title="About cgatay"
+                  itemprop="url"
+                  >cgatay</a
+                ></span
+              ></span
+            >&nbsp; &bull; &nbsp;<span class="entry-comments"
+              ><a
+                href="http://www.bloggure.info/work/play-framework-and-i18n-in-views#disqus_thread"
+                >Comment</a
+              ></span
+            >
+          </div>
+          <!-- /.entry-meta -->
+
+          <h1 class="entry-title" itemprop="name">
+            <a
+              href="http://www.bloggure.info/work/play-framework-and-i18n-in-views"
+              rel="bookmark"
+              title="Play Framework and i18n in views"
+              itemprop="url"
+              >Play Framework and i18n in views</a
+            >
+          </h1>
+        </header>
+        <div class="entry-content" itemprop="description">
+          <!--:en--><img
+            class="alignright size-full wp-image-916"
+            alt="playlogo"
+            src="/images/uploads/2013/07/playlogo.png"
+            width="150"
+            height="50"
+          />
+
+          <p>
+            I was having a strange issue with localization in a Play Framework
+            application. I followed the
+            <a href="http://www.playframework.com/documentation/2.0/ScalaI18N"
+              >simple steps</a
+            >
+            detailed on the official documentation but with no luck.
+          </p>
+
+          <p>
+            When experimenting, I figured out that the locale used is the
+            default locale of the JVM. In my case, my default locale is French
+            so I only had French in my application. But on Heroku, the default
+            locale is English and thus the application was only working in
+            English.
+          </p>
+
+          <p>
+            The trick consists in adding an implicit lang to your template
+            views. In fact, Scala import an implicit lang with the lowest
+            priority being the one coming from the JVM, if you want to get the
+            language parsed from the Accept-Languages http header, you need to
+            add an implicit as below :
+          </p>
+          <figure class="highlight">
+            <pre><code class="language-scala" data-lang="scala"><span></span><span class="o">@</span><span class="p">(</span><span class="n">title</span><span class="p">:</span><span class="w"> </span><span class="nc">String</span><span class="p">)(</span><span class="n">content</span><span class="p">:</span><span class="w"> </span><span class="nc">Html</span><span class="p">)(</span><span class="k">implicit</span><span class="w"> </span><span class="n">lang</span><span class="p">:</span><span class="w"> </span><span class="nc">Lang</span><span class="p">)</span></code></pre>
+          </figure>
+          <p>
+            With this little trick, your calls to localization will use the
+            locale extracted from the http request as expected.
+          </p>
+          <!--:--><!--:fr<img class="alignright size-full wp-image-916" alt="playlogo" src="/images/uploads/2013/07/playlogo.png" width="150" height="50" />
+
+I was having a strange issue with localization in a Play Framework application. I followed the <a href="http://www.playframework.com/documentation/2.0/ScalaI18N">simple steps</a> detailed on the official documentation but with no luck.
+
+When experimenting, I figured out that the locale used is the default locale of the JVM. In my case, my default locale is French so I only had French in my application. But on Heroku, the default locale is English and thus the application was only working in English.
+
+The trick consists in adding an implicit lang to your template views. In fact, Scala import an implicit lang with the lowest priority being the one coming from the JVM, if you want to get the language parsed from the Accept-Languages http header, you need to add an implicit as below :
+<pre class="brush: scala">@(title: String)(content: Html)(implicit lang: Lang)</pre>
+With this little trick, your calls to localization will use the locale extracted from the http request as expected.<-->
+        </div>
+        <!-- /.entry-content -->
+      </article>
+      <!-- /.hentry -->
+
+      <article
+        class="hentry"
+        itemprop="blogPost"
+        itemscope
+        itemtype="http://schema.org/BlogPosting"
+      >
+        <header>
+          <div class="entry-meta">
+            <span class="entry-date date published updated"
+              ><time
+                datetime="2013-07-25T00:00:00+02:00"
+                itemprop="datePublished"
+                ><a
                   href="http://www.bloggure.info/.java/.scala/.shell/ci/shelf/centos-redhat-play-application-production-mode"
                   >July 25, 2013</a
                 ></time
@@ -397,7 +500,7 @@
           <p>
             You can find it here and use it with the following command :
             <figure class="highlight">
-              <pre><code class="language-bash" data-lang="bash"><span></span>heroku config:set <span class="nv">BUILDPACK_URL</span><span class="o">=</span>https://github.com/CedricGatay/heroku-buildpack-scala</code></pre>
+              <pre><code class="language-bash" data-lang="bash"><span></span>heroku<span class="w"> </span>config:set<span class="w"> </span><span class="nv">BUILDPACK_URL</span><span class="o">=</span>https://github.com/CedricGatay/heroku-buildpack-scala</code></pre>
             </figure>
           </p>
 
@@ -493,9 +596,9 @@
           </p>
           <figure class="highlight">
             <pre><code class="language-xml" data-lang="xml"><span></span><span class="nt">&lt;dependency&gt;</span>
-    <span class="nt">&lt;groupId&gt;</span>com.code-troopers<span class="nt">&lt;/groupId&gt;</span>
-    <span class="nt">&lt;artifactId&gt;</span>wicket-route-mount<span class="nt">&lt;/artifactId&gt;</span>
-    <span class="nt">&lt;version&gt;</span>0.1<span class="nt">&lt;/version&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>com.code-troopers<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>wicket-route-mount<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;version&gt;</span>0.1<span class="nt">&lt;/version&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span></code></pre>
           </figure>
           <em>
@@ -536,117 +639,6 @@
             >IntelliJ IDEA can do completion for class names in this file (you
             just need to hit the <code>ctrl+space</code> shortcut twice)</em
           ><!--:-->
-        </div>
-        <!-- /.entry-content -->
-      </article>
-      <!-- /.hentry -->
-
-      <article
-        class="hentry"
-        itemprop="blogPost"
-        itemscope
-        itemtype="http://schema.org/BlogPosting"
-      >
-        <header>
-          <div class="entry-meta">
-            <span class="entry-date date published updated"
-              ><time
-                datetime="2013-03-24T00:00:00+01:00"
-                itemprop="datePublished"
-                ><a
-                  href="http://www.bloggure.info/www/duckduckgo-in-thunderbird"
-                  >March 24, 2013</a
-                ></time
-              ></span
-            ><span
-              class="author vcard"
-              itemprop="author"
-              itemscope
-              itemtype="http://schema.org/Person"
-              ><span itemprop="name" class="fn"
-                ><a
-                  href="http://www.bloggure.info/yfonjallaz"
-                  title="About yfonjallaz"
-                  itemprop="url"
-                  >yfonjallaz</a
-                ></span
-              ></span
-            >&nbsp; &bull; &nbsp;<span class="entry-comments"
-              ><a
-                href="http://www.bloggure.info/www/duckduckgo-in-thunderbird#disqus_thread"
-                >Comment</a
-              ></span
-            >
-          </div>
-          <!-- /.entry-meta -->
-
-          <h1 class="entry-title" itemprop="name">
-            <a
-              href="http://www.bloggure.info/www/duckduckgo-in-thunderbird"
-              rel="bookmark"
-              title="DuckDuckGo in Thunderbird"
-              itemprop="url"
-              >DuckDuckGo in Thunderbird</a
-            >
-          </h1>
-        </header>
-        <div class="entry-content" itemprop="description">
-          <!--:en--><a
-            href="http://www.bloggure.info/wp-content/uploads/2013/03/logo_homepage.normal.v102.png"
-            ><img
-              class="alignright size-thumbnail wp-image-890"
-              alt="Logo DuckDuckGo"
-              src="/images/uploads/2013/03/logo_homepage.normal.v102-150x150.png"
-              width="150"
-              height="150" /></a
-          >Mozilla added a function to search on the web in the latest versions
-          of Thunderbird.That's nice, but the default search engine is bing. As
-          a DuckDuckGo user, I wanted to add my favourite search engine and use
-          it by default. So here's how to do it.
-          <ol>
-            <li>
-              <a
-                title="Find your Thunderbird profile folder"
-                href="http://kb.mozillazine.org/Profile_folder_-_Thunderbird"
-                >Find your profile folder</a
-              >.
-            </li>
-            <li>
-              In it, create a folder named "searchplugins" (without the quotes)
-              if it doesn't exists.
-            </li>
-            <li>
-              Save
-              <a
-                title="DuckDuckGo search plugin"
-                href="http://www.fribourg-est-independant.org/fonji/ddg.xml"
-                >this xml</a
-              >
-              file in it.
-            </li>
-            <li>(Re)start Thunderbird.</li>
-            <li>
-              Select some text in any mail, right clic and search with bing
-              (sorry).
-            </li>
-            <li>Click the DuckDuckGo icon on the left.</li>
-            <li>Click the heart icon on the bottom left.</li>
-            <li>That's all!</li>
-          </ol>
-          To add google, add
-          <a href="http://bwinton.latte.ca/Work/google.xml">this file</a> in the
-          same folder.<!--:--><!--:fr<a href="http://www.bloggure.info/wp-content/uploads/2013/03/logo_homepage.normal.v102.png"><img class="alignright size-thumbnail wp-image-890" alt="Logo DuckDuckGo" src="/images/uploads/2013/03/logo_homepage.normal.v102-150x150.png" width="150" height="150" /></a>Mozilla a ajouté une fonction de recherche sur internet dans les dernières versions de Thunderbird. C'est très utile, mais le moteur par défaut est bing et, en tant qu'utilisateur de DuckDuckGo, j'ai voulu changer ceci pour mettre mon moteur favori à la place. Voici comment procéder :
-<ol>
-	<li><a title="Trouver votre profil thunderbird" href="https://support.mozillamessaging.com/fr/kb/profil-utilisateur#w_oai-mon-profil-est-il-stockae">Trouvez le répertoire de votre profil.</a></li>
-	<li>Créez un répertoire "searchplugins" (sans guillemets) s'il n'existe pas déjà.</li>
-	<li>Sauvegardez <a title="DuckDuckGo search plugin" href="http://www.fribourg-est-independant.org/fonji/ddg.xml">ce fichier xml</a> dans searchplugins.</li>
-	<li>(Re)démarrez Thunderbird.</li>
-	<li>Selectionnez du texte dans un email, faites un clic droit puis "rechercher avec bing" (désolé).</li>
-	<li>Cliquez l'icône DuckDuckGo sur la gauche.</li>
-	<li>Cliquez sur le cœur dans le coin en bas à gauche.</li>
-	<li>C'est tout !</li>
-</ol>
-Pour utiliser google, ajoutez <a href="http://bwinton.latte.ca/Work/google.xml">ce fichier</a> dans le même répertoire.<-->
         </div>
         <!-- /.entry-content -->
       </article>
@@ -745,7 +737,7 @@ Pour utiliser google, ajoutez <a href="http://bwinton.latte.ca/Work/google.xml">
     <div class="footer-wrapper">
       <footer role="contentinfo">
         <span
-          >&copy; 2021 . Powered by
+          >&copy; 2024 . Powered by
           <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using a theme
           based on
           <a

@@ -177,16 +177,16 @@
           </p>
 
           <figure class="highlight">
-            <pre><code class="language-java" data-lang="java"><span></span><span class="kn">import</span> <span class="nn">org.apache.wicket.markup.MarkupType</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.apache.wicket.markup.html.WebMarkupContainer</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.apache.wicket.markup.html.basic.Label</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.apache.wicket.markup.html.panel.Panel</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.apache.wicket.markup.repeater.RepeatingView</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.apache.wicket.model.PropertyModel</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.apache.wicket.request.Response</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.apache.wicket.response.StringResponse</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.slf4j.Logger</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.slf4j.LoggerFactory</span><span class="o">;</span>
+            <pre><code class="language-java" data-lang="java"><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.wicket.markup.MarkupType</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.wicket.markup.html.WebMarkupContainer</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.wicket.markup.html.basic.Label</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.wicket.markup.html.panel.Panel</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.wicket.markup.repeater.RepeatingView</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.wicket.model.PropertyModel</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.wicket.request.Response</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.wicket.response.StringResponse</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.slf4j.Logger</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.slf4j.LoggerFactory</span><span class="p">;</span>
 
 
 <span class="cm">/**</span>
@@ -200,49 +200,49 @@
 <span class="cm"> *</span>
 <span class="cm"> * @author cedric at gatay.fr</span>
 <span class="cm"> */</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">HtmlTemplaterPanel</span> <span class="kd">extends</span> <span class="n">Panel</span> <span class="o">{</span>
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">Logger</span> <span class="n">LOGGER</span> <span class="o">=</span> 
-        <span class="n">LoggerFactory</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="n">HtmlTemplaterPanel</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">HtmlTemplaterPanel</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Panel</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">Logger</span><span class="w"> </span><span class="n">LOGGER</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
+<span class="w">        </span><span class="n">LoggerFactory</span><span class="p">.</span><span class="na">getLogger</span><span class="p">(</span><span class="n">HtmlTemplaterPanel</span><span class="p">.</span><span class="na">class</span><span class="p">);</span>
 
-    <span class="cm">/**</span>
+<span class="w">    </span><span class="cm">/**</span>
 <span class="cm">     * Default constructor takes no wicket:id &gt; </span>
 <span class="cm">     *   the panel will not be added to any component</span>
 <span class="cm">     */</span>
-    <span class="kd">public</span> <span class="nf">HtmlTemplaterPanel</span><span class="o">(){</span>
-        <span class="kd">super</span><span class="o">(</span><span class="s">&quot;dummy&quot;</span><span class="o">);</span>
-    <span class="o">}</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">HtmlTemplaterPanel</span><span class="p">(){</span>
+<span class="w">        </span><span class="kd">super</span><span class="p">(</span><span class="s">&quot;dummy&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
 
-    <span class="cm">/**</span>
+<span class="w">    </span><span class="cm">/**</span>
 <span class="cm">     * Call this whenever you want to get</span>
 <span class="cm">     *   the Html for this component</span>
 <span class="cm">     * @return Html or empty string</span>
 <span class="cm">     */</span>
-    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getHtml</span><span class="o">(){</span>
-        <span class="kd">final</span> <span class="n">Response</span> <span class="n">origResponse</span> <span class="o">=</span> <span class="n">getRequestCycle</span><span class="o">().</span><span class="na">getResponse</span><span class="o">();</span>
-        <span class="k">try</span><span class="o">{</span>
-            <span class="kd">final</span> <span class="n">StringResponse</span> <span class="n">stringResponse</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringResponse</span><span class="o">();</span>
-            <span class="n">getRequestCycle</span><span class="o">().</span><span class="na">setResponse</span><span class="o">(</span><span class="n">stringResponse</span><span class="o">);</span>
-            <span class="n">renderAssociatedMarkup</span><span class="o">(</span><span class="s">&quot;panel&quot;</span><span class="o">,</span> <span class="s">&quot;&quot;</span><span class="o">);</span>
-            <span class="k">return</span> <span class="n">stringResponse</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
-        <span class="o">}</span><span class="k">catch</span><span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">){</span>
-            <span class="n">LOGGER</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="s">&quot;Unable to build HTML for panel : {}&quot;</span><span class="o">,</span>
-                         <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
-        <span class="o">}</span><span class="k">finally</span><span class="o">{</span>
-            <span class="n">getRequestCycle</span><span class="o">().</span><span class="na">setResponse</span><span class="o">(</span><span class="n">origResponse</span><span class="o">);</span>
-        <span class="o">}</span>
-        <span class="k">return</span> <span class="s">&quot;&quot;</span><span class="o">;</span>
-    <span class="o">}</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">getHtml</span><span class="p">(){</span>
+<span class="w">        </span><span class="kd">final</span><span class="w"> </span><span class="n">Response</span><span class="w"> </span><span class="n">origResponse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getRequestCycle</span><span class="p">().</span><span class="na">getResponse</span><span class="p">();</span>
+<span class="w">        </span><span class="k">try</span><span class="p">{</span>
+<span class="w">            </span><span class="kd">final</span><span class="w"> </span><span class="n">StringResponse</span><span class="w"> </span><span class="n">stringResponse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">StringResponse</span><span class="p">();</span>
+<span class="w">            </span><span class="n">getRequestCycle</span><span class="p">().</span><span class="na">setResponse</span><span class="p">(</span><span class="n">stringResponse</span><span class="p">);</span>
+<span class="w">            </span><span class="n">renderAssociatedMarkup</span><span class="p">(</span><span class="s">&quot;panel&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">stringResponse</span><span class="p">.</span><span class="na">toString</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span><span class="k">catch</span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">){</span>
+<span class="w">            </span><span class="n">LOGGER</span><span class="p">.</span><span class="na">error</span><span class="p">(</span><span class="s">&quot;Unable to build HTML for panel : {}&quot;</span><span class="p">,</span>
+<span class="w">                         </span><span class="n">e</span><span class="p">.</span><span class="na">getMessage</span><span class="p">());</span>
+<span class="w">        </span><span class="p">}</span><span class="k">finally</span><span class="p">{</span>
+<span class="w">            </span><span class="n">getRequestCycle</span><span class="p">().</span><span class="na">setResponse</span><span class="p">(</span><span class="n">origResponse</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 
-    <span class="nd">@Override</span>
-    <span class="kd">protected</span> <span class="kt">boolean</span> <span class="nf">getStatelessHint</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-    <span class="o">}</span>
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">protected</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">getStatelessHint</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="n">MarkupType</span> <span class="nf">getMarkupType</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">MarkupType</span><span class="o">.</span><span class="na">HTML_MARKUP_TYPE</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span></code></pre>
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">MarkupType</span><span class="w"> </span><span class="nf">getMarkupType</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">MarkupType</span><span class="p">.</span><span class="na">HTML_MARKUP_TYPE</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span></code></pre>
           </figure>
           <p>
             If you want to generate a template using Apache Wicket, you only
@@ -323,17 +323,16 @@
           <div class="read-more-content">
             <h3>
               <a
-                href="http://www.bloggure.info/iOS-DarkModeBackground-App-Switcher"
-                title="Dark Mode iOS Snapshot"
-                >Dark Mode iOS Snapshot</a
+                href="http://www.bloggure.info/Swift_VisibleForTesting_Macro"
+                title="Swift macro : @VisibleForTesting"
+                >Swift macro : @VisibleForTesting</a
               >
             </h3>
             <p>
-              # Dark mode supportAs you might know, iOS supports Dark mode since
-              iOS 12. It is pretty straightforward to implement it by using
-              dynamic ...&hellip;
-              <a
-                href="http://www.bloggure.info/iOS-DarkModeBackground-App-Switcher"
+              As an ancient Java developer, I’ve learned to use a set of
+              annotations to bring meta programming in my projects. Meta
+              programming can be ...&hellip;
+              <a href="http://www.bloggure.info/Swift_VisibleForTesting_Macro"
                 >Continue reading</a
               >
             </p>
@@ -343,23 +342,23 @@
           <div class="read-more-list">
             <div class="list-item">
               <h4>
-                <a href="http://www.bloggure.info/git-gone" title="Git-gone"
-                  >Git-gone</a
+                <a
+                  href="http://www.bloggure.info/iOS-DarkModeBackground-App-Switcher"
+                  title="Dark Mode iOS Snapshot"
+                  >Dark Mode iOS Snapshot</a
                 >
               </h4>
-              <span>Published on December 31, 2020</span>
+              <span>Published on January 10, 2021</span>
             </div>
             <!-- /.list-item -->
 
             <div class="list-item">
               <h4>
-                <a
-                  href="http://www.bloggure.info/mac-checklist"
-                  title="macOS tools checklist"
-                  >macOS tools checklist</a
+                <a href="http://www.bloggure.info/git-gone" title="Git-gone"
+                  >Git-gone</a
                 >
               </h4>
-              <span>Published on December 06, 2020</span>
+              <span>Published on December 31, 2020</span>
             </div>
             <!-- /.list-item -->
           </div>
@@ -373,7 +372,7 @@
     <div class="footer-wrapper">
       <footer role="contentinfo">
         <span
-          >&copy; 2021 . Powered by
+          >&copy; 2024 . Powered by
           <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using a theme
           based on
           <a

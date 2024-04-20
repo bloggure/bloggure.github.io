@@ -216,13 +216,13 @@
             code like this:
             <figure class="highlight">
               <pre><code class="language-java" data-lang="java"><span></span><span class="nd">@NotNull</span>
-<span class="kd">public</span> <span class="n">String</span> <span class="nf">doSomething</span><span class="o">(</span><span class="nd">@NotNull</span> <span class="n">Object</span> <span class="n">myObject</span><span class="o">,</span>
-                   <span class="nd">@PropertyKey</span><span class="o">(</span><span class="n">resourceBundle</span><span class="o">=</span><span class="s">&quot;fr.gatay.cedric.bloggure.language&quot;</span><span class="o">)</span> 
-                   <span class="n">String</span> <span class="n">propertyKey</span><span class="o">,</span> 
-                   <span class="nd">@Nullable</span> <span class="n">String</span> <span class="n">argument</span><span class="o">){</span>
-	 <span class="nd">@NonNls</span> <span class="n">String</span> <span class="n">s</span> <span class="o">=</span>  <span class="s">&quot;Return Value&quot;</span><span class="o">;</span>
-     <span class="k">return</span> <span class="n">s</span><span class="o">;</span>
-<span class="o">}</span></code></pre>
+<span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">doSomething</span><span class="p">(</span><span class="nd">@NotNull</span><span class="w"> </span><span class="n">Object</span><span class="w"> </span><span class="n">myObject</span><span class="p">,</span>
+<span class="w">                   </span><span class="nd">@PropertyKey</span><span class="p">(</span><span class="n">resourceBundle</span><span class="o">=</span><span class="s">&quot;fr.gatay.cedric.bloggure.language&quot;</span><span class="p">)</span><span class="w"> </span>
+<span class="w">                   </span><span class="n">String</span><span class="w"> </span><span class="n">propertyKey</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                   </span><span class="nd">@Nullable</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">argument</span><span class="p">){</span>
+<span class="w">	 </span><span class="nd">@NonNls</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="s">&quot;Return Value&quot;</span><span class="p">;</span>
+<span class="w">     </span><span class="k">return</span><span class="w"> </span><span class="n">s</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
             </figure>
           </p>
           <p>
@@ -280,10 +280,10 @@
             the following:
             <figure class="highlight">
               <pre><code class="language-xml" data-lang="xml"><span></span><span class="nt">&lt;root&gt;</span>
-    <span class="nt">&lt;item</span> <span class="na">name=</span><span class="s">&#39;org.apache.wicket.extensions.Initializer void init(org.apache.wicket.Application) 0&#39;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;annotation</span> <span class="na">name=</span><span class="s">&#39;org.jetbrains.annotations.NotNull&#39;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;/annotation&gt;</span>
-    <span class="nt">&lt;/item&gt;</span>
+<span class="w">    </span><span class="nt">&lt;item</span><span class="w"> </span><span class="na">name=</span><span class="s">&#39;org.apache.wicket.extensions.Initializer void init(org.apache.wicket.Application) 0&#39;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;annotation</span><span class="w"> </span><span class="na">name=</span><span class="s">&#39;org.jetbrains.annotations.NotNull&#39;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/annotation&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/item&gt;</span>
 <span class="nt">&lt;/root&gt;</span></code></pre>
             </figure>
           </p>
@@ -311,16 +311,16 @@
           </p>
           <figure class="highlight">
             <pre><code class="language-xml" data-lang="xml"><span></span><span class="nt">&lt;root&gt;</span>
- <span class="nt">&lt;item</span> <span class="na">name=</span><span class="s">&quot;org.apache.wicket.Component void error(java.io.Serializable) 0&quot;</span><span class="nt">&gt;</span>
-	 <span class="nt">&lt;annotation</span> <span class="na">name=</span><span class="s">&quot;org.jetbrains.annotations.PropertyKey&quot;</span><span class="nt">&gt;</span>
-	 	<span class="nt">&lt;val</span> <span class="na">name=</span><span class="s">&quot;resourceBundle&quot;</span> <span class="na">val=</span><span class="s">&quot;fr.gatay.cedric.bloggure.language&quot;</span><span class="nt">/&gt;</span>
-	 <span class="nt">&lt;/annotation&gt;</span>
- <span class="nt">&lt;/item&gt;</span>
- <span class="nt">&lt;item</span> <span class="na">name=</span><span class="s">&quot;org.apache.wicket.Component void info(java.lang.String) 0&quot;</span><span class="nt">&gt;</span>
-	 <span class="nt">&lt;annotation</span> <span class="na">name=</span><span class="s">&quot;org.jetbrains.annotations.PropertyKey&quot;</span><span class="nt">&gt;</span>
- 		<span class="nt">&lt;val</span> <span class="na">name=</span><span class="s">&quot;resourceBundle&quot;</span> <span class="na">val=</span><span class="s">&quot;fr.gatay.cedric.bloggure.language&quot;</span><span class="nt">/&gt;</span>
-	 <span class="nt">&lt;/annotation&gt;</span>
- <span class="nt">&lt;/item&gt;</span>
+<span class="w"> </span><span class="nt">&lt;item</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;org.apache.wicket.Component void error(java.io.Serializable) 0&quot;</span><span class="nt">&gt;</span>
+<span class="w">	 </span><span class="nt">&lt;annotation</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;org.jetbrains.annotations.PropertyKey&quot;</span><span class="nt">&gt;</span>
+<span class="w">	 	</span><span class="nt">&lt;val</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;resourceBundle&quot;</span><span class="w"> </span><span class="na">val=</span><span class="s">&quot;fr.gatay.cedric.bloggure.language&quot;</span><span class="nt">/&gt;</span>
+<span class="w">	 </span><span class="nt">&lt;/annotation&gt;</span>
+<span class="w"> </span><span class="nt">&lt;/item&gt;</span>
+<span class="w"> </span><span class="nt">&lt;item</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;org.apache.wicket.Component void info(java.lang.String) 0&quot;</span><span class="nt">&gt;</span>
+<span class="w">	 </span><span class="nt">&lt;annotation</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;org.jetbrains.annotations.PropertyKey&quot;</span><span class="nt">&gt;</span>
+<span class="w"> 		</span><span class="nt">&lt;val</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;resourceBundle&quot;</span><span class="w"> </span><span class="na">val=</span><span class="s">&quot;fr.gatay.cedric.bloggure.language&quot;</span><span class="nt">/&gt;</span>
+<span class="w">	 </span><span class="nt">&lt;/annotation&gt;</span>
+<span class="w"> </span><span class="nt">&lt;/item&gt;</span>
 <span class="nt">&lt;/root&gt;</span></code></pre>
           </figure>
           <p>
@@ -479,17 +479,16 @@ Il peut être nécessaire de redémarrer IntelliJ pour que les nouvelles valeurs
           <div class="read-more-content">
             <h3>
               <a
-                href="http://www.bloggure.info/iOS-DarkModeBackground-App-Switcher"
-                title="Dark Mode iOS Snapshot"
-                >Dark Mode iOS Snapshot</a
+                href="http://www.bloggure.info/Swift_VisibleForTesting_Macro"
+                title="Swift macro : @VisibleForTesting"
+                >Swift macro : @VisibleForTesting</a
               >
             </h3>
             <p>
-              # Dark mode supportAs you might know, iOS supports Dark mode since
-              iOS 12. It is pretty straightforward to implement it by using
-              dynamic ...&hellip;
-              <a
-                href="http://www.bloggure.info/iOS-DarkModeBackground-App-Switcher"
+              As an ancient Java developer, I’ve learned to use a set of
+              annotations to bring meta programming in my projects. Meta
+              programming can be ...&hellip;
+              <a href="http://www.bloggure.info/Swift_VisibleForTesting_Macro"
                 >Continue reading</a
               >
             </p>
@@ -499,23 +498,23 @@ Il peut être nécessaire de redémarrer IntelliJ pour que les nouvelles valeurs
           <div class="read-more-list">
             <div class="list-item">
               <h4>
-                <a href="http://www.bloggure.info/git-gone" title="Git-gone"
-                  >Git-gone</a
+                <a
+                  href="http://www.bloggure.info/iOS-DarkModeBackground-App-Switcher"
+                  title="Dark Mode iOS Snapshot"
+                  >Dark Mode iOS Snapshot</a
                 >
               </h4>
-              <span>Published on December 31, 2020</span>
+              <span>Published on January 10, 2021</span>
             </div>
             <!-- /.list-item -->
 
             <div class="list-item">
               <h4>
-                <a
-                  href="http://www.bloggure.info/mac-checklist"
-                  title="macOS tools checklist"
-                  >macOS tools checklist</a
+                <a href="http://www.bloggure.info/git-gone" title="Git-gone"
+                  >Git-gone</a
                 >
               </h4>
-              <span>Published on December 06, 2020</span>
+              <span>Published on December 31, 2020</span>
             </div>
             <!-- /.list-item -->
           </div>
@@ -529,7 +528,7 @@ Il peut être nécessaire de redémarrer IntelliJ pour que les nouvelles valeurs
     <div class="footer-wrapper">
       <footer role="contentinfo">
         <span
-          >&copy; 2021 . Powered by
+          >&copy; 2024 . Powered by
           <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using a theme
           based on
           <a

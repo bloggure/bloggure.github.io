@@ -110,6 +110,116 @@
           <div class="entry-meta">
             <span class="entry-date date published updated"
               ><time
+                datetime="2011-07-23T00:00:00+02:00"
+                itemprop="datePublished"
+                ><a
+                  href="http://www.bloggure.info/.java/work/glassfish-3-x-recover-admin-console-access"
+                  >July 23, 2011</a
+                ></time
+              ></span
+            ><span
+              class="author vcard"
+              itemprop="author"
+              itemscope
+              itemtype="http://schema.org/Person"
+              ><span itemprop="name" class="fn"
+                ><a
+                  href="http://www.bloggure.info/cgatay"
+                  title="About cgatay"
+                  itemprop="url"
+                  >cgatay</a
+                ></span
+              ></span
+            >&nbsp; &bull; &nbsp;<span class="entry-comments"
+              ><a
+                href="http://www.bloggure.info/.java/work/glassfish-3-x-recover-admin-console-access#disqus_thread"
+                >Comment</a
+              ></span
+            >
+          </div>
+          <!-- /.entry-meta -->
+
+          <h1 class="entry-title" itemprop="name">
+            <a
+              href="http://www.bloggure.info/.java/work/glassfish-3-x-recover-admin-console-access"
+              rel="bookmark"
+              title="Glassfish 3.x - recover admin console access"
+              itemprop="url"
+              >Glassfish 3.x - recover admin console access</a
+            >
+          </h1>
+        </header>
+        <div class="entry-content" itemprop="description">
+          <!--:en--><img
+            class="size-full wp-image-71 alignright"
+            title="glassfish"
+            src="/images/uploads/2010/11/glassfish.png"
+            alt=""
+            width="92"
+            height="50"
+          />
+          <p>
+            I have an issue for quite  a long time with web administration
+            console in Glassfish 3.x. When I try to access it, I point my
+            browser to <code>http://127.0.0.1:4848</code>, the first access
+            shows me the usual "Web console is loading stuff", after a while, by
+            looking at the log, I see the web administration is ready. I then
+            hit refresh, it redirects me to
+            <code>http://127.0.0.1:4848/common/index.jsf</code> with a (not so)
+            beautiful 404 error !
+          </p>
+
+          <h2>The discovery</h2>
+          <p>
+            I found the workaround by telling myself, wait, it never asked me to
+            login....
+          </p>
+
+          <p>
+            Let's try to hit <code>http://127.0.0.1:4848/login.jsf</code>, well,
+            I got the usual login screen, I enter my login credential, and got
+            redirected to
+            <code>http://127.0.0.1:4848/common/index.jsf</code>.... but now
+            <strong>it works ! </strong>(I tried looking at Glassfish sources to
+            identify and narrow down the source of my problem, but with a quick
+            lookup, I couldn't figure out where the things are supposed to be
+            done...)
+          </p>
+
+          <h2>The Useful tip !</h2>
+          <p>
+            To make it short, bookmark or be used to access the web
+            administration console for your Glassfish 3.x server via
+            <a href="http://127.0.0.1:4848/login.jsf"
+              ><code>http://127.0.0.1:4848/login.jsf</code></a
+            >
+          </p>
+          !<!--:--><!--:fr<a rel="attachment wp-att-71" href="http://www.bloggure.info/work/glassfish-v3-custom-log-levels.html/attachment/glassfish"><img class="size-full wp-image-71 alignright" title="glassfish" src="/images/uploads/2010/11/glassfish.png" alt="" width="92" height="50" /></a>
+J'ai un problème depuis un petit moment avec la console d'administration web de Glassfish v3.x. Quand j'essaie d'y accéder, je vais vers l'adresse <code>http://127.0.0.1:4848</code>, le premier accès me montre l'habituel "Initialisation de la console d'administration". Après quelques instants, en regardant les logs, je vois que la console est prête. <br/>
+Je rafraichis donc la page qui me renvoies vers <code>http://127.0.0.1:4848/common/index.jsf</code> avec une magnifique erreur 404 !
+
+<h2>La découverte</h2>
+J'ai trouvé la solution en me disant, hum, il ne m'a jamais demandé de me logguer...
+
+Si j'essaie d'aller à l'addresse <code>http://127.0.0.1:4848/login.jsf</code>, et bien, j'ai l'écran de login habituel, je saisis mes informations de connexion et je suis redirigé vers <code>http://127.0.0.1:4848/common/index.jsf</code>.... mais maintenant <strong>ça marche ! </strong>(J'ai essayé de regarder les sources de Glassfish pour identifier et comprendre ce qui se passait, mais avec un rapide coup d'oeil je n'ai pas été capable de savoir où les choses sont censées se passer...)
+
+<h2>L'astuce pratique !</h2>
+Pour faire la version courte, mettez en favoris ou prenez l'habitude d'accéder à l'interface d'administration web de votre serveur Glassfish 3.x avec l'adresse <a href="http://127.0.0.1:4848/login.jsf"><code>http://127.0.0.1:4848/login.jsf</code></a> !:-->
+        </div>
+        <!-- /.entry-content -->
+      </article>
+      <!-- /.hentry -->
+
+      <article
+        class="hentry"
+        itemprop="blogPost"
+        itemscope
+        itemtype="http://schema.org/BlogPosting"
+      >
+        <header>
+          <div class="entry-meta">
+            <span class="entry-date date published updated"
+              ><time
                 datetime="2011-07-18T00:00:00+02:00"
                 itemprop="datePublished"
                 ><a
@@ -185,7 +295,7 @@
             sun-web.xml with the following content :
             <figure class="highlight">
               <pre><code class="language-xml" data-lang="xml"><span></span><span class="nt">&lt;sun-web-app&gt;</span>
-  <span class="nt">&lt;class-loader</span> <span class="na">delegate=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;&lt;/class-loader&gt;</span>
+<span class="w">  </span><span class="nt">&lt;class-loader</span><span class="w"> </span><span class="na">delegate=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;&lt;/class-loader&gt;</span>
 <span class="nt">&lt;/sun-web-app&gt;</span></code></pre>
             </figure>
           </p>
@@ -455,135 +565,6 @@ J'espère aider quelqu'un d'autre avec cette astuce !-->
       </article>
       <!-- /.hentry -->
 
-      <article
-        class="hentry"
-        itemprop="blogPost"
-        itemscope
-        itemtype="http://schema.org/BlogPosting"
-      >
-        <header>
-          <div class="entry-meta">
-            <span class="entry-date date published updated"
-              ><time
-                datetime="2010-12-05T00:00:00+01:00"
-                itemprop="datePublished"
-                ><a
-                  href="http://www.bloggure.info/.android/.java/big-photo-frame-widget"
-                  >December 05, 2010</a
-                ></time
-              ></span
-            ><span
-              class="author vcard"
-              itemprop="author"
-              itemscope
-              itemtype="http://schema.org/Person"
-              ><span itemprop="name" class="fn"
-                ><a
-                  href="http://www.bloggure.info/cgatay"
-                  title="About cgatay"
-                  itemprop="url"
-                  >cgatay</a
-                ></span
-              ></span
-            >&nbsp; &bull; &nbsp;<span class="entry-comments"
-              ><a
-                href="http://www.bloggure.info/.android/.java/big-photo-frame-widget#disqus_thread"
-                >Comment</a
-              ></span
-            >
-          </div>
-          <!-- /.entry-meta -->
-
-          <h1 class="entry-title" itemprop="name">
-            <a
-              href="http://www.bloggure.info/.android/.java/big-photo-frame-widget"
-              rel="bookmark"
-              title="Big Photo Frame Widget"
-              itemprop="url"
-              >Big Photo Frame Widget</a
-            >
-          </h1>
-        </header>
-        <div class="entry-content" itemprop="description">
-          <!--:en--><img
-            class="size-thumbnail wp-image-168 alignright"
-            title="Big Photo Frame Widget"
-            src="/images/uploads/2010/12/icon-150x150.png"
-            alt=""
-            width="120"
-            height="120"
-          />
-          <p>
-            Android features a standard widget for displaying the pictures of
-            your choice on your desktop, it's a good and frequently used widget
-            by all Android users (which means used more and more each day !).
-          </p>
-
-          <p>
-            The only thing missing from the standard widget is its only 2x2 size
-            available. By using recent alternative launchers (<a
-              href="http://bit.ly/hOvhGK"
-              target="_blank"
-              >ADW Launcher</a
-            >
-            /
-            <a href="http://bit.ly/fF6e0C" target="_blank">LauncherPro Plus</a>)
-            you can resize the widget on your home screen but picture scaling is
-            very poor.
-          </p>
-
-          <p>
-            The idea behing Big Photo Frame Widget is to fix the scaling issue
-            of the original widget and to provide different sizes : 2x3 / 3x2 /
-            3x3 / 4x4. By the way, the widget is free, but if you want to
-            support me, don't hesitate to hit the<a
-              href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=4G8MY8JN9Q2PE"
-              target="_blank"
-            >
-              donate link</a
-            >
-            !
-          </p>
-
-          <p>
-            If you want to try (and keep it I hope), scan the following QRCode
-            with your device :
-          </p>
-
-          <a href="http://bit.ly/i2NFkV"
-            ><img
-              class="aligncenter"
-              title="Big Photo Frame Widget"
-              src="http://chart.apis.google.com/chart?cht=qr&amp;chs=100x100&amp;chl=http://www.appbrain.com/app/fr.gatay.cedric.android.spf?install=web"
-              alt=""
-              width="100"
-              height="100"
-          /></a>
-          <p>
-            If you have feature request or bug reports, don't hesitate to
-            comment this post !
-          </p>
-
-          <p>
-            Update : I've released a donate version on the market, scan this
-            QRCode to access it :
-          </p>
-          <p style="text-align: center">
-            <a href="http://bit.ly/dE5Ga8"
-              ><img
-                class="aligncenter"
-                title="Big Photo Frame Widget - Donate"
-                src="http://chart.apis.google.com/chart?cht=qr&amp;chs=100x100&amp;chl=http://www.appbrain.com/app/fr.gatay.cedric.android.spf.donate?install=web"
-                alt=""
-                width="100"
-                height="100"
-            /></a>
-          </p>
-        </div>
-        <!-- /.entry-content -->
-      </article>
-      <!-- /.hentry -->
-
       <div class="pagination">
         <a href="http://www.bloggure.info/page17" class="btn">Previous</a>
 
@@ -677,7 +658,7 @@ J'espère aider quelqu'un d'autre avec cette astuce !-->
     <div class="footer-wrapper">
       <footer role="contentinfo">
         <span
-          >&copy; 2021 . Powered by
+          >&copy; 2024 . Powered by
           <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using a theme
           based on
           <a

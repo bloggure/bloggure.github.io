@@ -201,7 +201,7 @@
             by using the following command line :
 
             <figure class="highlight">
-              <pre><code class="language-bash" data-lang="bash"><span></span>svn co https://wicket-stuff.svn.sourceforge.net/svnroot/wicket-stuff/releases/wicketstuff-core-1.4-rc7/tinymce-parent</code></pre>
+              <pre><code class="language-bash" data-lang="bash"><span></span>svn<span class="w"> </span>co<span class="w"> </span>https://wicket-stuff.svn.sourceforge.net/svnroot/wicket-stuff/releases/wicketstuff-core-1.4-rc7/tinymce-parent</code></pre>
             </figure>
           </p>
 
@@ -246,31 +246,31 @@
           </p>
 
           <figure class="highlight">
-            <pre><code class="language-js" data-lang="js"><span></span><span class="lineno"> 1 </span><span class="kd">function</span> <span class="nx">getBase</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
-<span class="lineno"> 2 </span>    <span class="kd">var</span> <span class="nx">src_</span> <span class="o">=</span> <span class="nx">n</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">quot</span><span class="p">;</span><span class="nx">src_</span><span class="o">&amp;</span><span class="nx">quot</span><span class="p">;);</span>
-<span class="lineno"> 3 </span>    <span class="k">if</span> <span class="p">(</span><span class="nx">src_</span><span class="p">)</span> <span class="p">{</span>
-<span class="lineno"> 4 </span>        <span class="nx">n</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="nx">src_</span><span class="p">;</span>
-<span class="lineno"> 5 </span>    <span class="p">}</span>
-<span class="lineno"> 6 </span>   <span class="k">if</span> <span class="p">(</span><span class="nx">n</span><span class="p">.</span><span class="nx">src</span> <span class="o">&amp;</span><span class="nx">amp</span><span class="p">;</span><span class="o">&amp;</span><span class="nx">amp</span><span class="p">;</span> <span class="sr">/tiny_mce(|_gzip|_jquery|_prototype|_full)(_dev|_src)?.js/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">n</span><span class="p">.</span><span class="nx">src</span><span class="p">))</span> <span class="p">{</span>
-<span class="lineno"> 7 </span>        <span class="k">if</span> <span class="p">(</span><span class="sr">/_(src|dev)\.js/g</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">n</span><span class="p">.</span><span class="nx">src</span><span class="p">))</span> <span class="p">{</span>
-<span class="lineno"> 8 </span>            <span class="nx">t</span><span class="p">.</span><span class="nx">suffix</span> <span class="o">=</span> <span class="s1">&#39;_src&#39;</span><span class="p">;</span>
-<span class="lineno"> 9 </span>        <span class="p">}</span>
-<span class="lineno">10 </span>        <span class="k">if</span> <span class="p">((</span><span class="nx">p</span> <span class="o">=</span> <span class="nx">n</span><span class="p">.</span><span class="nx">src</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">&#39;?&#39;</span><span class="p">))</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-<span class="lineno">11 </span>            <span class="nx">t</span><span class="p">.</span><span class="nx">query</span> <span class="o">=</span> <span class="nx">n</span><span class="p">.</span><span class="nx">src</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="nx">p</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
-<span class="lineno">12 </span>        <span class="p">}</span>
-<span class="lineno">13 </span>
-<span class="lineno">14 </span>        <span class="nx">t</span><span class="p">.</span><span class="nx">baseURL</span> <span class="o">=</span> <span class="nx">n</span><span class="p">.</span><span class="nx">src</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">n</span><span class="p">.</span><span class="nx">src</span><span class="p">.</span><span class="nx">lastIndexOf</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">));</span>
-<span class="lineno">15 </span>
-<span class="lineno">16 </span>        <span class="c1">// If path to script is relative and a base href was found add that one infront</span>
-<span class="lineno">17 </span>        <span class="c1">// the src property will always be an absolute one on non IE browsers and IE 8</span>
-<span class="lineno">18 </span>        <span class="c1">// so this logic will basically only be executed on older IE versions</span>
-<span class="lineno">19 </span>        <span class="k">if</span> <span class="p">(</span><span class="nx">base</span> <span class="o">&amp;</span><span class="nx">amp</span><span class="p">;</span><span class="o">&amp;</span><span class="nx">amp</span><span class="p">;</span> <span class="nx">t</span><span class="p">.</span><span class="nx">baseURL</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">&#39;://&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="o">&amp;</span><span class="nx">amp</span><span class="p">;</span><span class="o">&amp;</span><span class="nx">amp</span><span class="p">;</span> <span class="nx">t</span><span class="p">.</span><span class="nx">baseURL</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span> <span class="o">!==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-<span class="lineno">20 </span>            <span class="nx">t</span><span class="p">.</span><span class="nx">baseURL</span> <span class="o">=</span> <span class="nx">base</span> <span class="o">+</span> <span class="nx">t</span><span class="p">.</span><span class="nx">baseURL</span><span class="p">;</span>
-<span class="lineno">21 </span>        <span class="p">}</span>
-<span class="lineno">22 </span>        <span class="k">return</span> <span class="nx">t</span><span class="p">.</span><span class="nx">baseURL</span><span class="p">;</span>
-<span class="lineno">23 </span>  <span class="p">}</span>
-<span class="lineno">24 </span>  <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
-<span class="lineno">25 </span><span class="p">}</span></code></pre>
+            <pre><code class="language-js" data-lang="js"><span></span><span class="linenos"> 1</span><span class="kd">function</span><span class="w"> </span><span class="nx">getBase</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 2</span><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">src_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">n</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">quot</span><span class="p">;</span><span class="nx">src_</span><span class="o">&amp;</span><span class="nx">quot</span><span class="p">;);</span>
+<span class="linenos"> 3</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">src_</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 4</span><span class="w">        </span><span class="nx">n</span><span class="p">.</span><span class="nx">src</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">src_</span><span class="p">;</span>
+<span class="linenos"> 5</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos"> 6</span><span class="w">   </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">n</span><span class="p">.</span><span class="nx">src</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">amp</span><span class="p">;</span><span class="o">&amp;</span><span class="nx">amp</span><span class="p">;</span><span class="w"> </span><span class="sr">/tiny_mce(|_gzip|_jquery|_prototype|_full)(_dev|_src)?.js/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">n</span><span class="p">.</span><span class="nx">src</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 7</span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="sr">/_(src|dev)\.js/g</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">n</span><span class="p">.</span><span class="nx">src</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 8</span><span class="w">            </span><span class="nx">t</span><span class="p">.</span><span class="nx">suffix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;_src&#39;</span><span class="p">;</span>
+<span class="linenos"> 9</span><span class="w">        </span><span class="p">}</span>
+<span class="linenos">10</span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="nx">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">n</span><span class="p">.</span><span class="nx">src</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">&#39;?&#39;</span><span class="p">))</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="o">-</span><span class="mf">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">11</span><span class="w">            </span><span class="nx">t</span><span class="p">.</span><span class="nx">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">n</span><span class="p">.</span><span class="nx">src</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="nx">p</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1</span><span class="p">);</span>
+<span class="linenos">12</span><span class="w">        </span><span class="p">}</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span><span class="w">        </span><span class="nx">t</span><span class="p">.</span><span class="nx">baseURL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">n</span><span class="p">.</span><span class="nx">src</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">n</span><span class="p">.</span><span class="nx">src</span><span class="p">.</span><span class="nx">lastIndexOf</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">));</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span><span class="w">        </span><span class="c1">// If path to script is relative and a base href was found add that one infront</span>
+<span class="linenos">17</span><span class="w">        </span><span class="c1">// the src property will always be an absolute one on non IE browsers and IE 8</span>
+<span class="linenos">18</span><span class="w">        </span><span class="c1">// so this logic will basically only be executed on older IE versions</span>
+<span class="linenos">19</span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">base</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">amp</span><span class="p">;</span><span class="o">&amp;</span><span class="nx">amp</span><span class="p">;</span><span class="w"> </span><span class="nx">t</span><span class="p">.</span><span class="nx">baseURL</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">&#39;://&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="o">-</span><span class="mf">1</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">amp</span><span class="p">;</span><span class="o">&amp;</span><span class="nx">amp</span><span class="p">;</span><span class="w"> </span><span class="nx">t</span><span class="p">.</span><span class="nx">baseURL</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="mf">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">20</span><span class="w">            </span><span class="nx">t</span><span class="p">.</span><span class="nx">baseURL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">base</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">t</span><span class="p">.</span><span class="nx">baseURL</span><span class="p">;</span>
+<span class="linenos">21</span><span class="w">        </span><span class="p">}</span>
+<span class="linenos">22</span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">t</span><span class="p">.</span><span class="nx">baseURL</span><span class="p">;</span>
+<span class="linenos">23</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">24</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="linenos">25</span><span class="p">}</span></code></pre>
           </figure>
 
           <p>
@@ -283,7 +283,7 @@
           </p>
 
           <figure class="highlight">
-            <pre><code class="language-js" data-lang="js"><span></span><span class="nx">t</span><span class="p">.</span><span class="nx">isAjax</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span></code></pre>
+            <pre><code class="language-js" data-lang="js"><span></span><span class="nx">t</span><span class="p">.</span><span class="nx">isAjax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span></code></pre>
           </figure>
 
           <p>
@@ -293,10 +293,10 @@
           </p>
 
           <figure class="highlight">
-            <pre><code class="language-js" data-lang="js"><span></span><span class="lineno">1 </span><span class="k">if</span> <span class="p">(</span><span class="nx">src_</span><span class="p">)</span> <span class="p">{</span>
-<span class="lineno">2 </span>    <span class="nx">t</span><span class="p">.</span><span class="nx">isAjax</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
-<span class="lineno">3 </span>    <span class="nx">n</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="nx">src_</span><span class="p">;</span>
-<span class="lineno">4 </span><span class="p">}</span></code></pre>
+            <pre><code class="language-js" data-lang="js"><span></span><span class="linenos">1</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">src_</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">2</span><span class="w">    </span><span class="nx">t</span><span class="p">.</span><span class="nx">isAjax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="linenos">3</span><span class="w">    </span><span class="nx">n</span><span class="p">.</span><span class="nx">src</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">src_</span><span class="p">;</span>
+<span class="linenos">4</span><span class="p">}</span></code></pre>
           </figure>
 
           <p>
@@ -305,7 +305,7 @@
           </p>
 
           <figure class="highlight">
-            <pre><code class="language-js" data-lang="js"><span></span><span class="nx">tinymce</span><span class="p">.</span><span class="nx">dom</span><span class="p">.</span><span class="nx">Event</span><span class="p">.</span><span class="nx">domLoaded</span> <span class="o">=</span> <span class="nx">tinymce</span><span class="p">.</span><span class="nx">isAjax</span><span class="p">;</span></code></pre>
+            <pre><code class="language-js" data-lang="js"><span></span><span class="nx">tinymce</span><span class="p">.</span><span class="nx">dom</span><span class="p">.</span><span class="nx">Event</span><span class="p">.</span><span class="nx">domLoaded</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">tinymce</span><span class="p">.</span><span class="nx">isAjax</span><span class="p">;</span></code></pre>
           </figure>
 
           <p>
@@ -385,17 +385,16 @@
           <div class="read-more-content">
             <h3>
               <a
-                href="http://www.bloggure.info/iOS-DarkModeBackground-App-Switcher"
-                title="Dark Mode iOS Snapshot"
-                >Dark Mode iOS Snapshot</a
+                href="http://www.bloggure.info/Swift_VisibleForTesting_Macro"
+                title="Swift macro : @VisibleForTesting"
+                >Swift macro : @VisibleForTesting</a
               >
             </h3>
             <p>
-              # Dark mode supportAs you might know, iOS supports Dark mode since
-              iOS 12. It is pretty straightforward to implement it by using
-              dynamic ...&hellip;
-              <a
-                href="http://www.bloggure.info/iOS-DarkModeBackground-App-Switcher"
+              As an ancient Java developer, I’ve learned to use a set of
+              annotations to bring meta programming in my projects. Meta
+              programming can be ...&hellip;
+              <a href="http://www.bloggure.info/Swift_VisibleForTesting_Macro"
                 >Continue reading</a
               >
             </p>
@@ -405,23 +404,23 @@
           <div class="read-more-list">
             <div class="list-item">
               <h4>
-                <a href="http://www.bloggure.info/git-gone" title="Git-gone"
-                  >Git-gone</a
+                <a
+                  href="http://www.bloggure.info/iOS-DarkModeBackground-App-Switcher"
+                  title="Dark Mode iOS Snapshot"
+                  >Dark Mode iOS Snapshot</a
                 >
               </h4>
-              <span>Published on December 31, 2020</span>
+              <span>Published on January 10, 2021</span>
             </div>
             <!-- /.list-item -->
 
             <div class="list-item">
               <h4>
-                <a
-                  href="http://www.bloggure.info/mac-checklist"
-                  title="macOS tools checklist"
-                  >macOS tools checklist</a
+                <a href="http://www.bloggure.info/git-gone" title="Git-gone"
+                  >Git-gone</a
                 >
               </h4>
-              <span>Published on December 06, 2020</span>
+              <span>Published on December 31, 2020</span>
             </div>
             <!-- /.list-item -->
           </div>
@@ -435,7 +434,7 @@
     <div class="footer-wrapper">
       <footer role="contentinfo">
         <span
-          >&copy; 2021 . Powered by
+          >&copy; 2024 . Powered by
           <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using a theme
           based on
           <a
