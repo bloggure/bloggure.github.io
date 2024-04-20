@@ -276,6 +276,7 @@ DEPENDENCIES
   jekyll (= 3.9.5)
   jekyll-gist
   kramdown-syntax-coderay
+  nokogiri (~> 1.16)
   pygments.rb
   webrick (~> 1.8)
 
