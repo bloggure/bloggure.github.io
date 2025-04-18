@@ -4,13 +4,134 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="http://www.bloggure.info/feed.xml" />
 <link rel="alternate" type="text/html" href="http://www.bloggure.info" />
-<updated>2025-04-18T21:25:28+02:00</updated>
+<updated>2025-04-18T21:52:26+02:00</updated>
 <id>http://www.bloggure.info/</id>
 <author>
   <name></name>
   <uri>http://www.bloggure.info/</uri>
   <email></email>
 </author>
+
+
+<entry>
+  <title type="html"><![CDATA[Swift module registration]]></title>
+  <link>http://www.bloggure.info/Module_Registration_Swift</link>
+  <id>http://www.bloggure.info/Module_Registration_Swift</id>
+  <published>2025-04-28T00:00:00+02:00</published>
+  <updated>2025-04-28T00:00:00+02:00</updated>
+  <author>
+    <name></name>
+    <uri>http://www.bloggure.info</uri>
+    <email></email>
+  </author>
+  <content type="html">&lt;p&gt;Swift module registration&lt;/p&gt;
+
+&lt;p&gt;Let’s modularize our Swift code!&lt;/p&gt;
+
+&lt;p&gt;I am using tuist for a while now in my projects. This tool was initially bring into the project’s scope to ease day to day developer operations : no more fiddling with conflicts in xcodeproject files !&lt;/p&gt;
+
+&lt;h3 id=&quot;tuist-&quot;&gt;Tuist ?&lt;/h3&gt;
+
+&lt;p&gt;What is tuist by the way ?&lt;/p&gt;
+
+&lt;p&gt;Have you ever booted an iOS project, from a few years things have evolved a bit.&lt;/p&gt;
+
+&lt;p&gt;Before 2020 I’d say we were doomed to using xcworkspace for defining complex projects.&lt;/p&gt;
+
+&lt;p&gt;Cocoapod and Carthage were the cool kids on the block, allowing to download libraries and use them in our beautiful apps.&lt;/p&gt;
+
+&lt;p&gt;After 2020, and still now, Swift development have changed to massively using SPM: the built in dependency management tool baked in the swift toolchain. The process is straightforward and easy to set up, a few clicks in XCode and voila! The other way of using SPM is by using a Package.swift file to describe what you want to achieve.&lt;/p&gt;
+
+&lt;p&gt;The swift file works very well but lacks from a lot of advanced features available in XCode projects. Or if it is possible, it is not convenient to do.&lt;/p&gt;
+
+&lt;p&gt;This is where tuist fills the gap, like Gradle in the Java ecosystem did a few years ago. We can finally use Swift to describe our Swift projects. This means no more copasting things over and over and the dreaded xcodeproj is no more : you’ll only ever have to merge swift files !&lt;/p&gt;
+
+&lt;h2 id=&quot;code-modularity-appears-&quot;&gt;Code modularity appears !&lt;/h2&gt;
+
+&lt;p&gt;It also came in handy for bringing modularity into our codebase. We managed to split dependencies and make modules per feature or functional scope.&lt;/p&gt;
+
+&lt;p&gt;This comes at a cost, having to register our different modules to our main app. When I’m talking about registering, I’m considering handling dependencies, routing and navigation. This can represent a lot of modules, a lot of useless lines in our codebase.&lt;/p&gt;
+
+&lt;p&gt;To be clearer, our main app contains authentication logic as well as basic http interactions, our modules are dumb as they depend on this external provider to be able to issue any http call.&lt;/p&gt;
+
+&lt;h2 id=&quot;first-implementation&quot;&gt;First implementation&lt;/h2&gt;
+
+&lt;p&gt;Every of our module was being added to our ResourceLoader class that would call the necessary initializers to set things in motion like the following&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-swift&quot; data-lang=&quot;swift&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;register&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;LoggingModule&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;register&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+  &lt;span class=&quot;err&quot;&gt;…&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;With our ResourceLoader implementing a protocol exposing everything that was useful for our submodules, protocol which was made available through a simple used-everywhere dependency.&lt;/p&gt;
+
+&lt;h2 id=&quot;auto-registration-for-the-win-&quot;&gt;Auto-registration for the win !&lt;/h2&gt;
+
+&lt;p&gt;We can do module autoregistration by scanning embedded frameworks. As we can do with IoC, the idea is to let every module declare itself to the main consumer. No more long &lt;code&gt;register&lt;/code&gt; method in our application launch, and new modules are automatically discovered at launch time !&lt;/p&gt;
+
+&lt;p&gt;Let’s illustrate this with some code, we declare a protocol that will allow consumer to call registration for our module.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-swift&quot; data-lang=&quot;swift&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;protocol&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ModuleRegistration&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;register&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;This is our base building block for registration, every module implements &lt;code&gt;ModuleRegistration&lt;/code&gt; to contribute to the main app.&lt;/p&gt;
+
+&lt;p&gt;In every module project, we then set a class that will be responsible for registration. It will implement this specific protocol and be populated by its full name into &lt;code&gt;Info.plist&lt;/code&gt;.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-swift&quot; data-lang=&quot;swift&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;kr&quot;&gt;@objc&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyFrameworkRegistration&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;NSObject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ModuleRegistration&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;register&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;// inject into the global context our dependencies&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;// for instance we can do&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;// Container.register(MyLogging.self, MyLoggingImpl.self)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Please notice important things in this class. It needs to be annotated &lt;code&gt;@objc&lt;/code&gt;  and inherit from &lt;code&gt;NSObject&lt;/code&gt; to be discoverable later on.&lt;/p&gt;
+
+&lt;p&gt;The magic being this is that we will declare this class to be our &lt;code&gt;NSPrincipalClass&lt;/code&gt;  in the &lt;code&gt;Info.plist&lt;/code&gt; of our framework.&lt;/p&gt;
+
+&lt;p&gt;To do so, we add the final touch by enriching the &lt;code&gt;Info.plist&lt;/code&gt; of our module using Tuist project’s description :&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-swift&quot; data-lang=&quot;swift&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;MyFramework&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;destinations&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;iOS&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;product&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;framework&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;bundleId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;org.9h41.ios.modules&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;deploymentTargets&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;iOS&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;16.0&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;infoPlist&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;extendingDefault&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+             &lt;span class=&quot;s&quot;&gt;&amp;quot;NSPrincipalClass&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;MyFramework.MyFrameworkRegistration&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;]),&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;sources&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;paths&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;MyFramework/Sources/**&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;main-app-implementation&quot;&gt;Main app implementation&lt;/h2&gt;
+
+&lt;p&gt;Then in our main app, we scan for &lt;code&gt;NSPrincipalClass&lt;/code&gt; in all of our included bundles , one just need to call the &lt;code&gt;Modules.autoregister()&lt;/code&gt; method in application startup.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-swift&quot; data-lang=&quot;swift&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;enum&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Modules&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;autoregister&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;Bundle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;allFrameworks&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;compactMap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;principalClass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+              &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;forEach&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;clazz&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt;
+                  &lt;span class=&quot;n&quot;&gt;autoregister&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;clazz&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;clazz&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+              &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;autoregister&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;clazz&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;AnyClass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;instance&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;clazz&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;alloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;module&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;instance&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ModuleRegistration&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;logger&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;debug&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Doing registration for &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;\(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;clazz&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;register&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Our main app will then scan all included bundles, look for &lt;code&gt;NSPrincipalClass&lt;/code&gt;, test if it matches the protocol requirement and then calls the registration function.&lt;/p&gt;
+
+&lt;p&gt;The declared dependencies in our frameworks are now properly registered inside our app context, dependency injection system or anything you can imagine.&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/Module_Registration_Swift&quot;&gt;Swift module registration&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure&lt;/a&gt; on April 28, 2025.&lt;/p&gt;</content>
+</entry>
 
 
 <entry>
@@ -1011,46 +1132,6 @@ sudo VirtualBox;
   Now you can freely edit the text on your page, once you&apos;re done, you can switch off the content editable mode setting the property to false !
 &lt;/p&gt;
   &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/www/quickly-test-design-changes&quot;&gt;Quickly test design changes&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure&lt;/a&gt; on October 01, 2013.&lt;/p&gt;</content>
-</entry>
-
-
-<entry>
-  <title type="html"><![CDATA[Merge properties maven plugin]]></title>
-  <link>http://www.bloggure.info/.maven/maven-merge-properties-plugin</link>
-  <id>http://www.bloggure.info/.maven/maven-merge-properties-plugin</id>
-  <published>2013-08-31T00:00:00+02:00</published>
-  <updated>2013-08-31T00:00:00+02:00</updated>
-  <author>
-    <name></name>
-    <uri>http://www.bloggure.info</uri>
-    <email></email>
-  </author>
-  <content type="html">&lt;!--:en--&gt;&lt;img class=&quot;alignright size-medium wp-image-74&quot; alt=&quot;Maven&quot; src=&quot;/images/uploads/2010/11/Maven_logo1-300x76.gif&quot; width=&quot;300&quot; height=&quot;76&quot; /&gt;&lt;p&gt;At &lt;a href=&quot;http://www.srmvision.com&quot;&gt;SRMvision&lt;/a&gt;, we develop with localization in mind. We don&apos;t have any user visible text that is not in fact tied to a java property file. Quickly, the problem that we faced was the difficulty to keep every language file in sync (and to tidy things up). We developed a small Maven plugin allowing us to ensure that our two main problems are now gone : &lt;a href=&quot;https://github.com/code-troopers/merge-properties-maven-plugin&quot;&gt;merge-properties-maven-plugin&lt;/a&gt;.&lt;/p&gt;
-&lt;h2&gt;Quick example&lt;/h2&gt;
-&lt;p&gt;I think the easiest way to understand how it works is to explain it with a real use case. Let&apos;s say we have a module named &lt;em&gt;Zones&lt;/em&gt; in our application, it will lead to create four files (if we are localized in two different languages) :&lt;/p&gt;
-&lt;ul&gt;
-	&lt;li&gt;l10n/Zones_en.properties&lt;/li&gt;
-	&lt;li&gt;l10n/Zones_fr.properties&lt;/li&gt;
-	&lt;li&gt;help/Zones_en.properties&lt;/li&gt;
-	&lt;li&gt;help/Zones_fr.properties&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;As you might have guessed, we have got two different categories of target files, one for the application&apos;s localization, and the other one for the application&apos;s help. There is only one rule when it comes to filling these files, the property keys must begin with the name of the file, otherwise the build would fail. In this example, every key must begin with the prefix &quot;&lt;tt&gt;Zones.&quot;.&lt;/tt&gt;&lt;/p&gt;
-
-&lt;p&gt;At the end, we want to get two resource bundles, so we set up the build to do so :&lt;/p&gt;
-
-&lt;noscript&gt;&lt;pre&gt;400: Invalid request&lt;/pre&gt;&lt;/noscript&gt;&lt;script src=&quot;https://gist.github.com/6397201.js?file=pom.xml&quot;&gt; &lt;/script&gt;
-
-&lt;p&gt;By reading this configuration section you can view almost every single option available in the plugin. You can exclude files from automatic key checking : in the example the files Global_*.properties will not be checked. It allows us to group commonly used keys without needing them to begin with the correct prefix (it also eases migration for legacy code, breaking the build would be too intrusive).&lt;/p&gt;
-
-&lt;p&gt;You can also notice that we use a Maven property to enable the fail on count mismatch functionality of the plugin, with the help of Maven profiles, we can set it to false for development and to true for continuous integration and translation team. When this configuration is used you will get an output like the following in your Maven build :&lt;/p&gt;
-
-&lt;noscript&gt;&lt;pre&gt;400: Invalid request&lt;/pre&gt;&lt;/noscript&gt;&lt;script src=&quot;https://gist.github.com/6397201.js?file=maven.log&quot;&gt; &lt;/script&gt;
-
-&lt;p&gt;If the build should check consistency in merged files and if it does not match, it will output blank keys as well as lonely keys in order for your translator to fix it easily.&lt;/p&gt;
-&lt;h2&gt;Bonus feature&lt;/h2&gt;
-&lt;p&gt;We use Java&apos;s MessageFormat to format our translated string, one of the thing we tend to forget is to escape the single quotes in our translations. The plugin does this magic for us, it automatically adds the missing single quotes in every messages.&lt;/p&gt;&lt;!--:--&gt;
-
-  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/.maven/maven-merge-properties-plugin&quot;&gt;Merge properties maven plugin&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure&lt;/a&gt; on August 31, 2013.&lt;/p&gt;</content>
 </entry>
 
 </feed>

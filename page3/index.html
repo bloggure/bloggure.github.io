@@ -110,6 +110,150 @@
           <div class="entry-meta">
             <span class="entry-date date published updated"
               ><time
+                datetime="2015-09-03T00:00:00+02:00"
+                itemprop="datePublished"
+                ><a href="http://www.bloggure.info/MavenFailTestAtEnd"
+                  >September 03, 2015</a
+                ></time
+              ></span
+            ><span
+              class="author vcard"
+              itemprop="author"
+              itemscope
+              itemtype="http://schema.org/Person"
+              ><span itemprop="name" class="fn"
+                ><a
+                  href="http://www.bloggure.info/cgatay"
+                  title="About cgatay"
+                  itemprop="url"
+                  >cgatay</a
+                ></span
+              ></span
+            >&nbsp; &bull; &nbsp;<span class="entry-comments"
+              ><a
+                href="http://www.bloggure.info/MavenFailTestAtEnd#disqus_thread"
+                >Comment</a
+              ></span
+            >
+          </div>
+          <!-- /.entry-meta -->
+
+          <h1 class="entry-title" itemprop="name">
+            <a
+              href="http://www.bloggure.info/MavenFailTestAtEnd"
+              rel="bookmark"
+              title="How to get all failing tests for a multimodule Maven project"
+              itemprop="url"
+              >How to get all failing tests for a multimodule Maven project</a
+            >
+          </h1>
+        </header>
+        <div class="entry-content" itemprop="description">
+          <h1 id="maven-testing">Maven testing</h1>
+
+          <p>
+            One of the bothering thing being a contractor is that you often
+            happen to work on a project with a skip tests flag set on all
+            developers computer.
+          </p>
+
+          <p>
+            One of the thing I tend to do when on such project is enabling tests
+            and trying to fix as much as possible (often the fixes are easy to
+            do).
+          </p>
+
+          <h2 id="multi-module-testing">Multi module testing</h2>
+          <p>
+            By design, surefire plugin make the build fail if there is a test
+            failure. While this is ok in single module, when working with
+            multi-module project it can be nice to run all tests on all modules
+            regardless of the failures happening in some modules.
+          </p>
+
+          <p>
+            Maven is a great tool and allows such a behavior very easily, it
+            allows two command line switches for that :
+          </p>
+
+          <ul>
+            <li>
+              <code>--fail-at-end</code> : will fail the build at the end if
+              there is test failures
+            </li>
+            <li>
+              <code>--fail-never</code> : will never fail the build, even if
+              there is test failures
+            </li>
+          </ul>
+
+          <h2 id="flags-behavior-differences">Flags behavior differences</h2>
+          <p>
+            There is one thing to understand when using the
+            <code>--fail-at-end</code> flag, it will fail the build at end for a
+            module with test failure but it will also prevents building of
+            dependent modules.
+          </p>
+
+          <p>
+            With a small example it become obvious. Let’s say that we have a
+            multi project containing the following :
+          </p>
+
+          <ul>
+            <li>core : containing model objects and services</li>
+            <li>web : containing web views for browser access</li>
+            <li>javafx : containing desktop application classes</li>
+          </ul>
+
+          <p>
+            It is straightforward to see that <code>web</code> and
+            <code>javafx</code> modules will depends on the
+            <code>core</code> module.
+          </p>
+
+          <h3 id="fail-at-end">fail-at-end</h3>
+          <p>
+            If using the <code>--fail-at-end</code> flag, a test failure in the
+            core module will prevent building the <code>web</code> and
+            <code>javafx</code> module completely : you will not be able to
+            track tests failure before fixing the ones from
+            <code>core</code> (at least on a single build command).
+          </p>
+
+          <h3 id="fail-never">fail-never</h3>
+          <p>
+            If using the <code>--fail-never</code> flag, a test failure in the
+            <code>core</code> module will be reported but the build and tests of
+            the <code>web</code> and <code>javafx</code> modules will be built
+            and their respective tests errors will also be reported.
+          </p>
+
+          <h2 id="tired-of-typing">Tired of typing</h2>
+          <p>
+            If you find that typing <code>--fail-at-end</code> is too long,
+            remember yourself it short alias : <code>-fae</code>.
+          </p>
+
+          <p>
+            The same is also available for the <code>--fail-never</code> flag
+            with : <code>-fn</code>.
+          </p>
+        </div>
+        <!-- /.entry-content -->
+      </article>
+      <!-- /.hentry -->
+
+      <article
+        class="hentry"
+        itemprop="blogPost"
+        itemscope
+        itemtype="http://schema.org/BlogPosting"
+      >
+        <header>
+          <div class="entry-meta">
+            <span class="entry-date date published updated"
+              ><time
                 datetime="2015-09-01T00:00:00+02:00"
                 itemprop="datePublished"
                 ><a href="http://www.bloggure.info/AutoApplyKeymapUdev"
@@ -531,93 +675,6 @@ $ brew cask install dropbox #for example
             <code>.dotfiles</code> to seed your software on new machines, and if
             your preferred software is missing, it is really easy to add new
             casks.
-          </p>
-        </div>
-        <!-- /.entry-content -->
-      </article>
-      <!-- /.hentry -->
-
-      <article
-        class="hentry"
-        itemprop="blogPost"
-        itemscope
-        itemtype="http://schema.org/BlogPosting"
-      >
-        <header>
-          <div class="entry-meta">
-            <span class="entry-date date published updated"
-              ><time
-                datetime="2014-04-30T00:00:00+02:00"
-                itemprop="datePublished"
-                ><a
-                  href="http://www.bloggure.info/launchrocket-homebrew-service-manager"
-                  >April 30, 2014</a
-                ></time
-              ></span
-            ><span
-              class="author vcard"
-              itemprop="author"
-              itemscope
-              itemtype="http://schema.org/Person"
-              ><span itemprop="name" class="fn"
-                ><a
-                  href="http://www.bloggure.info/cgatay"
-                  title="About cgatay"
-                  itemprop="url"
-                  >cgatay</a
-                ></span
-              ></span
-            >&nbsp; &bull; &nbsp;<span class="entry-comments"
-              ><a
-                href="http://www.bloggure.info/launchrocket-homebrew-service-manager#disqus_thread"
-                >Comment</a
-              ></span
-            >
-          </div>
-          <!-- /.entry-meta -->
-
-          <h1 class="entry-title" itemprop="name">
-            <a
-              href="http://www.bloggure.info/launchrocket-homebrew-service-manager"
-              rel="bookmark"
-              title="LaunchRocket - Homebrew service manager"
-              itemprop="url"
-              >LaunchRocket - Homebrew service manager</a
-            >
-          </h1>
-        </header>
-        <div class="entry-content" itemprop="description">
-          <h1 id="manage-your-services">Manage your services</h1>
-
-          <p>
-            If you’re using <a href="http://brew.sh">HomeBrew</a> to manage your
-            software installation on your Mac, there is a thing that is not that
-            easy to do : <code>launchd</code> or <code>launchctl</code> service
-            management. Often you need to manually tell <code>launchd</code> to
-            load the <code>plist</code> of your newly installed service. It
-            leads to a lot of things launched at boot on your machine, and they
-            are not easy to manage.
-          </p>
-
-          <p>
-            <a href="https://github.com/jimbojsb/launchrocket">LaunchRocket</a>
-            provides a simple PreferencePane allowing you to start/stop services
-            when you only need to with a clean and simple GUI.
-          </p>
-
-          <p>
-            <img
-              src="/images/post/LaunchRocket.png"
-              alt="LaunchRocket in action"
-            />
-          </p>
-
-          <p>
-            You can easily install it via <code>brew cask</code> (more to come
-            on brew cask soon) or download the
-            <a href="https://github.com/jimbojsb/launchrocket/releases"
-              >zip distribution</a
-            >
           </p>
         </div>
         <!-- /.entry-content -->

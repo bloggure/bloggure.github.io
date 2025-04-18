@@ -110,6 +110,271 @@
           <div class="entry-meta">
             <span class="entry-date date published updated"
               ><time
+                datetime="2025-04-28T00:00:00+02:00"
+                itemprop="datePublished"
+                ><a href="http://www.bloggure.info/Module_Registration_Swift"
+                  >April 28, 2025</a
+                ></time
+              ></span
+            ><span
+              class="author vcard"
+              itemprop="author"
+              itemscope
+              itemtype="http://schema.org/Person"
+              ><span itemprop="name" class="fn"
+                ><a
+                  href="http://www.bloggure.info/cgatay"
+                  title="About cgatay"
+                  itemprop="url"
+                  >cgatay</a
+                ></span
+              ></span
+            >&nbsp; &bull; &nbsp;<span class="entry-comments"
+              ><a
+                href="http://www.bloggure.info/Module_Registration_Swift#disqus_thread"
+                >Comment</a
+              ></span
+            >
+          </div>
+          <!-- /.entry-meta -->
+
+          <h1 class="entry-title" itemprop="name">
+            <a
+              href="http://www.bloggure.info/Module_Registration_Swift"
+              rel="bookmark"
+              title="Swift module registration"
+              itemprop="url"
+              >Swift module registration</a
+            >
+          </h1>
+        </header>
+        <div class="entry-content" itemprop="description">
+          <p>Swift module registration</p>
+
+          <p>Let’s modularize our Swift code!</p>
+
+          <p>
+            I am using tuist for a while now in my projects. This tool was
+            initially bring into the project’s scope to ease day to day
+            developer operations : no more fiddling with conflicts in
+            xcodeproject files !
+          </p>
+
+          <h3 id="tuist-">Tuist ?</h3>
+
+          <p>What is tuist by the way ?</p>
+
+          <p>
+            Have you ever booted an iOS project, from a few years things have
+            evolved a bit.
+          </p>
+
+          <p>
+            Before 2020 I’d say we were doomed to using xcworkspace for defining
+            complex projects.
+          </p>
+
+          <p>
+            Cocoapod and Carthage were the cool kids on the block, allowing to
+            download libraries and use them in our beautiful apps.
+          </p>
+
+          <p>
+            After 2020, and still now, Swift development have changed to
+            massively using SPM: the built in dependency management tool baked
+            in the swift toolchain. The process is straightforward and easy to
+            set up, a few clicks in XCode and voila! The other way of using SPM
+            is by using a Package.swift file to describe what you want to
+            achieve.
+          </p>
+
+          <p>
+            The swift file works very well but lacks from a lot of advanced
+            features available in XCode projects. Or if it is possible, it is
+            not convenient to do.
+          </p>
+
+          <p>
+            This is where tuist fills the gap, like Gradle in the Java ecosystem
+            did a few years ago. We can finally use Swift to describe our Swift
+            projects. This means no more copasting things over and over and the
+            dreaded xcodeproj is no more : you’ll only ever have to merge swift
+            files !
+          </p>
+
+          <h2 id="code-modularity-appears-">Code modularity appears !</h2>
+
+          <p>
+            It also came in handy for bringing modularity into our codebase. We
+            managed to split dependencies and make modules per feature or
+            functional scope.
+          </p>
+
+          <p>
+            This comes at a cost, having to register our different modules to
+            our main app. When I’m talking about registering, I’m considering
+            handling dependencies, routing and navigation. This can represent a
+            lot of modules, a lot of useless lines in our codebase.
+          </p>
+
+          <p>
+            To be clearer, our main app contains authentication logic as well as
+            basic http interactions, our modules are dumb as they depend on this
+            external provider to be able to issue any http call.
+          </p>
+
+          <h2 id="first-implementation">First implementation</h2>
+
+          <p>
+            Every of our module was being added to our ResourceLoader class that
+            would call the necessary initializers to set things in motion like
+            the following
+          </p>
+
+          <figure class="highlight">
+            <pre><code class="language-swift" data-lang="swift"><span></span><span class="kd">func</span> <span class="nf">register</span><span class="p">(){</span>
+  <span class="n">LoggingModule</span><span class="p">.</span><span class="n">register</span><span class="p">()</span>
+  <span class="err">…</span>
+<span class="p">}</span></code></pre>
+          </figure>
+
+          <p>
+            With our ResourceLoader implementing a protocol exposing everything
+            that was useful for our submodules, protocol which was made
+            available through a simple used-everywhere dependency.
+          </p>
+
+          <h2 id="auto-registration-for-the-win-">
+            Auto-registration for the win !
+          </h2>
+
+          <p>
+            We can do module autoregistration by scanning embedded frameworks.
+            As we can do with IoC, the idea is to let every module declare
+            itself to the main consumer. No more long
+            <code>register</code> method in our application launch, and new
+            modules are automatically discovered at launch time !
+          </p>
+
+          <p>
+            Let’s illustrate this with some code, we declare a protocol that
+            will allow consumer to call registration for our module.
+          </p>
+
+          <figure class="highlight">
+            <pre><code class="language-swift" data-lang="swift"><span></span><span class="kd">public</span> <span class="kd">protocol</span> <span class="nc">ModuleRegistration</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">register</span><span class="p">()</span>
+<span class="p">}</span></code></pre>
+          </figure>
+
+          <p>
+            This is our base building block for registration, every module
+            implements <code>ModuleRegistration</code> to contribute to the main
+            app.
+          </p>
+
+          <p>
+            In every module project, we then set a class that will be
+            responsible for registration. It will implement this specific
+            protocol and be populated by its full name into
+            <code>Info.plist</code>.
+          </p>
+
+          <figure class="highlight">
+            <pre><code class="language-swift" data-lang="swift"><span></span><span class="kr">@objc</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyFrameworkRegistration</span><span class="p">:</span> <span class="bp">NSObject</span><span class="p">,</span> <span class="n">ModuleRegistration</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">func</span> <span class="nf">register</span><span class="p">()</span> <span class="p">{</span>
+      <span class="c1">// inject into the global context our dependencies</span>
+      <span class="c1">// for instance we can do</span>
+      <span class="c1">// Container.register(MyLogging.self, MyLoggingImpl.self)</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre>
+          </figure>
+
+          <p>
+            Please notice important things in this class. It needs to be
+            annotated <code>@objc</code> and inherit from
+            <code>NSObject</code> to be discoverable later on.
+          </p>
+
+          <p>
+            The magic being this is that we will declare this class to be our
+            <code>NSPrincipalClass</code> in the <code>Info.plist</code> of our
+            framework.
+          </p>
+
+          <p>
+            To do so, we add the final touch by enriching the
+            <code>Info.plist</code> of our module using Tuist project’s
+            description :
+          </p>
+
+          <figure class="highlight">
+            <pre><code class="language-swift" data-lang="swift"><span></span><span class="p">.</span><span class="n">target</span><span class="p">(</span>
+        <span class="n">name</span><span class="p">:</span> <span class="s">&quot;MyFramework&quot;</span><span class="p">,</span>
+        <span class="n">destinations</span><span class="p">:</span> <span class="p">.</span><span class="n">iOS</span><span class="p">,</span>
+        <span class="n">product</span><span class="p">:</span> <span class="p">.</span><span class="n">framework</span><span class="p">,</span>
+        <span class="n">bundleId</span><span class="p">:</span> <span class="s">&quot;org.9h41.ios.modules&quot;</span><span class="p">,</span>
+        <span class="n">deploymentTargets</span><span class="p">:</span> <span class="p">.</span><span class="n">iOS</span><span class="p">(</span><span class="s">&quot;16.0&quot;</span><span class="p">),</span>
+        <span class="n">infoPlist</span><span class="p">:</span> <span class="p">.</span><span class="n">extendingDefault</span><span class="p">(</span><span class="n">with</span><span class="p">:</span> <span class="p">[</span>
+             <span class="s">&quot;NSPrincipalClass&quot;</span><span class="p">:</span> <span class="s">&quot;MyFramework.MyFrameworkRegistration&quot;</span><span class="p">,</span>
+        <span class="p">]),</span>
+        <span class="n">sources</span><span class="p">:</span> <span class="p">.</span><span class="n">paths</span><span class="p">([</span><span class="s">&quot;MyFramework/Sources/**&quot;</span><span class="p">])</span>
+<span class="p">)</span></code></pre>
+          </figure>
+
+          <h2 id="main-app-implementation">Main app implementation</h2>
+
+          <p>
+            Then in our main app, we scan for <code>NSPrincipalClass</code> in
+            all of our included bundles , one just need to call the
+            <code>Modules.autoregister()</code> method in application startup.
+          </p>
+
+          <figure class="highlight">
+            <pre><code class="language-swift" data-lang="swift"><span></span><span class="kd">public</span> <span class="kd">enum</span> <span class="nc">Modules</span> <span class="p">{</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">autoregister</span><span class="p">()</span> <span class="p">{</span>
+          <span class="n">Bundle</span><span class="p">.</span><span class="n">allFrameworks</span><span class="p">.</span><span class="n">compactMap</span><span class="p">(</span><span class="err">\</span><span class="p">.</span><span class="n">principalClass</span><span class="p">)</span>
+              <span class="p">.</span><span class="n">forEach</span> <span class="p">{</span> <span class="n">clazz</span> <span class="k">in</span>
+                  <span class="n">autoregister</span><span class="p">(</span><span class="n">clazz</span><span class="p">:</span> <span class="n">clazz</span><span class="p">)</span>
+              <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="kd">static</span> <span class="kd">func</span> <span class="nf">autoregister</span><span class="p">(</span><span class="n">clazz</span><span class="p">:</span> <span class="nb">AnyClass</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nv">instance</span> <span class="p">=</span> <span class="n">clazz</span><span class="p">.</span><span class="n">alloc</span><span class="p">()</span>
+        <span class="k">if</span> <span class="kd">let</span> <span class="nv">module</span> <span class="p">=</span> <span class="n">instance</span> <span class="k">as</span><span class="p">?</span> <span class="n">ModuleRegistration</span> <span class="p">{</span>
+            <span class="n">module</span><span class="p">.</span><span class="n">logger</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;Doing registration for </span><span class="si">\(</span><span class="n">clazz</span><span class="si">)</span><span class="s">&quot;</span><span class="p">)</span>
+            <span class="n">module</span><span class="p">.</span><span class="n">register</span><span class="p">()</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre>
+          </figure>
+
+          <p>
+            Our main app will then scan all included bundles, look for
+            <code>NSPrincipalClass</code>, test if it matches the protocol
+            requirement and then calls the registration function.
+          </p>
+
+          <p>
+            The declared dependencies in our frameworks are now properly
+            registered inside our app context, dependency injection system or
+            anything you can imagine.
+          </p>
+        </div>
+        <!-- /.entry-content -->
+      </article>
+      <!-- /.hentry -->
+
+      <article
+        class="hentry"
+        itemprop="blogPost"
+        itemscope
+        itemtype="http://schema.org/BlogPosting"
+      >
+        <header>
+          <div class="entry-meta">
+            <span class="entry-date date published updated"
+              ><time
                 datetime="2024-04-19T00:00:00+02:00"
                 itemprop="datePublished"
                 ><a
@@ -715,200 +980,6 @@
               iStat, BarTender…)
             </li>
           </ul>
-        </div>
-        <!-- /.entry-content -->
-      </article>
-      <!-- /.hentry -->
-
-      <article
-        class="hentry"
-        itemprop="blogPost"
-        itemscope
-        itemtype="http://schema.org/BlogPosting"
-      >
-        <header>
-          <div class="entry-meta">
-            <span class="entry-date date published updated"
-              ><time
-                datetime="2020-12-03T00:00:00+01:00"
-                itemprop="datePublished"
-                ><a href="http://www.bloggure.info/SwiftUI-UIKit_Interop"
-                  >December 03, 2020</a
-                ></time
-              ></span
-            ><span
-              class="author vcard"
-              itemprop="author"
-              itemscope
-              itemtype="http://schema.org/Person"
-              ><span itemprop="name" class="fn"
-                ><a
-                  href="http://www.bloggure.info/cgatay"
-                  title="About cgatay"
-                  itemprop="url"
-                  >cgatay</a
-                ></span
-              ></span
-            >&nbsp; &bull; &nbsp;<span class="entry-comments"
-              ><a
-                href="http://www.bloggure.info/SwiftUI-UIKit_Interop#disqus_thread"
-                >Comment</a
-              ></span
-            >
-          </div>
-          <!-- /.entry-meta -->
-
-          <h1 class="entry-title" itemprop="name">
-            <a
-              href="http://www.bloggure.info/SwiftUI-UIKit_Interop"
-              rel="bookmark"
-              title="SwiftUI UIKit Interop"
-              itemprop="url"
-              >SwiftUI UIKit Interop</a
-            >
-          </h1>
-        </header>
-        <div class="entry-content" itemprop="description">
-          <p>
-            Now that iOS13 is available for more than year, we can start to set
-            it as a lower bound for our deployments.
-          </p>
-
-          <p>
-            This allows us to play with all sugar that Apple put in it, one of
-            the biggest thing is the arrival of SwiftUI to supercede UIKit
-            (write cross platform UIs and so on).
-          </p>
-
-          <h2 id="bridging-the-two-worlds">Bridging the two worlds</h2>
-
-          <h3 id="using-swiftui-from-uikit">Using SwiftUI from UIKit</h3>
-
-          <p>
-            The first thing we might try to do, is embedding a SwiftUI View
-            inside our <code>UIViewController</code> based application. To do
-            so, Apple gives us <code>UIHostingViewController</code> which is a
-            simple bridging controller, straightforward to use.
-          </p>
-
-          <figure class="highlight">
-            <pre><code class="language-swift" data-lang="swift"><span></span><span class="kd">struct</span> <span class="nc">MyNewView</span><span class="p">:</span> <span class="n">View</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nv">view</span><span class="p">:</span> <span class="n">some</span> <span class="n">View</span> <span class="p">{</span>
-        <span class="n">Text</span><span class="p">(</span><span class="s">&quot;I&#39;m in SwiftUI&quot;</span><span class="p">)</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-<span class="kd">class</span> <span class="nc">MyNewViewViewController</span><span class="p">:</span> <span class="n">UIHostingViewController</span> <span class="p">{</span>
-    <span class="kd">init</span><span class="p">(){</span>
-        <span class="kc">super</span><span class="p">.</span><span class="kd">init</span><span class="p">(</span><span class="n">rootView</span><span class="p">:</span> <span class="n">MyNewView</span><span class="p">())</span>
-    <span class="p">}</span>
-<span class="p">}</span></code></pre>
-          </figure>
-
-          <h3 id="uiviewcontroller-in-swiftui">UIViewController in SwiftUI</h3>
-
-          <p>
-            However, at times we still need to reuse our good old
-            <code>UIViewController</code>, either because we can not afford a
-            full SwiftUI rewrite, so we want to keep old code and migrate pieces
-            by pieces or because we are using something not yet adapted to
-            SwiftUI.
-          </p>
-
-          <p>In my case it was using the camera to scan a QRCode.</p>
-
-          <h4 id="non-elegant-solution">Non elegant solution</h4>
-
-          <p>
-            I faced a few issue with examples I found out, most of them are
-            adding an extension to the <code>UIViewController</code> that makes
-            it conform to <code>UIViewControllerRepresentable</code>.
-          </p>
-
-          <figure class="highlight">
-            <pre><code class="language-swift" data-lang="swift"><span></span><span class="kd">class</span> <span class="nc">MyViewController</span><span class="p">:</span> <span class="bp">UIViewController</span><span class="p">{</span>
-    <span class="kd">var</span> <span class="nv">cancellable</span><span class="p">:</span> <span class="n">Cancellable</span><span class="p">?</span>
-    <span class="c1">// classic stuff</span>
-<span class="p">}</span>
-
-<span class="kd">extension</span> <span class="nc">MyViewController</span><span class="p">:</span> <span class="n">UIViewControllerRepresentable</span> <span class="p">{</span>
-    <span class="kd">public</span> <span class="kd">typealias</span> <span class="n">UIViewControllerType</span> <span class="p">=</span> <span class="n">MyViewController</span>
-
-    <span class="kd">public</span> <span class="kd">func</span> <span class="nf">makeUIViewController</span><span class="p">(</span><span class="n">context</span> <span class="kc">_</span><span class="p">:</span> <span class="n">UIViewControllerRepresentableContext</span><span class="p">&lt;</span><span class="n">MyViewController</span><span class="p">&gt;)</span> <span class="p">-&gt;</span> <span class="n">UIViewControllerType</span> <span class="p">{</span>
-        <span class="kc">self</span> <span class="c1">// don&#39;t .init() please, class instance is already available</span>
-    <span class="p">}</span>
-
-    <span class="kd">public</span> <span class="kd">func</span> <span class="nf">updateUIViewController</span><span class="p">(</span><span class="kc">_</span><span class="p">:</span> <span class="n">UIViewControllerType</span><span class="p">,</span> <span class="n">context</span> <span class="kc">_</span><span class="p">:</span> <span class="n">UIViewControllerRepresentableContext</span><span class="p">&lt;</span><span class="n">MyViewController</span><span class="p">&gt;)</span> <span class="p">{}</span>
-
-    <span class="kd">static</span> <span class="kd">func</span> <span class="nf">dismantleUIViewController</span><span class="p">(</span><span class="kc">_</span> <span class="n">uiViewController</span><span class="p">:</span> <span class="n">UIViewControllerType</span><span class="p">,</span> <span class="n">coordinator</span> <span class="kc">_</span><span class="p">:</span> <span class="n">Coordinator</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">uiViewController</span><span class="p">.</span><span class="n">cancellable</span><span class="p">?.</span><span class="n">cancel</span><span class="p">()</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kd">struct</span> <span class="nc">MyView</span><span class="p">:</span> <span class="n">View</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nv">body</span><span class="p">:</span> <span class="n">some</span> <span class="n">View</span> <span class="p">{</span>
-    <span class="n">MyViewController</span><span class="p">()</span>
-  <span class="p">}</span>
-<span class="p">}</span></code></pre>
-          </figure>
-
-          <p>
-            I find this not easy to read, as we’re doing weird thing by
-            returning <code>self</code> from a function named
-            <code>makeUIViewController</code>. Some example are telling to
-            return <code>MyViewController()</code> instead of <code>self</code>.
-            Please don’t do this otherwise you’re creating the
-            <code>UIViewController</code> twice for each call !
-          </p>
-
-          <p>
-            I also had a leak when using <code>Combine</code> (more to come
-            about this great framework), my <code>Cancellable</code>s were never
-            freed, leading in a memory cycle that kept the
-            <code>UIViewController</code> living even though it was no longer
-            presented.
-          </p>
-
-          <p>
-            It is important to do proper house keeping in the
-            <code>dismantleUIViewController</code> method if you don’t want to
-            use too much memory and slow down your app.
-          </p>
-
-          <h4 id="nice-looking-way-of-doing">Nice looking way of doing</h4>
-
-          <p>
-            You will find a working example below, basically we need to
-            implement a <code>UIViewControllerRepresentable</code> struct to
-            represent be the container for our <code>UIViewController</code> in
-            the SwiftUI world.
-          </p>
-
-          <figure class="highlight">
-            <pre><code class="language-swift" data-lang="swift"><span></span><span class="kd">class</span> <span class="nc">MyViewController</span><span class="p">:</span> <span class="bp">UIViewController</span><span class="p">{</span>
-    <span class="kd">var</span> <span class="nv">cancellable</span><span class="p">:</span> <span class="n">Cancellable</span><span class="p">?</span>
-    <span class="c1">// classic stuff</span>
-<span class="p">}</span>
-
-<span class="kd">struct</span> <span class="nc">MyGreatView</span><span class="p">:</span> <span class="n">UIViewControllerRepresentable</span> <span class="p">{</span>
-    <span class="kd">public</span> <span class="kd">typealias</span> <span class="n">UIViewControllerType</span> <span class="p">=</span> <span class="n">MyViewController</span>
-
-    <span class="kd">public</span> <span class="kd">func</span> <span class="nf">makeUIViewController</span><span class="p">(</span><span class="n">context</span> <span class="kc">_</span><span class="p">:</span> <span class="n">UIViewControllerRepresentableContext</span><span class="p">&lt;</span><span class="n">MyGreatView</span><span class="p">&gt;)</span> <span class="p">-&gt;</span> <span class="n">UIViewControllerType</span> <span class="p">{</span>
-        <span class="n">MyViewController</span><span class="p">()</span>
-    <span class="p">}</span>
-
-    <span class="kd">public</span> <span class="kd">func</span> <span class="nf">updateUIViewController</span><span class="p">(</span><span class="kc">_</span><span class="p">:</span> <span class="n">UIViewControllerType</span><span class="p">,</span> <span class="n">context</span> <span class="kc">_</span><span class="p">:</span> <span class="n">UIViewControllerRepresentableContext</span><span class="p">&lt;</span><span class="n">MyGreatView</span><span class="p">&gt;)</span> <span class="p">{}</span>
-
-    <span class="kd">static</span> <span class="kd">func</span> <span class="nf">dismantleUIViewController</span><span class="p">(</span><span class="kc">_</span> <span class="n">uiViewController</span><span class="p">:</span> <span class="n">UIViewControllerType</span><span class="p">,</span> <span class="n">coordinator</span> <span class="kc">_</span><span class="p">:</span> <span class="n">Coordinator</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">uiViewController</span><span class="p">.</span><span class="n">cancellable</span><span class="p">?.</span><span class="n">cancel</span><span class="p">()</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kd">struct</span> <span class="nc">MyView</span><span class="p">:</span> <span class="n">View</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nv">body</span><span class="p">:</span> <span class="n">some</span> <span class="n">View</span> <span class="p">{</span>
-    <span class="n">MyGreatView</span><span class="p">()</span>
-  <span class="p">}</span>
-<span class="p">}</span></code></pre>
-          </figure>
         </div>
         <!-- /.entry-content -->
       </article>
