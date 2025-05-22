@@ -7,25 +7,31 @@
   <!--<![endif]-->
   <head>
     <meta charset="utf-8" />
-    <title>Bloggure revival &#8211; Bloggure</title>
+    <title>Tuist build test schemes &#8211; Bloggure</title>
     <meta
       name="description"
       content="Multi author blog about programming, computing and geek stuff"
     />
-    <meta name="keywords" content="blog, site" />
+    <meta name="keywords" content="ios, tuist, test" />
 
     <!-- Open Graph -->
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="Bloggure revival" />
+    <meta property="og:title" content="Tuist build test schemes" />
     <meta
       property="og:description"
       content="Multi author blog about programming, computing and geek stuff"
     />
-    <meta property="og:url" content="http://www.bloggure.info/Revival" />
+    <meta
+      property="og:url"
+      content="http://www.bloggure.info/Tuist_build_test_schemes"
+    />
     <meta property="og:site_name" content="Bloggure" />
 
-    <link rel="canonical" href="http://www.bloggure.info/Revival" />
+    <link
+      rel="canonical"
+      href="http://www.bloggure.info/Tuist_build_test_schemes"
+    />
     <link
       href="http://www.bloggure.info/feed.xml"
       type="application/atom+xml"
@@ -106,10 +112,10 @@
             <div class="entry-meta">
               <span class="entry-date date published updated"
                 ><time
-                  datetime="2020-12-01T00:00:00+01:00"
+                  datetime="2025-05-22T00:00:00+02:00"
                   itemprop="datePublished"
-                  ><a href="http://www.bloggure.info/Revival"
-                    >December 01, 2020</a
+                  ><a href="http://www.bloggure.info/Tuist_build_test_schemes"
+                    >May 22, 2025</a
                   ></time
                 ></span
               ><span
@@ -126,7 +132,8 @@
                   ></span
                 ></span
               >&nbsp; &bull; &nbsp;<span class="entry-comments"
-                ><a href="http://www.bloggure.info/Revival#disqus_thread"
+                ><a
+                  href="http://www.bloggure.info/Tuist_build_test_schemes#disqus_thread"
                   >Comment</a
                 ></span
               >
@@ -135,72 +142,122 @@
 
             <h1 class="entry-title" itemprop="name">
               <a
-                href="http://www.bloggure.info/Revival"
+                href="http://www.bloggure.info/Tuist_build_test_schemes"
                 rel="bookmark"
-                title="Bloggure revival"
+                title="Tuist build test schemes"
                 itemprop="url"
-                >Bloggure revival</a
+                >Tuist build test schemes</a
               >
             </h1>
           </header>
-          <h1 id="its-been-a-long-time">It’s been a long time</h1>
-
-          <p>It’s been a very long time since last post (5 years…).</p>
+          <p>Tuist build test schemes</p>
 
           <p>
-            I am convinced that blogging is useful, at least for my present
-            self, and for my future self that tends to lose track of important
-            things.
+            I use tuist to build most of my iOS projects nowadays. And like
+            every good software engineer I test the code that I deliver. I want
+            to ensure that everything works according to what I expect is coming
+            to my app.
           </p>
 
-          <h2 id="what-will-this-be-about-">What will this be about ?</h2>
+          <h3 id="xcode-and-schemes">Xcode and schemes</h3>
 
           <p>
-            In the <em>past</em> I blogged a lot about Java / Maven and so on,
-            my days have evolved to another languages, so I guess there will be
-            less JVM things (but may be a few Kotlin) and more Swift / Rust on
-            the other end.
+            XCode is a fun IDE, it is slow, has his own temper when it comes to
+            find references, refactor or even launch app. One of the things that
+            is really strange when you’re using this IDE for the first time is
+            that it does only build the active scheme. So, if your project has,
+            let’s say, 10 schemes, and you refactor a method to add an argument.
+            You won’t notice you have a build error until your build all
+            schemes…
           </p>
 
-          <h2 id="technical-stack">Technical stack</h2>
+          <h3 id="build-errors">Build errors</h3>
 
           <p>
-            In a blog reboot, we (I mean dev) like to follow the latest trend
-            and migrate our blog system to latest hype stack. I will avoid this
-            and focus on writing instead, so the site stays in its 15’ shape:
+            I tend to have a lot of build errors during refactoring, but this is
+            globally ok, I use them to pave the way to my final implementation.
+            One of the thing that bothers me is that I don’t always catch all
+            errors, and I need the CI to bail out because of a missing argument
+            / protocol conformance method… This is not a cool thing in my daily
+            process, I am interrupted to fix a build error that should never
+            happen.
           </p>
 
-          <ul>
-            <li><a href="http://jekyllrb.com/">jekyll</a></li>
-            <li><a href="https://pages.github.com">github-pages</a></li>
-            <li>
-              markdown (I think <code>jenkins-asciidoc</code> is around the
-              corner though)
-            </li>
-            <li>
-              <a href="https://actions.github.com">github actions</a> for
-              building
-            </li>
-          </ul>
+          <h3 id="build-tests-target-automatically">
+            Build tests target automatically
+          </h3>
 
           <p>
-            The sole new thing is that I’m trying to write using
-            <a href="https://gitpod.io">gitpod.io</a> to get a distraction free
-            environment.
+            As I am a tuist user, I want to be able to build all my tests target
+            easily to prevent pushing something that does not even build (even
+            before I can say that my tests are passing).
+          </p>
+
+          <h4 id="command-line-fu">Command line-fu</h4>
+
+          <p>
+            At first I tried a basic thing, hoping that it would work (spoiler
+            alert, it does not):
+          </p>
+
+          <figure class="highlight">
+            <pre><code class="language-bash" data-lang="bash"><span></span><span class="w"> </span>tuist<span class="w"> </span>build<span class="w"> </span><span class="s1">&#39;*Tests&#39;</span>
+<span class="w"> </span></code></pre>
+          </figure>
+
+          <h4 id="scripting-to-the-rescue">Scripting to the rescue</h4>
+
+          <p>
+            It seems that it is not supported out of the box by tuist, running
+            schemes by using a wildcard operator to filter them. However, it is
+            rather easy to do using basic bash scripting, so here is my basic
+            solution
+          </p>
+
+          <figure class="highlight">
+            <pre><code class="language-bash" data-lang="bash"><span></span><span class="nb">set</span><span class="w"> </span>-e
+<span class="nv">SCHEMES</span><span class="o">=</span><span class="k">$(</span>xcodebuild<span class="w"> </span>-workspace<span class="w"> </span>MyProject.xcworkspace<span class="w"> </span>-list<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>Tests<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $1}&#39;</span><span class="k">)</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$SCHEMES</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="nv">IFS</span><span class="o">=</span><span class="w"> </span><span class="nb">read</span><span class="w"> </span>-r<span class="w"> </span>s<span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">   </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Building </span><span class="nv">$s</span><span class="s2">&quot;</span>
+<span class="w">   </span>tuist<span class="w"> </span>build<span class="w"> </span><span class="nv">$s</span>
+<span class="k">done</span></code></pre>
+          </figure>
+
+          <p>
+            I save this file under <code>buildTests.sh</code>, run a
+            <code>chmod +x buildTests.sh</code> and then I can build my tests
+            targets, in sequence, exiting on first failure. This is perfect for
+            my use case, whenever I refactor too much, or I want to check that
+            tests are still building, I can run this.
+          </p>
+
+          <h3 id="downside">Downside</h3>
+
+          <p>
+            Script execution is rather slow, as there is not any parallelism
+            involved, everything is building from scratch. It might be nice to
+            run everything in parallel, but so far so good, it is ok for my use
+            case !
           </p>
 
           <footer class="entry-meta">
             <span class="entry-tags"
               ><a
-                href="http://www.bloggure.info/tags/#blog"
-                title="Pages tagged blog"
+                href="http://www.bloggure.info/tags/#ios"
+                title="Pages tagged ios"
                 class="tag"
-                ><span class="term">blog</span></a
+                ><span class="term">ios</span></a
               ><a
-                href="http://www.bloggure.info/tags/#site"
-                title="Pages tagged site"
+                href="http://www.bloggure.info/tags/#tuist"
+                title="Pages tagged tuist"
                 class="tag"
-                ><span class="term">site</span></a
+                ><span class="term">tuist</span></a
+              ><a
+                href="http://www.bloggure.info/tags/#test"
+                title="Pages tagged test"
+                class="tag"
+                ><span class="term">test</span></a
               ></span
             >
 
@@ -208,7 +265,7 @@
               <ul class="socialcount socialcount-small inline-list">
                 <li class="facebook">
                   <a
-                    href="https://www.facebook.com/sharer/sharer.php?u=http://www.bloggure.info/Revival"
+                    href="https://www.facebook.com/sharer/sharer.php?u=http://www.bloggure.info/Tuist_build_test_schemes"
                     title="Share on Facebook"
                     ><span class="count"
                       ><i class="fa fa-facebook-square"></i> Like</span
@@ -217,7 +274,7 @@
                 </li>
                 <li class="twitter">
                   <a
-                    href="https://twitter.com/intent/tweet?text=http://www.bloggure.info/Revival"
+                    href="https://twitter.com/intent/tweet?text=http://www.bloggure.info/Tuist_build_test_schemes"
                     title="Share on Twitter"
                     ><span class="count"
                       ><i class="fa fa-twitter-square"></i> Tweet</span
@@ -235,7 +292,7 @@
         <div class="read-more">
           <div class="read-more-header">
             <a
-              href="http://www.bloggure.info/redsocks-avoid-docker-proxy-headaches"
+              href="http://www.bloggure.info/Module_Registration_Swift"
               class="read-more-btn"
               >Read More</a
             >
@@ -244,16 +301,16 @@
           <div class="read-more-content">
             <h3>
               <a
-                href="http://www.bloggure.info/Tuist_build_test_schemes"
-                title="Tuist build test schemes"
-                >Tuist build test schemes</a
+                href="http://www.bloggure.info/Module_Registration_Swift"
+                title="Swift module registration"
+                >Swift module registration</a
               >
             </h3>
             <p>
-              Tuist build test schemesI use tuist to build most of my iOS
-              projects nowadays. And like every good software engineer I test
-              the code that...&hellip;
-              <a href="http://www.bloggure.info/Tuist_build_test_schemes"
+              Swift module registrationLet’s modularize our Swift code!I am
+              using tuist for a while now in my projects. This tool was
+              initially bring i...&hellip;
+              <a href="http://www.bloggure.info/Module_Registration_Swift"
                 >Continue reading</a
               >
             </p>
@@ -264,24 +321,24 @@
             <div class="list-item">
               <h4>
                 <a
-                  href="http://www.bloggure.info/Module_Registration_Swift"
-                  title="Swift module registration"
-                  >Swift module registration</a
-                >
-              </h4>
-              <span>Published on April 28, 2025</span>
-            </div>
-            <!-- /.list-item -->
-
-            <div class="list-item">
-              <h4>
-                <a
                   href="http://www.bloggure.info/Swift_VisibleForTesting_Macro"
                   title="Swift macro : @VisibleForTesting"
                   >Swift macro : @VisibleForTesting</a
                 >
               </h4>
               <span>Published on April 19, 2024</span>
+            </div>
+            <!-- /.list-item -->
+
+            <div class="list-item">
+              <h4>
+                <a
+                  href="http://www.bloggure.info/iOS-DarkModeBackground-App-Switcher"
+                  title="Dark Mode iOS Snapshot"
+                  >Dark Mode iOS Snapshot</a
+                >
+              </h4>
+              <span>Published on January 10, 2021</span>
             </div>
             <!-- /.list-item -->
           </div>

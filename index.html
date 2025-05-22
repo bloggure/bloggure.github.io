@@ -110,6 +110,150 @@
           <div class="entry-meta">
             <span class="entry-date date published updated"
               ><time
+                datetime="2025-05-22T00:00:00+02:00"
+                itemprop="datePublished"
+                ><a href="http://www.bloggure.info/Tuist_build_test_schemes"
+                  >May 22, 2025</a
+                ></time
+              ></span
+            ><span
+              class="author vcard"
+              itemprop="author"
+              itemscope
+              itemtype="http://schema.org/Person"
+              ><span itemprop="name" class="fn"
+                ><a
+                  href="http://www.bloggure.info/cgatay"
+                  title="About cgatay"
+                  itemprop="url"
+                  >cgatay</a
+                ></span
+              ></span
+            >&nbsp; &bull; &nbsp;<span class="entry-comments"
+              ><a
+                href="http://www.bloggure.info/Tuist_build_test_schemes#disqus_thread"
+                >Comment</a
+              ></span
+            >
+          </div>
+          <!-- /.entry-meta -->
+
+          <h1 class="entry-title" itemprop="name">
+            <a
+              href="http://www.bloggure.info/Tuist_build_test_schemes"
+              rel="bookmark"
+              title="Tuist build test schemes"
+              itemprop="url"
+              >Tuist build test schemes</a
+            >
+          </h1>
+        </header>
+        <div class="entry-content" itemprop="description">
+          <p>Tuist build test schemes</p>
+
+          <p>
+            I use tuist to build most of my iOS projects nowadays. And like
+            every good software engineer I test the code that I deliver. I want
+            to ensure that everything works according to what I expect is coming
+            to my app.
+          </p>
+
+          <h3 id="xcode-and-schemes">Xcode and schemes</h3>
+
+          <p>
+            XCode is a fun IDE, it is slow, has his own temper when it comes to
+            find references, refactor or even launch app. One of the things that
+            is really strange when you’re using this IDE for the first time is
+            that it does only build the active scheme. So, if your project has,
+            let’s say, 10 schemes, and you refactor a method to add an argument.
+            You won’t notice you have a build error until your build all
+            schemes…
+          </p>
+
+          <h3 id="build-errors">Build errors</h3>
+
+          <p>
+            I tend to have a lot of build errors during refactoring, but this is
+            globally ok, I use them to pave the way to my final implementation.
+            One of the thing that bothers me is that I don’t always catch all
+            errors, and I need the CI to bail out because of a missing argument
+            / protocol conformance method… This is not a cool thing in my daily
+            process, I am interrupted to fix a build error that should never
+            happen.
+          </p>
+
+          <h3 id="build-tests-target-automatically">
+            Build tests target automatically
+          </h3>
+
+          <p>
+            As I am a tuist user, I want to be able to build all my tests target
+            easily to prevent pushing something that does not even build (even
+            before I can say that my tests are passing).
+          </p>
+
+          <h4 id="command-line-fu">Command line-fu</h4>
+
+          <p>
+            At first I tried a basic thing, hoping that it would work (spoiler
+            alert, it does not):
+          </p>
+
+          <figure class="highlight">
+            <pre><code class="language-bash" data-lang="bash"><span></span><span class="w"> </span>tuist<span class="w"> </span>build<span class="w"> </span><span class="s1">&#39;*Tests&#39;</span>
+<span class="w"> </span></code></pre>
+          </figure>
+
+          <h4 id="scripting-to-the-rescue">Scripting to the rescue</h4>
+
+          <p>
+            It seems that it is not supported out of the box by tuist, running
+            schemes by using a wildcard operator to filter them. However, it is
+            rather easy to do using basic bash scripting, so here is my basic
+            solution
+          </p>
+
+          <figure class="highlight">
+            <pre><code class="language-bash" data-lang="bash"><span></span><span class="nb">set</span><span class="w"> </span>-e
+<span class="nv">SCHEMES</span><span class="o">=</span><span class="k">$(</span>xcodebuild<span class="w"> </span>-workspace<span class="w"> </span>MyProject.xcworkspace<span class="w"> </span>-list<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>Tests<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $1}&#39;</span><span class="k">)</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$SCHEMES</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="nv">IFS</span><span class="o">=</span><span class="w"> </span><span class="nb">read</span><span class="w"> </span>-r<span class="w"> </span>s<span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">   </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Building </span><span class="nv">$s</span><span class="s2">&quot;</span>
+<span class="w">   </span>tuist<span class="w"> </span>build<span class="w"> </span><span class="nv">$s</span>
+<span class="k">done</span></code></pre>
+          </figure>
+
+          <p>
+            I save this file under <code>buildTests.sh</code>, run a
+            <code>chmod +x buildTests.sh</code> and then I can build my tests
+            targets, in sequence, exiting on first failure. This is perfect for
+            my use case, whenever I refactor too much, or I want to check that
+            tests are still building, I can run this.
+          </p>
+
+          <h3 id="downside">Downside</h3>
+
+          <p>
+            Script execution is rather slow, as there is not any parallelism
+            involved, everything is building from scratch. It might be nice to
+            run everything in parallel, but so far so good, it is ok for my use
+            case !
+          </p>
+        </div>
+        <!-- /.entry-content -->
+      </article>
+      <!-- /.hentry -->
+
+      <article
+        class="hentry"
+        itemprop="blogPost"
+        itemscope
+        itemtype="http://schema.org/BlogPosting"
+      >
+        <header>
+          <div class="entry-meta">
+            <span class="entry-date date published updated"
+              ><time
                 datetime="2025-04-28T00:00:00+02:00"
                 itemprop="datePublished"
                 ><a href="http://www.bloggure.info/Module_Registration_Swift"
@@ -847,144 +991,6 @@
       </article>
       <!-- /.hentry -->
 
-      <article
-        class="hentry"
-        itemprop="blogPost"
-        itemscope
-        itemtype="http://schema.org/BlogPosting"
-      >
-        <header>
-          <div class="entry-meta">
-            <span class="entry-date date published updated"
-              ><time
-                datetime="2020-12-06T00:00:00+01:00"
-                itemprop="datePublished"
-                ><a href="http://www.bloggure.info/mac-checklist"
-                  >December 06, 2020</a
-                ></time
-              ></span
-            ><span
-              class="author vcard"
-              itemprop="author"
-              itemscope
-              itemtype="http://schema.org/Person"
-              ><span itemprop="name" class="fn"
-                ><a
-                  href="http://www.bloggure.info/cgatay"
-                  title="About cgatay"
-                  itemprop="url"
-                  >cgatay</a
-                ></span
-              ></span
-            >&nbsp; &bull; &nbsp;<span class="entry-comments"
-              ><a href="http://www.bloggure.info/mac-checklist#disqus_thread"
-                >Comment</a
-              ></span
-            >
-          </div>
-          <!-- /.entry-meta -->
-
-          <h1 class="entry-title" itemprop="name">
-            <a
-              href="http://www.bloggure.info/mac-checklist"
-              rel="bookmark"
-              title="macOS tools checklist"
-              itemprop="url"
-              >macOS tools checklist</a
-            >
-          </h1>
-        </header>
-        <div class="entry-content" itemprop="description">
-          <h1 id="welcome-to-the-mac-world">Welcome to the mac world</h1>
-
-          <p>
-            Wether you’re new to macOS or an user coming from different
-            machines, the tools we tend to use is very important to be
-            productive.
-          </p>
-
-          <p>
-            Here you’ll find my list and what I install on a fresh machine to
-            get started.
-          </p>
-
-          <h2 id="system-tools">System tools</h2>
-
-          <p>
-            First and foremost, I start with
-            <a href="https://brew.sh"><code>brew</code></a> to handle all my
-            packages, but instead of doing so manually, I use my
-            <a href="https://github.com/CedricGatay/dotfiles.git"
-              ><code>dotfiles</code></a
-            >
-            and my “magic” install script that does all the heavy lifting for
-            me.
-          </p>
-
-          <h2 id="keyboard-tools">Keyboard tools</h2>
-
-          <p>
-            I use a TypeMatrix with a Colemak layout and also the internal
-            keyboard of my laptop with its default layout. Colemak layout is
-            available on a fresh macOS install but it is far from perfect as
-            there are a lot of missing dead keys (to type accented letters
-            mainly), so I start by installing the layout provided on this page:
-            <a href="https://colemak.com/Mac">Colemak mac</a>
-          </p>
-
-          <p>
-            To easily switch between the two and get almost the same feeling, I
-            use
-            <a href="http://karabiner-elements.pqrs.org/">Karabiner Elements</a
-            >.
-          </p>
-
-          <h2 id="everyday-tools">Everyday tools</h2>
-
-          <ul>
-            <li>
-              <a href="https://sdkman.io">sdkman</a>: to manage installation of
-              various sdk (mainly Java based)
-            </li>
-            <li>
-              <a href="https://iterm2.com">iTerm</a>: nice terminal app with
-              profiles
-            </li>
-            <li>
-              <a href="https://github.com/tmux/tmux/wiki">tmux</a>: multi
-              terminal in one window, switching terminal with a keystroke
-            </li>
-            <li><a href="https://www.zsh.org">zsh</a>: Z-Shell</li>
-            <li>
-              <a href="https://starship.rs">starship</a>: fast shell prompt
-            </li>
-            <li>
-              <a href="https://github.com/BurntSushi/ripgrep">ripgrep</a>:
-              faster <code>grep</code>
-            </li>
-            <li>
-              <a href="https://github.com/sharkdp/bat">bat</a>: nice
-              <code>cat</code> alternative (with paging / highlighting)
-            </li>
-            <li>
-              <a href="https://github.com/ogham/exa">exa</a>: replacement for
-              <code>ls</code>
-            </li>
-            <li>
-              <a href="https://www.alfredapp.com">Alfred</a>: Spotlight with
-              more features, this is my main app launcher / switcher
-            </li>
-            <li>
-              <a href="https://go.setapp.com/invite/cgatay">SetApp</a>: App
-              subscription service, use many tools from this (BetterTouchTool,
-              iStat, BarTender…)
-            </li>
-          </ul>
-        </div>
-        <!-- /.entry-content -->
-      </article>
-      <!-- /.hentry -->
-
       <div class="pagination">
         Previous
 
@@ -1067,6 +1073,10 @@
 
           <li>
             <a href="http://www.bloggure.info/page20">20</a>
+          </li>
+
+          <li>
+            <a href="http://www.bloggure.info/page21">21</a>
           </li>
         </ul>
 

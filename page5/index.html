@@ -110,6 +110,84 @@
           <div class="entry-meta">
             <span class="entry-date date published updated"
               ><time
+                datetime="2013-10-01T00:00:00+02:00"
+                itemprop="datePublished"
+                ><a
+                  href="http://www.bloggure.info/www/quickly-test-design-changes"
+                  >October 01, 2013</a
+                ></time
+              ></span
+            ><span
+              class="author vcard"
+              itemprop="author"
+              itemscope
+              itemtype="http://schema.org/Person"
+              ><span itemprop="name" class="fn"
+                ><a
+                  href="http://www.bloggure.info/cgatay"
+                  title="About cgatay"
+                  itemprop="url"
+                  >cgatay</a
+                ></span
+              ></span
+            >&nbsp; &bull; &nbsp;<span class="entry-comments"
+              ><a
+                href="http://www.bloggure.info/www/quickly-test-design-changes#disqus_thread"
+                >Comment</a
+              ></span
+            >
+          </div>
+          <!-- /.entry-meta -->
+
+          <h1 class="entry-title" itemprop="name">
+            <a
+              href="http://www.bloggure.info/www/quickly-test-design-changes"
+              rel="bookmark"
+              title="Quickly test design changes"
+              itemprop="url"
+              >Quickly test design changes</a
+            >
+          </h1>
+        </header>
+        <div class="entry-content" itemprop="description">
+          <p>
+            When you're developping Web applications, you often ask yourself
+            what does your beautiful design will look like if your users enter a
+            very long text. Or you may want to prototype a new screen based on
+            an existing one, I came around a quick hack using HTML5 goodness:
+            <a
+              href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Content_Editable"
+              >content editable</a
+            >
+            !
+          </p>
+          <p>
+            On the page you want to edit, open your JavaScript console
+            (Cmd+Alt+I on Chrome Mac), and enter the following
+            <figure class="highlight">
+              <pre><code class="language-javascript" data-lang="javascript"><span></span><span class="w">  </span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">contentEditable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">  </span></code></pre>
+            </figure>
+            <br />
+            Now you can freely edit the text on your page, once you're done, you
+            can switch off the content editable mode setting the property to
+            false !
+          </p>
+        </div>
+        <!-- /.entry-content -->
+      </article>
+      <!-- /.hentry -->
+
+      <article
+        class="hentry"
+        itemprop="blogPost"
+        itemscope
+        itemtype="http://schema.org/BlogPosting"
+      >
+        <header>
+          <div class="entry-meta">
+            <span class="entry-date date published updated"
+              ><time
                 datetime="2013-08-31T00:00:00+02:00"
                 itemprop="datePublished"
                 ><a
@@ -650,139 +728,6 @@ With this little trick, your calls to localization will use the locale extracted
       </article>
       <!-- /.hentry -->
 
-      <article
-        class="hentry"
-        itemprop="blogPost"
-        itemscope
-        itemtype="http://schema.org/BlogPosting"
-      >
-        <header>
-          <div class="entry-meta">
-            <span class="entry-date date published updated"
-              ><time
-                datetime="2013-05-20T00:00:00+02:00"
-                itemprop="datePublished"
-                ><a href="http://www.bloggure.info/.wicket/wicket-routes-mount"
-                  >May 20, 2013</a
-                ></time
-              ></span
-            ><span
-              class="author vcard"
-              itemprop="author"
-              itemscope
-              itemtype="http://schema.org/Person"
-              ><span itemprop="name" class="fn"
-                ><a
-                  href="http://www.bloggure.info/cgatay"
-                  title="About cgatay"
-                  itemprop="url"
-                  >cgatay</a
-                ></span
-              ></span
-            >&nbsp; &bull; &nbsp;<span class="entry-comments"
-              ><a
-                href="http://www.bloggure.info/.wicket/wicket-routes-mount#disqus_thread"
-                >Comment</a
-              ></span
-            >
-          </div>
-          <!-- /.entry-meta -->
-
-          <h1 class="entry-title" itemprop="name">
-            <a
-              href="http://www.bloggure.info/.wicket/wicket-routes-mount"
-              rel="bookmark"
-              title="Wicket Routes Mount"
-              itemprop="url"
-              >Wicket Routes Mount</a
-            >
-          </h1>
-        </header>
-        <div class="entry-content" itemprop="description">
-          <!--:en--><img
-            class="alignright size-thumbnail wp-image-90"
-            alt="Wicket"
-            src="/images/uploads/2010/10/logo-wicket1-150x150.png"
-            width="150"
-            height="150"
-          />
-
-          <p>
-            At <a href="http://code-troopers.com">Code-Troopers</a>, we like to
-            work with the frameworks we love. One of them is
-            <a href="http://wicket.apache.org">Apache Wicket</a>, and it happens
-            to some of us doing some
-            <a href="http://www.playframework.com/">Play! Framework</a> or
-            <a href="http://rubyonrails.org/">Ruby on Rails</a> (either for a
-            client project, a side project or giving back OSS love).
-          </p>
-
-          <p>
-            One thing really great is this two frameworks is the central route
-            system, one file allows to group all the routes handled by your
-            application. Wicket does not provide such way of grouping routes,
-            you can manually mount routes into your application or annotate your
-            page classes.
-          </p>
-          <h2>Wicket routes mount library</h2>
-          <p>
-            <a href="https://github.com/code-troopers/wicket-routes-mount"
-              >This small library project available on Github</a
-            >
-            allows to group mounts into a central file. To use it, simply add
-            its dependency to your <code>pom.xml</code> (artifact is available
-            on Maven central):
-          </p>
-          <figure class="highlight">
-            <pre><code class="language-xml" data-lang="xml"><span></span><span class="nt">&lt;dependency&gt;</span>
-<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>com.code-troopers<span class="nt">&lt;/groupId&gt;</span>
-<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>wicket-route-mount<span class="nt">&lt;/artifactId&gt;</span>
-<span class="w">    </span><span class="nt">&lt;version&gt;</span>0.1<span class="nt">&lt;/version&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span></code></pre>
-          </figure>
-          <em>
-            This dependency will transitively gets
-            <code>wicket-auth-roles</code> (if there is a special need for a
-            version without this dependency, it could be done easily).
-          </em>
-          <h2>Usage</h2>
-          <p>
-            To use it, simply create a <code>routes.conf</code> file at the root
-            of the sources in your project (typically
-            <code>src/main/resources/</code>) respecting the following format :
-          </p>
-          <pre>
-# mountPoint        class                           roles
-/home               codetroopers.HomePage           
-/secured            codetroopers.SecuredPage        USER
-/user/${mode}/#{id} codetroopers.UserPage           ADMIN,USER</pre
-          >
-          <p>The files content is the following :</p>
-          <ul>
-            <li>
-              Mount path : using standard Wicket syntax (<code
-                >${requiredParam}</code
-              >
-              and <code>#{optionalParam}</code> are available)
-            </li>
-            <li>
-              Page class : fully qualified name of the page class to mount
-            </li>
-            <li>
-              Roles (optional) : comma separated list of roles required to
-              access the page
-            </li>
-          </ul>
-
-          <em
-            >IntelliJ IDEA can do completion for class names in this file (you
-            just need to hit the <code>ctrl+space</code> shortcut twice)</em
-          ><!--:-->
-        </div>
-        <!-- /.entry-content -->
-      </article>
-      <!-- /.hentry -->
-
       <div class="pagination">
         <a href="http://www.bloggure.info/page4" class="btn">Previous</a>
 
@@ -865,6 +810,10 @@ With this little trick, your calls to localization will use the locale extracted
 
           <li>
             <a href="http://www.bloggure.info/page20">20</a>
+          </li>
+
+          <li>
+            <a href="http://www.bloggure.info/page21">21</a>
           </li>
         </ul>
 

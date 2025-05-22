@@ -4,13 +4,74 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="http://www.bloggure.info/feed.xml" />
 <link rel="alternate" type="text/html" href="http://www.bloggure.info" />
-<updated>2025-04-18T21:52:26+02:00</updated>
+<updated>2025-05-22T16:19:50+02:00</updated>
 <id>http://www.bloggure.info/</id>
 <author>
   <name></name>
   <uri>http://www.bloggure.info/</uri>
   <email></email>
 </author>
+
+
+<entry>
+  <title type="html"><![CDATA[Tuist build test schemes]]></title>
+  <link>http://www.bloggure.info/Tuist_build_test_schemes</link>
+  <id>http://www.bloggure.info/Tuist_build_test_schemes</id>
+  <published>2025-05-22T00:00:00+02:00</published>
+  <updated>2025-05-22T00:00:00+02:00</updated>
+  <author>
+    <name></name>
+    <uri>http://www.bloggure.info</uri>
+    <email></email>
+  </author>
+  <content type="html">&lt;p&gt;Tuist build test schemes&lt;/p&gt;
+
+&lt;p&gt;I use tuist to build most of my iOS projects nowadays. And like every good software engineer I test the code that I deliver. I want to ensure that everything works according to what I expect is coming to my app.&lt;/p&gt;
+
+&lt;h3 id=&quot;xcode-and-schemes&quot;&gt;Xcode and schemes&lt;/h3&gt;
+
+&lt;p&gt;XCode is a fun IDE, it is slow, has his own temper when it comes to find references, refactor or even launch app.
+One of the things that is really strange when you’re using this IDE for the first time is that it does only build the active scheme.
+So, if your project has, let’s say, 10 schemes, and you refactor a method to add an argument. You won’t notice you have a build error until your build all schemes…&lt;/p&gt;
+
+&lt;h3 id=&quot;build-errors&quot;&gt;Build errors&lt;/h3&gt;
+
+&lt;p&gt;I tend to have a lot of build errors during refactoring, but this is globally ok, I use them to pave the way to my final implementation.
+One of the thing that bothers me is that I don’t always catch all errors, and I need the CI to bail out because of a missing argument / protocol conformance method…
+This is not a cool thing in my daily process, I am interrupted to fix a build error that should never happen.&lt;/p&gt;
+
+&lt;h3 id=&quot;build-tests-target-automatically&quot;&gt;Build tests target automatically&lt;/h3&gt;
+
+&lt;p&gt;As I am a tuist user, I want to be able to build all my tests target easily to prevent pushing something that does not even build (even before I can say that my tests are passing).&lt;/p&gt;
+
+&lt;h4 id=&quot;command-line-fu&quot;&gt;Command line-fu&lt;/h4&gt;
+
+&lt;p&gt;At first I tried a basic thing, hoping that it would work (spoiler alert, it does not):&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;tuist&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;build&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;*Tests&amp;#39;&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h4 id=&quot;scripting-to-the-rescue&quot;&gt;Scripting to the rescue&lt;/h4&gt;
+
+&lt;p&gt;It seems that it is not supported out of the box by tuist, running schemes by using a wildcard operator to filter them. However, it is rather easy to do using basic bash scripting, so here is my basic solution&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;-e
+&lt;span class=&quot;nv&quot;&gt;SCHEMES&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;xcodebuild&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;-workspace&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;MyProject.xcworkspace&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;-list&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;grep&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;Tests&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;awk&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;{print $1}&amp;#39;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$SCHEMES&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;IFS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;read&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;-r&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;s&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;   &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;Building &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$s&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;   &lt;/span&gt;tuist&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;build&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$s&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;I save this file under &lt;code&gt;buildTests.sh&lt;/code&gt;, run a &lt;code&gt;chmod +x buildTests.sh&lt;/code&gt; and then I can build my tests targets, in sequence, exiting on first failure. This is perfect for my use case, whenever I refactor too much, or I want to check that tests are still building, I can run this.&lt;/p&gt;
+
+&lt;h3 id=&quot;downside&quot;&gt;Downside&lt;/h3&gt;
+
+&lt;p&gt;Script execution is rather slow, as there is not any parallelism involved, everything is building from scratch.
+It might be nice to run everything in parallel, but so far so good, it is ok for my use case !&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/Tuist_build_test_schemes&quot;&gt;Tuist build test schemes&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure&lt;/a&gt; on May 22, 2025.&lt;/p&gt;</content>
+</entry>
 
 
 <entry>
@@ -1108,30 +1169,6 @@ sudo VirtualBox;
 &lt;p&gt;Head over to &lt;a href=&quot;http://bit.ly/1bqvB29&quot;&gt;Packt Publishing site&lt;/a&gt; and pick the books of your choice using the promo code COL50.&lt;/p&gt;
 
   &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/www/great-ebooks-for-half-price&quot;&gt;Great Ebooks for Half Price&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure&lt;/a&gt; on October 15, 2013.&lt;/p&gt;</content>
-</entry>
-
-
-<entry>
-  <title type="html"><![CDATA[Quickly test design changes]]></title>
-  <link>http://www.bloggure.info/www/quickly-test-design-changes</link>
-  <id>http://www.bloggure.info/www/quickly-test-design-changes</id>
-  <published>2013-10-01T00:00:00+02:00</published>
-  <updated>2013-10-01T00:00:00+02:00</updated>
-  <author>
-    <name></name>
-    <uri>http://www.bloggure.info</uri>
-    <email></email>
-  </author>
-  <content type="html">&lt;p&gt;
-  When you&apos;re developping Web applications, you often ask yourself what does your beautiful design will look like if your users enter a very long text. Or you may want to prototype a new screen based on an existing one, I came around a quick hack using HTML5 goodness: &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Content_Editable&quot;&gt;content editable&lt;/a&gt; !
-&lt;/p&gt;
-&lt;p&gt;
-  On the page you want to edit, open your JavaScript console (Cmd+Alt+I on Chrome Mac), and enter the following 
-  &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;contentEditable&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;&lt;br/&gt;
-  Now you can freely edit the text on your page, once you&apos;re done, you can switch off the content editable mode setting the property to false !
-&lt;/p&gt;
-  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/www/quickly-test-design-changes&quot;&gt;Quickly test design changes&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure&lt;/a&gt; on October 01, 2013.&lt;/p&gt;</content>
 </entry>
 
 </feed>
