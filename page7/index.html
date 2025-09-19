@@ -90,8 +90,10 @@
     <div class="entry-header">
       <div class="header-title">
         <div class="header-title-wrap">
-          <h1>Bloggure</h1>
-          <h2></h2>
+          <h1 itemprop="name">
+            <a href="http://www.bloggure.info/">Bloggure</a>
+          </h1>
+          <h2><a href="/page7/"></a></h2>
         </div>
         <!-- /.header-title-wrap -->
       </div>
@@ -110,11 +112,11 @@
           <div class="entry-meta">
             <span class="entry-date date published updated"
               ><time
-                datetime="2013-03-03T00:00:00+01:00"
+                datetime="2013-03-24T00:00:00+01:00"
                 itemprop="datePublished"
                 ><a
-                  href="http://www.bloggure.info/.wicket/work/wicket-6-cdi-on-heroku"
-                  >March 03, 2013</a
+                  href="http://www.bloggure.info/www/duckduckgo-in-thunderbird"
+                  >March 24, 2013</a
                 ></time
               ></span
             ><span
@@ -124,15 +126,15 @@
               itemtype="http://schema.org/Person"
               ><span itemprop="name" class="fn"
                 ><a
-                  href="http://www.bloggure.info/cgatay"
-                  title="About cgatay"
+                  href="http://www.bloggure.info/yfonjallaz"
+                  title="About yfonjallaz"
                   itemprop="url"
-                  >cgatay</a
+                  >yfonjallaz</a
                 ></span
               ></span
             >&nbsp; &bull; &nbsp;<span class="entry-comments"
               ><a
-                href="http://www.bloggure.info/.wicket/work/wicket-6-cdi-on-heroku#disqus_thread"
+                href="http://www.bloggure.info/www/duckduckgo-in-thunderbird#disqus_thread"
                 >Comment</a
               ></span
             >
@@ -141,123 +143,71 @@
 
           <h1 class="entry-title" itemprop="name">
             <a
-              href="http://www.bloggure.info/.wicket/work/wicket-6-cdi-on-heroku"
+              href="http://www.bloggure.info/www/duckduckgo-in-thunderbird"
               rel="bookmark"
-              title="Wicket 6 + CDI on Heroku"
+              title="DuckDuckGo in Thunderbird"
               itemprop="url"
-              >Wicket 6 + CDI on Heroku</a
+              >DuckDuckGo in Thunderbird</a
             >
           </h1>
         </header>
         <div class="entry-content" itemprop="description">
-          <!--:en-->
-          <p>
-            <img
-              class="alignright size-full wp-image-865"
-              alt="herokuwicket"
-              src="/images/uploads/2013/03/herokuwicket.png"
-              width="96"
-              height="96"
-            />As an <a href="http://apache.wicket.org">Apache Wicket</a> user
-            for more than five years I really enjoy its programming model. I
-            recently played with
-            <a href="http://www.playframework.com/">Play Framework</a> 2.1 and
-            Scala and discovered that deploying to
-            <a href="http://www.heroku.com/">Heroku</a> is as easy as a git
-            push. I wondered how difficult it could be using this mechanism to
-            deploy a Wicket application.
-          </p>
-          <h1>Existing attempts</h1>
-          <p>
-            My initial investigation led me to this
-            <a
-              href="http://wicketinaction.com/2011/09/git-wicket-running-on-heroku/"
-              >blog post from Martijn Dashorst</a
-            > explaining how to deploy a Wicket 1.5 application to Heroku, the
-            service has slightly evolved since and the quickstart no longer
-            deploys (Maven repository is no longer available to the
-            run environment).
-          </p>
-          <h1>Adding JPA in the mix</h1>
-          <p>
-            I adapted it to deploy and use Wicket 6 instead of 1.5. And as I am
-            a CDI fan I completed the quickstart with the CDI Wicket module
-            (inspired from
-            <a
-              href="https://www.42lines.net/2011/11/21/adding-jpahibernate-into-the-cdi-and-wicket-mix/"
-              >this post from Igor Vaynberg</a
-            >) and made the necessary steps to use the heroku bundled PostgreSQL
-            database as a JPA datasource.
-          </p>
-          <p>
-            The key to make the database works correctly on Heroku resides in
-            the following code snippet, where we parse the provided environment
-            variable to populate hibernate properties.
-          </p>
-          <figure class="highlight">
-            <pre><code class="language-java" data-lang="java"><span></span><span class="w">  </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
-<span class="w">     </span><span class="n">URI</span><span class="w"> </span><span class="n">dbUri</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">URI</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">getenv</span><span class="p">(</span><span class="s">&quot;DATABASE_URL&quot;</span><span class="p">));</span>
-<span class="w">     </span><span class="n">String</span><span class="w"> </span><span class="n">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dbUri</span><span class="p">.</span><span class="na">getUserInfo</span><span class="p">().</span><span class="na">split</span><span class="p">(</span><span class="s">&quot;:&quot;</span><span class="p">)</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">;</span>
-<span class="w">     </span><span class="n">String</span><span class="w"> </span><span class="n">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dbUri</span><span class="p">.</span><span class="na">getUserInfo</span><span class="p">().</span><span class="na">split</span><span class="p">(</span><span class="s">&quot;:&quot;</span><span class="p">)</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="p">;</span>
-<span class="w">     </span><span class="n">String</span><span class="w"> </span><span class="n">dbUrl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;jdbc:postgresql://&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dbUri</span><span class="p">.</span><span class="na">getHost</span><span class="p">()</span><span class="w"> </span>
-<span class="w">                    </span><span class="o">+</span><span class="w"> </span><span class="sc">&#39;:&#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dbUri</span><span class="p">.</span><span class="na">getPort</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dbUri</span><span class="p">.</span><span class="na">getPath</span><span class="p">();</span>
-<span class="w">     </span><span class="n">System</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="s">&quot;hibernate.connection.url&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">dbUrl</span><span class="p">);</span>
-<span class="w">     </span><span class="n">System</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="s">&quot;hibernate.connection.user&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">username</span><span class="p">);</span>
-<span class="w">     </span><span class="n">System</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="s">&quot;hibernate.connection.password&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">password</span><span class="p">);</span>
-<span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">     </span><span class="n">LOGGER</span><span class="p">.</span><span class="na">error</span><span class="p">(</span><span class="s">&quot;Unable to extract database url&quot;</span><span class="p">);</span>
-<span class="p">}</span></code></pre>
-          </figure>
-          <h1>Session replication</h1>
-          <p>
-            On Wicket mailing lists,
-            <a
-              href="http://mail-archives.apache.org/mod_mbox/wicket-users/201301.mbox/%3C20130109180456.21633f6d4d230ce5688fd451@gmx.net%3E"
-              >a user recently asked</a
-            >
-            the steps required to get the data store works correctly on Heroku
-            (as the disk space is ephemeral), the key is using a NoSQL backend
-            like <a href="http://redis.io/">Redis</a>. So I wrote a simple and
-            basic implementation of IDataStore using Redis (I think it can be
-            optimized by someone familiar with Redis, pull requests are
-            welcome).
-          </p>
-          <h1>Hands on</h1>
-          <p>
-            The quickstart can be found
-            <a href="https://github.com/CedricGatay/heroku-wicket-quickstart"
-              >at the following address</a
-            >
-            and deploys fine on a stack with
-            <a href="http://redis-cloud.com/">Redis Cloud</a> and PostgreSQL add
-            ons enabled.<br />
-            In the end you got :
-          </p>
-          <ul>
-            <li>Wicket 6</li>
-            <li>CDI via Weld</li>
-            <li>JPA with PostgreSQL</li>
-            <li>Redis datastore</li>
-          </ul>
-          <p>
-            You can see it live at the following address : <a
-              href="http://wicket-6-sample.herokuapp.com/"
-              >http://wicket-6-sample.herokuapp.com/</a
-            >, the app can take a few seconds to start, as Heroku will stop it
-            if it is idling for too long.
-          </p>
-          <!--:--><!--:fr<p><img class="alignright size-full wp-image-865" alt="herokuwicket" src="/images/uploads/2013/03/herokuwicket.png" width="96" height="96" />As an <a href="http://apache.wicket.org">Apache Wicket</a> user for more than five years I really enjoy its programming model. I recently played with <a href="http://www.playframework.com/">Play Framework</a> 2.1 and Scala and discovered that deploying to <a href="http://www.heroku.com/">Heroku</a> is as easy as a git push. I wondered how difficult it could be using this mechanism to deploy a Wicket application.</p><h1>Existing attempts</h1><p>My initial investigation led me to this <a href="http://wicketinaction.com/2011/09/git-wicket-running-on-heroku/">blog post from Martijn Dashorst</a> explaining how to deploy a Wicket 1.5 application to Heroku, the service has slightly evolved since and the quickstart no longer deploys (Maven repository is no longer available to the run environment).</p><h1>Adding JPA in the mix</h1><p>I adapted it to deploy and use Wicket 6 instead of 1.5. And as I am a CDI fan I completed the quickstart with the CDI Wicket module (inspired from <a href="https://www.42lines.net/2011/11/21/adding-jpahibernate-into-the-cdi-and-wicket-mix/">this post from Igor Vaynberg</a>) and made the necessary steps to use the heroku bundled PostgreSQL database as a JPA datasource.</p><p>The key to make the database works correctly on Heroku resides in the following code snippet, where we parse the provided environment variable to populate hibernate properties.</p><pre class="brush: java">try {
-     URI dbUri = new URI(System.getenv("DATABASE_URL"));
-     String username = dbUri.getUserInfo().split(":")[0];
-     String password = dbUri.getUserInfo().split(":")[1];
-     String dbUrl = "jdbc:postgresql://" + dbUri.getHost() 
-                    + ':' + dbUri.getPort() + dbUri.getPath();
-     System.setProperty("hibernate.connection.url", dbUrl);
-     System.setProperty("hibernate.connection.user", username);
-     System.setProperty("hibernate.connection.password", password);
-} catch (Exception e) {
-     LOGGER.error("Unable to extract database url");
-}</pre><h1>Session replication</h1><p>On Wicket mailing lists, <a href="http://mail-archives.apache.org/mod_mbox/wicket-users/201301.mbox/%3C20130109180456.21633f6d4d230ce5688fd451@gmx.net%3E">a user recently asked</a> the steps required to get the data store works correctly on Heroku (as the disk space is ephemeral), the key is using a NoSQL backend like <a href="http://redis.io/">Redis</a>. So I wrote a simple and basic implementation of IDataStore using Redis (I think it can be optimized by someone familiar with Redis, pull requests are welcome).</p><h1>Hands on</h1><p>The quickstart can be found <a href="https://github.com/CedricGatay/heroku-wicket-quickstart">at the following address</a> and deploys fine on a stack with <a href="http://redis-cloud.com/">Redis Cloud</a> and PostgreSQL add ons enabled.<br /> In the end you got :</p><ul><li>Wicket 6</li><li>CDI via Weld</li><li>JPA with PostgreSQL</li><li>Redis datastore</li></ul><p>You can see it live at the following address : <a href="http://wicket-6-sample.herokuapp.com/">http://wicket-6-sample.herokuapp.com/</a>, the app can take a few seconds to start, as Heroku will stop it if it is idling for too long.</p><-->
+          <!--:en--><a
+            href="http://www.bloggure.info/wp-content/uploads/2013/03/logo_homepage.normal.v102.png"
+            ><img
+              class="alignright size-thumbnail wp-image-890"
+              alt="Logo DuckDuckGo"
+              src="/images/uploads/2013/03/logo_homepage.normal.v102-150x150.png"
+              width="150"
+              height="150" /></a
+          >Mozilla added a function to search on the web in the latest versions
+          of Thunderbird.That's nice, but the default search engine is bing. As
+          a DuckDuckGo user, I wanted to add my favourite search engine and use
+          it by default. So here's how to do it.
+          <ol>
+            <li>
+              <a
+                title="Find your Thunderbird profile folder"
+                href="http://kb.mozillazine.org/Profile_folder_-_Thunderbird"
+                >Find your profile folder</a
+              >.
+            </li>
+            <li>
+              In it, create a folder named "searchplugins" (without the quotes)
+              if it doesn't exists.
+            </li>
+            <li>
+              Save
+              <a
+                title="DuckDuckGo search plugin"
+                href="http://www.fribourg-est-independant.org/fonji/ddg.xml"
+                >this xml</a
+              >
+              file in it.
+            </li>
+            <li>(Re)start Thunderbird.</li>
+            <li>
+              Select some text in any mail, right clic and search with bing
+              (sorry).
+            </li>
+            <li>Click the DuckDuckGo icon on the left.</li>
+            <li>Click the heart icon on the bottom left.</li>
+            <li>That's all!</li>
+          </ol>
+          To add google, add
+          <a href="http://bwinton.latte.ca/Work/google.xml">this file</a> in the
+          same folder.<!--:--><!--:fr<a href="http://www.bloggure.info/wp-content/uploads/2013/03/logo_homepage.normal.v102.png"><img class="alignright size-thumbnail wp-image-890" alt="Logo DuckDuckGo" src="/images/uploads/2013/03/logo_homepage.normal.v102-150x150.png" width="150" height="150" /></a>Mozilla a ajouté une fonction de recherche sur internet dans les dernières versions de Thunderbird. C'est très utile, mais le moteur par défaut est bing et, en tant qu'utilisateur de DuckDuckGo, j'ai voulu changer ceci pour mettre mon moteur favori à la place. Voici comment procéder :
+<ol>
+	<li><a title="Trouver votre profil thunderbird" href="https://support.mozillamessaging.com/fr/kb/profil-utilisateur#w_oai-mon-profil-est-il-stockae">Trouvez le répertoire de votre profil.</a></li>
+	<li>Créez un répertoire "searchplugins" (sans guillemets) s'il n'existe pas déjà.</li>
+	<li>Sauvegardez <a title="DuckDuckGo search plugin" href="http://www.fribourg-est-independant.org/fonji/ddg.xml">ce fichier xml</a> dans searchplugins.</li>
+	<li>(Re)démarrez Thunderbird.</li>
+	<li>Selectionnez du texte dans un email, faites un clic droit puis "rechercher avec bing" (désolé).</li>
+	<li>Cliquez l'icône DuckDuckGo sur la gauche.</li>
+	<li>Cliquez sur le cœur dans le coin en bas à gauche.</li>
+	<li>C'est tout !</li>
+</ol>
+Pour utiliser google, ajoutez <a href="http://bwinton.latte.ca/Work/google.xml">ce fichier</a> dans le même répertoire.<-->
         </div>
         <!-- /.entry-content -->
       </article>
@@ -273,11 +223,11 @@
           <div class="entry-meta">
             <span class="entry-date date published updated"
               ><time
-                datetime="2013-01-20T00:00:00+01:00"
+                datetime="2013-03-19T00:00:00+01:00"
                 itemprop="datePublished"
                 ><a
-                  href="http://www.bloggure.info/.java/.wicket/use-wicket-templating-system-to-generate-html"
-                  >January 20, 2013</a
+                  href="http://www.bloggure.info/.java/alfred-glassfish-workflow"
+                  >March 19, 2013</a
                 ></time
               ></span
             ><span
@@ -295,7 +245,7 @@
               ></span
             >&nbsp; &bull; &nbsp;<span class="entry-comments"
               ><a
-                href="http://www.bloggure.info/.java/.wicket/use-wicket-templating-system-to-generate-html#disqus_thread"
+                href="http://www.bloggure.info/.java/alfred-glassfish-workflow#disqus_thread"
                 >Comment</a
               ></span
             >
@@ -304,111 +254,68 @@
 
           <h1 class="entry-title" itemprop="name">
             <a
-              href="http://www.bloggure.info/.java/.wicket/use-wicket-templating-system-to-generate-html"
+              href="http://www.bloggure.info/.java/alfred-glassfish-workflow"
               rel="bookmark"
-              title="Use Wicket templating system to generate Html"
+              title="Alfred.app Glassfish workflow"
               itemprop="url"
-              >Use Wicket templating system to generate Html</a
+              >Alfred.app Glassfish workflow</a
             >
           </h1>
         </header>
         <div class="entry-content" itemprop="description">
+          <!--:en--><img
+            class="size-thumbnail wp-image-879 alignright"
+            alt="alfred-icon"
+            src="/images/uploads/2013/03/alfred-icon-150x150.jpg"
+            width="150"
+            height="150"
+          />
           <p>
-            <img
-              src="/images/uploads/2013/01/html-icon.png"
-              alt="html-icon"
-              width="128"
-              height="128"
-              class="alignright size-full wp-image-844"
-            /><a href="http://wicket.apache.org">Apache Wicket</a> is a great
-            web framework, its clear separation between logic and markup allows
-            to focus on what's need to be done. <br />
-            As we use Wicket at
-            <a href="https://www.srmvision.com">SRMvision</a>, we needed to send
-            mails with rather rich templates to our users. The first
-            implementation we used was relying on Wicket to generate these
-            templates using Html. We finally don't use it (our mailing tasks are
-            done by a background job, thus we don't have access to our webapp),
-            but I though the code used in our fast proof of concept could help
-            someone else.
+            I recently bought the
+            <a href="http://www.alfredapp.com/">Alfred.app</a> Powerpack. It is
+            byfar the best application launcher / automation engine I've ever
+            used. One of the new features of the second version of this
+            application is user customizable workflows.
+          </p>
+          <p>
+            In my daily activities, I start, stop, restart and kill my
+            <a
+              href="http://www.oracle.com/technetwork/middleware/glassfish/overview/index.html"
+              >Glassfish</a
+            >
+            server several times a day. In order to save me a few keystrokes and
+            a few alt-tabbing, I created this small workflow allowing me to
+            manage my local Glassfish instance.
           </p>
 
-          <figure class="highlight">
-            <pre><code class="language-java" data-lang="java"><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.wicket.markup.MarkupType</span><span class="p">;</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.wicket.markup.html.WebMarkupContainer</span><span class="p">;</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.wicket.markup.html.basic.Label</span><span class="p">;</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.wicket.markup.html.panel.Panel</span><span class="p">;</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.wicket.markup.repeater.RepeatingView</span><span class="p">;</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.wicket.model.PropertyModel</span><span class="p">;</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.wicket.request.Response</span><span class="p">;</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.wicket.response.StringResponse</span><span class="p">;</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">org.slf4j.Logger</span><span class="p">;</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">org.slf4j.LoggerFactory</span><span class="p">;</span>
-
-
-<span class="cm">/**</span>
-<span class="cm"> * Simple panel allowing to use the templating engine </span>
-<span class="cm"> *    provided by Wicket to generate HTML.</span>
-<span class="cm"> * Typical use would be to generate mail content.</span>
-<span class="cm"> *</span>
-<span class="cm"> * User of this class will need to subclass it </span>
-<span class="cm"> *    and create a panel as usual. </span>
-<span class="cm"> * Then a call to getHtml() will return the generated Html.</span>
-<span class="cm"> *</span>
-<span class="cm"> * @author cedric at gatay.fr</span>
-<span class="cm"> */</span>
-<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">HtmlTemplaterPanel</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Panel</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">Logger</span><span class="w"> </span><span class="n">LOGGER</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
-<span class="w">        </span><span class="n">LoggerFactory</span><span class="p">.</span><span class="na">getLogger</span><span class="p">(</span><span class="n">HtmlTemplaterPanel</span><span class="p">.</span><span class="na">class</span><span class="p">);</span>
-
-<span class="w">    </span><span class="cm">/**</span>
-<span class="cm">     * Default constructor takes no wicket:id &gt; </span>
-<span class="cm">     *   the panel will not be added to any component</span>
-<span class="cm">     */</span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">HtmlTemplaterPanel</span><span class="p">(){</span>
-<span class="w">        </span><span class="kd">super</span><span class="p">(</span><span class="s">&quot;dummy&quot;</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="cm">/**</span>
-<span class="cm">     * Call this whenever you want to get</span>
-<span class="cm">     *   the Html for this component</span>
-<span class="cm">     * @return Html or empty string</span>
-<span class="cm">     */</span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">getHtml</span><span class="p">(){</span>
-<span class="w">        </span><span class="kd">final</span><span class="w"> </span><span class="n">Response</span><span class="w"> </span><span class="n">origResponse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getRequestCycle</span><span class="p">().</span><span class="na">getResponse</span><span class="p">();</span>
-<span class="w">        </span><span class="k">try</span><span class="p">{</span>
-<span class="w">            </span><span class="kd">final</span><span class="w"> </span><span class="n">StringResponse</span><span class="w"> </span><span class="n">stringResponse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">StringResponse</span><span class="p">();</span>
-<span class="w">            </span><span class="n">getRequestCycle</span><span class="p">().</span><span class="na">setResponse</span><span class="p">(</span><span class="n">stringResponse</span><span class="p">);</span>
-<span class="w">            </span><span class="n">renderAssociatedMarkup</span><span class="p">(</span><span class="s">&quot;panel&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">);</span>
-<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">stringResponse</span><span class="p">.</span><span class="na">toString</span><span class="p">();</span>
-<span class="w">        </span><span class="p">}</span><span class="k">catch</span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">){</span>
-<span class="w">            </span><span class="n">LOGGER</span><span class="p">.</span><span class="na">error</span><span class="p">(</span><span class="s">&quot;Unable to build HTML for panel : {}&quot;</span><span class="p">,</span>
-<span class="w">                         </span><span class="n">e</span><span class="p">.</span><span class="na">getMessage</span><span class="p">());</span>
-<span class="w">        </span><span class="p">}</span><span class="k">finally</span><span class="p">{</span>
-<span class="w">            </span><span class="n">getRequestCycle</span><span class="p">().</span><span class="na">setResponse</span><span class="p">(</span><span class="n">origResponse</span><span class="p">);</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="nd">@Override</span>
-<span class="w">    </span><span class="kd">protected</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">getStatelessHint</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="nd">@Override</span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">MarkupType</span><span class="w"> </span><span class="nf">getMarkupType</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">MarkupType</span><span class="p">.</span><span class="na">HTML_MARKUP_TYPE</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span></code></pre>
-          </figure>
           <p>
-            If you want to generate a template using Apache Wicket, you only
-            need to create a Panel and its associated markup which inherits this
-            simple class. Then, when you want to get the Html for your
-            component, call <code>getHtml()</code>.<br />
-            The only drawback of this is that you need a RequestCycle to
-            generate the markup (you'll find out why reading the code).
+            You can find the Alfred worfklow at the following url <a
+              href="http://bit.ly/alfred-glassfish"
+              >http://bit.ly/alfred-glassfish</a
+            >. You will probably need to adapt the GF_PATH variable in the
+            script to point to the root of your Glassfish installation.
           </p>
+
+          <p>
+            Once this small step is done, you'll end up with the following
+            prompt in your Alfred :
+          </p>
+
+          <!-- [caption id="attachment_878" align="aligncenter" width="300"] --><img
+            class="size-medium wp-image-878"
+            alt="Alfred with Glassfish workflow enabled"
+            src="/images/uploads/2013/03/alfredscreen.png"
+            width="300"
+            height="102"
+          /><!--  Alfred with Glassfish workflow enabled[/caption] --><!--:--><!--:fr<img class="size-thumbnail wp-image-879 alignright" alt="alfred-icon" src="/images/uploads/2013/03/alfred-icon-150x150.jpg" width="150" height="150" />I recently bought the <a href="http://www.alfredapp.com/">Alfred.app</a> Powerpack. It is byfar the best application launcher / automation engine I've ever used. One of the new features of the second version of this application is user customizable workflows.
+In my daily activities, I start, stop, restart and kill my <a href="http://www.oracle.com/technetwork/middleware/glassfish/overview/index.html">Glassfish</a> server several times a day. In order to save me a few keystrokes and a few alt-tabbing, I created this small workflow allowing me to manage my local Glassfish instance.
+
+You can find the Alfred worfklow at the following url <a href="http://bit.ly/alfred-glassfish">http://bit.ly/alfred-glassfish</a>.
+You will probably need to adapt the GF_PATH variable in the script to point to the root of your Glassfish installation.
+
+Once this small step is done, you'll end up with the following prompt in your Alfred :
+
+[caption id="attachment_878" align="aligncenter" width="300"]<img class="size-medium wp-image-878" alt="Alfred with Glassfish workflow enabled" src="/images/uploads/2013/03/Capture-d’écran-2013-03-19-à-09.53.20-300x102.png" width="300" height="102" /> Alfred with Glassfish workflow enabled[/caption]<-->
         </div>
         <!-- /.entry-content -->
       </article>

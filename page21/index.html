@@ -90,8 +90,10 @@
     <div class="entry-header">
       <div class="header-title">
         <div class="header-title-wrap">
-          <h1>Bloggure</h1>
-          <h2></h2>
+          <h1 itemprop="name">
+            <a href="http://www.bloggure.info/">Bloggure</a>
+          </h1>
+          <h2><a href="/page21/"></a></h2>
         </div>
         <!-- /.header-title-wrap -->
       </div>
@@ -100,6 +102,377 @@
     <!-- /.entry-header -->
 
     <div id="main" role="main">
+      <article
+        class="hentry"
+        itemprop="blogPost"
+        itemscope
+        itemtype="http://schema.org/BlogPosting"
+      >
+        <header>
+          <div class="entry-meta">
+            <span class="entry-date date published updated"
+              ><time
+                datetime="2010-11-14T00:00:00+01:00"
+                itemprop="datePublished"
+                ><a
+                  href="http://www.bloggure.info/.shell/shelf/itunes-media-sharing-over-the-internet-from-a-nas"
+                  >November 14, 2010</a
+                ></time
+              ></span
+            ><span
+              class="author vcard"
+              itemprop="author"
+              itemscope
+              itemtype="http://schema.org/Person"
+              ><span itemprop="name" class="fn"
+                ><a
+                  href="http://www.bloggure.info/cgatay"
+                  title="About cgatay"
+                  itemprop="url"
+                  >cgatay</a
+                ></span
+              ></span
+            >&nbsp; &bull; &nbsp;<span class="entry-comments"
+              ><a
+                href="http://www.bloggure.info/.shell/shelf/itunes-media-sharing-over-the-internet-from-a-nas#disqus_thread"
+                >Comment</a
+              ></span
+            >
+          </div>
+          <!-- /.entry-meta -->
+
+          <h1 class="entry-title" itemprop="name">
+            <a
+              href="http://www.bloggure.info/.shell/shelf/itunes-media-sharing-over-the-internet-from-a-nas"
+              rel="bookmark"
+              title="iTunes media sharing over the Internet from a NAS"
+              itemprop="url"
+              >iTunes media sharing over the Internet from a NAS</a
+            >
+          </h1>
+        </header>
+        <div class="entry-content" itemprop="description">
+          <!--:en--><img
+            class="alignright size-full wp-image-99"
+            title="Music"
+            src="/images/uploads/2010/11/free-music-head.png"
+            alt=""
+            width="200"
+            height="124"
+          />
+          <p>
+            I am a big fan of music, and I like to listen to all my music
+            wherever I am and whatever I do (specially when coding).
+          </p>
+
+          <p>
+            All my medias are stored on a NAS drive that features a little
+            embedded linux distribution as operating system. One of the service
+            is called iTunes media sharing (mt-daapd is the real name of the
+            daemon).
+          </p>
+
+          <p>
+            It is really a cool feature as I can listen media stored on my NAS
+            from whatever device on my LAN. The magic behind is called Bonjour
+            which is a protocol that allows device to register themselves on the
+            network and being discovered by others.
+          </p>
+
+          <p>
+            My problem is I want to be able to listen to my home music at work,
+            and Bonjour service does not go out of my LAN. The additional thing
+            is I want to listen to my music using iTunes (I am fond of
+            <a title="Bowtie" href="http://bowtieapp.com" target="_blank"
+              >Bowtie</a
+            >) on my MacBook Pro.
+          </p>
+
+          <!--:-->
+        </div>
+        <!-- /.entry-content -->
+      </article>
+      <!-- /.hentry -->
+
+      <article
+        class="hentry"
+        itemprop="blogPost"
+        itemscope
+        itemtype="http://schema.org/BlogPosting"
+      >
+        <header>
+          <div class="entry-meta">
+            <span class="entry-date date published updated"
+              ><time
+                datetime="2010-11-02T00:00:00+01:00"
+                itemprop="datePublished"
+                ><a
+                  href="http://www.bloggure.info/.java/work/glassfish-v3-custom-log-levels"
+                  >November 02, 2010</a
+                ></time
+              ></span
+            ><span
+              class="author vcard"
+              itemprop="author"
+              itemscope
+              itemtype="http://schema.org/Person"
+              ><span itemprop="name" class="fn"
+                ><a
+                  href="http://www.bloggure.info/cgatay"
+                  title="About cgatay"
+                  itemprop="url"
+                  >cgatay</a
+                ></span
+              ></span
+            >&nbsp; &bull; &nbsp;<span class="entry-comments"
+              ><a
+                href="http://www.bloggure.info/.java/work/glassfish-v3-custom-log-levels#disqus_thread"
+                >Comment</a
+              ></span
+            >
+          </div>
+          <!-- /.entry-meta -->
+
+          <h1 class="entry-title" itemprop="name">
+            <a
+              href="http://www.bloggure.info/.java/work/glassfish-v3-custom-log-levels"
+              rel="bookmark"
+              title="Glassfish v3.x - custom log levels"
+              itemprop="url"
+              >Glassfish v3.x - custom log levels</a
+            >
+          </h1>
+        </header>
+        <div class="entry-content" itemprop="description">
+          <!--:en--><img
+            class="alignright size-full wp-image-71"
+            src="/images/uploads/2010/11/glassfish.png"
+            alt=""
+            width="92"
+            height="50"
+          />
+          <p>
+            In Glassfish v2, you can easily set log levels using the admin
+            console by going into
+            <em>Application Server &gt; Logging &gt; Log Levels</em>. There you
+            can add custom filter and change levels only by using the console.
+          </p>
+
+          <p>
+            In the new stable release of Glassfish, this option has disappeared,
+            you can edit levels but there is no easy way to add custom filters.
+            The trick is to alter manually the logging.properties file located
+            in <em>&lt;yourdomain&gt;</em><em>/config</em> directory. For
+            example, if you want to filter out logs from Sun's Portlet
+            Container, you have to set the following in the logging.properties
+            file :
+          </p>
+
+          <code>
+            debug.com.sun.portlet.portletcontainer.impl.level=FINEST
+          </code>
+
+          <p>
+            Please notice the <code>.level</code> at the end of the fully
+            qualified name of the class hierarchy to filter. After adding the
+            new entry, you will be able to alter level via the admin console of
+            Glassfish, or even simpler, simply edit the file : the changes are
+            taken on the fly (in certain conditions, you might need to restart
+            the server) !
+          </p>
+
+          <p>Hope it'll help...<!--:--></p>
+          <!--:fr<img class="alignright size-full wp-image-71" src="/images/uploads/2010/11/glassfish.png" alt="" width="92" height="50" />Dans Glassfish v2, il est facile de configurer les niveaux de log en utilisant la console d'administration en allant dans les catégories <em>Application Server &gt; Logging &gt; Log Levels</em>. D'ici vous pouvez rajouter des niveaux personnalisés et changer les niveaux de façon graphique.
+
+Dans la nouvelle version stable de Glassfish, cette option a disparu, vous pouvez éditer les niveaux mais il n'y a pas de système simple permettant d'ajouter des niveaux personnalisés. L'astuce est de modifier le fichier logging.properties présent dans le répertoire  <em>&lt;yourdomain&gt;</em><em>/config</em>.
+Par exemple, si vous voulez filtrer les logs du container de portlets de Sun vous devez ajouter la ligne suivante dans votre fichier  logging.properties :
+
+[code light="true"]
+debug.com.sun.portlet.portletcontainer.impl.level=FINEST
+[/code]
+
+Prêtez attention a l'ajout de <code>.level</code> à la fin du nom complet de la class à filtrer. Après avoir ajouté de nouvelles entrées, vous pourrez changer le niveau via l'administration de Glassfish, ou, encore plus simple, éditer de nouveau le fichier, les changements sont pris à la volée (dans certaines conditions, un redémarrage du serveur peut être requis) ! 
+
+En espérant que ça aide quelques personnes... -->
+        </div>
+        <!-- /.entry-content -->
+      </article>
+      <!-- /.hentry -->
+
+      <article
+        class="hentry"
+        itemprop="blogPost"
+        itemscope
+        itemtype="http://schema.org/BlogPosting"
+      >
+        <header>
+          <div class="entry-meta">
+            <span class="entry-date date published updated"
+              ><time
+                datetime="2010-11-01T00:00:00+01:00"
+                itemprop="datePublished"
+                ><a
+                  href="http://www.bloggure.info/.java/.maven/work/getting-source-revision-for-a-deployed-app-using-maven-and-a-servlet"
+                  >November 01, 2010</a
+                ></time
+              ></span
+            ><span
+              class="author vcard"
+              itemprop="author"
+              itemscope
+              itemtype="http://schema.org/Person"
+              ><span itemprop="name" class="fn"
+                ><a
+                  href="http://www.bloggure.info/cgatay"
+                  title="About cgatay"
+                  itemprop="url"
+                  >cgatay</a
+                ></span
+              ></span
+            >&nbsp; &bull; &nbsp;<span class="entry-comments"
+              ><a
+                href="http://www.bloggure.info/.java/.maven/work/getting-source-revision-for-a-deployed-app-using-maven-and-a-servlet#disqus_thread"
+                >Comment</a
+              ></span
+            >
+          </div>
+          <!-- /.entry-meta -->
+
+          <h1 class="entry-title" itemprop="name">
+            <a
+              href="http://www.bloggure.info/.java/.maven/work/getting-source-revision-for-a-deployed-app-using-maven-and-a-servlet"
+              rel="bookmark"
+              title="Getting source revision for a deployed app using Maven and a Servlet"
+              itemprop="url"
+              >Getting source revision for a deployed app using Maven and a
+              Servlet</a
+            >
+          </h1>
+        </header>
+        <div class="entry-content" itemprop="description">
+          <!--:en--><img
+            class="alignright size-full wp-image-74"
+            src="/images/uploads/2010/11/Maven_logo1.gif"
+            alt=""
+            width="274"
+            height="70"
+          />
+          <p>
+            With our modern version control systems, we could assume we know for
+            every single release we make the exact source code revision that
+            corresponds. But, in the hurry of a bug found by your dear clients
+            (or your product owner),  you can't find the corresponding tag in
+            your VCS, it will make the whole patch process really difficult. You
+            will have to find the exact revision, extract it and debug to patch
+            (or backport an existing patch).
+          </p>
+
+          <p>
+            I will explain a little trick to make the find the revision thing a
+            lot easier (I am assuming you're using maven to build your projects)
+            :
+            <a
+              title="maven-buildnumber-plugin"
+              href="http://mojo.codehaus.org/buildnumber-maven-plugin/"
+              >maven-buildnumber-plugin</a
+            >
+          </p>
+
+          <!--:-->
+        </div>
+        <!-- /.entry-content -->
+      </article>
+      <!-- /.hentry -->
+
+      <article
+        class="hentry"
+        itemprop="blogPost"
+        itemscope
+        itemtype="http://schema.org/BlogPosting"
+      >
+        <header>
+          <div class="entry-meta">
+            <span class="entry-date date published updated"
+              ><time
+                datetime="2010-10-29T00:00:00+02:00"
+                itemprop="datePublished"
+                ><a
+                  href="http://www.bloggure.info/.android/android-switcher-widget"
+                  >October 29, 2010</a
+                ></time
+              ></span
+            ><span
+              class="author vcard"
+              itemprop="author"
+              itemscope
+              itemtype="http://schema.org/Person"
+              ><span itemprop="name" class="fn"
+                ><a
+                  href="http://www.bloggure.info/cgatay"
+                  title="About cgatay"
+                  itemprop="url"
+                  >cgatay</a
+                ></span
+              ></span
+            >&nbsp; &bull; &nbsp;<span class="entry-comments"
+              ><a
+                href="http://www.bloggure.info/.android/android-switcher-widget#disqus_thread"
+                >Comment</a
+              ></span
+            >
+          </div>
+          <!-- /.entry-meta -->
+
+          <h1 class="entry-title" itemprop="name">
+            <a
+              href="http://www.bloggure.info/.android/android-switcher-widget"
+              rel="bookmark"
+              title="Android Switcher Widget"
+              itemprop="url"
+              >Android Switcher Widget</a
+            >
+          </h1>
+        </header>
+        <div class="entry-content" itemprop="description">
+          <!--:en--><img
+            class="alignright size-full wp-image-85"
+            title="Android Switcher Widget"
+            src="/images/uploads/2010/10/app_icon.png"
+            alt=""
+            width="64"
+            height="64"
+          />
+          <p>
+            Hey there, as some of you may know, I am a frequent reader (less
+            frequent writer) on modaco's forum. Specially in the Acer Liquid's
+            section (good device so far with an unbelieveable community). I
+            found a thread talking about the lack of a task switching widget (<a
+              title="here"
+              href="http://bit.ly/cMYqDt"
+              >http://bit.ly/cMYqDt</a
+            >) and so I did my best to do such a thing.
+          </p>
+
+          <p>
+            If you want to go straight to the download part, scan the following
+            QRCode with your device, else go to the read more part.
+          </p>
+          <p style="text-align: center">
+            <img
+              class="aligncenter"
+              title="Switcher Widget QRCode"
+              src="http://chart.apis.google.com/chart?cht=qr&amp;chs=100x100&amp;chl=http://cyrket.com/qr/89862"
+              alt="Switcher Widget QRCode"
+              width="100"
+              height="100"
+            />
+          </p>
+          <!--:-->
+        </div>
+        <!-- /.entry-content -->
+      </article>
+      <!-- /.hentry -->
+
       <article
         class="hentry"
         itemprop="blogPost"

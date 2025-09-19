@@ -90,8 +90,10 @@
     <div class="entry-header">
       <div class="header-title">
         <div class="header-title-wrap">
-          <h1>Bloggure</h1>
-          <h2></h2>
+          <h1 itemprop="name">
+            <a href="http://www.bloggure.info/">Bloggure</a>
+          </h1>
+          <h2><a href="/page4/"></a></h2>
         </div>
         <!-- /.header-title-wrap -->
       </div>
@@ -100,6 +102,389 @@
     <!-- /.entry-header -->
 
     <div id="main" role="main">
+      <article
+        class="hentry"
+        itemprop="blogPost"
+        itemscope
+        itemtype="http://schema.org/BlogPosting"
+      >
+        <header>
+          <div class="entry-meta">
+            <span class="entry-date date published updated"
+              ><time
+                datetime="2015-04-13T00:00:00+02:00"
+                itemprop="datePublished"
+                ><a href="http://www.bloggure.info/DebugMavenFailsafe"
+                  >April 13, 2015</a
+                ></time
+              ></span
+            ><span
+              class="author vcard"
+              itemprop="author"
+              itemscope
+              itemtype="http://schema.org/Person"
+              ><span itemprop="name" class="fn"
+                ><a
+                  href="http://www.bloggure.info/cgatay"
+                  title="About cgatay"
+                  itemprop="url"
+                  >cgatay</a
+                ></span
+              ></span
+            >&nbsp; &bull; &nbsp;<span class="entry-comments"
+              ><a
+                href="http://www.bloggure.info/DebugMavenFailsafe#disqus_thread"
+                >Comment</a
+              ></span
+            >
+          </div>
+          <!-- /.entry-meta -->
+
+          <h1 class="entry-title" itemprop="name">
+            <a
+              href="http://www.bloggure.info/DebugMavenFailsafe"
+              rel="bookmark"
+              title="Debug Failsafe Integration Test easily"
+              itemprop="url"
+              >Debug Failsafe Integration Test easily</a
+            >
+          </h1>
+        </header>
+        <div class="entry-content" itemprop="description">
+          <h1 id="arquillian-testing">Arquillian testing</h1>
+
+          <p>
+            Arquillian testing is very convenient to get a full environment
+            deployed on an application server and test quickly. However
+            sometimes we need to debug what’s inside.
+          </p>
+
+          <h2 id="launch-maven-in-debug-mode">Launch Maven in Debug mode</h2>
+          <p>
+            One way of doing it can be launching Maven in debug mode with the
+            <code>mvnDebug</code> command instead of the classical
+            <code>mvn</code>. It will open a JPDA debugger on port 8000 by
+            default, you then just need to connect to it with your preferred
+            IDE. But, if there is forked processes, you won’t be able to debug
+            inside them.
+          </p>
+
+          <h2 id="launch-failsafe-integration-tests-in-debug-mode">
+            Launch Failsafe Integration Tests in Debug mode
+          </h2>
+          <p>
+            When using Arquillian, there is a high probability that Arquillian
+            is running in a forked process (with embedded containers).
+          </p>
+
+          <p>
+            There is an easy way to tell <code>maven-failsafe-plugin</code> to
+            wait for a debugger when starting : use the
+            <code>-Dmaven.failsafe.debug</code> property.
+          </p>
+
+          <p>
+            You can even specify the options as you would in
+            <code>$JAVA_OPTS</code> to change ports / wait…
+          </p>
+        </div>
+        <!-- /.entry-content -->
+      </article>
+      <!-- /.hentry -->
+
+      <article
+        class="hentry"
+        itemprop="blogPost"
+        itemscope
+        itemtype="http://schema.org/BlogPosting"
+      >
+        <header>
+          <div class="entry-meta">
+            <span class="entry-date date published updated"
+              ><time
+                datetime="2014-09-22T00:00:00+02:00"
+                itemprop="datePublished"
+                ><a href="http://www.bloggure.info/rescue-a-vps-with-chroot"
+                  >September 22, 2014</a
+                ></time
+              ></span
+            ><span
+              class="author vcard"
+              itemprop="author"
+              itemscope
+              itemtype="http://schema.org/Person"
+              ><span itemprop="name" class="fn"
+                ><a
+                  href="http://www.bloggure.info/cgatay"
+                  title="About cgatay"
+                  itemprop="url"
+                  >cgatay</a
+                ></span
+              ></span
+            >&nbsp; &bull; &nbsp;<span class="entry-comments"
+              ><a
+                href="http://www.bloggure.info/rescue-a-vps-with-chroot#disqus_thread"
+                >Comment</a
+              ></span
+            >
+          </div>
+          <!-- /.entry-meta -->
+
+          <h1 class="entry-title" itemprop="name">
+            <a
+              href="http://www.bloggure.info/rescue-a-vps-with-chroot"
+              rel="bookmark"
+              title="Rescue a VPS upgrade with chroot"
+              itemprop="url"
+              >Rescue a VPS upgrade with chroot</a
+            >
+          </h1>
+        </header>
+        <div class="entry-content" itemprop="description">
+          <h1 id="oops">Oops</h1>
+          <p>
+            A few days ago, I finally decided to upgrade the installed Linux on
+            my dedicated box hosted at <a href="http://www.kimsufi.com">OVH</a>.
+            As with every task you tend to postpone until it is too late, it
+            failed miserably, Murphy’s law I am looking at you right now !
+          </p>
+
+          <p>
+            During the install process, the machine hanged (I am not sure
+            whether the machine is faulty or not, it seems to shut down under
+            heavy load). Fortunately for me, OVH is kind enough to send a tech
+            resets the machine, and if it does not ping when booted, the tech
+            reboots the machine in rescue mode.
+          </p>
+
+          <h1 id="rescue-mode">Rescue mode</h1>
+          <p>
+            The rescue mode is a lightweight Linux booted on the machine so you
+            can run <code>fsck</code>and other commands to rescue your
+            filesystem (you can even <code>scp</code> files to backup before a
+            reinstall for example.
+          </p>
+
+          <p>
+            My problem was simple, I needed to allow <code>dpkg</code> to finish
+            its job in order for me to get a working machine. Then I think of
+            the good old powerful <code>chroot</code> command and I remembered
+            how powerful Unixes are !
+          </p>
+
+          <h1 id="mounting-filesystems">Mounting filesystems</h1>
+          <p>
+            As you should know, <code>chroot</code> is a command allowing to
+            change the root of a file system, litterally jailing it into a
+            directory (popular things of today like pico containers like Docker
+            are improved versions of chroot).
+          </p>
+
+          <p>The partition layout of my machine is the following :</p>
+
+          <ul>
+            <li>sda1 contains the root filesystem</li>
+            <li>sda2 contains home directories</li>
+          </ul>
+
+          <p>
+            I issued the following commands to “jail” the rescue mode into my
+            machine :
+          </p>
+
+          <figure class="highlight">
+            <pre><code class="language-bash" data-lang="bash"><span></span>$<span class="w"> </span>mount<span class="w"> </span>/dev/sda1<span class="w"> </span>/mnt
+$<span class="w"> </span>mount<span class="w"> </span>/dev/sda2<span class="w"> </span>/mnt/home
+<span class="w">    </span>
+$<span class="w"> </span>mount<span class="w"> </span>-o<span class="w"> </span><span class="nb">bind</span><span class="w"> </span>/proc<span class="w"> </span>/mnt/proc
+$<span class="w"> </span>mount<span class="w"> </span>-o<span class="w"> </span><span class="nb">bind</span><span class="w"> </span>/dev<span class="w"> </span>/mnt/dev
+$<span class="w"> </span>mount<span class="w"> </span>-o<span class="w"> </span><span class="nb">bind</span><span class="w"> </span>/dev/pts<span class="w"> </span>/mnt/dev/pts
+$<span class="w"> </span>mount<span class="w"> </span>-o<span class="w"> </span><span class="nb">bind</span><span class="w"> </span>/sys<span class="w"> </span>/mnt/sys<span class="w"> </span>
+$<span class="w"> </span>chroot<span class="w"> </span>/mnt/
+<span class="w">    </span></code></pre>
+          </figure>
+
+          <p>
+            From then, I was on my machine, with my files and so on, so I have
+            been able to run <code>dpkg</code> to finish the install :
+          </p>
+
+          <figure class="highlight">
+            <pre><code class="language-bash" data-lang="bash"><span></span>$<span class="w"> </span>dpkg<span class="w"> </span>--configure<span class="w"> </span>--a
+<span class="w">    </span></code></pre>
+          </figure>
+
+          <p>
+            Finally, <code>dpkg</code> sent me back to a working prompt and I
+            have been able to reboot the machine (do not forget to change boot
+            disk in OVH manager to <code>hd</code> or <code>netboot</code> to
+            prevent rebooting in rescue mode).
+          </p>
+        </div>
+        <!-- /.entry-content -->
+      </article>
+      <!-- /.hentry -->
+
+      <article
+        class="hentry"
+        itemprop="blogPost"
+        itemscope
+        itemtype="http://schema.org/BlogPosting"
+      >
+        <header>
+          <div class="entry-meta">
+            <span class="entry-date date published updated"
+              ><time
+                datetime="2014-09-01T00:00:00+02:00"
+                itemprop="datePublished"
+                ><a href="http://www.bloggure.info/MavenShade"
+                  >September 01, 2014</a
+                ></time
+              ></span
+            ><span
+              class="author vcard"
+              itemprop="author"
+              itemscope
+              itemtype="http://schema.org/Person"
+              ><span itemprop="name" class="fn"
+                ><a
+                  href="http://www.bloggure.info/Cedric"
+                  title="About Cedric"
+                  itemprop="url"
+                  >Cedric</a
+                ></span
+              ></span
+            >
+          </div>
+          <!-- /.entry-meta -->
+
+          <h1 class="entry-title" itemprop="name">
+            <a
+              href="http://www.bloggure.info/MavenShade"
+              rel="bookmark"
+              title="Résoudre les conflits de dépendances"
+              itemprop="url"
+              >Résoudre les conflits de dépendances</a
+            >
+          </h1>
+        </header>
+        <div class="entry-content" itemprop="description">
+          <p>
+            Lors de nos développements, nous reposons beaucoup sur des projets
+            externes qui nous fournissent énormément de services utiles. Dans un
+            récent projet, nous avons eu besoin de faire fonctionner Neo4j
+            conjointement à ElasticSearch. Jusqu’ici, aucun soucis n’est à
+            déplorer, mais nous avions une exigence particulière : il fallait
+            que l’application puisse démarrer automatiquement un serveur Neo4J
+            ainsi qu’un serveur ElasticSearch sur les postes de développements
+            (ainsi que pour les tests d’intégration).
+          </p>
+
+          <h2 id="problème-existant">Problème existant</h2>
+
+          <p>
+            Les deux outils que nous utilisons se basent sur Apache Lucene pour
+            toute la partie indexation et accès aux données. Mais, et c’est là
+            que le problème se situe, ils n’utilisent pas les mêmes versions de
+            Lucene.
+          </p>
+
+          <pre><code>&lt;!-- Extrait du pom d'ElasticSearch --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.apache.lucene&lt;/groupId&gt;
+    &lt;artifactId&gt;lucene-core&lt;/artifactId&gt;
+    &lt;version&gt;4.9.0&lt;/version&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+</code></pre>
+
+          <hr />
+
+          <pre><code>&lt;!-- Extrait du pom de Neo4j --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.apache.lucene&lt;/groupId&gt;
+    &lt;artifactId&gt;lucene-core&lt;/artifactId&gt;
+    &lt;version&gt;3.6.2&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+
+          <p>
+            ElasticSearch utilise la version 4.9.0, alors que Neo4J utilise la
+            version 3.6.2. Ainsi, en fonction du bon vouloir du
+            <code>Classloader</code> qui sera utilisé par l’application, il se
+            peut qu’ElasticSearch ou Neo4J refuse de fonctionner. La difficulté
+            pour comprendre et détecter le problème est qu’il se manifeste
+            souvent par un obscur <code>NoClassDefFoundError</code> ou
+            <code>NoSuchMethodError</code> qui n’est pas des plus explicites
+            (d’autant plus lorsque notre IDE nous montre une version qui
+            contient ledit symbole non trouvé).
+          </p>
+
+          <h2 id="solution-de-contournement">Solution de contournement</h2>
+
+          <p>
+            Le conflit est assez simple à contourner une fois qu’on a compris ce
+            qui se passe. En fait, il y a deux classes portant le même nom dans
+            les classes chargées, par exemple <code>org.lucene.MaClass</code>,
+            l’une effaçant l’autre aux yeux du <code>ClassLoader</code>. Une
+            pratique courante est de renommer (ou relocate) le package de base
+            d’une bibliothèque utilisée et de l’inclure dans le fichier de
+            package du projet, le plugin <code>maven-shade</code> est conçu dans
+            cette optique. Le choix fait est de renommer la dépendance Lucene
+            dans Neo4J pour notre part, ainsi, nous avons forké le projet et
+            configuré le plugin <code>shade</code> pour qu’il inclue le contenu
+            de la dépendance d’Apache Lucene et qu’il fasse le renommage de
+            <code>org.apache.lucene</code> en
+            <code>shaded.org.apache.lucene</code>.
+          </p>
+
+          <pre><code> &lt;plugin&gt;
+        &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+        &lt;artifactId&gt;maven-shade-plugin&lt;/artifactId&gt;
+        &lt;version&gt;2.2&lt;/version&gt;
+        &lt;executions&gt;
+            &lt;execution&gt;
+                &lt;phase&gt;package&lt;/phase&gt;
+                &lt;goals&gt;
+                    &lt;goal&gt;shade&lt;/goal&gt;
+                &lt;/goals&gt;
+                &lt;configuration&gt;
+                    &lt;createDependencyReducedPom&gt;true&lt;/createDependencyReducedPom&gt;
+
+                    &lt;artifactSet&gt;
+                        &lt;includes&gt;
+                            &lt;include&gt;org.apache.lucene:*&lt;/include&gt;
+                        &lt;/includes&gt;
+                    &lt;/artifactSet&gt;
+                    &lt;relocations&gt;
+                        &lt;relocation&gt;
+                            &lt;pattern&gt;org.apache.lucene&lt;/pattern&gt;
+                            &lt;shadedPattern&gt;shaded.org.apache.lucene&lt;/shadedPattern&gt;
+                        &lt;/relocation&gt;
+                    &lt;/relocations&gt;
+                &lt;/configuration&gt;
+            &lt;/execution&gt;
+        &lt;/executions&gt;
+  &lt;/plugin&gt;
+</code></pre>
+
+          <h2 id="déploiement-et-nommage">Déploiement et nommage</h2>
+
+          <p>
+            Pour ne pas polluer les dépôts, le numéro de version modifié a été
+            postfixé par <code>-shaded</code>. Le déploiement a été fait sur un
+            dépôt Maven qui est en fait un simple repository Github. Le commit
+            correspondant à cette modification
+            <a
+              href="https://github.com/CedricGatay/neo4j/commit/452f58fca69ffe3b1d0eab6261b8342f8da95889"
+              >est consultable ici</a
+            >.
+          </p>
+        </div>
+        <!-- /.entry-content -->
+      </article>
+      <!-- /.hentry -->
+
       <article
         class="hentry"
         itemprop="blogPost"
@@ -279,376 +664,6 @@ $ brew cask install dropbox #for example
             <a href="https://github.com/jimbojsb/launchrocket/releases"
               >zip distribution</a
             >
-          </p>
-        </div>
-        <!-- /.entry-content -->
-      </article>
-      <!-- /.hentry -->
-
-      <article
-        class="hentry"
-        itemprop="blogPost"
-        itemscope
-        itemtype="http://schema.org/BlogPosting"
-      >
-        <header>
-          <div class="entry-meta">
-            <span class="entry-date date published updated"
-              ><time
-                datetime="2014-03-08T00:00:00+01:00"
-                itemprop="datePublished"
-                ><a
-                  href="http://www.bloggure.info/www/os/use-VirtualBox-to-do-a-real-install"
-                  >March 08, 2014</a
-                ></time
-              ></span
-            ><span
-              class="author vcard"
-              itemprop="author"
-              itemscope
-              itemtype="http://schema.org/Person"
-              ><span itemprop="name" class="fn"
-                ><a
-                  href="http://www.bloggure.info/cgatay"
-                  title="About cgatay"
-                  itemprop="url"
-                  >cgatay</a
-                ></span
-              ></span
-            >&nbsp; &bull; &nbsp;<span class="entry-comments"
-              ><a
-                href="http://www.bloggure.info/www/os/use-VirtualBox-to-do-a-real-install#disqus_thread"
-                >Comment</a
-              ></span
-            >
-          </div>
-          <!-- /.entry-meta -->
-
-          <h1 class="entry-title" itemprop="name">
-            <a
-              href="http://www.bloggure.info/www/os/use-VirtualBox-to-do-a-real-install"
-              rel="bookmark"
-              title="Use VirtualBox to do a real install"
-              itemprop="url"
-              >Use VirtualBox to do a real install</a
-            >
-          </h1>
-        </header>
-        <div class="entry-content" itemprop="description">
-          <h1 id="install-from-virtualbox-">Install from VirtualBox ?</h1>
-          <p>
-            If you are like me, you have got plenty of hard drives hanging
-            around and never got an optical drive or an usb stick. One thing
-            that could reveal itself to be hard is installing a new Operating
-            System on any machine without any of the two I mentionned earlier.
-          </p>
-
-          <p>
-            In this short tips and tricks post, I will show you how you can use
-            VirtualBox raw disks feature (I guess here for compatibility with
-            VMWare) to install a new Operating System from your old one (yes,
-            without the 10 minutes part were you can do nothing else with your
-            computer).
-          </p>
-
-          <h1 id="prerequisites">Prerequisites</h1>
-
-          <p>What you will need in order for this to work :</p>
-
-          <ul>
-            <li>a Linux setup with root access (sudoing will be fine)</li>
-            <li>
-              a second hard drive where you want to put your brand new Operating
-              System
-            </li>
-            <li>ISO file of the OS you want to install</li>
-          </ul>
-
-          <h1 id="install">Install</h1>
-
-          <p>
-            First of all, install VirtualBox on your system (<code>yum</code>,
-            <code>apt-get</code>, whatever your package system is). Then you
-            will need to find out what is the identifier of the drive you want
-            to use as a new (<code>sudo fdisk -l</code> can tell you everything
-            you need to know about your disks).
-          </p>
-
-          <p>
-            In my example lets say I want to install on a 300GB hard drive, I
-            got this <code>fdisk</code> output
-          </p>
-
-          <pre><code>cgatay@cgatay2:~$ sudo fdisk -l
-[sudo] password for cgatay:
-
-Disk /dev/sda: 251.1 GB, 251059544064 bytes
-255 heads, 63 sectors/track, 30522 cylinders, total 490350672 sectors
-Units = sectors of 1 * 512 = 512 bytes
-Sector size (logical/physical): 512 bytes / 512 bytes
-I/O size (minimum/optimal): 512 bytes / 512 bytes
-Disk identifier: 0x000efa30
-
-   Device Boot      Start         End      Blocks   Id  System
-/dev/sda1   *        2048   489302015   244649984   83  Linux
-/dev/sda2       489304062   490348543      522241    5  Extended
-/dev/sda5       489304064   490348543      522240   82  Linux swap / Solaris
-
-Disk /dev/sdb: 400.1 GB, 400088457216 bytes
-255 heads, 63 sectors/track, 48641 cylinders, total 781422768 sectors
-Units = sectors of 1 * 512 = 512 bytes
-Sector size (logical/physical): 512 bytes / 512 bytes
-I/O size (minimum/optimal): 512 bytes / 512 bytes
-Disk identifier: 0x0003f041
-
-   Device Boot      Start         End      Blocks   Id  System
-/dev/sdb1   *          63   390627047   195313492+   7  HPFS/NTFS/exFAT
-/dev/sdb2       390627048   781422767   195397860    c  W95 FAT32 (LBA)
-
-Disk /dev/sdc: 1000.2 GB, 1000204886016 bytes
-255 heads, 63 sectors/track, 121601 cylinders, total 1953525168 sectors
-Units = sectors of 1 * 512 = 512 bytes
-Sector size (logical/physical): 512 bytes / 512 bytes
-I/O size (minimum/optimal): 512 bytes / 512 bytes
-Disk identifier: 0x00048185
-
-   Device Boot      Start         End      Blocks   Id  System
-/dev/sdc1   *        2048      499711      248832   83  Linux
-/dev/sdc2          499712  1952790527   976145408   83  Linux
-/dev/sdc3      1952792574  1953523711      365569    5  Extended
-/dev/sdc5      1952792576  1953523711      365568   82  Linux swap / Solaris
-
-Disk /dev/sdd: 300.1 GB, 300090728448 bytes
-255 heads, 63 sectors/track, 36483 cylinders, total 586114704 sectors
-Units = sectors of 1 * 512 = 512 bytes
-Sector size (logical/physical): 512 bytes / 512 bytes
-I/O size (minimum/optimal): 512 bytes / 512 bytes
-Disk identifier: 0x000cb074
-
-   Device Boot      Start         End      Blocks   Id  System
-/dev/sdd1   *        2048   574060543   287029248   83  Linux
-/dev/sdd2       574062590   586113023     6025217    5  Extended
-/dev/sdd5       574062592   586113023     6025216   82  Linux swap / Solaris
-</code></pre>
-
-          <p>
-            The interesting line is the one stating
-            <code>Disk /dev/sdd: 300.1 GB</code>. From now on I will use
-            /dev/sdd as the target of my install.
-          </p>
-
-          <p>
-            For the rest of the commands to work you need to run everything as
-            root (by sudoing), I think there is more “cleaner” way of doing this
-            by correctly setting <code>suid</code> flags but I did not took the
-            time to look after this.
-          </p>
-
-          <p>
-            You need to create the hard disk file that will point to your
-            physical install, then launch VirtualBox as root (there is a lot of
-            chances that your regular user can’t do everything he wants on a
-            device):
-          </p>
-
-          <pre><code>sudo VBoxManage internalcommands createrawvmdk -filename disk.vmdk -rawdisk /dev/sdd; #replace /dev/sdd with your device
-sudo VirtualBox;
-</code></pre>
-
-          <p>
-            From there, this is a simple VirtualBox machine setup, you just need
-            to select the created disk.vmdk file for the hard disk of your
-            Virtual Machine, mount the ISO and proceed with the install. At the
-            end of the install, you can shut down the VirtualMachine, reboot
-            your computer and use the boot selection menu of your bios (or
-            change the boot order) to boot directly on your newly installed
-            system.
-          </p>
-
-          <p>
-            If you are on a Linux system, you can issue a
-            <code>update-grub</code> that will detect all your operating systems
-            and will create the boot menu (you can still boot your old one this
-            way).
-          </p>
-
-          <h1 id="disclaimer">Disclaimer</h1>
-
-          <p>
-            This method has been tested multiple times for installing Windows as
-            well as Linuxes without any hurt. However, it might kill kitten or
-            trigger a nuclear war if used incorrectly, in such cases, I decline
-            responsibility.
-          </p>
-
-          <h1 id="thoughts">Thoughts</h1>
-
-          <p>
-            As a side note, I think a Linux host is not required, you can
-            achieve the same with a Windows operating system, the command line
-            surely just need some improvements to point to the physical disk.
-          </p>
-        </div>
-        <!-- /.entry-content -->
-      </article>
-      <!-- /.hentry -->
-
-      <article
-        class="hentry"
-        itemprop="blogPost"
-        itemscope
-        itemtype="http://schema.org/BlogPosting"
-      >
-        <header>
-          <div class="entry-meta">
-            <span class="entry-date date published updated"
-              ><time
-                datetime="2014-02-10T00:00:00+01:00"
-                itemprop="datePublished"
-                ><a
-                  href="http://www.bloggure.info/restx-the-webservice-firework"
-                  >February 10, 2014</a
-                ></time
-              ></span
-            ><span
-              class="author vcard"
-              itemprop="author"
-              itemscope
-              itemtype="http://schema.org/Person"
-              ><span itemprop="name" class="fn"
-                ><a
-                  href="http://www.bloggure.info/"
-                  title="About "
-                  itemprop="url"
-                ></a></span
-            ></span>
-          </div>
-          <!-- /.entry-meta -->
-
-          <h1 class="entry-title" itemprop="name">
-            <a
-              href="http://www.bloggure.info/restx-the-webservice-firework"
-              rel="bookmark"
-              title="RestX the webservice framework"
-              itemprop="url"
-              >RestX the webservice framework</a
-            >
-          </h1>
-        </header>
-        <div class="entry-content" itemprop="description">
-          <h1 id="another-java-rest-framework">Another Java Rest framework</h1>
-
-          <p>
-            If you’re a somewhat experienced Java developer I guess you’ve
-            encountered a lot of framework when it comes to write web services.
-          </p>
-
-          <p>
-            <a href="http://www.restx.io">Restx.io</a> is a new kid on the block
-            leveraging high velocity with a focus on testability through a set
-            of unique and great features :
-          </p>
-
-          <ul>
-            <li>
-              each rest endpoint generates its documentation from its tests
-              (real killer feature here : we hate writing docs but we live
-              writing tests!)
-            </li>
-            <li>a built in monitoring engine</li>
-            <li>
-              everything that can be done at compile time is done at that time
-              (annotations / dependency injection)
-            </li>
-            <li>
-              it is written in good old plain Java (IDE support : I’m looking at
-              you Play Framework!)
-            </li>
-            <li>auto compile (we don’t like waiting!)</li>
-          </ul>
-
-          <p>
-            I’ve tested it on a few small projects, I can’t wait to try it on a
-            real project !
-          </p>
-        </div>
-        <!-- /.entry-content -->
-      </article>
-      <!-- /.hentry -->
-
-      <article
-        class="hentry"
-        itemprop="blogPost"
-        itemscope
-        itemtype="http://schema.org/BlogPosting"
-      >
-        <header>
-          <div class="entry-meta">
-            <span class="entry-date date published updated"
-              ><time
-                datetime="2013-10-15T00:00:00+02:00"
-                itemprop="datePublished"
-                ><a
-                  href="http://www.bloggure.info/www/great-ebooks-for-half-price"
-                  >October 15, 2013</a
-                ></time
-              ></span
-            ><span
-              class="author vcard"
-              itemprop="author"
-              itemscope
-              itemtype="http://schema.org/Person"
-              ><span itemprop="name" class="fn"
-                ><a
-                  href="http://www.bloggure.info/cgatay"
-                  title="About cgatay"
-                  itemprop="url"
-                  >cgatay</a
-                ></span
-              ></span
-            >&nbsp; &bull; &nbsp;<span class="entry-comments"
-              ><a
-                href="http://www.bloggure.info/www/great-ebooks-for-half-price#disqus_thread"
-                >Comment</a
-              ></span
-            >
-          </div>
-          <!-- /.entry-meta -->
-
-          <h1 class="entry-title" itemprop="name">
-            <a
-              href="http://www.bloggure.info/www/great-ebooks-for-half-price"
-              rel="bookmark"
-              title="Great Ebooks for Half Price"
-              itemprop="url"
-              >Great Ebooks for Half Price</a
-            >
-          </h1>
-        </header>
-        <div class="entry-content" itemprop="description">
-          <p>
-            <a href="http://bit.ly/1bqvB29">Packt Publishing</a> is actually
-            discounting the full range of their eBooks and videos by 50 percent
-            until October 17th using this discount code : COL50.
-          </p>
-
-          <p>
-            It can be a good opportunity to check
-            <a href="http://www.packtpub.com/instant-apache-wicket-6/book"
-              >“Instant Apache Wicket 6”</a
-            >
-            which I reviewed a few weeks ago for the newcomers to Apache Wicket.
-            Another good deal could be checking out the best-seller title
-            <a
-              href="http://www.packtpub.com/angularjs-web-application-development/book"
-              >“Mastering Web Application Development with AngularJS”</a
-            >!
-          </p>
-
-          <p>
-            Head over to
-            <a href="http://bit.ly/1bqvB29">Packt Publishing site</a> and pick
-            the books of your choice using the promo code COL50.
           </p>
         </div>
         <!-- /.entry-content -->

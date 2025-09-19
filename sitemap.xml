@@ -61,6 +61,18 @@
     
     
     <url>
+        <loc>http://www.bloggure.info/FirebasePListXCode</loc>
+    </url>
+    
+    
+    
+    <url>
+        <loc>http://www.bloggure.info/JenkinsWorkflow</loc>
+    </url>
+    
+    
+    
+    <url>
         <loc>http://www.bloggure.info/redsocks-avoid-docker-proxy-headaches</loc>
     </url>
     
@@ -97,6 +109,12 @@
     
     
     <url>
+        <loc>http://www.bloggure.info/MavenShade</loc>
+    </url>
+    
+    
+    
+    <url>
         <loc>http://www.bloggure.info/brew-cask-install-everything-from-cli</loc>
     </url>
     
@@ -104,6 +122,12 @@
     
     <url>
         <loc>http://www.bloggure.info/launchrocket-homebrew-service-manager</loc>
+    </url>
+    
+    
+    
+    <url>
+        <loc>http://www.bloggure.info/mavenRelease</loc>
     </url>
     
     

@@ -90,8 +90,10 @@
     <div class="entry-header">
       <div class="header-title">
         <div class="header-title-wrap">
-          <h1>Bloggure</h1>
-          <h2></h2>
+          <h1 itemprop="name">
+            <a href="http://www.bloggure.info/">Bloggure</a>
+          </h1>
+          <h2><a href="/page2/"></a></h2>
         </div>
         <!-- /.header-title-wrap -->
       </div>
@@ -692,11 +694,10 @@
           <div class="entry-meta">
             <span class="entry-date date published updated"
               ><time
-                datetime="2015-11-16T00:00:00+01:00"
+                datetime="2018-03-13T00:00:00+01:00"
                 itemprop="datePublished"
-                ><a
-                  href="http://www.bloggure.info/redsocks-avoid-docker-proxy-headaches"
-                  >November 16, 2015</a
+                ><a href="http://www.bloggure.info/FirebasePListXCode"
+                  >March 13, 2018</a
                 ></time
               ></span
             ><span
@@ -706,16 +707,11 @@
               itemtype="http://schema.org/Person"
               ><span itemprop="name" class="fn"
                 ><a
-                  href="http://www.bloggure.info/cgatay"
-                  title="About cgatay"
+                  href="http://www.bloggure.info/Cedric"
+                  title="About Cedric"
                   itemprop="url"
-                  >cgatay</a
+                  >Cedric</a
                 ></span
-              ></span
-            >&nbsp; &bull; &nbsp;<span class="entry-comments"
-              ><a
-                href="http://www.bloggure.info/redsocks-avoid-docker-proxy-headaches#disqus_thread"
-                >Comment</a
               ></span
             >
           </div>
@@ -723,61 +719,172 @@
 
           <h1 class="entry-title" itemprop="name">
             <a
-              href="http://www.bloggure.info/redsocks-avoid-docker-proxy-headaches"
+              href="http://www.bloggure.info/FirebasePListXCode"
               rel="bookmark"
-              title="Avoid Proxy Headaches in Docker with redsocks"
+              title="Firebase + XCode"
               itemprop="url"
-              >Avoid Proxy Headaches in Docker with redsocks</a
+              >Firebase + XCode</a
             >
           </h1>
         </header>
         <div class="entry-content" itemprop="description">
-          <h1 id="proxying-with-docker">Proxying with Docker</h1>
-
-          <p>
-            When using docker under a corporate proxy, it can be cumbersome to
-            have a working networking in all containers. You often end up being
-            blocked by specific network access which does not seem to be
-            properly forwarded to the proper proxy. For example when using
-            <code>apt</code>.
-          </p>
-
-          <h2 id="classic-way-of-doing">Classic way of doing</h2>
-
-          <p>
-            There is a
-            <a
-              href="https://docs.docker.com/engine/articles/systemd/#http-proxy"
-              >documented way</a
-            >
-            of using a proxy, by adding command-line switches to your docker
-            deamon. However, it does not seem to work everytime and could
-            require exporting additional settings to your in-container
-            applications (in my experience though).
-          </p>
-
-          <h2 id="why-not-using-docker">Why not using docker</h2>
-
-          <p>
-            <a href="https://github.com/ncarlier/">Nicolas</a> pointed me an
-            image he created to help with the setup of a corporate proxy. It
-            uses <a href="http://darkk.net.ru/redsocks/">redsocks</a> under the
-            hood that listen to the docker socket and automatically add the glue
-            to do the forwarding through the proxy.
-          </p>
-
-          <p>
-            Easy proxying in docker is just one command away ! (fill in the
-            blank of your proxy ip and port)
-          </p>
-
-          <pre><code>docker run \
-       --restart=always \
-       --privileged=true \
-       --net=host \
-       -d ncarlier/redsocks \
-       $PROXY_IP $PROXY_PORT
-</code></pre>
+          <div class="paragraph">
+            <p>
+              Il est courant maintenant d&#8217;utiliser Firebase dans les
+              applications mobiles. Que ce soit pour la partie statistiques, les
+              notifications ou le reporting des <em>crashes</em>.
+              L&#8217;intégration est très facile, mais peut devenir compliquée
+              dès lors qu&#8217;on manipule des <em>target</em> différentes avec
+              des configurations différentes. Cet article va vous détailler une
+              façon simple mais efficace de gérer ces différences.
+            </p>
+          </div>
+          <div class="sect1">
+            <h2 id="multiples-fichiers-plist">
+              Multiples fichiers <code>plist</code>
+            </h2>
+            <div class="sectionbody">
+              <div class="paragraph">
+                <p>
+                  Les fichiers <code>plist</code> sont des fichiers XML de
+                  configuration pour XCode. Lors de la création d&#8217;un
+                  projet dans Firebase, il est possible de récupérer une version
+                  générée contenant les bonnes variables pour votre projet. Le
+                  problème qui peut se produire est lorsqu&#8217;on génère
+                  plusieurs livrables avec des configurations qui doivent être
+                  différentes grace aux <em>target</em>. Il n&#8217;est pas
+                  possible, ni confortable, de gérer le cas de plusieurs
+                  fichiers <code>plist</code> dans les sources. La redéfinition
+                  du nom du fichier à faire utiliser par Firebase ne marche pas
+                  à tous les coups et il a tendance à aller lire la valeur par
+                  défaut <code>GoogleService-Info.plist</code>.
+                </p>
+              </div>
+              <div class="paragraph">
+                <p>
+                  L&#8217;idée est donc d&#8217;utiliser un script au build qui
+                  se chargera de configurer correctement le fichier
+                  <code>plist</code> qui sera inclu dans le livrable.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="sect1">
+            <h2 id="première-étape-variabilisation">
+              Première étape : variabilisation
+            </h2>
+            <div class="sectionbody">
+              <div class="paragraph">
+                <p>
+                  Pour être capable de générer le fichier
+                  <code>plist</code> correctement, il est nécessaire de le
+                  variabiliser. Dans mon cas, j&#8217;ai identifié les valeurs
+                  suivantes qui devaient être variabilisées:
+                </p>
+              </div>
+              <div class="ulist">
+                <ul>
+                  <li>
+                    <p>GOOGLE_APP_ID</p>
+                  </li>
+                  <li>
+                    <p>BUNDLE_ID</p>
+                  </li>
+                  <li>
+                    <p>CLIENT_ID</p>
+                  </li>
+                  <li>
+                    <p>REVERSED_CLIENT_ID</p>
+                  </li>
+                </ul>
+              </div>
+              <div class="paragraph">
+                <p>
+                  J&#8217;ai donc ajouté des variables à la configuration de mon
+                  build pour représenter ces valeurs qui doivent être
+                  personnalisées. J&#8217;utilise des fichiers
+                  <code>.xcconfig</code> mais ceci fonctionne également avec
+                  l&#8217;ajout manuel (dans
+                  <code
+                    >Build Settings &gt; + &gt; Add User-Defined settings</code
+                  >)
+                </p>
+              </div>
+              <div class="paragraph">
+                <p>
+                  Unresolved directive in #excerpt -
+                  include::site/static/lightbox.adoc[]
+                </p>
+              </div>
+              <div class="paragraph">
+                <p>
+                  En plus de ça, j&#8217;ai modifié le fichier
+                  <code>GoogleService-Info.plist</code> téléchargé sur Firebase
+                  pour enlever les éléments qui allaient être remplacés à terme.
+                  Plus exactement, j&#8217;ai remplacé les valeurs par des
+                  chaînes du type <code>WILL BE REPLACED AT BUILD TIME</code>,
+                  qui me permettent facilement de me rendre compte d&#8217;un
+                  oubli de configuration.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="sect1">
+            <h2 id="deuxième-étape-génération-du-fichier">
+              Deuxième étape : génération du fichier
+            </h2>
+            <div class="sectionbody">
+              <div class="paragraph">
+                <p>
+                  Une fois le fichier et l&#8217;environnement préparé, il ne
+                  reste qu&#8217;à générer la version finale. Pour se faire, je
+                  me base sur le système de <em>build</em> de XCode qui permet
+                  de définir simplement des étapes. Les variables définies dans
+                  la configuration du projet sont en effet disponibles
+                  simplement lors de l&#8217;exécution des étapes de
+                  <em>build</em>. En utilisant l&#8217;outil
+                  <code>defaults</code> inclu dans macOS pour la manipulation
+                  des fichiers <code>plist</code>, il est donc facile de définir
+                  les valeurs attendues dans le fichier. J&#8217;ai ainsi
+                  rajouté une étape <em>shell</em> script correspondant à ceci
+                  dans le processus de <em>build</em>.
+                </p>
+              </div>
+              <div class="listingblock">
+                <div class="content">
+                  <pre
+                    class="highlight"
+                  ><code class="language-shell" data-lang="shell">defaults write "${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist" GOOGLE_APP_ID ${GOOGLE_APP_ID}
+defaults write "${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist" BUNDLE_ID ${PKG_IDENTIFIER}
+defaults write "${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist" CLIENT_ID ${CLIENT_ID}
+defaults write "${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist" REVERSED_CLIENT_ID ${REVERSED_CLIENT_ID}</code></pre>
+                </div>
+              </div>
+              <div class="paragraph">
+                <p>
+                  Enfin, il faut ordonner cette étape de <em>build</em> après
+                  celle de copie des ressources, pour effectuer la modification
+                  uniquement dans le fichier binaire de l&#8217;application et
+                  non dans les sources du projet.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="sect1">
+            <h2 id="bénéfices">Bénéfices</h2>
+            <div class="sectionbody">
+              <div class="paragraph">
+                <p>
+                  Il est donc facile de disposer de configuration différente de
+                  Firebase entre le <em>debug</em> et la <em>release</em> par
+                  exemple. Ainsi vous pouvez tester l&#8217;envoi de
+                  notification, par exemple, sans risquer de polluer des
+                  utilisateurs de production, ou activer le
+                  <em>crash reporting</em> uniquement en production par exemple.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
         <!-- /.entry-content -->
       </article>

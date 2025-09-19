@@ -4,7 +4,7 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="http://www.bloggure.info/feed.xml" />
 <link rel="alternate" type="text/html" href="http://www.bloggure.info" />
-<updated>2025-05-22T16:19:50+02:00</updated>
+<updated>2025-09-19T11:05:54+02:00</updated>
 <id>http://www.bloggure.info/</id>
 <author>
   <name></name>
@@ -677,6 +677,448 @@ I will avoid this and focus on writing instead, so the site stays in its 15’ s
 
 
 <entry>
+  <title type="html"><![CDATA[Firebase + XCode]]></title>
+  <link>http://www.bloggure.info/FirebasePListXCode</link>
+  <id>http://www.bloggure.info/FirebasePListXCode</id>
+  <published>2018-03-13T00:00:00+01:00</published>
+  <updated>2018-03-13T00:00:00+01:00</updated>
+  <author>
+    <name></name>
+    <uri>http://www.bloggure.info</uri>
+    <email></email>
+  </author>
+  <content type="html">&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Il est courant maintenant d&amp;#8217;utiliser Firebase dans les applications mobiles.
+Que ce soit pour la partie statistiques, les notifications ou le reporting des &lt;em&gt;crashes&lt;/em&gt;.
+L&amp;#8217;intégration est très facile, mais peut devenir compliquée dès lors qu&amp;#8217;on manipule des &lt;em&gt;target&lt;/em&gt; différentes avec des configurations différentes.
+Cet article va vous détailler une façon simple mais efficace de gérer ces différences.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;multiples-fichiers-plist&quot;&gt;Multiples fichiers &lt;code&gt;plist&lt;/code&gt;&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Les fichiers &lt;code&gt;plist&lt;/code&gt; sont des fichiers XML de configuration pour XCode.
+Lors de la création d&amp;#8217;un projet dans Firebase, il est possible de récupérer une version générée contenant les bonnes variables pour votre projet.
+Le problème qui peut se produire est lorsqu&amp;#8217;on génère plusieurs livrables avec des configurations qui doivent être différentes grace aux &lt;em&gt;target&lt;/em&gt;.
+Il n&amp;#8217;est pas possible, ni confortable, de gérer le cas de plusieurs fichiers &lt;code&gt;plist&lt;/code&gt; dans les sources.
+La redéfinition du nom du fichier à faire utiliser par Firebase ne marche pas à tous les coups et il a tendance à aller lire la valeur par défaut &lt;code&gt;GoogleService-Info.plist&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;L&amp;#8217;idée est donc d&amp;#8217;utiliser un script au build qui se chargera de configurer correctement le fichier &lt;code&gt;plist&lt;/code&gt; qui sera inclu dans le livrable.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;première-étape-variabilisation&quot;&gt;Première étape : variabilisation&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Pour être capable de générer le fichier &lt;code&gt;plist&lt;/code&gt; correctement, il est nécessaire de le variabiliser.
+Dans mon cas, j&amp;#8217;ai identifié les valeurs suivantes qui devaient être variabilisées:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;GOOGLE_APP_ID&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;BUNDLE_ID&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;CLIENT_ID&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;REVERSED_CLIENT_ID&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;J&amp;#8217;ai donc ajouté des variables à la configuration de mon build pour représenter ces valeurs qui doivent être personnalisées.
+J&amp;#8217;utilise des fichiers &lt;code&gt;.xcconfig&lt;/code&gt; mais ceci fonctionne également avec l&amp;#8217;ajout manuel (dans &lt;code&gt;Build Settings &amp;gt; + &amp;gt; Add User-Defined settings&lt;/code&gt;)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Unresolved directive in 2018-03-16-FirebasePListXCode.adoc - include::site/static/lightbox.adoc[]&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;En plus de ça, j&amp;#8217;ai modifié le fichier &lt;code&gt;GoogleService-Info.plist&lt;/code&gt; téléchargé sur Firebase pour enlever les éléments qui allaient être remplacés à terme.
+Plus exactement, j&amp;#8217;ai remplacé les valeurs par des chaînes du type &lt;code&gt;WILL BE REPLACED AT BUILD TIME&lt;/code&gt;, qui me permettent facilement de me rendre compte d&amp;#8217;un oubli de configuration.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;deuxième-étape-génération-du-fichier&quot;&gt;Deuxième étape : génération du fichier&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Une fois le fichier et l&amp;#8217;environnement préparé, il ne reste qu&amp;#8217;à générer la version finale.
+Pour se faire, je me base sur le système de &lt;em&gt;build&lt;/em&gt; de XCode qui permet de définir simplement des étapes.
+Les variables définies dans la configuration du projet sont en effet disponibles simplement lors de l&amp;#8217;exécution des étapes de &lt;em&gt;build&lt;/em&gt;.
+En utilisant l&amp;#8217;outil &lt;code&gt;defaults&lt;/code&gt; inclu dans macOS pour la manipulation des fichiers &lt;code&gt;plist&lt;/code&gt;, il est donc facile de définir les valeurs attendues dans le fichier.
+J&amp;#8217;ai ainsi rajouté une étape &lt;em&gt;shell&lt;/em&gt; script correspondant à ceci dans le processus de &lt;em&gt;build&lt;/em&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlight&quot;&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;defaults write &quot;${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist&quot; GOOGLE_APP_ID ${GOOGLE_APP_ID}
+defaults write &quot;${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist&quot; BUNDLE_ID ${PKG_IDENTIFIER}
+defaults write &quot;${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist&quot; CLIENT_ID ${CLIENT_ID}
+defaults write &quot;${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist&quot; REVERSED_CLIENT_ID ${REVERSED_CLIENT_ID}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Enfin, il faut ordonner cette étape de &lt;em&gt;build&lt;/em&gt; après celle de copie des ressources, pour effectuer la modification uniquement dans le fichier binaire de l&amp;#8217;application et non dans les sources du projet.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;bénéfices&quot;&gt;Bénéfices&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Il est donc facile de disposer de configuration différente de Firebase entre le &lt;em&gt;debug&lt;/em&gt; et la &lt;em&gt;release&lt;/em&gt; par exemple.
+Ainsi vous pouvez tester l&amp;#8217;envoi de notification, par exemple, sans risquer de polluer des utilisateurs de production, ou activer le &lt;em&gt;crash reporting&lt;/em&gt; uniquement en production par exemple.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/FirebasePListXCode&quot;&gt;Firebase + XCode&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure&lt;/a&gt; on March 13, 2018.&lt;/p&gt;</content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[Jenkins Workflow Plugin]]></title>
+  <link>http://www.bloggure.info/JenkinsWorkflow</link>
+  <id>http://www.bloggure.info/JenkinsWorkflow</id>
+  <published>2016-01-20T00:00:00+01:00</published>
+  <updated>2016-01-20T00:00:00+01:00</updated>
+  <author>
+    <name></name>
+    <uri>http://www.bloggure.info</uri>
+    <email></email>
+  </author>
+  <content type="html">&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Un des points génants lors de l&amp;#8217;utilisation de Jenkins est le coté volatile de la configuration des jobs de builds.
+Il est souvent nécessaire de jouer de click-click pour faire la configuration des jobs sur Jenkins et de se reposer sur un plugin permettant de versionner,
+autant que possible, les configurations utilisées.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Mais, une fois que vous aurez lu cet article, vous vous rendrez compte que c&amp;#8217;est le passé.
+Attention toutefois, cet article parle de Jenkins, de Docker et de Groovy, n&amp;#8217;ayez pas peur, tout est &lt;em&gt;presque&lt;/em&gt; trop simple&amp;#8230;&amp;#8203;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;prérequis-jenkins&quot;&gt;Prérequis Jenkins&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;jenkins-avec-accès-à-docker&quot;&gt;Jenkins avec accès à Docker&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Nous avons l&amp;#8217;habitude d&amp;#8217;utiliser un Jenkins lancé dans un container depuis quelques temps.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Nous utilisons l&amp;#8217;image maintenue par &lt;a href=&quot;https://agileek.github.io/&quot;&gt;Michael Bitard&lt;/a&gt; &lt;a href=&quot;https://hub.docker.com/r/agileek/docker-jenkins/&quot;&gt;&lt;code&gt;agileek/docker-jenkins&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Nous lançons cette image en lui fournissant de quoi exécuter le binaire docker client sans soucis :&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlight&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;docker run
+       -d --restart=&quot;always&quot; --name jenkins
+       -u $(id -u):$(getent group docker | cut -d: -f3) # &lt;b class=&quot;conum&quot;&gt;(1)&lt;/b&gt;
+       -p 8080:8080
+       -v /var/jenkins_home:/var/jenkins_home # &lt;b class=&quot;conum&quot;&gt;(2)&lt;/b&gt;
+       -v $(which docker):/usr/bin/docker # &lt;b class=&quot;conum&quot;&gt;(3)&lt;/b&gt;
+       -v /var/run/docker.sock:/var/run/docker.sock # &lt;b class=&quot;conum&quot;&gt;(4)&lt;/b&gt;
+       -v /usr/lib/x86_64-linux-gnu/libapparmor.so.1:/lib/x86_64-linux-gnu/libapparmor.so.1 # &lt;b class=&quot;conum&quot;&gt;(5)&lt;/b&gt;
+       agileek/docker-jenkins # &lt;b class=&quot;conum&quot;&gt;(6)&lt;/b&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;colist arabic&quot;&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Le container est lancé avec l&amp;#8217;utilisateur courant et le groupe &lt;code&gt;docker&lt;/code&gt; pour pouvoir accéder au &lt;code&gt;docker.sock&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Pour éviter les incohérences de chemin, le chemin racine du jenkins est le même en dehors et dans le container&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Le binaire docker du système est fourni dans l&amp;#8217;image&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Le socket docker est également fourni pour que le client puisse &quot;parler&quot; au démon&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;La bibliotheque apparmor est nécessaire pour le bon fonctionnement de docker client&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;jenkins-workflow-plugin&quot;&gt;Jenkins workflow plugin&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Pour utiliser la suite des éléments, vous aurez besoin des plugins gérant la notion de &lt;em&gt;workflow&lt;/em&gt; dans Jenkins :&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Unresolved directive in 2016-01-20-JenkinsWorkflow.adoc - include::site/static/lightbox.adoc[]&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Ensuite, il nous est possible de créer un job de construction de type &lt;em&gt;workflow&lt;/em&gt; :&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Unresolved directive in 2016-01-20-JenkinsWorkflow.adoc - include::site/static/lightbox.adoc[]&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;premier-job-workflow&quot;&gt;Premier job &lt;em&gt;Workflow&lt;/em&gt;&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Ensuite, c&amp;#8217;est là que la magie opère, plutôt que de devoir sélectionner les n-items voulus et remplir chaque étape du build, nous pouvons maintenant le décrire en utilisant du code !
+Ainsi, en copiant/collant le script suivant dans la partie idoine, vous devriez avoir un job bien configuré qui marche, du premier coup !&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlight&quot;&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;def m2Repo = &apos;-v /var/jenkins_home/.m2:/home/jenkins/.m2&apos; //  # &lt;b class=&quot;conum&quot;&gt;(1)&lt;/b&gt;
+def timezone = &apos;-e TZ=Europe/Paris&apos; // # &lt;b class=&quot;conum&quot;&gt;(2)&lt;/b&gt;
+docker.image(&quot;codetroopers/jenkins-slave-jdk8-restx&quot;)
+    .inside(&quot;${m2Repo} ${timezone}&quot;){ //  # &lt;b class=&quot;conum&quot;&gt;(3)&lt;/b&gt;
+    git branch: &apos;master&apos;, url: &apos;https://github.com/code-troopers/jenkins-workflow-demo-repo.git&apos; // # &lt;b class=&quot;conum&quot;&gt;(4)&lt;/b&gt;
+    sh &quot;MAVEN_OPTS=-Dfile.encoding=UTF-8 mvn clean install -B -Ppackage&quot; // # &lt;b class=&quot;conum&quot;&gt;(5)&lt;/b&gt;
+    step([$class: &apos;ArtifactArchiver&apos;, artifacts: &apos;srv/target/dependency/webapp-runner.jar, srv/target/*.war, run.sh&apos;]) // # &lt;b class=&quot;conum&quot;&gt;(6)&lt;/b&gt;
+    step([$class: &apos;JUnitResultArchiver&apos;, testResults: &apos;**/target/surefire-reports/TEST-*.xml&apos;]) // # &lt;b class=&quot;conum&quot;&gt;(7)&lt;/b&gt;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;colist arabic&quot;&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Partage du dépôt Maven local (pour gagner en temps de build)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Export de la timezone (pour les tests unitaires de l&amp;#8217;exemple)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Démarrage du conteneur de build avec la bonne timezone ainsi que le dépôt partagé&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Clonage des sources&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Lancement du build (en forçant l&amp;#8217;UTF-8)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Archivage des produits du build&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Archivage des résultats des tests&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Comme vous pouvez le voir, le script est relativement parlant et permet en plus de s&amp;#8217;affranchir du clickodrome de configuration dans l&amp;#8217;interface de Jenkins !&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Il est intéressant de noter que l&amp;#8217;image Docker qui sert au build est une image personnalisée. Ce n&amp;#8217;est pas parce qu&amp;#8217;elle inclut un quelconque fonctionnement permettant de builder
+en utilisant le plugin Workflow. Elle sert de base uniquement car elle met à disposition la partie &lt;code&gt;npm&lt;/code&gt; nécessaire au build de la partie &lt;em&gt;frontend&lt;/em&gt; de l&amp;#8217;application RestX.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;grouper-les-étapes&quot;&gt;Grouper les étapes&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Le plugin workflow permet en plus de grouper les différentes étapes d&amp;#8217;un build pour permettre, par exemple, de le lancer sur plusieurs environnement différents.
+Ici nous ajoutons simplement un nom de groupe pour notre étape de build.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlight&quot;&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;stage &apos;build&apos; // # &lt;b class=&quot;conum&quot;&gt;(1)&lt;/b&gt;
+    def m2Repo = &apos;-v /var/jenkins_home/.m2:/home/jenkins/.m2&apos;
+    def timezone = &apos;-e TZ=Europe/Paris&apos;
+    docker.image(&quot;codetroopers/jenkins-slave-jdk8-restx&quot;).inside(&quot;${m2Repo} ${timezone}&quot;){
+        git branch: &apos;master&apos;, url: &apos;https://github.com/code-troopers/jenkins-workflow-demo-repo.git&apos;
+        sh &quot;MAVEN_OPTS=-Dfile.encoding=UTF-8 mvn clean install -B -Ppackage&quot;
+        step([$class: &apos;ArtifactArchiver&apos;, artifacts: &apos;srv/target/dependency/webapp-runner.jar, srv/target/*.war, run.sh&apos;])
+        step([$class: &apos;JUnitResultArchiver&apos;, testResults: &apos;**/target/surefire-reports/TEST-*.xml&apos;])
+    }&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;colist arabic&quot;&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Étape nommée pour l&amp;#8217;exécution de la construction de l&amp;#8217;application&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;mettre-de-côté-les-fichiers-pour-plus-tard&quot;&gt;Mettre de côté les fichiers pour plus tard&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;La notion de &lt;em&gt;stash&lt;/em&gt; bien connue des utilisateurs de git est également présente.
+Elle permet de mettre de côté des fichiers pour les réutiliser à une étape ultérieure du &lt;em&gt;workflow&lt;/em&gt; de build.
+Ceci permet d&amp;#8217;éviter l&amp;#8217;archivage de produits du build pour des raisons &quot;techniques&quot;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlight&quot;&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;stage &apos;build&apos;
+    def m2Repo = &apos;-v /var/jenkins_home/.m2:/home/jenkins/.m2&apos;
+    def timezone = &apos;-e TZ=Europe/Paris&apos;
+    docker.image(&quot;codetroopers/jenkins-slave-jdk8-restx&quot;).inside(&quot;${m2Repo} ${timezone}&quot;){
+        git branch: &apos;master&apos;, url: &apos;https://github.com/code-troopers/jenkins-workflow-demo-repo.git&apos;
+        sh &quot;MAVEN_OPTS=-Dfile.encoding=UTF-8 mvn clean install -B -Ppackage&quot;
+        step([$class: &apos;ArtifactArchiver&apos;, artifacts: &apos;srv/target/dependency/webapp-runner.jar, srv/target/*.war, run.sh&apos;])
+        step([$class: &apos;JUnitResultArchiver&apos;, testResults: &apos;**/target/surefire-reports/TEST-*.xml&apos;])
+        stash includes: &apos;run.sh,srv/target/dependency/webapp-runner.jar,srv/target/*.war,Dockerfile&apos;, name: &apos;dockerBuild&apos; // # &lt;b class=&quot;conum&quot;&gt;(1)&lt;/b&gt;
+    }&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;colist arabic&quot;&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Enregistrement d&amp;#8217;une liste de fichiers associée à un nom pour une utilisation ultérieure&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;étape-de-construction-dune-image-docker&quot;&gt;Étape de construction d&amp;#8217;une image Docker&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlight&quot;&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;stage &apos;docker&apos; // # &lt;b class=&quot;conum&quot;&gt;(1)&lt;/b&gt;
+node{ // # &lt;b class=&quot;conum&quot;&gt;(2)&lt;/b&gt;
+  ws{ // # &lt;b class=&quot;conum&quot;&gt;(3)&lt;/b&gt;
+    unstash &apos;dockerBuild&apos; // # &lt;b class=&quot;conum&quot;&gt;(4)&lt;/b&gt;
+    docker.build(&quot;codetroopers/jenkins-workflow-demo:${env.BUILD_ID}&quot;) // # &lt;b class=&quot;conum&quot;&gt;(5)&lt;/b&gt;
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;colist arabic&quot;&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Création d&amp;#8217;une nouvelle étape&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Permet de distinguer un ensemble d&amp;#8217;opération de build (peut accepter les labels pour restreindre sur des noeuds)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Déclenche la création d&amp;#8217;un nouveau &lt;em&gt;workspace&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Récupère les fichiers mis de côté sous le nom &lt;code&gt;dockerBuild&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Construction d&amp;#8217;une image docker avec pour tag le numéro de build en cours (&lt;code&gt;$BUILD_ID&lt;/code&gt;)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;workflow-et-gestion-multibranche&quot;&gt;Workflow et gestion multibranche&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Dans nos façons de fonctionner qui sont maintenant devenues habituelles, nous utilisons de façon intensives les branches pour isoler nos développements.
+Un des points fastidieux est de configurer un nouveau job Jenkins pour chaque branche afin de valider son bon fonctionnement et ne pas se rendre compte trop tard d&amp;#8217;un build au rouge.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Le plugin &apos;Workflow Multibranch&apos; simplifie de façon drastique ce genre de cas, il suffit de rajouter un descripteur de build dans les sources.
+Le fichier correspondant est tout simplement appelé &lt;code&gt;Jenkinsfile&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlight&quot;&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;stage &apos;build&apos;
+    def m2Repo = &apos;-v /var/jenkins_home/.m2:/home/jenkins/.m2&apos;
+    def timezone = &apos;-e TZ=Europe/Paris&apos;
+    docker.image(&quot;codetroopers/jenkins-slave-jdk8-restx&quot;).inside(&quot;${m2Repo} ${timezone}&quot;){
+        checkout scm // # &lt;b class=&quot;conum&quot;&gt;(1)&lt;/b&gt;
+        sh &quot;MAVEN_OPTS=-Dfile.encoding=UTF-8 mvn clean install -B -Ppackage&quot;
+        step([$class: &apos;ArtifactArchiver&apos;, artifacts: &apos;srv/target/dependency/webapp-runner.jar, srv/target/*.war, run.sh&apos;])
+        step([$class: &apos;JUnitResultArchiver&apos;, testResults: &apos;**/target/surefire-reports/TEST-*.xml&apos;])
+        stash includes: &apos;run.sh,srv/target/dependency/webapp-runner.jar,srv/target/*.war,Dockerfile&apos;, name: &apos;dockerBuild&apos;
+    }
+
+stage &apos;docker&apos;
+node{
+  ws{
+    unstash &apos;dockerBuild&apos;
+    docker.build(&quot;codetroopers/jenkins-workflow-demo:${env.BUILD_ID}&quot;)
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;colist arabic&quot;&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Il faut bien entendu remplacer l&amp;#8217;endroit où nous faisions le git clone pour qu&amp;#8217;il soit dynamique par rapport à ce qu&amp;#8217;on
+construit. Le terme &lt;code&gt;checkout scm&lt;/code&gt; permet de s&amp;#8217;assurer de ce fonctionnement.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;L&amp;#8217;intérêt est que chaque branche qui sera buildée n&amp;#8217;aura pas son historique mélangé avec une autre (là où les jobs de validation de Pull Request ont tendance à tout mélanger).
+De plus, un changement dans le process de build sera directement versionné.
+Il n&amp;#8217;y aura donc pas besoin de penser à éditer le job lors du merge sur &lt;code&gt;master&lt;/code&gt; (on a tous vécu ce genre de situation énervante) !&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;attendre-une-confirmation-utilisateur&quot;&gt;Attendre une confirmation utilisateur&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Un des points intéressant de ce plugin est qu&amp;#8217;il permet la mise en pause des constructions.
+Ainsi, il est possible de mettre en pause une construction correspondant à une livraison et de lui faire attendre une validation manuelle par exemple.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlight&quot;&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;stage &apos;build&apos;
+    def m2Repo = &apos;-v /var/jenkins_home/.m2:/home/jenkins/.m2&apos;
+    def timezone = &apos;-e TZ=Europe/Paris&apos;
+    docker.image(&quot;codetroopers/jenkins-slave-jdk8-restx&quot;).inside(&quot;${m2Repo} ${timezone}&quot;){
+        git branch: &apos;master&apos;, url: &apos;https://github.com/code-troopers/jenkins-workflow-demo-repo.git&apos;
+        sh &quot;MAVEN_OPTS=-Dfile.encoding=UTF-8 mvn clean install -B -Ppackage&quot;
+        step([$class: &apos;ArtifactArchiver&apos;, artifacts: &apos;srv/target/dependency/webapp-runner.jar, srv/target/*.war, run.sh&apos;])
+        step([$class: &apos;JUnitResultArchiver&apos;, testResults: &apos;**/target/surefire-reports/TEST-*.xml&apos;])
+        stash includes: &apos;run.sh,srv/target/dependency/webapp-runner.jar,srv/target/*.war,Dockerfile&apos;, name: &apos;dockerBuild&apos;
+    }
+
+stage &apos;docker&apos;
+node{
+    ws{
+        unstash &apos;dockerBuild&apos;
+        def built = docker.build(&quot;codetroopers/jenkins-workflow-demo:${env.BUILD_ID}&quot;)
+        input &apos;Is everything ok ? Run app ?&apos; // # &lt;b class=&quot;conum&quot;&gt;(1)&lt;/b&gt;
+        echo &quot;We can run the docker-compose up here&quot;
+        def outcome = input message: &apos;We can even have parameters to answer this question&apos;, parameters: [ // # &lt;b class=&quot;conum&quot;&gt;(2)&lt;/b&gt;
+            [name: &apos;myChoice&apos;, description: &apos;My choice&apos;, choices: &apos;Choice 1\nChoice 2\nChoice 3&apos;, $class: &apos;ChoiceParameterDefinition&apos;]
+        ]
+        echo &quot;You have chosen ${outcome}&quot; // # &lt;b class=&quot;conum&quot;&gt;(3)&lt;/b&gt;
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;colist arabic&quot;&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;input&lt;/code&gt; met en pause la construction et permet de continuer ou interrompre celle-ci&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Il est également possible de permettre à l&amp;#8217;utilisateur de faire un choix&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Ici la valeur sélectionnée par l&amp;#8217;utilisateur est écrite dans la sortie du build.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;&lt;em&gt;J&amp;#8217;espère que cet article vous donnera l&amp;#8217;envie d&amp;#8217;essayer de rationnaliser un peu plus la configuration de vos job Jenkins en les stockant dans votre SCM&lt;/em&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/JenkinsWorkflow&quot;&gt;Jenkins Workflow Plugin&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure&lt;/a&gt; on January 20, 2016.&lt;/p&gt;</content>
+</entry>
+
+
+<entry>
   <title type="html"><![CDATA[Avoid Proxy Headaches in Docker with redsocks]]></title>
   <link>http://www.bloggure.info/redsocks-avoid-docker-proxy-headaches</link>
   <id>http://www.bloggure.info/redsocks-avoid-docker-proxy-headaches</id>
@@ -948,6 +1390,105 @@ $&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;chroot&lt;span class=&quot;w&quot
 
 
 <entry>
+  <title type="html"><![CDATA[Résoudre les conflits de dépendances]]></title>
+  <link>http://www.bloggure.info/MavenShade</link>
+  <id>http://www.bloggure.info/MavenShade</id>
+  <published>2014-09-01T00:00:00+02:00</published>
+  <updated>2014-09-01T00:00:00+02:00</updated>
+  <author>
+    <name></name>
+    <uri>http://www.bloggure.info</uri>
+    <email></email>
+  </author>
+  <content type="html">&lt;p&gt;Lors de nos développements, nous reposons beaucoup sur des projets externes qui nous fournissent énormément de services
+utiles. Dans un récent projet, nous avons eu besoin de faire fonctionner Neo4j conjointement à ElasticSearch. Jusqu’ici,
+aucun soucis n’est à déplorer, mais nous avions une exigence particulière : il fallait que l’application puisse
+démarrer automatiquement un serveur Neo4J ainsi qu’un serveur ElasticSearch sur les postes de développements (ainsi que
+pour les tests d’intégration).&lt;/p&gt;
+
+&lt;h2 id=&quot;problème-existant&quot;&gt;Problème existant&lt;/h2&gt;
+
+&lt;p&gt;Les deux outils que nous utilisons se basent sur Apache Lucene pour toute la partie indexation et accès aux données.
+Mais, et c’est là que le problème se situe, ils n’utilisent pas les mêmes versions de Lucene.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;!-- Extrait du pom d&apos;ElasticSearch --&amp;gt;
+&amp;lt;dependency&amp;gt;
+    &amp;lt;groupId&amp;gt;org.apache.lucene&amp;lt;/groupId&amp;gt;
+    &amp;lt;artifactId&amp;gt;lucene-core&amp;lt;/artifactId&amp;gt;
+    &amp;lt;version&amp;gt;4.9.0&amp;lt;/version&amp;gt;
+    &amp;lt;scope&amp;gt;compile&amp;lt;/scope&amp;gt;
+&amp;lt;/dependency&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;!-- Extrait du pom de Neo4j --&amp;gt;
+&amp;lt;dependency&amp;gt;
+    &amp;lt;groupId&amp;gt;org.apache.lucene&amp;lt;/groupId&amp;gt;
+    &amp;lt;artifactId&amp;gt;lucene-core&amp;lt;/artifactId&amp;gt;
+    &amp;lt;version&amp;gt;3.6.2&amp;lt;/version&amp;gt;
+&amp;lt;/dependency&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ElasticSearch utilise la version 4.9.0, alors que Neo4J utilise la version 3.6.2. Ainsi, en fonction du bon vouloir du
+&lt;code&gt;Classloader&lt;/code&gt; qui sera utilisé par l’application, il se peut qu’ElasticSearch ou Neo4J refuse de fonctionner. La
+difficulté pour comprendre et détecter le problème est qu’il se manifeste souvent par un obscur &lt;code&gt;NoClassDefFoundError&lt;/code&gt;
+ou &lt;code&gt;NoSuchMethodError&lt;/code&gt; qui n’est pas des plus explicites (d’autant plus lorsque notre IDE nous montre une version qui
+contient ledit symbole non trouvé).&lt;/p&gt;
+
+&lt;h2 id=&quot;solution-de-contournement&quot;&gt;Solution de contournement&lt;/h2&gt;
+
+&lt;p&gt;Le conflit est assez simple à contourner une fois qu’on a compris ce qui se passe. En fait, il y a deux classes portant
+le même nom dans les classes chargées, par exemple &lt;code&gt;org.lucene.MaClass&lt;/code&gt;, l’une effaçant l’autre aux yeux du
+&lt;code&gt;ClassLoader&lt;/code&gt;.
+Une pratique courante est de renommer (ou relocate) le package de base d’une bibliothèque utilisée et de l’inclure dans
+le fichier de package du projet, le plugin &lt;code&gt;maven-shade&lt;/code&gt; est conçu dans cette optique.
+Le choix fait est de renommer la dépendance Lucene dans Neo4J pour notre part, ainsi, nous avons forké le projet et
+configuré le plugin &lt;code&gt;shade&lt;/code&gt; pour qu’il inclue le contenu de la dépendance d’Apache Lucene et qu’il fasse le renommage de
+&lt;code&gt;org.apache.lucene&lt;/code&gt; en &lt;code&gt;shaded.org.apache.lucene&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; &amp;lt;plugin&amp;gt;
+        &amp;lt;groupId&amp;gt;org.apache.maven.plugins&amp;lt;/groupId&amp;gt;
+        &amp;lt;artifactId&amp;gt;maven-shade-plugin&amp;lt;/artifactId&amp;gt;
+        &amp;lt;version&amp;gt;2.2&amp;lt;/version&amp;gt;
+        &amp;lt;executions&amp;gt;
+            &amp;lt;execution&amp;gt;
+                &amp;lt;phase&amp;gt;package&amp;lt;/phase&amp;gt;
+                &amp;lt;goals&amp;gt;
+                    &amp;lt;goal&amp;gt;shade&amp;lt;/goal&amp;gt;
+                &amp;lt;/goals&amp;gt;
+                &amp;lt;configuration&amp;gt;
+                    &amp;lt;createDependencyReducedPom&amp;gt;true&amp;lt;/createDependencyReducedPom&amp;gt;
+
+                    &amp;lt;artifactSet&amp;gt;
+                        &amp;lt;includes&amp;gt;
+                            &amp;lt;include&amp;gt;org.apache.lucene:*&amp;lt;/include&amp;gt;
+                        &amp;lt;/includes&amp;gt;
+                    &amp;lt;/artifactSet&amp;gt;
+                    &amp;lt;relocations&amp;gt;
+                        &amp;lt;relocation&amp;gt;
+                            &amp;lt;pattern&amp;gt;org.apache.lucene&amp;lt;/pattern&amp;gt;
+                            &amp;lt;shadedPattern&amp;gt;shaded.org.apache.lucene&amp;lt;/shadedPattern&amp;gt;
+                        &amp;lt;/relocation&amp;gt;
+                    &amp;lt;/relocations&amp;gt;
+                &amp;lt;/configuration&amp;gt;
+            &amp;lt;/execution&amp;gt;
+        &amp;lt;/executions&amp;gt;
+  &amp;lt;/plugin&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;déploiement-et-nommage&quot;&gt;Déploiement et nommage&lt;/h2&gt;
+
+&lt;p&gt;Pour ne pas polluer les dépôts, le numéro de version modifié a été postfixé par &lt;code&gt;-shaded&lt;/code&gt;. Le déploiement a été fait sur
+un dépôt Maven qui est en fait un simple repository Github.
+Le commit correspondant à cette modification &lt;a href=&quot;https://github.com/CedricGatay/neo4j/commit/452f58fca69ffe3b1d0eab6261b8342f8da95889&quot;&gt;est consultable
+ici&lt;/a&gt;.&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/MavenShade&quot;&gt;Résoudre les conflits de dépendances&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure&lt;/a&gt; on September 01, 2014.&lt;/p&gt;</content>
+</entry>
+
+
+<entry>
   <title type="html"><![CDATA[Homebrew Cask - commandline install on Mac]]></title>
   <link>http://www.bloggure.info/brew-cask-install-everything-from-cli</link>
   <id>http://www.bloggure.info/brew-cask-install-everything-from-cli</id>
@@ -1006,169 +1547,6 @@ $ brew cask install dropbox #for example
 &lt;p&gt;You can easily install it via &lt;code&gt;brew cask&lt;/code&gt; (more to come on brew cask soon) or download the &lt;a href=&quot;https://github.com/jimbojsb/launchrocket/releases&quot;&gt;zip distribution&lt;/a&gt;&lt;/p&gt;
 
   &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/launchrocket-homebrew-service-manager&quot;&gt;LaunchRocket - Homebrew service manager&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure&lt;/a&gt; on April 30, 2014.&lt;/p&gt;</content>
-</entry>
-
-
-<entry>
-  <title type="html"><![CDATA[Use VirtualBox to do a real install]]></title>
-  <link>http://www.bloggure.info/www/os/use-VirtualBox-to-do-a-real-install</link>
-  <id>http://www.bloggure.info/www/os/use-VirtualBox-to-do-a-real-install</id>
-  <published>2014-03-08T00:00:00+01:00</published>
-  <updated>2014-03-08T00:00:00+01:00</updated>
-  <author>
-    <name></name>
-    <uri>http://www.bloggure.info</uri>
-    <email></email>
-  </author>
-  <content type="html">&lt;h1 id=&quot;install-from-virtualbox-&quot;&gt;Install from VirtualBox ?&lt;/h1&gt;
-&lt;p&gt;If you are like me, you have got plenty of hard drives hanging around and never got an optical drive or an usb stick. One thing that could reveal itself to be hard is installing a new Operating System on any machine without any of the two I mentionned earlier.&lt;/p&gt;
-
-&lt;p&gt;In this short tips and tricks post, I will show you how you can use VirtualBox raw disks feature (I guess here for compatibility with VMWare) to install a new Operating System from your old one (yes, without the 10 minutes part were you can do nothing else with your computer).&lt;/p&gt;
-
-&lt;h1 id=&quot;prerequisites&quot;&gt;Prerequisites&lt;/h1&gt;
-
-&lt;p&gt;What you will need in order for this to work :&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;a Linux setup with root access (sudoing will be fine)&lt;/li&gt;
-  &lt;li&gt;a second hard drive where you want to put your brand new Operating System&lt;/li&gt;
-  &lt;li&gt;ISO file of the OS you want to install&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;install&quot;&gt;Install&lt;/h1&gt;
-
-&lt;p&gt;First of all, install VirtualBox on your system (&lt;code&gt;yum&lt;/code&gt;, &lt;code&gt;apt-get&lt;/code&gt;, whatever your package system is).
-Then you will need to find out what is the identifier of the drive you want to use as a new (&lt;code&gt;sudo fdisk -l&lt;/code&gt; can tell you everything you need to know about your disks).&lt;/p&gt;
-
-&lt;p&gt;In my example lets say I want to install on a 300GB hard drive, I got this &lt;code&gt;fdisk&lt;/code&gt; output&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;cgatay@cgatay2:~$ sudo fdisk -l
-[sudo] password for cgatay:
-
-Disk /dev/sda: 251.1 GB, 251059544064 bytes
-255 heads, 63 sectors/track, 30522 cylinders, total 490350672 sectors
-Units = sectors of 1 * 512 = 512 bytes
-Sector size (logical/physical): 512 bytes / 512 bytes
-I/O size (minimum/optimal): 512 bytes / 512 bytes
-Disk identifier: 0x000efa30
-
-   Device Boot      Start         End      Blocks   Id  System
-/dev/sda1   *        2048   489302015   244649984   83  Linux
-/dev/sda2       489304062   490348543      522241    5  Extended
-/dev/sda5       489304064   490348543      522240   82  Linux swap / Solaris
-
-Disk /dev/sdb: 400.1 GB, 400088457216 bytes
-255 heads, 63 sectors/track, 48641 cylinders, total 781422768 sectors
-Units = sectors of 1 * 512 = 512 bytes
-Sector size (logical/physical): 512 bytes / 512 bytes
-I/O size (minimum/optimal): 512 bytes / 512 bytes
-Disk identifier: 0x0003f041
-
-   Device Boot      Start         End      Blocks   Id  System
-/dev/sdb1   *          63   390627047   195313492+   7  HPFS/NTFS/exFAT
-/dev/sdb2       390627048   781422767   195397860    c  W95 FAT32 (LBA)
-
-Disk /dev/sdc: 1000.2 GB, 1000204886016 bytes
-255 heads, 63 sectors/track, 121601 cylinders, total 1953525168 sectors
-Units = sectors of 1 * 512 = 512 bytes
-Sector size (logical/physical): 512 bytes / 512 bytes
-I/O size (minimum/optimal): 512 bytes / 512 bytes
-Disk identifier: 0x00048185
-
-   Device Boot      Start         End      Blocks   Id  System
-/dev/sdc1   *        2048      499711      248832   83  Linux
-/dev/sdc2          499712  1952790527   976145408   83  Linux
-/dev/sdc3      1952792574  1953523711      365569    5  Extended
-/dev/sdc5      1952792576  1953523711      365568   82  Linux swap / Solaris
-
-Disk /dev/sdd: 300.1 GB, 300090728448 bytes
-255 heads, 63 sectors/track, 36483 cylinders, total 586114704 sectors
-Units = sectors of 1 * 512 = 512 bytes
-Sector size (logical/physical): 512 bytes / 512 bytes
-I/O size (minimum/optimal): 512 bytes / 512 bytes
-Disk identifier: 0x000cb074
-
-   Device Boot      Start         End      Blocks   Id  System
-/dev/sdd1   *        2048   574060543   287029248   83  Linux
-/dev/sdd2       574062590   586113023     6025217    5  Extended
-/dev/sdd5       574062592   586113023     6025216   82  Linux swap / Solaris
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The interesting line is the one stating &lt;code&gt;Disk /dev/sdd: 300.1 GB&lt;/code&gt;. From now on I will use /dev/sdd as the target of my install.&lt;/p&gt;
-
-&lt;p&gt;For the rest of the commands to work you need to run everything as root (by sudoing), I think there is more “cleaner” way of doing this by correctly setting &lt;code&gt;suid&lt;/code&gt; flags but I did not took the time to look after this.&lt;/p&gt;
-
-&lt;p&gt;You need to create the hard disk file that will point to your physical install, then launch VirtualBox as root (there is a lot of chances that your regular user can’t do everything he wants on a device):&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo VBoxManage internalcommands createrawvmdk -filename disk.vmdk -rawdisk /dev/sdd; #replace /dev/sdd with your device
-sudo VirtualBox;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;From there, this is a simple VirtualBox machine setup, you just need to select the created disk.vmdk file for the hard disk of your Virtual Machine, mount the ISO and proceed with the install. At the end of the install, you can shut down the VirtualMachine, reboot your computer and use the boot selection menu of your bios (or change the boot order) to boot directly on your newly installed system.&lt;/p&gt;
-
-&lt;p&gt;If you are on a Linux system, you can issue a &lt;code&gt;update-grub&lt;/code&gt; that will detect all your operating systems and will create the boot menu (you can still boot your old one this way).&lt;/p&gt;
-
-&lt;h1 id=&quot;disclaimer&quot;&gt;Disclaimer&lt;/h1&gt;
-
-&lt;p&gt;This method has been tested multiple times for installing Windows as well as Linuxes without any hurt. However, it might kill kitten or trigger a nuclear war if used incorrectly, in such cases, I decline responsibility.&lt;/p&gt;
-
-&lt;h1 id=&quot;thoughts&quot;&gt;Thoughts&lt;/h1&gt;
-
-&lt;p&gt;As a side note, I think a Linux host is not required, you can achieve the same with a Windows operating system, the command line surely just need some improvements to point to the physical disk.&lt;/p&gt;
-
-  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/www/os/use-VirtualBox-to-do-a-real-install&quot;&gt;Use VirtualBox to do a real install&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure&lt;/a&gt; on March 08, 2014.&lt;/p&gt;</content>
-</entry>
-
-
-<entry>
-  <title type="html"><![CDATA[RestX the webservice framework]]></title>
-  <link>http://www.bloggure.info/restx-the-webservice-firework</link>
-  <id>http://www.bloggure.info/restx-the-webservice-firework</id>
-  <published>2014-02-10T00:00:00+01:00</published>
-  <updated>2014-02-10T00:00:00+01:00</updated>
-  <author>
-    <name></name>
-    <uri>http://www.bloggure.info</uri>
-    <email></email>
-  </author>
-  <content type="html">&lt;h1 id=&quot;another-java-rest-framework&quot;&gt;Another Java Rest framework&lt;/h1&gt;
-
-&lt;p&gt;If you’re a somewhat experienced Java developer I guess you’ve encountered a lot of framework when it comes to write web services.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://www.restx.io&quot;&gt;Restx.io&lt;/a&gt; is a new kid on the block leveraging high velocity with a focus on testability through a set of unique and great features :&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;each rest endpoint generates its documentation from its tests (real killer feature here : we hate writing docs but we live writing tests!)&lt;/li&gt;
-  &lt;li&gt;a built in monitoring engine&lt;/li&gt;
-  &lt;li&gt;everything that can be done at compile time is done at that time (annotations / dependency injection)&lt;/li&gt;
-  &lt;li&gt;it is written in good old plain Java (IDE support : I’m looking at you Play Framework!)&lt;/li&gt;
-  &lt;li&gt;auto compile (we don’t like waiting!)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;I’ve tested it on a few small projects, I can’t wait to try it on a real project !&lt;/p&gt;
-
-  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/restx-the-webservice-firework&quot;&gt;RestX the webservice framework&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure&lt;/a&gt; on February 10, 2014.&lt;/p&gt;</content>
-</entry>
-
-
-<entry>
-  <title type="html"><![CDATA[Great Ebooks for Half Price]]></title>
-  <link>http://www.bloggure.info/www/great-ebooks-for-half-price</link>
-  <id>http://www.bloggure.info/www/great-ebooks-for-half-price</id>
-  <published>2013-10-15T00:00:00+02:00</published>
-  <updated>2013-10-15T00:00:00+02:00</updated>
-  <author>
-    <name></name>
-    <uri>http://www.bloggure.info</uri>
-    <email></email>
-  </author>
-  <content type="html">&lt;p&gt;&lt;a href=&quot;http://bit.ly/1bqvB29&quot;&gt;Packt Publishing&lt;/a&gt; is actually discounting the full range of their eBooks and videos by 50 percent until October 17th using this discount code : COL50.&lt;/p&gt;
-
-&lt;p&gt;It can be a good opportunity to check &lt;a href=&quot;http://www.packtpub.com/instant-apache-wicket-6/book&quot;&gt;“Instant Apache Wicket 6”&lt;/a&gt; which I reviewed a few weeks ago for the newcomers to Apache Wicket. Another good deal could be checking out the best-seller title &lt;a href=&quot;http://www.packtpub.com/angularjs-web-application-development/book&quot;&gt;“Mastering Web Application Development with AngularJS”&lt;/a&gt;!&lt;/p&gt;
-
-&lt;p&gt;Head over to &lt;a href=&quot;http://bit.ly/1bqvB29&quot;&gt;Packt Publishing site&lt;/a&gt; and pick the books of your choice using the promo code COL50.&lt;/p&gt;
-
-  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/www/great-ebooks-for-half-price&quot;&gt;Great Ebooks for Half Price&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure&lt;/a&gt; on October 15, 2013.&lt;/p&gt;</content>
 </entry>
 
 </feed>

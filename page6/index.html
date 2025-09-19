@@ -90,8 +90,10 @@
     <div class="entry-header">
       <div class="header-title">
         <div class="header-title-wrap">
-          <h1>Bloggure</h1>
-          <h2></h2>
+          <h1 itemprop="name">
+            <a href="http://www.bloggure.info/">Bloggure</a>
+          </h1>
+          <h2><a href="/page6/"></a></h2>
         </div>
         <!-- /.header-title-wrap -->
       </div>
@@ -100,6 +102,556 @@
     <!-- /.entry-header -->
 
     <div id="main" role="main">
+      <article
+        class="hentry"
+        itemprop="blogPost"
+        itemscope
+        itemtype="http://schema.org/BlogPosting"
+      >
+        <header>
+          <div class="entry-meta">
+            <span class="entry-date date published updated"
+              ><time
+                datetime="2013-08-31T00:00:00+02:00"
+                itemprop="datePublished"
+                ><a
+                  href="http://www.bloggure.info/.maven/maven-merge-properties-plugin"
+                  >August 31, 2013</a
+                ></time
+              ></span
+            ><span
+              class="author vcard"
+              itemprop="author"
+              itemscope
+              itemtype="http://schema.org/Person"
+              ><span itemprop="name" class="fn"
+                ><a
+                  href="http://www.bloggure.info/cgatay"
+                  title="About cgatay"
+                  itemprop="url"
+                  >cgatay</a
+                ></span
+              ></span
+            >&nbsp; &bull; &nbsp;<span class="entry-comments"
+              ><a
+                href="http://www.bloggure.info/.maven/maven-merge-properties-plugin#disqus_thread"
+                >Comment</a
+              ></span
+            >
+          </div>
+          <!-- /.entry-meta -->
+
+          <h1 class="entry-title" itemprop="name">
+            <a
+              href="http://www.bloggure.info/.maven/maven-merge-properties-plugin"
+              rel="bookmark"
+              title="Merge properties maven plugin"
+              itemprop="url"
+              >Merge properties maven plugin</a
+            >
+          </h1>
+        </header>
+        <div class="entry-content" itemprop="description">
+          <!--:en--><img
+            class="alignright size-medium wp-image-74"
+            alt="Maven"
+            src="/images/uploads/2010/11/Maven_logo1-300x76.gif"
+            width="300"
+            height="76"
+          />
+          <p>
+            At <a href="http://www.srmvision.com">SRMvision</a>, we develop with
+            localization in mind. We don't have any user visible text that is
+            not in fact tied to a java property file. Quickly, the problem that
+            we faced was the difficulty to keep every language file in sync (and
+            to tidy things up). We developed a small Maven plugin allowing us to
+            ensure that our two main problems are now gone :
+            <a
+              href="https://github.com/code-troopers/merge-properties-maven-plugin"
+              >merge-properties-maven-plugin</a
+            >.
+          </p>
+          <h2>Quick example</h2>
+          <p>
+            I think the easiest way to understand how it works is to explain it
+            with a real use case. Let's say we have a module named
+            <em>Zones</em> in our application, it will lead to create four files
+            (if we are localized in two different languages) :
+          </p>
+          <ul>
+            <li>l10n/Zones_en.properties</li>
+            <li>l10n/Zones_fr.properties</li>
+            <li>help/Zones_en.properties</li>
+            <li>help/Zones_fr.properties</li>
+          </ul>
+          <p>
+            As you might have guessed, we have got two different categories of
+            target files, one for the application's localization, and the other
+            one for the application's help. There is only one rule when it comes
+            to filling these files, the property keys must begin with the name
+            of the file, otherwise the build would fail. In this example, every
+            key must begin with the prefix "<tt>Zones.".</tt>
+          </p>
+
+          <p>
+            At the end, we want to get two resource bundles, so we set up the
+            build to do so :
+          </p>
+
+          <noscript><pre>400: Invalid request</pre></noscript>
+          <script src="https://gist.github.com/6397201.js?file=pom.xml"></script>
+
+          <p>
+            By reading this configuration section you can view almost every
+            single option available in the plugin. You can exclude files from
+            automatic key checking : in the example the files
+            Global_*.properties will not be checked. It allows us to group
+            commonly used keys without needing them to begin with the correct
+            prefix (it also eases migration for legacy code, breaking the build
+            would be too intrusive).
+          </p>
+
+          <p>
+            You can also notice that we use a Maven property to enable the fail
+            on count mismatch functionality of the plugin, with the help of
+            Maven profiles, we can set it to false for development and to true
+            for continuous integration and translation team. When this
+            configuration is used you will get an output like the following in
+            your Maven build :
+          </p>
+
+          <noscript><pre>400: Invalid request</pre></noscript>
+          <script src="https://gist.github.com/6397201.js?file=maven.log"></script>
+
+          <p>
+            If the build should check consistency in merged files and if it does
+            not match, it will output blank keys as well as lonely keys in order
+            for your translator to fix it easily.
+          </p>
+          <h2>Bonus feature</h2>
+          <p>
+            We use Java's MessageFormat to format our translated string, one of
+            the thing we tend to forget is to escape the single quotes in our
+            translations. The plugin does this magic for us, it automatically
+            adds the missing single quotes in every messages.
+          </p>
+          <!--:-->
+        </div>
+        <!-- /.entry-content -->
+      </article>
+      <!-- /.hentry -->
+
+      <article
+        class="hentry"
+        itemprop="blogPost"
+        itemscope
+        itemtype="http://schema.org/BlogPosting"
+      >
+        <header>
+          <div class="entry-meta">
+            <span class="entry-date date published updated"
+              ><time
+                datetime="2013-07-25T00:00:00+02:00"
+                itemprop="datePublished"
+                ><a
+                  href="http://www.bloggure.info/work/play-framework-and-i18n-in-views"
+                  >July 25, 2013</a
+                ></time
+              ></span
+            ><span
+              class="author vcard"
+              itemprop="author"
+              itemscope
+              itemtype="http://schema.org/Person"
+              ><span itemprop="name" class="fn"
+                ><a
+                  href="http://www.bloggure.info/cgatay"
+                  title="About cgatay"
+                  itemprop="url"
+                  >cgatay</a
+                ></span
+              ></span
+            >&nbsp; &bull; &nbsp;<span class="entry-comments"
+              ><a
+                href="http://www.bloggure.info/work/play-framework-and-i18n-in-views#disqus_thread"
+                >Comment</a
+              ></span
+            >
+          </div>
+          <!-- /.entry-meta -->
+
+          <h1 class="entry-title" itemprop="name">
+            <a
+              href="http://www.bloggure.info/work/play-framework-and-i18n-in-views"
+              rel="bookmark"
+              title="Play Framework and i18n in views"
+              itemprop="url"
+              >Play Framework and i18n in views</a
+            >
+          </h1>
+        </header>
+        <div class="entry-content" itemprop="description">
+          <!--:en--><img
+            class="alignright size-full wp-image-916"
+            alt="playlogo"
+            src="/images/uploads/2013/07/playlogo.png"
+            width="150"
+            height="50"
+          />
+
+          <p>
+            I was having a strange issue with localization in a Play Framework
+            application. I followed the
+            <a href="http://www.playframework.com/documentation/2.0/ScalaI18N"
+              >simple steps</a
+            >
+            detailed on the official documentation but with no luck.
+          </p>
+
+          <p>
+            When experimenting, I figured out that the locale used is the
+            default locale of the JVM. In my case, my default locale is French
+            so I only had French in my application. But on Heroku, the default
+            locale is English and thus the application was only working in
+            English.
+          </p>
+
+          <p>
+            The trick consists in adding an implicit lang to your template
+            views. In fact, Scala import an implicit lang with the lowest
+            priority being the one coming from the JVM, if you want to get the
+            language parsed from the Accept-Languages http header, you need to
+            add an implicit as below :
+          </p>
+          <figure class="highlight">
+            <pre><code class="language-scala" data-lang="scala"><span></span><span class="o">@</span><span class="p">(</span><span class="n">title</span><span class="p">:</span><span class="w"> </span><span class="nc">String</span><span class="p">)(</span><span class="n">content</span><span class="p">:</span><span class="w"> </span><span class="nc">Html</span><span class="p">)(</span><span class="k">implicit</span><span class="w"> </span><span class="n">lang</span><span class="p">:</span><span class="w"> </span><span class="nc">Lang</span><span class="p">)</span></code></pre>
+          </figure>
+          <p>
+            With this little trick, your calls to localization will use the
+            locale extracted from the http request as expected.
+          </p>
+          <!--:--><!--:fr<img class="alignright size-full wp-image-916" alt="playlogo" src="/images/uploads/2013/07/playlogo.png" width="150" height="50" />
+
+I was having a strange issue with localization in a Play Framework application. I followed the <a href="http://www.playframework.com/documentation/2.0/ScalaI18N">simple steps</a> detailed on the official documentation but with no luck.
+
+When experimenting, I figured out that the locale used is the default locale of the JVM. In my case, my default locale is French so I only had French in my application. But on Heroku, the default locale is English and thus the application was only working in English.
+
+The trick consists in adding an implicit lang to your template views. In fact, Scala import an implicit lang with the lowest priority being the one coming from the JVM, if you want to get the language parsed from the Accept-Languages http header, you need to add an implicit as below :
+<pre class="brush: scala">@(title: String)(content: Html)(implicit lang: Lang)</pre>
+With this little trick, your calls to localization will use the locale extracted from the http request as expected.<-->
+        </div>
+        <!-- /.entry-content -->
+      </article>
+      <!-- /.hentry -->
+
+      <article
+        class="hentry"
+        itemprop="blogPost"
+        itemscope
+        itemtype="http://schema.org/BlogPosting"
+      >
+        <header>
+          <div class="entry-meta">
+            <span class="entry-date date published updated"
+              ><time
+                datetime="2013-07-25T00:00:00+02:00"
+                itemprop="datePublished"
+                ><a
+                  href="http://www.bloggure.info/.java/.scala/.shell/ci/shelf/centos-redhat-play-application-production-mode"
+                  >July 25, 2013</a
+                ></time
+              ></span
+            ><span
+              class="author vcard"
+              itemprop="author"
+              itemscope
+              itemtype="http://schema.org/Person"
+              ><span itemprop="name" class="fn"
+                ><a
+                  href="http://www.bloggure.info/tdebarochez"
+                  title="About tdebarochez"
+                  itemprop="url"
+                  >tdebarochez</a
+                ></span
+              ></span
+            >&nbsp; &bull; &nbsp;<span class="entry-comments"
+              ><a
+                href="http://www.bloggure.info/.java/.scala/.shell/ci/shelf/centos-redhat-play-application-production-mode#disqus_thread"
+                >Comment</a
+              ></span
+            >
+          </div>
+          <!-- /.entry-meta -->
+
+          <h1 class="entry-title" itemprop="name">
+            <a
+              href="http://www.bloggure.info/.java/.scala/.shell/ci/shelf/centos-redhat-play-application-production-mode"
+              rel="bookmark"
+              title="Play application on Centos/RedHat in production mode"
+              itemprop="url"
+              >Play application on Centos/RedHat in production mode</a
+            >
+          </h1>
+        </header>
+        <div class="entry-content" itemprop="description">
+          <em
+            >Sorry english readers, the following post is only available in
+            french !</em
+          >
+          <!--:fr-->
+          <p>
+            <strong>tl;dr </strong>: application
+            <a title="play" href="http://www.playframework.com/">Play</a> (java
+            ou <a href="http://www.scala-lang.org/">scala</a>) sur un serveur
+            <a href="http://www.centos.org/">Centos</a> (ou
+            <a href="http://fr.wikipedia.org/wiki/Red_Hat_Linux">Red Hat</a>)
+            derrière un serveur
+            <a title="nginx" href="http://nginx.org/">nginx</a>.
+          </p>
+          <h2>Script de démarrage/arrêt du daemon.</h2>
+          <p>
+            Lancer une application Play en dev est assez aisé :
+            <code>$ play run</code>.
+          </p>
+          <p>
+            Maintenant, si vous avez besoin de déployer votre application en
+            production, il est plus confortable de considérer votre application
+            comme un service à part entière du système. Il se peut aussi que
+            vous ayez besoin de spécifier un port et une interface particulière
+            pour pouvoir utiliser nginx comme front-end (en
+            <a href="http://fr.wikipedia.org/wiki/Proxy_inverse"
+              >reverse proxy</a
+            >). Et évidement, à l'instar d'un environnement de développement,
+            vous pourriez avoir besoin de compresser le JS et le CSS, et
+            également de régler finement les en-têtes HTTP pour gérer
+            correctement le cache.
+          </p>
+          <p>Tout d'abord le script de lancement du daemon :</p>
+          <script src="https://gist.github.com/tdebarochez/6082933.js"></script>
+          <p>
+            Je me suis inspiré des deux gists ci-dessous. Le premier, pour
+            RedHat, utilise le binaire de play pour lancer le processus
+            principal. Cette méthode facile à utiliser en développement semble
+            assez limité en paramètre (tout du moins, très peu documentée). La
+            seconde méthode, pour <a href="http://www.debian.org/">Debian</a>,
+            donne un bonne exemple d'une configuration un peu plus élaborée de
+            l'exécution du daemon. Les paramètres en début de fichier parlent
+            d'eux-mêmes, je vous laisse les découvrir et reste à votre
+            disposition pour toute question.
+          </p>
+          <p>Source :</p>
+          <ul>
+            <li>
+              <a href="https://gist.github.com/THemming/2173037"
+                >https://gist.github.com/THemming/2173037</a
+              >
+              (script pour redhat)
+            </li>
+            <li>
+              <a href="https://gist.github.com/leon/2204773"
+                >https://gist.github.com/leon/2204773</a
+              >
+              (script pour debian)
+            </li>
+          </ul>
+          <h2>Configuration de nginx</h2>
+          <p>
+            Sur un serveur web, il est souvent pratique de pouvoir faire tourner
+            plusieurs applications utilisant des langages, des librairies, des
+            frameworks, etc... hétérogènes (sur mon serveur, il y a
+            l'application Play en scala, une application
+            <a href="http://nodejs.org/">Nodejs</a> en
+            <a href="http://coffeescript.org/">Coffescript</a> et une
+            application <a href="http://php.net">PHP</a>/<a
+              href="http://www.mysql.fr/"
+              >MySQL</a
+            >
+            utilisant <a href="http://httpd.apache.org/">Apache</a>). C'est là
+            que nginx intervient. Configuré en reverse-proxy, c'est lui qui
+            écoutera sur le port 80 de votre serveur et en fonction du nom de
+            domaine relayera les requêtes HTTP à l'application que vous avez
+            choisis. Il vous suffit de configurer votre application en écoute
+            sur un port libre en localhost et d'indiquer à nginx qu'en fonction
+            du nom de domaine (à la manière des VirtualHost d'Apache), il doit
+            transmettre ses requêtes sur ce port.
+          </p>
+          <p>
+            Vous noterez une section fournissant un traitement particulier pour
+            les fichiers statiques (js, css, png, jpg, etc...). En effet, je ne
+            trouvais pas la configuration par défaut de play très satisfaisante
+            pour diffuser ces fichiers. Il conviendra donc de copier tous les
+            fichiers dans un dossier particulier au lancement de l'application
+            (il faut également pensé à y placer les fichiers "compilé" des
+            scripts utilisant un pre-processeurs : coffeescript,
+            <a href="http://sass-lang.com">SASS/SCSS</a>,
+            <a href="http://lesscss.org/">LESS</a>, etc...). Tous les fichiers
+            dans ce dossier auront une durée de cache maximale afin de minimiser
+            le nombre de requêtes au serveur (la requête la plus rapide est
+            celle qui n'est pas faite). Cette technique a aussi l'avantage de
+            décharger la JVM du traitement de ses fichiers, ils sont directement
+            retourné par nginx.
+          </p>
+          <script src="https://gist.github.com/tdebarochez/6083089.js"></script>
+          <h2>Compilation des fichiers statiques</h2>
+          <p>
+            Les pré-processeurs (Coffeescript, SASS, LESS, etc...) sont d'un
+            grand confort pour le développement de la partie front-end d'une
+            application web. Toutefois, il y a quelques détails qui ne faut pas
+            négliger afin d'optimiser au maximum la distribution en HTTP de ces
+            fichiers.
+          </p>
+          <p>
+            Prenons comme exemple un fichier .coffee (Coffeescript). Lorsqu'en
+            développement vous lancer votre serveur, play se charge de
+            re-compiler automatiquement le fichier afin de desservir un fichier
+            javascript au navigateur qui a demandé le fichier. Dans notre
+            environnement, les fichiers statiques se trouvent tous dans un
+            dossier <code>static/</code>. Il faut donc "traduire" ce fichier en
+            javascript et le placer dans ce dossier (en respectant
+            l'arborescence utilisée en développement) :
+            <code
+              >coffee -o static/javascripts/ -c
+              app/assets/javascripts/*.coffee</code
+            >.
+          </p>
+          <p>
+            Ensuite, comme optimisation souvent préconnisée, il convient de
+            "minifier" ces fichiers afin qu'ils soient le plus léger possible
+            pendant le transport sur le réseau (qui peut-être une faible
+            connexion 3g). Dans mon cas, j'ai utilisé
+            <a href="https://github.com/yui/yuicompressor"
+              ><code>yuicompressor</code></a
+            >
+            qui fonctionne bien. Il en existe certainement des mieux, je n'ai
+            pas testé, mais celui-là fonctionne comme je veux.
+          </p>
+          <script src="https://gist.github.com/tdebarochez/6083307.js"></script>
+          <p>
+            Note : comme amélioration possible, il faudrait dans cette partie là
+            renommer les fichiers par un nom de fichier contenant un hash
+            représentant le contenu de ce fichier afin de palier à tout problème
+            d'invalidation du cache.
+          </p>
+          <h2>Dans le futur</h2>
+          <p>
+            Pour parfaire le déploiement de l'application, sur un VCS
+            <a href="http://git-scm.com/">git</a> par exemple, il serait
+            pratique d'automatiser le redémarrage du serveur sur un hook
+            post-commit. Pour éviter également une coupure de service, il
+            faudrait également, lancer la nouvelle application sur un autre port
+            et switcher sur la nouvelle instance uniquement avec un reload de
+            nginx. Mais bon tout ça peut faire l'objet d'un autre article. :)
+          </p>
+          <p>
+            <strong>Mise à jour du 29 juillet 2013</strong> : correction du
+            script de lancement du daemon.
+          </p>
+          <!--:-->
+        </div>
+        <!-- /.entry-content -->
+      </article>
+      <!-- /.hentry -->
+
+      <article
+        class="hentry"
+        itemprop="blogPost"
+        itemscope
+        itemtype="http://schema.org/BlogPosting"
+      >
+        <header>
+          <div class="entry-meta">
+            <span class="entry-date date published updated"
+              ><time
+                datetime="2013-07-08T00:00:00+02:00"
+                itemprop="datePublished"
+                ><a
+                  href="http://www.bloggure.info/.java/work/heroku-play-scala-compass-buildpack"
+                  >July 08, 2013</a
+                ></time
+              ></span
+            ><span
+              class="author vcard"
+              itemprop="author"
+              itemscope
+              itemtype="http://schema.org/Person"
+              ><span itemprop="name" class="fn"
+                ><a
+                  href="http://www.bloggure.info/cgatay"
+                  title="About cgatay"
+                  itemprop="url"
+                  >cgatay</a
+                ></span
+              ></span
+            >&nbsp; &bull; &nbsp;<span class="entry-comments"
+              ><a
+                href="http://www.bloggure.info/.java/work/heroku-play-scala-compass-buildpack#disqus_thread"
+                >Comment</a
+              ></span
+            >
+          </div>
+          <!-- /.entry-meta -->
+
+          <h1 class="entry-title" itemprop="name">
+            <a
+              href="http://www.bloggure.info/.java/work/heroku-play-scala-compass-buildpack"
+              rel="bookmark"
+              title="Heroku Play ! Scala Compass Buildpack"
+              itemprop="url"
+              >Heroku Play ! Scala Compass Buildpack</a
+            >
+          </h1>
+        </header>
+        <div class="entry-content" itemprop="description">
+          <!--:en--><img
+            class="size-thumbnail wp-image-758 alignright"
+            alt="MBP Keyboard"
+            src="/images/uploads/2012/12/IMG_20121222_000541-150x150.jpg"
+            width="150"
+            height="150"
+          />
+          <p>
+            I am actually working on a little side project with my friend
+            <a href="http://www.bloggure.info/author/tdebarochez"
+              >Thomas Debarochez</a
+            >. We are using
+            <a href="http://www.playframework.com/">Play!Framework</a> and
+            <a href="http://compass-style.org/">Compass</a> and we deploy it to
+            <a href="https://www.heroku.com/">Heroku</a>.
+          </p>
+
+          <p>
+            One issue that came when we first deployed the application with
+            Compass to Heroku was that the default scala buildpack does not
+            include sass and compass binaries.
+          </p>
+
+          <p>
+            Following
+            <a
+              href="https://groups.google.com/forum/#!topic/play-framework/fzGj5RqW-l8"
+              >this post</a
+            >
+            on the Play!Framework mailing list, I forked and patched the
+            <a href="https://github.com/heroku/heroku-buildpack-scala"
+              >buildpack</a
+            >
+            to install sass and compass on the environment.
+          </p>
+
+          <p>
+            You can find it here and use it with the following command :
+            <figure class="highlight">
+              <pre><code class="language-bash" data-lang="bash"><span></span>heroku<span class="w"> </span>config:set<span class="w"> </span><span class="nv">BUILDPACK_URL</span><span class="o">=</span>https://github.com/CedricGatay/heroku-buildpack-scala</code></pre>
+            </figure>
+          </p>
+
+          <p>I hope someone will find this useful !</p>
+          <!--:-->
+        </div>
+        <!-- /.entry-content -->
+      </article>
+      <!-- /.hentry -->
+
       <article
         class="hentry"
         itemprop="blogPost"
@@ -228,225 +780,6 @@
             >IntelliJ IDEA can do completion for class names in this file (you
             just need to hit the <code>ctrl+space</code> shortcut twice)</em
           ><!--:-->
-        </div>
-        <!-- /.entry-content -->
-      </article>
-      <!-- /.hentry -->
-
-      <article
-        class="hentry"
-        itemprop="blogPost"
-        itemscope
-        itemtype="http://schema.org/BlogPosting"
-      >
-        <header>
-          <div class="entry-meta">
-            <span class="entry-date date published updated"
-              ><time
-                datetime="2013-03-24T00:00:00+01:00"
-                itemprop="datePublished"
-                ><a
-                  href="http://www.bloggure.info/www/duckduckgo-in-thunderbird"
-                  >March 24, 2013</a
-                ></time
-              ></span
-            ><span
-              class="author vcard"
-              itemprop="author"
-              itemscope
-              itemtype="http://schema.org/Person"
-              ><span itemprop="name" class="fn"
-                ><a
-                  href="http://www.bloggure.info/yfonjallaz"
-                  title="About yfonjallaz"
-                  itemprop="url"
-                  >yfonjallaz</a
-                ></span
-              ></span
-            >&nbsp; &bull; &nbsp;<span class="entry-comments"
-              ><a
-                href="http://www.bloggure.info/www/duckduckgo-in-thunderbird#disqus_thread"
-                >Comment</a
-              ></span
-            >
-          </div>
-          <!-- /.entry-meta -->
-
-          <h1 class="entry-title" itemprop="name">
-            <a
-              href="http://www.bloggure.info/www/duckduckgo-in-thunderbird"
-              rel="bookmark"
-              title="DuckDuckGo in Thunderbird"
-              itemprop="url"
-              >DuckDuckGo in Thunderbird</a
-            >
-          </h1>
-        </header>
-        <div class="entry-content" itemprop="description">
-          <!--:en--><a
-            href="http://www.bloggure.info/wp-content/uploads/2013/03/logo_homepage.normal.v102.png"
-            ><img
-              class="alignright size-thumbnail wp-image-890"
-              alt="Logo DuckDuckGo"
-              src="/images/uploads/2013/03/logo_homepage.normal.v102-150x150.png"
-              width="150"
-              height="150" /></a
-          >Mozilla added a function to search on the web in the latest versions
-          of Thunderbird.That's nice, but the default search engine is bing. As
-          a DuckDuckGo user, I wanted to add my favourite search engine and use
-          it by default. So here's how to do it.
-          <ol>
-            <li>
-              <a
-                title="Find your Thunderbird profile folder"
-                href="http://kb.mozillazine.org/Profile_folder_-_Thunderbird"
-                >Find your profile folder</a
-              >.
-            </li>
-            <li>
-              In it, create a folder named "searchplugins" (without the quotes)
-              if it doesn't exists.
-            </li>
-            <li>
-              Save
-              <a
-                title="DuckDuckGo search plugin"
-                href="http://www.fribourg-est-independant.org/fonji/ddg.xml"
-                >this xml</a
-              >
-              file in it.
-            </li>
-            <li>(Re)start Thunderbird.</li>
-            <li>
-              Select some text in any mail, right clic and search with bing
-              (sorry).
-            </li>
-            <li>Click the DuckDuckGo icon on the left.</li>
-            <li>Click the heart icon on the bottom left.</li>
-            <li>That's all!</li>
-          </ol>
-          To add google, add
-          <a href="http://bwinton.latte.ca/Work/google.xml">this file</a> in the
-          same folder.<!--:--><!--:fr<a href="http://www.bloggure.info/wp-content/uploads/2013/03/logo_homepage.normal.v102.png"><img class="alignright size-thumbnail wp-image-890" alt="Logo DuckDuckGo" src="/images/uploads/2013/03/logo_homepage.normal.v102-150x150.png" width="150" height="150" /></a>Mozilla a ajouté une fonction de recherche sur internet dans les dernières versions de Thunderbird. C'est très utile, mais le moteur par défaut est bing et, en tant qu'utilisateur de DuckDuckGo, j'ai voulu changer ceci pour mettre mon moteur favori à la place. Voici comment procéder :
-<ol>
-	<li><a title="Trouver votre profil thunderbird" href="https://support.mozillamessaging.com/fr/kb/profil-utilisateur#w_oai-mon-profil-est-il-stockae">Trouvez le répertoire de votre profil.</a></li>
-	<li>Créez un répertoire "searchplugins" (sans guillemets) s'il n'existe pas déjà.</li>
-	<li>Sauvegardez <a title="DuckDuckGo search plugin" href="http://www.fribourg-est-independant.org/fonji/ddg.xml">ce fichier xml</a> dans searchplugins.</li>
-	<li>(Re)démarrez Thunderbird.</li>
-	<li>Selectionnez du texte dans un email, faites un clic droit puis "rechercher avec bing" (désolé).</li>
-	<li>Cliquez l'icône DuckDuckGo sur la gauche.</li>
-	<li>Cliquez sur le cœur dans le coin en bas à gauche.</li>
-	<li>C'est tout !</li>
-</ol>
-Pour utiliser google, ajoutez <a href="http://bwinton.latte.ca/Work/google.xml">ce fichier</a> dans le même répertoire.<-->
-        </div>
-        <!-- /.entry-content -->
-      </article>
-      <!-- /.hentry -->
-
-      <article
-        class="hentry"
-        itemprop="blogPost"
-        itemscope
-        itemtype="http://schema.org/BlogPosting"
-      >
-        <header>
-          <div class="entry-meta">
-            <span class="entry-date date published updated"
-              ><time
-                datetime="2013-03-19T00:00:00+01:00"
-                itemprop="datePublished"
-                ><a
-                  href="http://www.bloggure.info/.java/alfred-glassfish-workflow"
-                  >March 19, 2013</a
-                ></time
-              ></span
-            ><span
-              class="author vcard"
-              itemprop="author"
-              itemscope
-              itemtype="http://schema.org/Person"
-              ><span itemprop="name" class="fn"
-                ><a
-                  href="http://www.bloggure.info/cgatay"
-                  title="About cgatay"
-                  itemprop="url"
-                  >cgatay</a
-                ></span
-              ></span
-            >&nbsp; &bull; &nbsp;<span class="entry-comments"
-              ><a
-                href="http://www.bloggure.info/.java/alfred-glassfish-workflow#disqus_thread"
-                >Comment</a
-              ></span
-            >
-          </div>
-          <!-- /.entry-meta -->
-
-          <h1 class="entry-title" itemprop="name">
-            <a
-              href="http://www.bloggure.info/.java/alfred-glassfish-workflow"
-              rel="bookmark"
-              title="Alfred.app Glassfish workflow"
-              itemprop="url"
-              >Alfred.app Glassfish workflow</a
-            >
-          </h1>
-        </header>
-        <div class="entry-content" itemprop="description">
-          <!--:en--><img
-            class="size-thumbnail wp-image-879 alignright"
-            alt="alfred-icon"
-            src="/images/uploads/2013/03/alfred-icon-150x150.jpg"
-            width="150"
-            height="150"
-          />
-          <p>
-            I recently bought the
-            <a href="http://www.alfredapp.com/">Alfred.app</a> Powerpack. It is
-            byfar the best application launcher / automation engine I've ever
-            used. One of the new features of the second version of this
-            application is user customizable workflows.
-          </p>
-          <p>
-            In my daily activities, I start, stop, restart and kill my
-            <a
-              href="http://www.oracle.com/technetwork/middleware/glassfish/overview/index.html"
-              >Glassfish</a
-            >
-            server several times a day. In order to save me a few keystrokes and
-            a few alt-tabbing, I created this small workflow allowing me to
-            manage my local Glassfish instance.
-          </p>
-
-          <p>
-            You can find the Alfred worfklow at the following url <a
-              href="http://bit.ly/alfred-glassfish"
-              >http://bit.ly/alfred-glassfish</a
-            >. You will probably need to adapt the GF_PATH variable in the
-            script to point to the root of your Glassfish installation.
-          </p>
-
-          <p>
-            Once this small step is done, you'll end up with the following
-            prompt in your Alfred :
-          </p>
-
-          <!-- [caption id="attachment_878" align="aligncenter" width="300"] --><img
-            class="size-medium wp-image-878"
-            alt="Alfred with Glassfish workflow enabled"
-            src="/images/uploads/2013/03/alfredscreen.png"
-            width="300"
-            height="102"
-          /><!--  Alfred with Glassfish workflow enabled[/caption] --><!--:--><!--:fr<img class="size-thumbnail wp-image-879 alignright" alt="alfred-icon" src="/images/uploads/2013/03/alfred-icon-150x150.jpg" width="150" height="150" />I recently bought the <a href="http://www.alfredapp.com/">Alfred.app</a> Powerpack. It is byfar the best application launcher / automation engine I've ever used. One of the new features of the second version of this application is user customizable workflows.
-In my daily activities, I start, stop, restart and kill my <a href="http://www.oracle.com/technetwork/middleware/glassfish/overview/index.html">Glassfish</a> server several times a day. In order to save me a few keystrokes and a few alt-tabbing, I created this small workflow allowing me to manage my local Glassfish instance.
-
-You can find the Alfred worfklow at the following url <a href="http://bit.ly/alfred-glassfish">http://bit.ly/alfred-glassfish</a>.
-You will probably need to adapt the GF_PATH variable in the script to point to the root of your Glassfish installation.
-
-Once this small step is done, you'll end up with the following prompt in your Alfred :
-
-[caption id="attachment_878" align="aligncenter" width="300"]<img class="size-medium wp-image-878" alt="Alfred with Glassfish workflow enabled" src="/images/uploads/2013/03/Capture-d’écran-2013-03-19-à-09.53.20-300x102.png" width="300" height="102" /> Alfred with Glassfish workflow enabled[/caption]<-->
         </div>
         <!-- /.entry-content -->
       </article>

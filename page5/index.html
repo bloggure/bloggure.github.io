@@ -90,8 +90,10 @@
     <div class="entry-header">
       <div class="header-title">
         <div class="header-title-wrap">
-          <h1>Bloggure</h1>
-          <h2></h2>
+          <h1 itemprop="name">
+            <a href="http://www.bloggure.info/">Bloggure</a>
+          </h1>
+          <h2><a href="/page5/"></a></h2>
         </div>
         <!-- /.header-title-wrap -->
       </div>
@@ -100,6 +102,856 @@
     <!-- /.entry-header -->
 
     <div id="main" role="main">
+      <article
+        class="hentry"
+        itemprop="blogPost"
+        itemscope
+        itemtype="http://schema.org/BlogPosting"
+      >
+        <header>
+          <div class="entry-meta">
+            <span class="entry-date date published updated"
+              ><time
+                datetime="2014-03-19T00:00:00+01:00"
+                itemprop="datePublished"
+                ><a href="http://www.bloggure.info/mavenRelease"
+                  >March 19, 2014</a
+                ></time
+              ></span
+            ><span
+              class="author vcard"
+              itemprop="author"
+              itemscope
+              itemtype="http://schema.org/Person"
+              ><span itemprop="name" class="fn"
+                ><a
+                  href="http://www.bloggure.info/Cedric"
+                  title="About Cedric"
+                  itemprop="url"
+                  >Cedric</a
+                ></span
+              ></span
+            >
+          </div>
+          <!-- /.entry-meta -->
+
+          <h1 class="entry-title" itemprop="name">
+            <a
+              href="http://www.bloggure.info/mavenRelease"
+              rel="bookmark"
+              title="Distribuer sur Maven Central ses bibliothèques"
+              itemprop="url"
+              >Distribuer sur Maven Central ses bibliothèques</a
+            >
+          </h1>
+        </header>
+        <div class="entry-content" itemprop="description">
+          <h2 id="cas-dutilisation">Cas d’utilisation</h2>
+          <p>
+            Il est fréquent que nous réalisions des bouts de codes qui peuvent
+            devenir des bibliothèques (ou librairies pour les faux amis).
+          </p>
+
+          <p>
+            Souvent un des freins à la libre distribution de ces sources très
+            utiles n’est pas la mise à disposition des sources (<a
+              href="http://www.github.com/Cedric_Gatay"
+              >Github</a
+            >
+            a bien aidé dans ce sens ces dernières années), mais la distribution
+            sur un des dépôts Maven accessible au tout venant.
+          </p>
+
+          <p>
+            En fait, il est bon de savoir que
+            <a href="http://www.sonatype.org">Sonatype</a> permet la mise à
+            disposition de n’importe quelle bibliothèque (
+            <em>open source</em> ) dans
+            <a href="http://repo1.maven.org/maven2"
+              >les dépôts centraux de Maven</a
+            >. Pour ce faire il suffit de suivre quelques étapes.
+          </p>
+
+          <h2 id="signature-des-artefacts">Signature des <em>artefacts</em></h2>
+
+          <p>
+            Si vous vous êtes déjà penchés sur la façon de fonctionner des
+            dépôts Maven, vous aurez remarqué que les binaires disponibles sont
+            en réalité signés par leurs développeurs. Le but est simple,
+            permettre d’éviter que des petits malins introduisent des backdoors
+            dans des librairies réputées (par exemple imaginez un hacker qui
+            s’attaque à apache-httpclient…).
+          </p>
+
+          <p>
+            Ainsi il va être nécessaire de signer tous les binaires que vous
+            allez produire, ceci passe par l’utilisation de
+            <a href="http://www.gnupg.org/">GnuPG</a> et de la mise à
+            disposition de votre clef publique.
+          </p>
+
+          <h3 id="installation-de-gnupg">Installation de GnuPG</h3>
+          <p>
+            L’installation passe par votre gestionnaire de package classique
+            (<code>apt-get install gpg</code>, <code>brew install gpg</code>,
+            <code>install-gpg-on-my-os.exe</code>…). De là, vous pourrez
+            vérifier dans un <em>shell</em> que vous avez une version
+            d’accessible en tapant par exemple la commande suivante:
+          </p>
+
+          <pre><code class="language-bash">$ gpg --version
+gpg (GnuPG) 1.4.16
+Copyright (C) 2013 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later &lt;http://gnu.org/licenses/gpl.html&gt;
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Home: ~/.gnupg
+Supported algorithms:
+Pubkey: RSA, RSA-E, RSA-S, ELG-E, DSA
+Cipher: IDEA, 3DES, CAST5, BLOWFISH, AES, AES192, AES256, TWOFISH,
+        CAMELLIA128, CAMELLIA192, CAMELLIA256
+Hash: MD5, SHA1, RIPEMD160, SHA256, SHA384, SHA512, SHA224
+Compression: Uncompressed, ZIP, ZLIB, BZIP2
+</code></pre>
+
+          <h3 id="génération-de-la-clef">Génération de la clef</h3>
+          <p>
+            GnuPG est un mécanisme de chiffrement impliquant une clef publique
+            (distribuée librement) associée à une clef privée (à garder
+            précieusement). Avant de pouvoir prétendre distribuer des binaires
+            chiffrés, il convient donc de générer le couple clef privée/publique
+            et de distribuer la clef publique sur les serveurs appropriés.
+            Ainsi, après avoir fourni nom, email et commentaire pour votre clef,
+            vous serez prêt à la distribuer au plus grand nombre :
+          </p>
+
+          <pre><code class="language-bash">$ gpg --gen-key
+</code></pre>
+
+          <p>
+            Dans les écrans qui apparaissent, vous pouvez conserver les valeurs
+            par défaut pour la plupart des éléments (type, taille et durée de
+            validité). Enfin, vous allez devoir spécifier la
+            <em>passphrase</em> de votre clef. N’hésitez pas à utiliser une
+            phrase : elle sera plus difficilement “cassable” et vous vous en
+            rappelerez certainement mieux qu’un mot de passe complexe.
+          </p>
+
+          <h3 id="vérification-de-la-clef">Vérification de la clef</h3>
+          <p>
+            Pour vérifier que votre clef est correctement installée, vous pouvez
+            récupérer la liste des clefs connues par votre système. Ainsi pour
+            connaître les clefs publiques vous pouvez taper :
+          </p>
+
+          <pre><code class="language-bash">$ gpg --list-keys
+/Users/cgatay/.gnupg/pubring.gpg
+--------------------------------
+pub   2048R/CE236D5E 2013-04-28
+uid                  Cedric Gatay &lt;cedric@gatay.fr&gt;
+sub   2048R/08130909 2013-04-28
+</code></pre>
+
+          <p>Et pour les clefs privées :</p>
+
+          <pre><code class="language-bash">$ gpg --list-secret-keys
+/Users/cgatay/.gnupg/secring.gpg
+--------------------------------
+sec   2048R/CE236D5E 2013-04-28
+uid                  Cedric Gatay &lt;cedric@gatay.fr&gt;
+ssb   2048R/08130909 2013-04-28
+</code></pre>
+
+          <p>
+            Si la génération s’est déroulée comme prévu, la seule différence
+            résidera dans l’emplacement du fichier correspondant au stockage de
+            la clef publique et privée.
+          </p>
+
+          <h3 id="distribution-de-la-clef-publique">
+            Distribution de la clef publique
+          </h3>
+          <p>
+            Pour que tout le monde soit à même de vérifier votre “identité”, il
+            faut distribuer votre clef publique sur les dépôts reconnus. L’un
+            d’eux est <code>hkp://pool.sks-keyservers.net</code> qui fera la
+            distribution auprès des différents serveurs OpenPGP. Pour se faire,
+            il suffit de lancer la synchronisation vers ce serveur, en
+            remplaçant <code>${KEY_ID}</code> par l’id de votre clef publique
+            tel que récupéré lors de la commande précédente (dans mon cas il
+            s’agit de <code>CE236D5E</code>):
+          </p>
+
+          <pre><code class="language-bash">    $ gpg --keyserver hkp://pool.sks-keyservers.net --send-keys ${KEY_ID}
+</code></pre>
+
+          <p>
+            Pour vérifier que l’envoi s’est fait comme attendu, vous pouvez
+            demander à récupérer la clef par la commande suivante :
+          </p>
+
+          <pre><code class="language-bash">    $ gpg --keyserver hkp://pool.sks-keyservers.net --recv-keys ${KEY_ID}
+</code></pre>
+
+          <h2 id="création-dun-compte-sur-sonatype">
+            Création d’un compte sur Sonatype
+          </h2>
+          <p>
+            La distribution de binaires passe par la création d’un compte sur le
+            <a href="https://issues.sonatype.org">JIRA de Sonatype</a>. La
+            procédure est assez simple, elle ne vaut pas la peine d’être
+            détaillée plus avant. Ensuite, pour faire vous autoriser à
+            distribuer vos applicatifs, il est nécessaire de créer un ticket
+            pour demander les droits correspondants. Ce ticket doit être du type
+            <em>Support - Open Source Project Repository Hosting</em> -
+            <em>New Project</em> dans le JIRA OSSRH. Il vous faudra ensuite
+            remplir les champs suivants :
+          </p>
+
+          <ul>
+            <li>summary : Descriptif de votre projet</li>
+            <li>
+              groupId : le groupId de votre projet (généralement votre nom de
+              domaine, <code>org.9h41</code> dans notre cas)
+            </li>
+            <li>Project URL : URL vers le site du projet</li>
+            <li>SCM URL : URL vers les sources du projet</li>
+            <li>
+              Nexus Username : votre nom d’utilisateur actuel (et les éventuels
+              noms d’utilisateurs à autoriser)
+            </li>
+            <li>
+              Already sync to central : si il y a déjà des projets sur Maven
+              central avec le même groupId
+            </li>
+            <li>
+              Description : n’importe quelle information supplémentaire que vous
+              jugez utile de préciser
+            </li>
+          </ul>
+
+          <p>
+            Par exemple, le ticket correspondant à la mise à disposition de
+            l’intégration entre
+            <a href="http://wicket.apache.org">Apache Wicket</a> et
+            <a href="http://www.parsleyjs.org">ParsleyJS</a> est
+            <a href="https://issues.sonatype.org/browse/OSSRH-6026"
+              >OSSRH-6026</a
+            >
+          </p>
+
+          <h2 id="préparation-du-projet-pour-la-distribution">
+            Préparation du projet pour la distribution
+          </h2>
+          <p>
+            Pour que vous puissiez distribuer votre projet, il est nécessaire
+            d’ajuster légèrement le descripteur de votre projet (le fameux
+            <code>pom.xml</code> dans notre cas traitant de Maven).
+          </p>
+
+          <h3 id="informations-indispensables">Informations indispensables</h3>
+          <p>
+            Il est nécessaire que le <code>pom.xml</code> contienne les
+            informations suivantes :
+          </p>
+
+          <ul>
+            <li><code>modelVersion</code></li>
+            <li><code>groupId</code></li>
+            <li><code>artifactId</code></li>
+            <li><code>version</code></li>
+            <li><code>packaging</code></li>
+            <li><code>name</code></li>
+            <li><code>description</code></li>
+            <li><code>url</code></li>
+            <li><code>licenses</code></li>
+            <li><code>scm.url</code></li>
+            <li><code>scm.connection</code></li>
+            <li><code>developers</code></li>
+          </ul>
+
+          <h3 id="modification-de-votre-projet">
+            Modification de votre projet
+          </h3>
+
+          <p>
+            De plus il est indispensable d’hériter du
+            <a
+              href="http://repo1.maven.org/maven2/org/sonatype/oss/oss-parent/7/oss-parent-7.pom"
+              >projet parent de Sonatype</a
+            >, celui-ci décrit en fait les plugins ainsi que les dépôts qui vont
+            être utilisés pour la livraison.
+          </p>
+
+          <p>
+            Vous devez donc ajouter dans votre descripteur le lien avec le
+            parent Sonatype :
+          </p>
+
+          <pre><code class="language-xml">&lt;project&gt;
+  &lt;parent&gt;
+    &lt;groupId&gt;org.sonatype.oss&lt;/groupId&gt;
+    &lt;artifactId&gt;oss-parent&lt;/artifactId&gt;
+    &lt;version&gt;7&lt;/version&gt;
+  &lt;/parent&gt;
+  &lt;!-- le reste de votre descripteur --&gt;
+&lt;/project&gt;
+</code></pre>
+
+          <p>
+            Pour le remplissage des informations de votre dépôt de sources,
+            plusieurs façon de les remplir s’offrent à vous en fonction du type
+            de dépôt que vous utilisez, dans la majorité des cas pour les
+            projets récents, le système de gestion de version utilisé est Git,
+            la partie correspondant dans le <code>pom.xml</code>sera donc de la
+            forme suivante (en ajustant <code>${USER}</code> et
+            <code>${PROJECT}</code> bien entendu) :
+          </p>
+          <pre><code class="language-xml">&lt;scm&gt;
+  &lt;connection&gt;scm:git:git@github.com:${USER}/${PROJECT}.git&lt;/connection&gt;
+  &lt;developerConnection&gt;scm:git:git@github.com:${USER}/${PROJECT}.git&lt;/developerConnection&gt;
+  &lt;url&gt;git@github.com:${USER}/${PROJECT}.git&lt;/url&gt;
+&lt;/scm&gt;
+</code></pre>
+
+          <h2 id="préparation-de-votre-poste-pour-la-distribution">
+            Préparation de votre poste pour la distribution
+          </h2>
+          <p>
+            Pour déployer sur les dépôts gérés par Sonatype, vous allez devoir
+            vous identifier pour gérer l’upload, bien entendu, il n’est pas
+            concevable de stocker vos informations d’identification au sein du
+            descripteur de votre projet :
+          </p>
+          <ul>
+            <li>vous ne voulez pas publier vos identifiants au grand public</li>
+            <li>
+              vous ne voulez pas passer sur chacun des projets si vous les
+              changez
+            </li>
+          </ul>
+
+          <p>
+            La technique est donc d’utiliser le fichier de configuration global
+            de Maven en définissant des paramètres. Ainsi, en éditant le fichier
+            <code>~/.m2/settings.xml</code> vous allez ajouter vos identifiants
+            (encore une fois, en ajustant <code>${USER}</code> et
+            <code>${PASSWORD}</code>):
+          </p>
+
+          <pre><code class="language-xml">  &lt;servers&gt;
+    &lt;server&gt;
+      &lt;id&gt;sonatype-nexus-snapshots&lt;/id&gt;
+      &lt;username&gt;${USER}&lt;/username&gt;
+      &lt;password&gt;${PASSWORD}&lt;/password&gt;
+    &lt;/server&gt;
+    &lt;server&gt;
+      &lt;id&gt;sonatype-nexus-staging&lt;/id&gt;
+      &lt;username&gt;${USER}&lt;/username&gt;
+      &lt;password&gt;${PASSWORD}&lt;/password&gt;
+    &lt;/server&gt;
+  &lt;/servers&gt;
+</code></pre>
+
+          <h2 id="distribution-dune-version-snapshot">
+            Distribution d’une version <code>SNAPSHOT</code>
+          </h2>
+          <p>
+            Si vous désirez distribuer vos bibliothèques sur des dépôts
+            centraux, vous devez connaître les notions de
+            <code>SNAPSHOT</code> et <em>release</em> propres à Maven. Pour
+            faire un bref rappel, les versions <code>SNAPSHOT</code> sont des
+            versions en développement alors que les versions
+            <em>release</em> sont les versions finales. Ainsi, dépendre d’une
+            version <code>SNAPSHOT</code> déclenchera des vérifications
+            régulières par l’outil de construction pour récupérer toujours la
+            dernière version alors qu’une version <em>release</em> ne sera
+            rapatriée qu’une et une seule fois (en assurant la stabilité de la
+            construction).
+          </p>
+
+          <p>
+            Sonatype fourni un dépôt pour de telles versions de développement
+            ainsi qu’un dépôt pour les versions stables. Dans un premier temps
+            et pour tester que votre système est correctement configuré, vous
+            allez déployer une version <code>SNAPSHOT</code> de votre librairie
+            :
+          </p>
+          <pre><code class="language-bash">$ mvn clean deploy
+</code></pre>
+          <p>
+            Si tout se passe comme prévu, votre livrable sera visible et
+            disponible sur le dépôt SNAPSHOT de Sonatype :
+            <a href="https://oss.sonatype.org/content/repositories/snapshots"
+              >https://oss.sonatype.org/content/repositories/snapshots</a
+            >
+            En cas d’erreur <code>401 Unauthorized</code>, vérifiez que vos
+            identifiants JIRA sont corrects (en vous connectant sur
+            <a href="https://issues.sonatype.org">https://issues.sonatype.org</a
+            >).
+          </p>
+
+          <h2 id="préparation-et-distribution-dune-release">
+            Préparation et distribution d’une <em>release</em>
+          </h2>
+          <p>
+            Le <em>plugin</em> Maven <em>release</em> est préconfiguré grace à
+            l’intégration du descripteur parent de Sonatype, il suffit donc de
+            l’utiliser pour construire votre projet, il va s’occuper de
+            construire les livrables nécessaires, de les signer et de les
+            déployer en tant que <em>staging</em>.
+          </p>
+
+          <pre><code>$ mvn release:clean
+$ mvn release:prepare
+$ mvn release:perform
+</code></pre>
+
+          <p>
+            Lors de la procédure, le plugin <em>release</em> va s’occuper de
+            changer le numéro de version <code>SNAPSHOT</code> vers un numéro
+            <em>release</em>, de préparer la version
+            <code>SNAPSHOT</code>suivante, de <em>tagguer</em> le tout sur le
+            système de gestion de sources. Un de ses atouts est de préparer la
+            construction à partir d’une version propre provenant du système de
+            gestion de sources, de cette façon vous pourrez vous assurer de la
+            reproductibilité des constructions.
+          </p>
+
+          <p>
+            Vous aurez donc besoin de saisir la <em>passphrase</em> de votre
+            clef <em>GnuPG</em> lors du processus, pour effectuer la signature
+            des livrables.
+          </p>
+
+          <p>
+            <em
+              >Vous pouvez également distribuer votre livrable avec la commande
+              <code>deploy</code> comme dans le cas d’une livraison
+              <code>SNAPSHOT</code>.</em
+            >
+          </p>
+
+          <h2 id="publication-de-vos-livrables">
+            Publication de vos livrables
+          </h2>
+          <p>
+            Pour finir la publication de votre livrable, il faut passer par
+            l’interface de Sonatype https://oss.sonatype.org Dans la partie
+            <em>Staging Repositories</em>, vous verrez une ligne correspondant à
+            votre déploiement, sur cette ligne, il faudra <em>close</em> pour
+            dire que la distribution est terminée, puis, une fois qu’il sera
+            clos, il faudra en faire la <em>promote</em> pour qu’il soit
+            distribué vers les dépôts Maven centraux.
+          </p>
+
+          <p>
+            Si vous ne pouvez pas clôre ou promouvoir votre livrable, Nexus vous
+            fournira un message d’explication (tel que “impossible de trouver le
+            jar de sources”)
+          </p>
+
+          <p>
+            <strong>Attention</strong>: pour votre première livraison vers les
+            dépôts centraux, il sera nécessaire de mettre à jour le ticket JIRA
+            que vous avez ouvert pour demander la synchronisation vers Maven
+            Central.
+          </p>
+
+          <h2 id="ajout-dun-collaborateur">Ajout d’un collaborateur</h2>
+          <p>
+            Il est rare que seul une personne ait le droit d’effectuer les
+            distributions, ainsi, dès que vous désirez ajouter quelqu’un vous
+            devrez mettre à jour le ticket JIRA pour demander l’ajout
+            (collaborateur qui devra suivre également la première partie du
+            guide pour créer un compte et distribuer sa signature numérique).
+          </p>
+
+          <h2 id="livraison-dun-nouveau-projet">
+            Livraison d’un nouveau projet
+          </h2>
+          <p>
+            Tant que votre projet respecte le <em>groupId</em> dont vous avez
+            revendiqué la paternité, vous pourrez livrer et distribuer à votre
+            convenance sans avoir besoin de créer de nouvelles demandes sur le
+            JIRA de Sonatype.
+          </p>
+        </div>
+        <!-- /.entry-content -->
+      </article>
+      <!-- /.hentry -->
+
+      <article
+        class="hentry"
+        itemprop="blogPost"
+        itemscope
+        itemtype="http://schema.org/BlogPosting"
+      >
+        <header>
+          <div class="entry-meta">
+            <span class="entry-date date published updated"
+              ><time
+                datetime="2014-03-08T00:00:00+01:00"
+                itemprop="datePublished"
+                ><a
+                  href="http://www.bloggure.info/www/os/use-VirtualBox-to-do-a-real-install"
+                  >March 08, 2014</a
+                ></time
+              ></span
+            ><span
+              class="author vcard"
+              itemprop="author"
+              itemscope
+              itemtype="http://schema.org/Person"
+              ><span itemprop="name" class="fn"
+                ><a
+                  href="http://www.bloggure.info/cgatay"
+                  title="About cgatay"
+                  itemprop="url"
+                  >cgatay</a
+                ></span
+              ></span
+            >&nbsp; &bull; &nbsp;<span class="entry-comments"
+              ><a
+                href="http://www.bloggure.info/www/os/use-VirtualBox-to-do-a-real-install#disqus_thread"
+                >Comment</a
+              ></span
+            >
+          </div>
+          <!-- /.entry-meta -->
+
+          <h1 class="entry-title" itemprop="name">
+            <a
+              href="http://www.bloggure.info/www/os/use-VirtualBox-to-do-a-real-install"
+              rel="bookmark"
+              title="Use VirtualBox to do a real install"
+              itemprop="url"
+              >Use VirtualBox to do a real install</a
+            >
+          </h1>
+        </header>
+        <div class="entry-content" itemprop="description">
+          <h1 id="install-from-virtualbox-">Install from VirtualBox ?</h1>
+          <p>
+            If you are like me, you have got plenty of hard drives hanging
+            around and never got an optical drive or an usb stick. One thing
+            that could reveal itself to be hard is installing a new Operating
+            System on any machine without any of the two I mentionned earlier.
+          </p>
+
+          <p>
+            In this short tips and tricks post, I will show you how you can use
+            VirtualBox raw disks feature (I guess here for compatibility with
+            VMWare) to install a new Operating System from your old one (yes,
+            without the 10 minutes part were you can do nothing else with your
+            computer).
+          </p>
+
+          <h1 id="prerequisites">Prerequisites</h1>
+
+          <p>What you will need in order for this to work :</p>
+
+          <ul>
+            <li>a Linux setup with root access (sudoing will be fine)</li>
+            <li>
+              a second hard drive where you want to put your brand new Operating
+              System
+            </li>
+            <li>ISO file of the OS you want to install</li>
+          </ul>
+
+          <h1 id="install">Install</h1>
+
+          <p>
+            First of all, install VirtualBox on your system (<code>yum</code>,
+            <code>apt-get</code>, whatever your package system is). Then you
+            will need to find out what is the identifier of the drive you want
+            to use as a new (<code>sudo fdisk -l</code> can tell you everything
+            you need to know about your disks).
+          </p>
+
+          <p>
+            In my example lets say I want to install on a 300GB hard drive, I
+            got this <code>fdisk</code> output
+          </p>
+
+          <pre><code>cgatay@cgatay2:~$ sudo fdisk -l
+[sudo] password for cgatay:
+
+Disk /dev/sda: 251.1 GB, 251059544064 bytes
+255 heads, 63 sectors/track, 30522 cylinders, total 490350672 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0x000efa30
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/sda1   *        2048   489302015   244649984   83  Linux
+/dev/sda2       489304062   490348543      522241    5  Extended
+/dev/sda5       489304064   490348543      522240   82  Linux swap / Solaris
+
+Disk /dev/sdb: 400.1 GB, 400088457216 bytes
+255 heads, 63 sectors/track, 48641 cylinders, total 781422768 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0x0003f041
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/sdb1   *          63   390627047   195313492+   7  HPFS/NTFS/exFAT
+/dev/sdb2       390627048   781422767   195397860    c  W95 FAT32 (LBA)
+
+Disk /dev/sdc: 1000.2 GB, 1000204886016 bytes
+255 heads, 63 sectors/track, 121601 cylinders, total 1953525168 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0x00048185
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/sdc1   *        2048      499711      248832   83  Linux
+/dev/sdc2          499712  1952790527   976145408   83  Linux
+/dev/sdc3      1952792574  1953523711      365569    5  Extended
+/dev/sdc5      1952792576  1953523711      365568   82  Linux swap / Solaris
+
+Disk /dev/sdd: 300.1 GB, 300090728448 bytes
+255 heads, 63 sectors/track, 36483 cylinders, total 586114704 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0x000cb074
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/sdd1   *        2048   574060543   287029248   83  Linux
+/dev/sdd2       574062590   586113023     6025217    5  Extended
+/dev/sdd5       574062592   586113023     6025216   82  Linux swap / Solaris
+</code></pre>
+
+          <p>
+            The interesting line is the one stating
+            <code>Disk /dev/sdd: 300.1 GB</code>. From now on I will use
+            /dev/sdd as the target of my install.
+          </p>
+
+          <p>
+            For the rest of the commands to work you need to run everything as
+            root (by sudoing), I think there is more “cleaner” way of doing this
+            by correctly setting <code>suid</code> flags but I did not took the
+            time to look after this.
+          </p>
+
+          <p>
+            You need to create the hard disk file that will point to your
+            physical install, then launch VirtualBox as root (there is a lot of
+            chances that your regular user can’t do everything he wants on a
+            device):
+          </p>
+
+          <pre><code>sudo VBoxManage internalcommands createrawvmdk -filename disk.vmdk -rawdisk /dev/sdd; #replace /dev/sdd with your device
+sudo VirtualBox;
+</code></pre>
+
+          <p>
+            From there, this is a simple VirtualBox machine setup, you just need
+            to select the created disk.vmdk file for the hard disk of your
+            Virtual Machine, mount the ISO and proceed with the install. At the
+            end of the install, you can shut down the VirtualMachine, reboot
+            your computer and use the boot selection menu of your bios (or
+            change the boot order) to boot directly on your newly installed
+            system.
+          </p>
+
+          <p>
+            If you are on a Linux system, you can issue a
+            <code>update-grub</code> that will detect all your operating systems
+            and will create the boot menu (you can still boot your old one this
+            way).
+          </p>
+
+          <h1 id="disclaimer">Disclaimer</h1>
+
+          <p>
+            This method has been tested multiple times for installing Windows as
+            well as Linuxes without any hurt. However, it might kill kitten or
+            trigger a nuclear war if used incorrectly, in such cases, I decline
+            responsibility.
+          </p>
+
+          <h1 id="thoughts">Thoughts</h1>
+
+          <p>
+            As a side note, I think a Linux host is not required, you can
+            achieve the same with a Windows operating system, the command line
+            surely just need some improvements to point to the physical disk.
+          </p>
+        </div>
+        <!-- /.entry-content -->
+      </article>
+      <!-- /.hentry -->
+
+      <article
+        class="hentry"
+        itemprop="blogPost"
+        itemscope
+        itemtype="http://schema.org/BlogPosting"
+      >
+        <header>
+          <div class="entry-meta">
+            <span class="entry-date date published updated"
+              ><time
+                datetime="2014-02-10T00:00:00+01:00"
+                itemprop="datePublished"
+                ><a
+                  href="http://www.bloggure.info/restx-the-webservice-firework"
+                  >February 10, 2014</a
+                ></time
+              ></span
+            ><span
+              class="author vcard"
+              itemprop="author"
+              itemscope
+              itemtype="http://schema.org/Person"
+              ><span itemprop="name" class="fn"
+                ><a
+                  href="http://www.bloggure.info/"
+                  title="About "
+                  itemprop="url"
+                ></a></span
+            ></span>
+          </div>
+          <!-- /.entry-meta -->
+
+          <h1 class="entry-title" itemprop="name">
+            <a
+              href="http://www.bloggure.info/restx-the-webservice-firework"
+              rel="bookmark"
+              title="RestX the webservice framework"
+              itemprop="url"
+              >RestX the webservice framework</a
+            >
+          </h1>
+        </header>
+        <div class="entry-content" itemprop="description">
+          <h1 id="another-java-rest-framework">Another Java Rest framework</h1>
+
+          <p>
+            If you’re a somewhat experienced Java developer I guess you’ve
+            encountered a lot of framework when it comes to write web services.
+          </p>
+
+          <p>
+            <a href="http://www.restx.io">Restx.io</a> is a new kid on the block
+            leveraging high velocity with a focus on testability through a set
+            of unique and great features :
+          </p>
+
+          <ul>
+            <li>
+              each rest endpoint generates its documentation from its tests
+              (real killer feature here : we hate writing docs but we live
+              writing tests!)
+            </li>
+            <li>a built in monitoring engine</li>
+            <li>
+              everything that can be done at compile time is done at that time
+              (annotations / dependency injection)
+            </li>
+            <li>
+              it is written in good old plain Java (IDE support : I’m looking at
+              you Play Framework!)
+            </li>
+            <li>auto compile (we don’t like waiting!)</li>
+          </ul>
+
+          <p>
+            I’ve tested it on a few small projects, I can’t wait to try it on a
+            real project !
+          </p>
+        </div>
+        <!-- /.entry-content -->
+      </article>
+      <!-- /.hentry -->
+
+      <article
+        class="hentry"
+        itemprop="blogPost"
+        itemscope
+        itemtype="http://schema.org/BlogPosting"
+      >
+        <header>
+          <div class="entry-meta">
+            <span class="entry-date date published updated"
+              ><time
+                datetime="2013-10-15T00:00:00+02:00"
+                itemprop="datePublished"
+                ><a
+                  href="http://www.bloggure.info/www/great-ebooks-for-half-price"
+                  >October 15, 2013</a
+                ></time
+              ></span
+            ><span
+              class="author vcard"
+              itemprop="author"
+              itemscope
+              itemtype="http://schema.org/Person"
+              ><span itemprop="name" class="fn"
+                ><a
+                  href="http://www.bloggure.info/cgatay"
+                  title="About cgatay"
+                  itemprop="url"
+                  >cgatay</a
+                ></span
+              ></span
+            >&nbsp; &bull; &nbsp;<span class="entry-comments"
+              ><a
+                href="http://www.bloggure.info/www/great-ebooks-for-half-price#disqus_thread"
+                >Comment</a
+              ></span
+            >
+          </div>
+          <!-- /.entry-meta -->
+
+          <h1 class="entry-title" itemprop="name">
+            <a
+              href="http://www.bloggure.info/www/great-ebooks-for-half-price"
+              rel="bookmark"
+              title="Great Ebooks for Half Price"
+              itemprop="url"
+              >Great Ebooks for Half Price</a
+            >
+          </h1>
+        </header>
+        <div class="entry-content" itemprop="description">
+          <p>
+            <a href="http://bit.ly/1bqvB29">Packt Publishing</a> is actually
+            discounting the full range of their eBooks and videos by 50 percent
+            until October 17th using this discount code : COL50.
+          </p>
+
+          <p>
+            It can be a good opportunity to check
+            <a href="http://www.packtpub.com/instant-apache-wicket-6/book"
+              >“Instant Apache Wicket 6”</a
+            >
+            which I reviewed a few weeks ago for the newcomers to Apache Wicket.
+            Another good deal could be checking out the best-seller title
+            <a
+              href="http://www.packtpub.com/angularjs-web-application-development/book"
+              >“Mastering Web Application Development with AngularJS”</a
+            >!
+          </p>
+
+          <p>
+            Head over to
+            <a href="http://bit.ly/1bqvB29">Packt Publishing site</a> and pick
+            the books of your choice using the promo code COL50.
+          </p>
+        </div>
+        <!-- /.entry-content -->
+      </article>
+      <!-- /.hentry -->
+
       <article
         class="hentry"
         itemprop="blogPost"
@@ -173,556 +1025,6 @@
             can switch off the content editable mode setting the property to
             false !
           </p>
-        </div>
-        <!-- /.entry-content -->
-      </article>
-      <!-- /.hentry -->
-
-      <article
-        class="hentry"
-        itemprop="blogPost"
-        itemscope
-        itemtype="http://schema.org/BlogPosting"
-      >
-        <header>
-          <div class="entry-meta">
-            <span class="entry-date date published updated"
-              ><time
-                datetime="2013-08-31T00:00:00+02:00"
-                itemprop="datePublished"
-                ><a
-                  href="http://www.bloggure.info/.maven/maven-merge-properties-plugin"
-                  >August 31, 2013</a
-                ></time
-              ></span
-            ><span
-              class="author vcard"
-              itemprop="author"
-              itemscope
-              itemtype="http://schema.org/Person"
-              ><span itemprop="name" class="fn"
-                ><a
-                  href="http://www.bloggure.info/cgatay"
-                  title="About cgatay"
-                  itemprop="url"
-                  >cgatay</a
-                ></span
-              ></span
-            >&nbsp; &bull; &nbsp;<span class="entry-comments"
-              ><a
-                href="http://www.bloggure.info/.maven/maven-merge-properties-plugin#disqus_thread"
-                >Comment</a
-              ></span
-            >
-          </div>
-          <!-- /.entry-meta -->
-
-          <h1 class="entry-title" itemprop="name">
-            <a
-              href="http://www.bloggure.info/.maven/maven-merge-properties-plugin"
-              rel="bookmark"
-              title="Merge properties maven plugin"
-              itemprop="url"
-              >Merge properties maven plugin</a
-            >
-          </h1>
-        </header>
-        <div class="entry-content" itemprop="description">
-          <!--:en--><img
-            class="alignright size-medium wp-image-74"
-            alt="Maven"
-            src="/images/uploads/2010/11/Maven_logo1-300x76.gif"
-            width="300"
-            height="76"
-          />
-          <p>
-            At <a href="http://www.srmvision.com">SRMvision</a>, we develop with
-            localization in mind. We don't have any user visible text that is
-            not in fact tied to a java property file. Quickly, the problem that
-            we faced was the difficulty to keep every language file in sync (and
-            to tidy things up). We developed a small Maven plugin allowing us to
-            ensure that our two main problems are now gone :
-            <a
-              href="https://github.com/code-troopers/merge-properties-maven-plugin"
-              >merge-properties-maven-plugin</a
-            >.
-          </p>
-          <h2>Quick example</h2>
-          <p>
-            I think the easiest way to understand how it works is to explain it
-            with a real use case. Let's say we have a module named
-            <em>Zones</em> in our application, it will lead to create four files
-            (if we are localized in two different languages) :
-          </p>
-          <ul>
-            <li>l10n/Zones_en.properties</li>
-            <li>l10n/Zones_fr.properties</li>
-            <li>help/Zones_en.properties</li>
-            <li>help/Zones_fr.properties</li>
-          </ul>
-          <p>
-            As you might have guessed, we have got two different categories of
-            target files, one for the application's localization, and the other
-            one for the application's help. There is only one rule when it comes
-            to filling these files, the property keys must begin with the name
-            of the file, otherwise the build would fail. In this example, every
-            key must begin with the prefix "<tt>Zones.".</tt>
-          </p>
-
-          <p>
-            At the end, we want to get two resource bundles, so we set up the
-            build to do so :
-          </p>
-
-          <noscript><pre>400: Invalid request</pre></noscript>
-          <script src="https://gist.github.com/6397201.js?file=pom.xml"></script>
-
-          <p>
-            By reading this configuration section you can view almost every
-            single option available in the plugin. You can exclude files from
-            automatic key checking : in the example the files
-            Global_*.properties will not be checked. It allows us to group
-            commonly used keys without needing them to begin with the correct
-            prefix (it also eases migration for legacy code, breaking the build
-            would be too intrusive).
-          </p>
-
-          <p>
-            You can also notice that we use a Maven property to enable the fail
-            on count mismatch functionality of the plugin, with the help of
-            Maven profiles, we can set it to false for development and to true
-            for continuous integration and translation team. When this
-            configuration is used you will get an output like the following in
-            your Maven build :
-          </p>
-
-          <noscript><pre>400: Invalid request</pre></noscript>
-          <script src="https://gist.github.com/6397201.js?file=maven.log"></script>
-
-          <p>
-            If the build should check consistency in merged files and if it does
-            not match, it will output blank keys as well as lonely keys in order
-            for your translator to fix it easily.
-          </p>
-          <h2>Bonus feature</h2>
-          <p>
-            We use Java's MessageFormat to format our translated string, one of
-            the thing we tend to forget is to escape the single quotes in our
-            translations. The plugin does this magic for us, it automatically
-            adds the missing single quotes in every messages.
-          </p>
-          <!--:-->
-        </div>
-        <!-- /.entry-content -->
-      </article>
-      <!-- /.hentry -->
-
-      <article
-        class="hentry"
-        itemprop="blogPost"
-        itemscope
-        itemtype="http://schema.org/BlogPosting"
-      >
-        <header>
-          <div class="entry-meta">
-            <span class="entry-date date published updated"
-              ><time
-                datetime="2013-07-25T00:00:00+02:00"
-                itemprop="datePublished"
-                ><a
-                  href="http://www.bloggure.info/work/play-framework-and-i18n-in-views"
-                  >July 25, 2013</a
-                ></time
-              ></span
-            ><span
-              class="author vcard"
-              itemprop="author"
-              itemscope
-              itemtype="http://schema.org/Person"
-              ><span itemprop="name" class="fn"
-                ><a
-                  href="http://www.bloggure.info/cgatay"
-                  title="About cgatay"
-                  itemprop="url"
-                  >cgatay</a
-                ></span
-              ></span
-            >&nbsp; &bull; &nbsp;<span class="entry-comments"
-              ><a
-                href="http://www.bloggure.info/work/play-framework-and-i18n-in-views#disqus_thread"
-                >Comment</a
-              ></span
-            >
-          </div>
-          <!-- /.entry-meta -->
-
-          <h1 class="entry-title" itemprop="name">
-            <a
-              href="http://www.bloggure.info/work/play-framework-and-i18n-in-views"
-              rel="bookmark"
-              title="Play Framework and i18n in views"
-              itemprop="url"
-              >Play Framework and i18n in views</a
-            >
-          </h1>
-        </header>
-        <div class="entry-content" itemprop="description">
-          <!--:en--><img
-            class="alignright size-full wp-image-916"
-            alt="playlogo"
-            src="/images/uploads/2013/07/playlogo.png"
-            width="150"
-            height="50"
-          />
-
-          <p>
-            I was having a strange issue with localization in a Play Framework
-            application. I followed the
-            <a href="http://www.playframework.com/documentation/2.0/ScalaI18N"
-              >simple steps</a
-            >
-            detailed on the official documentation but with no luck.
-          </p>
-
-          <p>
-            When experimenting, I figured out that the locale used is the
-            default locale of the JVM. In my case, my default locale is French
-            so I only had French in my application. But on Heroku, the default
-            locale is English and thus the application was only working in
-            English.
-          </p>
-
-          <p>
-            The trick consists in adding an implicit lang to your template
-            views. In fact, Scala import an implicit lang with the lowest
-            priority being the one coming from the JVM, if you want to get the
-            language parsed from the Accept-Languages http header, you need to
-            add an implicit as below :
-          </p>
-          <figure class="highlight">
-            <pre><code class="language-scala" data-lang="scala"><span></span><span class="o">@</span><span class="p">(</span><span class="n">title</span><span class="p">:</span><span class="w"> </span><span class="nc">String</span><span class="p">)(</span><span class="n">content</span><span class="p">:</span><span class="w"> </span><span class="nc">Html</span><span class="p">)(</span><span class="k">implicit</span><span class="w"> </span><span class="n">lang</span><span class="p">:</span><span class="w"> </span><span class="nc">Lang</span><span class="p">)</span></code></pre>
-          </figure>
-          <p>
-            With this little trick, your calls to localization will use the
-            locale extracted from the http request as expected.
-          </p>
-          <!--:--><!--:fr<img class="alignright size-full wp-image-916" alt="playlogo" src="/images/uploads/2013/07/playlogo.png" width="150" height="50" />
-
-I was having a strange issue with localization in a Play Framework application. I followed the <a href="http://www.playframework.com/documentation/2.0/ScalaI18N">simple steps</a> detailed on the official documentation but with no luck.
-
-When experimenting, I figured out that the locale used is the default locale of the JVM. In my case, my default locale is French so I only had French in my application. But on Heroku, the default locale is English and thus the application was only working in English.
-
-The trick consists in adding an implicit lang to your template views. In fact, Scala import an implicit lang with the lowest priority being the one coming from the JVM, if you want to get the language parsed from the Accept-Languages http header, you need to add an implicit as below :
-<pre class="brush: scala">@(title: String)(content: Html)(implicit lang: Lang)</pre>
-With this little trick, your calls to localization will use the locale extracted from the http request as expected.<-->
-        </div>
-        <!-- /.entry-content -->
-      </article>
-      <!-- /.hentry -->
-
-      <article
-        class="hentry"
-        itemprop="blogPost"
-        itemscope
-        itemtype="http://schema.org/BlogPosting"
-      >
-        <header>
-          <div class="entry-meta">
-            <span class="entry-date date published updated"
-              ><time
-                datetime="2013-07-25T00:00:00+02:00"
-                itemprop="datePublished"
-                ><a
-                  href="http://www.bloggure.info/.java/.scala/.shell/ci/shelf/centos-redhat-play-application-production-mode"
-                  >July 25, 2013</a
-                ></time
-              ></span
-            ><span
-              class="author vcard"
-              itemprop="author"
-              itemscope
-              itemtype="http://schema.org/Person"
-              ><span itemprop="name" class="fn"
-                ><a
-                  href="http://www.bloggure.info/tdebarochez"
-                  title="About tdebarochez"
-                  itemprop="url"
-                  >tdebarochez</a
-                ></span
-              ></span
-            >&nbsp; &bull; &nbsp;<span class="entry-comments"
-              ><a
-                href="http://www.bloggure.info/.java/.scala/.shell/ci/shelf/centos-redhat-play-application-production-mode#disqus_thread"
-                >Comment</a
-              ></span
-            >
-          </div>
-          <!-- /.entry-meta -->
-
-          <h1 class="entry-title" itemprop="name">
-            <a
-              href="http://www.bloggure.info/.java/.scala/.shell/ci/shelf/centos-redhat-play-application-production-mode"
-              rel="bookmark"
-              title="Play application on Centos/RedHat in production mode"
-              itemprop="url"
-              >Play application on Centos/RedHat in production mode</a
-            >
-          </h1>
-        </header>
-        <div class="entry-content" itemprop="description">
-          <em
-            >Sorry english readers, the following post is only available in
-            french !</em
-          >
-          <!--:fr-->
-          <p>
-            <strong>tl;dr </strong>: application
-            <a title="play" href="http://www.playframework.com/">Play</a> (java
-            ou <a href="http://www.scala-lang.org/">scala</a>) sur un serveur
-            <a href="http://www.centos.org/">Centos</a> (ou
-            <a href="http://fr.wikipedia.org/wiki/Red_Hat_Linux">Red Hat</a>)
-            derrière un serveur
-            <a title="nginx" href="http://nginx.org/">nginx</a>.
-          </p>
-          <h2>Script de démarrage/arrêt du daemon.</h2>
-          <p>
-            Lancer une application Play en dev est assez aisé :
-            <code>$ play run</code>.
-          </p>
-          <p>
-            Maintenant, si vous avez besoin de déployer votre application en
-            production, il est plus confortable de considérer votre application
-            comme un service à part entière du système. Il se peut aussi que
-            vous ayez besoin de spécifier un port et une interface particulière
-            pour pouvoir utiliser nginx comme front-end (en
-            <a href="http://fr.wikipedia.org/wiki/Proxy_inverse"
-              >reverse proxy</a
-            >). Et évidement, à l'instar d'un environnement de développement,
-            vous pourriez avoir besoin de compresser le JS et le CSS, et
-            également de régler finement les en-têtes HTTP pour gérer
-            correctement le cache.
-          </p>
-          <p>Tout d'abord le script de lancement du daemon :</p>
-          <script src="https://gist.github.com/tdebarochez/6082933.js"></script>
-          <p>
-            Je me suis inspiré des deux gists ci-dessous. Le premier, pour
-            RedHat, utilise le binaire de play pour lancer le processus
-            principal. Cette méthode facile à utiliser en développement semble
-            assez limité en paramètre (tout du moins, très peu documentée). La
-            seconde méthode, pour <a href="http://www.debian.org/">Debian</a>,
-            donne un bonne exemple d'une configuration un peu plus élaborée de
-            l'exécution du daemon. Les paramètres en début de fichier parlent
-            d'eux-mêmes, je vous laisse les découvrir et reste à votre
-            disposition pour toute question.
-          </p>
-          <p>Source :</p>
-          <ul>
-            <li>
-              <a href="https://gist.github.com/THemming/2173037"
-                >https://gist.github.com/THemming/2173037</a
-              >
-              (script pour redhat)
-            </li>
-            <li>
-              <a href="https://gist.github.com/leon/2204773"
-                >https://gist.github.com/leon/2204773</a
-              >
-              (script pour debian)
-            </li>
-          </ul>
-          <h2>Configuration de nginx</h2>
-          <p>
-            Sur un serveur web, il est souvent pratique de pouvoir faire tourner
-            plusieurs applications utilisant des langages, des librairies, des
-            frameworks, etc... hétérogènes (sur mon serveur, il y a
-            l'application Play en scala, une application
-            <a href="http://nodejs.org/">Nodejs</a> en
-            <a href="http://coffeescript.org/">Coffescript</a> et une
-            application <a href="http://php.net">PHP</a>/<a
-              href="http://www.mysql.fr/"
-              >MySQL</a
-            >
-            utilisant <a href="http://httpd.apache.org/">Apache</a>). C'est là
-            que nginx intervient. Configuré en reverse-proxy, c'est lui qui
-            écoutera sur le port 80 de votre serveur et en fonction du nom de
-            domaine relayera les requêtes HTTP à l'application que vous avez
-            choisis. Il vous suffit de configurer votre application en écoute
-            sur un port libre en localhost et d'indiquer à nginx qu'en fonction
-            du nom de domaine (à la manière des VirtualHost d'Apache), il doit
-            transmettre ses requêtes sur ce port.
-          </p>
-          <p>
-            Vous noterez une section fournissant un traitement particulier pour
-            les fichiers statiques (js, css, png, jpg, etc...). En effet, je ne
-            trouvais pas la configuration par défaut de play très satisfaisante
-            pour diffuser ces fichiers. Il conviendra donc de copier tous les
-            fichiers dans un dossier particulier au lancement de l'application
-            (il faut également pensé à y placer les fichiers "compilé" des
-            scripts utilisant un pre-processeurs : coffeescript,
-            <a href="http://sass-lang.com">SASS/SCSS</a>,
-            <a href="http://lesscss.org/">LESS</a>, etc...). Tous les fichiers
-            dans ce dossier auront une durée de cache maximale afin de minimiser
-            le nombre de requêtes au serveur (la requête la plus rapide est
-            celle qui n'est pas faite). Cette technique a aussi l'avantage de
-            décharger la JVM du traitement de ses fichiers, ils sont directement
-            retourné par nginx.
-          </p>
-          <script src="https://gist.github.com/tdebarochez/6083089.js"></script>
-          <h2>Compilation des fichiers statiques</h2>
-          <p>
-            Les pré-processeurs (Coffeescript, SASS, LESS, etc...) sont d'un
-            grand confort pour le développement de la partie front-end d'une
-            application web. Toutefois, il y a quelques détails qui ne faut pas
-            négliger afin d'optimiser au maximum la distribution en HTTP de ces
-            fichiers.
-          </p>
-          <p>
-            Prenons comme exemple un fichier .coffee (Coffeescript). Lorsqu'en
-            développement vous lancer votre serveur, play se charge de
-            re-compiler automatiquement le fichier afin de desservir un fichier
-            javascript au navigateur qui a demandé le fichier. Dans notre
-            environnement, les fichiers statiques se trouvent tous dans un
-            dossier <code>static/</code>. Il faut donc "traduire" ce fichier en
-            javascript et le placer dans ce dossier (en respectant
-            l'arborescence utilisée en développement) :
-            <code
-              >coffee -o static/javascripts/ -c
-              app/assets/javascripts/*.coffee</code
-            >.
-          </p>
-          <p>
-            Ensuite, comme optimisation souvent préconnisée, il convient de
-            "minifier" ces fichiers afin qu'ils soient le plus léger possible
-            pendant le transport sur le réseau (qui peut-être une faible
-            connexion 3g). Dans mon cas, j'ai utilisé
-            <a href="https://github.com/yui/yuicompressor"
-              ><code>yuicompressor</code></a
-            >
-            qui fonctionne bien. Il en existe certainement des mieux, je n'ai
-            pas testé, mais celui-là fonctionne comme je veux.
-          </p>
-          <script src="https://gist.github.com/tdebarochez/6083307.js"></script>
-          <p>
-            Note : comme amélioration possible, il faudrait dans cette partie là
-            renommer les fichiers par un nom de fichier contenant un hash
-            représentant le contenu de ce fichier afin de palier à tout problème
-            d'invalidation du cache.
-          </p>
-          <h2>Dans le futur</h2>
-          <p>
-            Pour parfaire le déploiement de l'application, sur un VCS
-            <a href="http://git-scm.com/">git</a> par exemple, il serait
-            pratique d'automatiser le redémarrage du serveur sur un hook
-            post-commit. Pour éviter également une coupure de service, il
-            faudrait également, lancer la nouvelle application sur un autre port
-            et switcher sur la nouvelle instance uniquement avec un reload de
-            nginx. Mais bon tout ça peut faire l'objet d'un autre article. :)
-          </p>
-          <p>
-            <strong>Mise à jour du 29 juillet 2013</strong> : correction du
-            script de lancement du daemon.
-          </p>
-          <!--:-->
-        </div>
-        <!-- /.entry-content -->
-      </article>
-      <!-- /.hentry -->
-
-      <article
-        class="hentry"
-        itemprop="blogPost"
-        itemscope
-        itemtype="http://schema.org/BlogPosting"
-      >
-        <header>
-          <div class="entry-meta">
-            <span class="entry-date date published updated"
-              ><time
-                datetime="2013-07-08T00:00:00+02:00"
-                itemprop="datePublished"
-                ><a
-                  href="http://www.bloggure.info/.java/work/heroku-play-scala-compass-buildpack"
-                  >July 08, 2013</a
-                ></time
-              ></span
-            ><span
-              class="author vcard"
-              itemprop="author"
-              itemscope
-              itemtype="http://schema.org/Person"
-              ><span itemprop="name" class="fn"
-                ><a
-                  href="http://www.bloggure.info/cgatay"
-                  title="About cgatay"
-                  itemprop="url"
-                  >cgatay</a
-                ></span
-              ></span
-            >&nbsp; &bull; &nbsp;<span class="entry-comments"
-              ><a
-                href="http://www.bloggure.info/.java/work/heroku-play-scala-compass-buildpack#disqus_thread"
-                >Comment</a
-              ></span
-            >
-          </div>
-          <!-- /.entry-meta -->
-
-          <h1 class="entry-title" itemprop="name">
-            <a
-              href="http://www.bloggure.info/.java/work/heroku-play-scala-compass-buildpack"
-              rel="bookmark"
-              title="Heroku Play ! Scala Compass Buildpack"
-              itemprop="url"
-              >Heroku Play ! Scala Compass Buildpack</a
-            >
-          </h1>
-        </header>
-        <div class="entry-content" itemprop="description">
-          <!--:en--><img
-            class="size-thumbnail wp-image-758 alignright"
-            alt="MBP Keyboard"
-            src="/images/uploads/2012/12/IMG_20121222_000541-150x150.jpg"
-            width="150"
-            height="150"
-          />
-          <p>
-            I am actually working on a little side project with my friend
-            <a href="http://www.bloggure.info/author/tdebarochez"
-              >Thomas Debarochez</a
-            >. We are using
-            <a href="http://www.playframework.com/">Play!Framework</a> and
-            <a href="http://compass-style.org/">Compass</a> and we deploy it to
-            <a href="https://www.heroku.com/">Heroku</a>.
-          </p>
-
-          <p>
-            One issue that came when we first deployed the application with
-            Compass to Heroku was that the default scala buildpack does not
-            include sass and compass binaries.
-          </p>
-
-          <p>
-            Following
-            <a
-              href="https://groups.google.com/forum/#!topic/play-framework/fzGj5RqW-l8"
-              >this post</a
-            >
-            on the Play!Framework mailing list, I forked and patched the
-            <a href="https://github.com/heroku/heroku-buildpack-scala"
-              >buildpack</a
-            >
-            to install sass and compass on the environment.
-          </p>
-
-          <p>
-            You can find it here and use it with the following command :
-            <figure class="highlight">
-              <pre><code class="language-bash" data-lang="bash"><span></span>heroku<span class="w"> </span>config:set<span class="w"> </span><span class="nv">BUILDPACK_URL</span><span class="o">=</span>https://github.com/CedricGatay/heroku-buildpack-scala</code></pre>
-            </figure>
-          </p>
-
-          <p>I hope someone will find this useful !</p>
-          <!--:-->
         </div>
         <!-- /.entry-content -->
       </article>
