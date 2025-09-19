@@ -9,6 +9,7 @@ plugins:
   - jekyll-paginate
   - jekyll-sitemap
   - jekyll-feed
+  - jekyll-asciidoc
 sass:
   sass_dir: _sass
   style: compressed

@@ -3,6 +3,7 @@ gem 'jekyll', '3.9.5'
 gem 'github-pages', '231'
 gem 'pygments.rb'
 gem 'jekyll-gist'
+gem 'jekyll-asciidoc'
 gem 'kramdown-syntax-coderay'
 gem "webrick", "~> 1.8"
 
