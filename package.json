@@ -12,7 +12,7 @@
     "watch:js": "chokidar 'assets/js/plugins/*.js' 'assets/js/_*.js' -c 'npm run build:js'",
     "watch:css": "chokidar 'assets/css/*.css' -c 'npm run build:css'",
     "optimize:images": "node scripts/optimize-images.mjs",
-    "optimize:svg": "npx svgo images/**/*.svg"
+    "optimize:svg": "node scripts/optimize-svg.mjs"
   },
   "keywords": [
     "jekyll",
