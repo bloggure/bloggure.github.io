@@ -11,7 +11,7 @@
     "watch": "npm run watch:js & npm run watch:css",
     "watch:js": "chokidar 'assets/js/plugins/*.js' 'assets/js/_*.js' -c 'npm run build:js'",
     "watch:css": "chokidar 'assets/css/*.css' -c 'npm run build:css'",
-    "optimize:images": "npx imagemin 'images/**/*.{png,jpg,jpeg}' --out-dir=images",
+    "optimize:images": "node scripts/optimize-images.mjs",
     "optimize:svg": "npx svgo images/**/*.svg"
   },
   "keywords": [
@@ -30,6 +30,7 @@
     "eslint": "^8.57.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.29.1",
+    "glob": "^13.0.0",
     "grunt": "^1.6.1",
     "husky": "^9.1.6",
     "imagemin": "^8.0.0",
