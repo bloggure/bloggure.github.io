@@ -1,180 +1,371 @@
-<!doctype html>
+<!DOCTYPE html>
 <!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
 <!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
 <!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
-<head>
-<meta charset="utf-8">
-<title>Wicket Routes Mount &#8211; Bloggure</title>
-<meta name="description" content="Multi author blog about programming, computing and geek stuff">
-<meta name="keywords" content="">
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+  <!--<![endif]-->
+  <head>
+    <meta charset="utf-8" />
+    <title>Wicket Routes Mount &#8211; Bloggure</title>
+    <meta
+      name="description"
+      content="Multi author blog about programming, computing and geek stuff"
+    />
+    <meta name="keywords" content="" />
 
+    <!-- Open Graph -->
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Wicket Routes Mount" />
+    <meta
+      property="og:description"
+      content="Multi author blog about programming, computing and geek stuff"
+    />
+    <meta
+      property="og:url"
+      content="http://www.bloggure.info/work/java-work/wicket-work/wicket-routes-mount.html"
+    />
+    <meta property="og:site_name" content="Bloggure" />
 
+    <link
+      rel="canonical"
+      href="http://www.bloggure.info/work/java-work/wicket-work/wicket-routes-mount.html"
+    />
+    <link
+      href="http://www.bloggure.info/feed.xml"
+      type="application/atom+xml"
+      rel="alternate"
+      title="Bloggure Feed"
+    />
 
-<!-- Open Graph -->
-<meta property="og:locale" content="en_US">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Wicket Routes Mount">
-<meta property="og:description" content="Multi author blog about programming, computing and geek stuff">
-<meta property="og:url" content="http://www.bloggure.info/work/java-work/wicket-work/wicket-routes-mount.html">
-<meta property="og:site_name" content="Bloggure">
+    <!-- http://t.co/dKP3o1e -->
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="MobileOptimized" content="320" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- For all browsers -->
+    <link
+      rel="stylesheet"
+      href="http://www.bloggure.info/assets/css/main.css"
+    />
+    <!-- Webfonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic"
+      rel="stylesheet"
+      type="text/css"
+    />
 
+    <meta http-equiv="cleartype" content="on" />
 
+    <!-- Load Modernizr -->
+    <script src="http://www.bloggure.info/assets/js/vendor/modernizr-3.12.0.min.js"></script>
 
+    <!-- Icons -->
+    <!-- 16x16 -->
+    <link rel="shortcut icon" href="http://www.bloggure.info/favicon.ico" />
+    <!-- 32x32 -->
+    <link rel="shortcut icon" href="http://www.bloggure.info/favicon.png" />
+    <!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+    <link
+      rel="apple-touch-icon-precomposed"
+      href="http://www.bloggure.info/images/apple-touch-icon-precomposed.png"
+    />
+    <!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="72x72"
+      href="http://www.bloggure.info/images/apple-touch-icon-72x72-precomposed.png"
+    />
+    <!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="114x114"
+      href="http://www.bloggure.info/images/apple-touch-icon-114x114-precomposed.png"
+    />
+    <!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="144x144"
+      href="http://www.bloggure.info/images/apple-touch-icon-144x144-precomposed.png"
+    />
+  </head>
 
-<link rel="canonical" href="http://www.bloggure.info/work/java-work/wicket-work/wicket-routes-mount.html">
-<link href="http://www.bloggure.info/feed.xml" type="application/atom+xml" rel="alternate" title="Bloggure Feed">
+  <body id="post">
+    <!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
 
-<!-- http://t.co/dKP3o1e -->
-<meta name="HandheldFriendly" content="True">
-<meta name="MobileOptimized" content="320">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!-- For all browsers -->
-<link rel="stylesheet" href="http://www.bloggure.info/assets/css/main.css">
-<!-- Webfonts -->
-<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">
-
-<meta http-equiv="cleartype" content="on">
-
-<!-- Load Modernizr -->
-<script src="http://www.bloggure.info/assets/js/vendor/modernizr-3.12.0.min.js"></script>
-
-<!-- Icons -->
-<!-- 16x16 -->
-<link rel="shortcut icon" href="http://www.bloggure.info/favicon.ico">
-<!-- 32x32 -->
-<link rel="shortcut icon" href="http://www.bloggure.info/favicon.png">
-<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
-<link rel="apple-touch-icon-precomposed" href="http://www.bloggure.info/images/apple-touch-icon-precomposed.png">
-<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
-<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://www.bloggure.info/images/apple-touch-icon-72x72-precomposed.png">
-<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
-<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://www.bloggure.info/images/apple-touch-icon-114x114-precomposed.png">
-<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://www.bloggure.info/images/apple-touch-icon-144x144-precomposed.png">
-
-
-
-</head>
-
-<body id="post" >
-
-<!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
-
-
-<div class="entry-header">
-  <header class="header-title">
-    <div class="header-title-wrap">
-      <h1 class="entry-title" itemprop="name"><a href="http://www.bloggure.info/">Bloggure</a></h1>
-    </div><!-- /.header-title-wrap -->
-  </header>
-  </div>
-
-<div id="main" role="main">
-  <article class="hentry">
-    <div class="entry-content">
-      <header>
-        <div class="entry-meta"><span class="entry-date date published updated"><time datetime="2013-05-20T00:00:00+02:00" itemprop="datePublished"><a href="http://www.bloggure.info/work/java-work/wicket-work/wicket-routes-mount.html">May 20, 2013</a></time></span><span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name" class="fn"><a href="http://www.bloggure.info/cgatay" title="About cgatay" itemprop="url">cgatay</a></span></span></div><!-- /.entry-meta -->
-        
-          <h1 class="entry-title" itemprop="name"><a href="http://www.bloggure.info/work/java-work/wicket-work/wicket-routes-mount.html" rel="bookmark" title="Wicket Routes Mount" itemprop="url">Wicket Routes Mount</a></h1>
-        
+    <div class="entry-header">
+      <header class="header-title">
+        <div class="header-title-wrap">
+          <h1 class="entry-title" itemprop="name">
+            <a href="http://www.bloggure.info/">Bloggure</a>
+          </h1>
+        </div>
+        <!-- /.header-title-wrap -->
       </header>
-      <!--:en--><img class="alignright size-thumbnail wp-image-90" alt="Wicket" src="/images/uploads/2010/10/logo-wicket1-150x150.png" width="150" height="150" />
+    </div>
 
-<p>At <a href="http://code-troopers.com">Code-Troopers</a>, we like to work with the frameworks we love. One of them is <a href="http://wicket.apache.org">Apache Wicket</a>, and it happens to some of us doing some <a href="http://www.playframework.com/">Play! Framework</a> or <a href="http://rubyonrails.org/">Ruby on Rails</a> (either for a client project, a side project or giving back OSS love).</p>
+    <div id="main" role="main">
+      <article class="hentry">
+        <div class="entry-content">
+          <header>
+            <div class="entry-meta">
+              <span class="entry-date date published updated"
+                ><time
+                  datetime="2013-05-20T00:00:00+02:00"
+                  itemprop="datePublished"
+                  ><a
+                    href="http://www.bloggure.info/work/java-work/wicket-work/wicket-routes-mount.html"
+                    >May 20, 2013</a
+                  ></time
+                ></span
+              ><span
+                class="author vcard"
+                itemprop="author"
+                itemscope
+                itemtype="http://schema.org/Person"
+                ><span itemprop="name" class="fn"
+                  ><a
+                    href="http://www.bloggure.info/cgatay"
+                    title="About cgatay"
+                    itemprop="url"
+                    >cgatay</a
+                  ></span
+                ></span
+              >
+            </div>
+            <!-- /.entry-meta -->
 
-<p>One thing really great is this two frameworks is the central route system, one file allows to group all the routes handled by your application. Wicket does not provide such way of grouping routes, you can manually mount routes into your application or annotate your page classes.</p>
-<h2>Wicket routes mount library</h2>
-<p><a href="https://github.com/code-troopers/wicket-routes-mount">This small library project available on Github</a> allows to group mounts into a central file. To use it, simply add its dependency to your <code>pom.xml</code> (artifact is available on Maven central):</p>
-<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
+            <h1 class="entry-title" itemprop="name">
+              <a
+                href="http://www.bloggure.info/work/java-work/wicket-work/wicket-routes-mount.html"
+                rel="bookmark"
+                title="Wicket Routes Mount"
+                itemprop="url"
+                >Wicket Routes Mount</a
+              >
+            </h1>
+          </header>
+          <!--:en--><img
+            class="alignright size-thumbnail wp-image-90"
+            alt="Wicket"
+            src="/images/uploads/2010/10/logo-wicket1-150x150.png"
+            width="150"
+            height="150"
+          />
+
+          <p>
+            At <a href="http://code-troopers.com">Code-Troopers</a>, we like to
+            work with the frameworks we love. One of them is
+            <a href="http://wicket.apache.org">Apache Wicket</a>, and it happens
+            to some of us doing some
+            <a href="http://www.playframework.com/">Play! Framework</a> or
+            <a href="http://rubyonrails.org/">Ruby on Rails</a> (either for a
+            client project, a side project or giving back OSS love).
+          </p>
+
+          <p>
+            One thing really great is this two frameworks is the central route
+            system, one file allows to group all the routes handled by your
+            application. Wicket does not provide such way of grouping routes,
+            you can manually mount routes into your application or annotate your
+            page classes.
+          </p>
+          <h2>Wicket routes mount library</h2>
+          <p>
+            <a href="https://github.com/code-troopers/wicket-routes-mount"
+              >This small library project available on Github</a
+            >
+            allows to group mounts into a central file. To use it, simply add
+            its dependency to your <code>pom.xml</code> (artifact is available
+            on Maven central):
+          </p>
+          <figure class="highlight">
+            <pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
     <span class="nt">&lt;groupId&gt;</span>com.code-troopers<span class="nt">&lt;/groupId&gt;</span>
     <span class="nt">&lt;artifactId&gt;</span>wicket-route-mount<span class="nt">&lt;/artifactId&gt;</span>
     <span class="nt">&lt;version&gt;</span>0.1<span class="nt">&lt;/version&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span></code></pre></figure>
-<em>
-This dependency will transitively gets <code>wicket-auth-roles</code> (if there is a special need for a version without this dependency, it could be done easily).
-</em>
-<h2>Usage</h2>
-<p>To use it, simply create a <code>routes.conf</code> file at the root of the sources in your project (typically <code>src/main/resources/</code>) respecting the following format :</p>
-<pre># mountPoint        class                           roles
+<span class="nt">&lt;/dependency&gt;</span></code></pre>
+          </figure>
+          <em>
+            This dependency will transitively gets
+            <code>wicket-auth-roles</code> (if there is a special need for a
+            version without this dependency, it could be done easily).
+          </em>
+          <h2>Usage</h2>
+          <p>
+            To use it, simply create a <code>routes.conf</code> file at the root
+            of the sources in your project (typically
+            <code>src/main/resources/</code>) respecting the following format :
+          </p>
+          <pre>
+# mountPoint        class                           roles
 /home               codetroopers.HomePage           
 /secured            codetroopers.SecuredPage        USER
-/user/${mode}/#{id} codetroopers.UserPage           ADMIN,USER</pre>
-<p>The files content is the following : </p>
-<ul>
-	<li>Mount path : using standard Wicket syntax (<code>${requiredParam}</code> and <code>#{optionalParam}</code> are available)</li>
-	<li>Page class : fully qualified name of the page class to mount</li>
-	<li>Roles (optional) : comma separated list of roles required to access the page</li>
-</ul>
+/user/${mode}/#{id} codetroopers.UserPage           ADMIN,USER</pre
+          >
+          <p>The files content is the following :</p>
+          <ul>
+            <li>
+              Mount path : using standard Wicket syntax (<code
+                >${requiredParam}</code
+              >
+              and <code>#{optionalParam}</code> are available)
+            </li>
+            <li>
+              Page class : fully qualified name of the page class to mount
+            </li>
+            <li>
+              Roles (optional) : comma separated list of roles required to
+              access the page
+            </li>
+          </ul>
 
-<em>IntelliJ IDEA can do completion for class names in this file (you just need to hit the <code>ctrl+space</code> shortcut twice)</em><!--:-->
+          <em
+            >IntelliJ IDEA can do completion for class names in this file (you
+            just need to hit the <code>ctrl+space</code> shortcut twice)</em
+          ><!--:-->
 
-      <footer class="entry-meta">
-        <span class="entry-tags"></span>
-        
-        <div class="social-share">
-  <ul class="socialcount socialcount-small inline-list">
-    <li class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=http://www.bloggure.info/work/java-work/wicket-work/wicket-routes-mount.html" title="Share on Facebook"><span class="count"><i class="fa fa-facebook-square"></i> Like</span></a></li>
-    <li class="twitter"><a href="https://twitter.com/intent/tweet?text=http://www.bloggure.info/work/java-work/wicket-work/wicket-routes-mount.html" title="Share on Twitter"><span class="count"><i class="fa fa-twitter-square"></i> Tweet</span></a></li>
-  </ul>
-</div><!-- /.social-share -->
+          <footer class="entry-meta">
+            <span class="entry-tags"></span>
+
+            <div class="social-share">
+              <ul class="socialcount socialcount-small inline-list">
+                <li class="facebook">
+                  <a
+                    href="https://www.facebook.com/sharer/sharer.php?u=http://www.bloggure.info/work/java-work/wicket-work/wicket-routes-mount.html"
+                    title="Share on Facebook"
+                    ><span class="count"
+                      ><i class="fa fa-facebook-square"></i> Like</span
+                    ></a
+                  >
+                </li>
+                <li class="twitter">
+                  <a
+                    href="https://twitter.com/intent/tweet?text=http://www.bloggure.info/work/java-work/wicket-work/wicket-routes-mount.html"
+                    title="Share on Twitter"
+                    ><span class="count"
+                      ><i class="fa fa-twitter-square"></i> Tweet</span
+                    ></a
+                  >
+                </li>
+              </ul>
+            </div>
+            <!-- /.social-share -->
+          </footer>
+        </div>
+        <!-- /.entry-content -->
+
+        <div class="read-more">
+          <div class="read-more-header">
+            <a
+              href="http://www.bloggure.info/www/duckduckgo-in-thunderbird"
+              class="read-more-btn"
+              >Read More</a
+            >
+          </div>
+          <!-- /.read-more-header -->
+          <div class="read-more-content">
+            <h3>
+              <a
+                href="http://www.bloggure.info/Tuist_build_test_schemes"
+                title="Tuist build test schemes"
+                >Tuist build test schemes</a
+              >
+            </h3>
+            <p>
+              Tuist build test schemesI use tuist to build most of my iOS
+              projects nowadays. And like every good software engineer I test
+              the code that...&hellip;
+              <a href="http://www.bloggure.info/Tuist_build_test_schemes"
+                >Continue reading</a
+              >
+            </p>
+          </div>
+          <!-- /.read-more-content -->
+
+          <div class="read-more-list">
+            <div class="list-item">
+              <h4>
+                <a
+                  href="http://www.bloggure.info/Module_Registration_Swift"
+                  title="Swift module registration"
+                  >Swift module registration</a
+                >
+              </h4>
+              <span>Published on April 28, 2025</span>
+            </div>
+            <!-- /.list-item -->
+
+            <div class="list-item">
+              <h4>
+                <a
+                  href="http://www.bloggure.info/Swift_VisibleForTesting_Macro"
+                  title="Swift macro : @VisibleForTesting"
+                  >Swift macro : @VisibleForTesting</a
+                >
+              </h4>
+              <span>Published on April 19, 2024</span>
+            </div>
+            <!-- /.list-item -->
+          </div>
+          <!-- /.read-more-list -->
+        </div>
+        <!-- /.read-more -->
+      </article>
+    </div>
+    <!-- /#main -->
+
+    <div class="footer-wrapper">
+      <footer role="contentinfo">
+        <span
+          >&copy; 2026 . Powered by
+          <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using a theme
+          based on
+          <a
+            href="https://mademistakes.com/work/hpstr-jekyll-theme/"
+            rel="nofollow"
+            >HPSTR</a
+          >.</span
+        >
       </footer>
-    </div><!-- /.entry-content -->
-    
-    <div class="read-more">
-  
-    <div class="read-more-header">
-      <a href="http://www.bloggure.info/www/duckduckgo-in-thunderbird" class="read-more-btn">Read More</a>
-    </div><!-- /.read-more-header -->
-    <div class="read-more-content">
-      <h3><a href="http://www.bloggure.info/Tuist_build_test_schemes" title="Tuist build test schemes">Tuist build test schemes</a></h3>
-      <p>Tuist build test schemesI use tuist to build most of my iOS projects nowadays. And like every good software engineer I test the code that...&hellip; <a href="http://www.bloggure.info/Tuist_build_test_schemes">Continue reading</a></p>
-    </div><!-- /.read-more-content -->
-  
-  <div class="read-more-list">
-    
-      <div class="list-item">
-        <h4><a href="http://www.bloggure.info/Module_Registration_Swift" title="Swift module registration">Swift module registration</a></h4>
-        <span>Published on April 28, 2025</span>
-      </div><!-- /.list-item -->
-    
-      <div class="list-item">
-        <h4><a href="http://www.bloggure.info/Swift_VisibleForTesting_Macro" title="Swift macro : @VisibleForTesting">Swift macro : @VisibleForTesting</a></h4>
-        <span>Published on April 19, 2024</span>
-      </div><!-- /.list-item -->
-    
-  </div><!-- /.read-more-list -->
-</div><!-- /.read-more -->
-  </article>
-</div><!-- /#main -->
+    </div>
+    <!-- /.footer-wrapper -->
 
-<div class="footer-wrapper">
-  <footer role="contentinfo">
-    <span>&copy; 2026 . Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using a theme based on <a href="https://mademistakes.com/work/hpstr-jekyll-theme/" rel="nofollow">HPSTR</a>.</span>
-  </footer>
-</div><!-- /.footer-wrapper -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+      window.jQuery ||
+        document.write(
+          '<script src="http://www.bloggure.info/assets/js/vendor/jquery-3.7.1.min.js"><\/script>'
+        );
+    </script>
+    <script src="http://www.bloggure.info/assets/js/scripts.min.js"></script>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="http://www.bloggure.info/assets/js/vendor/jquery-3.7.1.min.js"><\/script>')</script>
-<script src="http://www.bloggure.info/assets/js/scripts.min.js"></script>
+    <!-- Asynchronous Google Analytics snippet -->
+    <script>
+      (function (i, s, o, g, r, a, m) {
+        i["GoogleAnalyticsObject"] = r;
+        (i[r] =
+          i[r] ||
+          function () {
+            (i[r].q = i[r].q || []).push(arguments);
+          }),
+          (i[r].l = 1 * new Date());
+        (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m);
+      })(
+        window,
+        document,
+        "script",
+        "//www.google-analytics.com/analytics.js",
+        "ga"
+      );
 
-
-<!-- Asynchronous Google Analytics snippet -->
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-11718843-3', 'auto');  
-  ga('require', 'linkid', 'linkid.js');
-  ga('send', 'pageview');
-</script>
-
-
-	        
-
-</body>
+      ga("create", "UA-11718843-3", "auto");
+      ga("require", "linkid", "linkid.js");
+      ga("send", "pageview");
+    </script>
+  </body>
 </html>

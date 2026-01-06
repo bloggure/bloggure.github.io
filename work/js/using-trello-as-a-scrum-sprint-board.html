@@ -1,87 +1,273 @@
-<!doctype html>
+<!DOCTYPE html>
 <!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
 <!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
 <!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
-<head>
-<meta charset="utf-8">
-<title>Using Trello as a Scrum sprint board &#8211; Bloggure</title>
-<meta name="description" content="Multi author blog about programming, computing and geek stuff">
-<meta name="keywords" content="">
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+  <!--<![endif]-->
+  <head>
+    <meta charset="utf-8" />
+    <title>Using Trello as a Scrum sprint board &#8211; Bloggure</title>
+    <meta
+      name="description"
+      content="Multi author blog about programming, computing and geek stuff"
+    />
+    <meta name="keywords" content="" />
 
+    <!-- Open Graph -->
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Using Trello as a Scrum sprint board" />
+    <meta
+      property="og:description"
+      content="Multi author blog about programming, computing and geek stuff"
+    />
+    <meta
+      property="og:url"
+      content="http://www.bloggure.info/work/js/using-trello-as-a-scrum-sprint-board.html"
+    />
+    <meta property="og:site_name" content="Bloggure" />
 
+    <link
+      rel="canonical"
+      href="http://www.bloggure.info/work/js/using-trello-as-a-scrum-sprint-board.html"
+    />
+    <link
+      href="http://www.bloggure.info/feed.xml"
+      type="application/atom+xml"
+      rel="alternate"
+      title="Bloggure Feed"
+    />
 
-<!-- Open Graph -->
-<meta property="og:locale" content="en_US">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Using Trello as a Scrum sprint board">
-<meta property="og:description" content="Multi author blog about programming, computing and geek stuff">
-<meta property="og:url" content="http://www.bloggure.info/work/js/using-trello-as-a-scrum-sprint-board.html">
-<meta property="og:site_name" content="Bloggure">
+    <!-- http://t.co/dKP3o1e -->
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="MobileOptimized" content="320" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- For all browsers -->
+    <link
+      rel="stylesheet"
+      href="http://www.bloggure.info/assets/css/main.css"
+    />
+    <!-- Webfonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic"
+      rel="stylesheet"
+      type="text/css"
+    />
 
+    <meta http-equiv="cleartype" content="on" />
 
+    <!-- Load Modernizr -->
+    <script src="http://www.bloggure.info/assets/js/vendor/modernizr-3.12.0.min.js"></script>
 
+    <!-- Icons -->
+    <!-- 16x16 -->
+    <link rel="shortcut icon" href="http://www.bloggure.info/favicon.ico" />
+    <!-- 32x32 -->
+    <link rel="shortcut icon" href="http://www.bloggure.info/favicon.png" />
+    <!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+    <link
+      rel="apple-touch-icon-precomposed"
+      href="http://www.bloggure.info/images/apple-touch-icon-precomposed.png"
+    />
+    <!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="72x72"
+      href="http://www.bloggure.info/images/apple-touch-icon-72x72-precomposed.png"
+    />
+    <!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="114x114"
+      href="http://www.bloggure.info/images/apple-touch-icon-114x114-precomposed.png"
+    />
+    <!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="144x144"
+      href="http://www.bloggure.info/images/apple-touch-icon-144x144-precomposed.png"
+    />
+  </head>
 
-<link rel="canonical" href="http://www.bloggure.info/work/js/using-trello-as-a-scrum-sprint-board.html">
-<link href="http://www.bloggure.info/feed.xml" type="application/atom+xml" rel="alternate" title="Bloggure Feed">
+  <body id="post">
+    <!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
 
-<!-- http://t.co/dKP3o1e -->
-<meta name="HandheldFriendly" content="True">
-<meta name="MobileOptimized" content="320">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!-- For all browsers -->
-<link rel="stylesheet" href="http://www.bloggure.info/assets/css/main.css">
-<!-- Webfonts -->
-<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">
-
-<meta http-equiv="cleartype" content="on">
-
-<!-- Load Modernizr -->
-<script src="http://www.bloggure.info/assets/js/vendor/modernizr-3.12.0.min.js"></script>
-
-<!-- Icons -->
-<!-- 16x16 -->
-<link rel="shortcut icon" href="http://www.bloggure.info/favicon.ico">
-<!-- 32x32 -->
-<link rel="shortcut icon" href="http://www.bloggure.info/favicon.png">
-<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
-<link rel="apple-touch-icon-precomposed" href="http://www.bloggure.info/images/apple-touch-icon-precomposed.png">
-<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
-<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://www.bloggure.info/images/apple-touch-icon-72x72-precomposed.png">
-<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
-<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://www.bloggure.info/images/apple-touch-icon-114x114-precomposed.png">
-<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://www.bloggure.info/images/apple-touch-icon-144x144-precomposed.png">
-
-
-
-</head>
-
-<body id="post" >
-
-<!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
-
-
-<div class="entry-header">
-  <header class="header-title">
-    <div class="header-title-wrap">
-      <h1 class="entry-title" itemprop="name"><a href="http://www.bloggure.info/">Bloggure</a></h1>
-    </div><!-- /.header-title-wrap -->
-  </header>
-  </div>
-
-<div id="main" role="main">
-  <article class="hentry">
-    <div class="entry-content">
-      <header>
-        <div class="entry-meta"><span class="entry-date date published updated"><time datetime="2012-10-18T00:00:00+02:00" itemprop="datePublished"><a href="http://www.bloggure.info/work/js/using-trello-as-a-scrum-sprint-board.html">October 18, 2012</a></time></span><span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name" class="fn"><a href="http://www.bloggure.info/cgatay" title="About cgatay" itemprop="url">cgatay</a></span></span></div><!-- /.entry-meta -->
-        
-          <h1 class="entry-title" itemprop="name"><a href="http://www.bloggure.info/work/js/using-trello-as-a-scrum-sprint-board.html" rel="bookmark" title="Using Trello as a Scrum sprint board" itemprop="url">Using Trello as a Scrum sprint board</a></h1>
-        
+    <div class="entry-header">
+      <header class="header-title">
+        <div class="header-title-wrap">
+          <h1 class="entry-title" itemprop="name">
+            <a href="http://www.bloggure.info/">Bloggure</a>
+          </h1>
+        </div>
+        <!-- /.header-title-wrap -->
       </header>
-      <!--:en--><p>At <a href="http://www.srmvision.com">SRMvision</a>, we use agile methods since day one, mainly Scrum, which we rearranged to fit our needs and goals at times. We've always looked for the perfect computerized alternative to good old stickies.</p><h2>TrelloScrum Chrome Extension<img class="alignright size-full wp-image-644" title="Trello-Icon" src="/images/uploads/2012/10/Trello-Icon1.png" alt="" width="128" height="128" /></h2><p>When it came out, it was clear to me that <a href="http://www.trello.com">Trello</a> could be the cornerstone of our internal workflow, we started from the very good <a href="https://chrome.google.com/webstore/detail/trello-scrum/jdbcdblgjdpmfninkoogcfpnkjmndgje">TrelloScrum plugin available on the Chrome Web Store</a> to count story points. This plugin is really useful in planning sprints, it allows the Scrum master to track story points scheduled in order to fill every single day in the sprint.</p><h2>Forking the extension</h2><p>After a few sprints, we realized we needed more than what was included in the plugin. The main thing needed was tracking consumed story points to get a really rapid and efficient feedback on our sprint (real-time burndown values). Thanks to the guys behind the plugin (<a href="http://q42.nl/blog">Q42</a>) and to Github, I was able to fork the project and add these features :</p><ul><li>if you note points in square brackets : [3] they are considered as consumed points (contributed back to the plugin available in the Chrome Web Store)</li><li>on card detail, hitting the "Done" button flags the whole card points consumed and moves the card to the bottom of the list, then the card view is closed so you can focus on something else (only available in my fork)</li><li>plugged to the Trello client API, less flickering when updating cards</li></ul><!-- [caption id="attachment_631" align="aligncenter" width="315"] --><img class="size-full wp-image-631 " title="list" src="/images/uploads/2012/10/list.png" alt="" width="315" height="290" /> <!-- List and cards points counts[/caption] --><p>With this plugin, you'll get two counters on the top of each list and on a top of the board : consumed points in light blue and scheduled poins in blue. The scheduled and consumed terms are the one we use at <a href="http://www.srmvision.com">SRMvision</a>, but you can use it the way you like to manage your sprints.</p><h2>Using the extension</h2><p>If you want to use my fork of the extension, you'll need to get it in my <a href="https://github.com/CedricGatay/TrelloScrum/downloads">Github account</a>. As it is not available in the store, you'll need to drag and drop the downloaded file on the <a href="chrome://extensions">chrome://extensions</a> page.</p><!-- [caption id="attachment_633" align="alignright" width="133"] --><img class="size-full wp-image-633 " style="text-align: center;" title="unauthenticated" src="/images/uploads/2012/10/unauthenticated.png" alt="" width="133" height="46" /><!--  Unauthenticated plugin[/caption] --><p>Next, you'll need to authenticate the plugin to your Trello account, to do so, there is a little circle on top of your profile picture which is on the top right corner of Trello.</p><p>You can use the plugin without allowing it to authenticate, if you do so, you won't be able to flag cards as Done using the button and thus, cards won't be moved to the bottom. To authenticate, you need to click the circle, it will popup the authenticate dialog, just follow the steps in this popup (and close it manually when you see a blank page - limitation of the extension).</p><!-- [caption id="attachment_632" align="alignright" width="139"] --><img class="size-full wp-image-632 " title="authenticated" src="/images/uploads/2012/10/authenticated.png" alt="" width="139" height="48" /><!-- Authenticated plugin[/caption] --><p>Once authenticated, you should see a green circle and a "Done" button on cards details.</p><p>If you have feature requests or bugs, don't hesitate to use the <a href="https://github.com/CedricGatay/TrelloScrum/issues">Github issue tracker</a>.</p><!--:--><!--:fr<p>Chez <a href="http://www.srmvision.com">SRMvision</a>, nous utilisons les méthodes agile depuis le début, principalement Scrum, que nous avons quelque peu modifié pour coller à nos besoins au fil du temps. Nous avons cherché depuis le début une bonne alternative informatisée aux bons vieux post-it.</p>
+    </div>
+
+    <div id="main" role="main">
+      <article class="hentry">
+        <div class="entry-content">
+          <header>
+            <div class="entry-meta">
+              <span class="entry-date date published updated"
+                ><time
+                  datetime="2012-10-18T00:00:00+02:00"
+                  itemprop="datePublished"
+                  ><a
+                    href="http://www.bloggure.info/work/js/using-trello-as-a-scrum-sprint-board.html"
+                    >October 18, 2012</a
+                  ></time
+                ></span
+              ><span
+                class="author vcard"
+                itemprop="author"
+                itemscope
+                itemtype="http://schema.org/Person"
+                ><span itemprop="name" class="fn"
+                  ><a
+                    href="http://www.bloggure.info/cgatay"
+                    title="About cgatay"
+                    itemprop="url"
+                    >cgatay</a
+                  ></span
+                ></span
+              >
+            </div>
+            <!-- /.entry-meta -->
+
+            <h1 class="entry-title" itemprop="name">
+              <a
+                href="http://www.bloggure.info/work/js/using-trello-as-a-scrum-sprint-board.html"
+                rel="bookmark"
+                title="Using Trello as a Scrum sprint board"
+                itemprop="url"
+                >Using Trello as a Scrum sprint board</a
+              >
+            </h1>
+          </header>
+          <!--:en-->
+          <p>
+            At <a href="http://www.srmvision.com">SRMvision</a>, we use agile
+            methods since day one, mainly Scrum, which we rearranged to fit our
+            needs and goals at times. We've always looked for the perfect
+            computerized alternative to good old stickies.
+          </p>
+          <h2>
+            TrelloScrum Chrome Extension<img
+              class="alignright size-full wp-image-644"
+              title="Trello-Icon"
+              src="/images/uploads/2012/10/Trello-Icon1.png"
+              alt=""
+              width="128"
+              height="128"
+            />
+          </h2>
+          <p>
+            When it came out, it was clear to me that
+            <a href="http://www.trello.com">Trello</a> could be the cornerstone
+            of our internal workflow, we started from the very good
+            <a
+              href="https://chrome.google.com/webstore/detail/trello-scrum/jdbcdblgjdpmfninkoogcfpnkjmndgje"
+              >TrelloScrum plugin available on the Chrome Web Store</a
+            >
+            to count story points. This plugin is really useful in planning
+            sprints, it allows the Scrum master to track story points scheduled
+            in order to fill every single day in the sprint.
+          </p>
+          <h2>Forking the extension</h2>
+          <p>
+            After a few sprints, we realized we needed more than what was
+            included in the plugin. The main thing needed was tracking consumed
+            story points to get a really rapid and efficient feedback on our
+            sprint (real-time burndown values). Thanks to the guys behind the
+            plugin (<a href="http://q42.nl/blog">Q42</a>) and to Github, I was
+            able to fork the project and add these features :
+          </p>
+          <ul>
+            <li>
+              if you note points in square brackets : [3] they are considered as
+              consumed points (contributed back to the plugin available in the
+              Chrome Web Store)
+            </li>
+            <li>
+              on card detail, hitting the "Done" button flags the whole card
+              points consumed and moves the card to the bottom of the list, then
+              the card view is closed so you can focus on something else (only
+              available in my fork)
+            </li>
+            <li>
+              plugged to the Trello client API, less flickering when updating
+              cards
+            </li>
+          </ul>
+          <!-- [caption id="attachment_631" align="aligncenter" width="315"] --><img
+            class="size-full wp-image-631"
+            title="list"
+            src="/images/uploads/2012/10/list.png"
+            alt=""
+            width="315"
+            height="290"
+          />
+          <!-- List and cards points counts[/caption] -->
+          <p>
+            With this plugin, you'll get two counters on the top of each list
+            and on a top of the board : consumed points in light blue and
+            scheduled poins in blue. The scheduled and consumed terms are the
+            one we use at <a href="http://www.srmvision.com">SRMvision</a>, but
+            you can use it the way you like to manage your sprints.
+          </p>
+          <h2>Using the extension</h2>
+          <p>
+            If you want to use my fork of the extension, you'll need to get it
+            in my
+            <a href="https://github.com/CedricGatay/TrelloScrum/downloads"
+              >Github account</a
+            >. As it is not available in the store, you'll need to drag and drop
+            the downloaded file on the
+            <a href="chrome://extensions">chrome://extensions</a> page.
+          </p>
+          <!-- [caption id="attachment_633" align="alignright" width="133"] --><img
+            class="size-full wp-image-633"
+            style="text-align: center"
+            title="unauthenticated"
+            src="/images/uploads/2012/10/unauthenticated.png"
+            alt=""
+            width="133"
+            height="46"
+          /><!--  Unauthenticated plugin[/caption] -->
+          <p>
+            Next, you'll need to authenticate the plugin to your Trello account,
+            to do so, there is a little circle on top of your profile picture
+            which is on the top right corner of Trello.
+          </p>
+          <p>
+            You can use the plugin without allowing it to authenticate, if you
+            do so, you won't be able to flag cards as Done using the button and
+            thus, cards won't be moved to the bottom. To authenticate, you need
+            to click the circle, it will popup the authenticate dialog, just
+            follow the steps in this popup (and close it manually when you see a
+            blank page - limitation of the extension).
+          </p>
+          <!-- [caption id="attachment_632" align="alignright" width="139"] --><img
+            class="size-full wp-image-632"
+            title="authenticated"
+            src="/images/uploads/2012/10/authenticated.png"
+            alt=""
+            width="139"
+            height="48"
+          /><!-- Authenticated plugin[/caption] -->
+          <p>
+            Once authenticated, you should see a green circle and a "Done"
+            button on cards details.
+          </p>
+          <p>
+            If you have feature requests or bugs, don't hesitate to use the
+            <a href="https://github.com/CedricGatay/TrelloScrum/issues"
+              >Github issue tracker</a
+            >.
+          </p>
+          <!--:--><!--:fr<p>Chez <a href="http://www.srmvision.com">SRMvision</a>, nous utilisons les méthodes agile depuis le début, principalement Scrum, que nous avons quelque peu modifié pour coller à nos besoins au fil du temps. Nous avons cherché depuis le début une bonne alternative informatisée aux bons vieux post-it.</p>
 <h2>TrelloScrum Chrome Extension<img class="alignright size-full wp-image-644" title="Trello-Icon" src="/images/uploads/2012/10/Trello-Icon1.png" alt="" width="128" height="128" /></h2>
 <p>Quand je l'ai découvert, j'ai rapidement pensé que <a href="http://www.trello.com">Trello</a> pouvait être un des piliers de notre organisation interne. Nous avons d'abord commencé par utiliser la très bonne extension <a href="https://chrome.google.com/webstore/detail/trello-scrum/jdbcdblgjdpmfninkoogcfpnkjmndgje">TrelloScrum disponible sur le Chrome Web Store</a> pour effectuer le décompte des points de nos sprints. Ce plugin est réellement utile dans la planification de sprint, il permet au Scrum-master de facilement gérer le nombre de points utilisés pour remplir efficacement chaque jour du sprint.</p>
 <h2>Contribuer à l'extension</h2>
@@ -104,70 +290,146 @@
 <p>Si vous avez des idées de fonctionnalités ou détecté un bug, n'hésitez pas à vous servir du <a href="https://github.com/CedricGatay/TrelloScrum/issues">système de ticket de Github</a>.</p>
 <-->
 
-      <footer class="entry-meta">
-        <span class="entry-tags"></span>
-        
-        <div class="social-share">
-  <ul class="socialcount socialcount-small inline-list">
-    <li class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=http://www.bloggure.info/work/js/using-trello-as-a-scrum-sprint-board.html" title="Share on Facebook"><span class="count"><i class="fa fa-facebook-square"></i> Like</span></a></li>
-    <li class="twitter"><a href="https://twitter.com/intent/tweet?text=http://www.bloggure.info/work/js/using-trello-as-a-scrum-sprint-board.html" title="Share on Twitter"><span class="count"><i class="fa fa-twitter-square"></i> Tweet</span></a></li>
-  </ul>
-</div><!-- /.social-share -->
+          <footer class="entry-meta">
+            <span class="entry-tags"></span>
+
+            <div class="social-share">
+              <ul class="socialcount socialcount-small inline-list">
+                <li class="facebook">
+                  <a
+                    href="https://www.facebook.com/sharer/sharer.php?u=http://www.bloggure.info/work/js/using-trello-as-a-scrum-sprint-board.html"
+                    title="Share on Facebook"
+                    ><span class="count"
+                      ><i class="fa fa-facebook-square"></i> Like</span
+                    ></a
+                  >
+                </li>
+                <li class="twitter">
+                  <a
+                    href="https://twitter.com/intent/tweet?text=http://www.bloggure.info/work/js/using-trello-as-a-scrum-sprint-board.html"
+                    title="Share on Twitter"
+                    ><span class="count"
+                      ><i class="fa fa-twitter-square"></i> Tweet</span
+                    ></a
+                  >
+                </li>
+              </ul>
+            </div>
+            <!-- /.social-share -->
+          </footer>
+        </div>
+        <!-- /.entry-content -->
+
+        <div class="read-more">
+          <div class="read-more-header">
+            <a
+              href="http://www.bloggure.info/work/vert-x-in-homebrew"
+              class="read-more-btn"
+              >Read More</a
+            >
+          </div>
+          <!-- /.read-more-header -->
+          <div class="read-more-content">
+            <h3>
+              <a
+                href="http://www.bloggure.info/Tuist_build_test_schemes"
+                title="Tuist build test schemes"
+                >Tuist build test schemes</a
+              >
+            </h3>
+            <p>
+              Tuist build test schemesI use tuist to build most of my iOS
+              projects nowadays. And like every good software engineer I test
+              the code that...&hellip;
+              <a href="http://www.bloggure.info/Tuist_build_test_schemes"
+                >Continue reading</a
+              >
+            </p>
+          </div>
+          <!-- /.read-more-content -->
+
+          <div class="read-more-list">
+            <div class="list-item">
+              <h4>
+                <a
+                  href="http://www.bloggure.info/Module_Registration_Swift"
+                  title="Swift module registration"
+                  >Swift module registration</a
+                >
+              </h4>
+              <span>Published on April 28, 2025</span>
+            </div>
+            <!-- /.list-item -->
+
+            <div class="list-item">
+              <h4>
+                <a
+                  href="http://www.bloggure.info/Swift_VisibleForTesting_Macro"
+                  title="Swift macro : @VisibleForTesting"
+                  >Swift macro : @VisibleForTesting</a
+                >
+              </h4>
+              <span>Published on April 19, 2024</span>
+            </div>
+            <!-- /.list-item -->
+          </div>
+          <!-- /.read-more-list -->
+        </div>
+        <!-- /.read-more -->
+      </article>
+    </div>
+    <!-- /#main -->
+
+    <div class="footer-wrapper">
+      <footer role="contentinfo">
+        <span
+          >&copy; 2026 . Powered by
+          <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using a theme
+          based on
+          <a
+            href="https://mademistakes.com/work/hpstr-jekyll-theme/"
+            rel="nofollow"
+            >HPSTR</a
+          >.</span
+        >
       </footer>
-    </div><!-- /.entry-content -->
-    
-    <div class="read-more">
-  
-    <div class="read-more-header">
-      <a href="http://www.bloggure.info/work/vert-x-in-homebrew" class="read-more-btn">Read More</a>
-    </div><!-- /.read-more-header -->
-    <div class="read-more-content">
-      <h3><a href="http://www.bloggure.info/Tuist_build_test_schemes" title="Tuist build test schemes">Tuist build test schemes</a></h3>
-      <p>Tuist build test schemesI use tuist to build most of my iOS projects nowadays. And like every good software engineer I test the code that...&hellip; <a href="http://www.bloggure.info/Tuist_build_test_schemes">Continue reading</a></p>
-    </div><!-- /.read-more-content -->
-  
-  <div class="read-more-list">
-    
-      <div class="list-item">
-        <h4><a href="http://www.bloggure.info/Module_Registration_Swift" title="Swift module registration">Swift module registration</a></h4>
-        <span>Published on April 28, 2025</span>
-      </div><!-- /.list-item -->
-    
-      <div class="list-item">
-        <h4><a href="http://www.bloggure.info/Swift_VisibleForTesting_Macro" title="Swift macro : @VisibleForTesting">Swift macro : @VisibleForTesting</a></h4>
-        <span>Published on April 19, 2024</span>
-      </div><!-- /.list-item -->
-    
-  </div><!-- /.read-more-list -->
-</div><!-- /.read-more -->
-  </article>
-</div><!-- /#main -->
+    </div>
+    <!-- /.footer-wrapper -->
 
-<div class="footer-wrapper">
-  <footer role="contentinfo">
-    <span>&copy; 2026 . Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using a theme based on <a href="https://mademistakes.com/work/hpstr-jekyll-theme/" rel="nofollow">HPSTR</a>.</span>
-  </footer>
-</div><!-- /.footer-wrapper -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+      window.jQuery ||
+        document.write(
+          '<script src="http://www.bloggure.info/assets/js/vendor/jquery-3.7.1.min.js"><\/script>'
+        );
+    </script>
+    <script src="http://www.bloggure.info/assets/js/scripts.min.js"></script>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="http://www.bloggure.info/assets/js/vendor/jquery-3.7.1.min.js"><\/script>')</script>
-<script src="http://www.bloggure.info/assets/js/scripts.min.js"></script>
+    <!-- Asynchronous Google Analytics snippet -->
+    <script>
+      (function (i, s, o, g, r, a, m) {
+        i["GoogleAnalyticsObject"] = r;
+        (i[r] =
+          i[r] ||
+          function () {
+            (i[r].q = i[r].q || []).push(arguments);
+          }),
+          (i[r].l = 1 * new Date());
+        (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m);
+      })(
+        window,
+        document,
+        "script",
+        "//www.google-analytics.com/analytics.js",
+        "ga"
+      );
 
-
-<!-- Asynchronous Google Analytics snippet -->
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-11718843-3', 'auto');  
-  ga('require', 'linkid', 'linkid.js');
-  ga('send', 'pageview');
-</script>
-
-
-	        
-
-</body>
+      ga("create", "UA-11718843-3", "auto");
+      ga("require", "linkid", "linkid.js");
+      ga("send", "pageview");
+    </script>
+  </body>
 </html>
