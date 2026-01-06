@@ -52,7 +52,7 @@
     <meta http-equiv="cleartype" content="on" />
 
     <!-- Load Modernizr -->
-    <script src="http://www.bloggure.info/assets/js/vendor/modernizr-2.6.2.custom.min.js"></script>
+    <script src="http://www.bloggure.info/assets/js/vendor/modernizr-3.12.0.min.js"></script>
 
     <!-- Icons -->
     <!-- 16x16 -->
@@ -102,145 +102,6 @@
     <!-- /.entry-header -->
 
     <div id="main" role="main">
-      <article
-        class="hentry"
-        itemprop="blogPost"
-        itemscope
-        itemtype="http://schema.org/BlogPosting"
-      >
-        <header>
-          <div class="entry-meta">
-            <span class="entry-date date published updated"
-              ><time
-                datetime="2013-08-31T00:00:00+02:00"
-                itemprop="datePublished"
-                ><a
-                  href="http://www.bloggure.info/.maven/maven-merge-properties-plugin"
-                  >August 31, 2013</a
-                ></time
-              ></span
-            ><span
-              class="author vcard"
-              itemprop="author"
-              itemscope
-              itemtype="http://schema.org/Person"
-              ><span itemprop="name" class="fn"
-                ><a
-                  href="http://www.bloggure.info/cgatay"
-                  title="About cgatay"
-                  itemprop="url"
-                  >cgatay</a
-                ></span
-              ></span
-            >&nbsp; &bull; &nbsp;<span class="entry-comments"
-              ><a
-                href="http://www.bloggure.info/.maven/maven-merge-properties-plugin#disqus_thread"
-                >Comment</a
-              ></span
-            >
-          </div>
-          <!-- /.entry-meta -->
-
-          <h1 class="entry-title" itemprop="name">
-            <a
-              href="http://www.bloggure.info/.maven/maven-merge-properties-plugin"
-              rel="bookmark"
-              title="Merge properties maven plugin"
-              itemprop="url"
-              >Merge properties maven plugin</a
-            >
-          </h1>
-        </header>
-        <div class="entry-content" itemprop="description">
-          <!--:en--><img
-            class="alignright size-medium wp-image-74"
-            alt="Maven"
-            src="/images/uploads/2010/11/Maven_logo1-300x76.gif"
-            width="300"
-            height="76"
-          />
-          <p>
-            At <a href="http://www.srmvision.com">SRMvision</a>, we develop with
-            localization in mind. We don't have any user visible text that is
-            not in fact tied to a java property file. Quickly, the problem that
-            we faced was the difficulty to keep every language file in sync (and
-            to tidy things up). We developed a small Maven plugin allowing us to
-            ensure that our two main problems are now gone :
-            <a
-              href="https://github.com/code-troopers/merge-properties-maven-plugin"
-              >merge-properties-maven-plugin</a
-            >.
-          </p>
-          <h2>Quick example</h2>
-          <p>
-            I think the easiest way to understand how it works is to explain it
-            with a real use case. Let's say we have a module named
-            <em>Zones</em> in our application, it will lead to create four files
-            (if we are localized in two different languages) :
-          </p>
-          <ul>
-            <li>l10n/Zones_en.properties</li>
-            <li>l10n/Zones_fr.properties</li>
-            <li>help/Zones_en.properties</li>
-            <li>help/Zones_fr.properties</li>
-          </ul>
-          <p>
-            As you might have guessed, we have got two different categories of
-            target files, one for the application's localization, and the other
-            one for the application's help. There is only one rule when it comes
-            to filling these files, the property keys must begin with the name
-            of the file, otherwise the build would fail. In this example, every
-            key must begin with the prefix "<tt>Zones.".</tt>
-          </p>
-
-          <p>
-            At the end, we want to get two resource bundles, so we set up the
-            build to do so :
-          </p>
-
-          <noscript><pre>400: Invalid request</pre></noscript>
-          <script src="https://gist.github.com/6397201.js?file=pom.xml"></script>
-
-          <p>
-            By reading this configuration section you can view almost every
-            single option available in the plugin. You can exclude files from
-            automatic key checking : in the example the files
-            Global_*.properties will not be checked. It allows us to group
-            commonly used keys without needing them to begin with the correct
-            prefix (it also eases migration for legacy code, breaking the build
-            would be too intrusive).
-          </p>
-
-          <p>
-            You can also notice that we use a Maven property to enable the fail
-            on count mismatch functionality of the plugin, with the help of
-            Maven profiles, we can set it to false for development and to true
-            for continuous integration and translation team. When this
-            configuration is used you will get an output like the following in
-            your Maven build :
-          </p>
-
-          <noscript><pre>400: Invalid request</pre></noscript>
-          <script src="https://gist.github.com/6397201.js?file=maven.log"></script>
-
-          <p>
-            If the build should check consistency in merged files and if it does
-            not match, it will output blank keys as well as lonely keys in order
-            for your translator to fix it easily.
-          </p>
-          <h2>Bonus feature</h2>
-          <p>
-            We use Java's MessageFormat to format our translated string, one of
-            the thing we tend to forget is to escape the single quotes in our
-            translations. The plugin does this magic for us, it automatically
-            adds the missing single quotes in every messages.
-          </p>
-          <!--:-->
-        </div>
-        <!-- /.entry-content -->
-      </article>
-      <!-- /.hentry -->
-
       <article
         class="hentry"
         itemprop="blogPost"
@@ -324,7 +185,7 @@
             add an implicit as below :
           </p>
           <figure class="highlight">
-            <pre><code class="language-scala" data-lang="scala"><span></span><span class="o">@</span><span class="p">(</span><span class="n">title</span><span class="p">:</span><span class="w"> </span><span class="nc">String</span><span class="p">)(</span><span class="n">content</span><span class="p">:</span><span class="w"> </span><span class="nc">Html</span><span class="p">)(</span><span class="k">implicit</span><span class="w"> </span><span class="n">lang</span><span class="p">:</span><span class="w"> </span><span class="nc">Lang</span><span class="p">)</span></code></pre>
+            <pre><code class="language-scala" data-lang="scala"><span class="o">@(</span><span class="n">title</span><span class="k">:</span> <span class="kt">String</span><span class="o">)(</span><span class="n">content</span><span class="k">:</span> <span class="kt">Html</span><span class="o">)(</span><span class="k">implicit</span> <span class="n">lang</span><span class="k">:</span> <span class="kt">Lang</span><span class="o">)</span></code></pre>
           </figure>
           <p>
             With this little trick, your calls to localization will use the
@@ -641,7 +502,7 @@ With this little trick, your calls to localization will use the locale extracted
           <p>
             You can find it here and use it with the following command :
             <figure class="highlight">
-              <pre><code class="language-bash" data-lang="bash"><span></span>heroku<span class="w"> </span>config:set<span class="w"> </span><span class="nv">BUILDPACK_URL</span><span class="o">=</span>https://github.com/CedricGatay/heroku-buildpack-scala</code></pre>
+              <pre><code class="language-bash" data-lang="bash">heroku config:set <span class="nv">BUILDPACK_URL</span><span class="o">=</span>https://github.com/CedricGatay/heroku-buildpack-scala</code></pre>
             </figure>
           </p>
 
@@ -736,10 +597,10 @@ With this little trick, your calls to localization will use the locale extracted
             on Maven central):
           </p>
           <figure class="highlight">
-            <pre><code class="language-xml" data-lang="xml"><span></span><span class="nt">&lt;dependency&gt;</span>
-<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>com.code-troopers<span class="nt">&lt;/groupId&gt;</span>
-<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>wicket-route-mount<span class="nt">&lt;/artifactId&gt;</span>
-<span class="w">    </span><span class="nt">&lt;version&gt;</span>0.1<span class="nt">&lt;/version&gt;</span>
+            <pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>com.code-troopers<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>wicket-route-mount<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>0.1<span class="nt">&lt;/version&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span></code></pre>
           </figure>
           <em>
@@ -882,7 +743,7 @@ With this little trick, your calls to localization will use the locale extracted
     <div class="footer-wrapper">
       <footer role="contentinfo">
         <span
-          >&copy; 2025 . Powered by
+          >&copy; 2026 . Powered by
           <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using a theme
           based on
           <a
@@ -895,11 +756,11 @@ With this little trick, your calls to localization will use the locale extracted
     </div>
     <!-- /.footer-wrapper -->
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
       window.jQuery ||
         document.write(
-          '<script src="http://www.bloggure.info/assets/js/vendor/jquery-1.9.1.min.js"><\/script>'
+          '<script src="http://www.bloggure.info/assets/js/vendor/jquery-3.7.1.min.js"><\/script>'
         );
     </script>
     <script src="http://www.bloggure.info/assets/js/scripts.min.js"></script>

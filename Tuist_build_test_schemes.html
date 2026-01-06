@@ -59,7 +59,7 @@
     <meta http-equiv="cleartype" content="on" />
 
     <!-- Load Modernizr -->
-    <script src="http://www.bloggure.info/assets/js/vendor/modernizr-2.6.2.custom.min.js"></script>
+    <script src="http://www.bloggure.info/assets/js/vendor/modernizr-3.12.0.min.js"></script>
 
     <!-- Icons -->
     <!-- 16x16 -->
@@ -201,8 +201,8 @@
           </p>
 
           <figure class="highlight">
-            <pre><code class="language-bash" data-lang="bash"><span></span><span class="w"> </span>tuist<span class="w"> </span>build<span class="w"> </span><span class="s1">&#39;*Tests&#39;</span>
-<span class="w"> </span></code></pre>
+            <pre><code class="language-bash" data-lang="bash"> tuist build <span class="s1">'*Tests'</span>
+ </code></pre>
           </figure>
 
           <h4 id="scripting-to-the-rescue">Scripting to the rescue</h4>
@@ -215,12 +215,12 @@
           </p>
 
           <figure class="highlight">
-            <pre><code class="language-bash" data-lang="bash"><span></span><span class="nb">set</span><span class="w"> </span>-e
-<span class="nv">SCHEMES</span><span class="o">=</span><span class="k">$(</span>xcodebuild<span class="w"> </span>-workspace<span class="w"> </span>MyProject.xcworkspace<span class="w"> </span>-list<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>Tests<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $1}&#39;</span><span class="k">)</span>
+            <pre><code class="language-bash" data-lang="bash"><span class="nb">set</span> <span class="nt">-e</span>
+<span class="nv">SCHEMES</span><span class="o">=</span><span class="si">$(</span>xcodebuild <span class="nt">-workspace</span> MyProject.xcworkspace <span class="nt">-list</span> | <span class="nb">grep </span>Tests | <span class="nb">awk</span> <span class="s1">'{print $1}'</span><span class="si">)</span>
 
-<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$SCHEMES</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="nv">IFS</span><span class="o">=</span><span class="w"> </span><span class="nb">read</span><span class="w"> </span>-r<span class="w"> </span>s<span class="p">;</span><span class="w"> </span><span class="k">do</span>
-<span class="w">   </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Building </span><span class="nv">$s</span><span class="s2">&quot;</span>
-<span class="w">   </span>tuist<span class="w"> </span>build<span class="w"> </span><span class="nv">$s</span>
+<span class="nb">echo</span> <span class="s2">"</span><span class="nv">$SCHEMES</span><span class="s2">"</span> | <span class="k">while </span><span class="nv">IFS</span><span class="o">=</span> <span class="nb">read</span> <span class="nt">-r</span> s<span class="p">;</span> <span class="k">do
+   </span><span class="nb">echo</span> <span class="s2">"Building </span><span class="nv">$s</span><span class="s2">"</span>
+   tuist build <span class="nv">$s</span>
 <span class="k">done</span></code></pre>
           </figure>
 
@@ -352,7 +352,7 @@
     <div class="footer-wrapper">
       <footer role="contentinfo">
         <span
-          >&copy; 2025 . Powered by
+          >&copy; 2026 . Powered by
           <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using a theme
           based on
           <a
@@ -365,11 +365,11 @@
     </div>
     <!-- /.footer-wrapper -->
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
       window.jQuery ||
         document.write(
-          '<script src="http://www.bloggure.info/assets/js/vendor/jquery-1.9.1.min.js"><\/script>'
+          '<script src="http://www.bloggure.info/assets/js/vendor/jquery-3.7.1.min.js"><\/script>'
         );
     </script>
     <script src="http://www.bloggure.info/assets/js/scripts.min.js"></script>

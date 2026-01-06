@@ -59,7 +59,7 @@
     <meta http-equiv="cleartype" content="on" />
 
     <!-- Load Modernizr -->
-    <script src="http://www.bloggure.info/assets/js/vendor/modernizr-2.6.2.custom.min.js"></script>
+    <script src="http://www.bloggure.info/assets/js/vendor/modernizr-3.12.0.min.js"></script>
 
     <!-- Icons -->
     <!-- 16x16 -->
@@ -191,18 +191,18 @@
             variable to populate hibernate properties.
           </p>
           <figure class="highlight">
-            <pre><code class="language-java" data-lang="java"><span></span><span class="w">  </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
-<span class="w">     </span><span class="n">URI</span><span class="w"> </span><span class="n">dbUri</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">URI</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">getenv</span><span class="p">(</span><span class="s">&quot;DATABASE_URL&quot;</span><span class="p">));</span>
-<span class="w">     </span><span class="n">String</span><span class="w"> </span><span class="n">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dbUri</span><span class="p">.</span><span class="na">getUserInfo</span><span class="p">().</span><span class="na">split</span><span class="p">(</span><span class="s">&quot;:&quot;</span><span class="p">)</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">;</span>
-<span class="w">     </span><span class="n">String</span><span class="w"> </span><span class="n">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dbUri</span><span class="p">.</span><span class="na">getUserInfo</span><span class="p">().</span><span class="na">split</span><span class="p">(</span><span class="s">&quot;:&quot;</span><span class="p">)</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="p">;</span>
-<span class="w">     </span><span class="n">String</span><span class="w"> </span><span class="n">dbUrl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;jdbc:postgresql://&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dbUri</span><span class="p">.</span><span class="na">getHost</span><span class="p">()</span><span class="w"> </span>
-<span class="w">                    </span><span class="o">+</span><span class="w"> </span><span class="sc">&#39;:&#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dbUri</span><span class="p">.</span><span class="na">getPort</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dbUri</span><span class="p">.</span><span class="na">getPath</span><span class="p">();</span>
-<span class="w">     </span><span class="n">System</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="s">&quot;hibernate.connection.url&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">dbUrl</span><span class="p">);</span>
-<span class="w">     </span><span class="n">System</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="s">&quot;hibernate.connection.user&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">username</span><span class="p">);</span>
-<span class="w">     </span><span class="n">System</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="s">&quot;hibernate.connection.password&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">password</span><span class="p">);</span>
-<span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">     </span><span class="n">LOGGER</span><span class="p">.</span><span class="na">error</span><span class="p">(</span><span class="s">&quot;Unable to extract database url&quot;</span><span class="p">);</span>
-<span class="p">}</span></code></pre>
+            <pre><code class="language-java" data-lang="java">  <span class="k">try</span> <span class="o">{</span>
+     <span class="no">URI</span> <span class="n">dbUri</span> <span class="o">=</span> <span class="k">new</span> <span class="no">URI</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">getenv</span><span class="o">(</span><span class="s">"DATABASE_URL"</span><span class="o">));</span>
+     <span class="nc">String</span> <span class="n">username</span> <span class="o">=</span> <span class="n">dbUri</span><span class="o">.</span><span class="na">getUserInfo</span><span class="o">().</span><span class="na">split</span><span class="o">(</span><span class="s">":"</span><span class="o">)[</span><span class="mi">0</span><span class="o">];</span>
+     <span class="nc">String</span> <span class="n">password</span> <span class="o">=</span> <span class="n">dbUri</span><span class="o">.</span><span class="na">getUserInfo</span><span class="o">().</span><span class="na">split</span><span class="o">(</span><span class="s">":"</span><span class="o">)[</span><span class="mi">1</span><span class="o">];</span>
+     <span class="nc">String</span> <span class="n">dbUrl</span> <span class="o">=</span> <span class="s">"jdbc:postgresql://"</span> <span class="o">+</span> <span class="n">dbUri</span><span class="o">.</span><span class="na">getHost</span><span class="o">()</span> 
+                    <span class="o">+</span> <span class="sc">':'</span> <span class="o">+</span> <span class="n">dbUri</span><span class="o">.</span><span class="na">getPort</span><span class="o">()</span> <span class="o">+</span> <span class="n">dbUri</span><span class="o">.</span><span class="na">getPath</span><span class="o">();</span>
+     <span class="nc">System</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="s">"hibernate.connection.url"</span><span class="o">,</span> <span class="n">dbUrl</span><span class="o">);</span>
+     <span class="nc">System</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="s">"hibernate.connection.user"</span><span class="o">,</span> <span class="n">username</span><span class="o">);</span>
+     <span class="nc">System</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="s">"hibernate.connection.password"</span><span class="o">,</span> <span class="n">password</span><span class="o">);</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+     <span class="no">LOGGER</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="s">"Unable to extract database url"</span><span class="o">);</span>
+<span class="o">}</span></code></pre>
           </figure>
           <h1>Session replication</h1>
           <p>
@@ -348,7 +348,7 @@
     <div class="footer-wrapper">
       <footer role="contentinfo">
         <span
-          >&copy; 2025 . Powered by
+          >&copy; 2026 . Powered by
           <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using a theme
           based on
           <a
@@ -361,11 +361,11 @@
     </div>
     <!-- /.footer-wrapper -->
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
       window.jQuery ||
         document.write(
-          '<script src="http://www.bloggure.info/assets/js/vendor/jquery-1.9.1.min.js"><\/script>'
+          '<script src="http://www.bloggure.info/assets/js/vendor/jquery-3.7.1.min.js"><\/script>'
         );
     </script>
     <script src="http://www.bloggure.info/assets/js/scripts.min.js"></script>

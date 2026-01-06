@@ -59,7 +59,7 @@
     <meta http-equiv="cleartype" content="on" />
 
     <!-- Load Modernizr -->
-    <script src="http://www.bloggure.info/assets/js/vendor/modernizr-2.6.2.custom.min.js"></script>
+    <script src="http://www.bloggure.info/assets/js/vendor/modernizr-3.12.0.min.js"></script>
 
     <!-- Icons -->
     <!-- 16x16 -->
@@ -163,15 +163,15 @@
           </p>
 
           <figure class="highlight">
-            <pre><code class="language-sql" data-lang="sql"><span></span><span class="k">create</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n">gitlab</span><span class="p">;</span><span class="w"> </span>
-<span class="k">grant</span><span class="w"> </span><span class="k">all</span><span class="w"> </span><span class="k">privileges</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">gitlab</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="ss">&quot;gitlab&quot;</span><span class="w"> </span><span class="n">identified</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="ss">&quot;gitlab&quot;</span><span class="p">;</span><span class="w"> </span>
-<span class="n">flush</span><span class="w"> </span><span class="k">privileges</span><span class="p">;</span></code></pre>
+            <pre><code class="language-sql" data-lang="sql"><span class="k">create</span> <span class="k">database</span> <span class="n">gitlab</span><span class="p">;</span> 
+<span class="k">grant</span> <span class="k">all</span> <span class="k">privileges</span> <span class="k">on</span> <span class="n">gitlab</span><span class="p">.</span><span class="o">*</span> <span class="k">to</span> <span class="nv">"gitlab"</span> <span class="n">identified</span> <span class="k">by</span> <span class="nv">"gitlab"</span><span class="p">;</span> 
+<span class="n">flush</span> <span class="k">privileges</span><span class="p">;</span></code></pre>
           </figure>
           Then prepare to dump the data out of GitlabHQ, stop your webserver,
           then, from your GitlabHQ folder :
 
           <figure class="highlight">
-            <pre><code class="language-bash" data-lang="bash"><span></span>bundle<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>rake<span class="w"> </span>db:data:dump<span class="w"> </span><span class="nv">RAILS_ENV</span><span class="o">=</span>production</code></pre>
+            <pre><code class="language-bash" data-lang="bash">bundle <span class="nb">exec </span>rake db:data:dump <span class="nv">RAILS_ENV</span><span class="o">=</span>production</code></pre>
           </figure>
           this will create a db/data.yml file. All you have to do now is
           reconfigure GitlabHQ to connect to mySQL and reimport the data. The
@@ -179,52 +179,52 @@
           backup your existing file and rename the database.yml.example :
 
           <figure class="highlight">
-            <pre><code class="language-bash" data-lang="bash"><span></span>mv<span class="w"> </span>config/database.yml<span class="w"> </span>config/database.yml.old
-cp<span class="w"> </span>config/database.yml.example<span class="w"> </span>config/database.yml</code></pre>
+            <pre><code class="language-bash" data-lang="bash"><span class="nb">mv </span>config/database.yml config/database.yml.old
+<span class="nb">cp </span>config/database.yml.example config/database.yml</code></pre>
           </figure>
           Then edit the file to reflect your new configuration, only the
           production section is relevant in our case :
 
           <figure class="highlight">
-            <pre><code class="language-yaml" data-lang="yaml"><span></span><span class="nt">development</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">adapter</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mysql2</span>
-<span class="w">  </span><span class="nt">encoding</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">utf8</span>
-<span class="w">  </span><span class="nt">reconnect</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="w">  </span><span class="nt">database</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gitlabhq_development</span>
-<span class="w">  </span><span class="nt">pool</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
-<span class="w">  </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">root</span>
-<span class="w">  </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;secure</span><span class="nv"> </span><span class="s">password&quot;</span>
-<span class="w">  </span><span class="c1"># socket: /tmp/mysql.sock</span>
+            <pre><code class="language-yaml" data-lang="yaml"><span class="na">development</span><span class="pi">:</span>
+  <span class="na">adapter</span><span class="pi">:</span> <span class="s">mysql2</span>
+  <span class="na">encoding</span><span class="pi">:</span> <span class="s">utf8</span>
+  <span class="na">reconnect</span><span class="pi">:</span> <span class="no">false</span>
+  <span class="na">database</span><span class="pi">:</span> <span class="s">gitlabhq_development</span>
+  <span class="na">pool</span><span class="pi">:</span> <span class="m">5</span>
+  <span class="na">username</span><span class="pi">:</span> <span class="s">root</span>
+  <span class="na">password</span><span class="pi">:</span> <span class="s2">"</span><span class="s">secure</span><span class="nv"> </span><span class="s">password"</span>
+  <span class="c1"># socket: /tmp/mysql.sock</span>
 
-<span class="c1"># Warning: The database defined as &quot;test&quot; will be erased and</span>
-<span class="c1"># re-generated from your development database when you run &quot;rake&quot;.</span>
+<span class="c1"># Warning: The database defined as "test" will be erased and</span>
+<span class="c1"># re-generated from your development database when you run "rake".</span>
 <span class="c1"># Do not set this db to the same as development or production.</span>
-<span class="nt">test</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">adapter</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mysql2</span>
-<span class="w">  </span><span class="nt">encoding</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">utf8</span>
-<span class="w">  </span><span class="nt">reconnect</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="w">  </span><span class="nt">database</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gitlabhq_test</span>
-<span class="w">  </span><span class="nt">pool</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
-<span class="w">  </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">root</span>
-<span class="w">  </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;secure</span><span class="nv"> </span><span class="s">password&quot;</span>
-<span class="w">  </span><span class="c1"># socket: /tmp/mysql.sock</span>
+<span class="na">test</span><span class="pi">:</span>
+  <span class="na">adapter</span><span class="pi">:</span> <span class="s">mysql2</span>
+  <span class="na">encoding</span><span class="pi">:</span> <span class="s">utf8</span>
+  <span class="na">reconnect</span><span class="pi">:</span> <span class="no">false</span>
+  <span class="na">database</span><span class="pi">:</span> <span class="s">gitlabhq_test</span>
+  <span class="na">pool</span><span class="pi">:</span> <span class="m">5</span>
+  <span class="na">username</span><span class="pi">:</span> <span class="s">root</span>
+  <span class="na">password</span><span class="pi">:</span> <span class="s2">"</span><span class="s">secure</span><span class="nv"> </span><span class="s">password"</span>
+  <span class="c1"># socket: /tmp/mysql.sock</span>
 
-<span class="nt">production</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">adapter</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mysql2</span>
-<span class="w">  </span><span class="nt">encoding</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">utf8</span>
-<span class="w">  </span><span class="nt">reconnect</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"> </span><span class="c1"># allows to autoreconnect if the mysql service restarts</span>
-<span class="w">  </span><span class="nt">database</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gitlab</span><span class="w"> </span><span class="c1"># to replace with your database name</span>
-<span class="w">  </span><span class="nt">pool</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
-<span class="w">  </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gitlab</span><span class="w"> </span><span class="c1"># to replace with your credentials</span>
-<span class="w">  </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;gitlab&quot;</span><span class="w"> </span><span class="c1"># to replace with your credentials</span>
-<span class="w">  </span><span class="nt">socket</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/var/run/mysqld/mysqld.sock</span><span class="w"> </span><span class="c1"># mysql socket location on debian</span></code></pre>
+<span class="na">production</span><span class="pi">:</span>
+  <span class="na">adapter</span><span class="pi">:</span> <span class="s">mysql2</span>
+  <span class="na">encoding</span><span class="pi">:</span> <span class="s">utf8</span>
+  <span class="na">reconnect</span><span class="pi">:</span> <span class="no">true</span> <span class="c1"># allows to autoreconnect if the mysql service restarts</span>
+  <span class="na">database</span><span class="pi">:</span> <span class="s">gitlab</span> <span class="c1"># to replace with your database name</span>
+  <span class="na">pool</span><span class="pi">:</span> <span class="m">5</span>
+  <span class="na">username</span><span class="pi">:</span> <span class="s">gitlab</span> <span class="c1"># to replace with your credentials</span>
+  <span class="na">password</span><span class="pi">:</span> <span class="s2">"</span><span class="s">gitlab"</span> <span class="c1"># to replace with your credentials</span>
+  <span class="na">socket</span><span class="pi">:</span> <span class="s">/var/run/mysqld/mysqld.sock</span> <span class="c1"># mysql socket location on debian</span></code></pre>
           </figure>
           Once this is done, you have to create the schema and restore your data
           :
 
           <figure class="highlight">
-            <pre><code class="language-bash" data-lang="bash"><span></span>bundle<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>rake<span class="w"> </span>db:setup<span class="w"> </span><span class="nv">RAILS_ENV</span><span class="o">=</span>production
-bundle<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>rake<span class="w"> </span>db:data:load<span class="w"> </span><span class="nv">RAILS_ENV</span><span class="o">=</span>production</code></pre>
+            <pre><code class="language-bash" data-lang="bash">bundle <span class="nb">exec </span>rake db:setup <span class="nv">RAILS_ENV</span><span class="o">=</span>production
+bundle <span class="nb">exec </span>rake db:data:load <span class="nv">RAILS_ENV</span><span class="o">=</span>production</code></pre>
           </figure>
 
           Job's done, you just need to restart the GitlabHQ server now (nginx,
@@ -378,7 +378,7 @@ C'est tout, il ne reste plus qu'à redémarrer le serveur de GitlabHQ. Si toutef
     <div class="footer-wrapper">
       <footer role="contentinfo">
         <span
-          >&copy; 2025 . Powered by
+          >&copy; 2026 . Powered by
           <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using a theme
           based on
           <a
@@ -391,11 +391,11 @@ C'est tout, il ne reste plus qu'à redémarrer le serveur de GitlabHQ. Si toutef
     </div>
     <!-- /.footer-wrapper -->
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
       window.jQuery ||
         document.write(
-          '<script src="http://www.bloggure.info/assets/js/vendor/jquery-1.9.1.min.js"><\/script>'
+          '<script src="http://www.bloggure.info/assets/js/vendor/jquery-3.7.1.min.js"><\/script>'
         );
     </script>
     <script src="http://www.bloggure.info/assets/js/scripts.min.js"></script>

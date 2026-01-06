@@ -52,7 +52,7 @@
     <meta http-equiv="cleartype" content="on" />
 
     <!-- Load Modernizr -->
-    <script src="http://www.bloggure.info/assets/js/vendor/modernizr-2.6.2.custom.min.js"></script>
+    <script src="http://www.bloggure.info/assets/js/vendor/modernizr-3.12.0.min.js"></script>
 
     <!-- Icons -->
     <!-- 16x16 -->
@@ -293,15 +293,15 @@
           </p>
 
           <figure class="highlight">
-            <pre><code class="language-bash" data-lang="bash"><span></span>$<span class="w"> </span>mount<span class="w"> </span>/dev/sda1<span class="w"> </span>/mnt
-$<span class="w"> </span>mount<span class="w"> </span>/dev/sda2<span class="w"> </span>/mnt/home
-<span class="w">    </span>
-$<span class="w"> </span>mount<span class="w"> </span>-o<span class="w"> </span><span class="nb">bind</span><span class="w"> </span>/proc<span class="w"> </span>/mnt/proc
-$<span class="w"> </span>mount<span class="w"> </span>-o<span class="w"> </span><span class="nb">bind</span><span class="w"> </span>/dev<span class="w"> </span>/mnt/dev
-$<span class="w"> </span>mount<span class="w"> </span>-o<span class="w"> </span><span class="nb">bind</span><span class="w"> </span>/dev/pts<span class="w"> </span>/mnt/dev/pts
-$<span class="w"> </span>mount<span class="w"> </span>-o<span class="w"> </span><span class="nb">bind</span><span class="w"> </span>/sys<span class="w"> </span>/mnt/sys<span class="w"> </span>
-$<span class="w"> </span>chroot<span class="w"> </span>/mnt/
-<span class="w">    </span></code></pre>
+            <pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>mount /dev/sda1 /mnt
+<span class="nv">$ </span>mount /dev/sda2 /mnt/home
+    
+<span class="nv">$ </span>mount <span class="nt">-o</span> <span class="nb">bind</span> /proc /mnt/proc
+<span class="nv">$ </span>mount <span class="nt">-o</span> <span class="nb">bind</span> /dev /mnt/dev
+<span class="nv">$ </span>mount <span class="nt">-o</span> <span class="nb">bind</span> /dev/pts /mnt/dev/pts
+<span class="nv">$ </span>mount <span class="nt">-o</span> <span class="nb">bind</span> /sys /mnt/sys 
+<span class="nv">$ </span><span class="nb">chroot</span> /mnt/
+    </code></pre>
           </figure>
 
           <p>
@@ -310,8 +310,8 @@ $<span class="w"> </span>chroot<span class="w"> </span>/mnt/
           </p>
 
           <figure class="highlight">
-            <pre><code class="language-bash" data-lang="bash"><span></span>$<span class="w"> </span>dpkg<span class="w"> </span>--configure<span class="w"> </span>--a
-<span class="w">    </span></code></pre>
+            <pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>dpkg <span class="nt">--configure</span> <span class="nt">--a</span>
+    </code></pre>
           </figure>
 
           <p>
@@ -767,7 +767,7 @@ $ brew cask install dropbox #for example
     <div class="footer-wrapper">
       <footer role="contentinfo">
         <span
-          >&copy; 2025 . Powered by
+          >&copy; 2026 . Powered by
           <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using a theme
           based on
           <a
@@ -780,11 +780,11 @@ $ brew cask install dropbox #for example
     </div>
     <!-- /.footer-wrapper -->
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
       window.jQuery ||
         document.write(
-          '<script src="http://www.bloggure.info/assets/js/vendor/jquery-1.9.1.min.js"><\/script>'
+          '<script src="http://www.bloggure.info/assets/js/vendor/jquery-3.7.1.min.js"><\/script>'
         );
     </script>
     <script src="http://www.bloggure.info/assets/js/scripts.min.js"></script>

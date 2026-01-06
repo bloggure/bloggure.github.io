@@ -62,7 +62,7 @@
     <meta http-equiv="cleartype" content="on" />
 
     <!-- Load Modernizr -->
-    <script src="http://www.bloggure.info/assets/js/vendor/modernizr-2.6.2.custom.min.js"></script>
+    <script src="http://www.bloggure.info/assets/js/vendor/modernizr-3.12.0.min.js"></script>
 
     <!-- Icons -->
     <!-- 16x16 -->
@@ -162,7 +162,7 @@
             I found a way to disable this by issuing a simple Terminal command :
           </p>
           <figure class="highlight">
-            <pre><code class="language-bash" data-lang="bash"><span></span>defaults<span class="w"> </span>write<span class="w"> </span>-g<span class="w"> </span>ApplePressAndHoldEnabled<span class="w"> </span>-bool<span class="w"> </span><span class="nb">false</span></code></pre>
+            <pre><code class="language-bash" data-lang="bash">defaults write <span class="nt">-g</span> ApplePressAndHoldEnabled <span class="nt">-bool</span> <span class="nb">false</span></code></pre>
           </figure>
           <p>
             Replace false with true in this command if you want to bring it
@@ -173,7 +173,7 @@
             tells to lookup in the <em>globaldomain</em>)
           </p>
           <figure class="highlight">
-            <pre><code class="language-bash" data-lang="bash"><span></span>defaults<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="o">[</span>-g<span class="o">]</span></code></pre>
+            <pre><code class="language-bash" data-lang="bash">defaults <span class="nb">read</span> <span class="o">[</span><span class="nt">-g</span><span class="o">]</span></code></pre>
           </figure>
           <!--:--><!--:fr<p>Une chose que je trouve ennuyeuse sous Lion est la popup qui apparaît lorsqu'on effectue une pression longue sur une touche du clavier (similaire à la version présentée sur iOS présentant les caractères spéciaux).<br/>
 J'ai trouvé une astuce qui permet de désactiver simplement cette fonctionnalité avec une simple commande dans le terminal : </p>
@@ -297,7 +297,7 @@ defaults read [-g]
     <div class="footer-wrapper">
       <footer role="contentinfo">
         <span
-          >&copy; 2025 . Powered by
+          >&copy; 2026 . Powered by
           <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using a theme
           based on
           <a
@@ -310,11 +310,11 @@ defaults read [-g]
     </div>
     <!-- /.footer-wrapper -->
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
       window.jQuery ||
         document.write(
-          '<script src="http://www.bloggure.info/assets/js/vendor/jquery-1.9.1.min.js"><\/script>'
+          '<script src="http://www.bloggure.info/assets/js/vendor/jquery-3.7.1.min.js"><\/script>'
         );
     </script>
     <script src="http://www.bloggure.info/assets/js/scripts.min.js"></script>

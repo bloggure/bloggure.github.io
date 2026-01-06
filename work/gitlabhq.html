@@ -56,7 +56,7 @@
     <meta http-equiv="cleartype" content="on" />
 
     <!-- Load Modernizr -->
-    <script src="http://www.bloggure.info/assets/js/vendor/modernizr-2.6.2.custom.min.js"></script>
+    <script src="http://www.bloggure.info/assets/js/vendor/modernizr-3.12.0.min.js"></script>
 
     <!-- Icons -->
     <!-- 16x16 -->
@@ -272,11 +272,11 @@ Nous utilisons toujours Trac pour gérer nos tickets de bugs et pour contrôler 
           GitLabHQ's team wants to release every month, to upgrade, simply
           follow these steps :
           <figure class="highlight">
-            <pre><code class="language-bash" data-lang="bash"><span></span><span class="c1">#stop your server</span>
-git<span class="w"> </span>pull<span class="w"> </span>origin<span class="w"> </span>stable
-bundle<span class="w"> </span>install<span class="w"> </span>--without<span class="w"> </span>development<span class="w"> </span><span class="nb">test</span>
-bundle<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>rake<span class="w"> </span>db:migrate<span class="w"> </span><span class="nv">RAILS_ENV</span><span class="o">=</span>production
-<span class="c1">#start your server</span></code></pre>
+            <pre><code class="language-bash" data-lang="bash"><span class="c">#stop your server</span>
+git pull origin stable
+bundle <span class="nb">install</span> <span class="nt">--without</span> development <span class="nb">test
+</span>bundle <span class="nb">exec </span>rake db:migrate <span class="nv">RAILS_ENV</span><span class="o">=</span>production
+<span class="c">#start your server</span></code></pre>
           </figure>
           <p>
             This should make the move to the new version, please check version
@@ -504,7 +504,7 @@ Au final, nous obtenons quelque chose comme ceci  :
     <div class="footer-wrapper">
       <footer role="contentinfo">
         <span
-          >&copy; 2025 . Powered by
+          >&copy; 2026 . Powered by
           <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using a theme
           based on
           <a
@@ -517,11 +517,11 @@ Au final, nous obtenons quelque chose comme ceci  :
     </div>
     <!-- /.footer-wrapper -->
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
       window.jQuery ||
         document.write(
-          '<script src="http://www.bloggure.info/assets/js/vendor/jquery-1.9.1.min.js"><\/script>'
+          '<script src="http://www.bloggure.info/assets/js/vendor/jquery-3.7.1.min.js"><\/script>'
         );
     </script>
     <script src="http://www.bloggure.info/assets/js/scripts.min.js"></script>

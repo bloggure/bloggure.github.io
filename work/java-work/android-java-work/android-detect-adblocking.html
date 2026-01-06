@@ -59,7 +59,7 @@
     <meta http-equiv="cleartype" content="on" />
 
     <!-- Load Modernizr -->
-    <script src="http://www.bloggure.info/assets/js/vendor/modernizr-2.6.2.custom.min.js"></script>
+    <script src="http://www.bloggure.info/assets/js/vendor/modernizr-3.12.0.min.js"></script>
 
     <!-- Icons -->
     <!-- 16x16 -->
@@ -189,8 +189,8 @@
             querying DNS servers and use the specified address.
           </p>
           <figure class="highlight">
-            <pre><code class="language-bash" data-lang="bash"><span></span><span class="m">127</span>.0.0.1<span class="w"> </span>localhost
-<span class="m">127</span>.0.0.1<span class="w"> </span>my.ad.server.tld</code></pre>
+            <pre><code class="language-bash" data-lang="bash">127.0.0.1 localhost
+127.0.0.1 my.ad.server.tld</code></pre>
           </figure>
           <p>
             You can find an example above, <code>my.ad.server.tld</code> is
@@ -206,31 +206,31 @@
             is in the hosts file.
           </p>
           <figure class="highlight">
-            <pre><code class="language-java" data-lang="java"><span></span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">isAdBlockerPresent</span><span class="p">(</span><span class="kt">boolean</span><span class="w"> </span><span class="n">showAd</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">showAd</span><span class="p">){</span>
-<span class="w">           </span><span class="n">BufferedReader</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
-<span class="w">           </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
-<span class="w">               </span><span class="n">in</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BufferedReader</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">InputStreamReader</span><span class="p">(</span>
-<span class="w">                                                            </span><span class="k">new</span><span class="w"> </span><span class="n">FileInputStream</span><span class="p">(</span><span class="s">&quot;/etc/hosts&quot;</span><span class="p">)));</span>
-<span class="w">               </span><span class="n">String</span><span class="w"> </span><span class="n">line</span><span class="p">;</span>
+            <pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isAdBlockerPresent</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">showAd</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">showAd</span><span class="o">){</span>
+           <span class="nc">BufferedReader</span> <span class="n">in</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+           <span class="k">try</span> <span class="o">{</span>
+               <span class="n">in</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BufferedReader</span><span class="o">(</span><span class="k">new</span> <span class="nc">InputStreamReader</span><span class="o">(</span>
+                                                            <span class="k">new</span> <span class="nf">FileInputStream</span><span class="o">(</span><span class="s">"/etc/hosts"</span><span class="o">)));</span>
+               <span class="nc">String</span> <span class="n">line</span><span class="o">;</span>
 
-<span class="w">               </span><span class="k">while</span><span class="w"> </span><span class="p">((</span><span class="n">line</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">in</span><span class="p">.</span><span class="na">readLine</span><span class="p">())</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">line</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="s">&quot;admob&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                      </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
-<span class="w">                  </span><span class="p">}</span>
-<span class="w">                </span><span class="p">}</span>
-<span class="w">           </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">           </span><span class="p">}</span><span class="w"> </span><span class="k">finally</span><span class="w"> </span><span class="p">{</span>
-<span class="w">               </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">in</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                   </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                       </span><span class="n">in</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
-<span class="w">                   </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                   </span><span class="p">}</span>
-<span class="w">               </span><span class="p">}</span>
-<span class="w">           </span><span class="p">}</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span></code></pre>
+               <span class="k">while</span> <span class="o">((</span><span class="n">line</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readLine</span><span class="o">())</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                  <span class="k">if</span> <span class="o">(</span><span class="n">line</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="s">"admob"</span><span class="o">))</span> <span class="o">{</span>
+                      <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+                  <span class="o">}</span>
+                <span class="o">}</span>
+           <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+           <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+               <span class="k">if</span> <span class="o">(</span><span class="n">in</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                   <span class="k">try</span> <span class="o">{</span>
+                       <span class="n">in</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+                   <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                   <span class="o">}</span>
+               <span class="o">}</span>
+           <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="o">}</span></code></pre>
           </figure>
           <p>
             The code is pretty straightforward, the method takes a boolean
@@ -251,38 +251,38 @@
           </p>
           .
           <figure class="highlight">
-            <pre><code class="language-java" data-lang="java"><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">com.google.ads.AdListener</span><span class="p">;</span>
-<span class="kd">public</span><span class="w"> </span><span class="kd">abstract</span><span class="w"> </span><span class="kd">class</span> <span class="nc">AdBlockerListener</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">AdListener</span><span class="p">{</span>
+            <pre><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">com.google.ads.AdListener</span><span class="o">;</span>
+<span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">AdBlockerListener</span> <span class="kd">implements</span> <span class="nc">AdListener</span><span class="o">{</span>
 
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">abstract</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">onAdBlocked</span><span class="p">();</span>
+    <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">onAdBlocked</span><span class="o">();</span>
 
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">shouldCheckAdBlock</span><span class="p">(){</span>
-<span class="w">          </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">shouldCheckAdBlock</span><span class="o">(){</span>
+          <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+    <span class="o">}</span>
 
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">onReceiveAd</span><span class="p">(</span><span class="kd">final</span><span class="w"> </span><span class="n">Ad</span><span class="w"> </span><span class="n">ad</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="p">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onReceiveAd</span><span class="o">(</span><span class="kd">final</span> <span class="nc">Ad</span> <span class="n">ad</span><span class="o">)</span> <span class="o">{</span>
+    <span class="o">}</span>
 
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">onFailedToReceiveAd</span><span class="p">(</span><span class="kd">final</span><span class="w"> </span><span class="n">Ad</span><span class="w"> </span><span class="n">ad</span><span class="p">,</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">AdRequest</span><span class="p">.</span><span class="na">ErrorCode</span><span class="w"> </span><span class="n">errorCode</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">Log</span><span class="p">.</span><span class="na">e</span><span class="p">(</span><span class="s">&quot;AdBlockerListener&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Failed to receive ad, checking if network blocker is installed...&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isAdBlockerPresent</span><span class="p">(</span><span class="n">shouldCheckAdBlock</span><span class="p">()))</span><span class="w"> </span><span class="p">{</span>
-<span class="w">               </span><span class="n">Log</span><span class="p">.</span><span class="na">e</span><span class="p">(</span><span class="s">&quot;AdBlockerListener&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Ad blocking seems enabled, tracking attempt&quot;</span><span class="p">);</span>
-<span class="w">               </span><span class="n">onAdBlocked</span><span class="p">();</span>
-<span class="w">            </span><span class="p">}</span>
-<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="n">Log</span><span class="p">.</span><span class="na">e</span><span class="p">(</span><span class="s">&quot;AdBlockerListener&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;No ad blocking detected, silently fails&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onFailedToReceiveAd</span><span class="o">(</span><span class="kd">final</span> <span class="nc">Ad</span> <span class="n">ad</span><span class="o">,</span> <span class="kd">final</span> <span class="nc">AdRequest</span><span class="o">.</span><span class="na">ErrorCode</span> <span class="n">errorCode</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Log</span><span class="o">.</span><span class="na">e</span><span class="o">(</span><span class="s">"AdBlockerListener"</span><span class="o">,</span> <span class="s">"Failed to receive ad, checking if network blocker is installed..."</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">isAdBlockerPresent</span><span class="o">(</span><span class="n">shouldCheckAdBlock</span><span class="o">()))</span> <span class="o">{</span>
+               <span class="nc">Log</span><span class="o">.</span><span class="na">e</span><span class="o">(</span><span class="s">"AdBlockerListener"</span><span class="o">,</span> <span class="s">"Ad blocking seems enabled, tracking attempt"</span><span class="o">);</span>
+               <span class="n">onAdBlocked</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="nc">Log</span><span class="o">.</span><span class="na">e</span><span class="o">(</span><span class="s">"AdBlockerListener"</span><span class="o">,</span> <span class="s">"No ad blocking detected, silently fails"</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
 
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">onPresentScreen</span><span class="p">(</span><span class="kd">final</span><span class="w"> </span><span class="n">Ad</span><span class="w"> </span><span class="n">ad</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="p">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onPresentScreen</span><span class="o">(</span><span class="kd">final</span> <span class="nc">Ad</span> <span class="n">ad</span><span class="o">)</span> <span class="o">{</span>
+    <span class="o">}</span>
 
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">onDismissScreen</span><span class="p">(</span><span class="kd">final</span><span class="w"> </span><span class="n">Ad</span><span class="w"> </span><span class="n">ad</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="p">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onDismissScreen</span><span class="o">(</span><span class="kd">final</span> <span class="nc">Ad</span> <span class="n">ad</span><span class="o">)</span> <span class="o">{</span>
+    <span class="o">}</span>
 
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">onLeaveApplication</span><span class="p">(</span><span class="kd">final</span><span class="w"> </span><span class="n">Ad</span><span class="w"> </span><span class="n">ad</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span></code></pre>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onLeaveApplication</span><span class="o">(</span><span class="kd">final</span> <span class="nc">Ad</span> <span class="n">ad</span><span class="o">)</span> <span class="o">{</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre>
           </figure>
           <p>
             In your activity displaying ads, you just have to register the
@@ -292,19 +292,19 @@
             every n-ad blocking).
           </p>
           <figure class="highlight">
-            <pre><code class="language-java" data-lang="java"><span></span><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">initView</span><span class="p">(){</span>
-<span class="w">        </span><span class="n">adView</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">AdView</span><span class="p">)</span><span class="w"> </span><span class="n">findViewById</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">adView</span><span class="p">);</span>
-<span class="w">        </span><span class="n">adView</span><span class="p">.</span><span class="na">setAdListener</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">AdBlockerListener</span><span class="p">(){</span>
-<span class="w">           </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">onAdBlocked</span><span class="p">(){</span>
-<span class="w">                 </span><span class="n">showNagScreen</span><span class="p">();</span>
-<span class="w">           </span><span class="p">}</span>
+            <pre><code class="language-java" data-lang="java">    <span class="kt">void</span> <span class="nf">initView</span><span class="o">(){</span>
+        <span class="n">adView</span> <span class="o">=</span> <span class="o">(</span><span class="nc">AdView</span><span class="o">)</span> <span class="n">findViewById</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">adView</span><span class="o">);</span>
+        <span class="n">adView</span><span class="o">.</span><span class="na">setAdListener</span><span class="o">(</span><span class="k">new</span> <span class="nc">AdBlockerListener</span><span class="o">(){</span>
+           <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onAdBlocked</span><span class="o">(){</span>
+                 <span class="n">showNagScreen</span><span class="o">();</span>
+           <span class="o">}</span>
 
-<span class="w">           </span><span class="kd">public</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">shouldCheckAdBlock</span><span class="p">(){</span>
-<span class="w">                 </span><span class="k">return</span><span class="w"> </span><span class="n">isFreeApp</span><span class="p">();</span>
-<span class="w">            </span><span class="p">}</span>
+           <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">shouldCheckAdBlock</span><span class="o">(){</span>
+                 <span class="k">return</span> <span class="nf">isFreeApp</span><span class="o">();</span>
+            <span class="o">}</span>
 
-<span class="w">        </span><span class="p">});</span>
-<span class="w">    </span><span class="p">}</span></code></pre>
+        <span class="o">});</span>
+    <span class="o">}</span></code></pre>
           </figure>
           <p>
             That's all, you now have a simple way of detecting users using your
@@ -500,7 +500,7 @@ L'exemple suivant montre comment le faire, n'hésitez pas à alerter vos utilisa
     <div class="footer-wrapper">
       <footer role="contentinfo">
         <span
-          >&copy; 2025 . Powered by
+          >&copy; 2026 . Powered by
           <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using a theme
           based on
           <a
@@ -513,11 +513,11 @@ L'exemple suivant montre comment le faire, n'hésitez pas à alerter vos utilisa
     </div>
     <!-- /.footer-wrapper -->
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
       window.jQuery ||
         document.write(
-          '<script src="http://www.bloggure.info/assets/js/vendor/jquery-1.9.1.min.js"><\/script>'
+          '<script src="http://www.bloggure.info/assets/js/vendor/jquery-3.7.1.min.js"><\/script>'
         );
     </script>
     <script src="http://www.bloggure.info/assets/js/scripts.min.js"></script>

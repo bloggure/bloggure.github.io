@@ -52,7 +52,7 @@
     <meta http-equiv="cleartype" content="on" />
 
     <!-- Load Modernizr -->
-    <script src="http://www.bloggure.info/assets/js/vendor/modernizr-2.6.2.custom.min.js"></script>
+    <script src="http://www.bloggure.info/assets/js/vendor/modernizr-3.12.0.min.js"></script>
 
     <!-- Icons -->
     <!-- 16x16 -->
@@ -102,136 +102,6 @@
     <!-- /.entry-header -->
 
     <div id="main" role="main">
-      <article
-        class="hentry"
-        itemprop="blogPost"
-        itemscope
-        itemtype="http://schema.org/BlogPosting"
-      >
-        <header>
-          <div class="entry-meta">
-            <span class="entry-date date published updated"
-              ><time
-                datetime="2011-08-09T00:00:00+02:00"
-                itemprop="datePublished"
-                ><a
-                  href="http://www.bloggure.info/.java/.maven/ejb-client-package-jrebel-glassfish"
-                  >August 09, 2011</a
-                ></time
-              ></span
-            ><span
-              class="author vcard"
-              itemprop="author"
-              itemscope
-              itemtype="http://schema.org/Person"
-              ><span itemprop="name" class="fn"
-                ><a
-                  href="http://www.bloggure.info/cgatay"
-                  title="About cgatay"
-                  itemprop="url"
-                  >cgatay</a
-                ></span
-              ></span
-            >&nbsp; &bull; &nbsp;<span class="entry-comments"
-              ><a
-                href="http://www.bloggure.info/.java/.maven/ejb-client-package-jrebel-glassfish#disqus_thread"
-                >Comment</a
-              ></span
-            >
-          </div>
-          <!-- /.entry-meta -->
-
-          <h1 class="entry-title" itemprop="name">
-            <a
-              href="http://www.bloggure.info/.java/.maven/ejb-client-package-jrebel-glassfish"
-              rel="bookmark"
-              title="ejb-client package + JRebel + Glassfish"
-              itemprop="url"
-              >ejb-client package + JRebel + Glassfish</a
-            >
-          </h1>
-        </header>
-        <div class="entry-content" itemprop="description">
-          <!--:en--><img
-            src="/images/uploads/2011/08/logo_jrebel.png"
-            alt=""
-            title="JRebel"
-            width="146"
-            height="40"
-            class="alignright size-full wp-image-340"
-          />
-          <h2>JRebel ?</h2>
-          <p>
-            I use
-            <a href="http://www.zeroturnaround.com/jrebel/" title="JRebel"
-              >JRebel</a
-            >
-            to speed up my development. It is a really impressive tool allowing
-            to develop full blended Java EE application as you would develop in
-            PHP. No redeploy, at the cost of a little slow-down in development
-            mode. The tool does what it says, and it's worth the price ! The
-            JRebel plugin for maven does the job very well by generating the
-            <code>rebel.xml</code> file that does the magic.
-          </p>
-
-          <h2>What's the deal ?</h2>
-          <p>
-            Although JRebel is an awesome tool, there is some magic within, and,
-            in special corner cases it might not work as expected. In my case I
-            have a quite typical web application split in multiple parts:
-          </p>
-          <ul>
-            <li>a web application (war)</li>
-            <li>an ejb module (jar)</li>
-            <li>other modules not involved in my problem</li>
-          </ul>
-          <p>
-            The web application includes, in its
-            <code>WEB-INF/lib</code> folder, the <em>ejb-client</em> artifact of
-            my ejb module. To make it clear, <em>ejb-client</em> artifact is
-            typically the jar containing the interfaces to be used by the client
-            module(s).
-          </p>
-
-          <p>
-            The problem I had was that JRebel magic was reloading too much
-            things : in fact, it reloaded classes even if they were not in the
-            <em>ejb-client</em>. My application container (Glassfish 3.x) was
-            not very keen on this thing. I opened
-            <a
-              href="http://www.zeroturnaround.com/forum/topic.php?id=1315"
-              title="JRebel + Glassfish 3.1 + ejb-client + Wicket"
-              >a thread on ZeroTurnAround's forum</a
-            >
-            and the answer I got is that I have to find a way to ignore files in
-            my <em>ejb-client</em> module. By digging in
-            <em>maven-ejb-plugin</em>, I didn't find anything to rename a file
-            in the <em>ejb-client</em> module, and I didn't find a parameter to
-            pass to JRebel to specify which filenames can contain its
-            configuration.
-          </p>
-          <!--:--><!--:fr<a href="http://www.bloggure.info/java-work/ejb-client-package-jrebel-glassfish.html/attachment/logo_jrebel" rel="attachment wp-att-340"><img src="/images/uploads/2011/08/logo_jrebel.png" alt="" title="JRebel" width="146" height="40" class="alignright size-full wp-image-340" /></a>
-<h2>JRebel ?</h2>
-J'utilise <a href="http://www.zeroturnaround.com/jrebel/" title="JRebel">JRebel</a> pour accélerer mon cycle de développement. C'est un outil impressionnant qui permet de développer une application Java EE comme du PHP. Pas de redéploiement, tout ça au prix d'une petite perte de performances en mode développement. L'outil fait ce qu'il promet, et vaut réellement son prix ! Le plugin JRebel pour maven fait exactement ce qu'on attend de lui en générant automatiquement le fichier <code>rebel.xml</code> qui s'occupe de la magie.
-
-<h2>Quel est le problème alors ?</h2>
-Bien que JRebel soit un outil génial, il y a un peu trop de magie à l'intérieur et, dans certains cas particuliers, il se peut que ça ne marche pas tout à fait comme attendu. Dans mon cas, j'ai une application web assez classique divisée en plusieurs modules :
-<ul>
-   <li>une application web (war)</li>
-   <li>un module ejb (jar)</li>
-   <li>d'autres modules non impliqués dans mon problème</li>
-</ul>
-La web application inclut, dans son dossier <code>WEB-INF/lib</code>, l'artifact <em>ejb-client</em> de mon module ejb. Pour être clair, l'artifact <em>ejb-client</em> est généralement le jar contenant les interfaces publiées permettant l'utilisation des ejb par les modules clients.
-
-Le problème que j'ai eu était que la magie de JRebel entraînait le rechargemenet de trop de classes. En fait, JRebel rechargeait des classes qui n'étaient même pas dans mon artifact <em>ejb-client</em>. Mon container d'application (Glassfish 3.x) n'aimait pas trop ce comportement. J'ai donc ouvert <a href="http://www.zeroturnaround.com/forum/topic.php?id=1315" title="JRebel + Glassfish 3.1 + ejb-client + Wicket">un sujet sur le forum de ZeroTurnAround</a> où j'ai eu une réponse me disant de trouver un moyen d'exclure les fichiers que je ne voulais pas voir rechargés dans mon module <em>ejb-client</em>.
-
-J'ai donc fouiné dans <em>maven-ejb-plugin</em>, mais je n'ai rien trouvé permettant de renommer un fichier dans l'artifact <em>ejb-client</em>. Je n'ai pas non plus trouvé de paramètre spécifique à passer à JRebel pour lui spécifier quels noms de fichier il doit monitorer pour trouver sa configuration.
--->
-        </div>
-        <!-- /.entry-content -->
-      </article>
-      <!-- /.hentry -->
-
       <article
         class="hentry"
         itemprop="blogPost"
@@ -491,6 +361,92 @@ Veuillez faire attention en essayant ma procédure, Launchpad pourrait devenir i
       </article>
       <!-- /.hentry -->
 
+      <article
+        class="hentry"
+        itemprop="blogPost"
+        itemscope
+        itemtype="http://schema.org/BlogPosting"
+      >
+        <header>
+          <div class="entry-meta">
+            <span class="entry-date date published updated"
+              ><time
+                datetime="2011-07-24T00:00:00+02:00"
+                itemprop="datePublished"
+                ><a
+                  href="http://www.bloggure.info/.shell/os-x-lion-disable-special-char-popup"
+                  >July 24, 2011</a
+                ></time
+              ></span
+            ><span
+              class="author vcard"
+              itemprop="author"
+              itemscope
+              itemtype="http://schema.org/Person"
+              ><span itemprop="name" class="fn"
+                ><a
+                  href="http://www.bloggure.info/cgatay"
+                  title="About cgatay"
+                  itemprop="url"
+                  >cgatay</a
+                ></span
+              ></span
+            >&nbsp; &bull; &nbsp;<span class="entry-comments"
+              ><a
+                href="http://www.bloggure.info/.shell/os-x-lion-disable-special-char-popup#disqus_thread"
+                >Comment</a
+              ></span
+            >
+          </div>
+          <!-- /.entry-meta -->
+
+          <h1 class="entry-title" itemprop="name">
+            <a
+              href="http://www.bloggure.info/.shell/os-x-lion-disable-special-char-popup"
+              rel="bookmark"
+              title="OS X Lion - disable special char popup"
+              itemprop="url"
+              >OS X Lion - disable special char popup</a
+            >
+          </h1>
+        </header>
+        <div class="entry-content" itemprop="description">
+          <!--:en-->
+          <p>
+            One thing annoying in Lion is the popup appearing when you long
+            press a key (similar to the one present in iOS showing special
+            characters).<br />
+            I found a way to disable this by issuing a simple Terminal command :
+          </p>
+          <figure class="highlight">
+            <pre><code class="language-bash" data-lang="bash">defaults write <span class="nt">-g</span> ApplePressAndHoldEnabled <span class="nt">-bool</span> <span class="nb">false</span></code></pre>
+          </figure>
+          <p>
+            Replace false with true in this command if you want to bring it
+            back, you might need to exit and relaunch an app for the parameter
+            to take effect.<br />
+            If you want to discover more parameters, don't hesitate to dig into
+            built-in properties, that's the way I found this tip (the -g flag
+            tells to lookup in the <em>globaldomain</em>)
+          </p>
+          <figure class="highlight">
+            <pre><code class="language-bash" data-lang="bash">defaults <span class="nb">read</span> <span class="o">[</span><span class="nt">-g</span><span class="o">]</span></code></pre>
+          </figure>
+          <!--:--><!--:fr<p>Une chose que je trouve ennuyeuse sous Lion est la popup qui apparaît lorsqu'on effectue une pression longue sur une touche du clavier (similaire à la version présentée sur iOS présentant les caractères spéciaux).<br/>
+J'ai trouvé une astuce qui permet de désactiver simplement cette fonctionnalité avec une simple commande dans le terminal : </p>
+<pre class="brush:shell">
+defaults write -g ApplePressAndHoldEnabled -bool false
+</pre>
+<p>Remplacez <code>false</code> par <code>true</code> dans la commande si vous voulez récupérer ce popup. Il peut être nécessaire de quitter / relancer les applications pour que le paramètre prenne effet (ou de redémarrer la machine).<br />
+Si vous voulez découvrir plus de paramètres, n'hésitez pas à fouiller dans les propriétés prédéfinies, c'est de cette façon que je suis tombé sur cette astuce (le -g permet de rechercher dans les paramètres globaux).</p>
+<pre class="brush:shell">
+defaults read [-g]
+</pre>:-->
+        </div>
+        <!-- /.entry-content -->
+      </article>
+      <!-- /.hentry -->
+
       <div class="pagination">
         <a href="http://www.bloggure.info/page17" class="btn">Previous</a>
 
@@ -588,7 +544,7 @@ Veuillez faire attention en essayant ma procédure, Launchpad pourrait devenir i
     <div class="footer-wrapper">
       <footer role="contentinfo">
         <span
-          >&copy; 2025 . Powered by
+          >&copy; 2026 . Powered by
           <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using a theme
           based on
           <a
@@ -601,11 +557,11 @@ Veuillez faire attention en essayant ma procédure, Launchpad pourrait devenir i
     </div>
     <!-- /.footer-wrapper -->
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
       window.jQuery ||
         document.write(
-          '<script src="http://www.bloggure.info/assets/js/vendor/jquery-1.9.1.min.js"><\/script>'
+          '<script src="http://www.bloggure.info/assets/js/vendor/jquery-3.7.1.min.js"><\/script>'
         );
     </script>
     <script src="http://www.bloggure.info/assets/js/scripts.min.js"></script>

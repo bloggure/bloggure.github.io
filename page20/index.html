@@ -52,7 +52,7 @@
     <meta http-equiv="cleartype" content="on" />
 
     <!-- Load Modernizr -->
-    <script src="http://www.bloggure.info/assets/js/vendor/modernizr-2.6.2.custom.min.js"></script>
+    <script src="http://www.bloggure.info/assets/js/vendor/modernizr-3.12.0.min.js"></script>
 
     <!-- Icons -->
     <!-- 16x16 -->
@@ -102,83 +102,6 @@
     <!-- /.entry-header -->
 
     <div id="main" role="main">
-      <article
-        class="hentry"
-        itemprop="blogPost"
-        itemscope
-        itemtype="http://schema.org/BlogPosting"
-      >
-        <header>
-          <div class="entry-meta">
-            <span class="entry-date date published updated"
-              ><time
-                datetime="2010-12-05T00:00:00+01:00"
-                itemprop="datePublished"
-                ><a
-                  href="http://www.bloggure.info/.js/www/head-js-speed-up-your-website"
-                  >December 05, 2010</a
-                ></time
-              ></span
-            ><span
-              class="author vcard"
-              itemprop="author"
-              itemscope
-              itemtype="http://schema.org/Person"
-              ><span itemprop="name" class="fn"
-                ><a
-                  href="http://www.bloggure.info/cgatay"
-                  title="About cgatay"
-                  itemprop="url"
-                  >cgatay</a
-                ></span
-              ></span
-            >&nbsp; &bull; &nbsp;<span class="entry-comments"
-              ><a
-                href="http://www.bloggure.info/.js/www/head-js-speed-up-your-website#disqus_thread"
-                >Comment</a
-              ></span
-            >
-          </div>
-          <!-- /.entry-meta -->
-
-          <h1 class="entry-title" itemprop="name">
-            <a
-              href="http://www.bloggure.info/.js/www/head-js-speed-up-your-website"
-              rel="bookmark"
-              title="Head.js - speed up your website"
-              itemprop="url"
-              >Head.js - speed up your website</a
-            >
-          </h1>
-        </header>
-        <div class="entry-content" itemprop="description">
-          <!--:en--><a href="http://headjs.com/"
-            ><img
-              class="alignleft size-full wp-image-157"
-              title="Head JS"
-              src="/images/uploads/2010/12/head.png"
-              alt=""
-              width="100"
-              height="42"
-          /></a>
-          <p>
-            I found a little work in progress javascript library which seems to
-            do what we all want : speed up our websites :
-            <a href="http://headjs.com/">Head JS</a>. It allows to load every
-            script in parallel, taking advantage of fast CDN, and gives you easy
-            way to target browser by the features they implements / lacks.
-          </p>
-
-          <p>
-            I didn't had the time to test it in a real use case but I'll do it
-            for sure and I will be giving some feedback !
-          </p>
-          <!--:-->
-        </div>
-        <!-- /.entry-content -->
-      </article>
-      <!-- /.hentry -->
-
       <article
         class="hentry"
         itemprop="blogPost"
@@ -468,8 +391,8 @@
           tas de mesures sur un élement. Il existe deux manières d'utiliser
           cette classe, voici la méthode du fainéant :
           <figure class="highlight">
-            <pre><code class="language-js" data-lang="js"><span></span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;elt&#39;</span><span class="p">).</span><span class="nx">measure</span><span class="p">(</span><span class="s1">&#39;margin-top&#39;</span><span class="p">);</span><span class="w"> </span><span class="c1">// -&amp;gt; retourne la marge haute en pixel de elt</span>
-<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;elt&#39;</span><span class="p">).</span><span class="nx">measure</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">);</span><span class="w"> </span><span class="c1">// -&amp;gt; retourne la hauteur en pixel de elt</span></code></pre>
+            <pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">(</span><span class="dl">'</span><span class="s1">elt</span><span class="dl">'</span><span class="p">).</span><span class="nx">measure</span><span class="p">(</span><span class="dl">'</span><span class="s1">margin-top</span><span class="dl">'</span><span class="p">);</span> <span class="c1">// -&amp;gt; retourne la marge haute en pixel de elt</span>
+<span class="nx">$</span><span class="p">(</span><span class="dl">'</span><span class="s1">elt</span><span class="dl">'</span><span class="p">).</span><span class="nx">measure</span><span class="p">(</span><span class="dl">'</span><span class="s1">height</span><span class="dl">'</span><span class="p">);</span> <span class="c1">// -&amp;gt; retourne la hauteur en pixel de elt</span></code></pre>
           </figure>
           Le fonctionnement de la deuxième ligne est similaire à l'utilisation
           de la méthode
@@ -477,9 +400,9 @@
             >Element#getHeight()</a
           >. Une utilisation plus minutieuse pourrait ressembler à ça ;
           <figure class="highlight">
-            <pre><code class="language-js" data-lang="js"><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">layout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;elt&#39;</span><span class="p">).</span><span class="nx">getLayout</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
-<span class="nx">layout</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;margin-top&#39;</span><span class="p">);</span><span class="w"> </span><span class="c1">// retourne la même hauteur que précédemment.</span>
-<span class="nx">layout</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">);</span><span class="w"> </span><span class="c1">// retourne la même hauteur que précédemment.</span></code></pre>
+            <pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">layout</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="dl">'</span><span class="s1">elt</span><span class="dl">'</span><span class="p">).</span><span class="nx">getLayout</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="nx">layout</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">margin-top</span><span class="dl">'</span><span class="p">);</span> <span class="c1">// retourne la même hauteur que précédemment.</span>
+<span class="nx">layout</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">height</span><span class="dl">'</span><span class="p">);</span> <span class="c1">// retourne la même hauteur que précédemment.</span></code></pre>
           </figure>
           L'avantage de la seconde méthode est que les valeurs de base
           nécessaire au calcul des dimensions sont mises en cache dans la
@@ -523,27 +446,27 @@
           nous intéresse. Considérons pour les exemples suivant l'arbre HTML
           ci-dessous :
           <figure class="highlight">
-            <pre><code class="language-html" data-lang="html"><span></span><span class="p">&lt;</span><span class="nt">ul</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;elt&quot;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">li</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;foo&quot;</span> <span class="na">data-code</span><span class="o">=</span><span class="s">&quot;un&quot;</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;javascript:void(0);&quot;</span><span class="p">&gt;</span>un<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">li</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;foo&quot;</span> <span class="na">data-code</span><span class="o">=</span><span class="s">&quot;deux&quot;</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;javascript:void(0);&quot;</span><span class="p">&gt;</span>deux<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">li</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;foo&quot;</span> <span class="na">data-code</span><span class="o">=</span><span class="s">&quot;trois&quot;</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;javascript:void(0);&quot;</span><span class="p">&gt;</span>trois<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span></code></pre>
+            <pre><code class="language-html" data-lang="html"><span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">"elt"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"foo"</span> <span class="na">data-code=</span><span class="s">"un"</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">"javascript:void(0);"</span><span class="nt">&gt;</span>un<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+  <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"foo"</span> <span class="na">data-code=</span><span class="s">"deux"</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">"javascript:void(0);"</span><span class="nt">&gt;</span>deux<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+  <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"foo"</span> <span class="na">data-code=</span><span class="s">"trois"</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">"javascript:void(0);"</span><span class="nt">&gt;</span>trois<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+<span class="nt">&lt;/ul&gt;</span></code></pre>
           </figure>
           Lorsque qu'un évènement est levé sur un élément il est levé sur tous
           ses parents récursivement, tant qu'il n'est pas arrêté explicitement
           ou qu'il a atteind la racine de l'arbre. On devait précédemment faire
           ce genre de chose :
           <figure class="highlight">
-            <pre><code class="language-js" data-lang="js"><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">listener</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">evt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kd">var</span><span class="w"> </span><span class="nx">target</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">evt</span><span class="p">.</span><span class="nx">findElement</span><span class="p">(</span><span class="s1">&#39;.foo&#39;</span><span class="p">);</span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nb">Object</span><span class="p">.</span><span class="nx">isElement</span><span class="p">(</span><span class="nx">target</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="w">  </span><span class="p">...</span><span class="w"> </span><span class="c1">// traitement avec target, élement qui nous intéresse</span>
+            <pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">listener</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">evt</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">target</span> <span class="o">=</span> <span class="nx">evt</span><span class="p">.</span><span class="nx">findElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">.foo</span><span class="dl">'</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">Object</span><span class="p">.</span><span class="nx">isElement</span><span class="p">(</span><span class="nx">target</span><span class="p">))</span> <span class="p">{</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="p">...</span> <span class="c1">// traitement avec target, élement qui nous intéresse</span>
 <span class="p">}</span>
-<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;elt&#39;</span><span class="p">).</span><span class="nx">observe</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">listener</span><span class="p">);</span>
-<span class="p">...</span><span class="w"> </span><span class="c1">// et au besoin :</span>
-<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;elt&#39;</span><span class="p">).</span><span class="nx">stopObserving</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">listener</span><span class="p">);</span></code></pre>
+<span class="nx">$</span><span class="p">(</span><span class="dl">'</span><span class="s1">elt</span><span class="dl">'</span><span class="p">).</span><span class="nx">observe</span><span class="p">(</span><span class="dl">'</span><span class="s1">click</span><span class="dl">'</span><span class="p">,</span> <span class="nx">listener</span><span class="p">);</span>
+<span class="p">...</span> <span class="c1">// et au besoin :</span>
+<span class="nx">$</span><span class="p">(</span><span class="dl">'</span><span class="s1">elt</span><span class="dl">'</span><span class="p">).</span><span class="nx">stopObserving</span><span class="p">(</span><span class="dl">'</span><span class="s1">click</span><span class="dl">'</span><span class="p">,</span> <span class="nx">listener</span><span class="p">);</span></code></pre>
           </figure>
           Quand nous devions arrêter l'observation d'un évènement particulier il
           était fastidieux de devoir stocker la fonction assignée dans une
@@ -574,12 +497,12 @@
           qui permettent respectivement d'arrêter et de reprendre l'observation
           d'un évènement particulier. En voici un exemple d'utilisation :
           <figure class="highlight">
-            <pre><code class="language-js" data-lang="js"><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">handler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;elt&#39;</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;.foo&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">evt</span><span class="p">,</span><span class="w"> </span><span class="nx">target</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="p">...</span><span class="w"> </span><span class="c1">// traitement avec target, élement qui nous intéresse</span>
+            <pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">handler</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="dl">'</span><span class="s1">elt</span><span class="dl">'</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">click</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">.foo</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">evt</span><span class="p">,</span> <span class="nx">target</span><span class="p">)</span> <span class="p">{</span>
+<span class="err">  </span><span class="p">...</span> <span class="c1">// traitement avec target, élement qui nous intéresse</span>
 <span class="p">});</span>
-<span class="p">...</span><span class="w"> </span><span class="c1">// et au besoin :</span>
+<span class="p">...</span> <span class="c1">// et au besoin :</span>
 <span class="nx">handler</span><span class="p">.</span><span class="nx">stop</span><span class="p">();</span>
-<span class="p">...</span><span class="w"> </span><span class="c1">// et de nouveau :</span>
+<span class="p">...</span> <span class="c1">// et de nouveau :</span>
 <span class="nx">handler</span><span class="p">.</span><span class="nx">start</span><span class="p">();</span></code></pre>
           </figure>
           Pour compléter ces améliorations, une nouvelle méthode a été ajouté :
@@ -692,6 +615,98 @@ rake dist SELECTOR_ENGINE=legacy_selector</pre
       </article>
       <!-- /.hentry -->
 
+      <article
+        class="hentry"
+        itemprop="blogPost"
+        itemscope
+        itemtype="http://schema.org/BlogPosting"
+      >
+        <header>
+          <div class="entry-meta">
+            <span class="entry-date date published updated"
+              ><time
+                datetime="2010-11-14T00:00:00+01:00"
+                itemprop="datePublished"
+                ><a
+                  href="http://www.bloggure.info/.shell/shelf/itunes-media-sharing-over-the-internet-from-a-nas"
+                  >November 14, 2010</a
+                ></time
+              ></span
+            ><span
+              class="author vcard"
+              itemprop="author"
+              itemscope
+              itemtype="http://schema.org/Person"
+              ><span itemprop="name" class="fn"
+                ><a
+                  href="http://www.bloggure.info/cgatay"
+                  title="About cgatay"
+                  itemprop="url"
+                  >cgatay</a
+                ></span
+              ></span
+            >&nbsp; &bull; &nbsp;<span class="entry-comments"
+              ><a
+                href="http://www.bloggure.info/.shell/shelf/itunes-media-sharing-over-the-internet-from-a-nas#disqus_thread"
+                >Comment</a
+              ></span
+            >
+          </div>
+          <!-- /.entry-meta -->
+
+          <h1 class="entry-title" itemprop="name">
+            <a
+              href="http://www.bloggure.info/.shell/shelf/itunes-media-sharing-over-the-internet-from-a-nas"
+              rel="bookmark"
+              title="iTunes media sharing over the Internet from a NAS"
+              itemprop="url"
+              >iTunes media sharing over the Internet from a NAS</a
+            >
+          </h1>
+        </header>
+        <div class="entry-content" itemprop="description">
+          <!--:en--><img
+            class="alignright size-full wp-image-99"
+            title="Music"
+            src="/images/uploads/2010/11/free-music-head.png"
+            alt=""
+            width="200"
+            height="124"
+          />
+          <p>
+            I am a big fan of music, and I like to listen to all my music
+            wherever I am and whatever I do (specially when coding).
+          </p>
+
+          <p>
+            All my medias are stored on a NAS drive that features a little
+            embedded linux distribution as operating system. One of the service
+            is called iTunes media sharing (mt-daapd is the real name of the
+            daemon).
+          </p>
+
+          <p>
+            It is really a cool feature as I can listen media stored on my NAS
+            from whatever device on my LAN. The magic behind is called Bonjour
+            which is a protocol that allows device to register themselves on the
+            network and being discovered by others.
+          </p>
+
+          <p>
+            My problem is I want to be able to listen to my home music at work,
+            and Bonjour service does not go out of my LAN. The additional thing
+            is I want to listen to my music using iTunes (I am fond of
+            <a title="Bowtie" href="http://bowtieapp.com" target="_blank"
+              >Bowtie</a
+            >) on my MacBook Pro.
+          </p>
+
+          <!--:-->
+        </div>
+        <!-- /.entry-content -->
+      </article>
+      <!-- /.hentry -->
+
       <div class="pagination">
         <a href="http://www.bloggure.info/page19" class="btn">Previous</a>
 
@@ -789,7 +804,7 @@ rake dist SELECTOR_ENGINE=legacy_selector</pre
     <div class="footer-wrapper">
       <footer role="contentinfo">
         <span
-          >&copy; 2025 . Powered by
+          >&copy; 2026 . Powered by
           <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using a theme
           based on
           <a
@@ -802,11 +817,11 @@ rake dist SELECTOR_ENGINE=legacy_selector</pre
     </div>
     <!-- /.footer-wrapper -->
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
       window.jQuery ||
         document.write(
-          '<script src="http://www.bloggure.info/assets/js/vendor/jquery-1.9.1.min.js"><\/script>'
+          '<script src="http://www.bloggure.info/assets/js/vendor/jquery-3.7.1.min.js"><\/script>'
         );
     </script>
     <script src="http://www.bloggure.info/assets/js/scripts.min.js"></script>

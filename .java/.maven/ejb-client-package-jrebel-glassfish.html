@@ -65,7 +65,7 @@
     <meta http-equiv="cleartype" content="on" />
 
     <!-- Load Modernizr -->
-    <script src="http://www.bloggure.info/assets/js/vendor/modernizr-2.6.2.custom.min.js"></script>
+    <script src="http://www.bloggure.info/assets/js/vendor/modernizr-3.12.0.min.js"></script>
 
     <!-- Icons -->
     <!-- 16x16 -->
@@ -244,15 +244,15 @@ J'ai donc fouiné dans <em>maven-ejb-plugin</em>, mais je n'ai rien trouvé perm
           </p>
           <p>The piece of code corresponding to the patch is the following:</p>
           <figure class="highlight">
-            <pre><code class="language-java" data-lang="java"><span></span><span class="n">File</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">File</span><span class="p">(</span><span class="n">outputDirectory</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;client.rebel.xml&quot;</span><span class="p">);</span>
-<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">file</span><span class="p">.</span><span class="na">exists</span><span class="p">()){</span>
-<span class="w">   </span><span class="n">getLog</span><span class="p">().</span><span class="na">info</span><span class="p">(</span><span class="s">&quot;Found a client.rebel.xml, renaming it to rebel.xml and put it into destination ejb-client archive&quot;</span><span class="p">);</span>
-<span class="w">   </span><span class="n">clientArchiver</span><span class="p">.</span><span class="na">getArchiver</span><span class="p">().</span><span class="na">addFile</span><span class="p">(</span><span class="n">file</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;rebel.xml&quot;</span><span class="p">);</span>
-<span class="w">   </span><span class="n">List</span><span class="w"> </span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="p">(</span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="n">excludes</span><span class="p">));</span>
-<span class="w">   </span><span class="n">list</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;**/client.rebel.xml&quot;</span><span class="p">);</span>
-<span class="w">   </span><span class="n">list</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;**/rebel.xml&quot;</span><span class="p">);</span>
-<span class="w">   </span><span class="n">excludes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="p">)</span><span class="w"> </span><span class="n">list</span><span class="p">.</span><span class="na">toArray</span><span class="p">(</span><span class="n">EMPTY_STRING_ARRAY</span><span class="p">);</span>
-<span class="p">}</span></code></pre>
+            <pre><code class="language-java" data-lang="java"><span class="nc">File</span> <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="n">outputDirectory</span><span class="o">,</span> <span class="s">"client.rebel.xml"</span><span class="o">);</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">file</span><span class="o">.</span><span class="na">exists</span><span class="o">()){</span>
+   <span class="n">getLog</span><span class="o">().</span><span class="na">info</span><span class="o">(</span><span class="s">"Found a client.rebel.xml, renaming it to rebel.xml and put it into destination ejb-client archive"</span><span class="o">);</span>
+   <span class="n">clientArchiver</span><span class="o">.</span><span class="na">getArchiver</span><span class="o">().</span><span class="na">addFile</span><span class="o">(</span><span class="n">file</span><span class="o">,</span> <span class="s">"rebel.xml"</span><span class="o">);</span>
+   <span class="nc">List</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">(</span><span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">excludes</span><span class="o">));</span>
+   <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"**/client.rebel.xml"</span><span class="o">);</span>
+   <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"**/rebel.xml"</span><span class="o">);</span>
+   <span class="n">excludes</span> <span class="o">=</span> <span class="o">(</span><span class="nc">String</span><span class="o">[])</span> <span class="n">list</span><span class="o">.</span><span class="na">toArray</span><span class="o">(</span><span class="no">EMPTY_STRING_ARRAY</span><span class="o">);</span>
+<span class="o">}</span></code></pre>
           </figure>
           <p>
             This is the only modification done to the original
@@ -280,14 +280,14 @@ J'ai donc fouiné dans <em>maven-ejb-plugin</em>, mais je n'ai rien trouvé perm
             your pom like the following :
           </p>
           <figure class="highlight">
-            <pre><code class="language-xml" data-lang="xml"><span></span><span class="nt">&lt;build&gt;</span>
-<span class="w"> </span><span class="nt">&lt;plugins&gt;</span>
-<span class="w">   </span><span class="nt">&lt;plugin&gt;</span>
-<span class="w">     </span><span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
-<span class="w">     </span><span class="nt">&lt;artifactId&gt;</span>maven-ejb-plugin<span class="nt">&lt;/artifactId&gt;</span>
-<span class="w">     </span><span class="nt">&lt;version&gt;</span>2.3-jrebel<span class="nt">&lt;/version&gt;</span>
-<span class="w">  </span><span class="nt">&lt;/plugin&gt;</span>
-<span class="w"> </span><span class="nt">&lt;/plugins&gt;</span>
+            <pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;build&gt;</span>
+ <span class="nt">&lt;plugins&gt;</span>
+   <span class="nt">&lt;plugin&gt;</span>
+     <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+     <span class="nt">&lt;artifactId&gt;</span>maven-ejb-plugin<span class="nt">&lt;/artifactId&gt;</span>
+     <span class="nt">&lt;version&gt;</span>2.3-jrebel<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;/plugin&gt;</span>
+ <span class="nt">&lt;/plugins&gt;</span>
 <span class="nt">&lt;/build&gt;</span></code></pre>
           </figure>
           <p>
@@ -461,7 +461,7 @@ En espérant en aider certains...-->
     <div class="footer-wrapper">
       <footer role="contentinfo">
         <span
-          >&copy; 2025 . Powered by
+          >&copy; 2026 . Powered by
           <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using a theme
           based on
           <a
@@ -474,11 +474,11 @@ En espérant en aider certains...-->
     </div>
     <!-- /.footer-wrapper -->
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
       window.jQuery ||
         document.write(
-          '<script src="http://www.bloggure.info/assets/js/vendor/jquery-1.9.1.min.js"><\/script>'
+          '<script src="http://www.bloggure.info/assets/js/vendor/jquery-3.7.1.min.js"><\/script>'
         );
     </script>
     <script src="http://www.bloggure.info/assets/js/scripts.min.js"></script>

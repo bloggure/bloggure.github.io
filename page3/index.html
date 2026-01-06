@@ -52,7 +52,7 @@
     <meta http-equiv="cleartype" content="on" />
 
     <!-- Load Modernizr -->
-    <script src="http://www.bloggure.info/assets/js/vendor/modernizr-2.6.2.custom.min.js"></script>
+    <script src="http://www.bloggure.info/assets/js/vendor/modernizr-3.12.0.min.js"></script>
 
     <!-- Icons -->
     <!-- 16x16 -->
@@ -812,13 +812,13 @@ node{
           </p>
 
           <figure class="highlight">
-            <pre><code class="language-bash" data-lang="bash"><span></span>ssh<span class="w"> </span>gateway
-you@gateway<span class="w"> </span>$<span class="w"> </span>hostname
-gateway.my.tld
-you@gateway<span class="w"> </span>$<span class="w"> </span>ssh<span class="w"> </span>myAppHost
-you@myAppHost<span class="w"> </span>$<span class="w"> </span>hostname
-myAppHost.my.tld
-<span class="w">   </span></code></pre>
+            <pre><code class="language-bash" data-lang="bash">ssh gateway
+you@gateway <span class="nv">$ </span><span class="nb">hostname
+</span>gateway.my.tld
+you@gateway <span class="nv">$ </span>ssh myAppHost
+you@myAppHost <span class="nv">$ </span><span class="nb">hostname
+</span>myAppHost.my.tld
+   </code></pre>
           </figure>
 
           <h2 id="faster-way-of-hoping">Faster way of hop’ing</h2>
@@ -832,19 +832,19 @@ myAppHost.my.tld
           </p>
 
           <figure class="highlight">
-            <pre><code class="language-bash" data-lang="bash"><span></span>ssh<span class="w"> </span>-t<span class="w"> </span>gateway<span class="w"> </span>ssh<span class="w"> </span>myAppHost
-you@myAppHost<span class="w"> </span>$<span class="w"> </span>hostname
-myAppHost.my.tld
-<span class="w">   </span></code></pre>
+            <pre><code class="language-bash" data-lang="bash">ssh <span class="nt">-t</span> gateway ssh myAppHost
+you@myAppHost <span class="nv">$ </span><span class="nb">hostname
+</span>myAppHost.my.tld
+   </code></pre>
           </figure>
 
           <h2 id="script-this-">Script this !</h2>
           <p>The script is really simple, and only consists in the following</p>
 
           <figure class="highlight">
-            <pre><code class="language-bash" data-lang="bash"><span></span><span class="ch">#!/bin/sh</span>
-ssh<span class="w"> </span>-t<span class="w"> </span>gateway<span class="w"> </span>ssh<span class="w"> </span><span class="nv">$1</span>
-<span class="w">   </span></code></pre>
+            <pre><code class="language-bash" data-lang="bash"><span class="c">#!/bin/sh</span>
+ssh <span class="nt">-t</span> gateway ssh <span class="nv">$1</span>
+   </code></pre>
           </figure>
 
           <p>
@@ -1082,9 +1082,8 @@ ssh<span class="w"> </span>-t<span class="w"> </span>gateway<span class="w"> </s
             keyboard is not yet visible by the X system). The workaround I found
             was scheduling the execution of the job with the simple
             <code>at</code> command.
+            <script src="https://gist.github.com/1673456ec94a1f6d8d0d set_typematrix_colemak_mapping.js"></script>
           </p>
-          <noscript><pre>400: Invalid request</pre></noscript>
-          <script src="https://gist.github.com/1673456ec94a1f6d8d0d.js?file=set_typematrix_colemak_mapping"></script>
 
           <h2 id="tell-udev-to-run-the-script-on-keyboard-detection">
             Tell udev to run the script on keyboard detection
@@ -1095,8 +1094,7 @@ ssh<span class="w"> </span>-t<span class="w"> </span>gateway<span class="w"> </s
             <code>/lib/udev/rules.d/85-typematrix.rules</code>
           </p>
 
-          <noscript><pre>400: Invalid request</pre></noscript>
-          <script src="https://gist.github.com/1673456ec94a1f6d8d0d.js?file=85-typematrix.rules"></script>
+          <script src="https://gist.github.com/1673456ec94a1f6d8d0d 85-typematrix.rules.js"></script>
 
           <h2 id="adapting-it-to-your-use-case">
             Adapting it to your use case
@@ -1214,7 +1212,7 @@ ssh<span class="w"> </span>-t<span class="w"> </span>gateway<span class="w"> </s
     <div class="footer-wrapper">
       <footer role="contentinfo">
         <span
-          >&copy; 2025 . Powered by
+          >&copy; 2026 . Powered by
           <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using a theme
           based on
           <a
@@ -1227,11 +1225,11 @@ ssh<span class="w"> </span>-t<span class="w"> </span>gateway<span class="w"> </s
     </div>
     <!-- /.footer-wrapper -->
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
       window.jQuery ||
         document.write(
-          '<script src="http://www.bloggure.info/assets/js/vendor/jquery-1.9.1.min.js"><\/script>'
+          '<script src="http://www.bloggure.info/assets/js/vendor/jquery-3.7.1.min.js"><\/script>'
         );
     </script>
     <script src="http://www.bloggure.info/assets/js/scripts.min.js"></script>

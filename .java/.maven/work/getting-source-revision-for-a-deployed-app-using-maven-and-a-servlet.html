@@ -65,7 +65,7 @@
     <meta http-equiv="cleartype" content="on" />
 
     <!-- Load Modernizr -->
-    <script src="http://www.bloggure.info/assets/js/vendor/modernizr-2.6.2.custom.min.js"></script>
+    <script src="http://www.bloggure.info/assets/js/vendor/modernizr-3.12.0.min.js"></script>
 
     <!-- Icons -->
     <!-- 16x16 -->
@@ -193,55 +193,55 @@
           A-B-C, just add the following to your projects' pom :
 
           <figure class="highlight">
-            <pre><code class="language-xml" data-lang="xml"><span></span><span class="nt">&lt;profile&gt;</span>
-<span class="w">    </span><span class="nt">&lt;id&gt;</span>buildnumbering<span class="nt">&lt;/id&gt;</span>
-<span class="w">    </span><span class="nt">&lt;build&gt;</span>
-<span class="w">       </span><span class="nt">&lt;plugins&gt;</span>
-<span class="w">           </span><span class="nt">&lt;plugin&gt;</span>
-<span class="w">               </span><span class="nt">&lt;groupId&gt;</span>org.codehaus.mojo<span class="nt">&lt;/groupId&gt;</span>
-<span class="w">               </span><span class="nt">&lt;artifactId&gt;</span>buildnumber-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
-<span class="w">               </span><span class="nt">&lt;version&gt;</span>1.0-beta-4<span class="nt">&lt;/version&gt;</span>
-<span class="w">               </span><span class="nt">&lt;executions&gt;</span>
-<span class="w">                  </span><span class="nt">&lt;execution&gt;</span>
-<span class="w">                     </span><span class="nt">&lt;phase&gt;</span>validate<span class="nt">&lt;/phase&gt;</span>
-<span class="w">                     </span><span class="nt">&lt;goals&gt;</span>
-<span class="w">                         </span><span class="nt">&lt;goal&gt;</span>create<span class="nt">&lt;/goal&gt;</span>
-<span class="w">                     </span><span class="nt">&lt;/goals&gt;</span>
-<span class="w">                 </span><span class="nt">&lt;/execution&gt;</span>
-<span class="w">               </span><span class="nt">&lt;/executions&gt;</span>
-<span class="w">            </span><span class="nt">&lt;/plugin&gt;</span>
-<span class="w">            </span><span class="nt">&lt;plugin&gt;</span>
-<span class="w">                </span><span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
-<span class="w">                </span><span class="nt">&lt;artifactId&gt;</span>maven-war-plugin<span class="nt">&lt;/artifactId&gt;</span>
-<span class="w">                </span><span class="nt">&lt;executions&gt;</span>
-<span class="w">                    </span><span class="nt">&lt;execution&gt;</span>
-<span class="w">                       </span><span class="nt">&lt;id&gt;</span>buildNumber<span class="nt">&lt;/id&gt;</span>
-<span class="w">                       </span><span class="nt">&lt;configuration&gt;</span>
-<span class="w">                          </span><span class="nt">&lt;archive&gt;</span>
-<span class="w">                             </span><span class="nt">&lt;manifestEntries&gt;</span>
-<span class="w">                                </span><span class="nt">&lt;Implementation-Build&gt;</span>
-<span class="w">                                      </span>${buildNumber}
-<span class="w">                                </span><span class="nt">&lt;/Implementation-Build&gt;</span>
-<span class="w">                             </span><span class="nt">&lt;/manifestEntries&gt;</span>
-<span class="w">                          </span><span class="nt">&lt;/archive&gt;</span>
-<span class="w">                      </span><span class="nt">&lt;/configuration&gt;</span>
-<span class="w">                   </span><span class="nt">&lt;/execution&gt;</span>
-<span class="w">               </span><span class="nt">&lt;/executions&gt;</span>
-<span class="w">            </span><span class="nt">&lt;/plugin&gt;</span>
-<span class="w">            </span><span class="nt">&lt;plugin&gt;</span>
-<span class="w">                </span><span class="nt">&lt;artifactId&gt;</span>maven-ear-plugin<span class="nt">&lt;/artifactId&gt;</span>
-<span class="w">                </span><span class="nt">&lt;configuration&gt;</span>
-<span class="w">                   </span><span class="nt">&lt;archive&gt;</span>
-<span class="w">                      </span><span class="nt">&lt;manifestEntries&gt;</span>
-<span class="w">                         </span><span class="nt">&lt;Implementation-Build&gt;</span>
-<span class="w">                               </span>${buildNumber}
-<span class="w">                         </span><span class="nt">&lt;/Implementation-Build&gt;</span>
-<span class="w">                      </span><span class="nt">&lt;/manifestEntries&gt;</span>
-<span class="w">                   </span><span class="nt">&lt;/archive&gt;</span>
-<span class="w">                </span><span class="nt">&lt;/configuration&gt;</span>
-<span class="w">             </span><span class="nt">&lt;/plugin&gt;</span>
-<span class="w">         </span><span class="nt">&lt;/plugins&gt;</span>
-<span class="w">     </span><span class="nt">&lt;/build&gt;</span>
+            <pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;profile&gt;</span>
+    <span class="nt">&lt;id&gt;</span>buildnumbering<span class="nt">&lt;/id&gt;</span>
+    <span class="nt">&lt;build&gt;</span>
+       <span class="nt">&lt;plugins&gt;</span>
+           <span class="nt">&lt;plugin&gt;</span>
+               <span class="nt">&lt;groupId&gt;</span>org.codehaus.mojo<span class="nt">&lt;/groupId&gt;</span>
+               <span class="nt">&lt;artifactId&gt;</span>buildnumber-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+               <span class="nt">&lt;version&gt;</span>1.0-beta-4<span class="nt">&lt;/version&gt;</span>
+               <span class="nt">&lt;executions&gt;</span>
+                  <span class="nt">&lt;execution&gt;</span>
+                     <span class="nt">&lt;phase&gt;</span>validate<span class="nt">&lt;/phase&gt;</span>
+                     <span class="nt">&lt;goals&gt;</span>
+                         <span class="nt">&lt;goal&gt;</span>create<span class="nt">&lt;/goal&gt;</span>
+                     <span class="nt">&lt;/goals&gt;</span>
+                 <span class="nt">&lt;/execution&gt;</span>
+               <span class="nt">&lt;/executions&gt;</span>
+            <span class="nt">&lt;/plugin&gt;</span>
+            <span class="nt">&lt;plugin&gt;</span>
+                <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+                <span class="nt">&lt;artifactId&gt;</span>maven-war-plugin<span class="nt">&lt;/artifactId&gt;</span>
+                <span class="nt">&lt;executions&gt;</span>
+                    <span class="nt">&lt;execution&gt;</span>
+                       <span class="nt">&lt;id&gt;</span>buildNumber<span class="nt">&lt;/id&gt;</span>
+                       <span class="nt">&lt;configuration&gt;</span>
+                          <span class="nt">&lt;archive&gt;</span>
+                             <span class="nt">&lt;manifestEntries&gt;</span>
+                                <span class="nt">&lt;Implementation-Build&gt;</span>
+                                      ${buildNumber}
+                                <span class="nt">&lt;/Implementation-Build&gt;</span>
+                             <span class="nt">&lt;/manifestEntries&gt;</span>
+                          <span class="nt">&lt;/archive&gt;</span>
+                      <span class="nt">&lt;/configuration&gt;</span>
+                   <span class="nt">&lt;/execution&gt;</span>
+               <span class="nt">&lt;/executions&gt;</span>
+            <span class="nt">&lt;/plugin&gt;</span>
+            <span class="nt">&lt;plugin&gt;</span>
+                <span class="nt">&lt;artifactId&gt;</span>maven-ear-plugin<span class="nt">&lt;/artifactId&gt;</span>
+                <span class="nt">&lt;configuration&gt;</span>
+                   <span class="nt">&lt;archive&gt;</span>
+                      <span class="nt">&lt;manifestEntries&gt;</span>
+                         <span class="nt">&lt;Implementation-Build&gt;</span>
+                               ${buildNumber}
+                         <span class="nt">&lt;/Implementation-Build&gt;</span>
+                      <span class="nt">&lt;/manifestEntries&gt;</span>
+                   <span class="nt">&lt;/archive&gt;</span>
+                <span class="nt">&lt;/configuration&gt;</span>
+             <span class="nt">&lt;/plugin&gt;</span>
+         <span class="nt">&lt;/plugins&gt;</span>
+     <span class="nt">&lt;/build&gt;</span>
 <span class="nt">&lt;/profile&gt;</span></code></pre>
           </figure>
 
@@ -252,7 +252,7 @@
           can be triggered by executing maven this way :
 
           <figure class="highlight">
-            <pre><code class="language-bash" data-lang="bash"><span></span>mvn<span class="w"> </span>clean<span class="w"> </span>install<span class="w"> </span>-Pbuildnumbering</code></pre>
+            <pre><code class="language-bash" data-lang="bash">mvn clean <span class="nb">install</span> <span class="nt">-Pbuildnumbering</span></code></pre>
           </figure>
 
           If you look at resulting artifacts, the META-INF/MANIFEST.MF files
@@ -267,48 +267,48 @@
           in this post. The code for the servlet follows :
 
           <figure class="highlight">
-            <pre><code class="language-java" data-lang="java"><span></span><span class="cm">/**</span>
-<span class="cm">  * Package and import are ommited on purpose</span>
-<span class="cm">  * User: cgatay Date: 17 oct. 2010 Time: 13:34:59</span>
-<span class="cm">  */</span>
-<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">VersionServlet</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">HttpServlet</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nd">@Override</span>
-<span class="w">    </span><span class="kd">protected</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">doGet</span><span class="p">(</span><span class="n">HttpServletRequest</span><span class="w"> </span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="n">HttpServletResponse</span><span class="w"> </span><span class="n">resp</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">ServletException</span><span class="p">,</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="n">String</span><span class="w"> </span><span class="n">appServerHome</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getServletContext</span><span class="p">().</span><span class="na">getContext</span><span class="p">(</span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="o">/&amp;</span><span class="n">quot</span><span class="p">;).</span><span class="na">getRealPath</span><span class="p">(</span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="o">/&amp;</span><span class="n">quot</span><span class="p">;);</span>
-<span class="w">            </span><span class="kd">final</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">lastSlash</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">appServerHome</span><span class="p">.</span><span class="na">lastIndexOf</span><span class="p">(</span><span class="n">File</span><span class="p">.</span><span class="na">separator</span><span class="p">);</span>
-<span class="w">            </span><span class="kd">final</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">beforeLastSlash</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">appServerHome</span><span class="p">.</span><span class="na">lastIndexOf</span><span class="p">(</span><span class="n">File</span><span class="p">.</span><span class="na">separator</span><span class="p">,</span><span class="w"> </span><span class="n">lastSlash</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
-<span class="w">            </span><span class="n">appServerHome</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">appServerHome</span><span class="p">.</span><span class="na">substring</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">beforeLastSlash</span><span class="p">);</span>
+            <pre><code class="language-java" data-lang="java"><span class="cm">/**
+  * Package and import are ommited on purpose
+  * User: cgatay Date: 17 oct. 2010 Time: 13:34:59
+  */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">VersionServlet</span> <span class="kd">extends</span> <span class="nc">HttpServlet</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">doGet</span><span class="o">(</span><span class="nc">HttpServletRequest</span> <span class="n">req</span><span class="o">,</span> <span class="nc">HttpServletResponse</span> <span class="n">resp</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">ServletException</span><span class="o">,</span> <span class="nc">IOException</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="nc">String</span> <span class="n">appServerHome</span> <span class="o">=</span> <span class="n">getServletContext</span><span class="o">().</span><span class="na">getContext</span><span class="o">(&amp;</span><span class="n">quot</span><span class="o">;/&amp;</span><span class="n">quot</span><span class="o">;).</span><span class="na">getRealPath</span><span class="o">(&amp;</span><span class="n">quot</span><span class="o">;/&amp;</span><span class="n">quot</span><span class="o">;);</span>
+            <span class="kd">final</span> <span class="kt">int</span> <span class="n">lastSlash</span> <span class="o">=</span> <span class="n">appServerHome</span><span class="o">.</span><span class="na">lastIndexOf</span><span class="o">(</span><span class="nc">File</span><span class="o">.</span><span class="na">separator</span><span class="o">);</span>
+            <span class="kd">final</span> <span class="kt">int</span> <span class="n">beforeLastSlash</span> <span class="o">=</span> <span class="n">appServerHome</span><span class="o">.</span><span class="na">lastIndexOf</span><span class="o">(</span><span class="nc">File</span><span class="o">.</span><span class="na">separator</span><span class="o">,</span> <span class="n">lastSlash</span><span class="o">-</span><span class="mi">1</span><span class="o">);</span>
+            <span class="n">appServerHome</span> <span class="o">=</span> <span class="n">appServerHome</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="n">beforeLastSlash</span><span class="o">);</span>
 
-<span class="w">            </span><span class="kd">final</span><span class="w"> </span><span class="n">File</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">File</span><span class="p">(</span><span class="n">appServerHome</span><span class="p">);</span>
-<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">file</span><span class="p">.</span><span class="na">exists</span><span class="p">()</span><span class="w"> </span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="w"> </span><span class="n">file</span><span class="p">.</span><span class="na">canRead</span><span class="p">()</span><span class="w"> </span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="w"> </span><span class="n">file</span><span class="p">.</span><span class="na">isDirectory</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="n">List</span><span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">String</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span><span class="w"> </span><span class="n">listFiles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">String</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;(</span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="n">file</span><span class="p">.</span><span class="na">list</span><span class="p">()));</span>
-<span class="w">                </span><span class="n">listFiles</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;);</span>
-<span class="w">                </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">listFiles</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                    </span><span class="n">File</span><span class="w"> </span><span class="n">manifestFile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">File</span><span class="p">(</span><span class="n">appServerHome</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">File</span><span class="p">.</span><span class="na">separator</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="n">META</span><span class="o">-</span><span class="n">INF</span><span class="o">/</span><span class="n">MANIFEST</span><span class="p">.</span><span class="na">MF</span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;);</span>
-<span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">manifestFile</span><span class="p">.</span><span class="na">exists</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                        </span><span class="n">dumpManifestInfo</span><span class="p">(</span><span class="n">resp</span><span class="p">,</span><span class="w"> </span><span class="n">manifestFile</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">);</span>
-<span class="w">                    </span><span class="p">}</span>
-<span class="w">                </span><span class="p">}</span>
-<span class="w">            </span><span class="p">}</span>
-<span class="w">            </span><span class="n">resp</span><span class="p">.</span><span class="na">setStatus</span><span class="p">(</span><span class="mi">200</span><span class="p">);</span>
-<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
-<span class="w">            </span><span class="n">resp</span><span class="p">.</span><span class="na">setStatus</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
-<span class="w">            </span><span class="n">resp</span><span class="p">.</span><span class="na">getOutputStream</span><span class="p">().</span><span class="na">print</span><span class="p">(</span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="n">Cannot</span><span class="w"> </span><span class="n">retrieve</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">!&amp;</span><span class="n">quot</span><span class="p">;);</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
+            <span class="kd">final</span> <span class="nc">File</span> <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="n">appServerHome</span><span class="o">);</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">file</span><span class="o">.</span><span class="na">exists</span><span class="o">()</span> <span class="o">&amp;</span><span class="n">amp</span><span class="o">;&amp;</span><span class="n">amp</span><span class="o">;</span> <span class="n">file</span><span class="o">.</span><span class="na">canRead</span><span class="o">()</span> <span class="o">&amp;</span><span class="n">amp</span><span class="o">;&amp;</span><span class="n">amp</span><span class="o">;</span> <span class="n">file</span><span class="o">.</span><span class="na">isDirectory</span><span class="o">())</span> <span class="o">{</span>
+                <span class="nc">List</span><span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span><span class="nc">String</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span> <span class="n">listFiles</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span><span class="nc">String</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;(</span><span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">file</span><span class="o">.</span><span class="na">list</span><span class="o">()));</span>
+                <span class="n">listFiles</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="o">&amp;</span><span class="n">quot</span><span class="o">;&amp;</span><span class="n">quot</span><span class="o">;);</span>
+                <span class="k">for</span> <span class="o">(</span><span class="nc">String</span> <span class="n">s</span> <span class="o">:</span> <span class="n">listFiles</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="nc">File</span> <span class="n">manifestFile</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="n">appServerHome</span> <span class="o">+</span> <span class="nc">File</span><span class="o">.</span><span class="na">separator</span> <span class="o">+</span> <span class="n">s</span><span class="o">,</span> <span class="o">&amp;</span><span class="n">quot</span><span class="o">;</span><span class="no">META</span><span class="o">-</span><span class="no">INF</span><span class="o">/</span><span class="no">MANIFEST</span><span class="o">.</span><span class="na">MF</span><span class="o">&amp;</span><span class="n">quot</span><span class="o">;);</span>
+                    <span class="k">if</span> <span class="o">(</span><span class="n">manifestFile</span><span class="o">.</span><span class="na">exists</span><span class="o">())</span> <span class="o">{</span>
+                        <span class="n">dumpManifestInfo</span><span class="o">(</span><span class="n">resp</span><span class="o">,</span> <span class="n">manifestFile</span><span class="o">,</span> <span class="n">s</span><span class="o">);</span>
+                    <span class="o">}</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+            <span class="n">resp</span><span class="o">.</span><span class="na">setStatus</span><span class="o">(</span><span class="mi">200</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+            <span class="n">resp</span><span class="o">.</span><span class="na">setStatus</span><span class="o">(</span><span class="mi">500</span><span class="o">);</span>
+            <span class="n">resp</span><span class="o">.</span><span class="na">getOutputStream</span><span class="o">().</span><span class="na">print</span><span class="o">(&amp;</span><span class="n">quot</span><span class="o">;</span><span class="nc">Cannot</span> <span class="n">retrieve</span> <span class="n">version</span> <span class="n">data</span> <span class="o">!&amp;</span><span class="n">quot</span><span class="o">;);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
 
-<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">dumpManifestInfo</span><span class="p">(</span><span class="n">HttpServletResponse</span><span class="w"> </span><span class="n">resp</span><span class="p">,</span><span class="w"> </span><span class="n">File</span><span class="w"> </span><span class="n">manifestFile</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">module</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">Manifest</span><span class="w"> </span><span class="n">mf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Manifest</span><span class="p">();</span>
-<span class="w">        </span><span class="n">mf</span><span class="p">.</span><span class="na">read</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">FileInputStream</span><span class="p">(</span><span class="n">manifestFile</span><span class="p">));</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">dumpManifestInfo</span><span class="o">(</span><span class="nc">HttpServletResponse</span> <span class="n">resp</span><span class="o">,</span> <span class="nc">File</span> <span class="n">manifestFile</span><span class="o">,</span> <span class="nc">String</span> <span class="n">module</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">IOException</span> <span class="o">{</span>
+        <span class="nc">Manifest</span> <span class="n">mf</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Manifest</span><span class="o">();</span>
+        <span class="n">mf</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="k">new</span> <span class="nc">FileInputStream</span><span class="o">(</span><span class="n">manifestFile</span><span class="o">));</span>
 
-<span class="w">        </span><span class="n">Attributes</span><span class="w"> </span><span class="n">atts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mf</span><span class="p">.</span><span class="na">getMainAttributes</span><span class="p">();</span>
-<span class="w">        </span><span class="n">resp</span><span class="p">.</span><span class="na">getOutputStream</span><span class="p">().</span><span class="na">println</span><span class="p">(</span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="w"> </span><span class="o">============================</span><span class="w"> </span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;);</span>
-<span class="w">        </span><span class="n">resp</span><span class="p">.</span><span class="na">getOutputStream</span><span class="p">().</span><span class="na">println</span><span class="p">(</span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="n">Module</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">module</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">()</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="n">EAR</span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">module</span><span class="p">));</span>
-<span class="w">        </span><span class="n">resp</span><span class="p">.</span><span class="na">getOutputStream</span><span class="p">().</span><span class="na">println</span><span class="p">(</span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="n">Build</span><span class="p">:</span><span class="w"> </span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">atts</span><span class="p">.</span><span class="na">getValue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="n">Implementation</span><span class="o">-</span><span class="n">Build</span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;));</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span></code></pre>
+        <span class="nc">Attributes</span> <span class="n">atts</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="na">getMainAttributes</span><span class="o">();</span>
+        <span class="n">resp</span><span class="o">.</span><span class="na">getOutputStream</span><span class="o">().</span><span class="na">println</span><span class="o">(&amp;</span><span class="n">quot</span><span class="o">;</span> <span class="o">============================</span> <span class="o">&amp;</span><span class="n">quot</span><span class="o">;);</span>
+        <span class="n">resp</span><span class="o">.</span><span class="na">getOutputStream</span><span class="o">().</span><span class="na">println</span><span class="o">(&amp;</span><span class="n">quot</span><span class="o">;</span><span class="nc">Module</span> <span class="o">:</span> <span class="o">&amp;</span><span class="n">quot</span><span class="o">;</span> <span class="o">+</span> <span class="o">(</span><span class="n">module</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">()</span> <span class="o">?</span> <span class="o">&amp;</span><span class="n">quot</span><span class="o">;</span><span class="no">EAR</span><span class="o">&amp;</span><span class="n">quot</span><span class="o">;</span> <span class="o">:</span> <span class="n">module</span><span class="o">));</span>
+        <span class="n">resp</span><span class="o">.</span><span class="na">getOutputStream</span><span class="o">().</span><span class="na">println</span><span class="o">(&amp;</span><span class="n">quot</span><span class="o">;</span><span class="nl">Build:</span> <span class="o">&amp;</span><span class="n">quot</span><span class="o">;</span> <span class="o">+</span> <span class="n">atts</span><span class="o">.</span><span class="na">getValue</span><span class="o">(&amp;</span><span class="n">quot</span><span class="o">;</span><span class="nc">Implementation</span><span class="o">-</span><span class="nc">Build</span><span class="o">&amp;</span><span class="n">quot</span><span class="o">;));</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre>
           </figure>
 
           Just mount this Servlet via your web.xml, add a filter on top and
@@ -432,7 +432,7 @@
     <div class="footer-wrapper">
       <footer role="contentinfo">
         <span
-          >&copy; 2025 . Powered by
+          >&copy; 2026 . Powered by
           <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using a theme
           based on
           <a
@@ -445,11 +445,11 @@
     </div>
     <!-- /.footer-wrapper -->
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
       window.jQuery ||
         document.write(
-          '<script src="http://www.bloggure.info/assets/js/vendor/jquery-1.9.1.min.js"><\/script>'
+          '<script src="http://www.bloggure.info/assets/js/vendor/jquery-3.7.1.min.js"><\/script>'
         );
     </script>
     <script src="http://www.bloggure.info/assets/js/scripts.min.js"></script>

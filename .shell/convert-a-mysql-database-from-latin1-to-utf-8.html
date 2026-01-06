@@ -64,7 +64,7 @@
     <meta http-equiv="cleartype" content="on" />
 
     <!-- Load Modernizr -->
-    <script src="http://www.bloggure.info/assets/js/vendor/modernizr-2.6.2.custom.min.js"></script>
+    <script src="http://www.bloggure.info/assets/js/vendor/modernizr-3.12.0.min.js"></script>
 
     <!-- Icons -->
     <!-- 16x16 -->
@@ -165,10 +165,10 @@
           UTF-8 instead, use this little script to convert from latin1 to UTF-8
           :
           <figure class="highlight">
-            <pre><code class="language-bash" data-lang="bash"><span></span>mysqldump<span class="w"> </span>--user<span class="o">=</span><span class="si">${</span><span class="nv">USER</span><span class="si">}</span><span class="w"> </span>--password<span class="o">=</span><span class="si">${</span><span class="nv">PASS</span><span class="si">}</span><span class="w"> </span>--default-character-set<span class="o">=</span>latin1<span class="w"> </span>--skip-set-charset<span class="w"> </span><span class="si">${</span><span class="nv">DATABASE</span><span class="si">}</span><span class="w"> </span>&gt;<span class="w"> </span>dump.sql<span class="p">;</span>
-sed<span class="w"> </span>-r<span class="w"> </span>‘s/latin1/utf8/g’<span class="w"> </span>dump.sql<span class="w"> </span>&gt;<span class="w"> </span>dump_utf.sql
-mysql<span class="w"> </span>--user<span class="o">=</span><span class="si">${</span><span class="nv">USER</span><span class="si">}</span><span class="w"> </span>--password<span class="o">=</span><span class="si">${</span><span class="nv">PASS</span><span class="si">}</span><span class="w"> </span>--execute<span class="o">=</span>”DROP<span class="w"> </span>DATABASE<span class="w"> </span><span class="si">${</span><span class="nv">DATABASE</span><span class="si">}</span><span class="p">;</span><span class="w"> </span>CREATE<span class="w"> </span>DATABASE<span class="w"> </span><span class="si">${</span><span class="nv">DATABASE</span><span class="si">}</span><span class="w"> </span>CHARACTER<span class="w"> </span>SET<span class="w"> </span>utf8<span class="w"> </span>COLLATE<span class="w"> </span>utf8_general_ci<span class="p">;</span>”
-mysql<span class="w"> </span>--user<span class="o">=</span><span class="si">${</span><span class="nv">USER</span><span class="si">}</span><span class="w"> </span>--password<span class="o">=</span><span class="si">${</span><span class="nv">PASS</span><span class="si">}</span><span class="w"> </span>--default-character-set<span class="o">=</span>utf8<span class="w"> </span>dbname<span class="w"> </span>&lt;<span class="w"> </span>dump_utf.sql</code></pre>
+            <pre><code class="language-bash" data-lang="bash">mysqldump <span class="nt">--user</span><span class="o">=</span><span class="k">${</span><span class="nv">USER</span><span class="k">}</span> <span class="nt">--password</span><span class="o">=</span><span class="k">${</span><span class="nv">PASS</span><span class="k">}</span> <span class="nt">--default-character-set</span><span class="o">=</span>latin1 <span class="nt">--skip-set-charset</span> <span class="k">${</span><span class="nv">DATABASE</span><span class="k">}</span> <span class="o">&gt;</span> dump.sql<span class="p">;</span>
+<span class="nb">sed</span> <span class="nt">-r</span> ‘s/latin1/utf8/g’ dump.sql <span class="o">&gt;</span> dump_utf.sql
+mysql <span class="nt">--user</span><span class="o">=</span><span class="k">${</span><span class="nv">USER</span><span class="k">}</span> <span class="nt">--password</span><span class="o">=</span><span class="k">${</span><span class="nv">PASS</span><span class="k">}</span> <span class="nt">--execute</span><span class="o">=</span>”DROP DATABASE <span class="k">${</span><span class="nv">DATABASE</span><span class="k">}</span><span class="p">;</span> CREATE DATABASE <span class="k">${</span><span class="nv">DATABASE</span><span class="k">}</span> CHARACTER SET utf8 COLLATE utf8_general_ci<span class="p">;</span>”
+mysql <span class="nt">--user</span><span class="o">=</span><span class="k">${</span><span class="nv">USER</span><span class="k">}</span> <span class="nt">--password</span><span class="o">=</span><span class="k">${</span><span class="nv">PASS</span><span class="k">}</span> <span class="nt">--default-character-set</span><span class="o">=</span>utf8 dbname &lt; dump_utf.sql</code></pre>
           </figure>
           Generally speaking, don't hesitate to always put the
           <code>--default-character-set=utf8</code> on all the mySQL commands
@@ -178,10 +178,10 @@ mysql<span class="w"> </span>--user<span class="o">=</span><span class="si">${</
           connect using UTF-8.<!--:--><!--:frUn problème fréquent quand on doit aborder l'internationalisation est la bonne gestion des différents charset. Quand vous utilisez du Java avec Maven, il est relativement simple de définir l'encoding des fichiers sources en UTF-8 mais le point courant d'échec et la base SQL.
 <br/>
 Si vous utilisez mySQL et que vous avez des tables en latin1, mais que vous devriez avoir de l'UTF-8, utilisez ce petit script pour convertir du latin1 vers l'UTF-8 :
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>mysqldump<span class="w"> </span>--user<span class="o">=</span><span class="si">${</span><span class="nv">USER</span><span class="si">}</span><span class="w"> </span>--password<span class="o">=</span><span class="si">${</span><span class="nv">PASS</span><span class="si">}</span><span class="w"> </span>--default-character-set<span class="o">=</span>latin1<span class="w"> </span>--skip-set-charset<span class="w"> </span><span class="si">${</span><span class="nv">DATABASE</span><span class="si">}</span><span class="w"> </span>&gt;<span class="w"> </span>dump.sql<span class="p">;</span>
-sed<span class="w"> </span>-r<span class="w"> </span>‘s/latin1/utf8/g’<span class="w"> </span>dump.sql<span class="w"> </span>&gt;<span class="w"> </span>dump_utf.sql
-mysql<span class="w"> </span>--user<span class="o">=</span><span class="si">${</span><span class="nv">USER</span><span class="si">}</span><span class="w"> </span>--password<span class="o">=</span><span class="si">${</span><span class="nv">PASS</span><span class="si">}</span><span class="w"> </span>--execute<span class="o">=</span>”DROP<span class="w"> </span>DATABASE<span class="w"> </span><span class="si">${</span><span class="nv">DATABASE</span><span class="si">}</span><span class="p">;</span><span class="w"> </span>CREATE<span class="w"> </span>DATABASE<span class="w"> </span><span class="si">${</span><span class="nv">DATABASE</span><span class="si">}</span><span class="w"> </span>CHARACTER<span class="w"> </span>SET<span class="w"> </span>utf8<span class="w"> </span>COLLATE<span class="w"> </span>utf8_general_ci<span class="p">;</span>”
-mysql<span class="w"> </span>--user<span class="o">=</span><span class="si">${</span><span class="nv">USER</span><span class="si">}</span><span class="w"> </span>--password<span class="o">=</span><span class="si">${</span><span class="nv">PASS</span><span class="si">}</span><span class="w"> </span>--default-character-set<span class="o">=</span>utf8<span class="w"> </span>dbname<span class="w"> </span>&lt;<span class="w"> </span>dump_utf.sql</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">mysqldump <span class="nt">--user</span><span class="o">=</span><span class="k">${</span><span class="nv">USER</span><span class="k">}</span> <span class="nt">--password</span><span class="o">=</span><span class="k">${</span><span class="nv">PASS</span><span class="k">}</span> <span class="nt">--default-character-set</span><span class="o">=</span>latin1 <span class="nt">--skip-set-charset</span> <span class="k">${</span><span class="nv">DATABASE</span><span class="k">}</span> <span class="o">&gt;</span> dump.sql<span class="p">;</span>
+<span class="nb">sed</span> <span class="nt">-r</span> ‘s/latin1/utf8/g’ dump.sql <span class="o">&gt;</span> dump_utf.sql
+mysql <span class="nt">--user</span><span class="o">=</span><span class="k">${</span><span class="nv">USER</span><span class="k">}</span> <span class="nt">--password</span><span class="o">=</span><span class="k">${</span><span class="nv">PASS</span><span class="k">}</span> <span class="nt">--execute</span><span class="o">=</span>”DROP DATABASE <span class="k">${</span><span class="nv">DATABASE</span><span class="k">}</span><span class="p">;</span> CREATE DATABASE <span class="k">${</span><span class="nv">DATABASE</span><span class="k">}</span> CHARACTER SET utf8 COLLATE utf8_general_ci<span class="p">;</span>”
+mysql <span class="nt">--user</span><span class="o">=</span><span class="k">${</span><span class="nv">USER</span><span class="k">}</span> <span class="nt">--password</span><span class="o">=</span><span class="k">${</span><span class="nv">PASS</span><span class="k">}</span> <span class="nt">--default-character-set</span><span class="o">=</span>utf8 dbname &lt; dump_utf.sql</code></pre></figure>
 Globalement, n'hésitez pas à toujours placer <code>--default-character-set=utf8</code> dans toutes les commandes mySQL que vous exécutez.
 N'oubliez pas non plus d'ajouter les paramètres <code>"useUnicode=true&characterEncoding=UTF-8"</code> à la fin de votre url de connexion jdbc pour vous assurez que vous vous connectez en UTF-8.-->
 
@@ -301,7 +301,7 @@ N'oubliez pas non plus d'ajouter les paramètres <code>"useUnicode=true&characte
     <div class="footer-wrapper">
       <footer role="contentinfo">
         <span
-          >&copy; 2025 . Powered by
+          >&copy; 2026 . Powered by
           <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using a theme
           based on
           <a
@@ -314,11 +314,11 @@ N'oubliez pas non plus d'ajouter les paramètres <code>"useUnicode=true&characte
     </div>
     <!-- /.footer-wrapper -->
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
       window.jQuery ||
         document.write(
-          '<script src="http://www.bloggure.info/assets/js/vendor/jquery-1.9.1.min.js"><\/script>'
+          '<script src="http://www.bloggure.info/assets/js/vendor/jquery-3.7.1.min.js"><\/script>'
         );
     </script>
     <script src="http://www.bloggure.info/assets/js/scripts.min.js"></script>

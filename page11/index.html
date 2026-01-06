@@ -52,7 +52,7 @@
     <meta http-equiv="cleartype" content="on" />
 
     <!-- Load Modernizr -->
-    <script src="http://www.bloggure.info/assets/js/vendor/modernizr-2.6.2.custom.min.js"></script>
+    <script src="http://www.bloggure.info/assets/js/vendor/modernizr-3.12.0.min.js"></script>
 
     <!-- Icons -->
     <!-- 16x16 -->
@@ -102,254 +102,6 @@
     <!-- /.entry-header -->
 
     <div id="main" role="main">
-      <article
-        class="hentry"
-        itemprop="blogPost"
-        itemscope
-        itemtype="http://schema.org/BlogPosting"
-      >
-        <header>
-          <div class="entry-meta">
-            <span class="entry-date date published updated"
-              ><time
-                datetime="2012-12-22T00:00:00+01:00"
-                itemprop="datePublished"
-                ><a
-                  href="http://www.bloggure.info/thoughts/work/os-x-tools-i-use-in-my-daily-activities"
-                  >December 22, 2012</a
-                ></time
-              ></span
-            ><span
-              class="author vcard"
-              itemprop="author"
-              itemscope
-              itemtype="http://schema.org/Person"
-              ><span itemprop="name" class="fn"
-                ><a
-                  href="http://www.bloggure.info/cgatay"
-                  title="About cgatay"
-                  itemprop="url"
-                  >cgatay</a
-                ></span
-              ></span
-            >&nbsp; &bull; &nbsp;<span class="entry-comments"
-              ><a
-                href="http://www.bloggure.info/thoughts/work/os-x-tools-i-use-in-my-daily-activities#disqus_thread"
-                >Comment</a
-              ></span
-            >
-          </div>
-          <!-- /.entry-meta -->
-
-          <h1 class="entry-title" itemprop="name">
-            <a
-              href="http://www.bloggure.info/thoughts/work/os-x-tools-i-use-in-my-daily-activities"
-              rel="bookmark"
-              title="OS X Tools I use in my daily activities"
-              itemprop="url"
-              >OS X Tools I use in my daily activities</a
-            >
-          </h1>
-        </header>
-        <div class="entry-content" itemprop="description">
-          <p>
-            <img
-              class="alignright size-thumbnail wp-image-758"
-              alt="MBP Keyboard"
-              src="/images/uploads/2012/12/IMG_20121222_000541-150x150.jpg"
-              width="150"
-              height="150"
-            />During a Jabber talk with my friend
-            <a href="http://www.bloggure.info/author/tdebarochez"
-              >Thomas Debarochez</a
-            > I mentioned an app I use everyday that he hardly ever knows. Then
-            I think it might be a good idea to describe the tools I use everyday
-            at work or home on my machines. My main computer is a MacBook Pro
-            (late 2011) running latest OS X version (Mountain Lion). I use it to
-            develop the
-            <a href="https://www.srmvision.com">SRMvision platform</a> which is
-            built using Java EE technologies (the whole stack will be detailed
-            in a further post).
-          </p>
-
-          <p>
-            The tools I use on my machine in my development process are the
-            following :
-          </p>
-          <ul>
-            <li>
-              <a href="http://www.jetbrains.com/idea/"
-                >IntelliJ IDEA Ultimate 12</a
-              >
-              : the best Java / JVM language IDE so far. It is a great IDE,
-              offers a really good Maven integration and there is a wide range
-              of plugins available. This last version features the really nice
-              Darcula theme (eye candyness) and out of process compiler which
-              makes it really fast.
-            </li>
-            <li>
-              <a href="http://www.sublimetext.com/2">Sublime Text 2</a> : it is
-              a simple but really powerful text editor. I use it to open every
-              file that is out of my IntelliJ's projects.
-            </li>
-            <li>
-              <a href="http://www.sequelpro.com/">Sequel Pro</a> : a nice and
-              powerful mySQL GUI client. It is sometimes more comfortable to
-              query database with a GUI than with the command line.
-            </li>
-            <li>
-              <a href="http://mongohub.todayclose.com/">MongoHub</a> : a simple
-              MongoDB GUI client, crashy but it can be useful at times.
-            </li>
-            <li>
-              <a href="http://maven.apache.org/">Apache Maven</a> : there is no
-              need to elaborate on this one, I think every Java developer knows
-              it.
-            </li>
-            <li>
-              <a
-                href="http://www.oracle.com/technetwork/middleware/glassfish/downloads/index.html"
-                >Oracle Glassfish</a
-              >
-              : one should chose a JavaEE application server, we chose the
-              reference implementation of the spec.
-            </li>
-          </ul>
-          I also use hosted service (self-hosted on our internal network or in
-          the cloud for some) :
-          <ul>
-            <li>
-              <a href="http://gitlabhq.com/">GitlabHQ</a> : if you've read past
-              blog entries, you should know this wonderful tool to manage git
-              repositories (self hosted).
-            </li>
-            <li>
-              <a href="http://jenkins-ci.org/">Jenkins</a> : the well known
-              build tool (self-hosted).
-            </li>
-            <li>
-              <a href="http://www.sonatype.org/nexus/">Sonatype Nexus</a> : as
-              we build our softwares with Apache Maven, we need an internal
-              artifact repository, this one was chosen because it was the
-              simplest to install (when we did it) (self-hosted).
-            </li>
-            <li>
-              <a href="http://www.sonarsource.org/">Sonar</a> : associated in
-              our build pipeline, we have got a Sonar install to collect metrics
-              on our projects (self-hosted).
-            </li>
-            <li>
-              <a href="http://trac.edgewall.org/">Trac</a> : old but not dead,
-              Trac is our source ticketing system from day one. It is surely not
-              the hottest kid in town, but it does its job as expected
-              (self-hosted).
-            </li>
-            <li>
-              <a href="https://trello.com/">Trello</a> : our sprint management
-              tool, its card approach with TrelloScrum plugin allows us to
-              easily plan and run our sprints.
-            </li>
-          </ul>
-          In my list of programs I run everyday without being specifically
-          targeted toward development, I use the following :
-          <ul>
-            <li>
-              <a href="http://synergy-foss.org/">Synergy</a> : it is a simple
-              tool allowing you to share one computer's mouse and keyboard with
-              many other machines using your network connection. As I have two
-              other machines at my desk, this tool is really useful in order to
-              control each one from a mouse and keyboard.
-            </li>
-            <li>
-              <a href="http://www.controlplaneapp.com/">ControlPlane.app</a> : a
-              great app if you use a MacBook, it allows you to define profiles
-              and trigger them based on your location. I have a few profiles
-              allowing me to toggle screensaver password, screen luminosity and
-              my synergy setup.
-            </li>
-            <li>
-              <a href="http://www.alfredapp.com/">Alfred.app</a> : it is Apple's
-              Spotlight on steroid, you can do whatever you want to by simply
-              hitting the shortcut you defined in Alfred. My usage is mainly
-              using it as an application launcher.
-            </li>
-            <li>
-              <a href="http://getcloudapp.com/">Cloud.app</a> : this little tool
-              is really great. Every screenshot I take is uploaded to their
-              servers and the link is then automatically put in my clipboard. It
-              is really useful to quickly share screenshots over instant
-              messenging.
-            </li>
-          </ul>
-          And to finish with this little blog post, here are the stuff I keep
-          installed on my machine even though I don't use them daily :
-          <ul>
-            <li>
-              <a href="http://mxcl.github.com/homebrew/">HomeBrew</a> : when I
-              got my first Intel Mac, I used MacPorts to install tools from the
-              Unix world from sources. This tool is great, but you end up
-              downloading a lot of dependencies to get a simple soft to build
-              and you are transforming your CPU to a toaster. Then I heard about
-              HomeBrew, which is the simplest and the greatest way of managing
-              third party applications on your Mac. Everything is clean, there
-              is no need to be root, no need to be part of the global warming
-              thing with your CPU.
-            </li>
-            <li>
-              <a href="https://www.dropbox.com">Dropbox</a> : I think this one
-              is known by everyone now. Just upload and share your files easily,
-              the app is so great that I can even forget the magic it is doing
-              in my back.
-            </li>
-            <li>
-              <a href="http://getpocket.com/">Pocket</a> : (previously Read It
-              Later) is a great software to mark links, blog posts, everything
-              you can come across on the web as to be read later. The Mac
-              application is beautiful, so is the Android one (Hint : don't
-              stack in it if you can't manage to free time for unstacking).
-            </li>
-            <li>
-              <a href="http://www.sourcetreeapp.com/">SourceTree.app</a> and
-              <a href="http://mac.github.com/">Github.app</a>: at times, I need
-              to get a visual help to manage my git repositories. SourceTree is
-              a complete tool offering a really good looking branch
-              visualization. Github allows to seamlessly use their service, I
-              often use it to reorder my commits before making a pull request.
-            </li>
-            <li>
-              <a href="http://colloquy.info/">Colloquy</a> : a really good IRC
-              client, I use it when I am telecommuting, otherwise I use the
-              classic XChat (linux version).
-            </li>
-            <li>
-              <a href="http://spotify.com/">Spotify</a> : I think I can not work
-              without music, the 10€ / month membership allows me to use it with
-              my phone too, it is very unlikely that I cancel this subscription
-              anytime soon (I even use the Linux version).
-            </li>
-            <li>
-              <a href="http://latenitesoft.com/xslimmer/">XSlimmer</a> : I use
-              this tool from time to time to slim down the size of the app I
-              have installed. It works by removing unused language in packages.
-            </li>
-            <li>
-              <a href="http://latenitesoft.com/clusters/">Clusters</a> : I have
-              this one installed and do its work without worrying of what it is
-              doing. It allows me to save some space in the folders where I
-              store documents (compression is very efficient here).
-            </li>
-            <li>
-              <a href="https://www.dashlane.com/fr/cs/3b9ba006">Dashlane</a> :
-              this password and identity manager is really good. It exists for
-              different OSes and allows to setup strong passwords on every
-              account you own : must have.
-            </li>
-          </ul>
-        </div>
-        <!-- /.entry-content -->
-      </article>
-      <!-- /.hentry -->
-
       <article
         class="hentry"
         itemprop="blogPost"
@@ -613,7 +365,7 @@
             running :
           </p>
           <figure class="highlight">
-            <pre><code class="language-bash" data-lang="bash"><span></span>mvn<span class="w"> </span>jetty:run</code></pre>
+            <pre><code class="language-bash" data-lang="bash">mvn jetty:run</code></pre>
           </figure>
           <h2>Wicket Open In IDEA</h2>
           <h3>IDEA part</h3>
@@ -819,6 +571,203 @@ If you're curious about Scala or about functional programming paradigm, you shou
       </article>
       <!-- /.hentry -->
 
+      <article
+        class="hentry"
+        itemprop="blogPost"
+        itemscope
+        itemtype="http://schema.org/BlogPosting"
+      >
+        <header>
+          <div class="entry-meta">
+            <span class="entry-date date published updated"
+              ><time
+                datetime="2012-10-18T00:00:00+02:00"
+                itemprop="datePublished"
+                ><a
+                  href="http://www.bloggure.info/.js/using-trello-as-a-scrum-sprint-board"
+                  >October 18, 2012</a
+                ></time
+              ></span
+            ><span
+              class="author vcard"
+              itemprop="author"
+              itemscope
+              itemtype="http://schema.org/Person"
+              ><span itemprop="name" class="fn"
+                ><a
+                  href="http://www.bloggure.info/cgatay"
+                  title="About cgatay"
+                  itemprop="url"
+                  >cgatay</a
+                ></span
+              ></span
+            >&nbsp; &bull; &nbsp;<span class="entry-comments"
+              ><a
+                href="http://www.bloggure.info/.js/using-trello-as-a-scrum-sprint-board#disqus_thread"
+                >Comment</a
+              ></span
+            >
+          </div>
+          <!-- /.entry-meta -->
+
+          <h1 class="entry-title" itemprop="name">
+            <a
+              href="http://www.bloggure.info/.js/using-trello-as-a-scrum-sprint-board"
+              rel="bookmark"
+              title="Using Trello as a Scrum sprint board"
+              itemprop="url"
+              >Using Trello as a Scrum sprint board</a
+            >
+          </h1>
+        </header>
+        <div class="entry-content" itemprop="description">
+          <!--:en-->
+          <p>
+            At <a href="http://www.srmvision.com">SRMvision</a>, we use agile
+            methods since day one, mainly Scrum, which we rearranged to fit our
+            needs and goals at times. We've always looked for the perfect
+            computerized alternative to good old stickies.
+          </p>
+          <h2>
+            TrelloScrum Chrome Extension<img
+              class="alignright size-full wp-image-644"
+              title="Trello-Icon"
+              src="/images/uploads/2012/10/Trello-Icon1.png"
+              alt=""
+              width="128"
+              height="128"
+            />
+          </h2>
+          <p>
+            When it came out, it was clear to me that
+            <a href="http://www.trello.com">Trello</a> could be the cornerstone
+            of our internal workflow, we started from the very good
+            <a
+              href="https://chrome.google.com/webstore/detail/trello-scrum/jdbcdblgjdpmfninkoogcfpnkjmndgje"
+              >TrelloScrum plugin available on the Chrome Web Store</a
+            >
+            to count story points. This plugin is really useful in planning
+            sprints, it allows the Scrum master to track story points scheduled
+            in order to fill every single day in the sprint.
+          </p>
+          <h2>Forking the extension</h2>
+          <p>
+            After a few sprints, we realized we needed more than what was
+            included in the plugin. The main thing needed was tracking consumed
+            story points to get a really rapid and efficient feedback on our
+            sprint (real-time burndown values). Thanks to the guys behind the
+            plugin (<a href="http://q42.nl/blog">Q42</a>) and to Github, I was
+            able to fork the project and add these features :
+          </p>
+          <ul>
+            <li>
+              if you note points in square brackets : [3] they are considered as
+              consumed points (contributed back to the plugin available in the
+              Chrome Web Store)
+            </li>
+            <li>
+              on card detail, hitting the "Done" button flags the whole card
+              points consumed and moves the card to the bottom of the list, then
+              the card view is closed so you can focus on something else (only
+              available in my fork)
+            </li>
+            <li>
+              plugged to the Trello client API, less flickering when updating
+              cards
+            </li>
+          </ul>
+          <!-- [caption id="attachment_631" align="aligncenter" width="315"] --><img
+            class="size-full wp-image-631"
+            title="list"
+            src="/images/uploads/2012/10/list.png"
+            alt=""
+            width="315"
+            height="290"
+          /><!--  List and cards points counts[/caption] -->
+          <p>
+            With this plugin, you'll get two counters on the top of each list
+            and on a top of the board : consumed points in light blue and
+            scheduled poins in blue. The scheduled and consumed terms are the
+            one we use at <a href="http://www.srmvision.com">SRMvision</a>, but
+            you can use it the way you like to manage your sprints.
+          </p>
+          <h2>Using the extension</h2>
+          <p>
+            If you want to use my fork of the extension, you'll need to get it
+            in my
+            <a href="https://github.com/CedricGatay/TrelloScrum/downloads"
+              >Github account</a
+            >. As it is not available in the store, you'll need to drag and drop
+            the downloaded file on the
+            <a href="chrome://extensions">chrome://extensions</a> page.
+          </p>
+          <!-- [caption id="attachment_633" align="alignright" width="133"] --><img
+            class="size-full wp-image-633"
+            style="text-align: center"
+            title="unauthenticated"
+            src="/images/uploads/2012/10/unauthenticated.png"
+            alt=""
+            width="133"
+            height="46"
+          /><!--  Unauthenticated plugin[/caption] -->
+          <p>
+            Next, you'll need to authenticate the plugin to your Trello account,
+            to do so, there is a little circle on top of your profile picture
+            which is on the top right corner of Trello.
+          </p>
+          <p>
+            You can use the plugin without allowing it to authenticate, if you
+            do so, you won't be able to flag cards as Done using the button and
+            thus, cards won't be moved to the bottom. To authenticate, you need
+            to click the circle, it will popup the authenticate dialog, just
+            follow the steps in this popup (and close it manually when you see a
+            blank page - limitation of the extension).
+          </p>
+          <!-- [caption id="attachment_632" align="alignright" width="139"] --><img
+            class="size-full wp-image-632"
+            title="authenticated"
+            src="/images/uploads/2012/10/authenticated.png"
+            alt=""
+            width="139"
+            height="48"
+          /><!-- Authenticated plugin[/caption] -->
+          <p>
+            Once authenticated, you should see a green circle and a "Done"
+            button on cards details.
+          </p>
+          <p>
+            If you have feature requests or bugs, don't hesitate to use the
+            <a href="https://github.com/CedricGatay/TrelloScrum/issues"
+              >Github issue tracker</a
+            >.
+          </p>
+          <!--:--><!--:fr<p>Chez <a href="http://www.srmvision.com">SRMvision</a>, nous utilisons les méthodes agile depuis le début, principalement Scrum, que nous avons quelque peu modifié pour coller à nos besoins au fil du temps. Nous avons cherché depuis le début une bonne alternative informatisée aux bons vieux post-it.</p>
+<h2>TrelloScrum Chrome Extension<img class="alignright size-full wp-image-644" title="Trello-Icon" src="/images/uploads/2012/10/Trello-Icon1.png" alt="" width="128" height="128" /></h2>
+<p>Quand je l'ai découvert, j'ai rapidement pensé que <a href="http://www.trello.com">Trello</a> pouvait être un des piliers de notre organisation interne. Nous avons d'abord commencé par utiliser la très bonne extension <a href="https://chrome.google.com/webstore/detail/trello-scrum/jdbcdblgjdpmfninkoogcfpnkjmndgje">TrelloScrum disponible sur le Chrome Web Store</a> pour effectuer le décompte des points de nos sprints. Ce plugin est réellement utile dans la planification de sprint, il permet au Scrum-master de facilement gérer le nombre de points utilisés pour remplir efficacement chaque jour du sprint.</p>
+<h2>Contribuer à l'extension</h2>
+<p>Après quelques sprints, nous nous sommes rendus compte que nous avions besoin d'un petit peu plus que ce que le plugin offrait. La principale chose dont nous avions besoin était d'identifier les points consommés au jour le jour afin d'avoir une analyse rapide (on obtient donc un burndown en temps réel). Grace aux développeurs de l'extension originale (<a href="http://q42.nl/blog">Q42</a>) et à la magie de Github, j'ai pu contribuer à l'extension en ajoutant ces fonctionnalités :</p>
+<ul>
+<li>en notant les points entre crochets : [3] ceux-ci seront considérés en tant que points utilisés (cette amélioration est maintenant présente dans la version disponible sur le Chrome Web Store)</li>
+<li>dans le détail d'une carte, le bouton "Done" permet de marquer l'intégralité des points de la carte utilisés, de fermer la carte, et de la bouger à la fin de la liste, pour permettre de se concentrer sur la prochaine tâche à effectuer (uniquement disponible dans ma version modifiée)</li>
+<li>utilisation de l'API cliente Trello, les modifications provoquent moins de clignotements dans l'interface</li>
+</ul>
+[caption id="attachment_631" align="aligncenter" width="315"]<img class="size-full wp-image-631 " title="list" src="/images/uploads/2012/10/list.png" alt="" width="315" height="290" /> Décompte de points sur la liste et les cartes[/caption]
+<p>Grace à cette version, vous aurez deux décomptes dans le coin supérieur droit de chaque liste ainsi qu'en haut de l'ardoise en cours. Les points utilisés sont présentés en bleu clair et les points restant en bleu foncé. Les notions de points "utilisés" et "restant" sont les termes que nous utilisons pour gérer nos sprints chez SRMvision, mais vous pouvez bien entendu changer la signification des décomptes pour coller à votre façon de gérer vos sprints.</p>
+<h2>Utiliser l'extension</h2>
+<p>Si vous désirez utiliser ma version de l'extension, vous devrez la récupérer en allant la télécharger depuis mon <a href="https://github.com/CedricGatay/TrelloScrum/downloads">compte Github</a>. Puisqu'elle n'est pas disponible dans le Chrome Web Store, vous devrez effectuer un glisser déplacer du fichier téléchargé sur la page <a href="chrome://extensions">chrome://extensions</a> de votre navigateur.</p>
+[caption id="attachment_633" align="alignright" width="133"]<img class="size-full wp-image-633 " style="text-align: center;" title="unauthenticated" src="/images/uploads/2012/10/unauthenticated.png" alt="" width="133" height="46" /> Plugin non autorisé[/caption]
+<p>Ensuite, vous devrez autoriser le plugin auprès de votre compte Trello. Pour ce faire, il y a un petit cercle présent au dessus de votre image de profil (dans le coin supérieur droit).</p>
+<p>Vous pouvez utiliser le plugin sans l'autoriser, si c'est le cas, vous n'aurez pas le bouton "Done" dans le détail d'une carte et vous ne bénéficierez pas du déplacement automatique des cartes.</p>
+<p>Pour autoriser le plugin, vous devez cliquer sur le cercle, la fenêtre d'autorisation s'ouvrira, dans laquelle il suffit de suivre les étapes pour autoriser le plugin (vous devrez fermer manuellement la fenêtre qui s'est ouverte - limite de l'extension pour l'instant).</p>
+[caption id="attachment_632" align="alignright" width="139"]<a href="http://www.bloggure.info/wp-content/uploads/2012/10/authenticated.png"><img class="size-full wp-image-632 " title="authenticated" src="/images/uploads/2012/10/authenticated.png" alt="" width="139" height="48" /></a> Plugin autorisé[/caption]
+<p>Une fois le plugin autorisé, vous devriez voir le plugin passer au vert, et vous devriez avoir le bouton "Done" présent sur le détail des cartes.</p>
+<p>Si vous avez des idées de fonctionnalités ou détecté un bug, n'hésitez pas à vous servir du <a href="https://github.com/CedricGatay/TrelloScrum/issues">système de ticket de Github</a>.</p>
+<-->
+        </div>
+        <!-- /.entry-content -->
+      </article>
+      <!-- /.hentry -->
+
       <div class="pagination">
         <a href="http://www.bloggure.info/page10" class="btn">Previous</a>
 
@@ -916,7 +865,7 @@ If you're curious about Scala or about functional programming paradigm, you shou
     <div class="footer-wrapper">
       <footer role="contentinfo">
         <span
-          >&copy; 2025 . Powered by
+          >&copy; 2026 . Powered by
           <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using a theme
           based on
           <a
@@ -929,11 +878,11 @@ If you're curious about Scala or about functional programming paradigm, you shou
     </div>
     <!-- /.footer-wrapper -->
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
       window.jQuery ||
         document.write(
-          '<script src="http://www.bloggure.info/assets/js/vendor/jquery-1.9.1.min.js"><\/script>'
+          '<script src="http://www.bloggure.info/assets/js/vendor/jquery-3.7.1.min.js"><\/script>'
         );
     </script>
     <script src="http://www.bloggure.info/assets/js/scripts.min.js"></script>

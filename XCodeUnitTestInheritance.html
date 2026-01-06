@@ -59,7 +59,7 @@
     <meta http-equiv="cleartype" content="on" />
 
     <!-- Load Modernizr -->
-    <script src="http://www.bloggure.info/assets/js/vendor/modernizr-2.6.2.custom.min.js"></script>
+    <script src="http://www.bloggure.info/assets/js/vendor/modernizr-3.12.0.min.js"></script>
 
     <!-- Icons -->
     <!-- 16x16 -->
@@ -166,17 +166,17 @@
           <p>I came up with something like the following for my tests</p>
 
           <figure class="highlight">
-            <pre><code class="language-swift" data-lang="swift"><span></span><span class="kd">class</span> <span class="nc">BaseTest</span><span class="p">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">Action</span><span class="p">&gt;:</span> <span class="n">XCTestCase</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nv">subject</span><span class="p">:</span> <span class="n">T</span><span class="p">!</span>
-    <span class="kd">var</span> <span class="nv">actions</span><span class="p">:</span> <span class="p">[</span><span class="n">Action</span><span class="p">]</span><span class="o">!</span>
+            <pre><code class="language-swift" data-lang="swift"><span class="kd">class</span> <span class="kt">BaseTest</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">,</span> <span class="kt">Action</span><span class="o">&gt;</span><span class="p">:</span> <span class="kt">XCTestCase</span> <span class="p">{</span>
+    <span class="k">var</span> <span class="nv">subject</span><span class="p">:</span> <span class="kt">T</span><span class="o">!</span>
+    <span class="k">var</span> <span class="nv">actions</span><span class="p">:</span> <span class="p">[</span><span class="kt">Action</span><span class="p">]</span><span class="o">!</span>
 
-    <span class="kr">override</span> <span class="kd">func</span> <span class="nf">setUp</span><span class="p">(){</span>
-        <span class="n">subject</span> <span class="p">=</span> <span class="n">T</span><span class="p">()</span>
-        <span class="n">actions</span> <span class="p">=</span> <span class="p">[]</span>
+    <span class="k">override</span> <span class="kd">func</span> <span class="nf">setUp</span><span class="p">(){</span>
+        <span class="n">subject</span> <span class="o">=</span> <span class="kt">T</span><span class="p">()</span>
+        <span class="n">actions</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="kd">class</span> <span class="nc">LoginTest</span><span class="p">:</span> <span class="n">BaseTest</span><span class="p">&lt;</span><span class="n">LoginMiddleware</span><span class="p">,</span> <span class="n">LoginAction</span><span class="p">&gt;</span> <span class="p">{</span>
+<span class="kd">class</span> <span class="kt">LoginTest</span><span class="p">:</span> <span class="kt">BaseTest</span><span class="o">&lt;</span><span class="kt">LoginMiddleware</span><span class="p">,</span> <span class="kt">LoginAction</span><span class="o">&gt;</span> <span class="p">{</span>
     <span class="kd">func</span> <span class="nf">test_loginIsWorking</span><span class="p">(){</span>
         <span class="c1">// ...</span>
     <span class="p">}</span>
@@ -222,21 +222,21 @@
           </p>
 
           <figure class="highlight">
-            <pre><code class="language-swift" data-lang="swift"><span></span><span class="kd">class</span> <span class="nc">BaseHelper</span><span class="p">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">Action</span><span class="p">&gt;{</span>
-    <span class="kd">var</span> <span class="nv">subject</span><span class="p">:</span> <span class="n">T</span><span class="p">!</span>
-    <span class="kd">var</span> <span class="nv">actions</span><span class="p">:</span> <span class="p">[</span><span class="n">Action</span><span class="p">]</span><span class="o">!</span>
+            <pre><code class="language-swift" data-lang="swift"><span class="kd">class</span> <span class="kt">BaseHelper</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">,</span> <span class="kt">Action</span><span class="o">&gt;</span><span class="p">{</span>
+    <span class="k">var</span> <span class="nv">subject</span><span class="p">:</span> <span class="kt">T</span><span class="o">!</span>
+    <span class="k">var</span> <span class="nv">actions</span><span class="p">:</span> <span class="p">[</span><span class="kt">Action</span><span class="p">]</span><span class="o">!</span>
 
-    <span class="kd">init</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">subject</span> <span class="p">=</span> <span class="n">T</span><span class="p">()</span>
-        <span class="n">actions</span> <span class="p">=</span> <span class="p">[]</span>
+    <span class="nf">init</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">subject</span> <span class="o">=</span> <span class="kt">T</span><span class="p">()</span>
+        <span class="n">actions</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="kd">class</span> <span class="nc">LoginTest</span><span class="p">:</span> <span class="n">XCTestCase</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nv">helper</span><span class="p">:</span> <span class="n">BaseHelper</span><span class="p">&lt;</span><span class="n">LoginMiddleware</span><span class="p">,</span> <span class="n">LoginAction</span><span class="p">&gt;</span><span class="o">!</span>
+<span class="kd">class</span> <span class="kt">LoginTest</span><span class="p">:</span> <span class="kt">XCTestCase</span> <span class="p">{</span>
+    <span class="k">var</span> <span class="nv">helper</span><span class="p">:</span> <span class="kt">BaseHelper</span><span class="o">&lt;</span><span class="kt">LoginMiddleware</span><span class="p">,</span> <span class="kt">LoginAction</span><span class="o">&gt;!</span>
 
-    <span class="kr">override</span> <span class="kd">func</span> <span class="nf">setUp</span><span class="p">(){</span>
-        <span class="n">helper</span> <span class="p">=</span> <span class="p">.</span><span class="kd">init</span><span class="p">()</span>
+    <span class="k">override</span> <span class="kd">func</span> <span class="nf">setUp</span><span class="p">(){</span>
+        <span class="n">helper</span> <span class="o">=</span> <span class="o">.</span><span class="nf">init</span><span class="p">()</span>
     <span class="p">}</span>
     <span class="kd">func</span> <span class="nf">test_loginIsWorking</span><span class="p">(){</span>
         <span class="c1">// ...</span>
@@ -358,7 +358,7 @@
     <div class="footer-wrapper">
       <footer role="contentinfo">
         <span
-          >&copy; 2025 . Powered by
+          >&copy; 2026 . Powered by
           <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using a theme
           based on
           <a
@@ -371,11 +371,11 @@
     </div>
     <!-- /.footer-wrapper -->
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
       window.jQuery ||
         document.write(
-          '<script src="http://www.bloggure.info/assets/js/vendor/jquery-1.9.1.min.js"><\/script>'
+          '<script src="http://www.bloggure.info/assets/js/vendor/jquery-3.7.1.min.js"><\/script>'
         );
     </script>
     <script src="http://www.bloggure.info/assets/js/scripts.min.js"></script>

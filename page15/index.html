@@ -52,7 +52,7 @@
     <meta http-equiv="cleartype" content="on" />
 
     <!-- Load Modernizr -->
-    <script src="http://www.bloggure.info/assets/js/vendor/modernizr-2.6.2.custom.min.js"></script>
+    <script src="http://www.bloggure.info/assets/js/vendor/modernizr-3.12.0.min.js"></script>
 
     <!-- Icons -->
     <!-- 16x16 -->
@@ -102,108 +102,6 @@
     <!-- /.entry-header -->
 
     <div id="main" role="main">
-      <article
-        class="hentry"
-        itemprop="blogPost"
-        itemscope
-        itemtype="http://schema.org/BlogPosting"
-      >
-        <header>
-          <div class="entry-meta">
-            <span class="entry-date date published updated"
-              ><time
-                datetime="2012-02-23T00:00:00+01:00"
-                itemprop="datePublished"
-                ><a href="http://www.bloggure.info/.git/work/gitlabhq"
-                  >February 23, 2012</a
-                ></time
-              ></span
-            ><span
-              class="author vcard"
-              itemprop="author"
-              itemscope
-              itemtype="http://schema.org/Person"
-              ><span itemprop="name" class="fn"
-                ><a
-                  href="http://www.bloggure.info/cgatay"
-                  title="About cgatay"
-                  itemprop="url"
-                  >cgatay</a
-                ></span
-              ></span
-            >&nbsp; &bull; &nbsp;<span class="entry-comments"
-              ><a
-                href="http://www.bloggure.info/.git/work/gitlabhq#disqus_thread"
-                >Comment</a
-              ></span
-            >
-          </div>
-          <!-- /.entry-meta -->
-
-          <h1 class="entry-title" itemprop="name">
-            <a
-              href="http://www.bloggure.info/.git/work/gitlabhq"
-              rel="bookmark"
-              title="GitLabHQ and a good branching model"
-              itemprop="url"
-              >GitLabHQ and a good branching model</a
-            >
-          </h1>
-        </header>
-        <div class="entry-content" itemprop="description">
-          <!--:en-->
-          <h2>Migrating to Git</h2>
-          <img
-            src="/images/uploads/2011/12/GitLogo.jpg"
-            alt=""
-            title="GitLogo"
-            width="97"
-            height="202"
-            class="alignright size-full wp-image-491"
-          />
-          <p>
-            At work, we made the move from subversion to git as our version
-            control tool. I used git for a few times before we migrate the whole
-            project thanks to the git-svn bridge, and, apart from the usual
-            headache when it comes to merging branches, I was rather convinced
-            we would make the migration to git. To explain what branching model
-            I was expecting to use, I dig the Internet for a good tool, hoping
-            to migrate our so "1.0" Trac version control and issue management to
-            a more github like one.
-          </p>
-
-          <h2>Founds</h2>
-          <p>
-            There is not as much tools as I first thought, I found
-            <a href="https://gitorious.org/gitorious">gitorious</a>, which seems
-            to be a good tool, but it looks complicated to setup and lacks (or I
-            didn't find it) a good graphical representation of the branches in
-            the repository. <br />
-
-            I came across <a href="http://gitlabhq.com/">gitlabhq</a>, which is
-            a starting project, but promising as it aims to mimic github in many
-            ways. I've tried it and I must say I am very impressed, it is now
-            one of the tool we use internally, it is not yet a perfect tool but
-            it does its jobs very well. We still use our old Trac environment
-            with git integration to hunt down our bugs and control ticket
-            workflow with commit messages (blog post to come). We also use
-            Trac's wiki to write our internal documentation toward developpers.
-          </p>
-          <!--:--><!--:fr<h2>Migration vers Git</h2>
-<img src="/images/uploads/2011/12/GitLogo.jpg" alt="" title="GitLogo" width="97" height="202" class="alignright size-full wp-image-491" />
-Au travail, nous avons pris la décision de passer de Subversion à Git comme outil de gestion de sources. J'ai utilisé git quelques mois avant de migrer l'intégralité du projet pour tout le monde grace à l'outil git-svn. Et, mis à part les problèmes habituels de merge entre branches svn, j'étais plutôt enthousiaste concernant la migration vers git. L'idée était de disposer d'un outil plus puissant pour pouvoir séparer plus efficacement les développements en utilisant des branches. Pour expliquer quelle technique j'avais envie de mettre en place pour gérer nos branches de développement, j'ai cherché l'outil qu'il nous fallait, tout en espérant pouvoir migrer notre outil de gestion d'incident actuel (Trac) vers un se rapprochant plus de github.
-
-<h2>Résultats</h2>
-Il n'y a pas tant d'outils que je le pensais au préalable. J'ai trouvé <a href="https://gitorious.org/gitorious">gitorious</a>, qui a l'air d'être un bon outil, mais l'installation à l'air complexe et ne propose pas (où je suis passé à côté) d'outil permettant de visualiser de façon graphique les branches.
-
-Je suis tombé sur <a href="http://gitlabhq.com/">GitLabHQ</a>, qui est un projet naissant, mais prometteur puisque l'objectif est de fournir une alternative similaire à github. Je l'ai essayé et je dois dire que je suis réellement très impressionné, à tel point que c'est maintenant un des outils que nous utilisons en complèment de Trac.
-Nous utilisons toujours Trac pour gérer nos tickets de bugs et pour contrôler leur workflow à l'aide de messages de commit (il y aura un post ici à ce sujet dans quelques temps). Nous utilisons aussi le wiki de Trac pour la documentation développeur (nous n'avons pas encore pris le temps de la migrer vers GitLabHQ, ce qui arrivera certainement).
-<-->
-        </div>
-        <!-- /.entry-content -->
-      </article>
-      <!-- /.hentry -->
-
       <article
         class="hentry"
         itemprop="blogPost"
@@ -328,8 +226,8 @@ Nous utilisons toujours Trac pour gérer nos tickets de bugs et pour contrôler 
           </p>
 
           <figure class="highlight">
-            <pre><code class="language-java" data-lang="java"><span></span><span class="n">Caused</span><span class="w"> </span><span class="n">by</span><span class="p">:</span><span class="w"> </span><span class="n">com</span><span class="p">.</span><span class="na">mongodb</span><span class="p">.</span><span class="na">MongoException</span><span class="p">:</span><span class="w"> </span><span class="n">assertion</span><span class="w"> </span><span class="n">db</span><span class="o">/</span><span class="p">..</span><span class="o">/</span><span class="n">bson</span><span class="o">/</span><span class="n">bsonobjbuilder</span><span class="p">.</span><span class="na">h</span><span class="p">:</span><span class="mi">127</span>
-<span class="w">       </span><span class="n">at</span><span class="w"> </span><span class="n">com</span><span class="p">.</span><span class="na">mongodb</span><span class="p">.</span><span class="na">MongoException</span><span class="p">.</span><span class="na">parse</span><span class="p">(</span><span class="n">MongoException</span><span class="p">.</span><span class="na">java</span><span class="p">:</span><span class="mi">82</span><span class="p">)</span></code></pre>
+            <pre><code class="language-java" data-lang="java"><span class="nc">Caused</span> <span class="nl">by:</span> <span class="n">com</span><span class="o">.</span><span class="na">mongodb</span><span class="o">.</span><span class="na">MongoException</span><span class="o">:</span> <span class="n">assertion</span> <span class="n">db</span><span class="o">/../</span><span class="n">bson</span><span class="o">/</span><span class="n">bsonobjbuilder</span><span class="o">.</span><span class="na">h</span><span class="o">:</span><span class="mi">127</span>
+       <span class="n">at</span> <span class="n">com</span><span class="o">.</span><span class="na">mongodb</span><span class="o">.</span><span class="na">MongoException</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="nc">MongoException</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">82</span><span class="o">)</span></code></pre>
           </figure>
           <img
             src="/images/uploads/2012/02/mongo.png"
@@ -440,8 +338,8 @@ Puisque j'ai mis pas mal de temps à comprendre ce qui se passait et que je n'ai
           </ul>
 
           <figure class="highlight">
-            <pre><code class="language-bash" data-lang="bash"><span></span><span class="ch">#!/bin/sh</span>
-mvn<span class="w"> </span>-f<span class="w"> </span>path/to/my/pom.xml<span class="w"> </span>-Dtest<span class="o">=</span>MyTestClass<span class="w"> </span><span class="nb">test</span></code></pre>
+            <pre><code class="language-bash" data-lang="bash"><span class="c">#!/bin/sh</span>
+mvn <span class="nt">-f</span> path/to/my/pom.xml <span class="nt">-Dtest</span><span class="o">=</span>MyTestClass <span class="nb">test</span></code></pre>
           </figure>
           <ul>
             <li>
@@ -455,6 +353,120 @@ mvn<span class="w"> </span>-f<span class="w"> </span>path/to/my/pom.xml<span cla
             causing the test failure, a simple git revert and tests were back to
             green !
           </p>
+        </div>
+        <!-- /.entry-content -->
+      </article>
+      <!-- /.hentry -->
+
+      <article
+        class="hentry"
+        itemprop="blogPost"
+        itemscope
+        itemtype="http://schema.org/BlogPosting"
+      >
+        <header>
+          <div class="entry-meta">
+            <span class="entry-date date published updated"
+              ><time
+                datetime="2011-12-18T00:00:00+01:00"
+                itemprop="datePublished"
+                ><a
+                  href="http://www.bloggure.info/.shell/dotfiles-or-easily-manage-your-shell-environment"
+                  >December 18, 2011</a
+                ></time
+              ></span
+            ><span
+              class="author vcard"
+              itemprop="author"
+              itemscope
+              itemtype="http://schema.org/Person"
+              ><span itemprop="name" class="fn"
+                ><a
+                  href="http://www.bloggure.info/cgatay"
+                  title="About cgatay"
+                  itemprop="url"
+                  >cgatay</a
+                ></span
+              ></span
+            >&nbsp; &bull; &nbsp;<span class="entry-comments"
+              ><a
+                href="http://www.bloggure.info/.shell/dotfiles-or-easily-manage-your-shell-environment#disqus_thread"
+                >Comment</a
+              ></span
+            >
+          </div>
+          <!-- /.entry-meta -->
+
+          <h1 class="entry-title" itemprop="name">
+            <a
+              href="http://www.bloggure.info/.shell/dotfiles-or-easily-manage-your-shell-environment"
+              rel="bookmark"
+              title="dotfiles or easily manage your shell environment"
+              itemprop="url"
+              >dotfiles or easily manage your shell environment</a
+            >
+          </h1>
+        </header>
+        <div class="entry-content" itemprop="description">
+          <!--:en--><img
+            src="/images/uploads/2011/12/dotfiles.png"
+            alt=""
+            title="dotfiles"
+            width="87"
+            height="68"
+            class="alignright size-full wp-image-483"
+          />
+          <p>
+            Like many terminal geek, I have a bunch of dot rc files allowing me
+            to configure my environment. While this is a very powerful way to
+            setup an environment, it is painful to log in a machine and set it
+            up like you are used to, you often discover too late your favorite
+            alias is missing.
+          </p>
+          <p>
+            I found a nice way to manage this thing by browsing the
+            <a href="https://github.com/tomsquest/dotfiles">github account</a>
+            of one of a man coming frequently to the
+            <a href="http://www.toursjug.org/">Tours Java User Group</a>
+            meetings. It is commonly called dotfiles and can not be better named
+            I found.
+          </p>
+          <p>
+            I
+            <a href="https://github.com/CedricGatay/dotfiles"
+              >forked the repository</a
+            >
+            to customize it to my needs, it is now possible to define aliases
+            and to configure the shell on a per machine basis. To install, you
+            will only need ruby and rake (manual install is also possible by
+            symlinking the files) :
+          </p>
+          <ul>
+            <li>
+              cd; git clone git://github.com/CedricGatay/dotfiles.git .dotfiles
+            </li>
+            <li>cd .dotfiles; rake install</li>
+            <li>logout and login, or source your .zshrc / .bashrc</li>
+          </ul>
+          <p>
+            Please notice that I am a zsh user, the bashrc file provided should
+            work but it will surely need some fixes. There is no better way than
+            digging into the source to understand and adjust it.
+          </p>
+          <!--:--><!--:fr<img src="/images/uploads/2011/12/Capture-d’écran-2011-12-18-à-18.55.51.png" alt="" title="dotfiles" width="87" height="68" class="alignright size-full wp-image-483" />
+<p>Comme beaucoup de geek, j'affectionne tout particulièrement la ligne de commande. J'ai tout un lot de fichier de configuration à la racine de mon dossier personnel. Bien que ce soit une façon très puissante de configurer son environnement de travail, c'est perturbant de se connecter sur une machine et de ne pas retrouver ses habitudes.</p>
+<p>
+J'ai trouvé un moyen simple et élégant de de gérer ce cas de figure en naviguant sur un<a href="https://github.com/tomsquest/dotfiles">dépôt github</a> d'un des membre régulier du <a href="http://www.toursjug.org/">Tours Java User Group</a>. Le nom courant de ce genre de dépôt est "dotfiles" et je trouve qu'il ne pourrait pas avoir de meilleur nom.</p>
+<p>
+J'ai donc<a href="https://github.com/CedricGatay/dotfiles">forké le dépôt</a> pour le faire correspondre à mes besoins. J'ai rajouté une fonctionnalité qui était nécessaire pour moi : la possibilité d'avoir des configurations et des alias sensiblement différents en fonction de la machine sur laquelle le fichier est déployé (j'utilise plusieurs OS, les chemins sont donc parfois différents).
+Pour l'installer, il suffit de disposer de ruby et rake (une installation manuelle est aussi possible en créant les liens symboliques que rake crée) :
+<ul>
+	<li>cd; git clone git://github.com/CedricGatay/dotfiles.git .dotfiles</li>
+	<li>cd .dotfiles; rake install</li>
+        <li>logout and login, or source your .zshrc / .bashrc</li>
+</lu>
+Notez que je suis un utilisateur de zsh, le fichier bashrc devrait marcher mais il présente certainement des bugs puisqu'il date de quelques années. Dans tous les cas, je vous encourage à vous plonger dans le source pour comprendre ce qui se passe et adapter le tout à vos besoins.
+</p><-->
         </div>
         <!-- /.entry-content -->
       </article>
@@ -557,7 +569,7 @@ mvn<span class="w"> </span>-f<span class="w"> </span>path/to/my/pom.xml<span cla
     <div class="footer-wrapper">
       <footer role="contentinfo">
         <span
-          >&copy; 2025 . Powered by
+          >&copy; 2026 . Powered by
           <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using a theme
           based on
           <a
@@ -570,11 +582,11 @@ mvn<span class="w"> </span>-f<span class="w"> </span>path/to/my/pom.xml<span cla
     </div>
     <!-- /.footer-wrapper -->
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
       window.jQuery ||
         document.write(
-          '<script src="http://www.bloggure.info/assets/js/vendor/jquery-1.9.1.min.js"><\/script>'
+          '<script src="http://www.bloggure.info/assets/js/vendor/jquery-3.7.1.min.js"><\/script>'
         );
     </script>
     <script src="http://www.bloggure.info/assets/js/scripts.min.js"></script>

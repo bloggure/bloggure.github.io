@@ -65,7 +65,7 @@
     <meta http-equiv="cleartype" content="on" />
 
     <!-- Load Modernizr -->
-    <script src="http://www.bloggure.info/assets/js/vendor/modernizr-2.6.2.custom.min.js"></script>
+    <script src="http://www.bloggure.info/assets/js/vendor/modernizr-3.12.0.min.js"></script>
 
     <!-- Icons -->
     <!-- 16x16 -->
@@ -217,43 +217,43 @@
           <p>
             Voici un cas de mise en oeuvre avec JUnit :
             <figure class="highlight">
-              <pre><code class="language-java" data-lang="java"><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.junit.*</span><span class="p">;</span>
-<span class="kn">import static</span><span class="w"> </span><span class="nn">org.junit.Assert.*</span><span class="p">;</span>
+              <pre><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">org.junit.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">static</span> <span class="n">org</span><span class="o">.</span><span class="na">junit</span><span class="o">.</span><span class="na">Assert</span><span class="o">.*;</span>
 
-<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">SampleTest</span><span class="w"> </span><span class="p">{</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SampleTest</span> <span class="o">{</span>
 
-<span class="w">    </span><span class="nd">@Before</span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setUp</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="c1">// exécuté avant chaque test</span>
-<span class="w">    </span><span class="p">}</span>
+    <span class="nd">@Before</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setUp</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// exécuté avant chaque test</span>
+    <span class="o">}</span>
 
-<span class="w">    </span><span class="nd">@After</span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">tearDown</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="c1">// exécuté après chaque test</span>
-<span class="w">    </span><span class="p">}</span>
+    <span class="nd">@After</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">tearDown</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// exécuté après chaque test</span>
+    <span class="o">}</span>
 
-<span class="w">    </span><span class="nd">@Test</span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">testCondition1</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">assertIsTrue</span><span class="p">(</span><span class="n">condition1</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testCondition1</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">assertIsTrue</span><span class="o">(</span><span class="n">condition1</span><span class="o">);</span>
+    <span class="o">}</span>
 
-<span class="w">    </span><span class="nd">@Test</span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">testCondition2</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">assertIsFalse</span><span class="p">(</span><span class="n">condition2</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testCondition2</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">assertIsFalse</span><span class="o">(</span><span class="n">condition2</span><span class="o">);</span>
+    <span class="o">}</span>
 
-<span class="p">}</span></code></pre>
+<span class="o">}</span></code></pre>
             </figure>
           </p>
           <p>
             Dans l'ordre seront exécutés :
             <figure class="highlight">
-              <pre><code class="language-java" data-lang="java"><span></span><span class="nl">SampleTest</span><span class="p">::</span><span class="n">setUp</span><span class="p">();</span>
-<span class="nl">SampleTest</span><span class="p">::</span><span class="n">testCondition1</span><span class="p">();</span>
-<span class="nl">SampleTest</span><span class="p">::</span><span class="n">tearDown</span><span class="p">();</span>
-<span class="nl">SampleTest</span><span class="p">::</span><span class="n">setUp</span><span class="p">();</span>
-<span class="nl">SampleTest</span><span class="p">::</span><span class="n">testCondition2</span><span class="p">();</span>
-<span class="nl">SampleTest</span><span class="p">::</span><span class="n">tearDown</span><span class="p">();</span></code></pre>
+              <pre><code class="language-java" data-lang="java"><span class="nl">SampleTest:</span><span class="o">:</span><span class="n">setUp</span><span class="o">();</span>
+<span class="nl">SampleTest:</span><span class="o">:</span><span class="n">testCondition1</span><span class="o">();</span>
+<span class="nl">SampleTest:</span><span class="o">:</span><span class="n">tearDown</span><span class="o">();</span>
+<span class="nl">SampleTest:</span><span class="o">:</span><span class="n">setUp</span><span class="o">();</span>
+<span class="nl">SampleTest:</span><span class="o">:</span><span class="n">testCondition2</span><span class="o">();</span>
+<span class="nl">SampleTest:</span><span class="o">:</span><span class="n">tearDown</span><span class="o">();</span></code></pre>
             </figure>
           </p>
           <p>
@@ -263,34 +263,34 @@
             exécuté en parallèle. Voici un exemple en Javascript en utilisant
             <code>expresso</code> pour tester une application web (complexe) :
             <figure class="highlight">
-              <pre><code class="language-js" data-lang="js"><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">assert</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;assert&#39;</span><span class="p">);</span>
-<span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nx">server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">).</span><span class="nx">createServer</span><span class="p">();</span>
+              <pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">assert</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">assert</span><span class="dl">'</span><span class="p">);</span>
+ <span class="p">,</span> <span class="nx">server</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">express</span><span class="dl">'</span><span class="p">).</span><span class="nx">createServer</span><span class="p">();</span>
 
-<span class="nx">assert</span><span class="p">.</span><span class="nx">response</span><span class="p">(</span><span class="nx">server</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">url</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;/&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">timeout</span><span class="o">:</span><span class="w"> </span><span class="mf">500</span>
-<span class="p">},</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;foobar&#39;</span><span class="w"> </span><span class="c1">// vérifie que le corps de la requête HTTP contient &#39;foobar&#39;</span>
+<span class="nx">assert</span><span class="p">.</span><span class="nx">response</span><span class="p">(</span><span class="nx">server</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/</span><span class="dl">'</span><span class="p">,</span> <span class="na">timeout</span><span class="p">:</span> <span class="mi">500</span>
+<span class="p">},</span> <span class="p">{</span>
+    <span class="na">body</span><span class="p">:</span> <span class="dl">'</span><span class="s1">foobar</span><span class="dl">'</span> <span class="c1">// vérifie que le corps de la requête HTTP contient 'foobar'</span>
 <span class="p">});</span>
 
-<span class="nx">assert</span><span class="p">.</span><span class="nx">response</span><span class="p">(</span><span class="nx">server</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">url</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;/&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;GET&#39;</span>
-<span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;{&quot;name&quot;:&quot;tj&quot;}&#39;</span><span class="p">,</span><span class="w"> </span><span class="c1">// vérifie le contenu du corps de la requête HTTP, son statusCode et ses headers</span>
-<span class="w">    </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="mf">200</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="s1">&#39;Content-Type&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;application/json; charset=utf-8&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;X-Foo&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;bar&#39;</span>
-<span class="w">    </span><span class="p">}</span>
+<span class="nx">assert</span><span class="p">.</span><span class="nx">response</span><span class="p">(</span><span class="nx">server</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">GET</span><span class="dl">'</span>
+<span class="p">},</span> <span class="p">{</span><span class="na">body</span><span class="p">:</span> <span class="dl">'</span><span class="s1">{"name":"tj"}</span><span class="dl">'</span><span class="p">,</span> <span class="c1">// vérifie le contenu du corps de la requête HTTP, son statusCode et ses headers</span>
+    <span class="na">status</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
+    <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+        <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json; charset=utf-8</span><span class="dl">'</span><span class="p">,</span>
+        <span class="dl">'</span><span class="s1">X-Foo</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">bar</span><span class="dl">'</span>
+    <span class="p">}</span>
 <span class="p">});</span>
 
-<span class="nx">assert</span><span class="p">.</span><span class="nx">response</span><span class="p">(</span><span class="nx">server</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">url</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;/foo&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;POST&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">data</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;bar baz&#39;</span>
-<span class="p">},</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;/foo bar baz&#39;</span><span class="p">,</span><span class="w"> </span><span class="c1">// vérifie les données renvoyées par le serveur quand on poste un formulaire</span>
-<span class="w">    </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="mf">200</span>
-<span class="p">},</span><span class="w"> </span><span class="s1">&#39;Test POST&#39;</span><span class="p">);</span></code></pre>
+<span class="nx">assert</span><span class="p">.</span><span class="nx">response</span><span class="p">(</span><span class="nx">server</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/foo</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">POST</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">data</span><span class="p">:</span> <span class="dl">'</span><span class="s1">bar baz</span><span class="dl">'</span>
+<span class="p">},</span> <span class="p">{</span>
+    <span class="na">body</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/foo bar baz</span><span class="dl">'</span><span class="p">,</span> <span class="c1">// vérifie les données renvoyées par le serveur quand on poste un formulaire</span>
+    <span class="na">status</span><span class="p">:</span> <span class="mi">200</span>
+<span class="p">},</span> <span class="dl">'</span><span class="s1">Test POST</span><span class="dl">'</span><span class="p">);</span></code></pre>
             </figure>
           </p>
           <h2>Bonnes pratiques</h2>
@@ -452,7 +452,7 @@
     <div class="footer-wrapper">
       <footer role="contentinfo">
         <span
-          >&copy; 2025 . Powered by
+          >&copy; 2026 . Powered by
           <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using a theme
           based on
           <a
@@ -465,11 +465,11 @@
     </div>
     <!-- /.footer-wrapper -->
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
       window.jQuery ||
         document.write(
-          '<script src="http://www.bloggure.info/assets/js/vendor/jquery-1.9.1.min.js"><\/script>'
+          '<script src="http://www.bloggure.info/assets/js/vendor/jquery-3.7.1.min.js"><\/script>'
         );
     </script>
     <script src="http://www.bloggure.info/assets/js/scripts.min.js"></script>

@@ -64,7 +64,7 @@
     <meta http-equiv="cleartype" content="on" />
 
     <!-- Load Modernizr -->
-    <script src="http://www.bloggure.info/assets/js/vendor/modernizr-2.6.2.custom.min.js"></script>
+    <script src="http://www.bloggure.info/assets/js/vendor/modernizr-3.12.0.min.js"></script>
 
     <!-- Icons -->
     <!-- 16x16 -->
@@ -202,7 +202,7 @@
           </p>
 
           <figure class="highlight">
-            <pre><code class="language-bash" data-lang="bash"><span></span>dns-sd<span class="w"> </span>-P<span class="w"> </span>MYNAME<span class="w"> </span>_daap._tcp.<span class="w"> </span><span class="s2">&quot;my details&quot;</span><span class="w"> </span><span class="m">3689</span><span class="w"> </span>homemusic.local<span class="w"> </span>YOURIP<span class="p">&amp;</span></code></pre>
+            <pre><code class="language-bash" data-lang="bash">dns-sd <span class="nt">-P</span> MYNAME _daap._tcp. <span class="s2">"my details"</span> 3689 homemusic.local YOURIP&amp;</code></pre>
           </figure>
 
           <p>
@@ -228,7 +228,7 @@
           </p>
 
           <figure class="highlight">
-            <pre><code class="language-bash" data-lang="bash"><span></span>mv<span class="w"> </span>/Applications/iTunes.app/Contents/MacOS/iTunes<span class="w"> </span>/Applications/iTunes.app/Contents/MacOS/iTunes.bin</code></pre>
+            <pre><code class="language-bash" data-lang="bash"><span class="nb">mv</span> /Applications/iTunes.app/Contents/MacOS/iTunes /Applications/iTunes.app/Contents/MacOS/iTunes.bin</code></pre>
           </figure>
 
           <p>
@@ -237,15 +237,15 @@
           </p>
 
           <figure class="highlight">
-            <pre><code class="language-bash" data-lang="bash"><span></span><span class="ch">#!/bin/sh</span>
-dns-sd<span class="w"> </span>-P<span class="w"> </span>MYNAME<span class="w"> </span>_daap._tcp.<span class="w"> </span><span class="s2">&quot;my details&quot;</span><span class="w"> </span><span class="m">3689</span><span class="w"> </span>homemusic.local<span class="w"> </span>YOURIP<span class="w"> </span><span class="p">&amp;</span>
+            <pre><code class="language-bash" data-lang="bash"><span class="c">#!/bin/sh</span>
+dns-sd <span class="nt">-P</span> MYNAME _daap._tcp. <span class="s2">"my details"</span> 3689 homemusic.local YOURIP &amp;
 /Applications/iTunes.app/Contents/MacOS/iTunes.bin</code></pre>
           </figure>
 
           <p>Finally, make the script executable by <em>chmod</em>ding it :</p>
 
           <figure class="highlight">
-            <pre><code class="language-bash" data-lang="bash"><span></span>chmod<span class="w"> </span>+x<span class="w"> </span>/Applications/iTunes.app/Contents/MacOS/iTunes</code></pre>
+            <pre><code class="language-bash" data-lang="bash"><span class="nb">chmod</span> +x /Applications/iTunes.app/Contents/MacOS/iTunes</code></pre>
           </figure>
 
           <p>
@@ -354,7 +354,7 @@ dns-sd<span class="w"> </span>-P<span class="w"> </span>MYNAME<span class="w"> <
     <div class="footer-wrapper">
       <footer role="contentinfo">
         <span
-          >&copy; 2025 . Powered by
+          >&copy; 2026 . Powered by
           <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using a theme
           based on
           <a
@@ -367,11 +367,11 @@ dns-sd<span class="w"> </span>-P<span class="w"> </span>MYNAME<span class="w"> <
     </div>
     <!-- /.footer-wrapper -->
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
       window.jQuery ||
         document.write(
-          '<script src="http://www.bloggure.info/assets/js/vendor/jquery-1.9.1.min.js"><\/script>'
+          '<script src="http://www.bloggure.info/assets/js/vendor/jquery-3.7.1.min.js"><\/script>'
         );
     </script>
     <script src="http://www.bloggure.info/assets/js/scripts.min.js"></script>

@@ -64,7 +64,7 @@
     <meta http-equiv="cleartype" content="on" />
 
     <!-- Load Modernizr -->
-    <script src="http://www.bloggure.info/assets/js/vendor/modernizr-2.6.2.custom.min.js"></script>
+    <script src="http://www.bloggure.info/assets/js/vendor/modernizr-3.12.0.min.js"></script>
 
     <!-- Icons -->
     <!-- 16x16 -->
@@ -172,72 +172,72 @@
           </p>
 
           <figure class="highlight">
-            <pre><code class="language-java" data-lang="java"><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.wicket.markup.MarkupType</span><span class="p">;</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.wicket.markup.html.WebMarkupContainer</span><span class="p">;</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.wicket.markup.html.basic.Label</span><span class="p">;</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.wicket.markup.html.panel.Panel</span><span class="p">;</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.wicket.markup.repeater.RepeatingView</span><span class="p">;</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.wicket.model.PropertyModel</span><span class="p">;</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.wicket.request.Response</span><span class="p">;</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.wicket.response.StringResponse</span><span class="p">;</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">org.slf4j.Logger</span><span class="p">;</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">org.slf4j.LoggerFactory</span><span class="p">;</span>
+            <pre><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">org.apache.wicket.markup.MarkupType</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.wicket.markup.html.WebMarkupContainer</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.wicket.markup.html.basic.Label</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.wicket.markup.html.panel.Panel</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.wicket.markup.repeater.RepeatingView</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.wicket.model.PropertyModel</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.wicket.request.Response</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.wicket.response.StringResponse</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.slf4j.Logger</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.slf4j.LoggerFactory</span><span class="o">;</span>
 
 
-<span class="cm">/**</span>
-<span class="cm"> * Simple panel allowing to use the templating engine </span>
-<span class="cm"> *    provided by Wicket to generate HTML.</span>
-<span class="cm"> * Typical use would be to generate mail content.</span>
-<span class="cm"> *</span>
-<span class="cm"> * User of this class will need to subclass it </span>
-<span class="cm"> *    and create a panel as usual. </span>
-<span class="cm"> * Then a call to getHtml() will return the generated Html.</span>
-<span class="cm"> *</span>
-<span class="cm"> * @author cedric at gatay.fr</span>
-<span class="cm"> */</span>
-<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">HtmlTemplaterPanel</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Panel</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">Logger</span><span class="w"> </span><span class="n">LOGGER</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
-<span class="w">        </span><span class="n">LoggerFactory</span><span class="p">.</span><span class="na">getLogger</span><span class="p">(</span><span class="n">HtmlTemplaterPanel</span><span class="p">.</span><span class="na">class</span><span class="p">);</span>
+<span class="cm">/**
+ * Simple panel allowing to use the templating engine 
+ *    provided by Wicket to generate HTML.
+ * Typical use would be to generate mail content.
+ *
+ * User of this class will need to subclass it 
+ *    and create a panel as usual. 
+ * Then a call to getHtml() will return the generated Html.
+ *
+ * @author cedric at gatay.fr
+ */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">HtmlTemplaterPanel</span> <span class="kd">extends</span> <span class="nc">Panel</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">Logger</span> <span class="no">LOGGER</span> <span class="o">=</span> 
+        <span class="nc">LoggerFactory</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="nc">HtmlTemplaterPanel</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
 
-<span class="w">    </span><span class="cm">/**</span>
-<span class="cm">     * Default constructor takes no wicket:id &gt; </span>
-<span class="cm">     *   the panel will not be added to any component</span>
-<span class="cm">     */</span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">HtmlTemplaterPanel</span><span class="p">(){</span>
-<span class="w">        </span><span class="kd">super</span><span class="p">(</span><span class="s">&quot;dummy&quot;</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
+    <span class="cm">/**
+     * Default constructor takes no wicket:id &gt; 
+     *   the panel will not be added to any component
+     */</span>
+    <span class="kd">public</span> <span class="nf">HtmlTemplaterPanel</span><span class="o">(){</span>
+        <span class="kd">super</span><span class="o">(</span><span class="s">"dummy"</span><span class="o">);</span>
+    <span class="o">}</span>
 
-<span class="w">    </span><span class="cm">/**</span>
-<span class="cm">     * Call this whenever you want to get</span>
-<span class="cm">     *   the Html for this component</span>
-<span class="cm">     * @return Html or empty string</span>
-<span class="cm">     */</span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">getHtml</span><span class="p">(){</span>
-<span class="w">        </span><span class="kd">final</span><span class="w"> </span><span class="n">Response</span><span class="w"> </span><span class="n">origResponse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getRequestCycle</span><span class="p">().</span><span class="na">getResponse</span><span class="p">();</span>
-<span class="w">        </span><span class="k">try</span><span class="p">{</span>
-<span class="w">            </span><span class="kd">final</span><span class="w"> </span><span class="n">StringResponse</span><span class="w"> </span><span class="n">stringResponse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">StringResponse</span><span class="p">();</span>
-<span class="w">            </span><span class="n">getRequestCycle</span><span class="p">().</span><span class="na">setResponse</span><span class="p">(</span><span class="n">stringResponse</span><span class="p">);</span>
-<span class="w">            </span><span class="n">renderAssociatedMarkup</span><span class="p">(</span><span class="s">&quot;panel&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">);</span>
-<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">stringResponse</span><span class="p">.</span><span class="na">toString</span><span class="p">();</span>
-<span class="w">        </span><span class="p">}</span><span class="k">catch</span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">){</span>
-<span class="w">            </span><span class="n">LOGGER</span><span class="p">.</span><span class="na">error</span><span class="p">(</span><span class="s">&quot;Unable to build HTML for panel : {}&quot;</span><span class="p">,</span>
-<span class="w">                         </span><span class="n">e</span><span class="p">.</span><span class="na">getMessage</span><span class="p">());</span>
-<span class="w">        </span><span class="p">}</span><span class="k">finally</span><span class="p">{</span>
-<span class="w">            </span><span class="n">getRequestCycle</span><span class="p">().</span><span class="na">setResponse</span><span class="p">(</span><span class="n">origResponse</span><span class="p">);</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
+    <span class="cm">/**
+     * Call this whenever you want to get
+     *   the Html for this component
+     * @return Html or empty string
+     */</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getHtml</span><span class="o">(){</span>
+        <span class="kd">final</span> <span class="nc">Response</span> <span class="n">origResponse</span> <span class="o">=</span> <span class="n">getRequestCycle</span><span class="o">().</span><span class="na">getResponse</span><span class="o">();</span>
+        <span class="k">try</span><span class="o">{</span>
+            <span class="kd">final</span> <span class="nc">StringResponse</span> <span class="n">stringResponse</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StringResponse</span><span class="o">();</span>
+            <span class="n">getRequestCycle</span><span class="o">().</span><span class="na">setResponse</span><span class="o">(</span><span class="n">stringResponse</span><span class="o">);</span>
+            <span class="n">renderAssociatedMarkup</span><span class="o">(</span><span class="s">"panel"</span><span class="o">,</span> <span class="s">""</span><span class="o">);</span>
+            <span class="k">return</span> <span class="n">stringResponse</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+        <span class="o">}</span><span class="k">catch</span><span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">){</span>
+            <span class="no">LOGGER</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="s">"Unable to build HTML for panel : {}"</span><span class="o">,</span>
+                         <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+        <span class="o">}</span><span class="k">finally</span><span class="o">{</span>
+            <span class="n">getRequestCycle</span><span class="o">().</span><span class="na">setResponse</span><span class="o">(</span><span class="n">origResponse</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="s">""</span><span class="o">;</span>
+    <span class="o">}</span>
 
-<span class="w">    </span><span class="nd">@Override</span>
-<span class="w">    </span><span class="kd">protected</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">getStatelessHint</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">boolean</span> <span class="nf">getStatelessHint</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+    <span class="o">}</span>
 
-<span class="w">    </span><span class="nd">@Override</span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">MarkupType</span><span class="w"> </span><span class="nf">getMarkupType</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">MarkupType</span><span class="p">.</span><span class="na">HTML_MARKUP_TYPE</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span></code></pre>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">MarkupType</span> <span class="nf">getMarkupType</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nc">MarkupType</span><span class="o">.</span><span class="na">HTML_MARKUP_TYPE</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre>
           </figure>
           <p>
             If you want to generate a template using Apache Wicket, you only
@@ -341,7 +341,7 @@
     <div class="footer-wrapper">
       <footer role="contentinfo">
         <span
-          >&copy; 2025 . Powered by
+          >&copy; 2026 . Powered by
           <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using a theme
           based on
           <a
@@ -354,11 +354,11 @@
     </div>
     <!-- /.footer-wrapper -->
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
       window.jQuery ||
         document.write(
-          '<script src="http://www.bloggure.info/assets/js/vendor/jquery-1.9.1.min.js"><\/script>'
+          '<script src="http://www.bloggure.info/assets/js/vendor/jquery-3.7.1.min.js"><\/script>'
         );
     </script>
     <script src="http://www.bloggure.info/assets/js/scripts.min.js"></script>
