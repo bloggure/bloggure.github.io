@@ -1,3 +1,5 @@
 _site
 _config.gitpod.yml
 .sass-cache/*
+node_modules/
+assets/js/scripts.min.js
