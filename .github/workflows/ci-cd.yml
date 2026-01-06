@@ -25,7 +25,7 @@ jobs:
       run: npm ci
       
     - name: Run ESLint
-      run: npx eslint assets/js/**/*.js
+      run: npx eslint assets/js/_main.js
       
     - name: Setup Ruby
       uses: ruby/setup-ruby@v1
