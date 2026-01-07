@@ -4,13 +4,151 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="http://www.bloggure.info/feed.xml" />
 <link rel="alternate" type="text/html" href="http://www.bloggure.info" />
-<updated>2026-01-07T14:04:41+01:00</updated>
+<updated>2026-01-07T14:32:58+01:00</updated>
 <id>http://www.bloggure.info/</id>
 <author>
   <name></name>
   <uri>http://www.bloggure.info/</uri>
   <email></email>
 </author>
+
+
+<entry>
+  <title type="html"><![CDATA[Streamlining Finances: Automating Bill Renaming with Apple Shortcuts]]></title>
+  <link>http://www.bloggure.info/Shortcut_bill_renaming</link>
+  <id>http://www.bloggure.info/Shortcut_bill_renaming</id>
+  <published>2026-01-07T00:00:00+01:00</published>
+  <updated>2026-01-07T00:00:00+01:00</updated>
+  <author>
+    <name></name>
+    <uri>http://www.bloggure.info</uri>
+    <email></email>
+  </author>
+  <content type="html">&lt;h2 id=&quot;the-problem-the-downloads-folder-chaos&quot;&gt;The Problem: The “Downloads” Folder Chaos&lt;/h2&gt;
+
+&lt;p&gt;We all know the struggle. You download a PDF invoice from your utility provider or internet service, and the file is named something useless like &lt;code&gt;invoice_839204_export.pdf&lt;/code&gt;. These cryptic filenames make it nearly impossible to find specific bills later, clutter your file system, and create frustration when you’re trying to organize your finances.&lt;/p&gt;
+
+&lt;p&gt;The goal is simple: automatically rename these files to a standard, searchable format like &lt;code&gt;YYYY-MM-DD_Company.pdf&lt;/code&gt; so you can easily find, sort, and manage your financial documents.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Common pain points:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Difficulty finding specific bills when you need them&lt;/li&gt;
+  &lt;li&gt;Messy file organization that grows over time&lt;/li&gt;
+  &lt;li&gt;Time wasted manually renaming files&lt;/li&gt;
+  &lt;li&gt;Inconsistent naming conventions across different providers&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;the-solution-apple-shortcuts&quot;&gt;The Solution: Apple Shortcuts&lt;/h2&gt;
+
+&lt;p&gt;I chose Apple Shortcuts for this automation because it’s native to both macOS and iOS, completely free, and syncs seamlessly across all your Apple devices. Unlike complex Python scripts or third-party automation tools, Shortcuts provides a visual, user-friendly interface that makes it accessible to everyone - not just developers.&lt;/p&gt;
+
+&lt;p&gt;The best part? You can trigger these automations from the Share Sheet, Quick Actions, or even set up folder-based automation, making it incredibly convenient for daily use.&lt;/p&gt;
+
+&lt;h2 id=&quot;how-the-shortcut-works&quot;&gt;How the Shortcut Works&lt;/h2&gt;
+
+&lt;p&gt;Before you download the shortcut, here is the logic behind the workflow. Breaking it down helps if you want to customize it later.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Input:&lt;/strong&gt; The shortcut accepts a PDF or an image file (via the Share Sheet or Quick Actions).&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Text Extraction:&lt;/strong&gt; It extracts the text from the image, and asks ChatGPT or other AI models to extract vendor and date from the document&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Formatting:&lt;/strong&gt; It standardizes the date to ISO format (&lt;code&gt;YYYY-MM-DD&lt;/code&gt;).&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Renaming:&lt;/strong&gt; It combines the variables into a new filename string.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Saving:&lt;/strong&gt; It changes the file name in-place with the new one&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;the-logic-breakdown&quot;&gt;The Logic Breakdown&lt;/h3&gt;
+
+&lt;p&gt;The shortcut uses a combination of Apple’s built-in actions and AI-powered text extraction:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Text Extraction:&lt;/strong&gt; Uses OCR (Optical Character Recognition) to read text from PDFs and images&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;AI Processing:&lt;/strong&gt; Leverages ChatGPT to intelligently identify vendor names and dates&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Date Standardization:&lt;/strong&gt; Converts various date formats to consistent ISO format&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Batch Processing:&lt;/strong&gt; Can handle multiple files at once for efficiency&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Pro Tip:&lt;/strong&gt; The AI component makes this shortcut smarter than traditional regex-based solutions. It can handle different invoice formats and layouts automatically.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;get-the-shortcut&quot;&gt;Get the Shortcut&lt;/h2&gt;
+
+&lt;p&gt;You can download the shortcut directly to your library using the link below:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://www.icloud.com/shortcuts/df9854a70cc34f9285f21b805518cd79&quot;&gt; 📥 Download: Rename Bills Shortcut&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;(Note: You might need to allow untrusted shortcuts in settings if you haven’t already, though Apple has changed how this works in recent iOS versions.)&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Requirements:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;iOS 16+ or macOS Ventura+&lt;/li&gt;
+  &lt;li&gt;Apple Shortcuts app installed&lt;/li&gt;
+  &lt;li&gt;Internet connection for AI processing (or local/offline alternative)&lt;/li&gt;
+  &lt;li&gt;ChatGPT API key (free tier available)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Privacy Note:&lt;/strong&gt; If you’re concerned about privacy or prefer offline processing, you can modify this shortcut to use local model or private cloud models instead of ChatGPT. The shortcut can be adapted to use either approach based on your preferences.&lt;/p&gt;
+
+&lt;h2 id=&quot;how-to-set-it-up&quot;&gt;How to Set It Up&lt;/h2&gt;
+
+&lt;p&gt;Once you have installed the shortcut, you need to configure a few variables to match your preferences:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;ChatGPT API Key:&lt;/strong&gt; Add your ChatGPT API key in the shortcut settings for AI processing&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Naming Convention:&lt;/strong&gt; If you prefer &lt;code&gt;Company_Date&lt;/code&gt; instead of &lt;code&gt;Date_Company&lt;/code&gt;, you can drag and drop the variables in the “Set Name” action.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Date Format:&lt;/strong&gt; The shortcut uses ISO format (YYYY-MM-DD) by default, but you can modify the date formatting action if you prefer a different format.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;File Types:&lt;/strong&gt; By default, it handles PDFs and images (PNG, JPG). You can add more file types in the input action.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/post/shortcut-editor.png&quot; alt=&quot;Apple Shortcuts Editor showing the Rename Bills workflow with actions for getting text from PDF, formatting date, and saving file&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Configuration Tips:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Test with a few sample files first&lt;/li&gt;
+  &lt;li&gt;Adjust the AI prompt if you need different extraction behavior&lt;/li&gt;
+  &lt;li&gt;Consider adding error handling for edge cases&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;usage-guide&quot;&gt;Usage Guide&lt;/h2&gt;
+
+&lt;p&gt;Here is how to use it in daily life:&lt;/p&gt;
+
+&lt;h3 id=&quot;on-macos&quot;&gt;On macOS&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;Right-click a PDF or image file -&amp;gt; &lt;strong&gt;Quick Actions&lt;/strong&gt; -&amp;gt; Select &lt;strong&gt;Auto rename Bill&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;For batch processing: Select multiple files -&amp;gt; Right-click -&amp;gt; &lt;strong&gt;Quick Actions&lt;/strong&gt; -&amp;gt; &lt;strong&gt;Auto rename Bill&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;on-ios--ipados&quot;&gt;On iOS / iPadOS&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;Open the PDF or image -&amp;gt; Tap the &lt;strong&gt;Share&lt;/strong&gt; icon -&amp;gt; Scroll down and tap &lt;strong&gt;Auto rename Bill&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;For batch processing: Select multiple files in Files app -&amp;gt; Tap Share -&amp;gt; &lt;strong&gt;Auto rename Bill&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;advanced-usage&quot;&gt;Advanced Usage&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Folder Automation:&lt;/strong&gt; Set up a folder action in macOS to automatically process new files added to a specific folder&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Siri Integration:&lt;/strong&gt; Add the shortcut to Siri for voice-activated renaming&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Batch Processing:&lt;/strong&gt; Process multiple files at once to save time&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Pro Tip:&lt;/strong&gt; Create a dedicated “Bills to Process” folder and set up a folder action to automatically rename files when they’re added.&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;Automation doesn’t have to be complicated code. With Apple Shortcuts, you can save yourself the 30 seconds it takes to rename a file—which adds up over a lifetime of paying bills.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Time Savings Calculation:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;30 seconds per bill × 12 bills/month × 12 months/year = 6 minutes/year&lt;/li&gt;
+  &lt;li&gt;Over 10 years = 1 hour saved&lt;/li&gt;
+  &lt;li&gt;Over a lifetime = Significant time savings!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This shortcut demonstrates how AI-powered automation can make everyday tasks easier. The combination of OCR, AI text extraction, and Apple’s automation framework creates a powerful tool that’s accessible to everyone.&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/Shortcut_bill_renaming&quot;&gt;Streamlining Finances: Automating Bill Renaming with Apple Shortcuts&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure&lt;/a&gt; on January 07, 2026.&lt;/p&gt;</content>
+</entry>
 
 
 <entry>
@@ -1520,31 +1658,6 @@ $ brew cask install dropbox #for example
 &lt;p&gt;Don’t hesitate to add a small script in your &lt;code&gt;.dotfiles&lt;/code&gt; to seed your software on new machines, and if your preferred software is missing, it is really easy to add new casks.&lt;/p&gt;
 
   &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/brew-cask-install-everything-from-cli&quot;&gt;Homebrew Cask - commandline install on Mac&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure&lt;/a&gt; on May 02, 2014.&lt;/p&gt;</content>
-</entry>
-
-
-<entry>
-  <title type="html"><![CDATA[LaunchRocket - Homebrew service manager]]></title>
-  <link>http://www.bloggure.info/launchrocket-homebrew-service-manager</link>
-  <id>http://www.bloggure.info/launchrocket-homebrew-service-manager</id>
-  <published>2014-04-30T00:00:00+02:00</published>
-  <updated>2014-04-30T00:00:00+02:00</updated>
-  <author>
-    <name></name>
-    <uri>http://www.bloggure.info</uri>
-    <email></email>
-  </author>
-  <content type="html">&lt;h1 id=&quot;manage-your-services&quot;&gt;Manage your services&lt;/h1&gt;
-
-&lt;p&gt;If you’re using &lt;a href=&quot;http://brew.sh&quot;&gt;HomeBrew&lt;/a&gt; to manage your software installation on your Mac, there is a thing that is not that easy to do : &lt;code&gt;launchd&lt;/code&gt; or &lt;code&gt;launchctl&lt;/code&gt; service management. Often you need to manually tell &lt;code&gt;launchd&lt;/code&gt; to load the &lt;code&gt;plist&lt;/code&gt; of your newly installed service. It leads to a lot of things launched at boot on your machine, and they are not easy to manage.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/jimbojsb/launchrocket&quot;&gt;LaunchRocket&lt;/a&gt; provides a simple PreferencePane allowing you to start/stop services when you only need to with a clean and simple GUI.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/post/LaunchRocket.png&quot; alt=&quot;LaunchRocket in action&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;You can easily install it via &lt;code&gt;brew cask&lt;/code&gt; (more to come on brew cask soon) or download the &lt;a href=&quot;https://github.com/jimbojsb/launchrocket/releases&quot;&gt;zip distribution&lt;/a&gt;&lt;/p&gt;
-
-  &lt;p&gt;&lt;a href=&quot;http://www.bloggure.info/launchrocket-homebrew-service-manager&quot;&gt;LaunchRocket - Homebrew service manager&lt;/a&gt; was originally published by  at &lt;a href=&quot;http://www.bloggure.info&quot;&gt;Bloggure&lt;/a&gt; on April 30, 2014.&lt;/p&gt;</content>
 </entry>
 
 </feed>

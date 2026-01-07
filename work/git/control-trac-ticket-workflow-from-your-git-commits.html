@@ -1,270 +1,89 @@
-<!DOCTYPE html>
+<!doctype html>
 <!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
 <!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
 <!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js" lang="en">
-  <!--<![endif]-->
-  <head>
-    <meta charset="utf-8" />
-    <title>
-      Control Trac ticket workflow from your Git commits &#8211; Bloggure
-    </title>
-    <meta
-      name="description"
-      content="Multi author blog about programming, computing and geek stuff"
-    />
-    <meta name="keywords" content="" />
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>Control Trac ticket workflow from your Git commits &#8211; Bloggure</title>
+<meta name="description" content="Multi author blog about programming, computing and geek stuff">
+<meta name="keywords" content="">
 
-    <!-- Open Graph -->
-    <meta property="og:locale" content="en_US" />
-    <meta property="og:type" content="article" />
-    <meta
-      property="og:title"
-      content="Control Trac ticket workflow from your Git commits"
-    />
-    <meta
-      property="og:description"
-      content="Multi author blog about programming, computing and geek stuff"
-    />
-    <meta
-      property="og:url"
-      content="http://www.bloggure.info/work/git/control-trac-ticket-workflow-from-your-git-commits.html"
-    />
-    <meta property="og:site_name" content="Bloggure" />
 
-    <link
-      rel="canonical"
-      href="http://www.bloggure.info/work/git/control-trac-ticket-workflow-from-your-git-commits.html"
-    />
-    <link
-      href="http://www.bloggure.info/feed.xml"
-      type="application/atom+xml"
-      rel="alternate"
-      title="Bloggure Feed"
-    />
 
-    <!-- http://t.co/dKP3o1e -->
-    <meta name="HandheldFriendly" content="True" />
-    <meta name="MobileOptimized" content="320" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Control Trac ticket workflow from your Git commits">
+<meta property="og:description" content="Multi author blog about programming, computing and geek stuff">
+<meta property="og:url" content="http://www.bloggure.info/work/git/control-trac-ticket-workflow-from-your-git-commits.html">
+<meta property="og:site_name" content="Bloggure">
 
-    <!-- For all browsers -->
-    <link
-      rel="stylesheet"
-      href="http://www.bloggure.info/assets/css/main.css"
-    />
-    <!-- Webfonts -->
-    <link
-      href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic"
-      rel="stylesheet"
-      type="text/css"
-    />
 
-    <meta http-equiv="cleartype" content="on" />
 
-    <script>
-      document.documentElement.className = document.documentElement.className.replace(
-        /\bno-js\b/,
-        "js"
-      );
-    </script>
 
-    <!-- Icons -->
-    <!-- 16x16 -->
-    <link rel="shortcut icon" href="http://www.bloggure.info/favicon.ico" />
-    <!-- 32x32 -->
-    <link rel="shortcut icon" href="http://www.bloggure.info/favicon.png" />
-    <!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
-    <link
-      rel="apple-touch-icon-precomposed"
-      href="http://www.bloggure.info/images/apple-touch-icon-precomposed.png"
-    />
-    <!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
-    <link
-      rel="apple-touch-icon-precomposed"
-      sizes="72x72"
-      href="http://www.bloggure.info/images/apple-touch-icon-72x72-precomposed.png"
-    />
-    <!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
-    <link
-      rel="apple-touch-icon-precomposed"
-      sizes="114x114"
-      href="http://www.bloggure.info/images/apple-touch-icon-114x114-precomposed.png"
-    />
-    <!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
-    <link
-      rel="apple-touch-icon-precomposed"
-      sizes="144x144"
-      href="http://www.bloggure.info/images/apple-touch-icon-144x144-precomposed.png"
-    />
-  </head>
 
-  <body id="post">
-    <!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
+<link rel="canonical" href="http://www.bloggure.info/work/git/control-trac-ticket-workflow-from-your-git-commits.html">
+<link href="http://www.bloggure.info/feed.xml" type="application/atom+xml" rel="alternate" title="Bloggure Feed">
 
-    <div class="entry-header">
-      <header class="header-title">
-        <div class="header-title-wrap">
-          <h1 class="entry-title" itemprop="name">
-            <a href="http://www.bloggure.info/">Bloggure</a>
-          </h1>
-        </div>
-        <!-- /.header-title-wrap -->
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://www.bloggure.info/assets/css/main.css">
+<!-- Webfonts -->
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">
+
+<meta http-equiv="cleartype" content="on">
+
+<script>
+  document.documentElement.className =
+    document.documentElement.className.replace(/\bno-js\b/, 'js');
+</script>
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="http://www.bloggure.info/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="http://www.bloggure.info/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="http://www.bloggure.info/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://www.bloggure.info/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://www.bloggure.info/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://www.bloggure.info/images/apple-touch-icon-144x144-precomposed.png">
+
+
+
+</head>
+
+<body id="post" >
+
+<!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
+
+
+<div class="entry-header">
+  <header class="header-title">
+    <div class="header-title-wrap">
+      <h1 class="entry-title" itemprop="name"><a href="http://www.bloggure.info/">Bloggure</a></h1>
+    </div><!-- /.header-title-wrap -->
+  </header>
+  </div>
+
+<div id="main" role="main">
+  <article class="hentry">
+    <div class="entry-content">
+      <header>
+        <div class="entry-meta"><span class="entry-date date published updated"><time datetime="2012-05-06T00:00:00+02:00" itemprop="datePublished"><a href="http://www.bloggure.info/work/git/control-trac-ticket-workflow-from-your-git-commits.html">May 06, 2012</a></time></span><span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name" class="fn"><a href="http://www.bloggure.info/cgatay" title="About cgatay" itemprop="url">cgatay</a></span></span></div><!-- /.entry-meta -->
+        
+          <h1 class="entry-title" itemprop="name"><a href="http://www.bloggure.info/work/git/control-trac-ticket-workflow-from-your-git-commits.html" rel="bookmark" title="Control Trac ticket workflow from your Git commits" itemprop="url">Control Trac ticket workflow from your Git commits</a></h1>
+        
       </header>
-    </div>
-
-    <div id="main" role="main">
-      <article class="hentry">
-        <div class="entry-content">
-          <header>
-            <div class="entry-meta">
-              <span class="entry-date date published updated"
-                ><time
-                  datetime="2012-05-06T00:00:00+02:00"
-                  itemprop="datePublished"
-                  ><a
-                    href="http://www.bloggure.info/work/git/control-trac-ticket-workflow-from-your-git-commits.html"
-                    >May 06, 2012</a
-                  ></time
-                ></span
-              ><span
-                class="author vcard"
-                itemprop="author"
-                itemscope
-                itemtype="http://schema.org/Person"
-                ><span itemprop="name" class="fn"
-                  ><a
-                    href="http://www.bloggure.info/cgatay"
-                    title="About cgatay"
-                    itemprop="url"
-                    >cgatay</a
-                  ></span
-                ></span
-              >
-            </div>
-            <!-- /.entry-meta -->
-
-            <h1 class="entry-title" itemprop="name">
-              <a
-                href="http://www.bloggure.info/work/git/control-trac-ticket-workflow-from-your-git-commits.html"
-                rel="bookmark"
-                title="Control Trac ticket workflow from your Git commits"
-                itemprop="url"
-                >Control Trac ticket workflow from your Git commits</a
-              >
-            </h1>
-          </header>
-          <!--:en--><img
-            class="alignright size-full wp-image-594"
-            title="Trac_Logo"
-            src="/images/uploads/2012/05/Trac_Logo_512x512.png"
-            alt=""
-            width="128"
-            height="128"
-          />
-          <p>
-            As I said in an
-            <a
-              title="GitLabHQ and a good branching model"
-              href="/.git/work/gitlabhq"
-              >earlier post</a
-            >, at SRMvision, we use feature branches to isolate our work and be
-            able to publish it to our production environment with a clear change
-            history.
-          </p>
-          <p>
-            One thing we use since the beginning (at the subversion time,
-            pre-git era), is the control of our ticket tracker (<a
-              href="http://trac.edgewall.org/"
-              >Trac</a
-            >) from our commit messages. We have the following verbs to control
-            our tickets (synonyms are available, but we rarely use them) :
-          </p>
-          <ul>
-            <li>see #NUM to link to a ticket</li>
-            <li>fix #NUM to close a ticket</li>
-          </ul>
-          <p>
-            Repository references to commits are automatically added into
-            ticket's history in our Trac instance.
-          </p>
-          <p>
-            <img
-              title="Git_Commit_message"
-              src="/images/uploads/2012/05/tracmsg.png"
-              alt=""
-              width="774"
-              height="164"
-            />
-          </p>
-          <p>
-            To be sure of the quality of our code, we set up a custom workflow
-            in Trac. Once a dev/bugfix is done, we set the corresponding ticket
-            to the "Testing" status. The next step is simple, either the test
-            passes and the ticket is closed, or it does not and it returns to
-            the developer. So, we added another verb to our commit handler :
-            "test" to automatically set a ticket to the "Testing" status.
-          </p>
-          <p>
-            Our adoption of feature branches has forced us to rethink our
-            workflow. Passing a ticket to "testing" while it is not even merged
-            into our "testable" branch was really polluting Trac. That's why we
-            added the status "Fixed on branch" to allow us to differentiate
-            really testable ticket from not ready ones.
-          </p>
-          <p>
-            We finally adopted the following mecanism, keeping only our three
-            verbs (see, fix, test) :
-          </p>
-          <ul>
-            <li>
-              test on a branch other than master, ticket's status is set to
-              "Fixed on branch"
-            </li>
-            <li>
-              on a branch merge to master, "Fixed on branch" tickets are
-              reopened and set to "Testing"
-            </li>
-            <li>on the branch master, test sets the ticket to "Testing"</li>
-          </ul>
-          <p>
-            On a classic development, we can have 50 "Fixed on branch" tickets
-            that automatically pass to "Testing" once merged onto master. Using
-            this technique allows us to check if every single ticket related to
-            the feature has been correctly handled from development to quality
-            testing.
-          </p>
-          <p>
-            If you want to deploy a similar technique in your environment, files
-            we are using are available at the following address : <a
-              href="https://github.com/CedricGatay/sandbox/tree/master/trac-git-hook"
-              >https://github.com/CedricGatay/sandbox/tree/master/trac-git-hook</a
-            >
-          </p>
-          <p>You will find the following files :</p>
-          <ul>
-            <li>
-              post-receive : git hook, to copy into the hooks/ directory of your
-              "central" repository (the one connected to Trac), triggers delayed
-              launch (1 minute later) of the next script (avoiding to block the
-              commit),
-            </li>
-            <li>
-              trac-post-commit-hook : Trac hook parsing commit messages to
-              control tickets
-            </li>
-            <li>
-              trac.options.ini : excerpt from Trac configuration file allowing
-              to customize workflow
-            </li>
-          </ul>
-          <p>
-            Please notice il will be necessary for you to edit script settings
-            referring to git repository in Trac (called 'git-clone' for us) and
-            paths corresponding to your environment.
-          </p>
-          <!--:--><!--:fr<img class="alignright size-full wp-image-594" title="Trac_Logo" src="/images/uploads/2012/05/Trac_Logo_512x512.png" alt="" width="128" height="128" />Comme mentionné dans un <a title="GitLabHQ and a good branching model" href="http://www.bloggure.info/work/gitlabhq.html">précédent billet</a>, chez SRMvision, nous utilisons intensivement les features branches pour isoler nos développements et nous permettre de basculer facilement une fonctionnalité en production avec un historique clair des modifications.
+      <!--:en--><img class="alignright size-full wp-image-594" title="Trac_Logo" src="/images/uploads/2012/05/Trac_Logo_512x512.png" alt="" width="128" height="128" /><p>As I said in an <a title="GitLabHQ and a good branching model" href="/.git/work/gitlabhq">earlier post</a>, at SRMvision, we use feature branches to isolate our work and be able to publish it to our production environment with a clear change history.</p><p>One thing we use since the beginning (at the subversion time, pre-git era), is the control of our ticket tracker (<a href="http://trac.edgewall.org/">Trac</a>) from our commit messages. We have the following verbs to control our tickets (synonyms are available, but we rarely use them) :</p><ul><li>see #NUM to link to a ticket</li><li>fix #NUM to close a ticket</li></ul><p>Repository references to commits are automatically added into ticket's history in our Trac instance.</p><p><img title="Git_Commit_message" src="/images/uploads/2012/05/tracmsg.png" alt="" width="774" height="164" /></p><p>To be sure of the quality of our code, we set up a custom workflow in Trac. Once a dev/bugfix is done, we set the corresponding ticket to the "Testing" status. The next step is simple, either the test passes and the ticket is closed, or it does not and it returns to the developer. So, we added another verb to our commit handler : "test" to automatically set a ticket to the "Testing" status.</p><p>Our adoption of feature branches has forced us to rethink our workflow. Passing a ticket to "testing" while it is not even merged into our "testable" branch was really polluting Trac. That's why we added the status "Fixed on branch" to allow us to differentiate really testable ticket from not ready ones.</p><p>We finally adopted the following mecanism, keeping only our three verbs (see, fix, test) :</p><ul><li>test on a branch other than master, ticket's status is set to "Fixed on branch"</li><li>on a branch merge to master, "Fixed on branch" tickets are reopened and set to "Testing"</li><li>on the branch master, test sets the ticket to "Testing"</li></ul><p>On a classic development, we can have 50 "Fixed on branch" tickets that automatically pass to "Testing" once merged onto master. Using this technique allows us to check if every single ticket related to the feature has been correctly handled from development to quality testing.</p><p>If you want to deploy a similar technique in your environment, files we are using are available at the following address : <a href="https://github.com/CedricGatay/sandbox/tree/master/trac-git-hook">https://github.com/CedricGatay/sandbox/tree/master/trac-git-hook</a></p><p>You will find the following files :</p><ul><li>post-receive : git hook, to copy into the hooks/ directory of your "central" repository (the one connected to Trac), triggers delayed launch (1 minute later) of the next script (avoiding to block the commit),</li><li>trac-post-commit-hook : Trac hook parsing commit messages to control tickets</li><li>trac.options.ini : excerpt from Trac configuration file allowing to customize workflow</li></ul><p>Please notice il will be necessary for you to edit script settings referring to git repository in Trac (called 'git-clone' for us) and paths corresponding to your environment.</p><!--:--><!--:fr<img class="alignright size-full wp-image-594" title="Trac_Logo" src="/images/uploads/2012/05/Trac_Logo_512x512.png" alt="" width="128" height="128" />Comme mentionné dans un <a title="GitLabHQ and a good branching model" href="http://www.bloggure.info/work/gitlabhq.html">précédent billet</a>, chez SRMvision, nous utilisons intensivement les features branches pour isoler nos développements et nous permettre de basculer facilement une fonctionnalité en production avec un historique clair des modifications.
 
 Une des pratiques que nous avions mis en place depuis le début (à l'époque ou nous utilisions subversion) est l'interaction avec notre gestionnaire d'incidents (<a href="http://trac.edgewall.org/">Trac</a>) depuis nos commits. Ainsi, nous utilisons les commandes suivantes dans nos messages de commits (des synonymes existent, mais nous les utilisons peu) :
 <ul>
@@ -297,201 +116,121 @@ Vous trouverez les trois fichiers suivants:
 </ul>
 Notez qu'il sera certainement nécessaire de modifier les variables des scripts python permettant de référencer le dépôt git dans Trac (dans notre cas il est nommé git-clone), ainsi que les chemins utilisés dans votre environnement.<-->
 
-          <footer class="entry-meta">
-            <span class="entry-tags"></span>
-
-            <div class="social-share">
-              <ul class="socialcount socialcount-small inline-list">
-                <li class="facebook">
-                  <a
-                    href="https://www.facebook.com/sharer/sharer.php?u=http://www.bloggure.info/work/git/control-trac-ticket-workflow-from-your-git-commits.html"
-                    title="Share on Facebook"
-                    ><span class="count"
-                      ><i class="fa fa-facebook-square"></i> Like</span
-                    ></a
-                  >
-                </li>
-                <li class="twitter">
-                  <a
-                    href="https://twitter.com/intent/tweet?text=http://www.bloggure.info/work/git/control-trac-ticket-workflow-from-your-git-commits.html"
-                    title="Share on Twitter"
-                    ><span class="count"
-                      ><i class="fa fa-twitter-square"></i> Tweet</span
-                    ></a
-                  >
-                </li>
-              </ul>
-            </div>
-            <!-- /.social-share -->
-          </footer>
-        </div>
-        <!-- /.entry-content -->
-
-        <div class="read-more">
-          <div class="read-more-header">
-            <a
-              href="http://www.bloggure.info/.git/thoughts/www/how-github-uses-pull-request"
-              class="read-more-btn"
-              >Read More</a
-            >
-          </div>
-          <!-- /.read-more-header -->
-          <div class="read-more-content">
-            <h3>
-              <a
-                href="http://www.bloggure.info/Tuist_build_test_schemes"
-                title="Tuist build test schemes"
-                >Tuist build test schemes</a
-              >
-            </h3>
-            <p>
-              Tuist build test schemesI use tuist to build most of my iOS
-              projects nowadays. And like every good software engineer I test
-              the code that...&hellip;
-              <a href="http://www.bloggure.info/Tuist_build_test_schemes"
-                >Continue reading</a
-              >
-            </p>
-          </div>
-          <!-- /.read-more-content -->
-
-          <div class="read-more-list">
-            <div class="list-item">
-              <h4>
-                <a
-                  href="http://www.bloggure.info/Module_Registration_Swift"
-                  title="Swift module registration"
-                  >Swift module registration</a
-                >
-              </h4>
-              <span>Published on April 28, 2025</span>
-            </div>
-            <!-- /.list-item -->
-
-            <div class="list-item">
-              <h4>
-                <a
-                  href="http://www.bloggure.info/Swift_VisibleForTesting_Macro"
-                  title="Swift macro : @VisibleForTesting"
-                  >Swift macro : @VisibleForTesting</a
-                >
-              </h4>
-              <span>Published on April 19, 2024</span>
-            </div>
-            <!-- /.list-item -->
-          </div>
-          <!-- /.read-more-list -->
-        </div>
-        <!-- /.read-more -->
-      </article>
-    </div>
-    <!-- /#main -->
-
-    <div class="footer-wrapper">
-      <footer role="contentinfo">
-        <span
-          >&copy; 2026 . Powered by
-          <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using a theme
-          based on
-          <a
-            href="https://mademistakes.com/work/hpstr-jekyll-theme/"
-            rel="nofollow"
-            >HPSTR</a
-          >.</span
-        >
+      <footer class="entry-meta">
+        <span class="entry-tags"></span>
+        
+        <div class="social-share">
+  <ul class="socialcount socialcount-small inline-list">
+    <li class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=http://www.bloggure.info/work/git/control-trac-ticket-workflow-from-your-git-commits.html" title="Share on Facebook"><span class="count"><i class="fa fa-facebook-square"></i> Like</span></a></li>
+    <li class="twitter"><a href="https://twitter.com/intent/tweet?text=http://www.bloggure.info/work/git/control-trac-ticket-workflow-from-your-git-commits.html" title="Share on Twitter"><span class="count"><i class="fa fa-twitter-square"></i> Tweet</span></a></li>
+  </ul>
+</div><!-- /.social-share -->
       </footer>
-    </div>
-    <!-- /.footer-wrapper -->
+    </div><!-- /.entry-content -->
+    
+    <div class="read-more">
+  
+    <div class="read-more-header">
+      <a href="http://www.bloggure.info/.git/thoughts/www/how-github-uses-pull-request" class="read-more-btn">Read More</a>
+    </div><!-- /.read-more-header -->
+    <div class="read-more-content">
+      <h3><a href="http://www.bloggure.info/Shortcut_bill_renaming" title="Streamlining Finances: Automating Bill Renaming with Apple Shortcuts">Streamlining Finances: Automating Bill Renaming with Apple Shortcuts</a></h3>
+      <p>## The Problem: The "Downloads" Folder ChaosWe all know the struggle. You download a PDF invoice from your utility provider or internet s...&hellip; <a href="http://www.bloggure.info/Shortcut_bill_renaming">Continue reading</a></p>
+    </div><!-- /.read-more-content -->
+  
+  <div class="read-more-list">
+    
+      <div class="list-item">
+        <h4><a href="http://www.bloggure.info/Tuist_build_test_schemes" title="Tuist build test schemes">Tuist build test schemes</a></h4>
+        <span>Published on May 22, 2025</span>
+      </div><!-- /.list-item -->
+    
+      <div class="list-item">
+        <h4><a href="http://www.bloggure.info/Module_Registration_Swift" title="Swift module registration">Swift module registration</a></h4>
+        <span>Published on April 28, 2025</span>
+      </div><!-- /.list-item -->
+    
+  </div><!-- /.read-more-list -->
+</div><!-- /.read-more -->
+  </article>
+</div><!-- /#main -->
 
-    <script>
-      (function () {
-        function loadScript(src) {
-          return new Promise(function (resolve, reject) {
-            var script = document.createElement("script");
-            script.src = src;
-            script.defer = true;
-            script.async = false;
-            script.onload = resolve;
-            script.onerror = reject;
-            document.head.appendChild(script);
+<div class="footer-wrapper">
+  <footer role="contentinfo">
+    <span>&copy; 2026 . Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using a theme based on <a href="https://mademistakes.com/work/hpstr-jekyll-theme/" rel="nofollow">HPSTR</a>.</span>
+  </footer>
+</div><!-- /.footer-wrapper -->
+
+<script>
+  (function() {
+    function loadScript(src) {
+      return new Promise(function(resolve, reject) {
+        var script = document.createElement('script');
+        script.src = src;
+        script.defer = true;
+        script.async = false;
+        script.onload = resolve;
+        script.onerror = reject;
+        document.head.appendChild(script);
+      });
+    }
+
+    var jqCdn = '//ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js';
+    var jqLocal = 'http://www.bloggure.info/assets/js/vendor/jquery-3.7.1.min.js';
+    var needFitVids = document.querySelector('article iframe, article video');
+    var needMagnific = document.querySelector(
+      'a[href$=".jpg" i],a[href$=".jpeg" i],a[href$=".png" i],a[href$=".gif" i]'
+    );
+
+    var jqPromise = loadScript(jqCdn)
+      .catch(function() {
+        return loadScript(jqLocal);
+      })
+      .then(function() {
+        if (!window.jQuery) {
+          return loadScript(jqLocal);
+        }
+      });
+
+    jqPromise
+      .then(function() {
+        var chain = Promise.resolve();
+        
+        if (needFitVids) {
+          chain = chain.then(function() {
+            return loadScript('http://www.bloggure.info/assets/js/plugins/jquery.fitvids.js');
           });
         }
-
-        var jqCdn =
-          "//ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js";
-        var jqLocal =
-          "http://www.bloggure.info/assets/js/vendor/jquery-3.7.1.min.js";
-        var needFitVids = document.querySelector(
-          "article iframe, article video"
-        );
-        var needMagnific = document.querySelector(
-          'a[href$=".jpg" i],a[href$=".jpeg" i],a[href$=".png" i],a[href$=".gif" i]'
-        );
-
-        var jqPromise = loadScript(jqCdn)
-          .catch(function () {
-            return loadScript(jqLocal);
-          })
-          .then(function () {
-            if (!window.jQuery) {
-              return loadScript(jqLocal);
-            }
+        if (needMagnific) {
+          chain = chain.then(function() {
+            return loadScript('http://www.bloggure.info/assets/js/plugins/jquery.magnific-popup.js');
           });
+        }
+        
+        return chain;
+      })
+      .then(function() {
+        return loadScript('http://www.bloggure.info/assets/js/scripts.min.js');
+      });
+  })();
+</script>
 
-        jqPromise
-          .then(function () {
-            var chain = Promise.resolve();
 
-            if (needFitVids) {
-              chain = chain.then(function () {
-                return loadScript(
-                  "http://www.bloggure.info/assets/js/plugins/jquery.fitvids.js"
-                );
-              });
-            }
-            if (needMagnific) {
-              chain = chain.then(function () {
-                return loadScript(
-                  "http://www.bloggure.info/assets/js/plugins/jquery.magnific-popup.js"
-                );
-              });
-            }
+<!-- Asynchronous Google Analytics snippet -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-            return chain;
-          })
-          .then(function () {
-            return loadScript(
-              "http://www.bloggure.info/assets/js/scripts.min.js"
-            );
-          });
-      })();
-    </script>
+  ga('create', 'UA-11718843-3', 'auto');  
+  ga('require', 'linkid', 'linkid.js');
+  ga('send', 'pageview');
+</script>
 
-    <!-- Asynchronous Google Analytics snippet -->
-    <script>
-      (function (i, s, o, g, r, a, m) {
-        i["GoogleAnalyticsObject"] = r;
-        (i[r] =
-          i[r] ||
-          function () {
-            (i[r].q = i[r].q || []).push(arguments);
-          }),
-          (i[r].l = 1 * new Date());
-        (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m);
-      })(
-        window,
-        document,
-        "script",
-        "//www.google-analytics.com/analytics.js",
-        "ga"
-      );
 
-      ga("create", "UA-11718843-3", "auto");
-      ga("require", "linkid", "linkid.js");
-      ga("send", "pageview");
-    </script>
-  </body>
+
+	        
+
+</body>
 </html>
