@@ -1,179 +1,99 @@
-<!DOCTYPE html>
+<!doctype html>
 <!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
 <!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
 <!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js" lang="en">
-  <!--<![endif]-->
-  <head>
-    <meta charset="utf-8" />
-    <title>SwiftUI UIKit Interop &#8211; Bloggure</title>
-    <meta
-      name="description"
-      content="Multi author blog about programming, computing and geek stuff"
-    />
-    <meta name="keywords" content="xcode, swift, swiftui, uikit" />
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>SwiftUI UIKit Interop &#8211; Bloggure</title>
+<meta name="description" content="Multi author blog about programming, computing and geek stuff">
+<meta name="keywords" content="xcode, swift, swiftui, uikit">
 
-    <!-- Open Graph -->
-    <meta property="og:locale" content="en_US" />
-    <meta property="og:type" content="article" />
-    <meta property="og:title" content="SwiftUI UIKit Interop" />
-    <meta
-      property="og:description"
-      content="Multi author blog about programming, computing and geek stuff"
-    />
-    <meta
-      property="og:url"
-      content="http://www.bloggure.info/SwiftUI-UIKit_Interop"
-    />
-    <meta property="og:site_name" content="Bloggure" />
 
-    <link
-      rel="canonical"
-      href="http://www.bloggure.info/SwiftUI-UIKit_Interop"
-    />
-    <link
-      href="http://www.bloggure.info/feed.xml"
-      type="application/atom+xml"
-      rel="alternate"
-      title="Bloggure Feed"
-    />
 
-    <!-- http://t.co/dKP3o1e -->
-    <meta name="HandheldFriendly" content="True" />
-    <meta name="MobileOptimized" content="320" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SwiftUI UIKit Interop">
+<meta property="og:description" content="Multi author blog about programming, computing and geek stuff">
+<meta property="og:url" content="http://www.bloggure.info/SwiftUI-UIKit_Interop">
+<meta property="og:site_name" content="Bloggure">
 
-    <!-- For all browsers -->
-    <link
-      rel="stylesheet"
-      href="http://www.bloggure.info/assets/css/main.css"
-    />
-    <!-- Webfonts -->
-    <link
-      href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic"
-      rel="stylesheet"
-      type="text/css"
-    />
 
-    <meta http-equiv="cleartype" content="on" />
 
-    <!-- Load Modernizr -->
-    <script src="http://www.bloggure.info/assets/js/vendor/modernizr-3.12.0.min.js"></script>
 
-    <!-- Icons -->
-    <!-- 16x16 -->
-    <link rel="shortcut icon" href="http://www.bloggure.info/favicon.ico" />
-    <!-- 32x32 -->
-    <link rel="shortcut icon" href="http://www.bloggure.info/favicon.png" />
-    <!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
-    <link
-      rel="apple-touch-icon-precomposed"
-      href="http://www.bloggure.info/images/apple-touch-icon-precomposed.png"
-    />
-    <!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
-    <link
-      rel="apple-touch-icon-precomposed"
-      sizes="72x72"
-      href="http://www.bloggure.info/images/apple-touch-icon-72x72-precomposed.png"
-    />
-    <!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
-    <link
-      rel="apple-touch-icon-precomposed"
-      sizes="114x114"
-      href="http://www.bloggure.info/images/apple-touch-icon-114x114-precomposed.png"
-    />
-    <!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
-    <link
-      rel="apple-touch-icon-precomposed"
-      sizes="144x144"
-      href="http://www.bloggure.info/images/apple-touch-icon-144x144-precomposed.png"
-    />
-  </head>
 
-  <body id="post">
-    <!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
+<link rel="canonical" href="http://www.bloggure.info/SwiftUI-UIKit_Interop">
+<link href="http://www.bloggure.info/feed.xml" type="application/atom+xml" rel="alternate" title="Bloggure Feed">
 
-    <div class="entry-header">
-      <header class="header-title">
-        <div class="header-title-wrap">
-          <h1 class="entry-title" itemprop="name">
-            <a href="http://www.bloggure.info/">Bloggure</a>
-          </h1>
-        </div>
-        <!-- /.header-title-wrap -->
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://www.bloggure.info/assets/css/main.css">
+<!-- Webfonts -->
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">
+
+<meta http-equiv="cleartype" content="on">
+
+<script>
+  document.documentElement.className =
+    document.documentElement.className.replace(/\bno-js\b/, 'js');
+</script>
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="http://www.bloggure.info/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="http://www.bloggure.info/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="http://www.bloggure.info/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://www.bloggure.info/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://www.bloggure.info/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://www.bloggure.info/images/apple-touch-icon-144x144-precomposed.png">
+
+
+
+</head>
+
+<body id="post" >
+
+<!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
+
+
+<div class="entry-header">
+  <header class="header-title">
+    <div class="header-title-wrap">
+      <h1 class="entry-title" itemprop="name"><a href="http://www.bloggure.info/">Bloggure</a></h1>
+    </div><!-- /.header-title-wrap -->
+  </header>
+  </div>
+
+<div id="main" role="main">
+  <article class="hentry">
+    <div class="entry-content">
+      <header>
+        <div class="entry-meta"><span class="entry-date date published updated"><time datetime="2020-12-03T00:00:00+01:00" itemprop="datePublished"><a href="http://www.bloggure.info/SwiftUI-UIKit_Interop">December 03, 2020</a></time></span><span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name" class="fn"><a href="http://www.bloggure.info/cgatay" title="About cgatay" itemprop="url">cgatay</a></span></span>&nbsp; &bull; &nbsp;<span class="entry-comments"><a href="http://www.bloggure.info/SwiftUI-UIKit_Interop#disqus_thread">Comment</a></span></div><!-- /.entry-meta -->
+        
+          <h1 class="entry-title" itemprop="name"><a href="http://www.bloggure.info/SwiftUI-UIKit_Interop" rel="bookmark" title="SwiftUI UIKit Interop" itemprop="url">SwiftUI UIKit Interop</a></h1>
+        
       </header>
-    </div>
+      <p>Now that iOS13 is available for more than year, we can start to set it as a lower bound for our deployments.</p>
 
-    <div id="main" role="main">
-      <article class="hentry">
-        <div class="entry-content">
-          <header>
-            <div class="entry-meta">
-              <span class="entry-date date published updated"
-                ><time
-                  datetime="2020-12-03T00:00:00+01:00"
-                  itemprop="datePublished"
-                  ><a href="http://www.bloggure.info/SwiftUI-UIKit_Interop"
-                    >December 03, 2020</a
-                  ></time
-                ></span
-              ><span
-                class="author vcard"
-                itemprop="author"
-                itemscope
-                itemtype="http://schema.org/Person"
-                ><span itemprop="name" class="fn"
-                  ><a
-                    href="http://www.bloggure.info/cgatay"
-                    title="About cgatay"
-                    itemprop="url"
-                    >cgatay</a
-                  ></span
-                ></span
-              >&nbsp; &bull; &nbsp;<span class="entry-comments"
-                ><a
-                  href="http://www.bloggure.info/SwiftUI-UIKit_Interop#disqus_thread"
-                  >Comment</a
-                ></span
-              >
-            </div>
-            <!-- /.entry-meta -->
+<p>This allows us to play with all sugar that Apple put in it, one of the biggest thing is the arrival of SwiftUI to supercede UIKit (write cross platform UIs and so on).</p>
 
-            <h1 class="entry-title" itemprop="name">
-              <a
-                href="http://www.bloggure.info/SwiftUI-UIKit_Interop"
-                rel="bookmark"
-                title="SwiftUI UIKit Interop"
-                itemprop="url"
-                >SwiftUI UIKit Interop</a
-              >
-            </h1>
-          </header>
-          <p>
-            Now that iOS13 is available for more than year, we can start to set
-            it as a lower bound for our deployments.
-          </p>
+<h2 id="bridging-the-two-worlds">Bridging the two worlds</h2>
 
-          <p>
-            This allows us to play with all sugar that Apple put in it, one of
-            the biggest thing is the arrival of SwiftUI to supercede UIKit
-            (write cross platform UIs and so on).
-          </p>
+<h3 id="using-swiftui-from-uikit">Using SwiftUI from UIKit</h3>
 
-          <h2 id="bridging-the-two-worlds">Bridging the two worlds</h2>
+<p>The first thing we might try to do, is embedding a SwiftUI View inside our <code>UIViewController</code> based application. To do so, Apple gives us <code>UIHostingViewController</code> which is a simple bridging controller, straightforward to use.</p>
 
-          <h3 id="using-swiftui-from-uikit">Using SwiftUI from UIKit</h3>
-
-          <p>
-            The first thing we might try to do, is embedding a SwiftUI View
-            inside our <code>UIViewController</code> based application. To do
-            so, Apple gives us <code>UIHostingViewController</code> which is a
-            simple bridging controller, straightforward to use.
-          </p>
-
-          <figure class="highlight">
-            <pre><code class="language-swift" data-lang="swift"><span class="kd">struct</span> <span class="kt">MyNewView</span><span class="p">:</span> <span class="kt">View</span> <span class="p">{</span>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">struct</span> <span class="kt">MyNewView</span><span class="p">:</span> <span class="kt">View</span> <span class="p">{</span>
     <span class="k">var</span> <span class="nv">view</span><span class="p">:</span> <span class="kd">some</span> <span class="kt">View</span> <span class="p">{</span>
         <span class="kt">Text</span><span class="p">(</span><span class="s">"I'm in SwiftUI"</span><span class="p">)</span>
     <span class="p">}</span>
@@ -182,31 +102,19 @@
     <span class="nf">init</span><span class="p">(){</span>
         <span class="k">super</span><span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">rootView</span><span class="p">:</span> <span class="kt">MyNewView</span><span class="p">())</span>
     <span class="p">}</span>
-<span class="p">}</span></code></pre>
-          </figure>
+<span class="p">}</span></code></pre></figure>
 
-          <h3 id="uiviewcontroller-in-swiftui">UIViewController in SwiftUI</h3>
+<h3 id="uiviewcontroller-in-swiftui">UIViewController in SwiftUI</h3>
 
-          <p>
-            However, at times we still need to reuse our good old
-            <code>UIViewController</code>, either because we can not afford a
-            full SwiftUI rewrite, so we want to keep old code and migrate pieces
-            by pieces or because we are using something not yet adapted to
-            SwiftUI.
-          </p>
+<p>However, at times we still need to reuse our good old <code>UIViewController</code>, either because we can not afford a full SwiftUI rewrite, so we want to keep old code and migrate pieces by pieces or because we are using something not yet adapted to SwiftUI.</p>
 
-          <p>In my case it was using the camera to scan a QRCode.</p>
+<p>In my case it was using the camera to scan a QRCode.</p>
 
-          <h4 id="non-elegant-solution">Non elegant solution</h4>
+<h4 id="non-elegant-solution">Non elegant solution</h4>
 
-          <p>
-            I faced a few issue with examples I found out, most of them are
-            adding an extension to the <code>UIViewController</code> that makes
-            it conform to <code>UIViewControllerRepresentable</code>.
-          </p>
+<p>I faced a few issue with examples I found out, most of them are adding an extension to the <code>UIViewController</code> that makes it conform to <code>UIViewControllerRepresentable</code>.</p>
 
-          <figure class="highlight">
-            <pre><code class="language-swift" data-lang="swift"><span class="kd">class</span> <span class="kt">MyViewController</span><span class="p">:</span> <span class="kt">UIViewController</span><span class="p">{</span>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">class</span> <span class="kt">MyViewController</span><span class="p">:</span> <span class="kt">UIViewController</span><span class="p">{</span>
     <span class="k">var</span> <span class="nv">cancellable</span><span class="p">:</span> <span class="kt">Cancellable</span><span class="p">?</span>
     <span class="c1">// classic stuff</span>
 <span class="p">}</span>
@@ -229,43 +137,20 @@
   <span class="k">var</span> <span class="nv">body</span><span class="p">:</span> <span class="kd">some</span> <span class="kt">View</span> <span class="p">{</span>
     <span class="kt">MyViewController</span><span class="p">()</span>
   <span class="p">}</span>
-<span class="p">}</span></code></pre>
-          </figure>
+<span class="p">}</span></code></pre></figure>
 
-          <p>
-            I find this not easy to read, as we’re doing weird thing by
-            returning <code>self</code> from a function named
-            <code>makeUIViewController</code>. Some example are telling to
-            return <code>MyViewController()</code> instead of <code>self</code>.
-            Please don’t do this otherwise you’re creating the
-            <code>UIViewController</code> twice for each call !
-          </p>
+<p>I find this not easy to read, as we’re doing weird thing by returning  <code>self</code> from a function named <code>makeUIViewController</code>.
+Some example are telling to return <code>MyViewController()</code> instead of <code>self</code>. Please don’t do this otherwise you’re creating the <code>UIViewController</code> twice for each call !</p>
 
-          <p>
-            I also had a leak when using <code>Combine</code> (more to come
-            about this great framework), my <code>Cancellable</code>s were never
-            freed, leading in a memory cycle that kept the
-            <code>UIViewController</code> living even though it was no longer
-            presented.
-          </p>
+<p>I also had a leak when using  <code>Combine</code> (more to come about this great framework), my  <code>Cancellable</code>s were never freed, leading in a memory cycle that kept the <code>UIViewController</code> living even though it was no longer presented.</p>
 
-          <p>
-            It is important to do proper house keeping in the
-            <code>dismantleUIViewController</code> method if you don’t want to
-            use too much memory and slow down your app.
-          </p>
+<p>It is important to do proper house keeping in the <code>dismantleUIViewController</code> method if you don’t want to use too much memory and slow down your app.</p>
 
-          <h4 id="nice-looking-way-of-doing">Nice looking way of doing</h4>
+<h4 id="nice-looking-way-of-doing">Nice looking way of doing</h4>
 
-          <p>
-            You will find a working example below, basically we need to
-            implement a <code>UIViewControllerRepresentable</code> struct to
-            represent be the container for our <code>UIViewController</code> in
-            the SwiftUI world.
-          </p>
+<p>You will find a working example below, basically we need to implement a <code>UIViewControllerRepresentable</code> struct to represent be the container for our <code>UIViewController</code> in the SwiftUI world.</p>
 
-          <figure class="highlight">
-            <pre><code class="language-swift" data-lang="swift"><span class="kd">class</span> <span class="kt">MyViewController</span><span class="p">:</span> <span class="kt">UIViewController</span><span class="p">{</span>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">class</span> <span class="kt">MyViewController</span><span class="p">:</span> <span class="kt">UIViewController</span><span class="p">{</span>
     <span class="k">var</span> <span class="nv">cancellable</span><span class="p">:</span> <span class="kt">Cancellable</span><span class="p">?</span>
     <span class="c1">// classic stuff</span>
 <span class="p">}</span>
@@ -288,210 +173,145 @@
   <span class="k">var</span> <span class="nv">body</span><span class="p">:</span> <span class="kd">some</span> <span class="kt">View</span> <span class="p">{</span>
     <span class="kt">MyGreatView</span><span class="p">()</span>
   <span class="p">}</span>
-<span class="p">}</span></code></pre>
-          </figure>
+<span class="p">}</span></code></pre></figure>
 
-          <footer class="entry-meta">
-            <span class="entry-tags"
-              ><a
-                href="http://www.bloggure.info/tags/#xcode"
-                title="Pages tagged xcode"
-                class="tag"
-                ><span class="term">xcode</span></a
-              ><a
-                href="http://www.bloggure.info/tags/#swift"
-                title="Pages tagged swift"
-                class="tag"
-                ><span class="term">swift</span></a
-              ><a
-                href="http://www.bloggure.info/tags/#swiftui"
-                title="Pages tagged swiftui"
-                class="tag"
-                ><span class="term">swiftui</span></a
-              ><a
-                href="http://www.bloggure.info/tags/#uikit"
-                title="Pages tagged uikit"
-                class="tag"
-                ><span class="term">uikit</span></a
-              ></span
-            >
-
-            <div class="social-share">
-              <ul class="socialcount socialcount-small inline-list">
-                <li class="facebook">
-                  <a
-                    href="https://www.facebook.com/sharer/sharer.php?u=http://www.bloggure.info/SwiftUI-UIKit_Interop"
-                    title="Share on Facebook"
-                    ><span class="count"
-                      ><i class="fa fa-facebook-square"></i> Like</span
-                    ></a
-                  >
-                </li>
-                <li class="twitter">
-                  <a
-                    href="https://twitter.com/intent/tweet?text=http://www.bloggure.info/SwiftUI-UIKit_Interop"
-                    title="Share on Twitter"
-                    ><span class="count"
-                      ><i class="fa fa-twitter-square"></i> Tweet</span
-                    ></a
-                  >
-                </li>
-              </ul>
-            </div>
-            <!-- /.social-share -->
-          </footer>
-        </div>
-        <!-- /.entry-content -->
-        <section id="disqus_thread"></section>
-        <!-- /#disqus_thread -->
-        <div class="read-more">
-          <div class="read-more-header">
-            <a
-              href="http://www.bloggure.info/XCodeUnitTestInheritance"
-              class="read-more-btn"
-              >Read More</a
-            >
-          </div>
-          <!-- /.read-more-header -->
-          <div class="read-more-content">
-            <h3>
-              <a
-                href="http://www.bloggure.info/Tuist_build_test_schemes"
-                title="Tuist build test schemes"
-                >Tuist build test schemes</a
-              >
-            </h3>
-            <p>
-              Tuist build test schemesI use tuist to build most of my iOS
-              projects nowadays. And like every good software engineer I test
-              the code that...&hellip;
-              <a href="http://www.bloggure.info/Tuist_build_test_schemes"
-                >Continue reading</a
-              >
-            </p>
-          </div>
-          <!-- /.read-more-content -->
-
-          <div class="read-more-list">
-            <div class="list-item">
-              <h4>
-                <a
-                  href="http://www.bloggure.info/Module_Registration_Swift"
-                  title="Swift module registration"
-                  >Swift module registration</a
-                >
-              </h4>
-              <span>Published on April 28, 2025</span>
-            </div>
-            <!-- /.list-item -->
-
-            <div class="list-item">
-              <h4>
-                <a
-                  href="http://www.bloggure.info/Swift_VisibleForTesting_Macro"
-                  title="Swift macro : @VisibleForTesting"
-                  >Swift macro : @VisibleForTesting</a
-                >
-              </h4>
-              <span>Published on April 19, 2024</span>
-            </div>
-            <!-- /.list-item -->
-          </div>
-          <!-- /.read-more-list -->
-        </div>
-        <!-- /.read-more -->
-      </article>
-    </div>
-    <!-- /#main -->
-
-    <div class="footer-wrapper">
-      <footer role="contentinfo">
-        <span
-          >&copy; 2026 . Powered by
-          <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using a theme
-          based on
-          <a
-            href="https://mademistakes.com/work/hpstr-jekyll-theme/"
-            rel="nofollow"
-            >HPSTR</a
-          >.</span
-        >
+      <footer class="entry-meta">
+        <span class="entry-tags"><a href="http://www.bloggure.info/tags/#xcode" title="Pages tagged xcode" class="tag"><span class="term">xcode</span></a><a href="http://www.bloggure.info/tags/#swift" title="Pages tagged swift" class="tag"><span class="term">swift</span></a><a href="http://www.bloggure.info/tags/#swiftui" title="Pages tagged swiftui" class="tag"><span class="term">swiftui</span></a><a href="http://www.bloggure.info/tags/#uikit" title="Pages tagged uikit" class="tag"><span class="term">uikit</span></a></span>
+        
+        <div class="social-share">
+  <ul class="socialcount socialcount-small inline-list">
+    <li class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=http://www.bloggure.info/SwiftUI-UIKit_Interop" title="Share on Facebook"><span class="count"><i class="fa fa-facebook-square"></i> Like</span></a></li>
+    <li class="twitter"><a href="https://twitter.com/intent/tweet?text=http://www.bloggure.info/SwiftUI-UIKit_Interop" title="Share on Twitter"><span class="count"><i class="fa fa-twitter-square"></i> Tweet</span></a></li>
+  </ul>
+</div><!-- /.social-share -->
       </footer>
-    </div>
-    <!-- /.footer-wrapper -->
+    </div><!-- /.entry-content -->
+    <section id="disqus_thread"></section><!-- /#disqus_thread -->
+    <div class="read-more">
+  
+    <div class="read-more-header">
+      <a href="http://www.bloggure.info/XCodeUnitTestInheritance" class="read-more-btn">Read More</a>
+    </div><!-- /.read-more-header -->
+    <div class="read-more-content">
+      <h3><a href="http://www.bloggure.info/Tuist_build_test_schemes" title="Tuist build test schemes">Tuist build test schemes</a></h3>
+      <p>Tuist build test schemesI use tuist to build most of my iOS projects nowadays. And like every good software engineer I test the code that...&hellip; <a href="http://www.bloggure.info/Tuist_build_test_schemes">Continue reading</a></p>
+    </div><!-- /.read-more-content -->
+  
+  <div class="read-more-list">
+    
+      <div class="list-item">
+        <h4><a href="http://www.bloggure.info/Module_Registration_Swift" title="Swift module registration">Swift module registration</a></h4>
+        <span>Published on April 28, 2025</span>
+      </div><!-- /.list-item -->
+    
+      <div class="list-item">
+        <h4><a href="http://www.bloggure.info/Swift_VisibleForTesting_Macro" title="Swift macro : @VisibleForTesting">Swift macro : @VisibleForTesting</a></h4>
+        <span>Published on April 19, 2024</span>
+      </div><!-- /.list-item -->
+    
+  </div><!-- /.read-more-list -->
+</div><!-- /.read-more -->
+  </article>
+</div><!-- /#main -->
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script>
-      window.jQuery ||
-        document.write(
-          '<script src="http://www.bloggure.info/assets/js/vendor/jquery-3.7.1.min.js"><\/script>'
-        );
-    </script>
-    <script src="http://www.bloggure.info/assets/js/scripts.min.js"></script>
+<div class="footer-wrapper">
+  <footer role="contentinfo">
+    <span>&copy; 2026 . Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using a theme based on <a href="https://mademistakes.com/work/hpstr-jekyll-theme/" rel="nofollow">HPSTR</a>.</span>
+  </footer>
+</div><!-- /.footer-wrapper -->
 
-    <!-- Asynchronous Google Analytics snippet -->
-    <script>
-      (function (i, s, o, g, r, a, m) {
-        i["GoogleAnalyticsObject"] = r;
-        (i[r] =
-          i[r] ||
-          function () {
-            (i[r].q = i[r].q || []).push(arguments);
-          }),
-          (i[r].l = 1 * new Date());
-        (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m);
-      })(
-        window,
-        document,
-        "script",
-        "//www.google-analytics.com/analytics.js",
-        "ga"
-      );
+<script>
+  (function() {
+    function loadScript(src) {
+      return new Promise(function(resolve, reject) {
+        var script = document.createElement('script');
+        script.src = src;
+        script.defer = true;
+        script.async = false;
+        script.onload = resolve;
+        script.onerror = reject;
+        document.head.appendChild(script);
+      });
+    }
 
-      ga("create", "UA-11718843-3", "auto");
-      ga("require", "linkid", "linkid.js");
-      ga("send", "pageview");
-    </script>
+    var jqCdn = '//ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js';
+    var jqLocal = 'http://www.bloggure.info/assets/js/vendor/jquery-3.7.1.min.js';
+    var needFitVids = document.querySelector('article iframe, article video');
+    var needMagnific = document.querySelector(
+      'a[href$=".jpg" i],a[href$=".jpeg" i],a[href$=".png" i],a[href$=".gif" i]'
+    );
+
+    var jqPromise = loadScript(jqCdn)
+      .catch(function() {
+        return loadScript(jqLocal);
+      })
+      .then(function() {
+        if (!window.jQuery) {
+          return loadScript(jqLocal);
+        }
+      });
+
+    jqPromise
+      .then(function() {
+        var chain = Promise.resolve();
+        
+        if (needFitVids) {
+          chain = chain.then(function() {
+            return loadScript('http://www.bloggure.info/assets/js/plugins/jquery.fitvids.js');
+          });
+        }
+        if (needMagnific) {
+          chain = chain.then(function() {
+            return loadScript('http://www.bloggure.info/assets/js/plugins/jquery.magnific-popup.js');
+          });
+        }
+        
+        return chain;
+      })
+      .then(function() {
+        return loadScript('http://www.bloggure.info/assets/js/scripts.min.js');
+      });
+  })();
+</script>
+
+
+<!-- Asynchronous Google Analytics snippet -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-11718843-3', 'auto');  
+  ga('require', 'linkid', 'linkid.js');
+  ga('send', 'pageview');
+</script>
+
+
 
     <script type="text/javascript">
-      /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-      var disqus_shortname = "thereisnoplacelike1"; // required: replace example with your forum shortname
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'thereisnoplacelike1'; // required: replace example with your forum shortname
 
-      /* * * DON'T EDIT BELOW THIS LINE * * */
-      (function () {
-        var dsq = document.createElement("script");
-        dsq.type = "text/javascript";
-        dsq.async = true;
-        dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
-        (
-          document.getElementsByTagName("head")[0] ||
-          document.getElementsByTagName("body")[0]
-        ).appendChild(dsq);
-      })();
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
 
-      /* * * DON'T EDIT BELOW THIS LINE * * */
-      (function () {
-        var s = document.createElement("script");
-        s.async = true;
-        s.type = "text/javascript";
-        s.src = "//" + disqus_shortname + ".disqus.com/count.js";
-        (
-          document.getElementsByTagName("HEAD")[0] ||
-          document.getElementsByTagName("BODY")[0]
-        ).appendChild(s);
-      })();
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function () {
+            var s = document.createElement('script'); s.async = true;
+            s.type = 'text/javascript';
+            s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
     </script>
-    <noscript
-      >Please enable JavaScript to view the
-      <a href="http://disqus.com/?ref_noscript"
-        >comments powered by Disqus.</a
-      ></noscript
-    >
-    <a href="http://disqus.com" class="dsq-brlink"
-      >comments powered by <span class="logo-disqus">Disqus</span></a
-    >
-  </body>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+	        
+
+</body>
 </html>

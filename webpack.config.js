@@ -4,9 +4,7 @@ const webpack = require('webpack');
 module.exports = {
   mode: 'production',
   entry: {
-    scripts: ['./assets/js/plugins/jquery.dlmenu.js', './assets/js/plugins/jquery.fitvids.js', 
-              './assets/js/plugins/jquery.magnific-popup.js', './assets/js/plugins/respond.js', 
-              './assets/js/_main.js']
+    scripts: ['./assets/js/plugins/jquery.dlmenu.js', './assets/js/_main.js']
   },
   output: {
     filename: 'scripts.min.js',
