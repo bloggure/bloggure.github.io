@@ -39,8 +39,10 @@
 
 <meta http-equiv="cleartype" content="on">
 
-<!-- Load Modernizr -->
-<script src="{{ site.url }}/assets/js/vendor/modernizr-3.12.0.min.js"></script>
+<script>
+  document.documentElement.className =
+    document.documentElement.className.replace(/\bno-js\b/, 'js');
+</script>
 
 <!-- Icons -->
 <!-- 16x16 -->

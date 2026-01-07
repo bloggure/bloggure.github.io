@@ -30,7 +30,7 @@ module.exports = function(grunt) {
       dist: {
         files: {
           'assets/js/scripts.min.js': [
-            'assets/js/plugins/*.js',
+            'assets/js/plugins/jquery.dlmenu.js',
             'assets/js/_*.js'
           ]
         }

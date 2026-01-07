@@ -1,6 +1,56 @@
-<script src="//ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="{{ site.url }}/assets/js/vendor/jquery-3.7.1.min.js"><\/script>')</script>
-<script src="{{ site.url }}/assets/js/scripts.min.js"></script>
+<script>
+  (function() {
+    function loadScript(src) {
+      return new Promise(function(resolve, reject) {
+        var script = document.createElement('script');
+        script.src = src;
+        script.defer = true;
+        script.async = false;
+        script.onload = resolve;
+        script.onerror = reject;
+        document.head.appendChild(script);
+      });
+    }
+
+    var jqCdn = '//ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js';
+    var jqLocal = '{{ site.url }}/assets/js/vendor/jquery-3.7.1.min.js';
+    var needFitVids = document.querySelector('article iframe, article video');
+    var needMagnific = document.querySelector(
+      'a[href$=".jpg" i],a[href$=".jpeg" i],a[href$=".png" i],a[href$=".gif" i]'
+    );
+
+    var jqPromise = loadScript(jqCdn)
+      .catch(function() {
+        return loadScript(jqLocal);
+      })
+      .then(function() {
+        if (!window.jQuery) {
+          return loadScript(jqLocal);
+        }
+      });
+
+    jqPromise
+      .then(function() {
+        var chain = Promise.resolve();
+        {% if page.layout == 'post' %}
+        if (needFitVids) {
+          chain = chain.then(function() {
+            return loadScript('{{ site.url }}/assets/js/plugins/jquery.fitvids.js');
+          });
+        }
+        if (needMagnific) {
+          chain = chain.then(function() {
+            return loadScript('{{ site.url }}/assets/js/plugins/jquery.magnific-popup.js');
+          });
+        }
+        {% endif %}
+        return chain;
+      })
+      .then(function() {
+        return loadScript('{{ site.url }}/assets/js/scripts.min.js');
+      });
+  })();
+</script>
 
 {% if site.google_analytics %}
 <!-- Asynchronous Google Analytics snippet -->

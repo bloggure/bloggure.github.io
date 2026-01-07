@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npm run build:js && npm run build:css",
-    "build:js": "uglifyjs assets/js/plugins/*.js assets/js/_*.js -o assets/js/scripts.min.js -c -m",
+    "build:js": "uglifyjs assets/js/plugins/jquery.dlmenu.js assets/js/_*.js -o assets/js/scripts.min.js -c -m",
     "build:css": "postcss assets/css/main.css -o assets/css/main.min.css --use autoprefixer",
     "watch": "npm run watch:js & npm run watch:css",
     "watch:js": "chokidar 'assets/js/plugins/*.js' 'assets/js/_*.js' -c 'npm run build:js'",
