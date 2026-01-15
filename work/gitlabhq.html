@@ -1,190 +1,97 @@
-<!DOCTYPE html>
+<!doctype html>
 <!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
 <!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
 <!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js" lang="en">
-  <!--<![endif]-->
-  <head>
-    <meta charset="utf-8" />
-    <title>GitLabHQ and a good branching model &#8211; Bloggure</title>
-    <meta
-      name="description"
-      content="Multi author blog about programming, computing and geek stuff"
-    />
-    <meta name="keywords" content="" />
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>GitLabHQ and a good branching model &#8211; Bloggure</title>
+<meta name="description" content="Multi author blog about programming, computing and geek stuff">
+<meta name="keywords" content="">
 
-    <!-- Open Graph -->
-    <meta property="og:locale" content="en_US" />
-    <meta property="og:type" content="article" />
-    <meta property="og:title" content="GitLabHQ and a good branching model" />
-    <meta
-      property="og:description"
-      content="Multi author blog about programming, computing and geek stuff"
-    />
-    <meta
-      property="og:url"
-      content="http://www.bloggure.info/work/gitlabhq.html"
-    />
-    <meta property="og:site_name" content="Bloggure" />
 
-    <link rel="canonical" href="http://www.bloggure.info/work/gitlabhq.html" />
-    <link
-      href="http://www.bloggure.info/feed.xml"
-      type="application/atom+xml"
-      rel="alternate"
-      title="Bloggure Feed"
-    />
 
-    <!-- http://t.co/dKP3o1e -->
-    <meta name="HandheldFriendly" content="True" />
-    <meta name="MobileOptimized" content="320" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GitLabHQ and a good branching model">
+<meta property="og:description" content="Multi author blog about programming, computing and geek stuff">
+<meta property="og:url" content="http://www.bloggure.info/work/gitlabhq.html">
+<meta property="og:site_name" content="Bloggure">
 
-    <!-- For all browsers -->
-    <link
-      rel="stylesheet"
-      href="http://www.bloggure.info/assets/css/main.css"
-    />
-    <!-- Webfonts -->
-    <link
-      href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic"
-      rel="stylesheet"
-      type="text/css"
-    />
 
-    <meta http-equiv="cleartype" content="on" />
 
-    <script>
-      document.documentElement.className = document.documentElement.className.replace(
-        /\bno-js\b/,
-        "js"
-      );
-    </script>
 
-    <!-- Icons -->
-    <!-- 16x16 -->
-    <link rel="shortcut icon" href="http://www.bloggure.info/favicon.ico" />
-    <!-- 32x32 -->
-    <link rel="shortcut icon" href="http://www.bloggure.info/favicon.png" />
-    <!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
-    <link
-      rel="apple-touch-icon-precomposed"
-      href="http://www.bloggure.info/images/apple-touch-icon-precomposed.png"
-    />
-    <!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
-    <link
-      rel="apple-touch-icon-precomposed"
-      sizes="72x72"
-      href="http://www.bloggure.info/images/apple-touch-icon-72x72-precomposed.png"
-    />
-    <!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
-    <link
-      rel="apple-touch-icon-precomposed"
-      sizes="114x114"
-      href="http://www.bloggure.info/images/apple-touch-icon-114x114-precomposed.png"
-    />
-    <!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
-    <link
-      rel="apple-touch-icon-precomposed"
-      sizes="144x144"
-      href="http://www.bloggure.info/images/apple-touch-icon-144x144-precomposed.png"
-    />
-  </head>
 
-  <body id="post">
-    <!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
+<link rel="canonical" href="http://www.bloggure.info/work/gitlabhq.html">
+<link href="http://www.bloggure.info/feed.xml" type="application/atom+xml" rel="alternate" title="Bloggure Feed">
 
-    <div class="entry-header">
-      <header class="header-title">
-        <div class="header-title-wrap">
-          <h1 class="entry-title" itemprop="name">
-            <a href="http://www.bloggure.info/">Bloggure</a>
-          </h1>
-        </div>
-        <!-- /.header-title-wrap -->
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://www.bloggure.info/assets/css/main.css">
+<!-- Webfonts -->
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">
+
+<meta http-equiv="cleartype" content="on">
+
+<script>
+  document.documentElement.className =
+    document.documentElement.className.replace(/\bno-js\b/, 'js');
+</script>
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="http://www.bloggure.info/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="http://www.bloggure.info/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="http://www.bloggure.info/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://www.bloggure.info/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://www.bloggure.info/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://www.bloggure.info/images/apple-touch-icon-144x144-precomposed.png">
+
+
+
+</head>
+
+<body id="post" >
+
+<!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
+
+
+<div class="entry-header">
+  <header class="header-title">
+    <div class="header-title-wrap">
+      <h1 class="entry-title" itemprop="name"><a href="http://www.bloggure.info/">Bloggure</a></h1>
+    </div><!-- /.header-title-wrap -->
+  </header>
+  </div>
+
+<div id="main" role="main">
+  <article class="hentry">
+    <div class="entry-content">
+      <header>
+        <div class="entry-meta"><span class="entry-date date published updated"><time datetime="2012-02-23T00:00:00+01:00" itemprop="datePublished"><a href="http://www.bloggure.info/work/gitlabhq.html">February 23, 2012</a></time></span><span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name" class="fn"><a href="http://www.bloggure.info/cgatay" title="About cgatay" itemprop="url">cgatay</a></span></span></div><!-- /.entry-meta -->
+        
+          <h1 class="entry-title" itemprop="name"><a href="http://www.bloggure.info/work/gitlabhq.html" rel="bookmark" title="GitLabHQ and a good branching model" itemprop="url">GitLabHQ and a good branching model</a></h1>
+        
       </header>
-    </div>
+      <!--:en--><h2>Migrating to Git</h2>
+<img src="/images/uploads/2011/12/GitLogo.jpg" alt="" title="GitLogo" width="97" height="202" class="alignright size-full wp-image-491" />
+<p>At work, we made the move from subversion to git as our version control tool. I used git for a few times before we migrate the whole project thanks to the git-svn bridge, and, apart from the usual headache when it comes to merging branches, I was rather convinced we would make the migration to git. To explain what branching model I was expecting to use, I dig the Internet for a good tool, hoping to migrate our so "1.0" Trac version control and issue management to a more github like one.</p>
 
-    <div id="main" role="main">
-      <article class="hentry">
-        <div class="entry-content">
-          <header>
-            <div class="entry-meta">
-              <span class="entry-date date published updated"
-                ><time
-                  datetime="2012-02-23T00:00:00+01:00"
-                  itemprop="datePublished"
-                  ><a href="http://www.bloggure.info/work/gitlabhq.html"
-                    >February 23, 2012</a
-                  ></time
-                ></span
-              ><span
-                class="author vcard"
-                itemprop="author"
-                itemscope
-                itemtype="http://schema.org/Person"
-                ><span itemprop="name" class="fn"
-                  ><a
-                    href="http://www.bloggure.info/cgatay"
-                    title="About cgatay"
-                    itemprop="url"
-                    >cgatay</a
-                  ></span
-                ></span
-              >
-            </div>
-            <!-- /.entry-meta -->
+<h2>Founds</h2>
+<p>There is not as much tools as I first thought, I found <a href="https://gitorious.org/gitorious">gitorious</a>, which seems to be a good tool, but it looks complicated to setup and lacks (or I didn't find it) a good graphical representation of the branches in the repository. <br/>
 
-            <h1 class="entry-title" itemprop="name">
-              <a
-                href="http://www.bloggure.info/work/gitlabhq.html"
-                rel="bookmark"
-                title="GitLabHQ and a good branching model"
-                itemprop="url"
-                >GitLabHQ and a good branching model</a
-              >
-            </h1>
-          </header>
-          <!--:en-->
-          <h2>Migrating to Git</h2>
-          <img
-            src="/images/uploads/2011/12/GitLogo.jpg"
-            alt=""
-            title="GitLogo"
-            width="97"
-            height="202"
-            class="alignright size-full wp-image-491"
-          />
-          <p>
-            At work, we made the move from subversion to git as our version
-            control tool. I used git for a few times before we migrate the whole
-            project thanks to the git-svn bridge, and, apart from the usual
-            headache when it comes to merging branches, I was rather convinced
-            we would make the migration to git. To explain what branching model
-            I was expecting to use, I dig the Internet for a good tool, hoping
-            to migrate our so "1.0" Trac version control and issue management to
-            a more github like one.
-          </p>
-
-          <h2>Founds</h2>
-          <p>
-            There is not as much tools as I first thought, I found
-            <a href="https://gitorious.org/gitorious">gitorious</a>, which seems
-            to be a good tool, but it looks complicated to setup and lacks (or I
-            didn't find it) a good graphical representation of the branches in
-            the repository. <br />
-
-            I came across <a href="http://gitlabhq.com/">gitlabhq</a>, which is
-            a starting project, but promising as it aims to mimic github in many
-            ways. I've tried it and I must say I am very impressed, it is now
-            one of the tool we use internally, it is not yet a perfect tool but
-            it does its jobs very well. We still use our old Trac environment
-            with git integration to hunt down our bugs and control ticket
-            workflow with commit messages (blog post to come). We also use
-            Trac's wiki to write our internal documentation toward developpers.
-          </p>
-          <!--:--><!--:fr<h2>Migration vers Git</h2>
+I came across <a href="http://gitlabhq.com/">gitlabhq</a>, which is a starting project, but promising as it aims to mimic github in many ways. I've tried it and I must say I am very impressed, it is now one of the tool we use internally, it is not yet a perfect tool but it does its jobs very well. We still use our old Trac environment with git integration to hunt down our bugs and control ticket workflow with commit messages (blog post to come). We also use Trac's wiki to write our internal documentation toward developpers.</p>
+<!--:--><!--:fr<h2>Migration vers Git</h2>
 <img src="/images/uploads/2011/12/GitLogo.jpg" alt="" title="GitLogo" width="97" height="202" class="alignright size-full wp-image-491" />
 Au travail, nous avons pris la décision de passer de Subversion à Git comme outil de gestion de sources. J'ai utilisé git quelques mois avant de migrer l'intégralité du projet pour tout le monde grace à l'outil git-svn. Et, mis à part les problèmes habituels de merge entre branches svn, j'étais plutôt enthousiaste concernant la migration vers git. L'idée était de disposer d'un outil plus puissant pour pouvoir séparer plus efficacement les développements en utilisant des branches. Pour expliquer quelle technique j'avais envie de mettre en place pour gérer nos branches de développement, j'ai cherché l'outil qu'il nous fallait, tout en espérant pouvoir migrer notre outil de gestion d'incident actuel (Trac) vers un se rapprochant plus de github.
 
@@ -194,161 +101,62 @@ Il n'y a pas tant d'outils que je le pensais au préalable. J'ai trouvé <a href
 Je suis tombé sur <a href="http://gitlabhq.com/">GitLabHQ</a>, qui est un projet naissant, mais prometteur puisque l'objectif est de fournir une alternative similaire à github. Je l'ai essayé et je dois dire que je suis réellement très impressionné, à tel point que c'est maintenant un des outils que nous utilisons en complèment de Trac.
 Nous utilisons toujours Trac pour gérer nos tickets de bugs et pour contrôler leur workflow à l'aide de messages de commit (il y aura un post ici à ce sujet dans quelques temps). Nous utilisons aussi le wiki de Trac pour la documentation développeur (nous n'avons pas encore pris le temps de la migrer vers GitLabHQ, ce qui arrivera certainement).
 <--><!--more--><!--:en-->
-          <h2>GitLabHQ</h2>
-          <h3>Repository management</h3>
-          <img
-            src="/images/uploads/2012/02/gitlabhq-logo.png"
-            alt=""
-            title="gitlabhq-logo"
-            width="175"
-            height="60"
-            class="alignright size-full wp-image-528"
-          />
-          <p>
-            Our SVN setup was hooked to our internal LDAP for central
-            authentication across our servers (with pam-ldap), making the move
-            to git made this part rubbish because everything is now handled by
-            ssh key exchange. If you've played a bit with gitosis or gitolite,
-            you have probably seen it's not as straightforward as it seems
-            granting a new user access to a repository. You have to clone the
-            special administrative repository and copy public keys, edit
-            configuration file and push this back to the server. This is a
-            simple but potentially time-consuming operation. GitLabHQ provides a
-            GUI allowing to add projects, users, keys.
-          </p>
+<h2>GitLabHQ</h2>
+<h3>Repository management</h3>
+<img src="/images/uploads/2012/02/gitlabhq-logo.png" alt="" title="gitlabhq-logo" width="175" height="60" class="alignright size-full wp-image-528" />
+<p>Our SVN setup was hooked to our internal LDAP for central authentication across our servers (with pam-ldap), making the move to git made this part rubbish because everything is now handled by ssh key exchange. If you've played a bit with gitosis or gitolite, you have probably seen it's not as straightforward as it seems granting a new user access to a repository. You have to clone the special administrative repository and copy public keys, edit configuration file and push this back to the server. This is a  simple but potentially time-consuming  operation. GitLabHQ provides a GUI allowing to add projects, users, keys.</p>
 
-          <h3>User management</h3>
-          It handles granting permissions in the underlying gitolite server by
-          using the keys the user configure. The workflow of adding a new user
-          is simple, you go to the administrative interface of gitlab, select
-          the "add user" link, fill in basic informations for that user
-          (login/password/mail) and the user, until he sets up its key, has a
-          nag message on the top inviting him to add a key. There is only a
-          simple form to fill with the key "nickname" and the key itself and it
-          is done. If a user changes computer or got multiple ones, he can
-          easily add another key to its profile, there is no need to ask the git
-          administrator to add it.
+<h3>User management</h3>
+It handles granting permissions in the underlying gitolite server by using the keys the user configure. The workflow of adding a new user is simple, you go to the administrative interface of gitlab, select the "add user" link, fill in basic informations for that user (login/password/mail) and the user, until he sets up its key, has a nag message on the top inviting him to add a key. There is only a simple form to fill with the key "nickname" and the key itself and it is done. If a user changes computer or got multiple ones, he can easily add another key to its profile, there is no need to ask the git administrator to add it.
 
-          <h3>Project management</h3>
-          It is easy to setup new projects, GitlabHQ provides a section in its
-          GUI allowing to add a project very easily, the same procedure as the
-          one necessary for adding a user apply : a simple form, then you can
-          set up permission for users (read-only / push-pull, web only
-          access...)<br />
-          Once a project created, you can manage it via the rich web interface
-          GitLab offers. There is :
-          <ul>
-            <li>
-              an integrated issue tracker (without workflow, as simple as the
-              one in github, an issue is open or closed),
-            </li>
-            <li>
-              a "merge request" section, you can view it as pull requests in
-              github, it allows a developper to notify a reviewer its feature is
-              ready to be merged into another branch (allowing code review),
-            </li>
-            <li>
-              a code browser with built-in comment system (with line note...),
-            </li>
-            <li>
-              a network graph tool (nice graphical representation of your
-              branches),
-            </li>
-            <li>a snippet mode to share code sample</li>
-            <li>
-              a few more features, I have to admit I have enough with what I
-              stated above.
-            </li>
-          </ul>
+<h3>Project management</h3>
+It is easy to setup new projects, GitlabHQ provides a section in its GUI allowing to add a project very easily, the same procedure as the one necessary for adding a user apply : a simple form, then you can set up permission for users (read-only / push-pull, web only access...)<br/>
+Once a project created, you can manage it via the rich web interface GitLab offers.
+There is : 
+<ul>
+<li>an integrated issue tracker (without workflow, as simple as the one in github, an issue is open or closed),</li>
+<li>a "merge request" section, you can view it as pull requests in github, it allows a developper to notify a reviewer its feature is ready to be merged into another branch (allowing code review),</li>
+<li>a code browser with built-in comment system (with line note...),</li>
+<li>a network graph tool (nice graphical representation of your branches),</li>
+<li>a snippet mode to share code sample</li>
+<li>a few more features, I have to admit I have enough with what I stated above.</li>
+</ul>
 
-          <h3>Difficulties</h3>
-          GitLabHQ is a project depending on a variety of tools, initial setup
-          is very well explained in the wiki pages of the project, I suggest you
-          follow the guide to install this tool, otherwise you might run into
-          troubles.<br />
-          Sometimes GitLabHQ does not seems to work, it gives a 500 error, if it
-          happens, don't forget to check the logs/production.log file for
-          errors. There is still a few bugs, but as this project is open source,
-          feel free to open an issue on the github page of the project and/or
-          contribute back a patch via a pull request.
+<h3>Difficulties</h3>
+GitLabHQ is a project depending on a variety of tools, initial setup is very well explained in the wiki pages of the project, I suggest you follow the guide to install this tool, otherwise you might run into troubles.<br/>
+Sometimes GitLabHQ does not seems to work, it gives a 500 error, if it happens, don't forget to check the logs/production.log file for errors. There is still a few bugs, but as this project is open source, feel free to open an issue on the github page of the project and/or contribute back a patch via a pull request.
 
-          <h3>Upgrading GitLabHQ</h3>
-          GitLabHQ's team wants to release every month, to upgrade, simply
-          follow these steps :
-          <figure class="highlight">
-            <pre><code class="language-bash" data-lang="bash"><span class="c">#stop your server</span>
+<h3>Upgrading GitLabHQ</h3>
+GitLabHQ's team wants to release every month, to upgrade, simply follow these steps : 
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c">#stop your server</span>
 git pull origin stable
 bundle <span class="nb">install</span> <span class="nt">--without</span> development <span class="nb">test
 </span>bundle <span class="nb">exec </span>rake db:migrate <span class="nv">RAILS_ENV</span><span class="o">=</span>production
-<span class="c">#start your server</span></code></pre>
-          </figure>
-          <p>
-            This should make the move to the new version, please check version
-            notice if there is some special steps to take.<br />
-            You might want to create a local branch containing your
-            configuration (config/gitlab.yml), and to upgrade, simply rebase
-            your local config branch against the tag corresponding to the
-            release (please notice that with 2.2 release, this is not necessary
-            anymore)
-          </p>
+<span class="c">#start your server</span></code></pre></figure>
+<p>This should make the move to the new version, please check version notice if there is some special steps to take.<br/>
+You might want to create a local branch containing your configuration (config/gitlab.yml), and to upgrade, simply rebase your local config branch against the tag corresponding to the release (please notice that with 2.2 release, this is not necessary anymore)</p>
 
-          <h2>Migrating from Subversion to git</h2>
-          The migration is very simple, and very well explained on a
-          <a
-            href="http://stackoverflow.com/questions/79165/how-to-migrate-svn-with-history-to-a-new-git-repository"
-            >stackoverflow answer</a
-          >. Once your svn repository is imported as a git one, you can push it
-          to GitLabHQ. To do so create a repository in GitLabHQ, and just follow
-          the instruction given in the project page (git add origin ... git
-          push)
 
-          <h2>Branching model</h2>
-          <p>
-            We migrate to git hoping to find and setup a good and easy branching
-            model. I think we now have something really nice :
-          </p>
-          <ul>
-            <li>
-              master : branch we merge our feature branches into, the next
-              release branch, the one being actively tested,
-            </li>
-            <li>
-              stable : branch corresponding to the production code, from which
-              we branch when bugfixing,
-            </li>
-            <li>
-              fix/$issue_number : temporary fix branch, rarely pushed to central
-              repository, coming from stable branch, merged to stable for next
-              hotfix release, and cherry-picked to master
-            </li>
-            <li>
-              feature/$feature_name : new feature branch, coming from master,
-              merged to master, can be pushed to central repository if the
-              feature is big enough,
-            </li>
-            <li>
-              refactor/$refactor_topic : short lived branch, coming from master,
-              merged to master
-            </li>
-          </ul>
-          <h3>Merging changes</h3>
-          <p>
-            Once a feature / fix / refactor is considered complete and stable by
-            the developer(s), we use the <strong>merge request</strong> feature
-            of GitLabHQ to trigger a manual code review, and once it satisfies
-            our quality standard we merge it into the destination branch.
-          </p>
+<h2>Migrating from Subversion to git</h2>
+The migration is very simple, and very well explained on a <a href="http://stackoverflow.com/questions/79165/how-to-migrate-svn-with-history-to-a-new-git-repository">stackoverflow answer</a>.
+Once your svn repository is imported as a git one, you can push it to GitLabHQ. To do so create a repository in GitLabHQ, and just follow the instruction given in the project page (git add origin ... git push)
 
-          <h2>Results</h2>
-          <p>In the end, you got something like this :</p>
-          <img
-            src="/images/uploads/2012/02/gitlabhq-branches.png"
-            alt=""
-            title="gitlabhq-branches"
-            width="838"
-            height="540"
-            class="aligncenter size-full wp-image-524"
-          /><!--:--><!--:fr>
+
+<h2>Branching model</h2>
+<p>We migrate to git hoping to find and setup a good and easy branching model. I think we now have something really nice :</p>
+<ul>
+<li>master : branch we merge our feature branches into, the next release branch, the one being actively tested,</li>
+<li>stable : branch corresponding to the production code, from which we branch when bugfixing,</li>
+<li>fix/$issue_number : temporary fix branch, rarely pushed to central repository, coming from stable branch, merged to stable for next hotfix release, and cherry-picked to master</li>
+<li>feature/$feature_name : new feature branch, coming from master, merged to master, can be pushed to central repository if the feature is big enough,</li>
+<li>refactor/$refactor_topic : short lived branch, coming from master, merged to master</li>
+</ul>
+<h3>Merging changes</h3>
+<p>Once a feature / fix / refactor is considered complete and stable by the developer(s), we use the <strong>merge request</strong> feature of GitLabHQ to trigger a manual code review, and once it satisfies our quality standard we merge it into the destination branch.</p>
+
+<h2>Results</h2>
+<p>In the end, you got something like this :</p>
+<img src="/images/uploads/2012/02/gitlabhq-branches.png" alt="" title="gitlabhq-branches" width="838" height="540" class="aligncenter size-full wp-image-524" /><!--:--><!--:fr>
 <h2>GitLabHQ</h2>
 <h3>Gestion de dépôts</h3>
 <img src="/images/uploads/2012/02/gitlabhq-logo.png" alt="" title="gitlabhq-logo" width="175" height="60" class="alignright size-full wp-image-528" />
@@ -415,202 +223,135 @@ Une fois qu'une fonctionnalité, un correctif ou un refactor est considéré ter
 Au final, nous obtenons quelque chose comme ceci  :
 <img src="/images/uploads/2012/02/gitlabhq-branches.png" alt="" title="gitlabhq-branches" width="838" height="540" class="aligncenter size-full wp-image-524" /><-->
 
-          <footer class="entry-meta">
-            <span class="entry-tags"></span>
-
-            <div class="social-share">
-              <ul class="socialcount socialcount-small inline-list">
-                <li class="facebook">
-                  <a
-                    href="https://www.facebook.com/sharer/sharer.php?u=http://www.bloggure.info/work/gitlabhq.html"
-                    title="Share on Facebook"
-                    ><span class="count"
-                      ><i class="fa fa-facebook-square"></i> Like</span
-                    ></a
-                  >
-                </li>
-                <li class="twitter">
-                  <a
-                    href="https://twitter.com/intent/tweet?text=http://www.bloggure.info/work/gitlabhq.html"
-                    title="Share on Twitter"
-                    ><span class="count"
-                      ><i class="fa fa-twitter-square"></i> Tweet</span
-                    ></a
-                  >
-                </li>
-              </ul>
-            </div>
-            <!-- /.social-share -->
-          </footer>
-        </div>
-        <!-- /.entry-content -->
-
-        <div class="read-more">
-          <div class="read-more-header">
-            <a
-              href="http://www.bloggure.info/thoughts/mac-os-x-10-8-mountain-lion-thoughts"
-              class="read-more-btn"
-              >Read More</a
-            >
-          </div>
-          <!-- /.read-more-header -->
-          <div class="read-more-content">
-            <h3>
-              <a
-                href="http://www.bloggure.info/Shortcut_bill_renaming"
-                title="Streamlining Finances: Automating Bill Renaming with Apple Shortcuts"
-                >Streamlining Finances: Automating Bill Renaming with Apple
-                Shortcuts</a
-              >
-            </h3>
-            <p>
-              ## The Problem: The "Downloads" Folder ChaosWe all know the
-              struggle. You download a PDF invoice from your utility provider or
-              internet s...&hellip;
-              <a href="http://www.bloggure.info/Shortcut_bill_renaming"
-                >Continue reading</a
-              >
-            </p>
-          </div>
-          <!-- /.read-more-content -->
-
-          <div class="read-more-list">
-            <div class="list-item">
-              <h4>
-                <a
-                  href="http://www.bloggure.info/Tuist_build_test_schemes"
-                  title="Tuist build test schemes"
-                  >Tuist build test schemes</a
-                >
-              </h4>
-              <span>Published on May 22, 2025</span>
-            </div>
-            <!-- /.list-item -->
-
-            <div class="list-item">
-              <h4>
-                <a
-                  href="http://www.bloggure.info/Module_Registration_Swift"
-                  title="Swift module registration"
-                  >Swift module registration</a
-                >
-              </h4>
-              <span>Published on April 28, 2025</span>
-            </div>
-            <!-- /.list-item -->
-          </div>
-          <!-- /.read-more-list -->
-        </div>
-        <!-- /.read-more -->
-      </article>
-    </div>
-    <!-- /#main -->
-
-    <div class="footer-wrapper">
-      <footer role="contentinfo">
-        <span
-          >&copy; 2026 . Powered by
-          <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using a theme
-          based on
-          <a
-            href="https://mademistakes.com/work/hpstr-jekyll-theme/"
-            rel="nofollow"
-            >HPSTR</a
-          >.</span
-        >
+      <footer class="entry-meta">
+        <span class="entry-tags"></span>
+        
+        <div class="social-share">
+  <ul class="socialcount socialcount-small inline-list">
+    <li class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=http://www.bloggure.info/work/gitlabhq.html" title="Share on Facebook"><span class="count"><i class="fa fa-facebook-square"></i> Like</span></a></li>
+    <li class="twitter"><a href="https://twitter.com/intent/tweet?text=http://www.bloggure.info/work/gitlabhq.html" title="Share on Twitter"><span class="count"><i class="fa fa-twitter-square"></i> Tweet</span></a></li>
+  </ul>
+</div><!-- /.social-share -->
       </footer>
-    </div>
-    <!-- /.footer-wrapper -->
+    </div><!-- /.entry-content -->
+    
+    <div class="read-more">
+  
+    <div class="read-more-header">
+      <a href="http://www.bloggure.info/thoughts/mac-os-x-10-8-mountain-lion-thoughts" class="read-more-btn">Read More</a>
+    </div><!-- /.read-more-header -->
+    <div class="read-more-content">
+      <h3><a href="http://www.bloggure.info/Shortcut_bill_renaming" title="Streamlining Finances: Automating Bill Renaming with Apple Shortcuts">Streamlining Finances: Automating Bill Renaming with Apple Shortcuts</a></h3>
+      <p>## The Problem: The "Downloads" Folder ChaosWe all know the struggle. You download a PDF invoice from your utility provider or internet s...&hellip; <a href="http://www.bloggure.info/Shortcut_bill_renaming">Continue reading</a></p>
+    </div><!-- /.read-more-content -->
+  
+  <div class="read-more-list">
+    
+      <div class="list-item">
+        <h4><a href="http://www.bloggure.info/Tuist_build_test_schemes" title="Tuist build test schemes">Tuist build test schemes</a></h4>
+        <span>Published on May 22, 2025</span>
+      </div><!-- /.list-item -->
+    
+      <div class="list-item">
+        <h4><a href="http://www.bloggure.info/Module_Registration_Swift" title="Swift module registration">Swift module registration</a></h4>
+        <span>Published on April 28, 2025</span>
+      </div><!-- /.list-item -->
+    
+  </div><!-- /.read-more-list -->
+</div><!-- /.read-more -->
+  </article>
+</div><!-- /#main -->
 
-    <script>
-      (function () {
-        function loadScript(src) {
-          return new Promise(function (resolve, reject) {
-            var script = document.createElement("script");
-            script.src = src;
-            script.defer = true;
-            script.async = false;
-            script.onload = resolve;
-            script.onerror = reject;
-            document.head.appendChild(script);
+<div class="footer-wrapper">
+  <footer role="contentinfo">
+    <span>
+    See also
+    <dl>
+        <dt><a href="https://www.9h41.org">9h41</a></dt>
+        <dt><a href="https://www.psy-tours.fr">Psy-Tours</a></dt>
+    </dl>
+</span>
+<br/>
+<span>
+    &copy; 2026 . Powered by <a href="http://jekyllrb.com"
+        rel="nofollow">Jekyll</a> using a theme based on <a href="https://mademistakes.com/work/hpstr-jekyll-theme/"
+        rel="nofollow">HPSTR</a>.
+</span>
+
+
+  </footer>
+</div><!-- /.footer-wrapper -->
+
+<script>
+  (function() {
+    function loadScript(src) {
+      return new Promise(function(resolve, reject) {
+        var script = document.createElement('script');
+        script.src = src;
+        script.defer = true;
+        script.async = false;
+        script.onload = resolve;
+        script.onerror = reject;
+        document.head.appendChild(script);
+      });
+    }
+
+    var jqCdn = '//ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js';
+    var jqLocal = 'http://www.bloggure.info/assets/js/vendor/jquery-3.7.1.min.js';
+    var needFitVids = document.querySelector('article iframe, article video');
+    var needMagnific = document.querySelector(
+      'a[href$=".jpg" i],a[href$=".jpeg" i],a[href$=".png" i],a[href$=".gif" i]'
+    );
+
+    var jqPromise = loadScript(jqCdn)
+      .catch(function() {
+        return loadScript(jqLocal);
+      })
+      .then(function() {
+        if (!window.jQuery) {
+          return loadScript(jqLocal);
+        }
+      });
+
+    jqPromise
+      .then(function() {
+        var chain = Promise.resolve();
+        
+        if (needFitVids) {
+          chain = chain.then(function() {
+            return loadScript('http://www.bloggure.info/assets/js/plugins/jquery.fitvids.js');
           });
         }
-
-        var jqCdn =
-          "//ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js";
-        var jqLocal =
-          "http://www.bloggure.info/assets/js/vendor/jquery-3.7.1.min.js";
-        var needFitVids = document.querySelector(
-          "article iframe, article video"
-        );
-        var needMagnific = document.querySelector(
-          'a[href$=".jpg" i],a[href$=".jpeg" i],a[href$=".png" i],a[href$=".gif" i]'
-        );
-
-        var jqPromise = loadScript(jqCdn)
-          .catch(function () {
-            return loadScript(jqLocal);
-          })
-          .then(function () {
-            if (!window.jQuery) {
-              return loadScript(jqLocal);
-            }
+        if (needMagnific) {
+          chain = chain.then(function() {
+            return loadScript('http://www.bloggure.info/assets/js/plugins/jquery.magnific-popup.js');
           });
+        }
+        
+        return chain;
+      })
+      .then(function() {
+        return loadScript('http://www.bloggure.info/assets/js/scripts.min.js');
+      });
+  })();
+</script>
 
-        jqPromise
-          .then(function () {
-            var chain = Promise.resolve();
 
-            if (needFitVids) {
-              chain = chain.then(function () {
-                return loadScript(
-                  "http://www.bloggure.info/assets/js/plugins/jquery.fitvids.js"
-                );
-              });
-            }
-            if (needMagnific) {
-              chain = chain.then(function () {
-                return loadScript(
-                  "http://www.bloggure.info/assets/js/plugins/jquery.magnific-popup.js"
-                );
-              });
-            }
+<!-- Asynchronous Google Analytics snippet -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-            return chain;
-          })
-          .then(function () {
-            return loadScript(
-              "http://www.bloggure.info/assets/js/scripts.min.js"
-            );
-          });
-      })();
-    </script>
+  ga('create', 'UA-11718843-3', 'auto');  
+  ga('require', 'linkid', 'linkid.js');
+  ga('send', 'pageview');
+</script>
 
-    <!-- Asynchronous Google Analytics snippet -->
-    <script>
-      (function (i, s, o, g, r, a, m) {
-        i["GoogleAnalyticsObject"] = r;
-        (i[r] =
-          i[r] ||
-          function () {
-            (i[r].q = i[r].q || []).push(arguments);
-          }),
-          (i[r].l = 1 * new Date());
-        (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m);
-      })(
-        window,
-        document,
-        "script",
-        "//www.google-analytics.com/analytics.js",
-        "ga"
-      );
 
-      ga("create", "UA-11718843-3", "auto");
-      ga("require", "linkid", "linkid.js");
-      ga("send", "pageview");
-    </script>
-  </body>
+
+	        
+
+</body>
 </html>
