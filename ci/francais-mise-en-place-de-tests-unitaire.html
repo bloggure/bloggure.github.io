@@ -1,109 +1,227 @@
-<!doctype html>
+<!DOCTYPE html>
 <!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
 <!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
 <!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
-<head>
-<meta charset="utf-8">
-<title>(Français) Mise en place de tests unitaire &#8211; Bloggure</title>
-<meta name="description" content="Multi author blog about programming, computing and geek stuff">
-<meta name="keywords" content="java, javascript, php, test unitaire, unit testing">
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+  <!--<![endif]-->
+  <head>
+    <meta charset="utf-8" />
+    <title>(Français) Mise en place de tests unitaire &#8211; Bloggure</title>
+    <meta
+      name="description"
+      content="Multi author blog about programming, computing and geek stuff"
+    />
+    <meta
+      name="keywords"
+      content="java, javascript, php, test unitaire, unit testing"
+    />
 
+    <!-- Open Graph -->
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="article" />
+    <meta
+      property="og:title"
+      content="(Français) Mise en place de tests unitaire"
+    />
+    <meta
+      property="og:description"
+      content="Multi author blog about programming, computing and geek stuff"
+    />
+    <meta
+      property="og:url"
+      content="http://www.bloggure.info/ci/francais-mise-en-place-de-tests-unitaire"
+    />
+    <meta property="og:site_name" content="Bloggure" />
 
+    <link
+      rel="canonical"
+      href="http://www.bloggure.info/ci/francais-mise-en-place-de-tests-unitaire"
+    />
+    <link
+      href="http://www.bloggure.info/feed.xml"
+      type="application/atom+xml"
+      rel="alternate"
+      title="Bloggure Feed"
+    />
 
-<!-- Open Graph -->
-<meta property="og:locale" content="en_US">
-<meta property="og:type" content="article">
-<meta property="og:title" content="(Français) Mise en place de tests unitaire">
-<meta property="og:description" content="Multi author blog about programming, computing and geek stuff">
-<meta property="og:url" content="http://www.bloggure.info/ci/francais-mise-en-place-de-tests-unitaire">
-<meta property="og:site_name" content="Bloggure">
+    <!-- http://t.co/dKP3o1e -->
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="MobileOptimized" content="320" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- For all browsers -->
+    <link
+      rel="stylesheet"
+      href="http://www.bloggure.info/assets/css/main.css"
+    />
+    <!-- Webfonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic"
+      rel="stylesheet"
+      type="text/css"
+    />
 
+    <meta http-equiv="cleartype" content="on" />
 
+    <script>
+      document.documentElement.className = document.documentElement.className.replace(
+        /\bno-js\b/,
+        "js"
+      );
+    </script>
 
+    <!-- Icons -->
+    <!-- 16x16 -->
+    <link rel="shortcut icon" href="http://www.bloggure.info/favicon.ico" />
+    <!-- 32x32 -->
+    <link rel="shortcut icon" href="http://www.bloggure.info/favicon.png" />
+    <!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+    <link
+      rel="apple-touch-icon-precomposed"
+      href="http://www.bloggure.info/images/apple-touch-icon-precomposed.png"
+    />
+    <!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="72x72"
+      href="http://www.bloggure.info/images/apple-touch-icon-72x72-precomposed.png"
+    />
+    <!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="114x114"
+      href="http://www.bloggure.info/images/apple-touch-icon-114x114-precomposed.png"
+    />
+    <!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="144x144"
+      href="http://www.bloggure.info/images/apple-touch-icon-144x144-precomposed.png"
+    />
+  </head>
 
-<link rel="canonical" href="http://www.bloggure.info/ci/francais-mise-en-place-de-tests-unitaire">
-<link href="http://www.bloggure.info/feed.xml" type="application/atom+xml" rel="alternate" title="Bloggure Feed">
+  <body id="post">
+    <!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
 
-<!-- http://t.co/dKP3o1e -->
-<meta name="HandheldFriendly" content="True">
-<meta name="MobileOptimized" content="320">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!-- For all browsers -->
-<link rel="stylesheet" href="http://www.bloggure.info/assets/css/main.css">
-<!-- Webfonts -->
-<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">
-
-<meta http-equiv="cleartype" content="on">
-
-<script>
-  document.documentElement.className =
-    document.documentElement.className.replace(/\bno-js\b/, 'js');
-</script>
-
-<!-- Icons -->
-<!-- 16x16 -->
-<link rel="shortcut icon" href="http://www.bloggure.info/favicon.ico">
-<!-- 32x32 -->
-<link rel="shortcut icon" href="http://www.bloggure.info/favicon.png">
-<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
-<link rel="apple-touch-icon-precomposed" href="http://www.bloggure.info/images/apple-touch-icon-precomposed.png">
-<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
-<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://www.bloggure.info/images/apple-touch-icon-72x72-precomposed.png">
-<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
-<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://www.bloggure.info/images/apple-touch-icon-114x114-precomposed.png">
-<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://www.bloggure.info/images/apple-touch-icon-144x144-precomposed.png">
-
-
-
-</head>
-
-<body id="post" >
-
-<!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
-
-
-<div class="entry-header">
-  <header class="header-title">
-    <div class="header-title-wrap">
-      <h1 class="entry-title" itemprop="name"><a href="http://www.bloggure.info/">Bloggure</a></h1>
-    </div><!-- /.header-title-wrap -->
-  </header>
-  </div>
-
-<div id="main" role="main">
-  <article class="hentry">
-    <div class="entry-content">
-      <header>
-        <div class="entry-meta"><span class="entry-date date published updated"><time datetime="2011-10-27T00:00:00+02:00" itemprop="datePublished"><a href="http://www.bloggure.info/ci/francais-mise-en-place-de-tests-unitaire">October 27, 2011</a></time></span><span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name" class="fn"><a href="http://www.bloggure.info/tdebarochez" title="About tdebarochez" itemprop="url">tdebarochez</a></span></span>&nbsp; &bull; &nbsp;<span class="entry-comments"><a href="http://www.bloggure.info/ci/francais-mise-en-place-de-tests-unitaire#disqus_thread">Comment</a></span></div><!-- /.entry-meta -->
-        
-          <h1 class="entry-title" itemprop="name"><a href="http://www.bloggure.info/ci/francais-mise-en-place-de-tests-unitaire" rel="bookmark" title="(Français) Mise en place de tests unitaire" itemprop="url">(Français) Mise en place de tests unitaire</a></h1>
-        
+    <div class="entry-header">
+      <header class="header-title">
+        <div class="header-title-wrap">
+          <h1 class="entry-title" itemprop="name">
+            <a href="http://www.bloggure.info/">Bloggure</a>
+          </h1>
+        </div>
+        <!-- /.header-title-wrap -->
       </header>
-      <em>This post is only available in French</em>
-<!--:fr--><h2>A qui est destiné ce document</h2>
-<p>Ce document est à l'attention des développeurs ayant de bonnes connaissances techniques. En revanche il est intéressant pour un chef de projet de connaître les généralités énoncées dans la première partie du document.</p>
-<h2>Généralité</h2>
-<h3>Qu'est ce qu'un test unitaire</h3>
-<p>D'après Wikipédia :</p>
-<blockquote>En programmation informatique, le test unitaire est un procédé permettant de s'assurer du fonctionnement correct d'une partie déterminée d'un logiciel ou d'une portion d'un programme (appelée « unité » ou « module »).
-On écrit un test pour confronter une réalisation à sa spécification.</blockquote>
-Ils consistent en liste de tests à valider afin d'être conforme à la documentation fonctionnelle. Ces tests doivent être exécutés le plus souvent possible au cours de la réalisation, en effet ils permettent en autre de mettre en évidence toutes régression dans le processus de développement.<!--:--><!--more--><!--:fr-->
-<h3>Pré-requis à l'écriture des tests</h3>
-<p>Pour écrire les tests unitaires, nous avons besoin dans un premier temps de lister les fonctionnalités : chaque tests doit refléter une fonctionnalité (la plus précise possible). Si les fonctionnalités évolue dans le temps, les tests doivent refléter ces changements.<br/>
+    </div>
 
-Dans le monde idéal du <a title="Test Driven Development" href="http://en.wikipedia.org/wiki/Test-driven_development">TDD</a>, chaque test doit être écrit avant le code permettant de répondre à sa fonctionnalité : de cette manière on peux vérifier que le test failli bien si la fonctionnalité n'existe pas.</p>
-<h2>Mise en œuvre</h2>
-<h3>Quoi tester ?</h3>
-<p>Il y a certains éléments qui peuvent difficilement (mais pas impossible !) être testé : envoie d'email, interfaces graphiques, l'interfaçage avec des outils externes, etc... C'est pour cela qu'il est important d'écrire des méthodes répondant à une fonction précise du cahier des charges, mais il sera impossible de tout tester.</p>
-<h3>L'assertion</h3>
-<p>L'assertion est la plus petite unité de test, elle doit-être le plus simple possible. Toutes complexités doivent-être prohibé dans les tests et doivent chacun mettre en avant qu'une fonction précise du cahier des charges.</p>
-<h3>Cas pratique</h3>
-<p>Voici un cas de mise en oeuvre avec JUnit :
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">org.junit.*</span><span class="o">;</span>
+    <div id="main" role="main">
+      <article class="hentry">
+        <div class="entry-content">
+          <header>
+            <div class="entry-meta">
+              <span class="entry-date date published updated"
+                ><time
+                  datetime="2011-10-27T00:00:00+02:00"
+                  itemprop="datePublished"
+                  ><a
+                    href="http://www.bloggure.info/ci/francais-mise-en-place-de-tests-unitaire"
+                    >October 27, 2011</a
+                  ></time
+                ></span
+              ><span
+                class="author vcard"
+                itemprop="author"
+                itemscope
+                itemtype="http://schema.org/Person"
+                ><span itemprop="name" class="fn"
+                  ><a
+                    href="http://www.bloggure.info/tdebarochez"
+                    title="About tdebarochez"
+                    itemprop="url"
+                    >tdebarochez</a
+                  ></span
+                ></span
+              >&nbsp; &bull; &nbsp;<span class="entry-comments"
+                ><a
+                  href="http://www.bloggure.info/ci/francais-mise-en-place-de-tests-unitaire#disqus_thread"
+                  >Comment</a
+                ></span
+              >
+            </div>
+            <!-- /.entry-meta -->
+
+            <h1 class="entry-title" itemprop="name">
+              <a
+                href="http://www.bloggure.info/ci/francais-mise-en-place-de-tests-unitaire"
+                rel="bookmark"
+                title="(Français) Mise en place de tests unitaire"
+                itemprop="url"
+                >(Français) Mise en place de tests unitaire</a
+              >
+            </h1>
+          </header>
+          <em>This post is only available in French</em>
+          <!--:fr-->
+          <h2>A qui est destiné ce document</h2>
+          <p>
+            Ce document est à l'attention des développeurs ayant de bonnes
+            connaissances techniques. En revanche il est intéressant pour un
+            chef de projet de connaître les généralités énoncées dans la
+            première partie du document.
+          </p>
+          <h2>Généralité</h2>
+          <h3>Qu'est ce qu'un test unitaire</h3>
+          <p>D'après Wikipédia :</p>
+          <blockquote>
+            En programmation informatique, le test unitaire est un procédé
+            permettant de s'assurer du fonctionnement correct d'une partie
+            déterminée d'un logiciel ou d'une portion d'un programme (appelée «
+            unité » ou « module »). On écrit un test pour confronter une
+            réalisation à sa spécification.
+          </blockquote>
+          Ils consistent en liste de tests à valider afin d'être conforme à la
+          documentation fonctionnelle. Ces tests doivent être exécutés le plus
+          souvent possible au cours de la réalisation, en effet ils permettent
+          en autre de mettre en évidence toutes régression dans le processus de
+          développement.<!--:--><!--more--><!--:fr-->
+          <h3>Pré-requis à l'écriture des tests</h3>
+          <p>
+            Pour écrire les tests unitaires, nous avons besoin dans un premier
+            temps de lister les fonctionnalités : chaque tests doit refléter une
+            fonctionnalité (la plus précise possible). Si les fonctionnalités
+            évolue dans le temps, les tests doivent refléter ces changements.<br />
+
+            Dans le monde idéal du
+            <a
+              title="Test Driven Development"
+              href="http://en.wikipedia.org/wiki/Test-driven_development"
+              >TDD</a
+            >, chaque test doit être écrit avant le code permettant de répondre
+            à sa fonctionnalité : de cette manière on peux vérifier que le test
+            failli bien si la fonctionnalité n'existe pas.
+          </p>
+          <h2>Mise en œuvre</h2>
+          <h3>Quoi tester ?</h3>
+          <p>
+            Il y a certains éléments qui peuvent difficilement (mais pas
+            impossible !) être testé : envoie d'email, interfaces graphiques,
+            l'interfaçage avec des outils externes, etc... C'est pour cela qu'il
+            est important d'écrire des méthodes répondant à une fonction précise
+            du cahier des charges, mais il sera impossible de tout tester.
+          </p>
+          <h3>L'assertion</h3>
+          <p>
+            L'assertion est la plus petite unité de test, elle doit-être le plus
+            simple possible. Toutes complexités doivent-être prohibé dans les
+            tests et doivent chacun mettre en avant qu'une fonction précise du
+            cahier des charges.
+          </p>
+          <h3>Cas pratique</h3>
+          <p>
+            Voici un cas de mise en oeuvre avec JUnit :
+            <figure class="highlight">
+              <pre><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">org.junit.*</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">static</span> <span class="n">org</span><span class="o">.</span><span class="na">junit</span><span class="o">.</span><span class="na">Assert</span><span class="o">.*;</span>
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">SampleTest</span> <span class="o">{</span>
@@ -128,20 +246,28 @@ Dans le monde idéal du <a title="Test Driven Development" href="http://en.wikip
         <span class="n">assertIsFalse</span><span class="o">(</span><span class="n">condition2</span><span class="o">);</span>
     <span class="o">}</span>
 
-<span class="o">}</span></code></pre></figure>
-</p>
-<p>
-Dans l'ordre seront exécutés :
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nl">SampleTest:</span><span class="o">:</span><span class="n">setUp</span><span class="o">();</span>
+<span class="o">}</span></code></pre>
+            </figure>
+          </p>
+          <p>
+            Dans l'ordre seront exécutés :
+            <figure class="highlight">
+              <pre><code class="language-java" data-lang="java"><span class="nl">SampleTest:</span><span class="o">:</span><span class="n">setUp</span><span class="o">();</span>
 <span class="nl">SampleTest:</span><span class="o">:</span><span class="n">testCondition1</span><span class="o">();</span>
 <span class="nl">SampleTest:</span><span class="o">:</span><span class="n">tearDown</span><span class="o">();</span>
 <span class="nl">SampleTest:</span><span class="o">:</span><span class="n">setUp</span><span class="o">();</span>
 <span class="nl">SampleTest:</span><span class="o">:</span><span class="n">testCondition2</span><span class="o">();</span>
-<span class="nl">SampleTest:</span><span class="o">:</span><span class="n">tearDown</span><span class="o">();</span></code></pre></figure>
-</p>
-<p>
-Vous remarquerez que dans cet exemple tous les tests sont exécutés les uns après les autres. Si un test échoue les autres sont tout de même exécuté. Dans d'autres environnement ils pourraient être tous exécuté en parallèle. Voici un exemple en Javascript en utilisant <code>expresso</code> pour tester une application web (complexe) :
-<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">assert</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">assert</span><span class="dl">'</span><span class="p">);</span>
+<span class="nl">SampleTest:</span><span class="o">:</span><span class="n">tearDown</span><span class="o">();</span></code></pre>
+            </figure>
+          </p>
+          <p>
+            Vous remarquerez que dans cet exemple tous les tests sont exécutés
+            les uns après les autres. Si un test échoue les autres sont tout de
+            même exécuté. Dans d'autres environnement ils pourraient être tous
+            exécuté en parallèle. Voici un exemple en Javascript en utilisant
+            <code>expresso</code> pour tester une application web (complexe) :
+            <figure class="highlight">
+              <pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">assert</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">assert</span><span class="dl">'</span><span class="p">);</span>
  <span class="p">,</span> <span class="nx">server</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">express</span><span class="dl">'</span><span class="p">).</span><span class="nx">createServer</span><span class="p">();</span>
 
 <span class="nx">assert</span><span class="p">.</span><span class="nx">response</span><span class="p">(</span><span class="nx">server</span><span class="p">,</span> <span class="p">{</span>
@@ -168,177 +294,317 @@ Vous remarquerez que dans cet exemple tous les tests sont exécutés les uns apr
 <span class="p">},</span> <span class="p">{</span>
     <span class="na">body</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/foo bar baz</span><span class="dl">'</span><span class="p">,</span> <span class="c1">// vérifie les données renvoyées par le serveur quand on poste un formulaire</span>
     <span class="na">status</span><span class="p">:</span> <span class="mi">200</span>
-<span class="p">},</span> <span class="dl">'</span><span class="s1">Test POST</span><span class="dl">'</span><span class="p">);</span></code></pre></figure>
-</p>
-<h2>Bonnes pratiques</h2>
-<h3>Des tests simples</h3>
-<p>
-Plus les tests sont simples et leur description explicite, plus ils sont efficaces car ils mettent facilement en évidence les problèmes de réalisation face aux spécifications.</p>
-<h3>Un test == une fonctionnalité</h3>
-<p>Il ne faut surtout oublier aucune fonctionnalité dans les tests mis en œuvre : il est en effet très dangereux de penser être en sécurité si ils manquent des tests.</p>
-<h3>Ne pas mettre en doute l'interpréteur</h3>
-<p>Il existe des tests inutiles, par exemple le test ci-dessous :
+<span class="p">},</span> <span class="dl">'</span><span class="s1">Test POST</span><span class="dl">'</span><span class="p">);</span></code></pre>
+            </figure>
+          </p>
+          <h2>Bonnes pratiques</h2>
+          <h3>Des tests simples</h3>
+          <p>
+            Plus les tests sont simples et leur description explicite, plus ils
+            sont efficaces car ils mettent facilement en évidence les problèmes
+            de réalisation face aux spécifications.
+          </p>
+          <h3>Un test == une fonctionnalité</h3>
+          <p>
+            Il ne faut surtout oublier aucune fonctionnalité dans les tests mis
+            en œuvre : il est en effet très dangereux de penser être en sécurité
+            si ils manquent des tests.
+          </p>
+          <h3>Ne pas mettre en doute l'interpréteur</h3>
+          <p>
+            Il existe des tests inutiles, par exemple le test ci-dessous :
 
-<code> Assert::areEquals(1 + 2, 3);</code>
-<br/>
+            <code> Assert::areEquals(1 + 2, 3);</code>
+            <br />
 
-Dans le cas présent il est inutile de tester cette assertion. Il s'agit d'un test qui pourrait faire partie des tests unitaires de l'interpréteur (compilateur, VM, etc...), mais pas de votre projet.</p>
-<h3>Pas de (bon) tests inutiles</h3>
-<p>Mieux vaut écrire trop de (bon) test que pas assez. En effet, même si chaque tests doivent refléter la fonctionnalité la plus précise il faut écrire un maximum de test.</p>
-<h2>Annexes</h2>
-<a href="http://junit.sourceforge.net/doc/faq/faq.htm">Junit FAQ</a> - <a href="http://www.onpk.net/php/simpletest/index.php">SimpleTest</a> - <a href="http://visionmedia.github.com/expresso/">Expresso</a><!--:-->
+            Dans le cas présent il est inutile de tester cette assertion. Il
+            s'agit d'un test qui pourrait faire partie des tests unitaires de
+            l'interpréteur (compilateur, VM, etc...), mais pas de votre projet.
+          </p>
+          <h3>Pas de (bon) tests inutiles</h3>
+          <p>
+            Mieux vaut écrire trop de (bon) test que pas assez. En effet, même
+            si chaque tests doivent refléter la fonctionnalité la plus précise
+            il faut écrire un maximum de test.
+          </p>
+          <h2>Annexes</h2>
+          <a href="http://junit.sourceforge.net/doc/faq/faq.htm">Junit FAQ</a>
+          - <a href="http://www.onpk.net/php/simpletest/index.php"
+            >SimpleTest</a
+          >
+          - <a href="http://visionmedia.github.com/expresso/">Expresso</a
+          ><!--:-->
 
-      <footer class="entry-meta">
-        <span class="entry-tags"><a href="http://www.bloggure.info/tags/#java" title="Pages tagged java" class="tag"><span class="term">java</span></a><a href="http://www.bloggure.info/tags/#javascript" title="Pages tagged javascript" class="tag"><span class="term">javascript</span></a><a href="http://www.bloggure.info/tags/#php" title="Pages tagged php" class="tag"><span class="term">php</span></a><a href="http://www.bloggure.info/tags/#test unitaire" title="Pages tagged test unitaire" class="tag"><span class="term">test unitaire</span></a><a href="http://www.bloggure.info/tags/#unit testing" title="Pages tagged unit testing" class="tag"><span class="term">unit testing</span></a></span>
-        
-        <div class="social-share">
-  <ul class="socialcount socialcount-small inline-list">
-    <li class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=http://www.bloggure.info/ci/francais-mise-en-place-de-tests-unitaire" title="Share on Facebook"><span class="count"><i class="fa fa-facebook-square"></i> Like</span></a></li>
-    <li class="twitter"><a href="https://twitter.com/intent/tweet?text=http://www.bloggure.info/ci/francais-mise-en-place-de-tests-unitaire" title="Share on Twitter"><span class="count"><i class="fa fa-twitter-square"></i> Tweet</span></a></li>
-  </ul>
-</div><!-- /.social-share -->
+          <footer class="entry-meta">
+            <span class="entry-tags"
+              ><a
+                href="http://www.bloggure.info/tags/#java"
+                title="Pages tagged java"
+                class="tag"
+                ><span class="term">java</span></a
+              ><a
+                href="http://www.bloggure.info/tags/#javascript"
+                title="Pages tagged javascript"
+                class="tag"
+                ><span class="term">javascript</span></a
+              ><a
+                href="http://www.bloggure.info/tags/#php"
+                title="Pages tagged php"
+                class="tag"
+                ><span class="term">php</span></a
+              ><a
+                href="http://www.bloggure.info/tags/#test unitaire"
+                title="Pages tagged test unitaire"
+                class="tag"
+                ><span class="term">test unitaire</span></a
+              ><a
+                href="http://www.bloggure.info/tags/#unit testing"
+                title="Pages tagged unit testing"
+                class="tag"
+                ><span class="term">unit testing</span></a
+              ></span
+            >
+
+            <div class="social-share">
+              <ul class="socialcount socialcount-small inline-list">
+                <li class="facebook">
+                  <a
+                    href="https://www.facebook.com/sharer/sharer.php?u=http://www.bloggure.info/ci/francais-mise-en-place-de-tests-unitaire"
+                    title="Share on Facebook"
+                    ><span class="count"
+                      ><i class="fa fa-facebook-square"></i> Like</span
+                    ></a
+                  >
+                </li>
+                <li class="twitter">
+                  <a
+                    href="https://twitter.com/intent/tweet?text=http://www.bloggure.info/ci/francais-mise-en-place-de-tests-unitaire"
+                    title="Share on Twitter"
+                    ><span class="count"
+                      ><i class="fa fa-twitter-square"></i> Tweet</span
+                    ></a
+                  >
+                </li>
+              </ul>
+            </div>
+            <!-- /.social-share -->
+          </footer>
+        </div>
+        <!-- /.entry-content -->
+        <section id="disqus_thread"></section>
+        <!-- /#disqus_thread -->
+        <div class="read-more">
+          <div class="read-more-header">
+            <a
+              href="http://www.bloggure.info/work/hp-touchpad-quick-hacks"
+              class="read-more-btn"
+              >Read More</a
+            >
+          </div>
+          <!-- /.read-more-header -->
+          <div class="read-more-content">
+            <h3>
+              <a
+                href="http://www.bloggure.info/ios/swift/uikit/ios-sheetpresentationcontroller-background-effect"
+                title="iOS 26.2 Sheet: remove Liquid Glass for small detents"
+                >iOS 26.2 Sheet: remove Liquid Glass for small detents</a
+              >
+            </h3>
+            <p>
+              How to control and customize background effects in iOS 26.2 sheet
+              presentation controllers
+              <a
+                href="http://www.bloggure.info/ios/swift/uikit/ios-sheetpresentationcontroller-background-effect"
+                >Continue reading</a
+              >
+            </p>
+          </div>
+          <!-- /.read-more-content -->
+
+          <div class="read-more-list">
+            <div class="list-item">
+              <h4>
+                <a
+                  href="http://www.bloggure.info/Shortcut_bill_renaming"
+                  title="Streamlining Finances: Automating Bill Renaming with Apple Shortcuts"
+                  >Streamlining Finances: Automating Bill Renaming with Apple
+                  Shortcuts</a
+                >
+              </h4>
+              <span>Published on January 07, 2026</span>
+            </div>
+            <!-- /.list-item -->
+
+            <div class="list-item">
+              <h4>
+                <a
+                  href="http://www.bloggure.info/Tuist_build_test_schemes"
+                  title="Tuist build test schemes"
+                  >Tuist build test schemes</a
+                >
+              </h4>
+              <span>Published on May 22, 2025</span>
+            </div>
+            <!-- /.list-item -->
+          </div>
+          <!-- /.read-more-list -->
+        </div>
+        <!-- /.read-more -->
+      </article>
+    </div>
+    <!-- /#main -->
+
+    <div class="footer-wrapper">
+      <footer role="contentinfo">
+        <span>
+          See also
+          <dl>
+            <dt><a href="https://www.9h41.org">9h41</a></dt>
+            <dt><a href="https://www.psy-tours.fr">Psy-Tours</a></dt>
+          </dl>
+        </span>
+        <br />
+        <span>
+          &copy; 2026 . Powered by
+          <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using a theme
+          based on
+          <a
+            href="https://mademistakes.com/work/hpstr-jekyll-theme/"
+            rel="nofollow"
+            >HPSTR</a
+          >.
+        </span>
       </footer>
-    </div><!-- /.entry-content -->
-    <section id="disqus_thread"></section><!-- /#disqus_thread -->
-    <div class="read-more">
-  
-    <div class="read-more-header">
-      <a href="http://www.bloggure.info/work/hp-touchpad-quick-hacks" class="read-more-btn">Read More</a>
-    </div><!-- /.read-more-header -->
-    <div class="read-more-content">
-      <h3><a href="http://www.bloggure.info/ios/swift/uikit/ios-sheetpresentationcontroller-background-effect" title="iOS 26.2 Sheet: remove Liquid Glass for small detents">iOS 26.2 Sheet: remove Liquid Glass for small detents</a></h3>
-      <p>How to control and customize background effects in iOS 26.2 sheet presentation controllers <a href="http://www.bloggure.info/ios/swift/uikit/ios-sheetpresentationcontroller-background-effect">Continue reading</a></p>
-    </div><!-- /.read-more-content -->
-  
-  <div class="read-more-list">
-    
-      <div class="list-item">
-        <h4><a href="http://www.bloggure.info/Shortcut_bill_renaming" title="Streamlining Finances: Automating Bill Renaming with Apple Shortcuts">Streamlining Finances: Automating Bill Renaming with Apple Shortcuts</a></h4>
-        <span>Published on January 07, 2026</span>
-      </div><!-- /.list-item -->
-    
-      <div class="list-item">
-        <h4><a href="http://www.bloggure.info/Tuist_build_test_schemes" title="Tuist build test schemes">Tuist build test schemes</a></h4>
-        <span>Published on May 22, 2025</span>
-      </div><!-- /.list-item -->
-    
-  </div><!-- /.read-more-list -->
-</div><!-- /.read-more -->
-  </article>
-</div><!-- /#main -->
+    </div>
+    <!-- /.footer-wrapper -->
 
-<div class="footer-wrapper">
-  <footer role="contentinfo">
-    <span>
-    See also
-    <dl>
-        <dt><a href="https://www.9h41.org">9h41</a></dt>
-        <dt><a href="https://www.psy-tours.fr">Psy-Tours</a></dt>
-    </dl>
-</span>
-<br/>
-<span>
-    &copy; 2026 . Powered by <a href="http://jekyllrb.com"
-        rel="nofollow">Jekyll</a> using a theme based on <a href="https://mademistakes.com/work/hpstr-jekyll-theme/"
-        rel="nofollow">HPSTR</a>.
-</span>
-
-
-  </footer>
-</div><!-- /.footer-wrapper -->
-
-<script>
-  (function() {
-    function loadScript(src) {
-      return new Promise(function(resolve, reject) {
-        var script = document.createElement('script');
-        script.src = src;
-        script.defer = true;
-        script.async = false;
-        script.onload = resolve;
-        script.onerror = reject;
-        document.head.appendChild(script);
-      });
-    }
-
-    var jqCdn = '//ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js';
-    var jqLocal = 'http://www.bloggure.info/assets/js/vendor/jquery-3.7.1.min.js';
-    var needFitVids = document.querySelector('article iframe, article video');
-    var needMagnific = document.querySelector(
-      'a[href$=".jpg" i],a[href$=".jpeg" i],a[href$=".png" i],a[href$=".gif" i]'
-    );
-
-    var jqPromise = loadScript(jqCdn)
-      .catch(function() {
-        return loadScript(jqLocal);
-      })
-      .then(function() {
-        if (!window.jQuery) {
-          return loadScript(jqLocal);
-        }
-      });
-
-    jqPromise
-      .then(function() {
-        var chain = Promise.resolve();
-        
-        if (needFitVids) {
-          chain = chain.then(function() {
-            return loadScript('http://www.bloggure.info/assets/js/plugins/jquery.fitvids.js');
+    <script>
+      (function () {
+        function loadScript(src) {
+          return new Promise(function (resolve, reject) {
+            var script = document.createElement("script");
+            script.src = src;
+            script.defer = true;
+            script.async = false;
+            script.onload = resolve;
+            script.onerror = reject;
+            document.head.appendChild(script);
           });
         }
-        if (needMagnific) {
-          chain = chain.then(function() {
-            return loadScript('http://www.bloggure.info/assets/js/plugins/jquery.magnific-popup.js');
+
+        var jqCdn =
+          "//ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js";
+        var jqLocal =
+          "http://www.bloggure.info/assets/js/vendor/jquery-3.7.1.min.js";
+        var needFitVids = document.querySelector(
+          "article iframe, article video"
+        );
+        var needMagnific = document.querySelector(
+          'a[href$=".jpg" i],a[href$=".jpeg" i],a[href$=".png" i],a[href$=".gif" i]'
+        );
+
+        var jqPromise = loadScript(jqCdn)
+          .catch(function () {
+            return loadScript(jqLocal);
+          })
+          .then(function () {
+            if (!window.jQuery) {
+              return loadScript(jqLocal);
+            }
           });
-        }
-        
-        return chain;
-      })
-      .then(function() {
-        return loadScript('http://www.bloggure.info/assets/js/scripts.min.js');
-      });
-  })();
-</script>
 
+        jqPromise
+          .then(function () {
+            var chain = Promise.resolve();
 
-<!-- Asynchronous Google Analytics snippet -->
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+            if (needFitVids) {
+              chain = chain.then(function () {
+                return loadScript(
+                  "http://www.bloggure.info/assets/js/plugins/jquery.fitvids.js"
+                );
+              });
+            }
+            if (needMagnific) {
+              chain = chain.then(function () {
+                return loadScript(
+                  "http://www.bloggure.info/assets/js/plugins/jquery.magnific-popup.js"
+                );
+              });
+            }
 
-  ga('create', 'UA-11718843-3', 'auto');  
-  ga('require', 'linkid', 'linkid.js');
-  ga('send', 'pageview');
-</script>
+            return chain;
+          })
+          .then(function () {
+            return loadScript(
+              "http://www.bloggure.info/assets/js/scripts.min.js"
+            );
+          });
+      })();
+    </script>
 
+    <!-- Asynchronous Google Analytics snippet -->
+    <script>
+      (function (i, s, o, g, r, a, m) {
+        i["GoogleAnalyticsObject"] = r;
+        (i[r] =
+          i[r] ||
+          function () {
+            (i[r].q = i[r].q || []).push(arguments);
+          }),
+          (i[r].l = 1 * new Date());
+        (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m);
+      })(
+        window,
+        document,
+        "script",
+        "//www.google-analytics.com/analytics.js",
+        "ga"
+      );
 
+      ga("create", "UA-11718843-3", "auto");
+      ga("require", "linkid", "linkid.js");
+      ga("send", "pageview");
+    </script>
 
     <script type="text/javascript">
-        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-        var disqus_shortname = 'thereisnoplacelike1'; // required: replace example with your forum shortname
+      /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = "thereisnoplacelike1"; // required: replace example with your forum shortname
 
-        /* * * DON'T EDIT BELOW THIS LINE * * */
-        (function() {
-            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function () {
+        var dsq = document.createElement("script");
+        dsq.type = "text/javascript";
+        dsq.async = true;
+        dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+        (
+          document.getElementsByTagName("head")[0] ||
+          document.getElementsByTagName("body")[0]
+        ).appendChild(dsq);
+      })();
 
-        /* * * DON'T EDIT BELOW THIS LINE * * */
-        (function () {
-            var s = document.createElement('script'); s.async = true;
-            s.type = 'text/javascript';
-            s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-        }());
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function () {
+        var s = document.createElement("script");
+        s.async = true;
+        s.type = "text/javascript";
+        s.src = "//" + disqus_shortname + ".disqus.com/count.js";
+        (
+          document.getElementsByTagName("HEAD")[0] ||
+          document.getElementsByTagName("BODY")[0]
+        ).appendChild(s);
+      })();
     </script>
-    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-
-	        
-
-</body>
+    <noscript
+      >Please enable JavaScript to view the
+      <a href="http://disqus.com/?ref_noscript"
+        >comments powered by Disqus.</a
+      ></noscript
+    >
+    <a href="http://disqus.com" class="dsq-brlink"
+      >comments powered by <span class="logo-disqus">Disqus</span></a
+    >
+  </body>
 </html>

@@ -1,90 +1,209 @@
-<!doctype html>
+<!DOCTYPE html>
 <!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
 <!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
 <!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
-<head>
-<meta charset="utf-8">
-<title>Wicket 6 + CDI on Heroku &#8211; Bloggure</title>
-<meta name="description" content="Multi author blog about programming, computing and geek stuff">
-<meta name="keywords" content="cdi, heroku, jpa, nosql, postgresql, redis, wicket">
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+  <!--<![endif]-->
+  <head>
+    <meta charset="utf-8" />
+    <title>Wicket 6 + CDI on Heroku &#8211; Bloggure</title>
+    <meta
+      name="description"
+      content="Multi author blog about programming, computing and geek stuff"
+    />
+    <meta
+      name="keywords"
+      content="cdi, heroku, jpa, nosql, postgresql, redis, wicket"
+    />
 
+    <!-- Open Graph -->
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Wicket 6 + CDI on Heroku" />
+    <meta
+      property="og:description"
+      content="Multi author blog about programming, computing and geek stuff"
+    />
+    <meta
+      property="og:url"
+      content="http://www.bloggure.info/.wicket/work/wicket-6-cdi-on-heroku"
+    />
+    <meta property="og:site_name" content="Bloggure" />
 
+    <link
+      rel="canonical"
+      href="http://www.bloggure.info/.wicket/work/wicket-6-cdi-on-heroku"
+    />
+    <link
+      href="http://www.bloggure.info/feed.xml"
+      type="application/atom+xml"
+      rel="alternate"
+      title="Bloggure Feed"
+    />
 
-<!-- Open Graph -->
-<meta property="og:locale" content="en_US">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Wicket 6 + CDI on Heroku">
-<meta property="og:description" content="Multi author blog about programming, computing and geek stuff">
-<meta property="og:url" content="http://www.bloggure.info/.wicket/work/wicket-6-cdi-on-heroku">
-<meta property="og:site_name" content="Bloggure">
+    <!-- http://t.co/dKP3o1e -->
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="MobileOptimized" content="320" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- For all browsers -->
+    <link
+      rel="stylesheet"
+      href="http://www.bloggure.info/assets/css/main.css"
+    />
+    <!-- Webfonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic"
+      rel="stylesheet"
+      type="text/css"
+    />
 
+    <meta http-equiv="cleartype" content="on" />
 
+    <script>
+      document.documentElement.className = document.documentElement.className.replace(
+        /\bno-js\b/,
+        "js"
+      );
+    </script>
 
+    <!-- Icons -->
+    <!-- 16x16 -->
+    <link rel="shortcut icon" href="http://www.bloggure.info/favicon.ico" />
+    <!-- 32x32 -->
+    <link rel="shortcut icon" href="http://www.bloggure.info/favicon.png" />
+    <!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+    <link
+      rel="apple-touch-icon-precomposed"
+      href="http://www.bloggure.info/images/apple-touch-icon-precomposed.png"
+    />
+    <!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="72x72"
+      href="http://www.bloggure.info/images/apple-touch-icon-72x72-precomposed.png"
+    />
+    <!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="114x114"
+      href="http://www.bloggure.info/images/apple-touch-icon-114x114-precomposed.png"
+    />
+    <!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="144x144"
+      href="http://www.bloggure.info/images/apple-touch-icon-144x144-precomposed.png"
+    />
+  </head>
 
-<link rel="canonical" href="http://www.bloggure.info/.wicket/work/wicket-6-cdi-on-heroku">
-<link href="http://www.bloggure.info/feed.xml" type="application/atom+xml" rel="alternate" title="Bloggure Feed">
+  <body id="post">
+    <!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
 
-<!-- http://t.co/dKP3o1e -->
-<meta name="HandheldFriendly" content="True">
-<meta name="MobileOptimized" content="320">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!-- For all browsers -->
-<link rel="stylesheet" href="http://www.bloggure.info/assets/css/main.css">
-<!-- Webfonts -->
-<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">
-
-<meta http-equiv="cleartype" content="on">
-
-<script>
-  document.documentElement.className =
-    document.documentElement.className.replace(/\bno-js\b/, 'js');
-</script>
-
-<!-- Icons -->
-<!-- 16x16 -->
-<link rel="shortcut icon" href="http://www.bloggure.info/favicon.ico">
-<!-- 32x32 -->
-<link rel="shortcut icon" href="http://www.bloggure.info/favicon.png">
-<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
-<link rel="apple-touch-icon-precomposed" href="http://www.bloggure.info/images/apple-touch-icon-precomposed.png">
-<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
-<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://www.bloggure.info/images/apple-touch-icon-72x72-precomposed.png">
-<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
-<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://www.bloggure.info/images/apple-touch-icon-114x114-precomposed.png">
-<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://www.bloggure.info/images/apple-touch-icon-144x144-precomposed.png">
-
-
-
-</head>
-
-<body id="post" >
-
-<!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
-
-
-<div class="entry-header">
-  <header class="header-title">
-    <div class="header-title-wrap">
-      <h1 class="entry-title" itemprop="name"><a href="http://www.bloggure.info/">Bloggure</a></h1>
-    </div><!-- /.header-title-wrap -->
-  </header>
-  </div>
-
-<div id="main" role="main">
-  <article class="hentry">
-    <div class="entry-content">
-      <header>
-        <div class="entry-meta"><span class="entry-date date published updated"><time datetime="2013-03-03T00:00:00+01:00" itemprop="datePublished"><a href="http://www.bloggure.info/.wicket/work/wicket-6-cdi-on-heroku">March 03, 2013</a></time></span><span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name" class="fn"><a href="http://www.bloggure.info/cgatay" title="About cgatay" itemprop="url">cgatay</a></span></span>&nbsp; &bull; &nbsp;<span class="entry-comments"><a href="http://www.bloggure.info/.wicket/work/wicket-6-cdi-on-heroku#disqus_thread">Comment</a></span></div><!-- /.entry-meta -->
-        
-          <h1 class="entry-title" itemprop="name"><a href="http://www.bloggure.info/.wicket/work/wicket-6-cdi-on-heroku" rel="bookmark" title="Wicket 6 + CDI on Heroku" itemprop="url">Wicket 6 + CDI on Heroku</a></h1>
-        
+    <div class="entry-header">
+      <header class="header-title">
+        <div class="header-title-wrap">
+          <h1 class="entry-title" itemprop="name">
+            <a href="http://www.bloggure.info/">Bloggure</a>
+          </h1>
+        </div>
+        <!-- /.header-title-wrap -->
       </header>
-      <!--:en--><p><img class="alignright size-full wp-image-865" alt="herokuwicket" src="/images/uploads/2013/03/herokuwicket.png" width="96" height="96" />As an <a href="http://apache.wicket.org">Apache Wicket</a> user for more than five years I really enjoy its programming model. I recently played with <a href="http://www.playframework.com/">Play Framework</a> 2.1 and Scala and discovered that deploying to <a href="http://www.heroku.com/">Heroku</a> is as easy as a git push. I wondered how difficult it could be using this mechanism to deploy a Wicket application.</p><h1>Existing attempts</h1><p>My initial investigation led me to this <a href="http://wicketinaction.com/2011/09/git-wicket-running-on-heroku/">blog post from Martijn Dashorst</a> explaining how to deploy a Wicket 1.5 application to Heroku, the service has slightly evolved since and the quickstart no longer deploys (Maven repository is no longer available to the run environment).</p><h1>Adding JPA in the mix</h1><p>I adapted it to deploy and use Wicket 6 instead of 1.5. And as I am a CDI fan I completed the quickstart with the CDI Wicket module (inspired from <a href="https://www.42lines.net/2011/11/21/adding-jpahibernate-into-the-cdi-and-wicket-mix/">this post from Igor Vaynberg</a>) and made the necessary steps to use the heroku bundled PostgreSQL database as a JPA datasource.</p><p>The key to make the database works correctly on Heroku resides in the following code snippet, where we parse the provided environment variable to populate hibernate properties.</p>
-<figure class="highlight"><pre><code class="language-java" data-lang="java">  <span class="k">try</span> <span class="o">{</span>
+    </div>
+
+    <div id="main" role="main">
+      <article class="hentry">
+        <div class="entry-content">
+          <header>
+            <div class="entry-meta">
+              <span class="entry-date date published updated"
+                ><time
+                  datetime="2013-03-03T00:00:00+01:00"
+                  itemprop="datePublished"
+                  ><a
+                    href="http://www.bloggure.info/.wicket/work/wicket-6-cdi-on-heroku"
+                    >March 03, 2013</a
+                  ></time
+                ></span
+              ><span
+                class="author vcard"
+                itemprop="author"
+                itemscope
+                itemtype="http://schema.org/Person"
+                ><span itemprop="name" class="fn"
+                  ><a
+                    href="http://www.bloggure.info/cgatay"
+                    title="About cgatay"
+                    itemprop="url"
+                    >cgatay</a
+                  ></span
+                ></span
+              >&nbsp; &bull; &nbsp;<span class="entry-comments"
+                ><a
+                  href="http://www.bloggure.info/.wicket/work/wicket-6-cdi-on-heroku#disqus_thread"
+                  >Comment</a
+                ></span
+              >
+            </div>
+            <!-- /.entry-meta -->
+
+            <h1 class="entry-title" itemprop="name">
+              <a
+                href="http://www.bloggure.info/.wicket/work/wicket-6-cdi-on-heroku"
+                rel="bookmark"
+                title="Wicket 6 + CDI on Heroku"
+                itemprop="url"
+                >Wicket 6 + CDI on Heroku</a
+              >
+            </h1>
+          </header>
+          <!--:en-->
+          <p>
+            <img
+              class="alignright size-full wp-image-865"
+              alt="herokuwicket"
+              src="/images/uploads/2013/03/herokuwicket.png"
+              width="96"
+              height="96"
+            />As an <a href="http://apache.wicket.org">Apache Wicket</a> user
+            for more than five years I really enjoy its programming model. I
+            recently played with
+            <a href="http://www.playframework.com/">Play Framework</a> 2.1 and
+            Scala and discovered that deploying to
+            <a href="http://www.heroku.com/">Heroku</a> is as easy as a git
+            push. I wondered how difficult it could be using this mechanism to
+            deploy a Wicket application.
+          </p>
+          <h1>Existing attempts</h1>
+          <p>
+            My initial investigation led me to this
+            <a
+              href="http://wicketinaction.com/2011/09/git-wicket-running-on-heroku/"
+              >blog post from Martijn Dashorst</a
+            > explaining how to deploy a Wicket 1.5 application to Heroku, the
+            service has slightly evolved since and the quickstart no longer
+            deploys (Maven repository is no longer available to the
+            run environment).
+          </p>
+          <h1>Adding JPA in the mix</h1>
+          <p>
+            I adapted it to deploy and use Wicket 6 instead of 1.5. And as I am
+            a CDI fan I completed the quickstart with the CDI Wicket module
+            (inspired from
+            <a
+              href="https://www.42lines.net/2011/11/21/adding-jpahibernate-into-the-cdi-and-wicket-mix/"
+              >this post from Igor Vaynberg</a
+            >) and made the necessary steps to use the heroku bundled PostgreSQL
+            database as a JPA datasource.
+          </p>
+          <p>
+            The key to make the database works correctly on Heroku resides in
+            the following code snippet, where we parse the provided environment
+            variable to populate hibernate properties.
+          </p>
+          <figure class="highlight">
+            <pre><code class="language-java" data-lang="java">  <span class="k">try</span> <span class="o">{</span>
      <span class="no">URI</span> <span class="n">dbUri</span> <span class="o">=</span> <span class="k">new</span> <span class="no">URI</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">getenv</span><span class="o">(</span><span class="s">"DATABASE_URL"</span><span class="o">));</span>
      <span class="nc">String</span> <span class="n">username</span> <span class="o">=</span> <span class="n">dbUri</span><span class="o">.</span><span class="na">getUserInfo</span><span class="o">().</span><span class="na">split</span><span class="o">(</span><span class="s">":"</span><span class="o">)[</span><span class="mi">0</span><span class="o">];</span>
      <span class="nc">String</span> <span class="n">password</span> <span class="o">=</span> <span class="n">dbUri</span><span class="o">.</span><span class="na">getUserInfo</span><span class="o">().</span><span class="na">split</span><span class="o">(</span><span class="s">":"</span><span class="o">)[</span><span class="mi">1</span><span class="o">];</span>
@@ -95,8 +214,47 @@
      <span class="nc">System</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="s">"hibernate.connection.password"</span><span class="o">,</span> <span class="n">password</span><span class="o">);</span>
 <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
      <span class="no">LOGGER</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="s">"Unable to extract database url"</span><span class="o">);</span>
-<span class="o">}</span></code></pre></figure>
-<h1>Session replication</h1><p>On Wicket mailing lists, <a href="http://mail-archives.apache.org/mod_mbox/wicket-users/201301.mbox/%3C20130109180456.21633f6d4d230ce5688fd451@gmx.net%3E">a user recently asked</a> the steps required to get the data store works correctly on Heroku (as the disk space is ephemeral), the key is using a NoSQL backend like <a href="http://redis.io/">Redis</a>. So I wrote a simple and basic implementation of IDataStore using Redis (I think it can be optimized by someone familiar with Redis, pull requests are welcome).</p><h1>Hands on</h1><p>The quickstart can be found <a href="https://github.com/CedricGatay/heroku-wicket-quickstart">at the following address</a> and deploys fine on a stack with <a href="http://redis-cloud.com/">Redis Cloud</a> and PostgreSQL add ons enabled.<br /> In the end you got :</p><ul><li>Wicket 6</li><li>CDI via Weld</li><li>JPA with PostgreSQL</li><li>Redis datastore</li></ul><p>You can see it live at the following address : <a href="http://wicket-6-sample.herokuapp.com/">http://wicket-6-sample.herokuapp.com/</a>, the app can take a few seconds to start, as Heroku will stop it if it is idling for too long.</p><!--:--><!--:fr<p><img class="alignright size-full wp-image-865" alt="herokuwicket" src="/images/uploads/2013/03/herokuwicket.png" width="96" height="96" />As an <a href="http://apache.wicket.org">Apache Wicket</a> user for more than five years I really enjoy its programming model. I recently played with <a href="http://www.playframework.com/">Play Framework</a> 2.1 and Scala and discovered that deploying to <a href="http://www.heroku.com/">Heroku</a> is as easy as a git push. I wondered how difficult it could be using this mechanism to deploy a Wicket application.</p><h1>Existing attempts</h1><p>My initial investigation led me to this <a href="http://wicketinaction.com/2011/09/git-wicket-running-on-heroku/">blog post from Martijn Dashorst</a> explaining how to deploy a Wicket 1.5 application to Heroku, the service has slightly evolved since and the quickstart no longer deploys (Maven repository is no longer available to the run environment).</p><h1>Adding JPA in the mix</h1><p>I adapted it to deploy and use Wicket 6 instead of 1.5. And as I am a CDI fan I completed the quickstart with the CDI Wicket module (inspired from <a href="https://www.42lines.net/2011/11/21/adding-jpahibernate-into-the-cdi-and-wicket-mix/">this post from Igor Vaynberg</a>) and made the necessary steps to use the heroku bundled PostgreSQL database as a JPA datasource.</p><p>The key to make the database works correctly on Heroku resides in the following code snippet, where we parse the provided environment variable to populate hibernate properties.</p><pre class="brush: java">try {
+<span class="o">}</span></code></pre>
+          </figure>
+          <h1>Session replication</h1>
+          <p>
+            On Wicket mailing lists,
+            <a
+              href="http://mail-archives.apache.org/mod_mbox/wicket-users/201301.mbox/%3C20130109180456.21633f6d4d230ce5688fd451@gmx.net%3E"
+              >a user recently asked</a
+            >
+            the steps required to get the data store works correctly on Heroku
+            (as the disk space is ephemeral), the key is using a NoSQL backend
+            like <a href="http://redis.io/">Redis</a>. So I wrote a simple and
+            basic implementation of IDataStore using Redis (I think it can be
+            optimized by someone familiar with Redis, pull requests are
+            welcome).
+          </p>
+          <h1>Hands on</h1>
+          <p>
+            The quickstart can be found
+            <a href="https://github.com/CedricGatay/heroku-wicket-quickstart"
+              >at the following address</a
+            >
+            and deploys fine on a stack with
+            <a href="http://redis-cloud.com/">Redis Cloud</a> and PostgreSQL add
+            ons enabled.<br />
+            In the end you got :
+          </p>
+          <ul>
+            <li>Wicket 6</li>
+            <li>CDI via Weld</li>
+            <li>JPA with PostgreSQL</li>
+            <li>Redis datastore</li>
+          </ul>
+          <p>
+            You can see it live at the following address : <a
+              href="http://wicket-6-sample.herokuapp.com/"
+              >http://wicket-6-sample.herokuapp.com/</a
+            >, the app can take a few seconds to start, as Heroku will stop it
+            if it is idling for too long.
+          </p>
+          <!--:--><!--:fr<p><img class="alignright size-full wp-image-865" alt="herokuwicket" src="/images/uploads/2013/03/herokuwicket.png" width="96" height="96" />As an <a href="http://apache.wicket.org">Apache Wicket</a> user for more than five years I really enjoy its programming model. I recently played with <a href="http://www.playframework.com/">Play Framework</a> 2.1 and Scala and discovered that deploying to <a href="http://www.heroku.com/">Heroku</a> is as easy as a git push. I wondered how difficult it could be using this mechanism to deploy a Wicket application.</p><h1>Existing attempts</h1><p>My initial investigation led me to this <a href="http://wicketinaction.com/2011/09/git-wicket-running-on-heroku/">blog post from Martijn Dashorst</a> explaining how to deploy a Wicket 1.5 application to Heroku, the service has slightly evolved since and the quickstart no longer deploys (Maven repository is no longer available to the run environment).</p><h1>Adding JPA in the mix</h1><p>I adapted it to deploy and use Wicket 6 instead of 1.5. And as I am a CDI fan I completed the quickstart with the CDI Wicket module (inspired from <a href="https://www.42lines.net/2011/11/21/adding-jpahibernate-into-the-cdi-and-wicket-mix/">this post from Igor Vaynberg</a>) and made the necessary steps to use the heroku bundled PostgreSQL database as a JPA datasource.</p><p>The key to make the database works correctly on Heroku resides in the following code snippet, where we parse the provided environment variable to populate hibernate properties.</p><pre class="brush: java">try {
      URI dbUri = new URI(System.getenv("DATABASE_URL"));
      String username = dbUri.getUserInfo().split(":")[0];
      String password = dbUri.getUserInfo().split(":")[1];
@@ -109,157 +267,286 @@
      LOGGER.error("Unable to extract database url");
 }</pre><h1>Session replication</h1><p>On Wicket mailing lists, <a href="http://mail-archives.apache.org/mod_mbox/wicket-users/201301.mbox/%3C20130109180456.21633f6d4d230ce5688fd451@gmx.net%3E">a user recently asked</a> the steps required to get the data store works correctly on Heroku (as the disk space is ephemeral), the key is using a NoSQL backend like <a href="http://redis.io/">Redis</a>. So I wrote a simple and basic implementation of IDataStore using Redis (I think it can be optimized by someone familiar with Redis, pull requests are welcome).</p><h1>Hands on</h1><p>The quickstart can be found <a href="https://github.com/CedricGatay/heroku-wicket-quickstart">at the following address</a> and deploys fine on a stack with <a href="http://redis-cloud.com/">Redis Cloud</a> and PostgreSQL add ons enabled.<br /> In the end you got :</p><ul><li>Wicket 6</li><li>CDI via Weld</li><li>JPA with PostgreSQL</li><li>Redis datastore</li></ul><p>You can see it live at the following address : <a href="http://wicket-6-sample.herokuapp.com/">http://wicket-6-sample.herokuapp.com/</a>, the app can take a few seconds to start, as Heroku will stop it if it is idling for too long.</p><-->
 
-      <footer class="entry-meta">
-        <span class="entry-tags"><a href="http://www.bloggure.info/tags/#cdi" title="Pages tagged cdi" class="tag"><span class="term">cdi</span></a><a href="http://www.bloggure.info/tags/#heroku" title="Pages tagged heroku" class="tag"><span class="term">heroku</span></a><a href="http://www.bloggure.info/tags/#jpa" title="Pages tagged jpa" class="tag"><span class="term">jpa</span></a><a href="http://www.bloggure.info/tags/#nosql" title="Pages tagged nosql" class="tag"><span class="term">nosql</span></a><a href="http://www.bloggure.info/tags/#postgresql" title="Pages tagged postgresql" class="tag"><span class="term">postgresql</span></a><a href="http://www.bloggure.info/tags/#redis" title="Pages tagged redis" class="tag"><span class="term">redis</span></a><a href="http://www.bloggure.info/tags/#wicket" title="Pages tagged wicket" class="tag"><span class="term">wicket</span></a></span>
-        
-        <div class="social-share">
-  <ul class="socialcount socialcount-small inline-list">
-    <li class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=http://www.bloggure.info/.wicket/work/wicket-6-cdi-on-heroku" title="Share on Facebook"><span class="count"><i class="fa fa-facebook-square"></i> Like</span></a></li>
-    <li class="twitter"><a href="https://twitter.com/intent/tweet?text=http://www.bloggure.info/.wicket/work/wicket-6-cdi-on-heroku" title="Share on Twitter"><span class="count"><i class="fa fa-twitter-square"></i> Tweet</span></a></li>
-  </ul>
-</div><!-- /.social-share -->
+          <footer class="entry-meta">
+            <span class="entry-tags"
+              ><a
+                href="http://www.bloggure.info/tags/#cdi"
+                title="Pages tagged cdi"
+                class="tag"
+                ><span class="term">cdi</span></a
+              ><a
+                href="http://www.bloggure.info/tags/#heroku"
+                title="Pages tagged heroku"
+                class="tag"
+                ><span class="term">heroku</span></a
+              ><a
+                href="http://www.bloggure.info/tags/#jpa"
+                title="Pages tagged jpa"
+                class="tag"
+                ><span class="term">jpa</span></a
+              ><a
+                href="http://www.bloggure.info/tags/#nosql"
+                title="Pages tagged nosql"
+                class="tag"
+                ><span class="term">nosql</span></a
+              ><a
+                href="http://www.bloggure.info/tags/#postgresql"
+                title="Pages tagged postgresql"
+                class="tag"
+                ><span class="term">postgresql</span></a
+              ><a
+                href="http://www.bloggure.info/tags/#redis"
+                title="Pages tagged redis"
+                class="tag"
+                ><span class="term">redis</span></a
+              ><a
+                href="http://www.bloggure.info/tags/#wicket"
+                title="Pages tagged wicket"
+                class="tag"
+                ><span class="term">wicket</span></a
+              ></span
+            >
+
+            <div class="social-share">
+              <ul class="socialcount socialcount-small inline-list">
+                <li class="facebook">
+                  <a
+                    href="https://www.facebook.com/sharer/sharer.php?u=http://www.bloggure.info/.wicket/work/wicket-6-cdi-on-heroku"
+                    title="Share on Facebook"
+                    ><span class="count"
+                      ><i class="fa fa-facebook-square"></i> Like</span
+                    ></a
+                  >
+                </li>
+                <li class="twitter">
+                  <a
+                    href="https://twitter.com/intent/tweet?text=http://www.bloggure.info/.wicket/work/wicket-6-cdi-on-heroku"
+                    title="Share on Twitter"
+                    ><span class="count"
+                      ><i class="fa fa-twitter-square"></i> Tweet</span
+                    ></a
+                  >
+                </li>
+              </ul>
+            </div>
+            <!-- /.social-share -->
+          </footer>
+        </div>
+        <!-- /.entry-content -->
+        <section id="disqus_thread"></section>
+        <!-- /#disqus_thread -->
+        <div class="read-more">
+          <div class="read-more-header">
+            <a
+              href="http://www.bloggure.info/work/wicket-6-cdi-on-heroku.html"
+              class="read-more-btn"
+              >Read More</a
+            >
+          </div>
+          <!-- /.read-more-header -->
+          <div class="read-more-content">
+            <h3>
+              <a
+                href="http://www.bloggure.info/ios/swift/uikit/ios-sheetpresentationcontroller-background-effect"
+                title="iOS 26.2 Sheet: remove Liquid Glass for small detents"
+                >iOS 26.2 Sheet: remove Liquid Glass for small detents</a
+              >
+            </h3>
+            <p>
+              How to control and customize background effects in iOS 26.2 sheet
+              presentation controllers
+              <a
+                href="http://www.bloggure.info/ios/swift/uikit/ios-sheetpresentationcontroller-background-effect"
+                >Continue reading</a
+              >
+            </p>
+          </div>
+          <!-- /.read-more-content -->
+
+          <div class="read-more-list">
+            <div class="list-item">
+              <h4>
+                <a
+                  href="http://www.bloggure.info/Shortcut_bill_renaming"
+                  title="Streamlining Finances: Automating Bill Renaming with Apple Shortcuts"
+                  >Streamlining Finances: Automating Bill Renaming with Apple
+                  Shortcuts</a
+                >
+              </h4>
+              <span>Published on January 07, 2026</span>
+            </div>
+            <!-- /.list-item -->
+
+            <div class="list-item">
+              <h4>
+                <a
+                  href="http://www.bloggure.info/Tuist_build_test_schemes"
+                  title="Tuist build test schemes"
+                  >Tuist build test schemes</a
+                >
+              </h4>
+              <span>Published on May 22, 2025</span>
+            </div>
+            <!-- /.list-item -->
+          </div>
+          <!-- /.read-more-list -->
+        </div>
+        <!-- /.read-more -->
+      </article>
+    </div>
+    <!-- /#main -->
+
+    <div class="footer-wrapper">
+      <footer role="contentinfo">
+        <span>
+          See also
+          <dl>
+            <dt><a href="https://www.9h41.org">9h41</a></dt>
+            <dt><a href="https://www.psy-tours.fr">Psy-Tours</a></dt>
+          </dl>
+        </span>
+        <br />
+        <span>
+          &copy; 2026 . Powered by
+          <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using a theme
+          based on
+          <a
+            href="https://mademistakes.com/work/hpstr-jekyll-theme/"
+            rel="nofollow"
+            >HPSTR</a
+          >.
+        </span>
       </footer>
-    </div><!-- /.entry-content -->
-    <section id="disqus_thread"></section><!-- /#disqus_thread -->
-    <div class="read-more">
-  
-    <div class="read-more-header">
-      <a href="http://www.bloggure.info/work/wicket-6-cdi-on-heroku.html" class="read-more-btn">Read More</a>
-    </div><!-- /.read-more-header -->
-    <div class="read-more-content">
-      <h3><a href="http://www.bloggure.info/ios/swift/uikit/ios-sheetpresentationcontroller-background-effect" title="iOS 26.2 Sheet: remove Liquid Glass for small detents">iOS 26.2 Sheet: remove Liquid Glass for small detents</a></h3>
-      <p>How to control and customize background effects in iOS 26.2 sheet presentation controllers <a href="http://www.bloggure.info/ios/swift/uikit/ios-sheetpresentationcontroller-background-effect">Continue reading</a></p>
-    </div><!-- /.read-more-content -->
-  
-  <div class="read-more-list">
-    
-      <div class="list-item">
-        <h4><a href="http://www.bloggure.info/Shortcut_bill_renaming" title="Streamlining Finances: Automating Bill Renaming with Apple Shortcuts">Streamlining Finances: Automating Bill Renaming with Apple Shortcuts</a></h4>
-        <span>Published on January 07, 2026</span>
-      </div><!-- /.list-item -->
-    
-      <div class="list-item">
-        <h4><a href="http://www.bloggure.info/Tuist_build_test_schemes" title="Tuist build test schemes">Tuist build test schemes</a></h4>
-        <span>Published on May 22, 2025</span>
-      </div><!-- /.list-item -->
-    
-  </div><!-- /.read-more-list -->
-</div><!-- /.read-more -->
-  </article>
-</div><!-- /#main -->
+    </div>
+    <!-- /.footer-wrapper -->
 
-<div class="footer-wrapper">
-  <footer role="contentinfo">
-    <span>
-    See also
-    <dl>
-        <dt><a href="https://www.9h41.org">9h41</a></dt>
-        <dt><a href="https://www.psy-tours.fr">Psy-Tours</a></dt>
-    </dl>
-</span>
-<br/>
-<span>
-    &copy; 2026 . Powered by <a href="http://jekyllrb.com"
-        rel="nofollow">Jekyll</a> using a theme based on <a href="https://mademistakes.com/work/hpstr-jekyll-theme/"
-        rel="nofollow">HPSTR</a>.
-</span>
-
-
-  </footer>
-</div><!-- /.footer-wrapper -->
-
-<script>
-  (function() {
-    function loadScript(src) {
-      return new Promise(function(resolve, reject) {
-        var script = document.createElement('script');
-        script.src = src;
-        script.defer = true;
-        script.async = false;
-        script.onload = resolve;
-        script.onerror = reject;
-        document.head.appendChild(script);
-      });
-    }
-
-    var jqCdn = '//ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js';
-    var jqLocal = 'http://www.bloggure.info/assets/js/vendor/jquery-3.7.1.min.js';
-    var needFitVids = document.querySelector('article iframe, article video');
-    var needMagnific = document.querySelector(
-      'a[href$=".jpg" i],a[href$=".jpeg" i],a[href$=".png" i],a[href$=".gif" i]'
-    );
-
-    var jqPromise = loadScript(jqCdn)
-      .catch(function() {
-        return loadScript(jqLocal);
-      })
-      .then(function() {
-        if (!window.jQuery) {
-          return loadScript(jqLocal);
-        }
-      });
-
-    jqPromise
-      .then(function() {
-        var chain = Promise.resolve();
-        
-        if (needFitVids) {
-          chain = chain.then(function() {
-            return loadScript('http://www.bloggure.info/assets/js/plugins/jquery.fitvids.js');
+    <script>
+      (function () {
+        function loadScript(src) {
+          return new Promise(function (resolve, reject) {
+            var script = document.createElement("script");
+            script.src = src;
+            script.defer = true;
+            script.async = false;
+            script.onload = resolve;
+            script.onerror = reject;
+            document.head.appendChild(script);
           });
         }
-        if (needMagnific) {
-          chain = chain.then(function() {
-            return loadScript('http://www.bloggure.info/assets/js/plugins/jquery.magnific-popup.js');
+
+        var jqCdn =
+          "//ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js";
+        var jqLocal =
+          "http://www.bloggure.info/assets/js/vendor/jquery-3.7.1.min.js";
+        var needFitVids = document.querySelector(
+          "article iframe, article video"
+        );
+        var needMagnific = document.querySelector(
+          'a[href$=".jpg" i],a[href$=".jpeg" i],a[href$=".png" i],a[href$=".gif" i]'
+        );
+
+        var jqPromise = loadScript(jqCdn)
+          .catch(function () {
+            return loadScript(jqLocal);
+          })
+          .then(function () {
+            if (!window.jQuery) {
+              return loadScript(jqLocal);
+            }
           });
-        }
-        
-        return chain;
-      })
-      .then(function() {
-        return loadScript('http://www.bloggure.info/assets/js/scripts.min.js');
-      });
-  })();
-</script>
 
+        jqPromise
+          .then(function () {
+            var chain = Promise.resolve();
 
-<!-- Asynchronous Google Analytics snippet -->
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+            if (needFitVids) {
+              chain = chain.then(function () {
+                return loadScript(
+                  "http://www.bloggure.info/assets/js/plugins/jquery.fitvids.js"
+                );
+              });
+            }
+            if (needMagnific) {
+              chain = chain.then(function () {
+                return loadScript(
+                  "http://www.bloggure.info/assets/js/plugins/jquery.magnific-popup.js"
+                );
+              });
+            }
 
-  ga('create', 'UA-11718843-3', 'auto');  
-  ga('require', 'linkid', 'linkid.js');
-  ga('send', 'pageview');
-</script>
+            return chain;
+          })
+          .then(function () {
+            return loadScript(
+              "http://www.bloggure.info/assets/js/scripts.min.js"
+            );
+          });
+      })();
+    </script>
 
+    <!-- Asynchronous Google Analytics snippet -->
+    <script>
+      (function (i, s, o, g, r, a, m) {
+        i["GoogleAnalyticsObject"] = r;
+        (i[r] =
+          i[r] ||
+          function () {
+            (i[r].q = i[r].q || []).push(arguments);
+          }),
+          (i[r].l = 1 * new Date());
+        (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m);
+      })(
+        window,
+        document,
+        "script",
+        "//www.google-analytics.com/analytics.js",
+        "ga"
+      );
 
+      ga("create", "UA-11718843-3", "auto");
+      ga("require", "linkid", "linkid.js");
+      ga("send", "pageview");
+    </script>
 
     <script type="text/javascript">
-        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-        var disqus_shortname = 'thereisnoplacelike1'; // required: replace example with your forum shortname
+      /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = "thereisnoplacelike1"; // required: replace example with your forum shortname
 
-        /* * * DON'T EDIT BELOW THIS LINE * * */
-        (function() {
-            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function () {
+        var dsq = document.createElement("script");
+        dsq.type = "text/javascript";
+        dsq.async = true;
+        dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+        (
+          document.getElementsByTagName("head")[0] ||
+          document.getElementsByTagName("body")[0]
+        ).appendChild(dsq);
+      })();
 
-        /* * * DON'T EDIT BELOW THIS LINE * * */
-        (function () {
-            var s = document.createElement('script'); s.async = true;
-            s.type = 'text/javascript';
-            s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-        }());
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function () {
+        var s = document.createElement("script");
+        s.async = true;
+        s.type = "text/javascript";
+        s.src = "//" + disqus_shortname + ".disqus.com/count.js";
+        (
+          document.getElementsByTagName("HEAD")[0] ||
+          document.getElementsByTagName("BODY")[0]
+        ).appendChild(s);
+      })();
     </script>
-    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-
-	        
-
-</body>
+    <noscript
+      >Please enable JavaScript to view the
+      <a href="http://disqus.com/?ref_noscript"
+        >comments powered by Disqus.</a
+      ></noscript
+    >
+    <a href="http://disqus.com" class="dsq-brlink"
+      >comments powered by <span class="logo-disqus">Disqus</span></a
+    >
+  </body>
 </html>

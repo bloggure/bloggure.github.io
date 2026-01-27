@@ -1,103 +1,196 @@
-<!doctype html>
+<!DOCTYPE html>
 <!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
 <!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
 <!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
-<head>
-<meta charset="utf-8">
-<title>GitlabHQ - SQLite to mySQL &#8211; Bloggure</title>
-<meta name="description" content="Multi author blog about programming, computing and geek stuff">
-<meta name="keywords" content="">
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+  <!--<![endif]-->
+  <head>
+    <meta charset="utf-8" />
+    <title>GitlabHQ - SQLite to mySQL &#8211; Bloggure</title>
+    <meta
+      name="description"
+      content="Multi author blog about programming, computing and geek stuff"
+    />
+    <meta name="keywords" content="" />
 
+    <!-- Open Graph -->
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="GitlabHQ - SQLite to mySQL" />
+    <meta
+      property="og:description"
+      content="Multi author blog about programming, computing and geek stuff"
+    />
+    <meta
+      property="og:url"
+      content="http://www.bloggure.info/work/gitlabhq-sqlite-to-mysql.html"
+    />
+    <meta property="og:site_name" content="Bloggure" />
 
+    <link
+      rel="canonical"
+      href="http://www.bloggure.info/work/gitlabhq-sqlite-to-mysql.html"
+    />
+    <link
+      href="http://www.bloggure.info/feed.xml"
+      type="application/atom+xml"
+      rel="alternate"
+      title="Bloggure Feed"
+    />
 
-<!-- Open Graph -->
-<meta property="og:locale" content="en_US">
-<meta property="og:type" content="article">
-<meta property="og:title" content="GitlabHQ - SQLite to mySQL">
-<meta property="og:description" content="Multi author blog about programming, computing and geek stuff">
-<meta property="og:url" content="http://www.bloggure.info/work/gitlabhq-sqlite-to-mysql.html">
-<meta property="og:site_name" content="Bloggure">
+    <!-- http://t.co/dKP3o1e -->
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="MobileOptimized" content="320" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- For all browsers -->
+    <link
+      rel="stylesheet"
+      href="http://www.bloggure.info/assets/css/main.css"
+    />
+    <!-- Webfonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic"
+      rel="stylesheet"
+      type="text/css"
+    />
 
+    <meta http-equiv="cleartype" content="on" />
 
+    <script>
+      document.documentElement.className = document.documentElement.className.replace(
+        /\bno-js\b/,
+        "js"
+      );
+    </script>
 
+    <!-- Icons -->
+    <!-- 16x16 -->
+    <link rel="shortcut icon" href="http://www.bloggure.info/favicon.ico" />
+    <!-- 32x32 -->
+    <link rel="shortcut icon" href="http://www.bloggure.info/favicon.png" />
+    <!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+    <link
+      rel="apple-touch-icon-precomposed"
+      href="http://www.bloggure.info/images/apple-touch-icon-precomposed.png"
+    />
+    <!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="72x72"
+      href="http://www.bloggure.info/images/apple-touch-icon-72x72-precomposed.png"
+    />
+    <!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="114x114"
+      href="http://www.bloggure.info/images/apple-touch-icon-114x114-precomposed.png"
+    />
+    <!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="144x144"
+      href="http://www.bloggure.info/images/apple-touch-icon-144x144-precomposed.png"
+    />
+  </head>
 
-<link rel="canonical" href="http://www.bloggure.info/work/gitlabhq-sqlite-to-mysql.html">
-<link href="http://www.bloggure.info/feed.xml" type="application/atom+xml" rel="alternate" title="Bloggure Feed">
+  <body id="post">
+    <!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
 
-<!-- http://t.co/dKP3o1e -->
-<meta name="HandheldFriendly" content="True">
-<meta name="MobileOptimized" content="320">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!-- For all browsers -->
-<link rel="stylesheet" href="http://www.bloggure.info/assets/css/main.css">
-<!-- Webfonts -->
-<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">
-
-<meta http-equiv="cleartype" content="on">
-
-<script>
-  document.documentElement.className =
-    document.documentElement.className.replace(/\bno-js\b/, 'js');
-</script>
-
-<!-- Icons -->
-<!-- 16x16 -->
-<link rel="shortcut icon" href="http://www.bloggure.info/favicon.ico">
-<!-- 32x32 -->
-<link rel="shortcut icon" href="http://www.bloggure.info/favicon.png">
-<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
-<link rel="apple-touch-icon-precomposed" href="http://www.bloggure.info/images/apple-touch-icon-precomposed.png">
-<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
-<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://www.bloggure.info/images/apple-touch-icon-72x72-precomposed.png">
-<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
-<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://www.bloggure.info/images/apple-touch-icon-114x114-precomposed.png">
-<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://www.bloggure.info/images/apple-touch-icon-144x144-precomposed.png">
-
-
-
-</head>
-
-<body id="post" >
-
-<!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
-
-
-<div class="entry-header">
-  <header class="header-title">
-    <div class="header-title-wrap">
-      <h1 class="entry-title" itemprop="name"><a href="http://www.bloggure.info/">Bloggure</a></h1>
-    </div><!-- /.header-title-wrap -->
-  </header>
-  </div>
-
-<div id="main" role="main">
-  <article class="hentry">
-    <div class="entry-content">
-      <header>
-        <div class="entry-meta"><span class="entry-date date published updated"><time datetime="2012-05-08T00:00:00+02:00" itemprop="datePublished"><a href="http://www.bloggure.info/work/gitlabhq-sqlite-to-mysql.html">May 08, 2012</a></time></span><span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name" class="fn"><a href="http://www.bloggure.info/cgatay" title="About cgatay" itemprop="url">cgatay</a></span></span></div><!-- /.entry-meta -->
-        
-          <h1 class="entry-title" itemprop="name"><a href="http://www.bloggure.info/work/gitlabhq-sqlite-to-mysql.html" rel="bookmark" title="GitlabHQ - SQLite to mySQL" itemprop="url">GitlabHQ - SQLite to mySQL</a></h1>
-        
+    <div class="entry-header">
+      <header class="header-title">
+        <div class="header-title-wrap">
+          <h1 class="entry-title" itemprop="name">
+            <a href="http://www.bloggure.info/">Bloggure</a>
+          </h1>
+        </div>
+        <!-- /.header-title-wrap -->
       </header>
-      <!--:en--><img src="/images/uploads/2012/02/gitlabhq-logo.png" alt="" title="gitlabhq-logo" width="175" height="60" class="alignright size-full wp-image-528" /><p>As our <a href="http://gitlabhq.com/">GitlabHQ</a> setup at <a href="http://www.srmvision.com">SRMvision</a> is mean to stay, we wanted to migrate from the standard SQLite database to an easier to manage for us : mySQL.<br /> The steps are quite straighforward, first, setup mySQL :</p>
+    </div>
 
-<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">create</span> <span class="k">database</span> <span class="n">gitlab</span><span class="p">;</span> 
+    <div id="main" role="main">
+      <article class="hentry">
+        <div class="entry-content">
+          <header>
+            <div class="entry-meta">
+              <span class="entry-date date published updated"
+                ><time
+                  datetime="2012-05-08T00:00:00+02:00"
+                  itemprop="datePublished"
+                  ><a
+                    href="http://www.bloggure.info/work/gitlabhq-sqlite-to-mysql.html"
+                    >May 08, 2012</a
+                  ></time
+                ></span
+              ><span
+                class="author vcard"
+                itemprop="author"
+                itemscope
+                itemtype="http://schema.org/Person"
+                ><span itemprop="name" class="fn"
+                  ><a
+                    href="http://www.bloggure.info/cgatay"
+                    title="About cgatay"
+                    itemprop="url"
+                    >cgatay</a
+                  ></span
+                ></span
+              >
+            </div>
+            <!-- /.entry-meta -->
+
+            <h1 class="entry-title" itemprop="name">
+              <a
+                href="http://www.bloggure.info/work/gitlabhq-sqlite-to-mysql.html"
+                rel="bookmark"
+                title="GitlabHQ - SQLite to mySQL"
+                itemprop="url"
+                >GitlabHQ - SQLite to mySQL</a
+              >
+            </h1>
+          </header>
+          <!--:en--><img
+            src="/images/uploads/2012/02/gitlabhq-logo.png"
+            alt=""
+            title="gitlabhq-logo"
+            width="175"
+            height="60"
+            class="alignright size-full wp-image-528"
+          />
+          <p>
+            As our <a href="http://gitlabhq.com/">GitlabHQ</a> setup at
+            <a href="http://www.srmvision.com">SRMvision</a> is mean to stay, we
+            wanted to migrate from the standard SQLite database to an easier to
+            manage for us : mySQL.<br />
+            The steps are quite straighforward, first, setup mySQL :
+          </p>
+
+          <figure class="highlight">
+            <pre><code class="language-sql" data-lang="sql"><span class="k">create</span> <span class="k">database</span> <span class="n">gitlab</span><span class="p">;</span> 
 <span class="k">grant</span> <span class="k">all</span> <span class="k">privileges</span> <span class="k">on</span> <span class="n">gitlab</span><span class="p">.</span><span class="o">*</span> <span class="k">to</span> <span class="nv">"gitlab"</span> <span class="n">identified</span> <span class="k">by</span> <span class="nv">"gitlab"</span><span class="p">;</span> 
-<span class="n">flush</span> <span class="k">privileges</span><span class="p">;</span></code></pre></figure>
-Then prepare to dump the data out of GitlabHQ, stop your webserver, then, from your GitlabHQ folder : 
+<span class="n">flush</span> <span class="k">privileges</span><span class="p">;</span></code></pre>
+          </figure>
+          Then prepare to dump the data out of GitlabHQ, stop your webserver,
+          then, from your GitlabHQ folder :
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">bundle <span class="nb">exec </span>rake db:data:dump <span class="nv">RAILS_ENV</span><span class="o">=</span>production</code></pre></figure>
-this will create a db/data.yml file. All you have to do now is reconfigure GitlabHQ to connect to mySQL and reimport the data. The database configuration takes place in the config/database.yml file, backup your existing file and rename the database.yml.example :
+          <figure class="highlight">
+            <pre><code class="language-bash" data-lang="bash">bundle <span class="nb">exec </span>rake db:data:dump <span class="nv">RAILS_ENV</span><span class="o">=</span>production</code></pre>
+          </figure>
+          this will create a db/data.yml file. All you have to do now is
+          reconfigure GitlabHQ to connect to mySQL and reimport the data. The
+          database configuration takes place in the config/database.yml file,
+          backup your existing file and rename the database.yml.example :
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">mv </span>config/database.yml config/database.yml.old
-<span class="nb">cp </span>config/database.yml.example config/database.yml</code></pre></figure>
-Then edit the file to reflect your new configuration, only the production section is relevant in our case :
+          <figure class="highlight">
+            <pre><code class="language-bash" data-lang="bash"><span class="nb">mv </span>config/database.yml config/database.yml.old
+<span class="nb">cp </span>config/database.yml.example config/database.yml</code></pre>
+          </figure>
+          Then edit the file to reflect your new configuration, only the
+          production section is relevant in our case :
 
-<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="na">development</span><span class="pi">:</span>
+          <figure class="highlight">
+            <pre><code class="language-yaml" data-lang="yaml"><span class="na">development</span><span class="pi">:</span>
   <span class="na">adapter</span><span class="pi">:</span> <span class="s">mysql2</span>
   <span class="na">encoding</span><span class="pi">:</span> <span class="s">utf8</span>
   <span class="na">reconnect</span><span class="pi">:</span> <span class="no">false</span>
@@ -128,13 +221,20 @@ Then edit the file to reflect your new configuration, only the production sectio
   <span class="na">pool</span><span class="pi">:</span> <span class="m">5</span>
   <span class="na">username</span><span class="pi">:</span> <span class="s">gitlab</span> <span class="c1"># to replace with your credentials</span>
   <span class="na">password</span><span class="pi">:</span> <span class="s2">"</span><span class="s">gitlab"</span> <span class="c1"># to replace with your credentials</span>
-  <span class="na">socket</span><span class="pi">:</span> <span class="s">/var/run/mysqld/mysqld.sock</span> <span class="c1"># mysql socket location on debian</span></code></pre></figure>
-Once this is done, you have to create the schema and restore your data :
+  <span class="na">socket</span><span class="pi">:</span> <span class="s">/var/run/mysqld/mysqld.sock</span> <span class="c1"># mysql socket location on debian</span></code></pre>
+          </figure>
+          Once this is done, you have to create the schema and restore your data
+          :
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">bundle <span class="nb">exec </span>rake db:setup <span class="nv">RAILS_ENV</span><span class="o">=</span>production
-bundle <span class="nb">exec </span>rake db:data:load <span class="nv">RAILS_ENV</span><span class="o">=</span>production</code></pre></figure>
+          <figure class="highlight">
+            <pre><code class="language-bash" data-lang="bash">bundle <span class="nb">exec </span>rake db:setup <span class="nv">RAILS_ENV</span><span class="o">=</span>production
+bundle <span class="nb">exec </span>rake db:data:load <span class="nv">RAILS_ENV</span><span class="o">=</span>production</code></pre>
+          </figure>
 
-Job's done, you just need to restart the GitlabHQ server now (nginx, apache...). If you encounter a problem and this does not work as expected, you just have to restore the database.yml.old file to go back to SQLite.<!--:--><!--:fr<img src="/images/uploads/2012/02/gitlabhq-logo.png" alt="" title="gitlabhq-logo" width="175" height="60" class="alignright size-full wp-image-528" /><p>Comme notre installation de <a href="http://gitlabhq.com/">GitlabHQ</a> à <a href="http://www.srmvision.com">SRMvision</a> est faite pour rester, nous avons décidé de migrer de la base SQLite vers un système plus simple à gérer pour nous : mySQL.<br /> Les étapes sont assez simple, premièrement, configurons mySQL :</p>
+          Job's done, you just need to restart the GitlabHQ server now (nginx,
+          apache...). If you encounter a problem and this does not work as
+          expected, you just have to restore the database.yml.old file to go
+          back to SQLite.<!--:--><!--:fr<img src="/images/uploads/2012/02/gitlabhq-logo.png" alt="" title="gitlabhq-logo" width="175" height="60" class="alignright size-full wp-image-528" /><p>Comme notre installation de <a href="http://gitlabhq.com/">GitlabHQ</a> à <a href="http://www.srmvision.com">SRMvision</a> est faite pour rester, nous avons décidé de migrer de la base SQLite vers un système plus simple à gérer pour nous : mySQL.<br /> Les étapes sont assez simple, premièrement, configurons mySQL :</p>
 <pre class="brush: sql">
 create database gitlab; 
 grant all privileges on gitlab.* to "gitlab" identified by "gitlab"; 
@@ -189,135 +289,210 @@ bundle exec rake db:data:load RAILS_ENV=production
 </pre>
 C'est tout, il ne reste plus qu'à redémarrer le serveur de GitlabHQ. Si toutefois ça ne fonctionnait pas, vous n'avez qu'à restaurer le fichier database.yml.old pour retourner à la configuration par défaut utilisant SQLite.<-->
 
-      <footer class="entry-meta">
-        <span class="entry-tags"></span>
-        
-        <div class="social-share">
-  <ul class="socialcount socialcount-small inline-list">
-    <li class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=http://www.bloggure.info/work/gitlabhq-sqlite-to-mysql.html" title="Share on Facebook"><span class="count"><i class="fa fa-facebook-square"></i> Like</span></a></li>
-    <li class="twitter"><a href="https://twitter.com/intent/tweet?text=http://www.bloggure.info/work/gitlabhq-sqlite-to-mysql.html" title="Share on Twitter"><span class="count"><i class="fa fa-twitter-square"></i> Tweet</span></a></li>
-  </ul>
-</div><!-- /.social-share -->
+          <footer class="entry-meta">
+            <span class="entry-tags"></span>
+
+            <div class="social-share">
+              <ul class="socialcount socialcount-small inline-list">
+                <li class="facebook">
+                  <a
+                    href="https://www.facebook.com/sharer/sharer.php?u=http://www.bloggure.info/work/gitlabhq-sqlite-to-mysql.html"
+                    title="Share on Facebook"
+                    ><span class="count"
+                      ><i class="fa fa-facebook-square"></i> Like</span
+                    ></a
+                  >
+                </li>
+                <li class="twitter">
+                  <a
+                    href="https://twitter.com/intent/tweet?text=http://www.bloggure.info/work/gitlabhq-sqlite-to-mysql.html"
+                    title="Share on Twitter"
+                    ><span class="count"
+                      ><i class="fa fa-twitter-square"></i> Tweet</span
+                    ></a
+                  >
+                </li>
+              </ul>
+            </div>
+            <!-- /.social-share -->
+          </footer>
+        </div>
+        <!-- /.entry-content -->
+
+        <div class="read-more">
+          <div class="read-more-header">
+            <a
+              href="http://www.bloggure.info/.git/ci/control-trac-ticket-workflow-from-your-git-commits"
+              class="read-more-btn"
+              >Read More</a
+            >
+          </div>
+          <!-- /.read-more-header -->
+          <div class="read-more-content">
+            <h3>
+              <a
+                href="http://www.bloggure.info/ios/swift/uikit/ios-sheetpresentationcontroller-background-effect"
+                title="iOS 26.2 Sheet: remove Liquid Glass for small detents"
+                >iOS 26.2 Sheet: remove Liquid Glass for small detents</a
+              >
+            </h3>
+            <p>
+              How to control and customize background effects in iOS 26.2 sheet
+              presentation controllers
+              <a
+                href="http://www.bloggure.info/ios/swift/uikit/ios-sheetpresentationcontroller-background-effect"
+                >Continue reading</a
+              >
+            </p>
+          </div>
+          <!-- /.read-more-content -->
+
+          <div class="read-more-list">
+            <div class="list-item">
+              <h4>
+                <a
+                  href="http://www.bloggure.info/Shortcut_bill_renaming"
+                  title="Streamlining Finances: Automating Bill Renaming with Apple Shortcuts"
+                  >Streamlining Finances: Automating Bill Renaming with Apple
+                  Shortcuts</a
+                >
+              </h4>
+              <span>Published on January 07, 2026</span>
+            </div>
+            <!-- /.list-item -->
+
+            <div class="list-item">
+              <h4>
+                <a
+                  href="http://www.bloggure.info/Tuist_build_test_schemes"
+                  title="Tuist build test schemes"
+                  >Tuist build test schemes</a
+                >
+              </h4>
+              <span>Published on May 22, 2025</span>
+            </div>
+            <!-- /.list-item -->
+          </div>
+          <!-- /.read-more-list -->
+        </div>
+        <!-- /.read-more -->
+      </article>
+    </div>
+    <!-- /#main -->
+
+    <div class="footer-wrapper">
+      <footer role="contentinfo">
+        <span>
+          See also
+          <dl>
+            <dt><a href="https://www.9h41.org">9h41</a></dt>
+            <dt><a href="https://www.psy-tours.fr">Psy-Tours</a></dt>
+          </dl>
+        </span>
+        <br />
+        <span>
+          &copy; 2026 . Powered by
+          <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using a theme
+          based on
+          <a
+            href="https://mademistakes.com/work/hpstr-jekyll-theme/"
+            rel="nofollow"
+            >HPSTR</a
+          >.
+        </span>
       </footer>
-    </div><!-- /.entry-content -->
-    
-    <div class="read-more">
-  
-    <div class="read-more-header">
-      <a href="http://www.bloggure.info/.git/ci/control-trac-ticket-workflow-from-your-git-commits" class="read-more-btn">Read More</a>
-    </div><!-- /.read-more-header -->
-    <div class="read-more-content">
-      <h3><a href="http://www.bloggure.info/ios/swift/uikit/ios-sheetpresentationcontroller-background-effect" title="iOS 26.2 Sheet: remove Liquid Glass for small detents">iOS 26.2 Sheet: remove Liquid Glass for small detents</a></h3>
-      <p>How to control and customize background effects in iOS 26.2 sheet presentation controllers <a href="http://www.bloggure.info/ios/swift/uikit/ios-sheetpresentationcontroller-background-effect">Continue reading</a></p>
-    </div><!-- /.read-more-content -->
-  
-  <div class="read-more-list">
-    
-      <div class="list-item">
-        <h4><a href="http://www.bloggure.info/Shortcut_bill_renaming" title="Streamlining Finances: Automating Bill Renaming with Apple Shortcuts">Streamlining Finances: Automating Bill Renaming with Apple Shortcuts</a></h4>
-        <span>Published on January 07, 2026</span>
-      </div><!-- /.list-item -->
-    
-      <div class="list-item">
-        <h4><a href="http://www.bloggure.info/Tuist_build_test_schemes" title="Tuist build test schemes">Tuist build test schemes</a></h4>
-        <span>Published on May 22, 2025</span>
-      </div><!-- /.list-item -->
-    
-  </div><!-- /.read-more-list -->
-</div><!-- /.read-more -->
-  </article>
-</div><!-- /#main -->
+    </div>
+    <!-- /.footer-wrapper -->
 
-<div class="footer-wrapper">
-  <footer role="contentinfo">
-    <span>
-    See also
-    <dl>
-        <dt><a href="https://www.9h41.org">9h41</a></dt>
-        <dt><a href="https://www.psy-tours.fr">Psy-Tours</a></dt>
-    </dl>
-</span>
-<br/>
-<span>
-    &copy; 2026 . Powered by <a href="http://jekyllrb.com"
-        rel="nofollow">Jekyll</a> using a theme based on <a href="https://mademistakes.com/work/hpstr-jekyll-theme/"
-        rel="nofollow">HPSTR</a>.
-</span>
-
-
-  </footer>
-</div><!-- /.footer-wrapper -->
-
-<script>
-  (function() {
-    function loadScript(src) {
-      return new Promise(function(resolve, reject) {
-        var script = document.createElement('script');
-        script.src = src;
-        script.defer = true;
-        script.async = false;
-        script.onload = resolve;
-        script.onerror = reject;
-        document.head.appendChild(script);
-      });
-    }
-
-    var jqCdn = '//ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js';
-    var jqLocal = 'http://www.bloggure.info/assets/js/vendor/jquery-3.7.1.min.js';
-    var needFitVids = document.querySelector('article iframe, article video');
-    var needMagnific = document.querySelector(
-      'a[href$=".jpg" i],a[href$=".jpeg" i],a[href$=".png" i],a[href$=".gif" i]'
-    );
-
-    var jqPromise = loadScript(jqCdn)
-      .catch(function() {
-        return loadScript(jqLocal);
-      })
-      .then(function() {
-        if (!window.jQuery) {
-          return loadScript(jqLocal);
-        }
-      });
-
-    jqPromise
-      .then(function() {
-        var chain = Promise.resolve();
-        
-        if (needFitVids) {
-          chain = chain.then(function() {
-            return loadScript('http://www.bloggure.info/assets/js/plugins/jquery.fitvids.js');
+    <script>
+      (function () {
+        function loadScript(src) {
+          return new Promise(function (resolve, reject) {
+            var script = document.createElement("script");
+            script.src = src;
+            script.defer = true;
+            script.async = false;
+            script.onload = resolve;
+            script.onerror = reject;
+            document.head.appendChild(script);
           });
         }
-        if (needMagnific) {
-          chain = chain.then(function() {
-            return loadScript('http://www.bloggure.info/assets/js/plugins/jquery.magnific-popup.js');
+
+        var jqCdn =
+          "//ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js";
+        var jqLocal =
+          "http://www.bloggure.info/assets/js/vendor/jquery-3.7.1.min.js";
+        var needFitVids = document.querySelector(
+          "article iframe, article video"
+        );
+        var needMagnific = document.querySelector(
+          'a[href$=".jpg" i],a[href$=".jpeg" i],a[href$=".png" i],a[href$=".gif" i]'
+        );
+
+        var jqPromise = loadScript(jqCdn)
+          .catch(function () {
+            return loadScript(jqLocal);
+          })
+          .then(function () {
+            if (!window.jQuery) {
+              return loadScript(jqLocal);
+            }
           });
-        }
-        
-        return chain;
-      })
-      .then(function() {
-        return loadScript('http://www.bloggure.info/assets/js/scripts.min.js');
-      });
-  })();
-</script>
 
+        jqPromise
+          .then(function () {
+            var chain = Promise.resolve();
 
-<!-- Asynchronous Google Analytics snippet -->
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+            if (needFitVids) {
+              chain = chain.then(function () {
+                return loadScript(
+                  "http://www.bloggure.info/assets/js/plugins/jquery.fitvids.js"
+                );
+              });
+            }
+            if (needMagnific) {
+              chain = chain.then(function () {
+                return loadScript(
+                  "http://www.bloggure.info/assets/js/plugins/jquery.magnific-popup.js"
+                );
+              });
+            }
 
-  ga('create', 'UA-11718843-3', 'auto');  
-  ga('require', 'linkid', 'linkid.js');
-  ga('send', 'pageview');
-</script>
+            return chain;
+          })
+          .then(function () {
+            return loadScript(
+              "http://www.bloggure.info/assets/js/scripts.min.js"
+            );
+          });
+      })();
+    </script>
 
+    <!-- Asynchronous Google Analytics snippet -->
+    <script>
+      (function (i, s, o, g, r, a, m) {
+        i["GoogleAnalyticsObject"] = r;
+        (i[r] =
+          i[r] ||
+          function () {
+            (i[r].q = i[r].q || []).push(arguments);
+          }),
+          (i[r].l = 1 * new Date());
+        (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m);
+      })(
+        window,
+        document,
+        "script",
+        "//www.google-analytics.com/analytics.js",
+        "ga"
+      );
 
-
-	        
-
-</body>
+      ga("create", "UA-11718843-3", "auto");
+      ga("require", "linkid", "linkid.js");
+      ga("send", "pageview");
+    </script>
+  </body>
 </html>
