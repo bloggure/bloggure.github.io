@@ -23,7 +23,7 @@ jobs:
       - name: 💎 setup ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.2.2 # can change this to 2.7 or whatever version you prefer
+          ruby-version: '3.2' # latest 3.2.x (3.2.2 is not built for newer runner images)
 
       - name: 🔨 install dependencies & build site
         uses: limjh16/jekyll-action-ts@v2
